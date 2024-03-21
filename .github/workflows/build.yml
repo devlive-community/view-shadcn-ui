@@ -1,12 +1,17 @@
 name: Build Vue
-on: [ push ]
+on:
+  push:
+    branches:
+      - dev
+
 jobs:
   build_vue:
     runs-on: ubuntu-latest
     name: Build Vue
     steps:
       - uses: actions/checkout@v2
-      - id: Build-Vue
+      - if: github.ref == 'refs/heads/dev'
+        id: Build-Vue
         uses: xRealNeon/VuePagesAction@1.0.1
         with:
           username: 'devlive-community'
