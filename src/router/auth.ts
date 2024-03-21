@@ -9,6 +9,11 @@ const createAuthRouter = (router: Router) => {
                 name: 'signup',
                 path: 'signup',
                 component: () => import('@/views/auth/AuthSignup.vue')
+            },
+            {
+                name: 'signin',
+                path: 'signin',
+                component: () => import('@/views/auth/AuthSignin.vue')
             }
         ]
     })

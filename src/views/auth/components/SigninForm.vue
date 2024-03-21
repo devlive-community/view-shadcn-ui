@@ -12,10 +12,15 @@
           </FormItem>
         </FormField>
       </div>
-      <div class="grid gap-2">
+      <div class="grid gap-2 mt-1">
         <FormField v-slot="{ componentField }" name="password">
           <FormItem>
-            <FormLabel>Password</FormLabel>
+            <div className='flex items-center justify-between'>
+              <FormLabel>Password</FormLabel>
+              <RouterLink to="" class="text-sm font-medium text-muted-foreground hover:opacity-75">
+                Forgot password?
+              </RouterLink>
+            </div>
             <FormControl>
               <Input v-model="formState.password" v-bind="componentField" type="password" placeholder="Please enter your password"/>
             </FormControl>
@@ -23,20 +28,9 @@
           </FormItem>
         </FormField>
       </div>
-      <div class="grid gap-2">
-        <FormField v-slot="{ componentField }" name="confirmPassword">
-          <FormItem>
-            <FormLabel>Confirm Password</FormLabel>
-            <FormControl>
-              <Input v-model="formState.confirmPassword" v-bind="componentField" type="password" placeholder="Please enter your confirm password"/>
-            </FormControl>
-            <FormMessage/>
-          </FormItem>
-        </FormField>
-      </div>
       <Button class="mt-3 w-full" type="submit" :disabled="loading">
         <Loader2 v-if="loading" class="mr-2 h-4 w-4 animate-spin"/>
-        Create Account
+        Sign in
       </Button>
     </form>
     <ThirdForm/>
@@ -56,7 +50,7 @@ import { Button } from '@/components/ui/button'
 import ThirdForm from '@/views/auth/components/ThirdForm.vue'
 
 export default defineComponent({
-  name: 'SignupForm',
+  name: 'SigninForm',
   components: {
     ThirdForm,
     Button,
@@ -67,7 +61,7 @@ export default defineComponent({
   setup()
   {
     let loading = ref(false)
-    const formState = ref<User>({username: undefined, password: undefined, confirmPassword: undefined})
+    const formState = ref<User>({username: undefined, password: undefined})
     const validator = z
         .object({
           username: z.string({required_error: 'Username is required'})
@@ -75,14 +69,7 @@ export default defineComponent({
               .max(20, 'Username must be at most 20 characters'),
           password: z.string({required_error: 'Password is required'})
               .min(6, 'Password must be at least 6 characters')
-              .max(20, 'Password must be at most 20 characters'),
-          confirmPassword: z.string({required_error: 'Password is required'})
-              .min(6, 'Password must be at least 6 characters')
               .max(20, 'Password must be at most 20 characters')
-        })
-        .refine((data) => data.password === data.confirmPassword, {
-          message: 'Passwords do not match',
-          path: ['confirmPassword']
         })
 
     const {handleSubmit} = useForm({
