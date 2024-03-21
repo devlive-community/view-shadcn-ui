@@ -18,4 +18,4 @@ jobs:
         with:
           node-version: 18.x
 
-      - run: cd core/datacap-ui && npm install && npm run build
+      - run: npm install && npm run build
