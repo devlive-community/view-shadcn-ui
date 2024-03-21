@@ -1,6 +1,11 @@
-<script setup lang="ts">
-</script>
-
 <template>
-  <h1>Shadcn UI Vue Admin</h1>
+  <RouterView/>
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  name: 'App'
+})
+</script>
