@@ -11,4 +11,4 @@ jobs:
         with:
           username: 'devlive-community'
           reponame: 'shadcn-ui-vue-admin'
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
