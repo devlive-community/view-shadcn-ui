@@ -6,6 +6,7 @@ import tailwind from 'tailwindcss'
 import autoprefixer from 'autoprefixer'
 
 export default defineConfig({
+    base: '/devlive-community/shadcn-ui-vue-admin',
     css: {
         postcss: {
             plugins: [tailwind(), autoprefixer()]
