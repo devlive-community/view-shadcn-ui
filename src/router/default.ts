@@ -1,10 +1,19 @@
 import { Router } from 'vue-router'
+import LayoutContainer from '@/views/layouts/base/LayoutContainer.vue'
 
 const createDefaultRouter = (router: Router): void => {
     router.addRoute({
         path: '/',
         name: 'home',
-        redirect: '/auth/signup'
+        redirect: '/home',
+        component: LayoutContainer,
+        children: [
+            {
+                name: 'home',
+                path: 'home',
+                component: () => import('@/views/pages/home/HomeIndex.vue')
+            }
+        ]
     })
     createHttpRouter(router)
     createUserRouter(router)
