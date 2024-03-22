@@ -2,11 +2,17 @@ import { NavigationModel } from '@/model/Navigation'
 
 class NavigationService
 {
-    getNavigation(): NavigationModel[]
+    private navigations: NavigationModel[] = []
+
+    addNavigation(navigation: NavigationModel): void
     {
-        return []
+        this.navigations.push(navigation)
     }
 
+    getNavigation(): NavigationModel[]
+    {
+        return this.navigations
+    }
 }
 
 export default new NavigationService()

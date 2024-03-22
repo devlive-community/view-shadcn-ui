@@ -62,6 +62,7 @@ export default defineComponent({
     setIsCollapsed(opened: boolean)
     {
       this.isCollapsed = opened
+      this.$emit('changeCollapsed', opened)
     }
   }
 })
