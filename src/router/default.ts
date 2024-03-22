@@ -1,12 +1,33 @@
 import { Router } from 'vue-router'
 
-const createDefaultRouter = (router: Router) => {
+const createDefaultRouter = (router: Router): void => {
     router.addRoute({
         path: '/',
         name: 'home',
         redirect: '/auth/signup'
     })
+    createHttpRouter(router)
     createUserRouter(router)
+}
+
+/**
+ * Create an HTTP router with a route for common errors.
+ *
+ * @param {Router} router - the router to add the route to
+ * @return {void}
+ */
+const createHttpRouter = (router: Router): void => {
+    router.addRoute({
+        path: '/common',
+        name: 'common',
+        children: [
+            {
+                name: '404',
+                path: '404',
+                component: () => import('@/views/common/error/NotFound.vue')
+            }
+        ]
+    })
 }
 
 /**
@@ -15,7 +36,7 @@ const createDefaultRouter = (router: Router) => {
  * @param {Router} router - the router to add the user routes to
  * @return {void}
  */
-const createUserRouter = (router: Router) => {
+const createUserRouter = (router: Router): void => {
     router.addRoute({
         path: '/user',
         name: 'user',

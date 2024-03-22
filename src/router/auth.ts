@@ -1,6 +1,6 @@
 import { Router } from 'vue-router'
 
-const createAuthRouter = (router: Router) => {
+const createAuthRouter = (router: Router): void => {
     router.addRoute({
         path: '/auth',
         name: 'auth',

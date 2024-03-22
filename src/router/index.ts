@@ -12,4 +12,13 @@ const router = createRouter({
 createAuthRouter(router)
 createDefaultRouter(router)
 
+router.beforeEach((_to, _from, _next): void => {
+    if (_to.matched.length === 0) {
+        _next('/common/404')
+    }
+    else {
+        _next()
+    }
+})
+
 export default router
