@@ -15,9 +15,9 @@
       <div class="grid gap-2 mt-1">
         <FormField v-slot="{ componentField }" name="password">
           <FormItem>
-            <div className='flex items-center justify-between'>
+            <div class="flex items-center justify-between">
               <FormLabel>Password</FormLabel>
-              <RouterLink to="" class="text-sm font-medium text-muted-foreground hover:opacity-75">
+              <RouterLink to="/user/forgot/password" class="text-sm font-medium text-muted-foreground hover:opacity-75">
                 Forgot password?
               </RouterLink>
             </div>

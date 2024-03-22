@@ -8,23 +8,19 @@
       <Card class="p-6">
         <div class="mb-2 flex flex-col space-y-2 text-left">
           <h1 class="text-lg font-semibold tracking-tight text-center">
-            Create an account
+            Forgot Password
           </h1>
           <p class="text-sm text-muted-foreground text-center">
-            Enter your information to create an account. <br/>
-            Already have an account?
-            <RouterLink to='/auth/signin' class="underline underline-offset-4 hover:text-primary">
-              Sign In
-            </RouterLink>
+            Enter your registered email and we will send you a link to reset your password. <br/>
           </p>
         </div>
-        <SignupForm/>
-        <p class="mt-4 px-8 text-center text-sm text-muted-foreground">
-          By creating an account, you agree to our
-          <a class="underline underline-offset-4 hover:text-primary">Terms of Service</a>
-          and
-          <a class="underline underline-offset-4 hover:text-primary">Privacy Policy</a>.
-        </p>
+        <ForgotPasswordForm/>
+        <div class="mt-4 px-8 text-center text-sm text-muted-foreground">
+          Don't have an account?
+          <RouterLink to='/auth/signup' class="underline underline-offset-4 hover:text-primary">
+            Sign Up
+          </RouterLink>
+        </div>
       </Card>
     </div>
   </div>
@@ -32,16 +28,16 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { Card } from '@/components/ui/card'
-import SignupForm from '@/views/auth/components/SignupForm.vue'
 import AlertForm from '@/views/auth/components/AlertForm.vue'
+import { Card } from '@/components/ui/card'
+import ForgotPasswordForm from '@/views/pages/user/components/ForgotPasswordForm.vue'
 
 export default defineComponent({
-  name: 'AuthSignup',
+  name: 'ForgotPassword',
   components: {
-    AlertForm,
-    SignupForm,
-    Card
+    ForgotPasswordForm,
+    Card,
+    AlertForm
   }
 })
 </script>
