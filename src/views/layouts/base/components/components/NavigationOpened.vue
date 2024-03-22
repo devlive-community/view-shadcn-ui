@@ -1,5 +1,5 @@
 <template>
-  <RouterLink :to="navigator?.href" :class="`${navigator?.position === NavigationPosition.BOTTOM ? 'absolute bottom-0 left-0 right-0' : ''}`">
+  <RouterLink :to="navigator?.href as string" :class="`${navigator?.position === NavigationPosition.BOTTOM ? 'absolute bottom-0 left-0 right-0' : ''}`">
     <TooltipProvider>
       <Tooltip :delay-duration="0">
         <TooltipTrigger asChild>

@@ -1,5 +1,5 @@
 <template>
-  <RouterLink :to="navigator?.href" :class="`${navigator?.position === NavigationPosition.BOTTOM ? 'absolute bottom-0 left-0 right-0' : ''}`">
+  <RouterLink :to="navigator?.href as string" :class="`${navigator?.position === NavigationPosition.BOTTOM ? 'absolute bottom-0 left-0 right-0' : ''}`">
     <Button as="a" size="sm" class="justify-start text-wrap rounded-none h-10 w-full border-l border-l-slate-500 px-2"
             :variant="$route.path === `${navigator?.href}` ? 'secondary' : 'ghost'">
       <component :is="navigator?.icon"/>
