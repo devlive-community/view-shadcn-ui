@@ -1,17 +1,19 @@
 <template>
-  <TooltipProvider>
-    <Tooltip :delay-duration="0">
-      <TooltipTrigger asChild>
-        <Button as="a" size="icon" class="h-12 w-12" :href="navigator?.href" :variant="$route.path === `${navigator?.href}` ? 'secondary' : 'ghost'">
-          <component :is="navigator?.icon"/>
-        </Button>
-      </TooltipTrigger>
-      <TooltipContent side="right" class="flex items-center gap-4">
-        {{ navigator?.title }}
-        <span v-if="navigator?.label" class="ml-auto text-muted-foreground">{{ navigator?.label }}</span>
-      </TooltipContent>
-    </Tooltip>
-  </TooltipProvider>
+  <RouterLink :to="navigator?.href">
+    <TooltipProvider>
+      <Tooltip :delay-duration="0">
+        <TooltipTrigger asChild>
+          <Button as="a" size="icon" class="h-12 w-12" :variant="$route.path === `${navigator?.href}` ? 'secondary' : 'ghost'">
+            <component :is="navigator?.icon"/>
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent side="right" class="flex items-center gap-4">
+          {{ navigator?.title }}
+          <span v-if="navigator?.label" class="ml-auto text-muted-foreground">{{ navigator?.label }}</span>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  </RouterLink>
 </template>
 
 <script lang="ts">
