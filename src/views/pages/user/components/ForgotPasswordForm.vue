@@ -30,6 +30,7 @@ import * as z from 'zod'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import { Button } from '@/components/ui/button'
+import router from '@/router'
 
 export default defineComponent({
   name: 'ForgotPasswordForm',
@@ -57,6 +58,7 @@ export default defineComponent({
       loading.value = true
       setTimeout(() => {
         loading.value = false
+        router.push('/auth/signin')
       }, 3000)
     })
 
