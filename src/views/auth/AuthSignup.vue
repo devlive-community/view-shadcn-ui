@@ -4,6 +4,7 @@
       <div class="mb-4 flex items-center justify-center">
         <h1 class="text-xl font-medium">Shadcn Admin for Vue3</h1>
       </div>
+      <AlertForm/>
       <Card class="p-6">
         <div class="mb-2 flex flex-col space-y-2 text-left">
           <h1 class="text-lg font-semibold tracking-tight text-center">
@@ -33,10 +34,12 @@
 import { defineComponent } from 'vue'
 import { Card } from '@/components/ui/card'
 import SignupForm from '@/views/auth/components/SignupForm.vue'
+import AlertForm from '@/views/auth/components/AlertForm.vue'
 
 export default defineComponent({
   name: 'AuthSignup',
   components: {
+    AlertForm,
     SignupForm,
     Card
   }
