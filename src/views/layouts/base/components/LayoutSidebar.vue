@@ -5,7 +5,7 @@
       <!-- Navigation links -->
       <div :class="cn(`h-full flex-1 overflow-auto ${isCollapsed ? 'max-h-screen' : 'max-h-0 py-0 md:max-h-screen'}`)">
         <div class="bg-background py-2 h-full duration-500 data-[collapsed=true]:py-2 md:border-none space-y-1">
-          <div v-for="item in links" class="text-center">
+          <div v-for="item in navigators" class="text-center">
             <NavigationOpened v-if="isCollapsed" :navigator="item"/>
             <NavigationClosed v-else :navigator="item"/>
           </div>
