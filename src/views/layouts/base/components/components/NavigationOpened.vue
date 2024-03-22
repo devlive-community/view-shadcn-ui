@@ -1,5 +1,5 @@
 <template>
-  <RouterLink :to="navigator?.href">
+  <RouterLink :to="navigator?.href" :class="`${navigator?.position === NavigationPosition.BOTTOM ? 'absolute bottom-0 left-0 right-0' : ''}`">
     <TooltipProvider>
       <Tooltip :delay-duration="0">
         <TooltipTrigger asChild>
@@ -20,11 +20,17 @@
 import { defineComponent } from 'vue'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { Button } from '@/components/ui/button'
-import { NavigationModel } from '@/model/Navigation'
+import { NavigationModel, NavigationPosition } from '@/model/Navigation'
 import { ChevronsLeft } from 'lucide-vue-next'
 
 export default defineComponent({
   name: 'NavigationOpened',
+  computed: {
+    NavigationPosition()
+    {
+      return NavigationPosition
+    }
+  },
   components: {
     ChevronsLeft,
     Button,
