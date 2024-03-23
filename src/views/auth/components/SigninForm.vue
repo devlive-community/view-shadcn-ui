@@ -4,9 +4,9 @@
       <div class="grid gap-2">
         <FormField v-slot="{ componentField }" name="username">
           <FormItem>
-            <FormLabel>Username</FormLabel>
+            <FormLabel>{{ $t('user.common.username') }}</FormLabel>
             <FormControl>
-              <Input type="text" v-model="formState.username" v-bind="componentField" placeholder="Please enter your username"/>
+              <Input type="text" v-model="formState.username" v-bind="componentField" :placeholder="$t('user.tip.usernameHolder')"/>
             </FormControl>
             <FormMessage/>
           </FormItem>
@@ -16,13 +16,13 @@
         <FormField v-slot="{ componentField }" name="password">
           <FormItem>
             <div class="flex items-center justify-between">
-              <FormLabel>Password</FormLabel>
+              <FormLabel>{{ $t('user.common.password') }}</FormLabel>
               <RouterLink to="/user/forgot/password" class="text-sm font-medium text-muted-foreground hover:opacity-75">
-                Forgot password?
+                {{ $t('common.common.forgotPassword') }}?
               </RouterLink>
             </div>
             <FormControl>
-              <Input v-model="formState.password" v-bind="componentField" type="password" placeholder="Please enter your password"/>
+              <Input v-model="formState.password" v-bind="componentField" type="password" :placeholder="$t('user.tip.passwordHolder')"/>
             </FormControl>
             <FormMessage/>
           </FormItem>
@@ -30,7 +30,7 @@
       </div>
       <Button class="mt-3 w-full" type="submit" :disabled="loading">
         <Loader2 v-if="loading" class="mr-2 h-4 w-4 animate-spin"/>
-        Sign in
+        {{ $t('common.common.signIn') }}
       </Button>
     </form>
     <ThirdForm/>
@@ -38,7 +38,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, inject, ref } from 'vue'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { User } from '@/views/auth/User'
 import { Input } from '@/components/ui/input'
@@ -61,16 +61,17 @@ export default defineComponent({
   },
   setup()
   {
+    const $t: any = inject('$t')
     let loading = ref(false)
     const formState = ref<User>({username: undefined, password: undefined})
     const validator = z
         .object({
-          username: z.string({required_error: 'Username is required'})
-              .min(2, 'Username must be at least 2 characters')
-              .max(20, 'Username must be at most 20 characters'),
-          password: z.string({required_error: 'Password is required'})
-              .min(6, 'Password must be at least 6 characters')
-              .max(20, 'Password must be at most 20 characters')
+          username: z.string({required_error: $t('user.validator.usernameRequired')})
+              .min(2, $t('user.validator.usernameLengthLeast'))
+              .max(20, $t('user.validator.usernameLengthMost')),
+          password: z.string({required_error: $t('user.validator.passwordRequired')})
+              .min(6, $t('user.validator.passwordLengthLeast'))
+              .max(20, $t('user.validator.passwordLengthMost'))
         })
 
     const {handleSubmit} = useForm({

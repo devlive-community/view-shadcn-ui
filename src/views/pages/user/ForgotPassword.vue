@@ -7,19 +7,15 @@
       <AlertForm/>
       <Card class="p-6">
         <div class="mb-2 flex flex-col space-y-2 text-left">
-          <h1 class="text-lg font-semibold tracking-tight text-center">
-            Forgot Password
-          </h1>
+          <h1 class="text-lg font-semibold tracking-tight text-center">{{ $t('common.common.forgotPassword') }}</h1>
           <p class="text-sm text-muted-foreground text-center">
-            Enter your registered email and we will send you a link to reset your password. <br/>
+            {{ $t('common.tip.forgotPasswordInfo') }} <br/>
           </p>
         </div>
         <ForgotPasswordForm/>
         <div class="mt-4 px-8 text-center text-sm text-muted-foreground">
-          Don't have an account?
-          <RouterLink to='/auth/signup' class="underline underline-offset-4 hover:text-primary">
-            Sign Up
-          </RouterLink>
+          {{ $t('common.tip.signInNoAccount') }}
+          <RouterLink to='/auth/signup' class="underline underline-offset-4 hover:text-primary">{{ $t('common.common.signUp') }}</RouterLink>
         </div>
       </Card>
     </div>

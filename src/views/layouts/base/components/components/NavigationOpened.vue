@@ -8,7 +8,7 @@
           </Button>
         </TooltipTrigger>
         <TooltipContent side="right" class="flex items-center gap-4">
-          {{ navigator?.title }}
+          {{ $t(navigator?.title as string) }}
           <span v-if="navigator?.label" class="ml-auto text-muted-foreground">{{ navigator?.label }}</span>
         </TooltipContent>
       </Tooltip>

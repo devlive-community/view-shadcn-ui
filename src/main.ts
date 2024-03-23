@@ -11,4 +11,5 @@ import '@/data/index'
 const app = createApp(App)
 app.use(router)
 app.use(i18n)
+app.provide('$t', i18n.global.t)
 app.mount('#app')
