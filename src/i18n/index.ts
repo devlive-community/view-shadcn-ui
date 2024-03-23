@@ -4,7 +4,7 @@ import messages from '@/i18n/langs'
 const language = (navigator.language || 'en').toLocaleLowerCase()
 
 const i18n = createI18n({
-    fallbackLocale: 'en',
+    fallbackLocale: 'zhCn',
     globalInjection: true,
     // Fixed ==> SyntaxError: Not available in legacy mode
     legacy: false,

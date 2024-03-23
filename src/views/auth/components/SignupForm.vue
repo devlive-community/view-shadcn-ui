@@ -36,7 +36,7 @@
       </div>
       <Button class="mt-3 w-full" type="submit" :disabled="loading">
         <Loader2 v-if="loading" class="mr-2 h-4 w-4 animate-spin"/>
-        Create Account
+        {{ $t('common.common.createAccount') }}
       </Button>
     </form>
     <ThirdForm/>
