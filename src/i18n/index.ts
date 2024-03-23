@@ -1,6 +1,8 @@
 import { createI18n } from 'vue-i18n'
 import messages from '@/i18n/langs'
 
+const language = (navigator.language || 'en').toLocaleLowerCase()
+
 const i18n = createI18n({
     fallbackLocale: 'en',
     globalInjection: true,
@@ -12,7 +14,7 @@ const i18n = createI18n({
     // [intlify] Not found 'hello' key in 'en' locale messages.
     silentTranslationWarn: true,
     missingWarn: false,
-    locale: 'en',
+    locale: localStorage.getItem('lang') || language.split('-')[0] || 'en',
     messages
 })
 
