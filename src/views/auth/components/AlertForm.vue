@@ -1,6 +1,6 @@
 <template>
   <Alert variant="destructive">
-    <AlertTitle>Enter your username and password at will</AlertTitle>
+    <AlertTitle>{{ $t('common.tip.inputAnyInfo') }}</AlertTitle>
   </Alert>
 </template>
 

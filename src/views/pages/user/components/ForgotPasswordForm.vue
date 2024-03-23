@@ -4,9 +4,9 @@
       <div class="grid gap-2">
         <FormField v-slot="{ componentField }" name="email">
           <FormItem>
-            <FormLabel>Email</FormLabel>
+            <FormLabel>{{ $t('user.common.email') }}</FormLabel>
             <FormControl>
-              <Input type="email" v-model="formState.email" v-bind="componentField" placeholder="Please enter your email"/>
+              <Input type="email" v-model="formState.email" v-bind="componentField" :placeholder="$t('user.tip.emailHolder')"/>
             </FormControl>
             <FormMessage/>
           </FormItem>
@@ -14,14 +14,14 @@
       </div>
       <Button class="mt-3 w-full" type="submit" :disabled="loading">
         <Loader2 v-if="loading" class="mr-2 h-4 w-4 animate-spin"/>
-        Send Email
+        {{ $t('common.common.sendEmail') }}
       </Button>
     </form>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, inject, ref } from 'vue'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { User } from '@/views/auth/User'
 import { Input } from '@/components/ui/input'
@@ -42,12 +42,13 @@ export default defineComponent({
   },
   setup()
   {
+    const $t: any = inject('$t')
     let loading = ref(false)
     const formState = ref<User>({email: undefined})
     const validator = z
         .object({
-          email: z.string({required_error: 'Email is required'})
-              .email({message: 'Invalid email'})
+          email: z.string({required_error: $t('user.validator.emailRequired')})
+              .email({message: $t('user.validator.emailInvalid')})
         })
 
     const {handleSubmit} = useForm({
