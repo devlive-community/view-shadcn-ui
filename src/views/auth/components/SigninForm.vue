@@ -48,6 +48,7 @@ import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import { Button } from '@/components/ui/button'
 import ThirdForm from '@/views/auth/components/ThirdForm.vue'
+import router from '@/router'
 
 export default defineComponent({
   name: 'SigninForm',
@@ -80,6 +81,7 @@ export default defineComponent({
       loading.value = true
       setTimeout(() => {
         loading.value = false
+        router.push('/')
       }, 3000)
     })
 
