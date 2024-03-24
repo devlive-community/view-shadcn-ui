@@ -4,6 +4,7 @@
     <div class="ml-auto flex items-center space-x-4">
       <ThemeSwitcher/>
       <LanguageSwitcher/>
+      <NavigationUser/>
     </div>
   </div>
 </template>
@@ -15,14 +16,14 @@ import { Button } from '@/components/ui/button'
 import LanguageSwitcher from '@/views/layouts/base/components/components/LanguageSwitcher.vue'
 import NavigationHeader from '@/views/layouts/base/components/components/NavigationHeader.vue'
 import { NavigationModel } from '@/model/Navigation'
-import ThemeSwitcher from '@/views/layouts/base/components/components/ThemeSwitcher.vue';
+import ThemeSwitcher from '@/views/layouts/base/components/components/ThemeSwitcher.vue'
+import NavigationUser from '@/views/layouts/base/components/components/NavigationUser.vue'
 
 export default defineComponent({
   name: 'LayoutHeader',
   components: {
-    ThemeSwitcher,
-    NavigationHeader,
-    LanguageSwitcher,
+    NavigationUser, NavigationHeader,
+    ThemeSwitcher, LanguageSwitcher,
     Button
   },
   props: {

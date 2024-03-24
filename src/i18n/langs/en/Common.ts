@@ -8,7 +8,9 @@ export default {
         privacyPolicy: 'Privacy Policy',
         createAccount: 'Create an account',
         forgotPassword: 'Forgot Password',
-        sendEmail: 'Send Email'
+        sendEmail: 'Send Email',
+        logout: 'Logout',
+        codeMirror: 'Code Mirror',
     },
     tip: {
         signInInfo: 'Enter your information to sign in to your account.',

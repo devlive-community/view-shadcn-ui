@@ -8,7 +8,9 @@ export default {
         privacyPolicy: '隐私政策',
         createAccount: '创建账号',
         forgotPassword: '忘记密码',
-        sendEmail: '发送邮件'
+        sendEmail: '发送邮件',
+        logout: '退出',
+        codeMirror: '代码仓库'
     },
     tip: {
         signInInfo: '输入您的信息以登录您的帐户。',
