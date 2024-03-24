@@ -19,6 +19,8 @@ import { defineComponent, ref } from 'vue'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useI18n } from 'vue-i18n'
 import { StoreUtils } from '@/utils/Store'
+import moment from 'moment'
+import zhCn from '@/moment/zhCn'
 
 export default defineComponent({
   name: 'LanguageSwitcher',
@@ -38,6 +40,12 @@ export default defineComponent({
       }
       else {
         locale.value = language
+      }
+      if (language === 'language_zh_cn') {
+        moment.locale('zh-cn', zhCn as any)
+      }
+      else {
+        moment.locale('en')
       }
     }
 
