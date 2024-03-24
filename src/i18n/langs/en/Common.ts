@@ -12,7 +12,9 @@ export default {
         logout: 'Logout',
         codeMirror: 'Code Mirror',
         openProject: 'Open Project',
-        datacap: 'DataCap'
+        datacap: 'DataCap',
+        page: 'Page',
+        page404: '404'
     },
     tip: {
         signInInfo: 'Enter your information to sign in to your account.',

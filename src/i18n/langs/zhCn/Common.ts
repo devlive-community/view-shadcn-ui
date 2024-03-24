@@ -12,7 +12,9 @@ export default {
         logout: '退出',
         codeMirror: '代码仓库',
         openProject: '开源项目',
-        datacap: 'DataCap'
+        datacap: 'DataCap',
+        page: '页面',
+        page404: '404'
     },
     tip: {
         signInInfo: '输入您的信息以登录您的帐户。',

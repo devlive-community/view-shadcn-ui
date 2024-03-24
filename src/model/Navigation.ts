@@ -7,6 +7,7 @@ export interface NavigationModel
     group?: string
     description?: string,
     external?: boolean
+    opened?: boolean
     position?: NavigationPosition
     children?: NavigationModel[]
 }

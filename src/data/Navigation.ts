@@ -1,6 +1,6 @@
 import { NavigationModel, NavigationPosition } from '@/model/Navigation'
 import NavigationService from '@/services/Navigation'
-import { Home, LogIn, LogOut } from 'lucide-vue-next'
+import { Ban, Home, LogIn, LogOut, StickyNote } from 'lucide-vue-next'
 
 const createNavigation = (): void => {
     NavigationService.addNavigation(createNavigationItem('common.common.home', undefined, '/home', Home, NavigationPosition.LEFT_TOP))
@@ -34,6 +34,11 @@ const createNavigation = (): void => {
         [datacap],
         'common.common.openProject')
     NavigationService.addNavigation(openProject)
+
+    const page404 = createNavigationItem('common.common.page404', undefined, '/common/404', Ban, NavigationPosition.LEFT_TOP)
+    const pages = createNavigationItem('common.common.page', undefined, '/pages', StickyNote,
+        NavigationPosition.LEFT_TOP, [page404], undefined, 'common.common.page')
+    NavigationService.addNavigation(pages)
 }
 
 const createNavigationItem = (title?: string, label?: string, href?: string, icon?: any, position?: NavigationPosition, children?: NavigationModel[], group?: string, description?: string, blank?: boolean): NavigationModel => {

@@ -1,8 +1,8 @@
 <template>
-  <a v-if="external" :href="link" target="_blank">
+  <a v-if="external" :href="link as string" target="_blank">
     <slot></slot>
   </a>
-  <RouterLink v-else :to="link">
+  <RouterLink v-else :to="link as string">
     <slot></slot>
   </RouterLink>
 </template>
