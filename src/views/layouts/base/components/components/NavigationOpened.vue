@@ -3,7 +3,19 @@
     <DropdownMenu v-if="navigator?.children && navigator.children.length > 0">
       <DropdownMenuTrigger class="cursor-pointer" as-child>
         <Button as="a" size="icon" class="h-12 w-12" :variant="$route.path === `${navigator?.href}` ? 'secondary' : 'ghost'">
-          <component :is="navigator?.icon"/>
+          <TooltipProvider>
+            <Tooltip :delay-duration="0">
+              <TooltipTrigger asChild>
+                <Button as="a" size="icon" class="h-12 w-12" :variant="$route.path === `${navigator?.href}` ? 'secondary' : 'ghost'">
+                  <component :is="navigator?.icon"/>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent side="right" class="flex items-center gap-4">
+                {{ $t(navigator?.title as string) }}
+                <span v-if="navigator?.label" class="ml-auto text-muted-foreground">{{ navigator?.label }}</span>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent side='right' align='start'>
