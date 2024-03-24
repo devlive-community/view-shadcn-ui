@@ -4,18 +4,18 @@ import { AudioWaveform, Ban, CircleOff, FormInput, Gauge, LogIn, LogOut, StickyN
 
 const createNavigation = (): void => {
     NavigationService.addNavigation(createNavigationItem('common.common.dashboard', undefined, '/dashboard', Gauge, NavigationPosition.LEFT_TOP))
-    const signIn = createNavigationItem('common.common.signIn', undefined, '/auth/signin', LogIn, NavigationPosition.LEFT_TOP)
-    NavigationService.addNavigation(signIn)
-    const signUp = createNavigationItem('common.common.signUp', undefined, '/auth/signup', LogOut, NavigationPosition.LEFT_BOTTOM)
-    NavigationService.addNavigation(signUp)
-    NavigationService.addNavigation(createNavigationItem('common.common.home',
+    NavigationService.addNavigation(createNavigationItem('common.common.dashboard',
         undefined,
-        '/',
+        '/dashboard',
         undefined,
         NavigationPosition.TOP,
         [],
-        'common.common.home',
+        'common.common.dashboard',
         undefined))
+    const signIn = createNavigationItem('common.common.signIn', undefined, '/auth/signin', LogIn, NavigationPosition.TOP)
+    NavigationService.addNavigation(signIn)
+    const signUp = createNavigationItem('common.common.signUp', undefined, '/auth/signup', LogOut, NavigationPosition.TOP)
+    NavigationService.addNavigation(signUp)
 
     const datacap = createNavigationItem('common.common.datacap',
         undefined,
@@ -43,7 +43,8 @@ const createNavigation = (): void => {
     NavigationService.addNavigation(pages)
 
     const form = createNavigationItem('form.common.formBasic', undefined, '/forms/basic', AudioWaveform, NavigationPosition.LEFT_TOP)
-    const formArray = [form]
+    const formWithAction = createNavigationItem('form.common.formWithAction', undefined, '/forms/withAction', AudioWaveform, NavigationPosition.LEFT_TOP)
+    const formArray = [form, formWithAction]
     const froms = createNavigationItem('form.common.form', formArray.length.toString(), '/forms', FormInput, NavigationPosition.LEFT_TOP,
         formArray, undefined, 'common.common.form')
     NavigationService.addNavigation(froms)

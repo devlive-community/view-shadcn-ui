@@ -17,7 +17,7 @@
           </div>
         </CardContent>
         <CardFooter>
-          <Button class="w-full">{{ $t('form.common.formBasic') }}</Button>
+          <Button class="w-full">{{ $t('common.common.signIn') }}</Button>
         </CardFooter>
       </Card>
     </div>

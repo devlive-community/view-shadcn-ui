@@ -81,6 +81,11 @@ const createFormRouter = (router: Router): void => {
                 name: 'basic',
                 path: 'basic',
                 component: () => import('@/views/pages/form/FormBasic.vue')
+            },
+            {
+                name: 'withAction',
+                path: 'withAction',
+                component: () => import('@/views/pages/form/FormWithAction.vue')
             }
         ]
     })
