@@ -1,7 +1,7 @@
 <template>
-  <LayoutSidebar @changeCollapsed="isCollapsed = $event"/>
-  <div :class="cn(`overflow-auto ${isCollapsed ? 'md:ml-14' : 'md:ml-64'}`)">
-    <LayoutHeader/>
+  <LayoutSidebar :navigators="navigators" @changeCollapsed="isCollapsed = $event"/>
+  <div :class="cn(`h-full w-fulloverflow-auto ${isCollapsed ? 'md:ml-14' : 'md:ml-64'}`)">
+    <LayoutHeader :navigators="navigators"/>
     <div class="p-2 space-y-2">
       <RouterView/>
     </div>
@@ -13,6 +13,8 @@ import { defineComponent } from 'vue'
 import LayoutSidebar from '@/views/layouts/base/components/LayoutSidebar.vue'
 import { cn } from '@/lib/utils'
 import LayoutHeader from '@/views/layouts/base/components/LayoutHeader.vue'
+import { NavigationModel } from '@/model/Navigation.ts';
+import NavigationService from '@/services/Navigation.ts';
 
 export default defineComponent({
   name: 'LayoutContainer',
@@ -26,7 +28,18 @@ export default defineComponent({
   data()
   {
     return {
-      isCollapsed: false
+      isCollapsed: false,
+      navigators: [] as NavigationModel[]
+    }
+  },
+  created()
+  {
+    this.handlerInitialize()
+  },
+  methods: {
+    handlerInitialize()
+    {
+      this.navigators = NavigationService.getNavigation()
     }
   }
 })

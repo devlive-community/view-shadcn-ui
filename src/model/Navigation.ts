@@ -4,6 +4,8 @@ export interface NavigationModel
     label?: string
     href?: string
     icon?: any
+    group?: string
+    description?: string
     position?: NavigationPosition
     children?: NavigationModel[]
 }
@@ -11,5 +13,7 @@ export interface NavigationModel
 export enum NavigationPosition
 {
     TOP,
-    BOTTOM
+    LEFT_TOP,
+    BOTTOM,
+    LEFT_BOTTOM
 }

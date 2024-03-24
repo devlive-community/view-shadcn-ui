@@ -27,7 +27,6 @@ import { ChevronsLeft } from 'lucide-vue-next'
 import NavigationOpened from '@/views/layouts/base/components/components/NavigationOpened.vue'
 import NavigationClosed from '@/views/layouts/base/components/components/NavigationClosed.vue'
 import { NavigationModel } from '@/model/Navigation'
-import NavigationService from '@/services/Navigation'
 
 export default defineComponent({
   name: 'LayoutSidebar',
@@ -36,6 +35,11 @@ export default defineComponent({
     NavigationOpened,
     Button,
     ChevronsLeft
+  },
+  props: {
+    navigators: {
+      type: Array as () => NavigationModel[]
+    }
   },
   setup()
   {
@@ -46,19 +50,10 @@ export default defineComponent({
   data()
   {
     return {
-      isCollapsed: false,
-      navigators: [] as NavigationModel[]
+      isCollapsed: false
     }
   },
-  created()
-  {
-    this.handlerInitialize()
-  },
   methods: {
-    handlerInitialize()
-    {
-      this.navigators = NavigationService.getNavigation()
-    },
     setIsCollapsed(opened: boolean)
     {
       this.isCollapsed = opened
