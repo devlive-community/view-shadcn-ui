@@ -1,15 +1,12 @@
 <template>
-  <li v-if="item?.position === NavigationPosition.TOP">
-    <NavigationMenuLink as-child>
-      <RouterLink :to="item?.href" :class="cn(
-          'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
-          $attrs.class ?? '')">
-        <div class="text-sm font-medium leading-none">{{ $t(item?.title as string) }}</div>
-        <p class="line-clamp-2 text-sm leading-snug text-muted-foreground">
-          <slot/>
-        </p>
-      </RouterLink>
-    </NavigationMenuLink>
+  <li v-if="navigator?.position === NavigationPosition.TOP">
+    <RouterLink :to="navigator?.href">
+      <Button as="a" size="sm" class="justify-start text-wrap h-8 pl-5 pr-5 w-full"
+              :variant="$route.path === `${navigator?.href}` ? 'secondary' : 'ghost'">
+        <component :is="navigator?.icon"/>
+        <div :class="navigator?.icon ? 'ml-2' : ''">{{ $t(navigator?.title as string) }}</div>
+      </Button>
+    </RouterLink>
   </li>
 </template>
 
@@ -17,9 +14,11 @@
 import { defineComponent } from 'vue'
 import { cn } from '@/lib/utils'
 import { NavigationModel, NavigationPosition } from '@/model/Navigation'
+import { Button } from '@/components/ui/button'
 
 export default defineComponent({
   name: 'NavigationItem',
+  components: {Button},
   computed: {
     NavigationPosition()
     {
@@ -27,7 +26,7 @@ export default defineComponent({
     }
   },
   props: {
-    item: {
+    navigator: {
       type: Object as () => NavigationModel
     }
   },

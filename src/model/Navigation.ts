@@ -14,5 +14,6 @@ export enum NavigationPosition
 {
     TOP,
     LEFT_TOP,
-    BOTTOM
+    BOTTOM,
+    LEFT_BOTTOM
 }

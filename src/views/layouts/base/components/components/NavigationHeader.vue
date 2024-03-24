@@ -7,12 +7,12 @@
             <NavigationMenuTrigger>{{ $t(item?.group as string) }}</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul class="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[minmax(0,.75fr)_minmax(0,1fr)]">
-                <NavigationItem :item="item">{{ item?.description }}</NavigationItem>
+                <NavigationItem :navigator="item">{{ item?.description }}</NavigationItem>
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem v-else>
-            <NavigationItem :item="item"/>
+            <NavigationItem :navigator="item"/>
           </NavigationMenuItem>
         </div>
       </div>

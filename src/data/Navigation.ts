@@ -5,7 +5,7 @@ import { Home, LogIn, LogOut } from 'lucide-vue-next'
 const createNavigation = (): void => {
     NavigationService.addNavigation(createNavigationItem('common.common.home', undefined, '/home', Home, NavigationPosition.LEFT_TOP))
     NavigationService.addNavigation(createNavigationItem('common.common.signIn', undefined, '/auth/signin', LogIn, NavigationPosition.LEFT_TOP))
-    NavigationService.addNavigation(createNavigationItem('common.common.signUp', undefined, '/auth/signup', LogOut, NavigationPosition.BOTTOM))
+    NavigationService.addNavigation(createNavigationItem('common.common.signUp', undefined, '/auth/signup', LogOut, NavigationPosition.LEFT_BOTTOM))
     NavigationService.addNavigation(createNavigationItem('common.common.home',
         undefined,
         '/home',
