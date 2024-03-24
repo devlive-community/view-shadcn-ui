@@ -1,6 +1,6 @@
 <template>
   <div class="flex h-[var(--header-height)] flex-none items-center gap-4 bg-background p-4 md:px-8 border-b">
-    I'm LayoutHeader
+    <NavigationHeader :navigators="navigators"/>
     <div class="ml-auto flex items-center space-x-4">
       <LanguageSwitcher/>
     </div>
@@ -12,12 +12,20 @@
 import { defineComponent } from 'vue'
 import { Button } from '@/components/ui/button'
 import LanguageSwitcher from '@/views/layouts/base/components/components/LanguageSwitcher.vue'
+import NavigationHeader from '@/views/layouts/base/components/components/NavigationHeader.vue'
+import { NavigationModel } from '@/model/Navigation'
 
 export default defineComponent({
   name: 'LayoutHeader',
   components: {
+    NavigationHeader,
     LanguageSwitcher,
     Button
+  },
+  props: {
+    navigators: {
+      type: Array as () => NavigationModel[]
+    }
   }
 })
 </script>
