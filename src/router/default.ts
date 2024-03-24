@@ -34,6 +34,11 @@ const createHttpRouter = (router: Router): void => {
                 name: '404',
                 path: '404',
                 component: () => import('@/views/common/error/NotFound.vue')
+            },
+            {
+                name: '403',
+                path: '403',
+                component: () => import('@/views/common/error/Forbidden.vue')
             }
         ]
     })

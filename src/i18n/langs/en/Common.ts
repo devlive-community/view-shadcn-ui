@@ -14,7 +14,11 @@ export default {
         openProject: 'Open Project',
         datacap: 'DataCap',
         page: 'Page',
-        page404: '404'
+        page404: '404 Not found',
+        pageNotFound: 'Page not found',
+        backToHome: 'Back to Home',
+        pageForbidden: 'Page Forbidden',
+        page403: '403 Forbidden',
     },
     tip: {
         signInInfo: 'Enter your information to sign in to your account.',
@@ -24,6 +28,8 @@ export default {
         signUpHasAccount: 'Already have an account?',
         forgotPasswordInfo: 'Enter your registered email and we will send you a link to reset your password.',
         inputAnyInfo: 'Enter your username and password at will',
-        datacap: 'DataCap is integrated software for data transformation, integration, and visualization. Support a variety of data sources, file types, big data related database, relational database, NoSQL database, etc. Through the software can realize the management of multiple data sources, the data under the source of various operations conversion, making data charts, monitoring data sources and other functions.'
+        datacap: 'DataCap is integrated software for data transformation, integration, and visualization. Support a variety of data sources, file types, big data related database, relational database, NoSQL database, etc. Through the software can realize the management of multiple data sources, the data under the source of various operations conversion, making data charts, monitoring data sources and other functions.',
+        pageNotFound: 'Oops! Page Not Found!',
+        pageForbidden: 'Oops! Page Forbidden!'
     }
 }
