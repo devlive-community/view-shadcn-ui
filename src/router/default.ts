@@ -17,6 +17,7 @@ const createDefaultRouter = (router: Router): void => {
     })
     createHttpRouter(router)
     createUserRouter(router)
+    createFormRouter(router)
 }
 
 /**
@@ -65,6 +66,21 @@ const createUserRouter = (router: Router): void => {
                         component: () => import('@/views/pages/user/ForgotPassword.vue')
                     }
                 ]
+            }
+        ]
+    })
+}
+
+const createFormRouter = (router: Router): void => {
+    router.addRoute({
+        path: '/forms',
+        name: 'form',
+        component: LayoutContainer,
+        children: [
+            {
+                name: 'basic',
+                path: 'basic',
+                component: () => import('@/views/pages/form/FormBasic.vue')
             }
         ]
     })

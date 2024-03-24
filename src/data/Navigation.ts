@@ -1,6 +1,6 @@
 import { NavigationModel, NavigationPosition } from '@/model/Navigation'
 import NavigationService from '@/services/Navigation'
-import { Ban, CircleOff, Gauge, LogIn, LogOut, StickyNote } from 'lucide-vue-next'
+import { AudioWaveform, Ban, CircleOff, FormInput, Gauge, LogIn, LogOut, StickyNote } from 'lucide-vue-next'
 
 const createNavigation = (): void => {
     NavigationService.addNavigation(createNavigationItem('common.common.dashboard', undefined, '/dashboard', Gauge, NavigationPosition.LEFT_TOP))
@@ -41,6 +41,12 @@ const createNavigation = (): void => {
     const pages = createNavigationItem('common.common.page', pageArray.length.toString(), '/pages', StickyNote,
         NavigationPosition.LEFT_TOP, pageArray, undefined, 'common.common.page')
     NavigationService.addNavigation(pages)
+
+    const form = createNavigationItem('form.common.formBasic', undefined, '/forms/basic', AudioWaveform, NavigationPosition.LEFT_TOP)
+    const formArray = [form]
+    const froms = createNavigationItem('form.common.form', formArray.length.toString(), '/forms', FormInput, NavigationPosition.LEFT_TOP,
+        formArray, undefined, 'common.common.form')
+    NavigationService.addNavigation(froms)
 }
 
 const createNavigationItem = (title?: string, label?: string, href?: string, icon?: any, position?: NavigationPosition, children?: NavigationModel[], group?: string, description?: string, blank?: boolean): NavigationModel => {
