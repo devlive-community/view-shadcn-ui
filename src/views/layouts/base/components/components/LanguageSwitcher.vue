@@ -6,9 +6,9 @@
     <SelectContent>
       <SelectGroup>
         <SelectLabel>{{ $t('region.common.asia.default') }}</SelectLabel>
-        <SelectItem class="pl-6" value="language_zh_cn">{{ $t('region.common.asia.chineseSimple') }}</SelectItem>
+        <SelectItem class="pl-6 cursor-pointer" value="language_zh_cn">{{ $t('region.common.asia.chineseSimple') }}</SelectItem>
         <SelectLabel>{{ $t('region.common.northAmerica.default') }}</SelectLabel>
-        <SelectItem class="pl-6" value="language_en">{{ $t('region.common.northAmerica.english') }}</SelectItem>
+        <SelectItem class="pl-6 cursor-pointer" value="language_en">{{ $t('region.common.northAmerica.english') }}</SelectItem>
       </SelectGroup>
     </SelectContent>
   </Select>

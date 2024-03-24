@@ -1,6 +1,7 @@
 <template>
   <div v-if="navigator?.position === NavigationPosition.LEFT_TOP || navigator?.position === NavigationPosition.LEFT_BOTTOM">
-    <RouterLink :to="navigator?.href as string" :class="`${navigator?.position === NavigationPosition.LEFT_BOTTOM ? 'absolute bottom-0 left-0 right-0' : ''}`">
+    <NavigationRouterLink :external="navigator?.external" :link="navigator?.href as string"
+                          :class="`${navigator?.position === NavigationPosition.LEFT_BOTTOM ? 'absolute bottom-0 left-0 right-0' : ''}`">
       <TooltipProvider>
         <Tooltip :delay-duration="0">
           <TooltipTrigger asChild>
@@ -14,7 +15,7 @@
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
-    </RouterLink>
+    </NavigationRouterLink>
   </div>
 </template>
 
@@ -24,6 +25,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { Button } from '@/components/ui/button'
 import { NavigationModel, NavigationPosition } from '@/model/Navigation'
 import { ChevronsLeft } from 'lucide-vue-next'
+import NavigationRouterLink from '@/views/layouts/base/components/components/NavigationRouterLink.vue'
 
 export default defineComponent({
   name: 'NavigationOpened',
@@ -34,6 +36,7 @@ export default defineComponent({
     }
   },
   components: {
+    NavigationRouterLink,
     ChevronsLeft,
     Button,
     Tooltip, TooltipContent, TooltipProvider, TooltipTrigger

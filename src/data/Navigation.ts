@@ -1,7 +1,6 @@
 import { NavigationModel, NavigationPosition } from '@/model/Navigation'
 import NavigationService from '@/services/Navigation'
 import { Home, LogIn, LogOut } from 'lucide-vue-next'
-import { cloneDeep } from 'lodash'
 
 const createNavigation = (): void => {
     NavigationService.addNavigation(createNavigationItem('common.common.home', undefined, '/home', Home, NavigationPosition.LEFT_TOP))
@@ -17,24 +16,27 @@ const createNavigation = (): void => {
         [],
         'common.common.home',
         undefined))
-    const newSignIn = cloneDeep(signIn)
-    newSignIn.position = NavigationPosition.TOP
-    newSignIn.description = 'user.tip.signIn'
-    const newSignUp = cloneDeep(signUp)
-    newSignUp.position = NavigationPosition.TOP
-    newSignUp.description = 'user.tip.signUp'
-    const children = [newSignIn, newSignUp]
-    NavigationService.addNavigation(createNavigationItem('common.common.home',
+
+    const datacap = createNavigationItem('common.common.datacap',
         undefined,
-        '/home',
+        'https://datacap.edurt.io',
         undefined,
         NavigationPosition.TOP,
-        children,
-        'common.common.home',
-        undefined))
+        undefined
+        , undefined,
+        'common.tip.datacap',
+        true)
+    const openProject = createNavigationItem('common.common.openProject',
+        undefined,
+        '/open-project',
+        undefined,
+        NavigationPosition.TOP,
+        [datacap],
+        'common.common.openProject')
+    NavigationService.addNavigation(openProject)
 }
 
-const createNavigationItem = (title?: string, label?: string, href?: string, icon?: any, position?: NavigationPosition, children?: NavigationModel[], group?: string, description?: string): NavigationModel => {
+const createNavigationItem = (title?: string, label?: string, href?: string, icon?: any, position?: NavigationPosition, children?: NavigationModel[], group?: string, description?: string, blank?: boolean): NavigationModel => {
     return {
         title: title,
         label: label,
@@ -43,7 +45,8 @@ const createNavigationItem = (title?: string, label?: string, href?: string, ico
         position: position,
         group: group,
         description: description,
-        children: children
+        children: children,
+        external: blank
     }
 }
 
