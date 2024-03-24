@@ -5,6 +5,9 @@ export default {
         confirmPassword: '确认密码',
         continueWith: '或者继续使用',
         email: '邮箱',
+        notification: '通知中心',
+        pushNotification: '推送通知',
+        markAllAsRead: '全部标为已读'
     },
     validator: {
         usernameRequired: '用户名为必填项',
@@ -23,6 +26,8 @@ export default {
         confirmPasswordHolder: '请再次输入您的密码',
         emailHolder: '请输入您的邮箱',
         signIn: '在这里可以输入您的信息以登录您的帐户。',
-        signUp: '在这里可以输入您的信息以创建账号。'
+        signUp: '在这里可以输入您的信息以创建账号。',
+        unreadNotification: `您有 REPLACE_COUNT 个未读消息。`,
+        pushNotification: '向设备发送通知。'
     }
 }
