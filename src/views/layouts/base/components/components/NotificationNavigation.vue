@@ -26,7 +26,7 @@
               <div class="space-y-1">
                 <p class="text-sm font-medium leading-none">{{ notification.title }}</p>
                 <p class="text-sm text-muted-foreground">{{ notification.description }}</p>
-                <p class="text-sm text-muted-foreground">{{ $dt(notification.createTime).fromNow() }}</p>
+                <p class="text-sm text-muted-foreground">{{ formatDate(notification.createTime) }}</p>
               </div>
             </div>
           </div>
@@ -43,7 +43,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, inject } from 'vue'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { BellIcon, BellRing, CheckIcon } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
@@ -63,10 +63,17 @@ export default defineComponent({
   },
   setup()
   {
+    const $dt = inject('$dt')
     const notifications = NotificationService.getNotifications()
+
+    const formatDate = (value: any) => {
+      // @ts-ignore
+      return $dt(value).fromNow()
+    }
 
     return {
       cn,
+      formatDate,
       notifications
     }
   }

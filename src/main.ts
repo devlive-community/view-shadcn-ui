@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from '@/router'
 import i18n from '@/i18n'
 import moment from 'moment'
+import momentCN from './moment/zhCn'
 import './style.css'
 import './assets/index.css'
 
@@ -13,5 +14,8 @@ const app = createApp(App)
 app.use(router)
 app.use(i18n)
 app.provide('$t', i18n.global.t)
+// Setting moment
+moment.locale('zh-cn', momentCN as any)
 app.config.globalProperties.$dt = moment
+app.provide('$dt', moment)
 app.mount('#app')
