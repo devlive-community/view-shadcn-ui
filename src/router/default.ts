@@ -5,13 +5,13 @@ const createDefaultRouter = (router: Router): void => {
     router.addRoute({
         path: '/',
         name: 'home',
-        redirect: '/home',
+        redirect: '/dashboard',
         component: LayoutContainer,
         children: [
             {
-                name: 'home',
-                path: 'home',
-                component: () => import('@/views/pages/home/HomeIndex.vue')
+                name: 'dashboard',
+                path: 'dashboard',
+                component: () => import('@/views/pages/dashboard/DashboardHome.vue')
             }
         ]
     })

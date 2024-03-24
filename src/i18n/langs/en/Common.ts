@@ -19,6 +19,7 @@ export default {
         backToHome: 'Back to Home',
         pageForbidden: 'Page Forbidden',
         page403: '403 Forbidden',
+        dashboard: 'Dashboard'
     },
     tip: {
         signInInfo: 'Enter your information to sign in to your account.',

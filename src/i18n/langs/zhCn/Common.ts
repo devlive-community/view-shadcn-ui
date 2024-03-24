@@ -19,6 +19,7 @@ export default {
         backToHome: '返回首页',
         pageForbidden: '页面禁止访问',
         page403: '403 页面禁止访问',
+        dashboard: '仪表盘'
     },
     tip: {
         signInInfo: '输入您的信息以登录您的帐户。',
