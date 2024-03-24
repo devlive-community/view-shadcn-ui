@@ -15,9 +15,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useI18n } from 'vue-i18n'
+import { StoreUtils } from '@/utils/Store'
 
 export default defineComponent({
   name: 'LanguageSwitcher',
@@ -26,8 +27,11 @@ export default defineComponent({
   },
   setup()
   {
+    const language = ref(StoreUtils.getLanguage() ? StoreUtils.getLanguage() : 'language_zh_cn')
     const {locale} = useI18n()
+
     const injectLanguage = (language: string) => {
+      StoreUtils.setLanguage(language)
       const prefix = 'language_'
       if (language.startsWith(prefix)) {
         locale.value = language.substring(prefix.length)
@@ -36,14 +40,11 @@ export default defineComponent({
         locale.value = language
       }
     }
+
+    injectLanguage(language.value)
     return {
+      language,
       injectLanguage
-    }
-  },
-  data()
-  {
-    return {
-      language: 'language_zh_cn'
     }
   }
 })
