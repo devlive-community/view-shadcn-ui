@@ -21,6 +21,8 @@ export default {
         usernameHolder: '请输入您的用户名',
         passwordHolder: '请输入您的密码',
         confirmPasswordHolder: '请再次输入您的密码',
-        emailHolder: '请输入您的邮箱'
+        emailHolder: '请输入您的邮箱',
+        signIn: '在这里可以输入您的信息以登录您的帐户。',
+        signUp: '在这里可以输入您的信息以创建账号。'
     }
 }

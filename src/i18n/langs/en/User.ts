@@ -21,6 +21,8 @@ export default {
         usernameHolder: 'Please enter your username',
         passwordHolder: 'Please enter your password',
         confirmPasswordHolder: 'Please confirm your password',
-        emailHolder: 'Please enter your email'
+        emailHolder: 'Please enter your email',
+        signIn: 'In this you can enter your information to sign in to your account.',
+        signUp: 'In this you can enter your information to create an account.'
     }
 }
