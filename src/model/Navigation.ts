@@ -1,6 +1,6 @@
 export interface NavigationModel
 {
-    title?: string
+    title?: string // i18n key
     label?: string
     href?: string
     icon?: any

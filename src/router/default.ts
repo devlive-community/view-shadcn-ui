@@ -5,13 +5,13 @@ const createDefaultRouter = (router: Router): void => {
     router.addRoute({
         path: '/',
         name: 'home',
-        redirect: '/home',
+        redirect: '/dashboard',
         component: LayoutContainer,
         children: [
             {
-                name: 'home',
-                path: 'home',
-                component: () => import('@/views/pages/home/HomeIndex.vue')
+                name: 'dashboard',
+                path: 'dashboard',
+                component: () => import('@/views/pages/dashboard/DashboardHome.vue')
             }
         ]
     })
@@ -34,6 +34,11 @@ const createHttpRouter = (router: Router): void => {
                 name: '404',
                 path: '404',
                 component: () => import('@/views/common/error/NotFound.vue')
+            },
+            {
+                name: '403',
+                path: '403',
+                component: () => import('@/views/common/error/Forbidden.vue')
             }
         ]
     })

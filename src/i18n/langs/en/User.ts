@@ -5,6 +5,9 @@ export default {
         confirmPassword: 'Confirm Password',
         continueWith: 'Or continue with',
         email: 'Email',
+        notification: 'Notification Center',
+        pushNotification: 'Push Notification',
+        markAllAsRead: 'Mark all as read'
     },
     validator: {
         usernameRequired: 'Username is required',
@@ -23,6 +26,8 @@ export default {
         confirmPasswordHolder: 'Please confirm your password',
         emailHolder: 'Please enter your email',
         signIn: 'In this you can enter your information to sign in to your account.',
-        signUp: 'In this you can enter your information to create an account.'
+        signUp: 'In this you can enter your information to create an account.',
+        unreadNotification: 'You have REPLACE_COUNT unread messages.',
+        pushNotification: 'Send notifications to device.'
     }
 }
