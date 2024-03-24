@@ -5,7 +5,9 @@ export interface NavigationModel
     href?: string
     icon?: any
     group?: string
-    description?: string
+    description?: string,
+    external?: boolean
+    opened?: boolean
     position?: NavigationPosition
     children?: NavigationModel[]
 }
