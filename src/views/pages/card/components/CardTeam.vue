@@ -8,7 +8,7 @@
       <div v-for="item in users" class="flex items-center justify-between space-x-4">
         <div class="flex items-center space-x-4">
           <Avatar>
-            <AvatarImage :alt="item.username" :src="item.username"/>
+            <AvatarImage :alt="item.username" :src="item.username as string"/>
             <AvatarFallback>{{ item.username?.substring(0, 4) }}</AvatarFallback>
           </Avatar>
           <div>
