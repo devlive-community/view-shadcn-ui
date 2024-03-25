@@ -16,6 +16,9 @@
         <CardContainer>
           <CardNotification/>
         </CardContainer>
+        <CardContainer>
+          <CardSetting/>
+        </CardContainer>
       </div>
     </div>
   </div>
@@ -28,9 +31,10 @@ import CardUser from '@/views/pages/card/components/CardUser.vue'
 import CardPayment from '@/views/pages/card/components/CardPayment.vue'
 import CardTeam from '@/views/pages/card/components/CardTeam.vue'
 import CardNotification from '@/views/pages/card/components/CardNotification.vue'
+import CardSetting from '@/views/pages/card/components/CardSetting.vue'
 
 export default defineComponent({
   name: 'CardHome',
-  components: {CardNotification, CardTeam, CardPayment, CardUser, CardContainer}
+  components: {CardSetting, CardNotification, CardTeam, CardPayment, CardUser, CardContainer}
 })
 </script>

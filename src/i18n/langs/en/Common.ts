@@ -20,7 +20,8 @@ export default {
         pageForbidden: 'Page Forbidden',
         page403: '403 Forbidden',
         dashboard: 'Dashboard',
-        externalLink: 'External Link'
+        externalLink: 'External Link',
+        button: 'Button'
     },
     tip: {
         signInInfo: 'Enter your information to sign in to your account.',

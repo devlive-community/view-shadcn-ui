@@ -26,7 +26,9 @@ export default {
         notification: '通知',
         everything: '全部活动',
         available: '部分可用',
-        ignored: '忽略'
+        ignored: '忽略',
+        setting: '设置',
+        setting1: '这是一个配置项'
     },
     tip: {
         payment: '这是一个模拟支付的卡片布局',
@@ -44,6 +46,8 @@ export default {
         notification: '这是一个模拟通知卡片布局。',
         everything: '邮件摘要，提及和所有活动。',
         available: '仅提及和评论。',
-        ignored: '关闭所有通知。'
+        ignored: '关闭所有通知。',
+        setting: '这是一个模拟设置卡片布局。',
+        setting1: '这是一个设置项的说明'
     }
 }

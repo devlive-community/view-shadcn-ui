@@ -26,7 +26,9 @@ export default {
         notification: 'Notification',
         everything: 'Everything',
         available: 'Available',
-        ignored: 'Ignored'
+        ignored: 'Ignored',
+        setting: 'Settings',
+        setting1: 'This is a setting item',
     },
     tip: {
         payment: 'This is a simulated payment card layout',
@@ -44,6 +46,8 @@ export default {
         notification: 'This is a mock notification card layout',
         everything: 'Email digest, mentions & all activity.',
         available: 'Only mentions and comments.',
-        ignored: 'Turn off all notifications.'
+        ignored: 'Turn off all notifications.',
+        setting: 'This is a mock setting card layout',
+        setting1: 'This is a description of the setting item',
     }
 }
