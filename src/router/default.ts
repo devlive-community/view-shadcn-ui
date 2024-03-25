@@ -91,6 +91,11 @@ const createFormRouter = (router: Router): void => {
                 name: 'withSplitField',
                 path: 'withSplitField',
                 component: () => import('@/views/pages/form/FormWithSplitField.vue')
+            },
+            {
+                name: 'withImage',
+                path: 'withImage',
+                component: () => import('@/views/pages/form/FormWithImage.vue')
             }
         ]
     })
