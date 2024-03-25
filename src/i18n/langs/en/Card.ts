@@ -22,7 +22,11 @@ export default {
         viewer: 'Viewer',
         developer: 'Developer',
         billing: 'Billing',
-        owner: 'Owner'
+        owner: 'Owner',
+        notification: 'Notification',
+        everything: 'Everything',
+        available: 'Available',
+        ignored: 'Ignored'
     },
     tip: {
         payment: 'This is a simulated payment card layout',
@@ -36,6 +40,10 @@ export default {
         viewer: 'Can view and comment.',
         developer: 'Can view, comment, and edit.',
         billing: 'Can view, comment, and billing.',
-        owner: 'Owner, with all permissions.'
+        owner: 'Owner, with all permissions.',
+        notification: 'This is a mock notification card layout',
+        everything: 'Email digest, mentions & all activity.',
+        available: 'Only mentions and comments.',
+        ignored: 'Turn off all notifications.'
     }
 }

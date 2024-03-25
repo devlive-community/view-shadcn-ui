@@ -22,7 +22,11 @@ export default {
         viewer: '查看者',
         developer: '开发者',
         billing: '账单管理',
-        owner: '拥有者'
+        owner: '拥有者',
+        notification: '通知',
+        everything: '全部活动',
+        available: '部分可用',
+        ignored: '忽略'
     },
     tip: {
         payment: '这是一个模拟支付的卡片布局',
@@ -36,6 +40,10 @@ export default {
         viewer: '可以查看和评论。',
         developer: '可以查看评论，也可以发表评论。',
         billing: '可以查看和管理账单。',
-        owner: '拥有者，拥有所有权限。'
+        owner: '拥有者，拥有所有权限。',
+        notification: '这是一个模拟通知卡片布局。',
+        everything: '邮件摘要，提及和所有活动。',
+        available: '仅提及和评论。',
+        ignored: '关闭所有通知。'
     }
 }
