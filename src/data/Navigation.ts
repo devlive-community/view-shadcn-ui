@@ -1,6 +1,6 @@
 import { NavigationModel, NavigationPosition } from '@/model/Navigation'
 import NavigationService from '@/services/Navigation'
-import { AudioWaveform, Ban, CircleOff, FormInput, Gauge, LogIn, LogOut, StickyNote, Link } from 'lucide-vue-next'
+import { AudioWaveform, Ban, CircleOff, CreditCard, FormInput, Gauge, Link, LogIn, LogOut, StickyNote } from 'lucide-vue-next'
 
 const createNavigation = (): void => {
     NavigationService.addNavigation(createNavigationItem('common.common.dashboard', undefined, '/dashboard', Gauge, NavigationPosition.LEFT_TOP))
@@ -45,6 +45,8 @@ const createNavigation = (): void => {
     const froms = createNavigationItem('form.common.form', formArray.length.toString(), '/forms', FormInput, NavigationPosition.LEFT_TOP,
         formArray, undefined, 'common.common.form')
     NavigationService.addNavigation(froms)
+
+    NavigationService.addNavigation(createNavigationItem('card.common.default', undefined, '/card', CreditCard, NavigationPosition.LEFT_TOP))
 
     const page404 = createNavigationItem('common.common.page404', undefined, '/common/404', Ban, NavigationPosition.LEFT_TOP)
     const page403 = createNavigationItem('common.common.page403', undefined, '/common/403', CircleOff, NavigationPosition.LEFT_TOP)
