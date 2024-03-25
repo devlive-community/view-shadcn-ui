@@ -29,6 +29,11 @@ export default {
         ignored: 'Ignored',
         setting: 'Settings',
         setting1: 'This is a setting item',
+        functionList: 'Function List',
+        list1: 'Function 1',
+        list2: 'Function 2',
+        list3: 'Function 3',
+        newList: 'Create List'
     },
     tip: {
         payment: 'This is a simulated payment card layout',

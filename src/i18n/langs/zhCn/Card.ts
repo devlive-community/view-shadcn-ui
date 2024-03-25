@@ -28,7 +28,12 @@ export default {
         available: '部分可用',
         ignored: '忽略',
         setting: '设置',
-        setting1: '这是一个配置项'
+        setting1: '这是一个配置项',
+        functionList: '功能列表',
+        function1: '功能 1',
+        function2: '功能 2',
+        function3: '功能 3',
+        newList: '新建列表',
     },
     tip: {
         payment: '这是一个模拟支付的卡片布局',
