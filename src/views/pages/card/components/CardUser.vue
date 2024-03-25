@@ -31,6 +31,10 @@
         <Label for="password">{{ $t('user.common.password') }}</Label>
         <Input id="password" type="password" required :placeholder="$t('user.tip.passwordHolder')"/>
       </div>
+      <div class="grid gap-2">
+        <Label for="confirmPassword">{{ $t('user.common.confirmPassword') }}</Label>
+        <Input id="confirmPassword" type="password" required :placeholder="$t('user.tip.confirmPasswordHolder')"/>
+      </div>
     </CardContent>
     <CardFooter>
       <Button class="w-full">{{ $t('common.common.createAccount') }}</Button>

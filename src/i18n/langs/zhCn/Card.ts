@@ -17,13 +17,25 @@ export default {
         september: '九月',
         october: '十月',
         november: '十一月',
-        december: '十二月'
+        december: '十二月',
+        team: '团队卡片',
+        viewer: '查看者',
+        developer: '开发者',
+        billing: '账单管理',
+        owner: '拥有者'
     },
     tip: {
         payment: '这是一个模拟支付的卡片布局',
         numberHolder: '请输入卡号',
         cvcHolder: '请输入 CVC',
         monthHolder: '请选择月份',
-        yearHolder: '请选择年份'
+        yearHolder: '请选择年份',
+        team: '这是一个模拟团队成员的卡片布局',
+        roleHolder: '请选择角色',
+        roleNotHolder: '未找到角色',
+        viewer: '可以查看和评论。',
+        developer: '可以查看评论，也可以发表评论。',
+        billing: '可以查看和管理账单。',
+        owner: '拥有者，拥有所有权限。'
     }
 }
