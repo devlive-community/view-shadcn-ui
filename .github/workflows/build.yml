@@ -1,8 +1,8 @@
-name: Build Vue
+name: Publish core via GitHub Actions
+
 on:
-  push:
-    branches:
-      - dev
+  release:
+    types: [ published ]
 
 jobs:
   build_vue:

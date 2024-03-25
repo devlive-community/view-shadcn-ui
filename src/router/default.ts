@@ -86,6 +86,26 @@ const createFormRouter = (router: Router): void => {
                 name: 'withAction',
                 path: 'withAction',
                 component: () => import('@/views/pages/form/FormWithAction.vue')
+            },
+            {
+                name: 'withSplitField',
+                path: 'withSplitField',
+                component: () => import('@/views/pages/form/FormWithSplitField.vue')
+            },
+            {
+                name: 'withImage',
+                path: 'withImage',
+                component: () => import('@/views/pages/form/FormWithImage.vue')
+            },
+            {
+                name: 'withThird',
+                path: 'withThird',
+                component: () => import('@/views/pages/form/FormWithThird.vue')
+            },
+            {
+                name: 'withValidate',
+                path: 'withValidate',
+                component: () => import('@/views/pages/form/FormWithValidate.vue')
             }
         ]
     })

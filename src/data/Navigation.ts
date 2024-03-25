@@ -35,19 +35,23 @@ const createNavigation = (): void => {
         'common.common.openProject')
     NavigationService.addNavigation(openProject)
 
+    const form = createNavigationItem('form.common.formBasic', undefined, '/forms/basic', AudioWaveform, NavigationPosition.LEFT_TOP)
+    const formWithAction = createNavigationItem('form.common.formWithAction', undefined, '/forms/withAction', AudioWaveform, NavigationPosition.LEFT_TOP)
+    const formWithSplitField = createNavigationItem('form.common.formWithSplitField', undefined, '/forms/withSplitField', AudioWaveform, NavigationPosition.LEFT_TOP)
+    const formWithImage = createNavigationItem('form.common.formWithImage', undefined, '/forms/withImage', AudioWaveform, NavigationPosition.LEFT_TOP)
+    const formWithThird = createNavigationItem('form.common.formWithThird', undefined, '/forms/withThird', AudioWaveform, NavigationPosition.LEFT_TOP)
+    const formWithValidate = createNavigationItem('form.common.formWithValidate', undefined, '/forms/withValidate', AudioWaveform, NavigationPosition.LEFT_TOP)
+    const formArray = [form, formWithAction, formWithSplitField, formWithImage, formWithThird, formWithValidate]
+    const froms = createNavigationItem('form.common.form', formArray.length.toString(), '/forms', FormInput, NavigationPosition.LEFT_TOP,
+        formArray, undefined, 'common.common.form')
+    NavigationService.addNavigation(froms)
+
     const page404 = createNavigationItem('common.common.page404', undefined, '/common/404', Ban, NavigationPosition.LEFT_TOP)
     const page403 = createNavigationItem('common.common.page403', undefined, '/common/403', CircleOff, NavigationPosition.LEFT_TOP)
     const pageArray = [page404, page403]
     const pages = createNavigationItem('common.common.page', pageArray.length.toString(), '/pages', StickyNote,
         NavigationPosition.LEFT_TOP, pageArray, undefined, 'common.common.page')
     NavigationService.addNavigation(pages)
-
-    const form = createNavigationItem('form.common.formBasic', undefined, '/forms/basic', AudioWaveform, NavigationPosition.LEFT_TOP)
-    const formWithAction = createNavigationItem('form.common.formWithAction', undefined, '/forms/withAction', AudioWaveform, NavigationPosition.LEFT_TOP)
-    const formArray = [form, formWithAction]
-    const froms = createNavigationItem('form.common.form', formArray.length.toString(), '/forms', FormInput, NavigationPosition.LEFT_TOP,
-        formArray, undefined, 'common.common.form')
-    NavigationService.addNavigation(froms)
 }
 
 const createNavigationItem = (title?: string, label?: string, href?: string, icon?: any, position?: NavigationPosition, children?: NavigationModel[], group?: string, description?: string, blank?: boolean): NavigationModel => {
