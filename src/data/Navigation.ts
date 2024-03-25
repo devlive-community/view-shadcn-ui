@@ -1,6 +1,6 @@
 import { NavigationModel, NavigationPosition } from '@/model/Navigation'
 import NavigationService from '@/services/Navigation'
-import { AudioWaveform, Ban, CircleOff, FormInput, Gauge, LogIn, LogOut, StickyNote } from 'lucide-vue-next'
+import { AudioWaveform, Ban, CircleOff, FormInput, Gauge, LogIn, LogOut, StickyNote, Link } from 'lucide-vue-next'
 
 const createNavigation = (): void => {
     NavigationService.addNavigation(createNavigationItem('common.common.dashboard', undefined, '/dashboard', Gauge, NavigationPosition.LEFT_TOP))
@@ -52,6 +52,10 @@ const createNavigation = (): void => {
     const pages = createNavigationItem('common.common.page', pageArray.length.toString(), '/pages', StickyNote,
         NavigationPosition.LEFT_TOP, pageArray, undefined, 'common.common.page')
     NavigationService.addNavigation(pages)
+
+    const external = createNavigationItem('common.common.externalLink', undefined, 'https://datacap.edurt.io', Link, NavigationPosition.LEFT_TOP)
+    external.external = true
+    NavigationService.addNavigation(external)
 }
 
 const createNavigationItem = (title?: string, label?: string, href?: string, icon?: any, position?: NavigationPosition, children?: NavigationModel[], group?: string, description?: string, blank?: boolean): NavigationModel => {
