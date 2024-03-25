@@ -96,6 +96,11 @@ const createFormRouter = (router: Router): void => {
                 name: 'withImage',
                 path: 'withImage',
                 component: () => import('@/views/pages/form/FormWithImage.vue')
+            },
+            {
+                name: 'withThird',
+                path: 'withThird',
+                component: () => import('@/views/pages/form/FormWithThird.vue')
             }
         ]
     })

@@ -39,7 +39,8 @@ const createNavigation = (): void => {
     const formWithAction = createNavigationItem('form.common.formWithAction', undefined, '/forms/withAction', AudioWaveform, NavigationPosition.LEFT_TOP)
     const formWithSplitField = createNavigationItem('form.common.formWithSplitField', undefined, '/forms/withSplitField', AudioWaveform, NavigationPosition.LEFT_TOP)
     const formWithImage = createNavigationItem('form.common.formWithImage', undefined, '/forms/withImage', AudioWaveform, NavigationPosition.LEFT_TOP)
-    const formArray = [form, formWithAction, formWithSplitField, formWithImage]
+    const formWithThird = createNavigationItem('form.common.formWithThird', undefined, '/forms/withThird', AudioWaveform, NavigationPosition.LEFT_TOP)
+    const formArray = [form, formWithAction, formWithSplitField, formWithImage, formWithThird]
     const froms = createNavigationItem('form.common.form', formArray.length.toString(), '/forms', FormInput, NavigationPosition.LEFT_TOP,
         formArray, undefined, 'common.common.form')
     NavigationService.addNavigation(froms)

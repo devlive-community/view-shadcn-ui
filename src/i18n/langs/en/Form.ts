@@ -8,7 +8,8 @@ export default {
         signInWithGithub: 'Sign in with Github',
         firstName: 'First Name',
         lastName: 'Last Name',
-        formWithImage: 'Form with Image'
+        formWithImage: 'Form with Image',
+        formWithThird: 'Forms with third-party logins'
     },
     tip: {
         formBasic: 'This is a basic form example',
@@ -16,6 +17,7 @@ export default {
         formWithSplitField: 'Here\'s an example of a form with a split field',
         firstNameHolder: 'Please enter first name',
         lastNameHolder: 'Please enter last name',
-        formWithImage: 'Here\'s an example of a form with an image'
+        formWithImage: 'Here\'s an example of a form with an image',
+        formWithThird: 'Here\'s an example of a form with a third-party login'
     }
 }
