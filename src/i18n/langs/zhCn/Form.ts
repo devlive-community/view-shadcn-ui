@@ -9,7 +9,8 @@ export default {
         firstName: '名',
         lastName: '姓',
         formWithImage: '带图片的表单',
-        formWithThird: '带第三方登录的表单'
+        formWithThird: '带第三方登录的表单',
+        formWithValidate: '带校验的表单'
     },
     tip: {
         formBasic: '这是一个表单的基础示例',
@@ -18,6 +19,7 @@ export default {
         firstNameHolder: '请输入名',
         lastNameHolder: '请输入姓',
         formWithImage: '这是一个带有图片的表单示例',
-        formWithThird: '这是一个带有第三方登录的表单示例'
+        formWithThird: '这是一个带有第三方登录的表单示例',
+        formWithValidate: '这是一个带有校验的表单示例'
     }
 }

@@ -101,6 +101,11 @@ const createFormRouter = (router: Router): void => {
                 name: 'withThird',
                 path: 'withThird',
                 component: () => import('@/views/pages/form/FormWithThird.vue')
+            },
+            {
+                name: 'withValidate',
+                path: 'withValidate',
+                component: () => import('@/views/pages/form/FormWithValidate.vue')
             }
         ]
     })

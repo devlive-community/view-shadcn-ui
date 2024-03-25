@@ -9,7 +9,8 @@ export default {
         firstName: 'First Name',
         lastName: 'Last Name',
         formWithImage: 'Form with Image',
-        formWithThird: 'Forms with third-party logins'
+        formWithThird: 'Forms with third-party logins',
+        formWithValidate: 'Form with validation'
     },
     tip: {
         formBasic: 'This is a basic form example',
@@ -18,6 +19,7 @@ export default {
         firstNameHolder: 'Please enter first name',
         lastNameHolder: 'Please enter last name',
         formWithImage: 'Here\'s an example of a form with an image',
-        formWithThird: 'Here\'s an example of a form with a third-party login'
+        formWithThird: 'Here\'s an example of a form with a third-party login',
+        formWithValidate: 'Here\'s an example of a form with validation'
     }
 }
