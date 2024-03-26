@@ -7,8 +7,8 @@ export interface UserModel
 
 export enum UserRole
 {
-    Viewer = 'viewer',
-    Developer = 'developer',
-    Billing = 'billing',
-    Owner = 'owner'
+    Viewer = 'Viewer',
+    Developer = 'Developer',
+    Billing = 'Billing',
+    Owner = 'Owner'
 }

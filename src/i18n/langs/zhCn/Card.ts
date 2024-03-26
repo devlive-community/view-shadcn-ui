@@ -34,6 +34,12 @@ export default {
         function2: '功能 2',
         function3: '功能 3',
         newList: '新建列表',
+        cardWithGit: '卡片（模拟 Git）',
+        lastCommit: '最后提交',
+        branch: '分支',
+        cardWithTeam: '卡片（模拟团队）',
+        copyLink: '复制链接',
+        issue: '卡片（模拟问题）'
     },
     tip: {
         payment: '这是一个模拟支付的卡片布局',
@@ -53,6 +59,7 @@ export default {
         available: '仅提及和评论。',
         ignored: '关闭所有通知。',
         setting: '这是一个模拟设置卡片布局。',
-        setting1: '这是一个设置项的说明'
+        setting1: '这是一个设置项的说明',
+        issue: '这是一个模拟问题卡片布局'
     }
 }

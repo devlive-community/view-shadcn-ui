@@ -30,10 +30,16 @@ export default {
         setting: 'Settings',
         setting1: 'This is a setting item',
         functionList: 'Function List',
-        list1: 'Function 1',
-        list2: 'Function 2',
-        list3: 'Function 3',
-        newList: 'Create List'
+        function1: 'Function 1',
+        function2: 'Function 2',
+        function3: 'Function 3',
+        newList: 'Create List',
+        cardWithGit: 'Cards (emulate Git)',
+        lastCommit: 'Last commit',
+        branch: 'Branch',
+        cardWithTeam: 'Cards (emulate team)',
+        copyLink: 'Copy Link',
+        issue: 'Issue',
     },
     tip: {
         payment: 'This is a simulated payment card layout',
@@ -54,5 +60,6 @@ export default {
         ignored: 'Turn off all notifications.',
         setting: 'This is a mock setting card layout',
         setting1: 'This is a description of the setting item',
+        issue: 'This is a mock issue card layout'
     }
 }

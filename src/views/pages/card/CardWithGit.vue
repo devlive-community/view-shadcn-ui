@@ -3,18 +3,18 @@
     <div class="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
       <div class="grid gap-3 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
         <CardContainer>
-          <CardUser/>
+          <CardGit/>
         </CardContainer>
         <CardContainer>
-          <CardPayment/>
-        </CardContainer>
-        <CardContainer>
-          <CardNotification/>
+          <CardGit2/>
         </CardContainer>
       </div>
-      <div class="grid gap-3 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
+      <div class="grid gap-2 md:grid-cols-2 md:gap-8 lg:grid-cols-2">
         <CardContainer>
-          <CardSetting/>
+          <CardGit3/>
+        </CardContainer>
+        <CardContainer>
+          <CardGit4/>
         </CardContainer>
       </div>
     </div>
@@ -23,14 +23,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import CardGit2 from '@/views/pages/card/components/CardGit2.vue'
+import CardGit3 from '@/views/pages/card/components/CardGit3.vue'
+import CardGit from '@/views/pages/card/components/CardGit.vue'
 import CardContainer from '@/views/pages/card/components/CardContainer.vue'
-import CardUser from '@/views/pages/card/components/CardUser.vue'
-import CardPayment from '@/views/pages/card/components/CardPayment.vue'
-import CardNotification from '@/views/pages/card/components/CardNotification.vue'
-import CardSetting from '@/views/pages/card/components/CardSetting.vue'
+import CardGit4 from '@/views/pages/card/components/CardGit4.vue'
 
 export default defineComponent({
-  name: 'CardHome',
-  components: {CardSetting, CardNotification, CardPayment, CardUser, CardContainer}
+  name: 'CardWithGit',
+  components: {CardGit4, CardContainer, CardGit, CardGit3, CardGit2}
 })
 </script>

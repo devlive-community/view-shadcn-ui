@@ -16,7 +16,23 @@ const createDefaultRouter = (router: Router): void => {
             {
                 name: 'card',
                 path: 'card',
-                component: () => import('@/views/pages/card/CardHome.vue')
+                children: [
+                    {
+                        name: 'index',
+                        path: 'index',
+                        component: () => import('@/views/pages/card/CardHome.vue')
+                    },
+                    {
+                        name: 'git',
+                        path: 'git',
+                        component: () => import('@/views/pages/card/CardWithGit.vue')
+                    },
+                    {
+                        name: 'team',
+                        path: 'team',
+                        component: () => import('@/views/pages/card/CardWithTeam.vue')
+                    }
+                ]
             }
         ]
     })
