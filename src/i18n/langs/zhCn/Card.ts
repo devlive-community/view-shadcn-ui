@@ -34,6 +34,7 @@ export default {
         function2: '功能 2',
         function3: '功能 3',
         newList: '新建列表',
+        cardWithGit: '卡片（模拟 Git）',
     },
     tip: {
         payment: '这是一个模拟支付的卡片布局',

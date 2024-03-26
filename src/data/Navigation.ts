@@ -46,7 +46,11 @@ const createNavigation = (): void => {
         formArray, undefined, 'common.common.form')
     NavigationService.addNavigation(froms)
 
-    NavigationService.addNavigation(createNavigationItem('card.common.default', undefined, '/card', CreditCard, NavigationPosition.LEFT_TOP))
+    const cardHome = createNavigationItem('card.common.default', undefined, '/card/index', undefined, NavigationPosition.LEFT_TOP)
+    const cardWithGit = createNavigationItem('card.common.cardWithGit', undefined, '/card/git', undefined, NavigationPosition.LEFT_TOP)
+    const cardArray = [cardHome, cardWithGit]
+    const cards = createNavigationItem('card.common.default', cardArray.length.toString(), '/card/index', CreditCard, NavigationPosition.LEFT_TOP, cardArray)
+    NavigationService.addNavigation(cards)
 
     const page404 = createNavigationItem('common.common.page404', undefined, '/common/404', Ban, NavigationPosition.LEFT_TOP)
     const page403 = createNavigationItem('common.common.page403', undefined, '/common/403', CircleOff, NavigationPosition.LEFT_TOP)

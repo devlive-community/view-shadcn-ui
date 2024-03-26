@@ -33,7 +33,8 @@ export default {
         function1: 'Function 1',
         function2: 'Function 2',
         function3: 'Function 3',
-        newList: 'Create List'
+        newList: 'Create List',
+        cardWithGit: 'Cards (emulate Git)'
     },
     tip: {
         payment: 'This is a simulated payment card layout',
