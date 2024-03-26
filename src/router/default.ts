@@ -26,6 +26,11 @@ const createDefaultRouter = (router: Router): void => {
                         name: 'git',
                         path: 'git',
                         component: () => import('@/views/pages/card/CardWithGit.vue')
+                    },
+                    {
+                        name: 'team',
+                        path: 'team',
+                        component: () => import('@/views/pages/card/CardWithTeam.vue')
                     }
                 ]
             }

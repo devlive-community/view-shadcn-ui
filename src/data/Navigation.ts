@@ -48,7 +48,8 @@ const createNavigation = (): void => {
 
     const cardHome = createNavigationItem('card.common.default', undefined, '/card/index', undefined, NavigationPosition.LEFT_TOP)
     const cardWithGit = createNavigationItem('card.common.cardWithGit', undefined, '/card/git', undefined, NavigationPosition.LEFT_TOP)
-    const cardArray = [cardHome, cardWithGit]
+    const cardWithTeam = createNavigationItem('card.common.cardWithTeam', undefined, '/card/team', undefined, NavigationPosition.LEFT_TOP)
+    const cardArray = [cardHome, cardWithGit, cardWithTeam]
     const cards = createNavigationItem('card.common.default', cardArray.length.toString(), '/card/index', CreditCard, NavigationPosition.LEFT_TOP, cardArray)
     NavigationService.addNavigation(cards)
 

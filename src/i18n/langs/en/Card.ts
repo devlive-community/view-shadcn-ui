@@ -37,6 +37,7 @@ export default {
         cardWithGit: 'Cards (emulate Git)',
         lastCommit: 'Last commit',
         branch: 'Branch',
+        cardWithTeam: 'Cards (emulate team)',
     },
     tip: {
         payment: 'This is a simulated payment card layout',
