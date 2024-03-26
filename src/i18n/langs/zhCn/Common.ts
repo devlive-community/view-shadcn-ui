@@ -21,7 +21,8 @@ export default {
         page403: '403 页面禁止访问',
         dashboard: '仪表盘',
         externalLink: '外部链接',
-        button: '按钮'
+        button: '按钮',
+        public: '公开',
     },
     tip: {
         signInInfo: '输入您的信息以登录您的帐户。',

@@ -19,8 +19,13 @@
         <CardContainer>
           <CardSetting/>
         </CardContainer>
+      </div>
+      <div class="grid gap-3 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
         <CardContainer>
           <CardGit/>
+        </CardContainer>
+        <CardContainer>
+          <CardGit2/>
         </CardContainer>
       </div>
     </div>
@@ -36,9 +41,10 @@ import CardTeam from '@/views/pages/card/components/CardTeam.vue'
 import CardNotification from '@/views/pages/card/components/CardNotification.vue'
 import CardSetting from '@/views/pages/card/components/CardSetting.vue'
 import CardGit from '@/views/pages/card/components/CardGit.vue';
+import CardGit2 from '@/views/pages/card/components/CardGit2.vue'
 
 export default defineComponent({
   name: 'CardHome',
-  components: {CardGit, CardSetting, CardNotification, CardTeam, CardPayment, CardUser, CardContainer}
+  components: {CardGit2, CardGit, CardSetting, CardNotification, CardTeam, CardPayment, CardUser, CardContainer}
 })
 </script>

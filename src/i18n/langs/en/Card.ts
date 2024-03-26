@@ -30,9 +30,9 @@ export default {
         setting: 'Settings',
         setting1: 'This is a setting item',
         functionList: 'Function List',
-        list1: 'Function 1',
-        list2: 'Function 2',
-        list3: 'Function 3',
+        function1: 'Function 1',
+        function2: 'Function 2',
+        function3: 'Function 3',
         newList: 'Create List'
     },
     tip: {
