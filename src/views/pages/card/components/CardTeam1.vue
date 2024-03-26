@@ -6,7 +6,7 @@
     </CardHeader>
     <CardContent>
       <div class="flex space-x-2">
-        <Input value="http://example.com/link/to/document" read-only/>
+        <Input default-value="https://shadcn.vue.devlive.org" read-only/>
         <Button variant="secondary" class="shrink-0">{{ $t('card.common.copyLink') }}</Button>
       </div>
       <Separator class="my-4"/>

@@ -24,6 +24,7 @@ export default {
         button: 'Button',
         public: 'Public',
         list: 'List',
+        label: 'Label'
     },
     tip: {
         signInInfo: 'Enter your information to sign in to your account.',
@@ -35,6 +36,7 @@ export default {
         inputAnyInfo: 'Enter your username and password at will',
         datacap: 'DataCap is integrated software for data transformation, integration, and visualization. Support a variety of data sources, file types, big data related database, relational database, NoSQL database, etc. Through the software can realize the management of multiple data sources, the data under the source of various operations conversion, making data charts, monitoring data sources and other functions.',
         pageNotFound: 'Oops! Page Not Found!',
-        pageForbidden: 'Oops! Page Forbidden!'
+        pageForbidden: 'Oops! Page Forbidden!',
+        holder: 'Please enter the content',
     }
 }

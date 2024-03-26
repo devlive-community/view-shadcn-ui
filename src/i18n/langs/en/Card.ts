@@ -39,6 +39,7 @@ export default {
         branch: 'Branch',
         cardWithTeam: 'Cards (emulate team)',
         copyLink: 'Copy Link',
+        issue: 'Issue',
     },
     tip: {
         payment: 'This is a simulated payment card layout',
@@ -59,5 +60,6 @@ export default {
         ignored: 'Turn off all notifications.',
         setting: 'This is a mock setting card layout',
         setting1: 'This is a description of the setting item',
+        issue: 'This is a mock issue card layout'
     }
 }

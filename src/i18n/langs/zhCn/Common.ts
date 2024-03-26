@@ -23,7 +23,8 @@ export default {
         externalLink: '外部链接',
         button: '按钮',
         public: '公开',
-        list: '列表'
+        list: '列表',
+        label: '标签'
     },
     tip: {
         signInInfo: '输入您的信息以登录您的帐户。',
@@ -35,6 +36,7 @@ export default {
         inputAnyInfo: '输入任何信息即可',
         datacap: 'DataCap 是数据转换、集成和可视化的集成软件。支持多种数据源，文件类型，大数据相关数据库，关系型数据库，NoSQL 数据库等。通过软件可以实现管理多种数据源，对该源下的数据进行各种操作转换，制作数据图表，监控数据源等各种功能。',
         pageNotFound: 'Oops! 页面未找到!',
-        pageForbidden: 'Oops! 页面禁止访问!'
+        pageForbidden: 'Oops! 页面禁止访问!',
+        holder: '请输入内容',
     }
 }

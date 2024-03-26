@@ -8,6 +8,9 @@
         <CardContainer>
           <CardTeam1/>
         </CardContainer>
+        <CardContainer>
+          <CardTeam2/>
+        </CardContainer>
       </div>
     </div>
   </div>
@@ -18,9 +21,10 @@ import { defineComponent } from 'vue'
 import CardContainer from '@/views/pages/card/components/CardContainer.vue'
 import CardTeam from '@/views/pages/card/components/CardTeam.vue'
 import CardTeam1 from '@/views/pages/card/components/CardTeam1.vue'
+import CardTeam2 from '@/views/pages/card/components/CardTeam2.vue'
 
 export default defineComponent({
   name: 'CardWithTeam',
-  components: {CardTeam1, CardTeam, CardContainer}
+  components: {CardTeam2, CardTeam1, CardTeam, CardContainer}
 })
 </script>
