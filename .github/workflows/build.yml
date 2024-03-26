@@ -1,6 +1,9 @@
 name: Publish core via GitHub Actions
 
 on:
+  push:
+    branches:
+      - dev
   release:
     types: [ published ]
 
