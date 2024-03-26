@@ -23,6 +23,7 @@ export default {
         externalLink: '外部链接',
         button: '按钮',
         public: '公开',
+        list: '列表'
     },
     tip: {
         signInInfo: '输入您的信息以登录您的帐户。',

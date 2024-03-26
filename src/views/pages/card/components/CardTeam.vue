@@ -29,19 +29,19 @@
               <CommandList>
                 <CommandEmpty>{{ $t('card.tip.roleNotHolder') }}</CommandEmpty>
                 <CommandGroup>
-                  <CommandItem value="viewer" class="teamaspace-y-1 flex flex-col items-start px-4 py-2 cursor-pointer">
+                  <CommandItem :value="UserRole.Viewer" class="teamaspace-y-1 flex flex-col items-start px-4 py-2 cursor-pointer">
                     <p>{{ $t('card.common.viewer') }}</p>
                     <p class="text-sm text-muted-foreground">{{ $t('card.tip.viewer') }}</p>
                   </CommandItem>
-                  <CommandItem value="developer" class="teamaspace-y-1 flex flex-col items-start px-4 py-2 cursor-pointer">
+                  <CommandItem :value="UserRole.Developer" class="teamaspace-y-1 flex flex-col items-start px-4 py-2 cursor-pointer">
                     <p>{{ $t('card.common.developer') }}</p>
                     <p class="text-sm text-muted-foreground">{{ $t('card.tip.developer') }}</p>
                   </CommandItem>
-                  <CommandItem value="Billing" class="teamaspace-y-1 flex flex-col items-start px-4 py-2 cursor-pointer">
+                  <CommandItem :value="UserRole.Billing" class="teamaspace-y-1 flex flex-col items-start px-4 py-2 cursor-pointer">
                     <p>{{ $t('card.common.billing') }}</p>
                     <p class="text-sm text-muted-foreground">{{ $t('card.tip.billing') }}</p>
                   </CommandItem>
-                  <CommandItem value="Owner" class="teamaspace-y-1 flex flex-col items-start px-4 py-2 cursor-pointer">
+                  <CommandItem :value="UserRole.Owner" class="teamaspace-y-1 flex flex-col items-start px-4 py-2 cursor-pointer">
                     <p>{{ $t('card.common.owner') }}</p>
                     <p class="text-sm text-muted-foreground">{{ $t('card.tip.owner') }}</p>
                   </CommandItem>
@@ -64,9 +64,16 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, Command
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import UserService from '@/services/User'
 import { ChevronDownIcon } from 'lucide-vue-next'
+import { UserRole } from '@/model/User.ts'
 
 export default defineComponent({
   name: 'CardTeam',
+  computed: {
+    UserRole()
+    {
+      return UserRole
+    }
+  },
   components: {
     Avatar, AvatarFallback, AvatarImage,
     Button,

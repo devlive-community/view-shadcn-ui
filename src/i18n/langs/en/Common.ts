@@ -23,6 +23,7 @@ export default {
         externalLink: 'External Link',
         button: 'Button',
         public: 'Public',
+        list: 'List',
     },
     tip: {
         signInInfo: 'Enter your information to sign in to your account.',

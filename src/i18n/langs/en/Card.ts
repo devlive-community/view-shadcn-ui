@@ -38,6 +38,7 @@ export default {
         lastCommit: 'Last commit',
         branch: 'Branch',
         cardWithTeam: 'Cards (emulate team)',
+        copyLink: 'Copy Link',
     },
     tip: {
         payment: 'This is a simulated payment card layout',

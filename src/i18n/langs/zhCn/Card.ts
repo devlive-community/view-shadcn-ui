@@ -37,7 +37,8 @@ export default {
         cardWithGit: '卡片（模拟 Git）',
         lastCommit: '最后提交',
         branch: '分支',
-        cardWithTeam: '卡片（模拟团队）'
+        cardWithTeam: '卡片（模拟团队）',
+        copyLink: '复制链接',
     },
     tip: {
         payment: '这是一个模拟支付的卡片布局',
