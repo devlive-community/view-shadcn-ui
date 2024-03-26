@@ -34,7 +34,9 @@ export default {
         function2: 'Function 2',
         function3: 'Function 3',
         newList: 'Create List',
-        cardWithGit: 'Cards (emulate Git)'
+        cardWithGit: 'Cards (emulate Git)',
+        lastCommit: 'Last commit',
+        branch: 'Branch',
     },
     tip: {
         payment: 'This is a simulated payment card layout',

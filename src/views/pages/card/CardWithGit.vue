@@ -13,6 +13,9 @@
         <CardContainer>
           <CardGit3/>
         </CardContainer>
+        <CardContainer>
+          <CardGit4/>
+        </CardContainer>
       </div>
     </div>
   </div>
@@ -24,9 +27,10 @@ import CardGit2 from '@/views/pages/card/components/CardGit2.vue'
 import CardGit3 from '@/views/pages/card/components/CardGit3.vue'
 import CardGit from '@/views/pages/card/components/CardGit.vue'
 import CardContainer from '@/views/pages/card/components/CardContainer.vue'
+import CardGit4 from '@/views/pages/card/components/CardGit4.vue'
 
 export default defineComponent({
   name: 'CardWithGit',
-  components: {CardContainer, CardGit, CardGit3, CardGit2}
+  components: {CardGit4, CardContainer, CardGit, CardGit3, CardGit2}
 })
 </script>
