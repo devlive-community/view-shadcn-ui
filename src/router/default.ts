@@ -33,6 +33,11 @@ const createDefaultRouter = (router: Router): void => {
                         component: () => import('@/views/pages/card/CardWithTeam.vue')
                     }
                 ]
+            },
+            {
+                name: 'chat',
+                path: 'chat',
+                component: () => import('@/views/pages/chat/ChatHome.vue')
             }
         ]
     })

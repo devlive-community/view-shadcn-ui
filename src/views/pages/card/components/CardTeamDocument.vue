@@ -52,7 +52,7 @@ import { Separator } from '@/components/ui/separator'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
 export default defineComponent({
-  name: 'CardTeam1',
+  name: 'CardTeamDocument',
   components: {
     Separator,
     Input,

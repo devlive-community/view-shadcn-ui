@@ -24,7 +24,13 @@ export default {
         button: '按钮',
         public: '公开',
         list: '列表',
-        label: '标签'
+        label: '标签',
+        chat: '聊天',
+        newMessage: '新消息',
+        sendMessage: '这是一条发送的消息',
+        replyMessage: '这是一条回复的消息',
+        notFoundItem: '未找到该项',
+        search: '搜索',
     },
     tip: {
         signInInfo: '输入您的信息以登录您的帐户。',
@@ -38,5 +44,8 @@ export default {
         pageNotFound: 'Oops! 页面未找到!',
         pageForbidden: 'Oops! 页面禁止访问!',
         holder: '请输入内容',
+        inputMessage: '输入消息内容 ...',
+        newMessage: '邀请一个用户加入该线程。这将创建一个新的群消息',
+        selectItem: '请选择项',
     }
 }
