@@ -6,10 +6,10 @@
           <CardTeam/>
         </CardContainer>
         <CardContainer>
-          <CardTeam1/>
+          <CardTeamDocument/>
         </CardContainer>
         <CardContainer>
-          <CardTeam2/>
+          <CardTeamIssue/>
         </CardContainer>
       </div>
     </div>
@@ -20,11 +20,11 @@
 import { defineComponent } from 'vue'
 import CardContainer from '@/views/pages/card/components/CardContainer.vue'
 import CardTeam from '@/views/pages/card/components/CardTeam.vue'
-import CardTeam1 from '@/views/pages/card/components/CardTeam1.vue'
-import CardTeam2 from '@/views/pages/card/components/CardTeam2.vue'
+import CardTeamDocument from '@/views/pages/card/components/CardTeamDocument.vue'
+import CardTeamIssue from '@/views/pages/card/components/CardTeamIssue.vue'
 
 export default defineComponent({
   name: 'CardWithTeam',
-  components: {CardTeam2, CardTeam1, CardTeam, CardContainer}
+  components: {CardTeamIssue, CardTeamDocument, CardTeam, CardContainer}
 })
 </script>

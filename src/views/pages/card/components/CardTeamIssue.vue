@@ -57,7 +57,7 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 
 export default defineComponent({
-  name: 'CardTeam2',
+  name: 'CardTeamIssue',
   components: {
     Label,
     Input,

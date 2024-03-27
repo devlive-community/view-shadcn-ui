@@ -24,7 +24,13 @@ export default {
         button: 'Button',
         public: 'Public',
         list: 'List',
-        label: 'Label'
+        label: 'Label',
+        chat: 'Chat',
+        newMessage: 'New Message',
+        sendMessage: 'This is a send message',
+        replyMessage: 'This is a reply message',
+        notFoundItem: 'Not Found Item',
+        search: 'Search',
     },
     tip: {
         signInInfo: 'Enter your information to sign in to your account.',
@@ -38,5 +44,8 @@ export default {
         pageNotFound: 'Oops! Page Not Found!',
         pageForbidden: 'Oops! Page Forbidden!',
         holder: 'Please enter the content',
+        inputMessage: 'Type a message ...',
+        newMessage: 'Invite a user to this thread. This will create a new group message.',
+        selectItem: 'Please select the item',
     }
 }
