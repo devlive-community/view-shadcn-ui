@@ -13,7 +13,7 @@
           <CommandGroup class="p-2">
             <CommandItem v-for="user in users" :key="user.email" :value="user" class="flex items-center px-2" @select="handlerSelect(user)">
               <Avatar>
-                <AvatarImage :alt="user.username"/>
+                <AvatarImage :alt="user.username" src="https://www.shadcn-vue.com/avatars/01.png"/>
                 <AvatarFallback>{{ user?.username?.substring(0, 1) }}</AvatarFallback>
               </Avatar>
               <div class="ml-2">
@@ -28,7 +28,7 @@
       <DialogFooter class="flex items-center border-t p-4 sm:justify-between">
         <div v-if="selectedUsers.length > 0" class="flex -space-x-2 overflow-hidden">
           <Avatar v-for="user in selectedUsers" :key="user.email" class="border-2 border-background">
-            <AvatarImage :alt="user.username"/>
+            <AvatarImage :alt="user.username" src="https://www.shadcn-vue.com/avatars/01.png"/>
             <AvatarFallback>{{ user?.username?.substring(0, 1) }}</AvatarFallback>
           </Avatar>
         </div>

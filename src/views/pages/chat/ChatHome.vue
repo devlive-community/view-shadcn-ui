@@ -5,7 +5,7 @@
         <CardHeader class="flex flex-row items-center justify-between">
           <div class="flex items-center space-x-4">
             <Avatar>
-              <AvatarImage alt="SUA"/>
+              <AvatarImage alt="SUA" src="https://www.shadcn-vue.com/avatars/01.png"/>
               <AvatarFallback>SUA</AvatarFallback>
             </Avatar>
             <div>
@@ -35,7 +35,7 @@
         </CardContent>
         <CardFooter>
           <form class="flex w-full items-center space-x-2" @submit.prevent="handlerSubmit">
-            <Input v-model="inputValue" :placeholder="$t('common.tip.inputMessage')" class="flex-1"/>
+            <Input v-model="inputValue as string" :placeholder="$t('common.tip.inputMessage')" class="flex-1"/>
             <Button class="p-2.5 flex items-center justify-center" :disabled="!inputValue">
               <Send class="w-4 h-4"/>
               <span class="sr-only">{{ $t('common.common.send') }}</span>
