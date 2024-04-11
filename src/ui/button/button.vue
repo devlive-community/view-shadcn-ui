@@ -1,6 +1,6 @@
 <template>
   <Button :class="cn(computedSize,
-                     `bg-[${computedType}]`,
+                     `bg-[${computedType}] hover:bg-[${calculateHoverColor(computedType)}]`,
                      { 'rounded-full': round },
                      { 'rounded-full': circle })"
           :size="circle ? 'icon' : 'default'"
@@ -28,6 +28,7 @@ import { Button } from '@/components/ui/button'
 import { Type } from '@/ui/enum/Type.ts'
 import { cn } from '@/lib/utils.ts'
 import { Loader2 } from 'lucide-vue-next'
+import { calculateHoverColor } from '@/utils/Color.ts'
 
 export default defineComponent({
   name: 'IButton',
@@ -75,6 +76,7 @@ export default defineComponent({
 
     return {
       cn,
+      calculateHoverColor,
       computedSize,
       computedType
     }
