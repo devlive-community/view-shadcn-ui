@@ -35,6 +35,7 @@ export default {
         size: '尺寸',
         type: '类型',
         icon: '图标',
+        card: '卡片',
     },
     tip: {
         signInInfo: '输入您的信息以登录您的帐户。',

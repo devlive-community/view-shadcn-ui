@@ -1,6 +1,6 @@
 <template>
-  <Card class="rounded-sm">
-    <CardHeader v-if="!hiddenTitle" :class="`flex flex-row items-center justify-between border-b p-4 ${titleClass}`">
+  <Card :class="cn('rounded-sm', computedShadow)">
+    <CardHeader v-if="$slots.title || title" :class="`flex flex-row items-center justify-between border-b p-4 ${titleClass}`">
       <div class="grid gap-2">
         <CardTitle>
           <span v-if="title">{{ title }}</span>
@@ -14,15 +14,17 @@
     <CardContent :class="`${bodyClass}`">
       <slot/>
     </CardContent>
-    <CardFooter v-if="$slots.footer">
+    <CardFooter class="border-t p-4" v-if="$slots.footer">
       <slot name="footer"/>
     </CardFooter>
   </Card>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref, watchEffect } from 'vue'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { cn } from '@/lib/utils.ts'
+import { Shadow } from '@/ui/enum/Shadow.ts'
 
 export default defineComponent({
   name: 'ICard',
@@ -39,9 +41,22 @@ export default defineComponent({
     bodyClass: {
       type: String
     },
-    hiddenTitle: {
-      type: Boolean,
-      default: false
+    shadow: {
+      type: String,
+      default: 'never'
+    }
+  },
+  setup(props)
+  {
+    const computedShadow = ref<string>('never')
+
+    watchEffect(() => {
+      computedShadow.value = Shadow[props.shadow as keyof typeof Shadow]
+    })
+
+    return {
+      cn,
+      computedShadow
     }
   }
 })

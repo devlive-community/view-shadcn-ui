@@ -35,6 +35,7 @@ export default {
         size: 'Size',
         type: 'Type',
         icon: 'Icon',
+        card: 'Card',
     },
     tip: {
         signInInfo: 'Enter your information to sign in to your account.',
