@@ -1,10 +1,16 @@
 <template>
-  <Button :class="cn(computedSize,
-                     `bg-[${computedType}] hover:bg-[${calculateHoverColor(computedType)}]`,
-                     { 'rounded-full': round },
-                     { 'rounded-full': circle })"
-          :size="circle ? 'icon' : 'default'"
-          :style="{backgroundColor: color}">
+  <Button :style="{
+              '--button-bg': computedType,
+              '--button-bg-hover': calculateHoverColor(computedType),
+              backgroundColor: color
+            }"
+          :class="cn(
+              computedSize,
+              'bg-[--button-bg] hover:bg-[--button-bg-hover]',
+              { 'rounded-full': round },
+              { 'rounded-full': circle }
+          )"
+          :size="circle ? 'icon' : 'default'">
     <span :class="cn({'animate-spin mr-1.5': (loading || $slots.loading)})">
       <slot v-if="!$slots.icon && $slots.loading" name="loading"/>
       <Loader2 v-else-if="loading"/>
