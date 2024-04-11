@@ -31,6 +31,11 @@ export default {
         replyMessage: '这是一条回复的消息',
         notFoundItem: '未找到该项',
         search: '搜索',
+        component: '组件',
+        size: '尺寸',
+        type: '类型',
+        icon: '图标',
+        card: '卡片',
     },
     tip: {
         signInInfo: '输入您的信息以登录您的帐户。',

@@ -44,6 +44,7 @@ const createDefaultRouter = (router: Router): void => {
     createHttpRouter(router)
     createUserRouter(router)
     createFormRouter(router)
+    createComponentRouter(router)
 }
 
 /**
@@ -132,6 +133,26 @@ const createFormRouter = (router: Router): void => {
                 name: 'withValidate',
                 path: 'withValidate',
                 component: () => import('@/views/pages/form/FormWithValidate.vue')
+            }
+        ]
+    })
+}
+
+const createComponentRouter = (router: Router): void => {
+    router.addRoute({
+        path: '/components',
+        name: 'components',
+        component: LayoutContainer,
+        children: [
+            {
+                name: 'button',
+                path: 'button',
+                component: () => import('@/views/pages/components/ButtonHome.vue')
+            },
+            {
+                name: 'card',
+                path: 'card',
+                component: () => import('@/views/pages/components/CardHome.vue')
             }
         ]
     })
