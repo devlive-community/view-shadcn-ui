@@ -31,6 +31,7 @@ export default {
         replyMessage: 'This is a reply message',
         notFoundItem: 'Not Found Item',
         search: 'Search',
+        component: 'Component',
     },
     tip: {
         signInInfo: 'Enter your information to sign in to your account.',
