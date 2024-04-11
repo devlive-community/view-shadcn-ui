@@ -1,4 +1,6 @@
 export enum Size
 {
-    default = 'w-8 h-8',
+    default = 'h-8',
+    small = 'h-6',
+    large = 'h-10'
 }

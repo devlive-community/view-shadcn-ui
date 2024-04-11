@@ -32,6 +32,9 @@ export default {
         notFoundItem: '未找到该项',
         search: '搜索',
         component: '组件',
+        size: '尺寸',
+        type: '类型',
+        icon: '图标',
     },
     tip: {
         signInInfo: '输入您的信息以登录您的帐户。',

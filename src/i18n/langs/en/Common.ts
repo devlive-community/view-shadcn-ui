@@ -32,6 +32,9 @@ export default {
         notFoundItem: 'Not Found Item',
         search: 'Search',
         component: 'Component',
+        size: 'Size',
+        type: 'Type',
+        icon: 'Icon',
     },
     tip: {
         signInInfo: 'Enter your information to sign in to your account.',
