@@ -5,6 +5,7 @@
                     :class="cn(
                       isCollapsed && 'min-w-[50px] md:min-w-[70px] transition-all duration-300 ease-in-out'
                     )">
+      <ChatSidebar :collapsed="isCollapsed" :items="items"/>
     </ResizablePanel>
     <ResizableHandle with-handle/>
     <ResizablePanel></ResizablePanel>
@@ -15,10 +16,13 @@
 import { defineComponent } from 'vue'
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable'
 import { cn } from '@/lib/utils.ts'
+import ChatSidebar from '@/views/pages/chat/resizable/chat/components/ChatSidebar.vue'
+import { ChatSidebarModel } from '@/views/pages/chat/resizable/chat/Chat.ts'
 
 export default defineComponent({
   name: 'ChatContainer',
   components: {
+    ChatSidebar,
     ResizableHandle, ResizablePanel, ResizablePanelGroup
   },
   props: {
@@ -29,6 +33,10 @@ export default defineComponent({
     collapsedSize: {
       type: Number,
       default: 8
+    },
+    items: {
+      type: Array as () => ChatSidebarModel[],
+      default: () => []
     }
   },
   setup()
