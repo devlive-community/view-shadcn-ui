@@ -9,7 +9,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import ChatContainer from '@/views/pages/chat/resizable/chat/ChatContainer.vue'
-import { ChatSidebarModel } from '@/views/pages/chat/resizable/chat/Chat.ts'
+import { Chat } from '@/views/pages/chat/resizable/chat/Chat.ts'
 
 export default defineComponent({
   name: 'ResizableChatHome',
@@ -19,22 +19,58 @@ export default defineComponent({
     return {
       items: [
         {
-          name: 'devlive',
-          avatar: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png',
-          messages: [],
-          selected: true
+          id: 1,
+          selected: true,
+          user: {
+            name: 'devlive',
+            avatar: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png',
+          },
+          messages: [
+            {
+              id: 1,
+              content: 'Hello, how are you?',
+              user: {
+                name: 'devlive',
+                avatar: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png',
+              }
+            }
+          ]
         },
         {
-          name: 'datacap',
-          avatar: 'https://github.com/devlive-community/datacap/raw/dev/core/datacap-ui/public/static/images/logo.png',
-          messages: []
+          id: 2,
+          user: {
+            name: 'datacap',
+            avatar: 'https://github.com/devlive-community/datacap/raw/dev/core/datacap-ui/public/static/images/logo.png',
+          },
+          messages: [
+            {
+              id: 11,
+              content: 'Hello, i am fine, and you?',
+              user: {
+                name: 'datacap',
+                avatar: 'https://github.com/devlive-community/datacap/raw/dev/core/datacap-ui/public/static/images/logo.png',
+              }
+            }
+          ]
         },
         {
-          name: 'qianmoQ',
-          avatar: 'https://avatars.githubusercontent.com/u/20521442?s=64&v=4',
-          messages: []
+          id: 3,
+          user: {
+            name: 'qianmoQ',
+            avatar: 'https://avatars.githubusercontent.com/u/20521442?s=64&v=4'
+          },
+          messages: [
+            {
+              id: 21,
+              content: 'Hello, i love open source. How are you? I am fine, and you? What about you?',
+              user: {
+                name: 'qianmoQ',
+                avatar: 'https://avatars.githubusercontent.com/u/20521442?s=64&v=4'
+              }
+            }
+          ]
         }
-      ] as ChatSidebarModel[]
+      ] as Chat[]
     }
   }
 })

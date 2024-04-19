@@ -8,7 +8,9 @@
       <ChatSidebar :collapsed="isCollapsed" :items="items"/>
     </ResizablePanel>
     <ResizableHandle with-handle/>
-    <ResizablePanel></ResizablePanel>
+    <ResizablePanel>
+      <ChatMessage :user="items[0].user" :messages="items[0].messages"/>
+    </ResizablePanel>
   </ResizablePanelGroup>
 </template>
 
@@ -17,11 +19,13 @@ import { defineComponent } from 'vue'
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable'
 import { cn } from '@/lib/utils.ts'
 import ChatSidebar from '@/views/pages/chat/resizable/chat/components/ChatSidebar.vue'
-import { ChatSidebarModel } from '@/views/pages/chat/resizable/chat/Chat.ts'
+import { Chat } from '@/views/pages/chat/resizable/chat/Chat.ts'
+import ChatMessage from '@/views/pages/chat/resizable/chat/components/ChatMessage.vue'
 
 export default defineComponent({
   name: 'ChatContainer',
   components: {
+    ChatMessage,
     ChatSidebar,
     ResizableHandle, ResizablePanel, ResizablePanelGroup
   },
@@ -35,7 +39,7 @@ export default defineComponent({
       default: 8
     },
     items: {
-      type: Array as () => ChatSidebarModel[],
+      type: Array as () => Chat[],
       default: () => []
     }
   },
