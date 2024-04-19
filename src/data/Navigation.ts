@@ -19,7 +19,7 @@ const createNavigation = (): void => {
 
     const datacap = createNavigationItem('common.common.datacap',
         undefined,
-        'https://datacap.edurt.io',
+        'https://datacap.devlive.org',
         undefined,
         NavigationPosition.TOP,
         undefined
@@ -46,15 +46,12 @@ const createNavigation = (): void => {
         formArray, undefined, 'common.common.form')
     NavigationService.addNavigation(froms)
 
-    const cardHome = createNavigationItem('card.common.default', undefined, '/card/index', undefined, NavigationPosition.LEFT_TOP)
-    const cardWithGit = createNavigationItem('card.common.cardWithGit', undefined, '/card/git', undefined, NavigationPosition.LEFT_TOP)
-    const cardWithTeam = createNavigationItem('card.common.cardWithTeam', undefined, '/card/team', undefined, NavigationPosition.LEFT_TOP)
+    const cardHome = createNavigationItem('card.common.default', undefined, '/cards/index', undefined, NavigationPosition.LEFT_TOP)
+    const cardWithGit = createNavigationItem('card.common.cardWithGit', undefined, '/cards/git', undefined, NavigationPosition.LEFT_TOP)
+    const cardWithTeam = createNavigationItem('card.common.cardWithTeam', undefined, '/cards/team', undefined, NavigationPosition.LEFT_TOP)
     const cardArray = [cardHome, cardWithGit, cardWithTeam]
     const cards = createNavigationItem('card.common.default', cardArray.length.toString(), '/card/index', CreditCard, NavigationPosition.LEFT_TOP, cardArray)
     NavigationService.addNavigation(cards)
-
-    const chat = createNavigationItem('common.common.chat', undefined, '/chat', MessageCircle, NavigationPosition.LEFT_TOP)
-    NavigationService.addNavigation(chat)
 
     const page404 = createNavigationItem('common.common.page404', undefined, '/common/404', Ban, NavigationPosition.LEFT_TOP)
     const page403 = createNavigationItem('common.common.page403', undefined, '/common/403', CircleOff, NavigationPosition.LEFT_TOP)
@@ -68,6 +65,11 @@ const createNavigation = (): void => {
     const componentArray = [button, card]
     const components = createNavigationItem('common.common.component', componentArray.length.toString(), '/components', Command, NavigationPosition.LEFT_TOP, componentArray)
     NavigationService.addNavigation(components)
+
+    const chat = createNavigationItem('common.common.chat', undefined, '/chats/basic', MessageCircle, NavigationPosition.LEFT_TOP)
+    const chatArray = [chat]
+    const chats = createNavigationItem('common.common.chat', chatArray.length.toString(), '/chats', MessageCircle, NavigationPosition.LEFT_TOP, chatArray)
+    NavigationService.addNavigation(chats)
 
     const external = createNavigationItem('common.common.externalLink', undefined, 'https://datacap.devlive.org', Link, NavigationPosition.LEFT_TOP)
     external.external = true
