@@ -2,7 +2,11 @@
   <div :data-collapsed="collapsed" class="relative group flex flex-col h-full gap-4 p-2 data-[collapsed=true]:p-2">
     <nav class="grid gap-1 px-2 group-[[data-collapsed=true]]:justify-center group-[[data-collapsed=true]]:px-2">
       <template v-for="item in items">
-        <div v-if="collapsed" class="justify-start gap-4 py-2 cursor-pointer">
+        <div v-if="collapsed" :class="cn(
+              buttonVariants({ variant: item.selected ? 'secondary' : 'ghost', size: 'sm' }),
+              item.selected && 'dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white shrink',
+             'justify-start gap-4 py-8 cursor-pointer'
+        )">
           <ITooltip :content="item.user?.name" side="right">
             <IAvatar class="flex justify-center items-center" :src="item.user?.avatar" :alt="item.user?.name" :width="6" :height="6" image-class="w-10 h-10"/>
           </ITooltip>

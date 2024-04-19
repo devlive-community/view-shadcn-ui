@@ -36,7 +36,7 @@ export default defineComponent({
     },
     collapsedSize: {
       type: Number,
-      default: 8
+      default: 5
     },
     items: {
       type: Array as () => Chat[],
