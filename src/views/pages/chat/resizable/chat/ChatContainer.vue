@@ -1,0 +1,47 @@
+<template>
+  <ResizablePanelGroup direction="horizontal" class="h-full items-stretch">
+    <ResizablePanel :default-size="defaultLayout[0] as number" :collapsed-size="collapsedSize" :collapsible="true" :min-size="24" :max-size="30"
+                    @collapse="isCollapsed = true" @expand="isCollapsed = false"
+                    :class="cn(
+                      isCollapsed && 'min-w-[50px] md:min-w-[70px] transition-all duration-300 ease-in-out'
+                    )">
+    </ResizablePanel>
+    <ResizableHandle with-handle/>
+    <ResizablePanel></ResizablePanel>
+  </ResizablePanelGroup>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable'
+import { cn } from '@/lib/utils.ts'
+
+export default defineComponent({
+  name: 'ChatContainer',
+  components: {
+    ResizableHandle, ResizablePanel, ResizablePanelGroup
+  },
+  props: {
+    defaultLayout: {
+      type: Array,
+      default: () => [320, 480]
+    },
+    collapsedSize: {
+      type: Number,
+      default: 8
+    }
+  },
+  setup()
+  {
+    return {
+      cn
+    }
+  },
+  data()
+  {
+    return {
+      isCollapsed: false
+    }
+  }
+})
+</script>

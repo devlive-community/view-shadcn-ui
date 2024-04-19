@@ -36,6 +36,7 @@ export default {
         type: '类型',
         icon: '图标',
         card: '卡片',
+        resizable: '可调整大小',
     },
     tip: {
         signInInfo: '输入您的信息以登录您的帐户。',

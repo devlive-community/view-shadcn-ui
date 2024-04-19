@@ -67,7 +67,8 @@ const createNavigation = (): void => {
     NavigationService.addNavigation(components)
 
     const chat = createNavigationItem('common.common.chat', undefined, '/chats/basic', MessageCircle, NavigationPosition.LEFT_TOP)
-    const chatArray = [chat]
+    const resizable = createNavigationItem('common.common.resizable', undefined, '/chats/resizable', MessageCircle, NavigationPosition.LEFT_TOP)
+    const chatArray = [chat, resizable]
     const chats = createNavigationItem('common.common.chat', chatArray.length.toString(), '/chats', MessageCircle, NavigationPosition.LEFT_TOP, chatArray)
     NavigationService.addNavigation(chats)
 
