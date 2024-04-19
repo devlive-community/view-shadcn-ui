@@ -12,38 +12,14 @@ const createDefaultRouter = (router: Router): void => {
                 name: 'dashboard',
                 path: 'dashboard',
                 component: () => import('@/views/pages/dashboard/DashboardHome.vue')
-            },
-            {
-                name: 'card',
-                path: 'card',
-                children: [
-                    {
-                        name: 'index',
-                        path: 'index',
-                        component: () => import('@/views/pages/card/CardHome.vue')
-                    },
-                    {
-                        name: 'git',
-                        path: 'git',
-                        component: () => import('@/views/pages/card/CardWithGit.vue')
-                    },
-                    {
-                        name: 'team',
-                        path: 'team',
-                        component: () => import('@/views/pages/card/CardWithTeam.vue')
-                    }
-                ]
-            },
-            {
-                name: 'chat',
-                path: 'chat',
-                component: () => import('@/views/pages/chat/ChatHome.vue')
             }
         ]
     })
     createHttpRouter(router)
     createUserRouter(router)
     createFormRouter(router)
+    createCardRouter(router)
+    createChatRouter(router)
     createComponentRouter(router)
 }
 
@@ -133,6 +109,51 @@ const createFormRouter = (router: Router): void => {
                 name: 'withValidate',
                 path: 'withValidate',
                 component: () => import('@/views/pages/form/FormWithValidate.vue')
+            }
+        ]
+    })
+}
+
+const createCardRouter = (router: Router): void => {
+    router.addRoute({
+        path: '/cards',
+        name: 'cardExample',
+        component: LayoutContainer,
+        children: [
+            {
+                name: 'index',
+                path: 'index',
+                component: () => import('@/views/pages/card/CardHome.vue')
+            },
+            {
+                name: 'git',
+                path: 'git',
+                component: () => import('@/views/pages/card/CardWithGit.vue')
+            },
+            {
+                name: 'team',
+                path: 'team',
+                component: () => import('@/views/pages/card/CardWithTeam.vue')
+            }
+        ]
+    })
+}
+
+const createChatRouter = (router: Router): void => {
+    router.addRoute({
+        path: '/chats',
+        name: 'chat',
+        component: LayoutContainer,
+        children: [
+            {
+                name: 'chatBasic',
+                path: 'basic',
+                component: () => import('@/views/pages/chat/basic/ChatHome.vue')
+            },
+            {
+                name: 'chatResizable',
+                path: 'resizable',
+                component: () => import('@/views/pages/chat/resizable/ResizableChatHome.vue')
             }
         ]
     })
