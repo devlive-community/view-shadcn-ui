@@ -16,6 +16,7 @@ export interface User
 export interface Message
 {
     id?: number
-    content?: string
-    user?: User
+    content: string
+    type: 'sender' | 'receiver'
+    user: User
 }

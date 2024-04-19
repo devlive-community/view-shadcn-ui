@@ -1,6 +1,6 @@
 <template>
   <ResizablePanelGroup direction="horizontal" class="h-full items-stretch">
-    <ResizablePanel :default-size="defaultLayout[0] as number" :collapsed-size="collapsedSize" :collapsible="true" :min-size="24" :max-size="30"
+    <ResizablePanel :default-size="defaultLayout[0] as number" :collapsed-size="collapsedSize" :collapsible="true" :min-size="16" :max-size="22"
                     @collapse="isCollapsed = true" @expand="isCollapsed = false"
                     :class="cn(
                       isCollapsed && 'min-w-[50px] md:min-w-[70px] transition-all duration-300 ease-in-out'

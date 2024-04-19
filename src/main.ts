@@ -9,9 +9,12 @@ import './assets/index.css'
 // Import mock data
 import '@/data/index'
 
+import { MotionPlugin } from '@vueuse/motion'
+
 const app = createApp(App)
 app.use(router)
 app.use(i18n)
+app.use(MotionPlugin)
 app.provide('$t', i18n.global.t)
 // Setting moment
 app.config.globalProperties.$dt = moment
