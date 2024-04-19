@@ -23,7 +23,7 @@ export default defineComponent({
           selected: true,
           user: {
             name: 'devlive',
-            avatar: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png',
+            avatar: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png'
           },
           messages: [
             {
@@ -31,7 +31,7 @@ export default defineComponent({
               content: 'Hello, how are you?',
               user: {
                 name: 'devlive',
-                avatar: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png',
+                avatar: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png'
               },
               type: 'sender'
             },
@@ -40,7 +40,7 @@ export default defineComponent({
               content: 'Hello, i am fine, and you?',
               user: {
                 name: 'datacap',
-                avatar: 'https://github.com/devlive-community/datacap/raw/dev/core/datacap-ui/public/static/images/logo.png',
+                avatar: 'https://github.com/devlive-community/datacap/raw/dev/core/datacap-ui/public/static/images/logo.png'
               },
               type: 'receiver'
             },
@@ -49,12 +49,48 @@ export default defineComponent({
               content: 'Hello, i love open source. How are you? I am fine, and you? What about you?',
               user: {
                 name: 'devlive',
-                avatar: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png',
+                avatar: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png'
               },
               type: 'sender'
             },
             {
               id: 4,
+              content: 'Hello, i love open source. How are you? I love shadcn ui vue admin template and datacap and open ai java sdk. I am fine, and you? What about you?',
+              user: {
+                name: 'datacap',
+                avatar: 'https://github.com/devlive-community/datacap/raw/dev/core/datacap-ui/public/static/images/logo.png'
+              },
+              type: 'receiver'
+            },
+            {
+              id: 5,
+              content: 'Hello, i love open source. How are you? I love shadcn ui vue admin template and datacap and open ai java sdk. I am fine, and you? What about you?',
+              user: {
+                name: 'devlive',
+                avatar: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png'
+              },
+              type: 'sender'
+            },
+            {
+              id: 6,
+              content: 'Hello, i love open source. How are you? I love shadcn ui vue admin template and datacap and open ai java sdk. I am fine, and you? What about you?',
+              user: {
+                name: 'datacap',
+                avatar: 'https://github.com/devlive-community/datacap/raw/dev/core/datacap-ui/public/static/images/logo.png'
+              },
+              type: 'receiver'
+            },
+            {
+              id: 7,
+              content: 'Hello, i love open source. How are you? I love shadcn ui vue admin template and datacap and open ai java sdk. I am fine, and you? What about you?',
+              user: {
+                name: 'devlive',
+                avatar: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png'
+              },
+              type: 'sender'
+            },
+            {
+              id: 8,
               content: 'Hello, i love open source. How are you? I love shadcn ui vue admin template and datacap and open ai java sdk. I am fine, and you? What about you?',
               user: {
                 name: 'datacap',
@@ -68,7 +104,7 @@ export default defineComponent({
           id: 2,
           user: {
             name: 'datacap',
-            avatar: 'https://github.com/devlive-community/datacap/raw/dev/core/datacap-ui/public/static/images/logo.png',
+            avatar: 'https://github.com/devlive-community/datacap/raw/dev/core/datacap-ui/public/static/images/logo.png'
           },
           messages: [
             {
@@ -76,7 +112,7 @@ export default defineComponent({
               content: 'Hello, i am fine, and you?',
               user: {
                 name: 'datacap',
-                avatar: 'https://github.com/devlive-community/datacap/raw/dev/core/datacap-ui/public/static/images/logo.png',
+                avatar: 'https://github.com/devlive-community/datacap/raw/dev/core/datacap-ui/public/static/images/logo.png'
               },
               type: 'sender'
             }

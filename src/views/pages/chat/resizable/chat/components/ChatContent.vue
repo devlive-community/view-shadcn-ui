@@ -1,6 +1,6 @@
 <template>
   <div class="w-full overflow-y-auto overflow-x-hidden h-full flex flex-col">
-    <div class="w-full overflow-y-auto overflow-x-hidden h-full flex flex-col">
+    <div ref="messagesContainer" class="w-full overflow-y-auto overflow-x-hidden h-full flex flex-col">
       <template v-for="item in messages">
         <div v-motion layout
              :initial="{ opacity: 1, scale: 1, y: 0, x: 0 }"
@@ -21,18 +21,20 @@
         </div>
       </template>
     </div>
+    <ChatBottombar @send="messages.push($event)"/>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted, watch } from 'vue'
 import { Message } from '@/views/pages/chat/resizable/chat/Chat.ts'
 import { cn } from '@/lib/utils.ts'
 import IAvatar from '@/ui/avatar/index.vue'
+import ChatBottombar from '@/views/pages/chat/resizable/chat/components/ChatBottombar.vue'
 
 export default defineComponent({
   name: 'ChatContent',
-  components: { IAvatar },
+  components: { ChatBottombar, IAvatar },
   props: {
     messages: {
       type: Array as () => Array<Message>,
@@ -43,6 +45,28 @@ export default defineComponent({
   {
     return {
       cn
+    }
+  },
+  created()
+  {
+    this.handlerInitialize()
+    this.watchChange()
+  },
+  methods: {
+    handlerInitialize()
+    {
+      onMounted(() => this.handlerGoBottom())
+    },
+    handlerGoBottom()
+    {
+      const messagesContainer = this.$refs.messagesContainer as any
+      setTimeout(() => {
+        messagesContainer.scrollTo({ top: messagesContainer.scrollHeight, behavior: 'smooth' })
+      }, 0)
+    },
+    watchChange()
+    {
+      watch(this.messages, () => this.handlerGoBottom())
     }
   }
 })
