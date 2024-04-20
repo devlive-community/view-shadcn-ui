@@ -11,13 +11,10 @@
         <CommandList>
           <CommandEmpty>{{ $t('common.common.notFoundItem') }}</CommandEmpty>
           <CommandGroup class="p-2">
-            <CommandItem v-for="user in users" :key="user.email" :value="user" class="flex items-center px-2" @select="handlerSelect(user)">
-              <Avatar>
-                <AvatarImage :alt="user.username" src="https://www.shadcn-vue.com/avatars/01.png"/>
-                <AvatarFallback>{{ user?.username?.substring(0, 1) }}</AvatarFallback>
-              </Avatar>
+            <CommandItem v-for="user in users" :key="user.email" :value="user" class="flex items-center px-2 cursor-pointer" @select="handlerSelect(user)">
+              <IAvatar :src="user?.avatar" :alt="user?.name"/>
               <div class="ml-2">
-                <p class="text-sm font-medium leading-none">{{ user.username }}</p>
+                <p class="text-sm font-medium leading-none">{{ user.name }}</p>
                 <p class="text-sm text-muted-foreground">{{ user.email }}</p>
               </div>
               <CheckIcon v-if="selectedUsers.includes(user)" class="ml-auto flex h-5 w-5 text-primary"/>
@@ -27,15 +24,12 @@
       </Command>
       <DialogFooter class="flex items-center border-t p-4 sm:justify-between">
         <div v-if="selectedUsers.length > 0" class="flex -space-x-2 overflow-hidden">
-          <Avatar v-for="user in selectedUsers" :key="user.email" class="border-2 border-background">
-            <AvatarImage :alt="user.username" src="https://www.shadcn-vue.com/avatars/01.png"/>
-            <AvatarFallback>{{ user?.username?.substring(0, 1) }}</AvatarFallback>
-          </Avatar>
+          <IAvatar v-for="item in selectedUsers" :src="item?.avatar" :alt="item?.name" class="border-2 border-background"/>
         </div>
         <p v-else class="text-sm text-muted-foreground">{{ $t('common.tip.selectItem') }}</p>
-        <Button :disabled="selectedUsers.length < 2" @click="handlerCancel">
+        <IButton :disabled="selectedUsers.length < 2" @click="handlerCancel">
           {{ $t('common.common.button') }}
-        </Button>
+        </IButton>
       </DialogFooter>
     </DialogContent>
   </Dialog>
@@ -45,36 +39,49 @@
 import { defineComponent } from 'vue'
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Button } from '@/components/ui/button'
-import { UserModel } from '@/model/User.ts'
-import { createUsers } from '@/views/pages/chat/basic/ChatUtils.ts'
 import { CheckIcon } from 'lucide-vue-next'
+import { User } from '@/views/components/chat/Chat.ts'
+import IButton from '@/ui/button/button.vue'
+import IAvatar from '@/ui/avatar/index.vue'
 
 export default defineComponent({
   name: 'ChatUser',
   components: {
-    Button,
-    Avatar, AvatarFallback, AvatarImage,
+    IAvatar,
+    IButton,
     Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle,
     Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList,
     CheckIcon
   },
-  props: {
+  computed: {
     visible: {
+      get(): boolean
+      {
+        return this.isVisible
+      },
+      set(value: boolean)
+      {
+        this.$emit('close', value)
+      }
+    }
+  },
+  props: {
+    isVisible: {
       type: Boolean
+    },
+    user: {
+      type: Object as () => User
+    },
+    users: {
+      type: Array as () => User[],
+      default: []
     }
   },
   data()
   {
     return {
-      users: [] as UserModel[],
-      selectedUsers: [] as UserModel[]
+      selectedUsers: [] as User[]
     }
-  },
-  created()
-  {
-    this.users = [...createUsers()]
   },
   methods: {
     handlerSelect(user: any)
@@ -89,7 +96,7 @@ export default defineComponent({
     },
     handlerCancel()
     {
-      this.$emit('close', false)
+      this.visible = false
     }
   }
 })

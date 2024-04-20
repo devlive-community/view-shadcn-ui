@@ -1,19 +1,21 @@
 <template>
   <div class="flex h-[calc(90dvh)] flex-col items-center justify-center p-4 md:px-5 py-5 gap-4">
-    <div class="border rounded-lg w-full h-full text-sm lg:flex">
-      <ChatResizable :items="items"/>
+    <div class="border rounded-lg w-full h-full text-sm">
+      <ChatBasic :items="items"/>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import ChatResizable from '@/views/components/chat/resizable/ChatResizable.vue'
+import ChatBasic from '@/views/components/chat/basic/ChatBasic.vue'
 import { Chat } from '@/views/components/chat/Chat.ts'
 
 export default defineComponent({
-  name: 'ChatResizableHome',
-  components: { ChatResizable },
+  name: 'ChatHome',
+  components: {
+    ChatBasic
+  },
   data()
   {
     return {
@@ -23,7 +25,8 @@ export default defineComponent({
           selected: true,
           user: {
             name: 'devlive',
-            avatar: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png'
+            avatar: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png',
+            email: 'devlive@devlive.org'
           },
           messages: [
             {
@@ -104,7 +107,8 @@ export default defineComponent({
           id: 2,
           user: {
             name: 'datacap',
-            avatar: 'https://github.com/devlive-community/datacap/raw/dev/core/datacap-ui/public/static/images/logo.png'
+            avatar: 'https://github.com/devlive-community/datacap/raw/dev/core/datacap-ui/public/static/images/logo.png',
+            email: 'datacap@devlive.org'
           },
           messages: [
             {
@@ -122,7 +126,8 @@ export default defineComponent({
           id: 3,
           user: {
             name: 'qianmoQ',
-            avatar: 'https://avatars.githubusercontent.com/u/20521442?s=64&v=4'
+            avatar: 'https://avatars.githubusercontent.com/u/20521442?s=64&v=4',
+            email: 'qianmoQ@devlive.org'
           },
           messages: [
             {
