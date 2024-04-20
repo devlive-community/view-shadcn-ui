@@ -11,6 +11,7 @@ export interface User
     id?: number
     name?: string
     avatar?: string
+    email?: string
 }
 
 export interface Message

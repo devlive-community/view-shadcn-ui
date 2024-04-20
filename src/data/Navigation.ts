@@ -1,6 +1,6 @@
 import { NavigationModel, NavigationPosition } from '@/model/Navigation'
 import NavigationService from '@/services/Navigation'
-import { AudioWaveform, Ban, CircleOff, Command, CreditCard, FormInput, Gauge, Link, LogIn, LogOut, MessageCircle, StickyNote } from 'lucide-vue-next'
+import { AudioWaveform, Ban, CircleOff, Command, CreditCard, Footprints, FormInput, Gauge, Link, LogIn, LogOut, MessageCircle, StickyNote } from 'lucide-vue-next'
 
 const createNavigation = (): void => {
     NavigationService.addNavigation(createNavigationItem('common.common.dashboard', undefined, '/dashboard', Gauge, NavigationPosition.LEFT_TOP))
@@ -71,6 +71,12 @@ const createNavigation = (): void => {
     const chatArray = [chat, resizable]
     const chats = createNavigationItem('common.common.chat', chatArray.length.toString(), '/chats', MessageCircle, NavigationPosition.LEFT_TOP, chatArray)
     NavigationService.addNavigation(chats)
+
+    const simple = createNavigationItem('common.common.footerSimple', undefined, '/footer/default', undefined, NavigationPosition.LEFT_TOP)
+    const modern = createNavigationItem('common.common.footerModern', undefined, '/footer/modern', undefined, NavigationPosition.LEFT_TOP)
+    const footerArray = [simple, modern]
+    const footer = createNavigationItem('common.common.footer', footerArray.length.toString(), '/footer', Footprints, NavigationPosition.LEFT_TOP, footerArray)
+    NavigationService.addNavigation(footer)
 
     const external = createNavigationItem('common.common.externalLink', undefined, 'https://datacap.devlive.org', Link, NavigationPosition.LEFT_TOP)
     external.external = true

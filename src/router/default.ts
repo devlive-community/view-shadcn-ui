@@ -15,6 +15,26 @@ const createDefaultRouter = (router: Router): void => {
             }
         ]
     })
+
+    router.addRoute({
+        path: '/footer',
+        name: 'footer',
+        redirect: '/footer/default',
+        component: LayoutContainer,
+        children: [
+            {
+                name: 'defaultFooter',
+                path: 'default',
+                component: () => import('@/views/pages/footer/FooterHome.vue')
+            },
+            {
+                name: 'defaultModern',
+                path: 'modern',
+                component: () => import('@/views/pages/footer/FooterModern.vue')
+            }
+        ]
+    })
+
     createHttpRouter(router)
     createUserRouter(router)
     createFormRouter(router)
@@ -148,7 +168,7 @@ const createChatRouter = (router: Router): void => {
             {
                 name: 'chatBasic',
                 path: 'basic',
-                component: () => import('@/views/pages/chat/basic/ChatHome.vue')
+                component: () => import('@/views/pages/chat/ChatBasicHome.vue')
             },
             {
                 name: 'chatResizable',
