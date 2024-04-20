@@ -7,9 +7,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { Message, User } from '@/views/pages/chat/resizable/chat/Chat.ts'
-import ChatTopbar from '@/views/pages/chat/resizable/chat/components/ChatTopbar.vue'
-import ChatContent from '@/views/pages/chat/resizable/chat/components/ChatContent.vue'
+import { Message, User } from '@/views/components/chat/Chat.ts'
+import ChatTopbar from '@/views/components/chat/resizable/components/ChatTopbar.vue'
+import ChatContent from '@/views/components/chat/resizable/components/ChatContent.vue'
 
 export default defineComponent({
   name: 'ChatMessage',

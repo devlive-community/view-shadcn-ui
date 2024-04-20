@@ -18,9 +18,9 @@
 import { defineComponent } from 'vue'
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable'
 import { cn } from '@/lib/utils.ts'
-import ChatSidebar from '@/views/pages/chat/resizable/chat/components/ChatSidebar.vue'
-import { Chat } from '@/views/pages/chat/resizable/chat/Chat.ts'
-import ChatMessage from '@/views/pages/chat/resizable/chat/components/ChatMessage.vue'
+import ChatSidebar from '@/views/components/chat/resizable/components/ChatSidebar.vue'
+import { Chat } from '@/views/components/chat/Chat.ts'
+import ChatMessage from '@/views/components/chat/resizable/components/ChatMessage.vue'
 
 export default defineComponent({
   name: 'ChatContainer',

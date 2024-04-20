@@ -8,11 +8,11 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import ChatContainer from '@/views/pages/chat/resizable/chat/ChatContainer.vue'
-import { Chat } from '@/views/pages/chat/resizable/chat/Chat.ts'
+import ChatContainer from '@/views/components/chat/resizable/ChatResizable.vue'
+import { Chat } from '@/views/components/chat/Chat.ts'
 
 export default defineComponent({
-  name: 'ResizableChatHome',
+  name: 'ChatResizableHome',
   components: { ChatContainer },
   data()
   {

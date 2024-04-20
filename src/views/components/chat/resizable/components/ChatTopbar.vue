@@ -22,7 +22,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { User } from '@/views/pages/chat/resizable/chat/Chat.ts'
+import { User } from '@/views/components/chat/Chat.ts'
 import IAvatar from '@/ui/avatar/index.vue'
 import IButton from '@/ui/button/button.vue'
 import { Phone, Video } from 'lucide-vue-next'
