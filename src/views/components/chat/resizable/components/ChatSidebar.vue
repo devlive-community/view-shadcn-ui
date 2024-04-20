@@ -31,7 +31,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { Chat } from '@/views/pages/chat/resizable/chat/Chat.ts'
+import { Chat } from '@/views/components/chat/Chat.ts'
 import Button from '@/ui/button/button.vue'
 import { cn } from '@/lib/utils.ts'
 import { buttonVariants } from '@/components/ui/button'

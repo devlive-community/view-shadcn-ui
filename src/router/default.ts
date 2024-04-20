@@ -153,7 +153,7 @@ const createChatRouter = (router: Router): void => {
             {
                 name: 'chatResizable',
                 path: 'resizable',
-                component: () => import('@/views/pages/chat/resizable/ResizableChatHome.vue')
+                component: () => import('@/views/pages/chat/ChatResizableHome.vue')
             }
         ]
     })

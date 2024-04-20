@@ -31,7 +31,7 @@ import { defineComponent } from 'vue'
 import IButton from '@/ui/button/button.vue'
 import { File, Paperclip, Send, ThumbsUp } from 'lucide-vue-next'
 import { Textarea } from '@/components/ui/textarea'
-import { Message } from '@/views/pages/chat/resizable/chat/Chat.ts'
+import { Message } from '@/views/components/chat/Chat.ts'
 
 export default defineComponent({
   name: 'ChatBottombar',

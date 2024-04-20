@@ -27,10 +27,10 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, watch } from 'vue'
-import { Message } from '@/views/pages/chat/resizable/chat/Chat.ts'
+import { Message } from '@/views/components/chat/Chat.ts'
 import { cn } from '@/lib/utils.ts'
 import IAvatar from '@/ui/avatar/index.vue'
-import ChatBottombar from '@/views/pages/chat/resizable/chat/components/ChatBottombar.vue'
+import ChatBottombar from '@/views/components/chat/resizable/components/ChatBottombar.vue'
 
 export default defineComponent({
   name: 'ChatContent',
