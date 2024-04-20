@@ -1,7 +1,11 @@
 <template>
   <footer class="font-sans bg-black p-10">
     <div
-        :class="cn(`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-${($slots.left || $slots.right) ? '6' : footers.length} xl:grid-cols-${($slots.left || $slots.right) ? '6' : footers.length} gap-8`)">
+        :class="cn('grid grid-cols-1',
+            ($slots.left || $slots.right) && 'sm:grid-cols-6 md:grid-cols-6 xl:grid-cols-6',
+            !($slots.left || $slots.right) && 'sm:grid-cols-4 md:grid-cols-4 xl:grid-cols-4',
+            'gap-8'
+        )">
       <div v-if="$slots.left" class="xl:col-span-2">
         <slot name="left"/>
       </div>
