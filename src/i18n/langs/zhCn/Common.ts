@@ -38,6 +38,8 @@ export default {
         card: '卡片',
         resizable: '可调整大小',
         footer: '页脚',
+        footerSimple: '简单页脚',
+        footerModern: '现代页脚',
     },
     tip: {
         signInInfo: '输入您的信息以登录您的帐户。',

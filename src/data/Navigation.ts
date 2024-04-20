@@ -72,7 +72,10 @@ const createNavigation = (): void => {
     const chats = createNavigationItem('common.common.chat', chatArray.length.toString(), '/chats', MessageCircle, NavigationPosition.LEFT_TOP, chatArray)
     NavigationService.addNavigation(chats)
 
-    const footer = createNavigationItem('common.common.footer', undefined, '/footer', Footprints, NavigationPosition.LEFT_TOP)
+    const simple = createNavigationItem('common.common.footerSimple', undefined, '/footer/default', undefined, NavigationPosition.LEFT_TOP)
+    const modern = createNavigationItem('common.common.footerModern', undefined, '/footer/modern', undefined, NavigationPosition.LEFT_TOP)
+    const footerArray = [simple, modern]
+    const footer = createNavigationItem('common.common.footer', footerArray.length.toString(), '/footer', Footprints, NavigationPosition.LEFT_TOP, footerArray)
     NavigationService.addNavigation(footer)
 
     const external = createNavigationItem('common.common.externalLink', undefined, 'https://datacap.devlive.org', Link, NavigationPosition.LEFT_TOP)

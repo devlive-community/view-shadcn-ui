@@ -12,14 +12,29 @@ const createDefaultRouter = (router: Router): void => {
                 name: 'dashboard',
                 path: 'dashboard',
                 component: () => import('@/views/pages/dashboard/DashboardHome.vue')
-            },
-            {
-                name: 'footer',
-                path: 'footer',
-                component: () => import('@/views/pages/footer/FooterHome.vue')
             }
         ]
     })
+
+    router.addRoute({
+        path: '/footer',
+        name: 'footer',
+        redirect: '/footer/default',
+        component: LayoutContainer,
+        children: [
+            {
+                name: 'defaultFooter',
+                path: 'default',
+                component: () => import('@/views/pages/footer/FooterHome.vue')
+            },
+            {
+                name: 'defaultModern',
+                path: 'modern',
+                component: () => import('@/views/pages/footer/FooterModern.vue')
+            }
+        ]
+    })
+
     createHttpRouter(router)
     createUserRouter(router)
     createFormRouter(router)

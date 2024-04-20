@@ -38,6 +38,8 @@ export default {
         card: 'Card',
         resizable: 'Resizable',
         footer: 'Footer',
+        footerSimple: 'Footer Simple',
+        footerModern: 'Footer Modern',
     },
     tip: {
         signInInfo: 'Enter your information to sign in to your account.',
