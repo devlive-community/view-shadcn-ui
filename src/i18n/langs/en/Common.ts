@@ -37,6 +37,7 @@ export default {
         icon: 'Icon',
         card: 'Card',
         resizable: 'Resizable',
+        footer: 'Footer',
     },
     tip: {
         signInInfo: 'Enter your information to sign in to your account.',
