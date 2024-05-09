@@ -41,10 +41,75 @@
       </DefaultNavbar>
     </ICard>
   </ICard>
-  <ICard body-class="p-0">
+  <ICard body-class="p-2 space-y-2">
     <template #title>Top Bar</template>
-    <TopbarNavbar :navigators="navigators">
-    </TopbarNavbar>
+    <ICard body-class="p-0" title="Full">
+      <TopbarNavbar :navigators="navigators">
+        <template #notification>
+          <p class="text-sm">
+            <strong class="mx-3">Address:</strong>
+            xxxxx
+            <strong class="mx-3">Contact No:</strong>
+            xxxxx
+          </p>
+        </template>
+        <template #icon>
+          <a href="/">
+            <img src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png" alt="logo" class='w-12 h-12'/>
+          </a>
+        </template>
+        <template #extra>
+          <IButton>Login</IButton>
+          <IButton>Sign Up</IButton>
+        </template>
+      </TopbarNavbar>
+    </ICard>
+    <ICard body-class="p-0" title="No Notification">
+      <TopbarNavbar :navigators="navigators">
+        <template #icon>
+          <a href="/">
+            <img src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png" alt="logo" class='w-12 h-12'/>
+          </a>
+        </template>
+        <template #extra>
+          <IButton>Login</IButton>
+          <IButton>Sign Up</IButton>
+        </template>
+      </TopbarNavbar>
+    </ICard>
+    <ICard body-class="p-0" title="No Icon">
+      <TopbarNavbar :navigators="navigators">
+        <template #notification>
+          <p class="text-sm">
+            <strong class="mx-3">Address:</strong>
+            xxxxx
+            <strong class="mx-3">Contact No:</strong>
+            xxxxx
+          </p>
+        </template>
+        <template #extra>
+          <IButton>Login</IButton>
+          <IButton>Sign Up</IButton>
+        </template>
+      </TopbarNavbar>
+    </ICard>
+    <ICard body-class="p-0" title="No Extra & No Center">
+      <TopbarNavbar :navigators="navigators" :center="false">
+        <template #notification>
+          <p class="text-sm">
+            <strong class="mx-3">Address:</strong>
+            xxxxx
+            <strong class="mx-3">Contact No:</strong>
+            xxxxx
+          </p>
+        </template>
+        <template #icon>
+          <a href="/">
+            <img src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png" alt="logo" class='w-12 h-12'/>
+          </a>
+        </template>
+      </TopbarNavbar>
+    </ICard>
   </ICard>
 </template>
 
