@@ -12,6 +12,11 @@ const createDefaultRouter = (router: Router): void => {
                 name: 'dashboard',
                 path: 'dashboard',
                 component: () => import('@/views/pages/dashboard/DashboardHome.vue')
+            },
+            {
+                name: 'defaultNavbar',
+                path: 'navbar',
+                component: () => import('@/views/pages/navbar/NavbarHome.vue')
             }
         ]
     })
