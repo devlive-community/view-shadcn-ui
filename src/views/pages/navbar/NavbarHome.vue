@@ -45,7 +45,7 @@
     <template #title>Top Bar</template>
     <ICard body-class="p-0" title="Full">
       <TopbarNavbar :navigators="navigators">
-        <template #notification>
+        <template #section>
           <p class="text-sm">
             <strong class="mx-3">Address:</strong>
             xxxxx
@@ -64,7 +64,7 @@
         </template>
       </TopbarNavbar>
     </ICard>
-    <ICard body-class="p-0" title="No Notification">
+    <ICard body-class="p-0" title="No Section">
       <TopbarNavbar :navigators="navigators">
         <template #icon>
           <a href="/">
@@ -79,7 +79,7 @@
     </ICard>
     <ICard body-class="p-0" title="No Icon">
       <TopbarNavbar :navigators="navigators">
-        <template #notification>
+        <template #section>
           <p class="text-sm">
             <strong class="mx-3">Address:</strong>
             xxxxx
@@ -95,7 +95,7 @@
     </ICard>
     <ICard body-class="p-0" title="No Extra & No Center">
       <TopbarNavbar :navigators="navigators" :center="false">
-        <template #notification>
+        <template #section>
           <p class="text-sm">
             <strong class="mx-3">Address:</strong>
             xxxxx
