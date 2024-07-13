@@ -85,6 +85,7 @@ import DefaultTimeline from '@/views/components/timeline/default/DefaultTimeline
 import MilestoneTimeline from '@/views/components/timeline/milestone/MilestoneTimeline.vue'
 import ProgressTimeline from '@/views/components/timeline/progress/ProgressTimeline.vue'
 import DiscussionTimeline from '@/views/components/timeline/discussion/DiscussionTimeline.vue'
+import { Timeline } from '@/views/components/timeline/Timeline.ts'
 
 export default defineComponent({
   name: 'TimelineHome',
@@ -128,7 +129,7 @@ export default defineComponent({
             }
           ]
         }
-      ]
+      ] as Timeline[]
     }
   }
 })
