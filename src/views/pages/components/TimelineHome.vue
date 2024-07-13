@@ -32,6 +32,21 @@
         </template>
       </DefaultTimeline>
     </ICard>
+    <ICard body-class="pt-3">
+      <template #title>Milestone</template>
+      <MilestoneTimeline :items="items[0].children as any[]"/>
+    </ICard>
+    <ICard body-class="pt-3">
+      <template #title>Milestone Slot</template>
+      <MilestoneTimeline :items="items[0].children as any[]">
+        <template #item="{ item }">
+          <div
+              class="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-slate-300 sm:before:ml-[6.5rem] before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-indigo-600 after:border-4 after:box-content after:border-slate-50 after:rounded-full sm:after:ml-[6.5rem] after:-translate-x-1/2 after:translate-y-1.5">
+            <div class="text-xl font-bold text-slate-900">{{ item.title }}</div>
+          </div>
+        </template>
+      </MilestoneTimeline>
+    </ICard>
   </div>
 </template>
 
@@ -39,11 +54,11 @@
 import { defineComponent } from 'vue'
 import ICard from '@/ui/card/card.vue'
 import DefaultTimeline from '@/views/components/timeline/default/DefaultTimeline.vue'
-import { Timeline } from '@/views/components/timeline/Timeline.ts'
+import MilestoneTimeline from '@/views/components/timeline/milestone/MilestoneTimeline.vue'
 
 export default defineComponent({
   name: 'TimelineHome',
-  components: { DefaultTimeline, ICard },
+  components: { MilestoneTimeline, DefaultTimeline, ICard },
   data()
   {
     return {
@@ -54,12 +69,13 @@ export default defineComponent({
             {
               title: 'Shadcn UI',
               description: 'Learn Shadcn UI',
-              time: '2024-04-17 10:00:00'
+              time: '2024-04-17'
             },
             {
-              title: 'Shadcn UI',
-              description: 'Learn Shadcn UI',
-              time: '2024-04-17 10:00:00'
+              title: 'Shadcn UI 002',
+              description: 'Learn Shadcn UI 002',
+              tip: 'Tip Shadcn UI 002',
+              time: '2024-04-17'
             }
           ]
         },
@@ -73,7 +89,7 @@ export default defineComponent({
             }
           ]
         }
-      ] as Timeline[]
+      ]
     }
   }
 })
