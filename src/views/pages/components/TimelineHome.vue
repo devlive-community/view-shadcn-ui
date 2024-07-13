@@ -47,6 +47,30 @@
         </template>
       </MilestoneTimeline>
     </ICard>
+    <ICard body-class="pt-3">
+      <template #title>Progress</template>
+      <ProgressTimeline :items="items[0].children as any[]"/>
+    </ICard>
+    <ICard body-class="pt-3">
+      <template #title>Progress Slot</template>
+      <ProgressTimeline :items="items[0].children as any[]">
+        <template #item="{ item }">
+          <div
+              class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-slate-300 group-[.is-active]:bg-emerald-500 text-slate-500 group-[.is-active]:text-emerald-50 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+            <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="12" height="12">
+              <path d="M12 10v2H7V8.496a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5V12H0V4.496a.5.5 0 0 1 .206-.4l5.5-4a.5.5 0 0 1 .588 0l5.5 4a.5.5 0 0 1 .206.4V10Z"/>
+            </svg>
+          </div>
+          <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-4 rounded border border-slate-200 shadow">
+            <div class="flex items-center justify-between space-x-2 mb-1">
+              <div class="font-bold text-slate-900">{{ item.title }}</div>
+              <time class="font-caveat font-medium text-amber-500">{{ item.time }}</time>
+            </div>
+            <div class="text-slate-500">{{ item.description }}</div>
+          </div>
+        </template>
+      </ProgressTimeline>
+    </ICard>
   </div>
 </template>
 
@@ -55,10 +79,11 @@ import { defineComponent } from 'vue'
 import ICard from '@/ui/card/card.vue'
 import DefaultTimeline from '@/views/components/timeline/default/DefaultTimeline.vue'
 import MilestoneTimeline from '@/views/components/timeline/milestone/MilestoneTimeline.vue'
+import ProgressTimeline from '@/views/components/timeline/progress/ProgressTimeline.vue'
 
 export default defineComponent({
   name: 'TimelineHome',
-  components: { MilestoneTimeline, DefaultTimeline, ICard },
+  components: { ProgressTimeline, MilestoneTimeline, DefaultTimeline, ICard },
   data()
   {
     return {
