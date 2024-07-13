@@ -204,6 +204,11 @@ const createComponentRouter = (router: Router): void => {
                 name: 'tree',
                 path: 'tree',
                 component: () => import('@/views/pages/components/TreeHome.vue')
+            },
+            {
+                name: 'timeline',
+                path: 'timeline',
+                component: () => import('@/views/pages/components/TimelineHome.vue')
             }
         ]
     })

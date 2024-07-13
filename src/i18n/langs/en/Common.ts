@@ -42,6 +42,7 @@ export default {
         footerModern: 'Footer Modern',
         navbar: 'Navbar',
         tree: 'Tree',
+        timeline: 'Timeline',
     },
     tip: {
         signInInfo: 'Enter your information to sign in to your account.',
