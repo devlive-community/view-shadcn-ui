@@ -26,7 +26,8 @@
             <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
           </svg>
           <div class="grow">
-            <span class="text-sm text-gray-800">{{ item.title }}</span>
+            <slot v-if="$slots.node" name="node" :node="item"/>
+            <span v-else class="text-sm text-gray-800">{{ item.title }}</span>
           </div>
         </div>
       </div>
@@ -35,7 +36,11 @@
       <div class="border-l-2 border-gray-200 -ml-3.5"></div>
       <div class="w-full">
         <div v-for="child in item.children" :key="child.key" class="relative pl-4">
-          <TreeNode :item="child" :selectedKey="selectedKey" @select-item="onSelectItem"/>
+          <TreeNode :item="child" :selectedKey="selectedKey" @select-item="onSelectItem">
+            <template v-if="$slots.node" #node="{ node }">
+              <slot name="node" :node="node"/>
+            </template>
+          </TreeNode>
         </div>
       </div>
     </div>

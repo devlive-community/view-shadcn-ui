@@ -26,5 +26,6 @@ yes | npx shadcn-vue@latest add switch
 yes | npx shadcn-vue@latest add table
 yes | npx shadcn-vue@latest add textarea
 yes | npx shadcn-vue@latest add tooltip
+yes | npx shadcn-vue@latest add context-menu
 
 echo "========== Done setup script =========="

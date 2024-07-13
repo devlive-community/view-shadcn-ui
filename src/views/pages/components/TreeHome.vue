@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full flex-col gap-4 md:gap-8 md:p-8 lg:grid lg:grid-cols-4">
+  <div class="flex w-full flex-col gap-4 md:gap-8 md:p-8 lg:grid lg:grid-cols-2">
     <ICard body-class="pt-3">
       <template #title>Default</template>
       <div class="space-x-2 space-y-2">
@@ -9,6 +9,27 @@
         </div>
         <Separator/>
         <DefaultTree :items="items" :selectedKey="selectedKey" @select-item="selectItem"/>
+      </div>
+    </ICard>
+    <ICard body-class="pt-3">
+      <template #title>With Context Menu</template>
+      <div class="space-x-2 space-y-2">
+        <div class="w-full space-y-2">
+          <Label class="ml-2">Current Select Key: </Label>
+          <div class="ml-4 text-xs text-gray-500">{{ selectedKey }}</div>
+        </div>
+        <Separator/>
+        <DefaultTree :items="items" :selectedKey="selectedKey" @select-item="selectItem">
+          <template #node="{ node }">
+            <ContextMenu @update:open="selectedKey = node.key">
+              <ContextMenuTrigger class="text-xs text-gray-500">{{ node.title }}</ContextMenuTrigger>
+              <ContextMenuContent>
+                <ContextMenuItem>Title: {{ node.title }}</ContextMenuItem>
+                <ContextMenuItem>Key: {{ node.key }}</ContextMenuItem>
+              </ContextMenuContent>
+            </ContextMenu>
+          </template>
+        </DefaultTree>
       </div>
     </ICard>
   </div>
@@ -21,11 +42,40 @@ import DefaultTree from '@/views/components/tree/default/DefaultTree.vue'
 import TreeNode from '@/views/components/tree/default/TreeNode.vue'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
+import {
+  ContextMenu,
+  ContextMenuCheckboxItem,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuLabel,
+  ContextMenuRadioGroup,
+  ContextMenuRadioItem,
+  ContextMenuSeparator,
+  ContextMenuShortcut,
+  ContextMenuSub,
+  ContextMenuSubContent,
+  ContextMenuSubTrigger,
+  ContextMenuTrigger
+} from '@/components/ui/context-menu'
 import { Tree } from '@/views/components/tree/Tree.ts'
 
 export default defineComponent({
   name: 'TreeHome',
-  components: { Separator, Label, TreeNode, DefaultTree, ICard },
+  components: {
+    Separator, Label, TreeNode, DefaultTree, ICard, ContextMenu,
+    ContextMenuCheckboxItem,
+    ContextMenuContent,
+    ContextMenuItem,
+    ContextMenuLabel,
+    ContextMenuRadioGroup,
+    ContextMenuRadioItem,
+    ContextMenuSeparator,
+    ContextMenuShortcut,
+    ContextMenuSub,
+    ContextMenuSubContent,
+    ContextMenuSubTrigger,
+    ContextMenuTrigger
+  },
   data()
   {
     return {
