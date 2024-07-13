@@ -199,6 +199,11 @@ const createComponentRouter = (router: Router): void => {
                 name: 'card',
                 path: 'card',
                 component: () => import('@/views/pages/components/CardHome.vue')
+            },
+            {
+                name: 'tree',
+                path: 'tree',
+                component: () => import('@/views/pages/components/TreeHome.vue')
             }
         ]
     })
