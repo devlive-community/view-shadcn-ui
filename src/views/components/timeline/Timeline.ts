@@ -5,5 +5,6 @@ export interface Timeline
     time?: string
     tip?: string
     description?: string
+    type?: 'opened' | 'commented' | 'closed'
     children?: Timeline[]
 }

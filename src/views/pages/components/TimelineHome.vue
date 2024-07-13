@@ -71,6 +71,10 @@
         </template>
       </ProgressTimeline>
     </ICard>
+    <ICard body-class="pt-3">
+      <template #title>Discussion</template>
+      <DiscussionTimeline :items="items[0].children as any[]"/>
+    </ICard>
   </div>
 </template>
 
@@ -80,10 +84,11 @@ import ICard from '@/ui/card/card.vue'
 import DefaultTimeline from '@/views/components/timeline/default/DefaultTimeline.vue'
 import MilestoneTimeline from '@/views/components/timeline/milestone/MilestoneTimeline.vue'
 import ProgressTimeline from '@/views/components/timeline/progress/ProgressTimeline.vue'
+import DiscussionTimeline from '@/views/components/timeline/discussion/DiscussionTimeline.vue'
 
 export default defineComponent({
   name: 'TimelineHome',
-  components: { ProgressTimeline, MilestoneTimeline, DefaultTimeline, ICard },
+  components: { DiscussionTimeline, ProgressTimeline, MilestoneTimeline, DefaultTimeline, ICard },
   data()
   {
     return {
@@ -94,13 +99,22 @@ export default defineComponent({
             {
               title: 'Shadcn UI',
               description: 'Learn Shadcn UI',
-              time: '2024-04-17'
+              time: '2024-04-17',
+              type: 'opened'
             },
             {
               title: 'Shadcn UI 002',
               description: 'Learn Shadcn UI 002',
               tip: 'Tip Shadcn UI 002',
-              time: '2024-04-17'
+              time: '2024-04-17',
+              type: 'commented'
+            },
+            {
+              title: 'Shadcn UI 003',
+              description: 'Learn Shadcn UI 003',
+              tip: 'Tip Shadcn UI 003',
+              time: '2024-04-17',
+              type: 'closed'
             }
           ]
         },
