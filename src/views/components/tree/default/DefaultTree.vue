@@ -1,7 +1,11 @@
 <template>
   <div class="w-full">
     <div v-for="item in items" :key="item.key">
-      <TreeNode :item="item" :selectedKey="selectedKey" @select-item="selectItem"/>
+      <TreeNode :item="item" :selectedKey="selectedKey" @select-item="selectItem">
+        <template v-if="$slots.node" #node="{ node }">
+          <slot name="node" :node="node"/>
+        </template>
+      </TreeNode>
     </div>
   </div>
 </template>
