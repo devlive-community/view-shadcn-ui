@@ -41,6 +41,7 @@ export default {
         footerSimple: '简单页脚',
         footerModern: '现代页脚',
         navbar: '导航栏',
+        tree: '树',
     },
     tip: {
         signInInfo: '输入您的信息以登录您的帐户。',

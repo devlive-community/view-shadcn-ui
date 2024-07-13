@@ -62,7 +62,8 @@ const createNavigation = (): void => {
 
     const button = createNavigationItem('common.common.button', undefined, '/components/button', undefined, NavigationPosition.LEFT_TOP)
     const card = createNavigationItem('common.common.card', undefined, '/components/card', undefined, NavigationPosition.LEFT_TOP)
-    const componentArray = [button, card]
+    const tree = createNavigationItem('common.common.tree', undefined, '/components/tree', undefined, NavigationPosition.LEFT_TOP)
+    const componentArray = [button, card, tree]
     const components = createNavigationItem('common.common.component', componentArray.length.toString(), '/components', Command, NavigationPosition.LEFT_TOP, componentArray)
     NavigationService.addNavigation(components)
 
