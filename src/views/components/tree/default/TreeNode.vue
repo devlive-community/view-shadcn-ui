@@ -37,6 +37,7 @@
       <div class="w-full">
         <div v-for="child in item.children" :key="child.key" class="relative pl-4">
           <TreeNode :item="child" :selectedKey="selectedKey" @select-item="onSelectItem">
+            <!-- @ts-ignore -->
             <template v-if="$slots.node" #node="{ node }">
               <slot name="node" :node="node"/>
             </template>
