@@ -24,12 +24,12 @@ export default defineComponent({
       required: true
     },
     selectedKey: {
-      type: String as () => string | null | undefined,
+      type: Object as () => Tree,
       required: false
     }
   },
   methods: {
-    selectItem(key: string)
+    selectItem(key: Tree)
     {
       this.$emit('select-item', key)
     }
