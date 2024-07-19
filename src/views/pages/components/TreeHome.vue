@@ -79,7 +79,7 @@ export default defineComponent({
   data()
   {
     return {
-      selectedKey: null as string | null,
+      selectedKey: { key: 'Shadcn-UI-Components-Badge' } as Tree,
       items: [
         {
           title: 'Shadcn UI',
@@ -124,7 +124,7 @@ export default defineComponent({
     }
   },
   methods: {
-    selectItem(key: string)
+    selectItem(key: Tree)
     {
       if (this.selectedKey !== key) {
         this.selectedKey = key
