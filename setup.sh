@@ -27,5 +27,6 @@ yes | npx shadcn-vue@latest add table
 yes | npx shadcn-vue@latest add textarea
 yes | npx shadcn-vue@latest add tooltip
 yes | npx shadcn-vue@latest add context-menu
+yes | npx shadcn-vue@latest add tabs
 
 echo "========== Done setup script =========="
