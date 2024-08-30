@@ -12,6 +12,13 @@ import { cn } from '@/lib/utils.ts'
 import { isVertical } from '@/ui/tab/utils.ts'
 import { TabsTrigger } from '@/components/ui/tabs'
 
+interface TabsContext
+{
+  selectedValue: { value: string }
+  orientation: 'horizontal' | 'vertical'
+  setSelectedValue: (val: string) => void
+}
+
 export default defineComponent({
   name: 'ITab',
   components: { TabsTrigger },
@@ -23,11 +30,16 @@ export default defineComponent({
   },
   setup(props)
   {
-    // Receives orientation and tabs context
-    const tabsContext = inject('tabsContext')
+    // Specify the type when injecting the context and provide a default value to prevent injection failure
+    const tabsContext = inject<TabsContext>('tabsContext', {
+      selectedValue: { value: '' },
+      orientation: 'horizontal',
+      setSelectedValue: () => {
+      }
+    })
 
-    // Get the orientation from the context
-    const orientation = tabsContext?.orientation || 'horizontal'
+    // Get direction value
+    const orientation = tabsContext.orientation
 
     const handleClick = () => {
       if (tabsContext) {

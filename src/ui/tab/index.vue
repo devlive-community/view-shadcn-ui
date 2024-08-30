@@ -1,11 +1,15 @@
 <template>
   <Tabs :default-value="value">
-    <div :class="cn(isVertical(orientation) ? 'flex' : 'flex flex-col space-y-2')">
+    <div :class="cn(
+   isVertical(orientation)
+          ? 'flex'
+          : 'flex flex-col space-y-2'
+    )">
       <TabsList :class="cn(
           isVertical(orientation)
                  ? 'flex flex-col h-full py-2 space-y-2' // Vertical: column layout
                  : 'flex flex-row space-x-2 w-fit' // Horizontal: row layout
-       )">
+      )">
         <slot name="default"/>
       </TabsList>
 
@@ -59,8 +63,11 @@ export default defineComponent({
       if (slots.default) {
         const defaultSlotChildren = slots.default()
         defaultSlotChildren.forEach((child) => {
-          if (child.type?.name !== 'ITab') {
-            console.warn('The default slot can only contain ITab groups件')
+          // Check if the child is a component and has a 'name' property
+          if (typeof child.type === 'object' && 'name' in child.type) {
+            if (child.type.name !== 'ITab') {
+              console.warn('The default slot can only contain ITab components')
+            }
           }
         })
       }
@@ -68,8 +75,10 @@ export default defineComponent({
       if (slots.content) {
         const contentSlotChildren = slots.content()
         contentSlotChildren.forEach((child) => {
-          if (child.type?.name !== 'ITabContent') {
-            console.warn('The content slot can only contain ITabContent components')
+          if (typeof child.type === 'object' && 'name' in child.type) {
+            if (child.type.name !== 'ITabContent') {
+              console.warn('The content slot can only contain ITabContent components')
+            }
           }
         })
       }

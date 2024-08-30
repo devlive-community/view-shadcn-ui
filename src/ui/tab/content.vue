@@ -10,6 +10,13 @@
 import { computed, defineComponent, inject } from 'vue'
 import { TabsContent } from '@/components/ui/tabs'
 
+interface TabsContext
+{
+  selectedValue: { value: string }
+  orientation: 'horizontal' | 'vertical'
+  setSelectedValue: (val: string) => void
+}
+
 export default defineComponent({
   name: 'ITabContent',
   components: { TabsContent },
@@ -21,10 +28,16 @@ export default defineComponent({
   },
   setup(props)
   {
-    const tabsContext = inject('tabsContext')
+    // Add types to inject and provide default values to avoid type errors
+    const tabsContext = inject<TabsContext>('tabsContext', {
+      selectedValue: { value: '' },
+      orientation: 'horizontal',
+      setSelectedValue: () => {
+      }
+    })
 
-    // Get active orientation from the context
-    const isActive = computed(() => tabsContext?.selectedValue.value === props.value)
+    // Make sure tabsContext exists and compare selectedValue
+    const isActive = computed(() => tabsContext.selectedValue.value === props.value)
 
     return { isActive }
   }
