@@ -64,7 +64,8 @@ const createNavigation = (): void => {
     const card = createNavigationItem('common.common.card', undefined, '/components/card', undefined, NavigationPosition.LEFT_TOP)
     const tree = createNavigationItem('common.common.tree', undefined, '/components/tree', undefined, NavigationPosition.LEFT_TOP)
     const timeline = createNavigationItem('common.common.timeline', undefined, '/components/timeline', undefined, NavigationPosition.LEFT_TOP)
-    const componentArray = [button, card, tree, timeline]
+    const tab = createNavigationItem('common.common.tab', undefined, '/components/tab', undefined, NavigationPosition.LEFT_TOP)
+    const componentArray = [button, card, tree, timeline, tab]
     const components = createNavigationItem('common.common.component', componentArray.length.toString(), '/components', Command, NavigationPosition.LEFT_TOP, componentArray)
     NavigationService.addNavigation(components)
 

@@ -43,6 +43,7 @@ export default {
         navbar: 'Navbar',
         tree: 'Tree',
         timeline: 'Timeline',
+        tab: 'Tab'
     },
     tip: {
         signInInfo: 'Enter your information to sign in to your account.',

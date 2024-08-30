@@ -43,6 +43,7 @@ export default {
         navbar: '导航栏',
         tree: '树',
         timeline: '时间线',
+        tab: '选项卡'
     },
     tip: {
         signInInfo: '输入您的信息以登录您的帐户。',
