@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, provide, ref } from 'vue'
+import { defineComponent, onMounted, PropType, provide, ref } from 'vue'
 import { Tabs, TabsList } from '@/components/ui/tabs'
 import { cn } from '@/lib/utils.ts'
 import { isVertical } from '@/ui/tab/utils.ts'
@@ -40,7 +40,7 @@ export default defineComponent({
       validator: (value: string) => ['horizontal', 'vertical'].includes(value)
     }
   },
-  setup(props, { emit })
+  setup(props, { emit, slots })
   {
     const selectedValue = ref(props.value)
 
@@ -53,6 +53,30 @@ export default defineComponent({
         emit('update:value', val)
       }
     })
+
+    // Slot type checking function
+    const validateSlots = () => {
+      if (slots.default) {
+        const defaultSlotChildren = slots.default()
+        defaultSlotChildren.forEach((child) => {
+          if (child.type?.name !== 'ITab') {
+            console.warn('The default slot can only contain ITab groups件')
+          }
+        })
+      }
+
+      if (slots.content) {
+        const contentSlotChildren = slots.content()
+        contentSlotChildren.forEach((child) => {
+          if (child.type?.name !== 'ITabContent') {
+            console.warn('The content slot can only contain ITabContent components')
+          }
+        })
+      }
+    }
+
+    // Check slot contents when component is mounted
+    onMounted(validateSlots)
 
     return { cn, isVertical }
   }
