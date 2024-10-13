@@ -5,7 +5,7 @@
         <h1 class="text-xl font-medium">Shadcn Admin for Vue3</h1>
       </div>
       <AlertForm/>
-      <Card class="p-6">
+      <ICard class="rounded-xl p-6">
         <div class="mb-2 flex flex-col space-y-2 text-left">
           <h1 class="text-lg font-semibold tracking-tight text-center">{{ $t('common.common.createAccount') }}</h1>
           <p class="text-sm text-muted-foreground text-center">
@@ -21,23 +21,23 @@
           {{ $t('common.common.and') }}
           <a class="underline underline-offset-4 hover:text-primary">{{ $t('common.common.privacyPolicy') }}</a>.
         </p>
-      </Card>
+      </ICard>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { Card } from '@/components/ui/card'
 import SignupForm from '@/views/auth/components/SignupForm.vue'
 import AlertForm from '@/views/auth/components/AlertForm.vue'
+import { ICard } from '@/ui/card'
 
 export default defineComponent({
   name: 'AuthSignup',
   components: {
+    ICard,
     AlertForm,
-    SignupForm,
-    Card
+    SignupForm
   }
 })
 </script>
