@@ -33,7 +33,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { ICard } from '@/ui/card'
+import ICard from '@/ui/card'
 import ITab from '@/ui/tab/tab.vue'
 import ITabs from '@/ui/tab/index.vue'
 import ITabContent from '@/ui/tab/content.vue'

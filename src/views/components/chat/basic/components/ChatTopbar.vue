@@ -22,7 +22,7 @@
 import { defineComponent } from 'vue'
 import IAvatar from '@/ui/avatar/index.vue'
 import ITooltip from '@/ui/tooltip/index.vue'
-import IButton from '@/ui/button/button.vue'
+import IButton from '@/ui/button'
 import { User } from '@/views/components/chat/Chat.ts'
 import ChatUser from '@/views/components/chat/basic/components/ChatUser.vue'
 import { PlusIcon } from 'lucide-vue-next'

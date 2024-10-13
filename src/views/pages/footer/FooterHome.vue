@@ -12,7 +12,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { Footer } from '@/views/components/footer/Footer.ts'
-import { ICard } from '@/ui/card'
+import ICard from '@/ui/card'
 import DefaultFooter from '@/views/components/footer/default/DefaultFooter.vue'
 
 export default defineComponent({

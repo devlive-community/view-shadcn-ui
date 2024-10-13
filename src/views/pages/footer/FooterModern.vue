@@ -69,12 +69,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { ICard } from '@/ui/card'
+import ICard from '@/ui/card'
 import ModernFooter from '@/views/components/footer/modern/ModernFooter.vue'
 import { Footer } from '@/views/components/footer/Footer.ts'
 import IRouterLink from '@/views/components/link/IRouterLink.vue'
 import IAvatar from '@/ui/avatar/index.vue'
-import IButton from '@/ui/button/button.vue'
+import IButton from '@/ui/button'
 import { Github } from 'lucide-vue-next'
 
 export default defineComponent({

@@ -1,13 +1,26 @@
 {
-  "name": "shadcn-ui-vue-admin",
-  "description": "Admin Dashboard UI crafted with Shadcn ui and Vite and Vue. Built with responsiveness and accessibility in mind.",
-  "private": true,
-  "version": "2024.0.7",
+  "name": "view-shadcn-ui",
+  "description": "View Shadcn UI is a component library built on Shadcn UI and Tailwind CSS.",
+  "private": false,
+  "version": "2024.1.1",
+  "license": "MIT",
+  "main": "./dist/view-shadcn.umd.ts",
+  "module": "./dist/view-shadcn.es.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/view-shadcn-ui.es.ts",
+      "require": "./dist/view-shadcn-ui.umd.ts",
+      "style": "./dist/view-shadcn-ui.css"
+    }
+  },
+  "files": [
+    "dist/*"
+  ],
   "scripts": {
-    "predev": "sh setup.sh",
+    "predev": "bash setup.sh",
     "dev": "vite",
-    "prebuild": "sh setup.sh",
-    "build": "vue-tsc && vite build && cp CNAME dist/",
+    "prebuild": "bash setup.sh",
+    "build": "vue-tsc && vite build && cp CNAME dist/ && tailwindcss build src/assets/index.css -o dist/view-shadcn-ui.css",
     "preview": "vite preview"
   },
   "dependencies": {

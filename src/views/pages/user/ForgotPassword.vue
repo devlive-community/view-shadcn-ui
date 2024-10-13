@@ -26,7 +26,7 @@
 import { defineComponent } from 'vue'
 import AlertForm from '@/views/auth/components/AlertForm.vue'
 import ForgotPasswordForm from '@/views/pages/user/components/ForgotPasswordForm.vue'
-import { ICard } from '@/ui/card'
+import ICard from '@/ui/card'
 
 export default defineComponent({
   name: 'ForgotPassword',

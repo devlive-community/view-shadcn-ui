@@ -28,7 +28,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import IButton from '@/ui/button/button.vue'
+import IButton from '@/ui/button'
 import { File, Paperclip, Send, ThumbsUp } from 'lucide-vue-next'
 import { Textarea } from '@/components/ui/textarea'
 import { Message } from '@/views/components/chat/Chat.ts'
