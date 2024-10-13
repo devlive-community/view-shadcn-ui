@@ -17,5 +17,21 @@ export default defineConfig({
         alias: {
             '@': path.resolve(__dirname, './src')
         }
+    },
+    build: {
+        lib: {
+            entry: './packages/index.ts',
+            name: 'ViewShadcnUI',
+            fileName: (format) => `view-shadcn-ui.${ format }.ts`,
+            formats: ['es', 'umd']
+        },
+        rollupOptions: {
+            external: ['vue'],
+            output: {
+                globals: {
+                    vue: 'Vue'
+                }
+            }
+        }
     }
 })
