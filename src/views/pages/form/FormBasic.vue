@@ -29,7 +29,7 @@ import { defineComponent } from 'vue'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { ICard } from '@/ui/card'
+import ICard from '@/ui/card'
 
 export default defineComponent({
   name: 'FormBasic',

@@ -80,7 +80,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { ICard } from '@/ui/card'
+import ICard from '@/ui/card'
 import DefaultTimeline from '@/views/components/timeline/default/DefaultTimeline.vue'
 import MilestoneTimeline from '@/views/components/timeline/milestone/MilestoneTimeline.vue'
 import ProgressTimeline from '@/views/components/timeline/progress/ProgressTimeline.vue'

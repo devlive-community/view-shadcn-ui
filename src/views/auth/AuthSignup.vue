@@ -30,7 +30,7 @@
 import { defineComponent } from 'vue'
 import SignupForm from '@/views/auth/components/SignupForm.vue'
 import AlertForm from '@/views/auth/components/AlertForm.vue'
-import { ICard } from '@/ui/card'
+import ICard from '@/ui/card'
 
 export default defineComponent({
   name: 'AuthSignup',

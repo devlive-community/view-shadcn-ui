@@ -106,8 +106,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { ICard } from '@/ui/card'
 import IButton from '@/ui/button/button.vue'
+import ICard from '@/ui/card'
 
 export default defineComponent({
   name: 'CardHome',

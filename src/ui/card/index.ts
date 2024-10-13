@@ -1,1 +1,3 @@
-export { default as ICard } from './ICard.vue'
+import ICard from './ICard.vue'
+
+export default ICard

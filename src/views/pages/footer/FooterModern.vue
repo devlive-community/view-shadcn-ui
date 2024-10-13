@@ -69,7 +69,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { ICard } from '@/ui/card'
+import ICard from '@/ui/card'
 import ModernFooter from '@/views/components/footer/modern/ModernFooter.vue'
 import { Footer } from '@/views/components/footer/Footer.ts'
 import IRouterLink from '@/views/components/link/IRouterLink.vue'
