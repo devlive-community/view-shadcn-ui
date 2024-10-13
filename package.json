@@ -9,7 +9,8 @@
   "exports": {
     ".": {
       "import": "./dist/view-shadcn-ui.es.ts",
-      "require": "./dist/view-shadcn-ui.umd.ts"
+      "require": "./dist/view-shadcn-ui.umd.ts",
+      "style": "./dist/view-shadcn-ui.css"
     }
   },
   "files": [
@@ -19,7 +20,7 @@
     "predev": "sh setup.sh",
     "dev": "vite",
     "prebuild": "sh setup.sh",
-    "build": "vue-tsc && vite build && cp CNAME dist/",
+    "build": "vue-tsc && vite build && cp CNAME dist/ && tailwindcss build src/assets/index.css -o dist/view-shadcn-ui.css",
     "preview": "vite preview"
   },
   "dependencies": {

@@ -35,6 +35,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 
 import ViewShadcnUI from 'view-shadcn-ui'
+import 'view-shadcn-ui-1/dist/view-shadcn-ui.css'
 
 const app = createApp(App)
 app.use(ViewShadcnUI)
