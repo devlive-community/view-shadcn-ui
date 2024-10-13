@@ -74,7 +74,12 @@
 
     <ICard title="Shadow Always" shadow="always"/>
 
-    <ICard title="Shadow Hover" shadow="hover" body-class="p-10"/>
+    <ICard title="Shadow Hover" shadow="hover"/>
+
+    <div class="flex flex-col gap-4">
+      <ICard title="Loading" :loading="loading"/>
+      <IButton @click="loading = !loading">{{ loading ? 'Stop Loading' : 'Start Loading' }}</IButton>
+    </div>
   </div>
 </template>
 
@@ -88,6 +93,12 @@ export default defineComponent({
   components: {
     ICard,
     IButton
+  },
+  data()
+  {
+    return {
+      loading: false
+    }
   }
 })
 </script>
