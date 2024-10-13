@@ -37,7 +37,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import ICard from '@/ui/card/card.vue'
+import { ICard } from '@/ui/card'
 import DefaultTree from '@/views/components/tree/default/DefaultTree.vue'
 import TreeNode from '@/views/components/tree/default/TreeNode.vue'
 import { Label } from '@/components/ui/label'
