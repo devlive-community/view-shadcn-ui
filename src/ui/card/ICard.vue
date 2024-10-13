@@ -11,6 +11,12 @@
             <span v-if="title">{{ title }}</span>
             <slot v-else name="title"/>
           </CardTitle>
+          <div v-if="$slots.description || description">
+            <CardDescription>
+              <span v-if="description">{{ description }}</span>
+              <slot v-else name="description"/>
+            </CardDescription>
+          </div>
         </div>
         <div v-if="$slots.extra">
           <slot name="extra"/>
@@ -32,12 +38,13 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
 import { cn } from '@/lib/utils'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Loader2 } from 'lucide-vue-next'
 import { Shadow } from '@/ui/enum/Shadow.ts'
 
 const props = defineProps<{
   title?: string
+  description?: string
   shadow?: keyof typeof Shadow
   loading?: boolean
 }>()

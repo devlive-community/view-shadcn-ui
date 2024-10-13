@@ -17,6 +17,17 @@
       </template>
     </ICard>
 
+    <ICard title="Description" description="Description"></ICard>
+
+    <ICard>
+      <template #title>
+        <span>Custom Description Slot</span>
+      </template>
+      <template #description>
+        <span class="text-blue-300">Description</span>
+      </template>
+    </ICard>
+
     <ICard>
       <template #title>
         <span>No Content</span>
