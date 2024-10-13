@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full flex-col gap-4 md:gap-8 md:p-8 lg:grid lg:grid-cols-4">
+  <div class="flex w-full flex-col flex-row gap-4 md:gap-8 md:p-8 lg:grid lg:grid-cols-4">
 
     <ICard title="Simple"/>
 
@@ -14,6 +14,17 @@
     <ICard>
       <template #title>
         <span>Custom Title Slot</span>
+      </template>
+    </ICard>
+
+    <ICard title="Description" description="Description"></ICard>
+
+    <ICard>
+      <template #title>
+        <span>Custom Description Slot</span>
+      </template>
+      <template #description>
+        <span class="text-blue-300">Description</span>
       </template>
     </ICard>
 
@@ -39,7 +50,12 @@
       <template #title>Custom Footer Slot</template>
       <template #content>Content</template>
       <template #footer>
-        <IButton>Footer</IButton>
+        <div class="w-full p-0 m-0">
+          <hr class="border-t m-0 p-0"/>
+          <div class="flex justify-between p-2">
+            <IButton>Footer</IButton>
+          </div>
+        </div>
       </template>
     </ICard>
 
@@ -50,7 +66,12 @@
       </template>
       <template #content>Content</template>
       <template #footer>
-        <IButton>Footer</IButton>
+        <div class="w-full">
+          <hr class="border-t"/>
+          <div class="flex justify-between p-2">
+            <IButton>Footer</IButton>
+          </div>
+        </div>
       </template>
     </ICard>
 
