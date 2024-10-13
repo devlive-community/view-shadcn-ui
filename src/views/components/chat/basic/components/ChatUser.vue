@@ -41,7 +41,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command'
 import { CheckIcon } from 'lucide-vue-next'
 import { User } from '@/views/components/chat/Chat.ts'
-import IButton from '@/ui/button/button.vue'
+import IButton from '@/ui/button'
 import IAvatar from '@/ui/avatar/index.vue'
 
 export default defineComponent({

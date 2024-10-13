@@ -1,7 +1,9 @@
 import { App } from 'vue'
+import IButton from '@/ui/button'
 import ICard from '@/ui/card'
 
 let components = [
+    IButton,
     ICard
 ]
 

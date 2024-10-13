@@ -117,7 +117,7 @@
 import { defineComponent } from 'vue'
 import ICard from '@/ui/card'
 import DefaultNavbar from '@/views/components/navbar/default/DefaultNavbar.vue'
-import IButton from '@/ui/button/button.vue'
+import IButton from '@/ui/button'
 import { Navbar } from '@/views/components/navbar/Navbar.ts'
 import TopbarNavbar from '@/views/components/navbar/topbar/TopbarNavbar.vue'
 

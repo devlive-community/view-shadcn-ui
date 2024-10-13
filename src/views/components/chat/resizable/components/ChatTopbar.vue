@@ -24,7 +24,7 @@
 import { defineComponent } from 'vue'
 import { User } from '@/views/components/chat/Chat.ts'
 import IAvatar from '@/ui/avatar/index.vue'
-import IButton from '@/ui/button/button.vue'
+import IButton from '@/ui/button'
 import { Phone, Video } from 'lucide-vue-next'
 
 export default defineComponent({

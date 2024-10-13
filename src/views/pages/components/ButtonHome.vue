@@ -116,7 +116,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import ICard from '@/ui/card'
-import IButton from '@/ui/button/button.vue'
+import IButton from '@/ui/button'
 import { Save } from 'lucide-vue-next'
 
 export default defineComponent({
