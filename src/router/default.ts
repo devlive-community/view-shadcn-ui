@@ -214,6 +214,11 @@ const createComponentRouter = (router: Router): void => {
                 name: 'tab',
                 path: 'tab',
                 component: () => import('@/views/pages/components/TabHome.vue')
+            },
+            {
+                name: 'modal',
+                path: 'modal',
+                component: () => import('@/views/pages/components/ModalHome.vue')
             }
         ]
     })
