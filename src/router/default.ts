@@ -219,6 +219,11 @@ const createComponentRouter = (router: Router): void => {
                 name: 'modal',
                 path: 'modal',
                 component: () => import('@/views/pages/components/ModalHome.vue')
+            },
+            {
+                name: 'input',
+                path: 'input',
+                component: () => import('@/views/pages/components/InputHome.vue')
             }
         ]
     })

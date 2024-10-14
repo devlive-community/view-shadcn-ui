@@ -45,6 +45,7 @@ export default {
         timeline: 'Timeline',
         tab: 'Tab',
         model: 'Model',
+        input: 'Input',
     },
     tip: {
         signInInfo: 'Enter your information to sign in to your account.',

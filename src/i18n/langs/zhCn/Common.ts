@@ -45,6 +45,7 @@ export default {
         timeline: '时间线',
         tab: '选项卡',
         modal: '模态框',
+        input: '输入框',
     },
     tip: {
         signInInfo: '输入您的信息以登录您的帐户。',
