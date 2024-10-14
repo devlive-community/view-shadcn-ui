@@ -28,6 +28,7 @@ components=(
   tooltip
   context-menu
   tabs
+  alert-dialog
 )
 
 component_dir="src/components/ui"

@@ -20,7 +20,7 @@
     "predev": "bash setup.sh",
     "dev": "vite",
     "prebuild": "bash setup.sh",
-    "build": "vue-tsc && vite build && cp CNAME dist/ && tailwindcss build src/assets/index.css -o dist/view-shadcn-ui.css",
+    "build": "vue-tsc && vite build && cp CNAME dist/ && tailwindcss build src/assets/index.css -o dist/view-shadcn-ui.min.css --minify",
     "preview": "vite preview"
   },
   "dependencies": {

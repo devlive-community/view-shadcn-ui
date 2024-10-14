@@ -1,10 +1,12 @@
 import { App } from 'vue'
 import IButton from '@/ui/button'
 import ICard from '@/ui/card'
+import IModal from '@/ui/modal'
 
 let components = [
     IButton,
-    ICard
+    ICard,
+    IModal
 ]
 
 const install = (Vue: App) => {

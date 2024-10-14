@@ -18,5 +18,5 @@ jobs:
         uses: xRealNeon/VuePagesAction@1.0.1
         with:
           username: 'devlive-community'
-          reponame: 'shadcn-ui-vue-admin'
+          reponame: 'view-shadcn-ui'
           token: ${{ secrets.GH_TOKEN }}
