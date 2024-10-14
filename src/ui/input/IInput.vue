@@ -3,7 +3,8 @@
        @mouseenter="hovered = true"
        @mouseleave="hovered = false">
     <Input type="text" :class="cn('focus-visible:border-blue-300 focus-visible:ring-0 active:border-blue-300',
-    size && Size[size])"
+                                  size && Size[size])"
+           :default-value="localValue"
            :value="localValue"
            :placeholder="placeholder"
            @input="onInput"
@@ -40,7 +41,7 @@ const localValue = ref(props.modelValue)
 
 watch(() => props.modelValue, (newValue) => {
   localValue.value = newValue
-})
+}, { immediate: true })
 
 const hovered = ref(false)
 
