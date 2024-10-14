@@ -11,6 +11,14 @@
         <IInput v-model="clearableModel" clearable placeholder="Placeholder ..."/>
       </div>
     </ICard>
+
+    <ICard title="Size" :description="`Model Value: ${sizeModel}`">
+      <div class="p-3 space-y-2">
+        <IInput v-model="sizeModel" placeholder="Default Size" size="default"/>
+        <IInput v-model="sizeModel" placeholder="Small Size" size="small"/>
+        <IInput v-model="sizeModel" placeholder="Large Size" size="large"/>
+      </div>
+    </ICard>
   </div>
 </template>
 
@@ -23,7 +31,8 @@ export default defineComponent({
   {
     return {
       defaultModel: '',
-      clearableModel: ''
+      clearableModel: 'Hello Word',
+      sizeModel: ''
     }
   }
 })
