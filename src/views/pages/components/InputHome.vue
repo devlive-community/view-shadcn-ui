@@ -19,6 +19,12 @@
         <IInput v-model="sizeModel" placeholder="Large Size" size="large"/>
       </div>
     </ICard>
+
+    <ICard title="WordCount" :description="`Model Value: ${wordCountModel}`">
+      <div class="flex items-center justify-center h-32 p-3">
+        <IInput v-model="wordCountModel" word-count placeholder="WordCount"/>
+      </div>
+    </ICard>
   </div>
 </template>
 
@@ -32,7 +38,8 @@ export default defineComponent({
     return {
       defaultModel: '',
       clearableModel: 'Hello Word',
-      sizeModel: ''
+      sizeModel: '',
+      wordCountModel: ''
     }
   }
 })

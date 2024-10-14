@@ -3,7 +3,8 @@
        @mouseenter="hovered = true"
        @mouseleave="hovered = false">
     <Input type="text" :class="cn('focus-visible:border-blue-300 focus-visible:ring-0 active:border-blue-300',
-                                  size && Size[size])"
+                                  size && Size[size],
+                                  wordCount && 'pr-8')"
            :default-value="localValue"
            :value="localValue"
            :placeholder="placeholder"
@@ -13,6 +14,7 @@
           @click="onClear">
       <CircleXIcon class="size-5 text-muted-foreground"/>
     </span>
+    <span v-if="wordCount" class="absolute end-0 inset-y-0 flex items-center justify-center px-2 text-gray-400 text-xs font-thin">{{ textCount }}</span>
   </div>
 </template>
 
@@ -20,7 +22,7 @@
 import { Input } from '@/components/ui/input'
 import { cn } from '@/lib/utils.ts'
 import { CircleXIcon } from 'lucide-vue-next'
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { Size } from '@/ui/enum/Size.ts'
 
 const emit = defineEmits(['on-change', 'on-clear', 'update:modelValue'])
@@ -30,11 +32,13 @@ const props = withDefaults(defineProps<{
   placeholder?: string
   clearable?: boolean
   size?: keyof typeof Size
+  wordCount?: boolean
 }>(), {
   modelValue: '',
   placeholder: '',
   clearable: false,
-  size: 'default'
+  size: 'default',
+  wordCount: false
 })
 
 const localValue = ref(props.modelValue)
@@ -44,6 +48,10 @@ watch(() => props.modelValue, (newValue) => {
 }, { immediate: true })
 
 const hovered = ref(false)
+
+const textCount = computed(() => {
+  return localValue.value.length
+})
 
 const onInput = (event: Event) => {
   const newValue = (event.target as HTMLInputElement).value
