@@ -20,9 +20,15 @@
       </div>
     </ICard>
 
-    <ICard title="WordCount" :description="`Model Value: ${wordCountModel}`">
+    <ICard title="Word Count" :description="`Model Value: ${wordCountModel}`">
       <div class="flex items-center justify-center h-32 p-3">
         <IInput v-model="wordCountModel" word-count placeholder="WordCount"/>
+      </div>
+    </ICard>
+
+    <ICard title="Max Count" :description="`Model Value: ${maxCountModel}`">
+      <div class="flex items-center justify-center h-32 p-3">
+        <IInput v-model="maxCountModel" word-count :max-count="100" placeholder="Max Count"/>
       </div>
     </ICard>
   </div>
@@ -39,7 +45,8 @@ export default defineComponent({
       defaultModel: '',
       clearableModel: 'Hello Word',
       sizeModel: '',
-      wordCountModel: ''
+      wordCountModel: '',
+      maxCountModel: ''
     }
   }
 })

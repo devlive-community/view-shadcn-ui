@@ -2,19 +2,25 @@
   <div class="relative w-full max-w-sm items-center"
        @mouseenter="hovered = true"
        @mouseleave="hovered = false">
-    <Input type="text" :class="cn('focus-visible:border-blue-300 focus-visible:ring-0 active:border-blue-300',
-                                  size && Size[size],
-                                  wordCount && 'pr-8')"
+    <Input type="text"
+           :class="cn('focus-visible:border-blue-300 focus-visible:ring-0 active:border-blue-300',
+                              size && Size[size]
+                      )"
+           :style="{ paddingRight: paddingRight + 'px' }"
            :default-value="localValue"
            :value="localValue"
            :placeholder="placeholder"
+           :maxlength="maxCount"
            @input="onInput"
            @update:modelValue="onModelValueUpdate"/>
     <span v-if="clearable && localValue && hovered" class="absolute end-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer"
           @click="onClear">
       <CircleXIcon class="size-5 text-muted-foreground"/>
     </span>
-    <span v-if="wordCount" class="absolute end-0 inset-y-0 flex items-center justify-center px-2 text-gray-400 text-xs font-thin">{{ textCount }}</span>
+    <span v-if="wordCount" ref="wordCountSpan" class="absolute end-0 inset-y-0 flex items-center justify-center px-2 text-gray-400 text-xs font-thin w-auto">
+      <span v-if="maxCount">{{ textCount }} / {{ maxCount }}</span>
+      <span v-else>{{ textCount }}</span>
+    </span>
   </div>
 </template>
 
@@ -22,7 +28,7 @@
 import { Input } from '@/components/ui/input'
 import { cn } from '@/lib/utils.ts'
 import { CircleXIcon } from 'lucide-vue-next'
-import { computed, ref, watch } from 'vue'
+import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { Size } from '@/ui/enum/Size.ts'
 
 const emit = defineEmits(['on-change', 'on-clear', 'update:modelValue'])
@@ -33,6 +39,7 @@ const props = withDefaults(defineProps<{
   clearable?: boolean
   size?: keyof typeof Size
   wordCount?: boolean
+  maxCount?: number
 }>(), {
   modelValue: '',
   placeholder: '',
@@ -42,15 +49,34 @@ const props = withDefaults(defineProps<{
 })
 
 const localValue = ref(props.modelValue)
+const hovered = ref(false)
 
 watch(() => props.modelValue, (newValue) => {
   localValue.value = newValue
 }, { immediate: true })
 
-const hovered = ref(false)
-
+// Count the total number of characters entered
 const textCount = computed(() => {
   return localValue.value.length
+})
+
+// Used to calculate and monitor the total number of input characters + length limit
+const wordCountSpan = ref<HTMLElement | null>(null)
+const paddingRight = ref(32)
+
+const updatePaddingRight = () => {
+  if (wordCountSpan.value) {
+    const spanWidth = wordCountSpan.value.offsetWidth
+    paddingRight.value = spanWidth
+  }
+}
+
+onMounted(() => {
+  nextTick(() => updatePaddingRight())
+})
+
+watch(textCount, () => {
+  nextTick(() => updatePaddingRight())
 })
 
 const onInput = (event: Event) => {
