@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full flex-col flex-row gap-4 md:gap-8 md:p-8 lg:grid lg:grid-cols-4">
+  <div class="flex w-full flex-col gap-4 md:gap-8 md:p-8 lg:grid lg:grid-cols-4">
     <ICard>
       <template #title>Default</template>
       <template #description>Default Modal Value: <span class="font-bold">{{ defaultModal }}</span></template>
@@ -76,6 +76,34 @@
         </IModal>
       </template>
     </ICard>
+
+    <ICard>
+      <template #title>Custom Width</template>
+      <template #content>
+        <div class="flex items-center justify-center h-32">
+          <IButton type="primary" @click="widthModal = true">Click</IButton>
+        </div>
+        <IModal v-model="widthModal" title="Custom Width" :width="20">
+          <template #content>
+            <div class="flex items-center justify-center">Content</div>
+          </template>
+        </IModal>
+      </template>
+    </ICard>
+
+    <ICard>
+      <template #title>Custom Height</template>
+      <template #content>
+        <div class="flex items-center justify-center h-32">
+          <IButton type="primary" @click="heightModal = true">Click</IButton>
+        </div>
+        <IModal v-model="heightModal" title="Custom Height" :height="80">
+          <template #content>
+            <div class="flex items-center justify-center">Content</div>
+          </template>
+        </IModal>
+      </template>
+    </ICard>
   </div>
 </template>
 
@@ -91,7 +119,9 @@ export default defineComponent({
       titleModal: false,
       footerModal: false,
       contentModal: false,
-      noTitleModal: false
+      noTitleModal: false,
+      widthModal: false,
+      heightModal: false
     }
   }
 })
