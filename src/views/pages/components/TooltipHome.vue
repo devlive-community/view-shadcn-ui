@@ -19,7 +19,7 @@
 
     <ShadcnCard title="Delay 500">
       <div class="flex items-center justify-center h-32 p-3">
-        <ShadcnTooltip content="Hello Shadcn UI" delay="500">
+        <ShadcnTooltip content="Hello Shadcn UI" :delay="500">
           <ShadcnIcon icon="Info" class="cursor-pointer"/>
         </ShadcnTooltip>
       </div>
@@ -38,6 +38,17 @@
         </ShadcnTooltip>
         <ShadcnTooltip content="Position" position="right">
           <ShadcnButton>Right</ShadcnButton>
+        </ShadcnTooltip>
+      </div>
+    </ShadcnCard>
+
+    <ShadcnCard title="Arrow">
+      <div class="flex items-center justify-center space-x-2 h-32 p-3">
+        <ShadcnTooltip content="Hello Shadcn UI" arrow>
+          <ShadcnButton>Arrow</ShadcnButton>
+        </ShadcnTooltip>
+        <ShadcnTooltip content="Hello Shadcn UI" :arrow="false">
+          <ShadcnButton>No Arrow</ShadcnButton>
         </ShadcnTooltip>
       </div>
     </ShadcnCard>
