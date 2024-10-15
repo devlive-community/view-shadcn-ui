@@ -26,7 +26,7 @@ export default defineConfig({
             formats: ['es', 'umd']
         },
         rollupOptions: {
-            external: ['vue'],
+            external: ['vue', '../dist/view-shadcn-ui.min.css'],
             output: {
                 globals: {
                     vue: 'Vue'

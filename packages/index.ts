@@ -24,4 +24,16 @@ if (typeof windowObj !== 'undefined' && windowObj.Vue) {
     install(vm)
 }
 
+// Auto import css
+if (typeof window !== 'undefined') {
+    import('../dist/view-shadcn-ui.min.css')
+}
+
+// Support on-demand import
+export { default as ShadcnButton } from '@/ui/button'
+export { default as ShadcnCard } from '@/ui/card'
+export { default as ShadcnInput } from '@/ui/input'
+export { default as ShadcnModal } from '@/ui/modal'
+
+// Support global import
 export default install
