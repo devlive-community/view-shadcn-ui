@@ -16,6 +16,14 @@
         </ShadcnTooltip>
       </div>
     </ShadcnCard>
+
+    <ShadcnCard title="Delay 500">
+      <div class="flex items-center justify-center h-32 p-3">
+        <ShadcnTooltip content="Hello Shadcn UI" delay="500">
+          <ShadcnIcon icon="Info" class="cursor-pointer"/>
+        </ShadcnTooltip>
+      </div>
+    </ShadcnCard>
   </div>
 </template>
 

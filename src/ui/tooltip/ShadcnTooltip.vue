@@ -1,5 +1,5 @@
 <template>
-  <TooltipProvider>
+  <TooltipProvider :delay-duration="delay">
     <Tooltip>
       <TooltipTrigger>
         <slot/>
@@ -17,5 +17,8 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 
 withDefaults(defineProps<{
   content?: string
-}>(), {})
+  delay?: number
+}>(), {
+  delay: 0
+})
 </script>
