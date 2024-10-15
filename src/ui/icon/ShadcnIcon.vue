@@ -2,6 +2,7 @@
   <component v-if="icon"
              :is="iconComponent"
              :size="size"
+             :style="color ? { color: color } : ''"
              @click="onClick"/>
   <slot v-else name="icon"/>
 </template>
@@ -14,6 +15,7 @@ const emit = defineEmits(['on-click'])
 const props = withDefaults(defineProps<{
   icon: string
   size?: number
+  color?: string
 }>(), {
   size: 20
 })

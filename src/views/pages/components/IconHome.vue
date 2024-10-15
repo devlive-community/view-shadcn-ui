@@ -23,6 +23,12 @@
         <ShadcnIcon icon="Ban" :size="40"/>
       </div>
     </ShadcnCard>
+
+    <ShadcnCard title="Custom Color">
+      <div class="flex items-center justify-center h-32 p-3 space-x-2">
+        <ShadcnIcon icon="Ban" color="red"/>
+      </div>
+    </ShadcnCard>
   </div>
 </template>
 
