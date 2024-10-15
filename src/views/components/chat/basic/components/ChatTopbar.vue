@@ -8,11 +8,11 @@
       </div>
     </div>
     <div>
-      <ITooltip :content="$t('common.common.newMessage')" :duration="0">
+      <ShadcnTooltip :content="$t('common.common.newMessage')" :duration="0">
         <IButton circle @click="visible = true">
           <PlusIcon class="w-4 h-4"/>
         </IButton>
-      </ITooltip>
+      </ShadcnTooltip>
     </div>
   </div>
   <ChatUser :is-visible="visible" :user="user" :users="users" @close="visible = $event"/>
@@ -21,7 +21,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import IAvatar from '@/ui/avatar/index.vue'
-import ITooltip from '@/ui/tooltip/index.vue'
 import IButton from '@/ui/button'
 import { User } from '@/views/components/chat/Chat.ts'
 import ChatUser from '@/views/components/chat/basic/components/ChatUser.vue'
@@ -31,7 +30,6 @@ export default defineComponent({
   name: 'ChatTopbar',
   components: {
     IAvatar,
-    ITooltip,
     IButton,
     PlusIcon,
     ChatUser

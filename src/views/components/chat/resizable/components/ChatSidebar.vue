@@ -7,9 +7,9 @@
               item.selected && 'dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white shrink',
              'justify-start gap-4 py-8 cursor-pointer'
         )">
-          <ITooltip :content="item.user?.name" side="right">
+          <ShadcnTooltip :content="item.user?.name" side="right">
             <IAvatar class="flex justify-center items-center" :src="item.user?.avatar" :alt="item.user?.name" :width="6" :height="6" image-class="w-10 h-10"/>
-          </ITooltip>
+          </ShadcnTooltip>
         </div>
         <div v-else :class="cn(
               buttonVariants({ variant: item.selected ? 'secondary' : 'ghost', size: 'lg' }),
@@ -36,11 +36,10 @@ import Button from '@/ui/button'
 import { cn } from '@/lib/utils.ts'
 import { buttonVariants } from '@/components/ui/button'
 import IAvatar from '@/ui/avatar/index.vue'
-import ITooltip from '@/ui/tooltip/index.vue'
 
 export default defineComponent({
   name: 'ChatSidebar',
-  components: { ITooltip, IAvatar, Button },
+  components: { IAvatar, Button },
   props: {
     collapsed: {
       type: Boolean

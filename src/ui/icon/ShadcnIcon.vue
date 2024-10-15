@@ -38,11 +38,11 @@ const loadIconComponent = async (iconName: string) => {
 }
 
 if (props.icon) {
-  loadIconComponent(props.icon)
+  loadIconComponent(String(props.icon))
 }
 
 watch(() => props.icon, (newIcon) => {
-  loadIconComponent(newIcon)
+  loadIconComponent(String(newIcon))
 })
 
 const onClick = () => {
