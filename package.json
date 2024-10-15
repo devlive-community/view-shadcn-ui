@@ -21,7 +21,10 @@
     "dev": "vite",
     "prebuild": "bash setup.sh",
     "build": "vue-tsc && vite build && cp CNAME dist/ && tailwindcss build src/assets/index.css -o dist/view-shadcn-ui.min.css --minify",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs"
   },
   "dependencies": {
     "@radix-icons/vue": "^1.0.0",
@@ -39,6 +42,7 @@
     "tailwindcss-animate": "^1.0.7",
     "vaul-vue": "^0.1.3",
     "vee-validate": "^4.13.2",
+    "view-shadcn-ui": "^2024.1.1",
     "vue": "^3.4.21",
     "vue-i18n": "^9.10.2",
     "vue-router": "^4.3.0",
@@ -52,6 +56,7 @@
     "tailwindcss": "^3.4.1",
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
+    "vitepress": "^1.4.1",
     "vue-tsc": "^2.0.6"
   }
 }
