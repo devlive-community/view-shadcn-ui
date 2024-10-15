@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { ref, watch } from 'vue'
 
 const emit = defineEmits(['on-click'])
 
@@ -22,16 +22,27 @@ const props = withDefaults(defineProps<{
 
 const iconComponent = ref<any>(null)
 
-onMounted(async () => {
-  if (props.icon) {
+const loadIconComponent = async (iconName: string) => {
+  if (iconName) {
     try {
       const iconModule = await import('lucide-vue-next')
-      iconComponent.value = iconModule[props.icon] || null
+      iconComponent.value = iconModule[iconName] || null
     }
     catch (error) {
       console.error('Failed to load icon', error)
     }
   }
+  else {
+    iconComponent.value = null
+  }
+}
+
+if (props.icon) {
+  loadIconComponent(String(props.icon))
+}
+
+watch(() => props.icon, (newIcon) => {
+  loadIconComponent(String(newIcon))
 })
 
 const onClick = () => {

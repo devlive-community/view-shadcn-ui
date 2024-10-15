@@ -1,16 +1,22 @@
 import { App } from 'vue'
 import ShadcnButton from '@/ui/button'
 import ShadcnCard from '@/ui/card'
+import ShadcnCopy from '@/ui/copy'
 import ShadcnInput from '@/ui/input'
 import ShadcnIcon from '@/ui/icon'
 import ShadcnModal from '@/ui/modal'
+import ShadcnTooltip from '@/ui/tooltip'
+import ShadcnCode from '@/ui/code'
 
 let components = [
     ShadcnButton,
     ShadcnCard,
+    ShadcnCopy,
+    ShadcnCode,
     ShadcnInput,
     ShadcnIcon,
-    ShadcnModal
+    ShadcnModal,
+    ShadcnTooltip
 ]
 
 const install = (Vue: App) => {
@@ -34,9 +40,12 @@ if (typeof window !== 'undefined') {
 // Support on-demand import
 export { default as ShadcnButton } from '@/ui/button'
 export { default as ShadcnCard } from '@/ui/card'
+export { default as ShadcnCopy } from '@/ui/copy'
+export { default as ShadcnCode } from '@/ui/code'
 export { default as ShadcnInput } from '@/ui/input'
 export { default as ShadcnIcon } from '@/ui/icon'
 export { default as ShadcnModal } from '@/ui/modal'
+export { default as ShadcnTooltip } from '@/ui/tooltip'
 
 // Support global import
 export default install
