@@ -22,6 +22,15 @@
         <ShadcnCopy :text="text" :tooltip="false"/>
       </div>
     </ShadcnCard>
+
+    <ShadcnCard title="Position [Top | Bottom | Left | Right]">
+      <div class="flex items-center justify-center h-32 p-3 space-x-2 w-full">
+        <ShadcnCopy :text="text" position="top"/>
+        <ShadcnCopy :text="text" position="bottom"/>
+        <ShadcnCopy :text="text" position="left"/>
+        <ShadcnCopy :text="text" position="right"/>
+      </div>
+    </ShadcnCard>
   </div>
 </template>
 
