@@ -47,6 +47,7 @@ export default {
         modal: '模态框',
         input: '输入框',
         copy: '复制',
+        tooltip: '提示',
     },
     tip: {
         signInInfo: '输入您的信息以登录您的帐户。',

@@ -234,6 +234,11 @@ const createComponentRouter = (router: Router): void => {
                 name: 'copy',
                 path: 'copy',
                 component: () => import('@/views/pages/components/CopyHome.vue')
+            },
+            {
+                name: 'tooltip',
+                path: 'tooltip',
+                component: () => import('@/views/pages/components/TooltipHome.vue')
             }
         ]
     })

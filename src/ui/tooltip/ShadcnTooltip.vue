@@ -1,0 +1,21 @@
+<template>
+  <TooltipProvider>
+    <Tooltip>
+      <TooltipTrigger>
+        <slot/>
+      </TooltipTrigger>
+      <TooltipContent>
+        <p v-if="content">{{ content }}</p>
+        <slot v-else name="content"/>
+      </TooltipContent>
+    </Tooltip>
+  </TooltipProvider>
+</template>
+
+<script setup lang="ts">
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+
+withDefaults(defineProps<{
+  content?: string
+}>(), {})
+</script>
