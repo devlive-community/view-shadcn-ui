@@ -15,9 +15,18 @@
         </ShadcnIcon>
       </div>
     </ShadcnCard>
+
+    <ShadcnCard title="Size">
+      <div class="flex items-center justify-center h-32 p-3 space-x-2">
+        <ShadcnIcon icon="Ban"/>
+        <ShadcnIcon icon="Ban" :size="30"/>
+        <ShadcnIcon icon="Ban" :size="40"/>
+      </div>
+    </ShadcnCard>
   </div>
 </template>
 
 <script setup lang="ts">
 import { Ban } from 'lucide-vue-next'
+import ShadcnIcon from '@/ui/icon'
 </script>

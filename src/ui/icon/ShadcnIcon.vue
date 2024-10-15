@@ -1,5 +1,8 @@
 <template>
-  <component v-if="icon" :is="iconComponent" @click="onClick"/>
+  <component v-if="icon"
+             :is="iconComponent"
+             :size="size"
+             @click="onClick"/>
   <slot v-else name="icon"/>
 </template>
 
@@ -8,9 +11,12 @@ import { onMounted, ref } from 'vue'
 
 const emit = defineEmits(['on-click'])
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   icon: string
-}>()
+  size?: number
+}>(), {
+  size: 20
+})
 
 const iconComponent = ref<any>(null)
 
