@@ -79,9 +79,11 @@ const props = withDefaults(defineProps<{
   code?: string
   language?: string
   theme?: string
+  showLineNumbers?: boolean
 }>(), {
   language: 'javascript',
-  theme: 'github'
+  theme: 'github',
+  showLineNumbers: false
 })
 
 const shadowContainer = ref<HTMLElement | null>(null)
@@ -103,6 +105,12 @@ const loadTheme = async (theme: string) => {
   }
 }
 
+// Function to add line numbers
+const addLineNumbers = (code: string) => {
+  const lines = code.split('\n')
+  return lines.map((line, index) => `<span class="line-number">${ index + 1 }</span> ${ line }`).join('\n')
+}
+
 // Highlight the code
 const highlightCode = () => {
   const codeElement = document.createElement('pre')
@@ -110,6 +118,11 @@ const highlightCode = () => {
 
   codeBlock.classList.add(`language-${ props.language }`)
   codeBlock.textContent = props.code || ''
+
+  if (props.showLineNumbers) {
+    const codeWithLineNumbers = addLineNumbers(props.code || '')
+    codeBlock.innerHTML = codeWithLineNumbers
+  }
 
   codeElement.appendChild(codeBlock)
   shadowRoot.value?.appendChild(codeElement)
@@ -134,3 +147,14 @@ watch([() => props.code, () => props.theme], async ([, newTheme]) => {
   highlightCode()
 })
 </script>
+
+<style scoped>
+.line-number {
+  display: inline-block;
+  width: 2em;
+  text-align: right;
+  margin-right: 1em;
+  color: #888;
+  user-select: none;
+}
+</style>

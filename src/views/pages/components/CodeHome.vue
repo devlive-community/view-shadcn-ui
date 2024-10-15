@@ -11,6 +11,12 @@
         <ShadcnCode :code="code" theme="monokai"/>
       </div>
     </ShadcnCard>
+
+    <ShadcnCard title="Show Line Numbers">
+      <div class="flex items-center justify-center h-32 p-3">
+        <ShadcnCode :code="code" theme="pojoaque" show-line-numbers/>
+      </div>
+    </ShadcnCard>
   </div>
 </template>
 
