@@ -45,7 +45,7 @@ export default {
         timeline: '时间线',
         tab: '选项卡',
         modal: '模态框',
-        input: '输入框',
+        input: '输入框'
     },
     tip: {
         signInInfo: '输入您的信息以登录您的帐户。',
@@ -61,6 +61,6 @@ export default {
         holder: '请输入内容',
         inputMessage: '输入消息内容 ...',
         newMessage: '邀请一个用户加入该线程。这将创建一个新的群消息',
-        selectItem: '请选择项',
+        selectItem: '请选择项'
     }
 }
