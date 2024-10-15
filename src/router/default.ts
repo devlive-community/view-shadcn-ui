@@ -239,6 +239,11 @@ const createComponentRouter = (router: Router): void => {
                 name: 'tooltip',
                 path: 'tooltip',
                 component: () => import('@/views/pages/components/TooltipHome.vue')
+            },
+            {
+                name: 'code',
+                path: 'code',
+                component: () => import('@/views/pages/components/CodeHome.vue')
             }
         ]
     })

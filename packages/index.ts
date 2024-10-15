@@ -6,11 +6,13 @@ import ShadcnInput from '@/ui/input'
 import ShadcnIcon from '@/ui/icon'
 import ShadcnModal from '@/ui/modal'
 import ShadcnTooltip from '@/ui/tooltip'
+import ShadcnCode from '@/ui/code'
 
 let components = [
     ShadcnButton,
     ShadcnCard,
     ShadcnCopy,
+    ShadcnCode,
     ShadcnInput,
     ShadcnIcon,
     ShadcnModal,
@@ -39,6 +41,7 @@ if (typeof window !== 'undefined') {
 export { default as ShadcnButton } from '@/ui/button'
 export { default as ShadcnCard } from '@/ui/card'
 export { default as ShadcnCopy } from '@/ui/copy'
+export { default as ShadcnCode } from '@/ui/code'
 export { default as ShadcnInput } from '@/ui/input'
 export { default as ShadcnIcon } from '@/ui/icon'
 export { default as ShadcnModal } from '@/ui/modal'

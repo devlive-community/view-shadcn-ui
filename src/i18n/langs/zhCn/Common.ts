@@ -48,6 +48,7 @@ export default {
         input: '输入框',
         copy: '复制',
         tooltip: '提示',
+        code: '代码',
     },
     tip: {
         signInInfo: '输入您的信息以登录您的帐户。',
