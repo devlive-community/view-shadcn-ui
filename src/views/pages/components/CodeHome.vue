@@ -5,6 +5,12 @@
         <ShadcnCode :code="code"/>
       </div>
     </ShadcnCard>
+
+    <ShadcnCard title="Theme">
+      <div class="flex items-center justify-center h-32 p-3">
+        <ShadcnCode :code="code" theme="monokai"/>
+      </div>
+    </ShadcnCard>
   </div>
 </template>
 
