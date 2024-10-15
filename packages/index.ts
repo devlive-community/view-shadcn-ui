@@ -1,13 +1,13 @@
 import { App } from 'vue'
 import ShadcnButton from '@/ui/button'
 import ShadcnCard from '@/ui/card'
-import IInput from '@/ui/input'
+import ShadcnInput from '@/ui/input'
 import IModal from '@/ui/modal'
 
 let components = [
     ShadcnButton,
     ShadcnCard,
-    IInput,
+    ShadcnInput,
     IModal
 ]
 

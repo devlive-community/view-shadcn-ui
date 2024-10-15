@@ -1,3 +1,3 @@
-import IInput from './IInput.vue'
+import ShadcnInput from './ShadcnInput.vue'
 
-export default IInput
+export default ShadcnInput
