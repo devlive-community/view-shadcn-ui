@@ -1,120 +1,114 @@
 <template>
   <div class="flex w-full flex-col flex-row gap-4 md:gap-8 md:p-8 lg:grid lg:grid-cols-4">
 
-    <ICard title="Simple"/>
+    <ShadcnCard title="Simple"/>
 
-    <ICard>
+    <ShadcnCard>
       <template #content>
         <div class="flex items-center justify-center h-32 w-full font-black text-blue-300">
           No Title
         </div>
       </template>
-    </ICard>
+    </ShadcnCard>
 
-    <ICard>
+    <ShadcnCard>
       <template #title>
         <span>Custom Title Slot</span>
       </template>
-    </ICard>
+    </ShadcnCard>
 
-    <ICard title="Description" description="Description"></ICard>
+    <ShadcnCard title="Description" description="Description"></ShadcnCard>
 
-    <ICard>
+    <ShadcnCard>
       <template #title>
         <span>Custom Description Slot</span>
       </template>
       <template #description>
         <span class="text-blue-300">Description</span>
       </template>
-    </ICard>
+    </ShadcnCard>
 
-    <ICard>
+    <ShadcnCard>
       <template #title>
         <span>No Content</span>
       </template>
-    </ICard>
+    </ShadcnCard>
 
-    <ICard>
+    <ShadcnCard>
       <template #title>Custom Content Slot</template>
       <template #content>
         <span class="text-blue-300">Content</span>
       </template>
-    </ICard>
+    </ShadcnCard>
 
-    <ICard>
+    <ShadcnCard>
       <template #title>No Footer</template>
       <template #content>Content</template>
-    </ICard>
+    </ShadcnCard>
 
-    <ICard>
+    <ShadcnCard>
       <template #title>Custom Footer Slot</template>
       <template #content>Content</template>
       <template #footer>
         <div class="w-full p-0 m-0">
           <hr class="border-t m-0 p-0"/>
           <div class="flex justify-between p-2">
-            <IButton>Footer</IButton>
+            <ShadcnButton>Footer</ShadcnButton>
           </div>
         </div>
       </template>
-    </ICard>
+    </ShadcnCard>
 
-    <ICard>
+    <ShadcnCard>
       <template #title>Custom Extra Slot</template>
       <template #extra>
-        <IButton>Extra</IButton>
+        <ShadcnButton>Extra</ShadcnButton>
       </template>
       <template #content>Content</template>
       <template #footer>
         <div class="w-full">
           <hr class="border-t"/>
           <div class="flex justify-between p-2">
-            <IButton>Footer</IButton>
+            <ShadcnButton>Footer</ShadcnButton>
           </div>
         </div>
       </template>
-    </ICard>
+    </ShadcnCard>
 
-    <ICard>
+    <ShadcnCard>
       <template #title>
         <div class="text-blue-300">Custom Title Class</div>
       </template>
       <template #content>Note that if the title attribute is set, the title slot will not take effect.</template>
-    </ICard>
+    </ShadcnCard>
 
-    <ICard>
+    <ShadcnCard>
       <template #title>
         <div>Custom Body Class</div>
       </template>
       <template #content>
         <div class="text-blue-300 p-3">Content</div>
       </template>
-    </ICard>
+    </ShadcnCard>
 
-    <ICard title="Shadow Never" shadow="never"/>
+    <ShadcnCard title="Shadow Never" shadow="never"/>
 
-    <ICard title="Shadow Always" shadow="always"/>
+    <ShadcnCard title="Shadow Always" shadow="always"/>
 
-    <ICard title="Shadow Hover" shadow="hover"/>
+    <ShadcnCard title="Shadow Hover" shadow="hover"/>
 
     <div class="flex flex-col gap-4">
-      <ICard title="Loading" :loading="loading"/>
-      <IButton @click="loading = !loading">{{ loading ? 'Stop Loading' : 'Start Loading' }}</IButton>
+      <ShadcnCard title="Loading" :loading="loading"/>
+      <ShadcnButton @click="loading = !loading">{{ loading ? 'Stop Loading' : 'Start Loading' }}</ShadcnButton>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import IButton from '@/ui/button'
-import ICard from '@/ui/card'
 
 export default defineComponent({
   name: 'CardHome',
-  components: {
-    ICard,
-    IButton
-  },
   data()
   {
     return {
