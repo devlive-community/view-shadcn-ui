@@ -24,6 +24,23 @@
         </ShadcnTooltip>
       </div>
     </ShadcnCard>
+
+    <ShadcnCard title="Position">
+      <div class="h-32 p-3 space-x-2 space-y-2">
+        <ShadcnTooltip content="Position" position="top">
+          <ShadcnButton>Top</ShadcnButton>
+        </ShadcnTooltip>
+        <ShadcnTooltip content="Position" position="bottom">
+          <ShadcnButton>Bottom</ShadcnButton>
+        </ShadcnTooltip>
+        <ShadcnTooltip content="Position" position="left">
+          <ShadcnButton>Left</ShadcnButton>
+        </ShadcnTooltip>
+        <ShadcnTooltip content="Position" position="right">
+          <ShadcnButton>Right</ShadcnButton>
+        </ShadcnTooltip>
+      </div>
+    </ShadcnCard>
   </div>
 </template>
 

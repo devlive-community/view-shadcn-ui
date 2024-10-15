@@ -4,7 +4,7 @@
       <TooltipTrigger>
         <slot/>
       </TooltipTrigger>
-      <TooltipContent>
+      <TooltipContent :side="position">
         <p v-if="content">{{ content }}</p>
         <slot v-else name="content"/>
       </TooltipContent>
@@ -18,7 +18,9 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 withDefaults(defineProps<{
   content?: string
   delay?: number
+  position?: 'top' | 'right' | 'bottom' | 'left'
 }>(), {
-  delay: 0
+  delay: 0,
+  position: 'top'
 })
 </script>
