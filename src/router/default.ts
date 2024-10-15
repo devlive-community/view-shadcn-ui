@@ -224,6 +224,11 @@ const createComponentRouter = (router: Router): void => {
                 name: 'input',
                 path: 'input',
                 component: () => import('@/views/pages/components/InputHome.vue')
+            },
+            {
+                name: 'icon',
+                path: 'icon',
+                component: () => import('@/views/pages/components/IconHome.vue')
             }
         ]
     })
