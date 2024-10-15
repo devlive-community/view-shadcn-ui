@@ -1,109 +1,109 @@
 <template>
   <div class="flex w-full flex-col gap-4 md:gap-8 md:p-8 lg:grid lg:grid-cols-4">
-    <ICard>
+    <ShadcnCard>
       <template #title>Default</template>
       <template #description>Default Modal Value: <span class="font-bold">{{ defaultModal }}</span></template>
       <template #content>
         <div class="flex items-center justify-center h-32">
-          <IButton type="primary" @click="defaultModal = true">Click</IButton>
+          <ShadcnButton type="primary" @click="defaultModal = true">Click</ShadcnButton>
         </div>
-        <IModal v-model="defaultModal" title="Modal Title" description="This is a modal description">
+        <ShadcnModal v-model="defaultModal" title="Modal Title" description="This is a modal description">
           <template #content>
             <div class="flex items-center justify-center h-32">Content</div>
           </template>
-        </IModal>
+        </ShadcnModal>
       </template>
-    </ICard>
+    </ShadcnCard>
 
-    <ICard>
+    <ShadcnCard>
       <template #title>Custom Title</template>
       <template #content>
         <div class="flex items-center justify-center h-32">
-          <IButton type="primary" @click="titleModal = true">Click</IButton>
+          <ShadcnButton type="primary" @click="titleModal = true">Click</ShadcnButton>
         </div>
-        <IModal v-model="titleModal">
+        <ShadcnModal v-model="titleModal">
           <template #title>Custom Title</template>
           <template #content>
             <div class="flex items-center justify-center h-32">Content</div>
           </template>
-        </IModal>
+        </ShadcnModal>
       </template>
-    </ICard>
+    </ShadcnCard>
 
-    <ICard>
+    <ShadcnCard>
       <template #title>Custom Footer</template>
       <template #content>
         <div class="flex items-center justify-center h-32">
-          <IButton type="primary" @click="footerModal = true">Click</IButton>
+          <ShadcnButton type="primary" @click="footerModal = true">Click</ShadcnButton>
         </div>
-        <IModal v-model="footerModal">
+        <ShadcnModal v-model="footerModal">
           <template #title>Custom Footer</template>
           <template #content>
             <div class="flex items-center justify-center h-32">Content</div>
           </template>
           <template #footer>this is a footer</template>
-        </IModal>
+        </ShadcnModal>
       </template>
-    </ICard>
+    </ShadcnCard>
 
-    <ICard>
+    <ShadcnCard>
       <template #title>Custom Content</template>
       <template #content>
         <div class="flex items-center justify-center h-32">
-          <IButton type="primary" @click="contentModal = true">Click</IButton>
+          <ShadcnButton type="primary" @click="contentModal = true">Click</ShadcnButton>
         </div>
-        <IModal v-model="contentModal">
+        <ShadcnModal v-model="contentModal">
           <template #title>Custom Content</template>
           <template #content>
             <div class="flex items-center justify-center h-32">
-              <IButton>Button</IButton>
+              <ShadcnButton>Button</ShadcnButton>
             </div>
           </template>
-        </IModal>
+        </ShadcnModal>
       </template>
-    </ICard>
+    </ShadcnCard>
 
-    <ICard>
+    <ShadcnCard>
       <template #title>No Title</template>
       <template #content>
         <div class="flex items-center justify-center h-32">
-          <IButton type="primary" @click="noTitleModal = true">Click</IButton>
+          <ShadcnButton type="primary" @click="noTitleModal = true">Click</ShadcnButton>
         </div>
-        <IModal v-model="noTitleModal">
+        <ShadcnModal v-model="noTitleModal">
           <template #content>
             <div class="flex items-center justify-center h-32">Content</div>
           </template>
-        </IModal>
+        </ShadcnModal>
       </template>
-    </ICard>
+    </ShadcnCard>
 
-    <ICard>
+    <ShadcnCard>
       <template #title>Custom Width</template>
       <template #content>
         <div class="flex items-center justify-center h-32">
-          <IButton type="primary" @click="widthModal = true">Click</IButton>
+          <ShadcnButton type="primary" @click="widthModal = true">Click</ShadcnButton>
         </div>
-        <IModal v-model="widthModal" title="Custom Width" :width="20">
+        <ShadcnModal v-model="widthModal" title="Custom Width" :width="20">
           <template #content>
             <div class="flex items-center justify-center">Content</div>
           </template>
-        </IModal>
+        </ShadcnModal>
       </template>
-    </ICard>
+    </ShadcnCard>
 
-    <ICard>
+    <ShadcnCard>
       <template #title>Custom Height</template>
       <template #content>
         <div class="flex items-center justify-center h-32">
-          <IButton type="primary" @click="heightModal = true">Click</IButton>
+          <ShadcnButton type="primary" @click="heightModal = true">Click</ShadcnButton>
         </div>
-        <IModal v-model="heightModal" title="Custom Height" :height="80">
+        <ShadcnModal v-model="heightModal" title="Custom Height" :height="80">
           <template #content>
             <div class="flex items-center justify-center">Content</div>
           </template>
-        </IModal>
+        </ShadcnModal>
       </template>
-    </ICard>
+    </ShadcnCard>
   </div>
 </template>
 
