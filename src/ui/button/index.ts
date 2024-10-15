@@ -1,3 +1,3 @@
-import IButton from './IButton.vue'
+import ShadcnButton from './ShadcnButton.vue'
 
-export default IButton
+export default ShadcnButton

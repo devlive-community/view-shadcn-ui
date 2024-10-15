@@ -1,3 +1,3 @@
-import ICard from './ICard.vue'
+import ShadcnCard from './ShadcnCard.vue'
 
-export default ICard
+export default ShadcnCard

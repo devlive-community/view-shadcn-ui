@@ -1,3 +1,3 @@
-import IModal from './IModal.vue'
+import ShadcnModal from './ShadcnModal.vue'
 
-export default IModal
+export default ShadcnModal

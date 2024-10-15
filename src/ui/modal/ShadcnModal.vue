@@ -22,8 +22,8 @@
       <AlertDialogFooter class="border-t p-2 flex">
         <slot v-if="$slots.footer" name="footer"/>
         <div class="space-x-2" v-else>
-          <IButton type="danger" @click="onCancel">{{ cancelText }}</IButton>
-          <IButton @click="onOk">{{ okText }}</IButton>
+          <ShadcnButton type="danger" @click="onCancel">{{ cancelText }}</ShadcnButton>
+          <ShadcnButton @click="onOk">{{ okText }}</ShadcnButton>
         </div>
       </AlertDialogFooter>
     </AlertDialogContent>
@@ -32,8 +32,8 @@
 
 <script setup lang="ts">
 import { AlertDialog, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog'
-import IButton from '@/ui/button'
 import { cn } from '@/lib/utils.ts'
+import ShadcnButton from '@/ui/button'
 
 const validateWidthHeight = (value: number) => {
   return value >= 10 && value <= 100 && value % 10 === 0

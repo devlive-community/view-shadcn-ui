@@ -1,14 +1,14 @@
 import { App } from 'vue'
-import IButton from '@/ui/button'
-import ICard from '@/ui/card'
-import IInput from '@/ui/input'
-import IModal from '@/ui/modal'
+import ShadcnButton from '@/ui/button'
+import ShadcnCard from '@/ui/card'
+import ShadcnInput from '@/ui/input'
+import ShadcnModal from '@/ui/modal'
 
 let components = [
-    IButton,
-    ICard,
-    IInput,
-    IModal
+    ShadcnButton,
+    ShadcnCard,
+    ShadcnInput,
+    ShadcnModal
 ]
 
 const install = (Vue: App) => {
@@ -24,4 +24,16 @@ if (typeof windowObj !== 'undefined' && windowObj.Vue) {
     install(vm)
 }
 
+// Auto import css
+if (typeof window !== 'undefined') {
+    import('../dist/view-shadcn-ui.min.css')
+}
+
+// Support on-demand import
+export { default as ShadcnButton } from '@/ui/button'
+export { default as ShadcnCard } from '@/ui/card'
+export { default as ShadcnInput } from '@/ui/input'
+export { default as ShadcnModal } from '@/ui/modal'
+
+// Support global import
 export default install
