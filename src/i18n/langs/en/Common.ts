@@ -46,6 +46,7 @@ export default {
         tab: 'Tab',
         model: 'Model',
         input: 'Input',
+        copy: 'Copy',
     },
     tip: {
         signInInfo: 'Enter your information to sign in to your account.',

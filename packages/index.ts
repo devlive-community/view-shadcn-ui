@@ -1,6 +1,7 @@
 import { App } from 'vue'
 import ShadcnButton from '@/ui/button'
 import ShadcnCard from '@/ui/card'
+import ShadcnCopy from '@/ui/copy'
 import ShadcnInput from '@/ui/input'
 import ShadcnIcon from '@/ui/icon'
 import ShadcnModal from '@/ui/modal'
@@ -8,6 +9,7 @@ import ShadcnModal from '@/ui/modal'
 let components = [
     ShadcnButton,
     ShadcnCard,
+    ShadcnCopy,
     ShadcnInput,
     ShadcnIcon,
     ShadcnModal
@@ -34,6 +36,7 @@ if (typeof window !== 'undefined') {
 // Support on-demand import
 export { default as ShadcnButton } from '@/ui/button'
 export { default as ShadcnCard } from '@/ui/card'
+export { default as ShadcnCopy } from '@/ui/copy'
 export { default as ShadcnInput } from '@/ui/input'
 export { default as ShadcnIcon } from '@/ui/icon'
 export { default as ShadcnModal } from '@/ui/modal'

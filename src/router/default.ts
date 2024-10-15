@@ -229,6 +229,11 @@ const createComponentRouter = (router: Router): void => {
                 name: 'icon',
                 path: 'icon',
                 component: () => import('@/views/pages/components/IconHome.vue')
+            },
+            {
+                name: 'copy',
+                path: 'copy',
+                component: () => import('@/views/pages/components/CopyHome.vue')
             }
         ]
     })

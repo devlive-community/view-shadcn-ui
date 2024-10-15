@@ -68,7 +68,8 @@ const createNavigation = (): void => {
     const modal = createNavigationItem('common.common.modal', undefined, '/components/modal', undefined, NavigationPosition.LEFT_TOP)
     const input = createNavigationItem('common.common.input', undefined, '/components/input', undefined, NavigationPosition.LEFT_TOP)
     const icon = createNavigationItem('common.common.icon', undefined, '/components/icon', undefined, NavigationPosition.LEFT_TOP)
-    const componentArray = [button, card, tree, timeline, tab, modal, input, icon]
+    const copy = createNavigationItem('common.common.copy', undefined, '/components/copy', undefined, NavigationPosition.LEFT_TOP)
+    const componentArray = [button, card, tree, timeline, tab, modal, input, icon, copy]
     const components = createNavigationItem('common.common.component', componentArray.length.toString(), '/components', Command, NavigationPosition.LEFT_TOP, componentArray)
     NavigationService.addNavigation(components)
 
