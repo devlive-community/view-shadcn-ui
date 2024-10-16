@@ -5,7 +5,7 @@
         <div class="font-bold">{{ title }}</div>
         <div class="text-sm text-muted-foreground">{{ description }}</div>
       </div>
-      <div class="p-3 flex items-center justify-center flex-wrap break-words space-x-2">
+      <div class="p-3 space-x-2">
         <slot/>
       </div>
     </template>

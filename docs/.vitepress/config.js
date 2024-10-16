@@ -44,6 +44,14 @@ export default {
                         {text: 'Button', link: 'button'}
                     ]
                 },
+                {
+                    text: 'Layout Components',
+                    base: '/components/2024.1.1/',
+                    collapsed: false,
+                    items: [
+                        {text: 'Card', link: 'card'}
+                    ]
+                }
             ]
         }
     }
