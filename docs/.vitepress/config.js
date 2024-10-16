@@ -14,7 +14,7 @@ export default {
                 items: [
                     {
                         text: '2024.1.1',
-                        link: '/components/2024.1.1/button',
+                        link: '/components/2024.1.1/release-notes',
                         activeMatch: '/components/2024.1.1/'
                     },
                 ]
@@ -36,6 +36,11 @@ export default {
                 }
             ],
             '/components/2024.1.1/': [
+                {
+                    text: 'Release Notes',
+                    base: '/components/2024.1.1/',
+                    link: 'release-notes',
+                },
                 {
                     text: 'Base Components',
                     base: '/components/2024.1.1/',
