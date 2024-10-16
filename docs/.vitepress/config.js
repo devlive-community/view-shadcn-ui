@@ -61,6 +61,7 @@ export default {
                     items: [
                         {text: 'Modal', link: 'modal'},
                         {text: 'Tooltip', link: 'tooltip'},
+                        {text: 'Code', link: 'code'},
                     ]
                 }
             ]
