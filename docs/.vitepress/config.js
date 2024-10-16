@@ -63,6 +63,14 @@ export default {
                         {text: 'Tooltip', link: 'tooltip'},
                         {text: 'Code', link: 'code'},
                     ]
+                },
+                {
+                    text: 'Form Components',
+                    base: '/components/2024.1.1/',
+                    collapsed: false,
+                    items: [
+                        {text: 'Input', link: 'input'},
+                    ]
                 }
             ]
         }
