@@ -56,7 +56,7 @@ const onCopy = async () => {
   finally {
     setTimeout(() => {
       icon.value = 'Copy'
-      // showTooltip.value = false
+      showTooltip.value = false
     }, 500)
   }
 }

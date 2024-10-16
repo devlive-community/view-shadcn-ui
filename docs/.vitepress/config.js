@@ -43,6 +43,7 @@ export default {
                     items: [
                         {text: 'Button', link: 'button'},
                         {text: 'Icon', link: 'icon'},
+                        {text: 'Copy', link: 'copy'},
                     ]
                 },
                 {
