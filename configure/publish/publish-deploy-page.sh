@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-VERSION=$1
+VERSION=$(jq -r '.version' package.json)
 set -e
 
 yarn run docs:build
@@ -10,10 +10,12 @@ echo 'shadcn.vue.devlive.org' > CNAME
 
 time=$(date "+%Y-%m-%d %H:%M:%S")
 
+echo "GitHub Action Auto Deploy $VERSION on $time"
+
 git init
 git add -A
 git commit -m "GitHub Action Auto Deploy $VERSION on $time"
 
 git push -f git@github.com:devlive-community/view-shadcn-ui.git master:gh-pages
 
-git status
+echo "GitHub Action Auto Deploy done"

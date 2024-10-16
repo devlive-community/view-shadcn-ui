@@ -57,7 +57,8 @@ export default {
                     base: '/components/2024.1.1/',
                     collapsed: false,
                     items: [
-                        {text: 'Modal', link: 'modal'}
+                        {text: 'Modal', link: 'modal'},
+                        {text: 'Tooltip', link: 'tooltip'},
                     ]
                 }
             ]
