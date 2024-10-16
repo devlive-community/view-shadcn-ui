@@ -41,7 +41,8 @@ export default {
                     base: '/components/2024.1.1/',
                     collapsed: false,
                     items: [
-                        {text: 'Button', link: 'button'}
+                        {text: 'Button', link: 'button'},
+                        {text: 'Icon', link: 'icon'},
                     ]
                 },
                 {
