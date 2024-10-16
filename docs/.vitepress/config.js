@@ -10,7 +10,7 @@ export default {
                 activeMatch: '/guide/'
             },
             {
-                text: 'Components',
+                text: 'Components (v2024.1.1)',
                 items: [
                     {
                         text: '2024.1.1',
@@ -50,6 +50,14 @@ export default {
                     collapsed: false,
                     items: [
                         {text: 'Card', link: 'card'}
+                    ]
+                },
+                {
+                    text: 'View Components',
+                    base: '/components/2024.1.1/',
+                    collapsed: false,
+                    items: [
+                        {text: 'Modal', link: 'modal'}
                     ]
                 }
             ]
