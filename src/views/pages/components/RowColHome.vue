@@ -4,10 +4,10 @@
       <template #content>
         <div class="flex items-center justify-center space-x-2 h-32 p-3">
           <ShadcnRow>
-            <ShadcnCol class="bg-blue-200"></ShadcnCol>
-            <ShadcnCol class="bg-blue-300"></ShadcnCol>
-            <ShadcnCol class="bg-blue-400"></ShadcnCol>
-            <ShadcnCol class="bg-blue-500"></ShadcnCol>
+            <ShadcnCol class="bg-blue-200 h-12"></ShadcnCol>
+            <ShadcnCol class="bg-blue-300 h-12"></ShadcnCol>
+            <ShadcnCol class="bg-blue-400 h-12"></ShadcnCol>
+            <ShadcnCol class="bg-blue-500 h-12"></ShadcnCol>
           </ShadcnRow>
         </div>
       </template>
@@ -17,10 +17,10 @@
       <template #content>
         <div class="flex items-center justify-center space-x-2 h-32 p-3">
           <ShadcnRow :gutter="30">
-            <ShadcnCol class="bg-blue-200"></ShadcnCol>
-            <ShadcnCol class="bg-blue-300"></ShadcnCol>
-            <ShadcnCol class="bg-blue-400"></ShadcnCol>
-            <ShadcnCol class="bg-blue-500"></ShadcnCol>
+            <ShadcnCol class="bg-blue-200 h-12"></ShadcnCol>
+            <ShadcnCol class="bg-blue-300 h-12"></ShadcnCol>
+            <ShadcnCol class="bg-blue-400 h-12"></ShadcnCol>
+            <ShadcnCol class="bg-blue-500 h-12"></ShadcnCol>
           </ShadcnRow>
         </div>
       </template>
@@ -91,18 +91,59 @@
         </div>
       </template>
     </ShadcnCard>
+
+    <ShadcnCard title="Col">
+      <template #content>
+        <div class="space-y-2 p-3">
+          <ShadcnRow class="bg-amber-100">
+            <ShadcnCol class="bg-blue-200 h-16" span="2"/>
+            <ShadcnCol class="bg-blue-300 h-14" span="4"/>
+            <ShadcnCol class="bg-blue-400 h-10"/>
+          </ShadcnRow>
+          <ShadcnRow class="bg-amber-100">
+            <ShadcnCol class="bg-blue-200 h-16" span="10"/>
+          </ShadcnRow>
+          <ShadcnRow class="bg-amber-100">
+            <ShadcnCol class="bg-blue-200 h-16" span="12"/>
+          </ShadcnRow>
+          <ShadcnRow class="bg-amber-100">
+            <ShadcnCol v-for="i in 20" :class="cn('h-16 mt-1', i % 2 == 0 ? 'bg-blue-200' : 'bg-blue-300')"/>
+          </ShadcnRow>
+          <ShadcnRow class="bg-amber-100">
+            <ShadcnCol class="bg-blue-200 h-16" span="10"/>
+            <ShadcnCol class="bg-blue-300 h-14" span="11"/>
+            <ShadcnCol class="bg-blue-400 h-10" span="1"/>
+          </ShadcnRow>
+        </div>
+      </template>
+    </ShadcnCard>
+
+    <ShadcnCard title="Order">
+      <template #content>
+        <div class="space-y-2 p-3">
+          <ShadcnRow class="bg-amber-100">
+            <ShadcnCol class="bg-blue-200 h-16" span="3" order="3">1 | order-3</ShadcnCol>
+            <ShadcnCol class="bg-blue-300 h-14" span="4" order="4">2 | order-4</ShadcnCol>
+            <ShadcnCol class="bg-blue-400 h-10" span="5" order="5">3 | order-5</ShadcnCol>
+          </ShadcnRow>
+          <ShadcnRow class="bg-amber-100">
+            <ShadcnCol class="bg-blue-200 h-16" span="3" order="3">1 | order-3</ShadcnCol>
+            <ShadcnCol class="bg-blue-300 h-14" span="4" order="5">2 | order-5</ShadcnCol>
+            <ShadcnCol class="bg-blue-400 h-10" span="5" order="2">3 | order-2</ShadcnCol>
+          </ShadcnRow>
+        </div>
+      </template>
+    </ShadcnCard>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import ShadcnCard from '@/ui/card'
 import { cn } from '@/lib/utils.ts'
 
 export default defineComponent({
   name: 'RowColHome',
-  methods: { cn },
-  components: { ShadcnCard }
+  methods: { cn }
 })
 </script>
 

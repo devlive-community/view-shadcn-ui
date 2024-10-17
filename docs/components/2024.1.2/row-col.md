@@ -11,10 +11,10 @@ This document is mainly used to describe some features and usage of the ShadcnRo
 <CodeRunner title="Simple Row and Col"
     description="Created a simple row and col with 4 cols">
     <ShadcnRow>
-        <ShadcnCol class="bg-blue-200"></ShadcnCol>
-        <ShadcnCol class="bg-blue-300"></ShadcnCol>
-        <ShadcnCol class="bg-blue-400"></ShadcnCol>
-        <ShadcnCol class="bg-blue-500"></ShadcnCol>
+        <ShadcnCol class="bg-blue-200 h-12"></ShadcnCol>
+        <ShadcnCol class="bg-blue-300 h-12"></ShadcnCol>
+        <ShadcnCol class="bg-blue-400 h-12"></ShadcnCol>
+        <ShadcnCol class="bg-blue-500 h-12"></ShadcnCol>
     </ShadcnRow>
 </CodeRunner>
 
@@ -23,10 +23,10 @@ This document is mainly used to describe some features and usage of the ShadcnRo
 ```vue
 <template>
     <ShadcnRow>
-        <ShadcnCol class="bg-blue-200"></ShadcnCol>
-        <ShadcnCol class="bg-blue-300"></ShadcnCol>
-        <ShadcnCol class="bg-blue-400"></ShadcnCol>
-        <ShadcnCol class="bg-blue-500"></ShadcnCol>
+        <ShadcnCol class="bg-blue-200 h-12"></ShadcnCol>
+        <ShadcnCol class="bg-blue-300 h-12"></ShadcnCol>
+        <ShadcnCol class="bg-blue-400 h-12"></ShadcnCol>
+        <ShadcnCol class="bg-blue-500 h-12"></ShadcnCol>
     </ShadcnRow>
 </template>
 
@@ -41,10 +41,10 @@ This document is mainly used to describe some features and usage of the ShadcnRo
 <CodeRunner title="Gutter"
     description="Created a simple row and col with gutter">
     <ShadcnRow :gutter="30">
-        <ShadcnCol class="bg-blue-200"></ShadcnCol>
-        <ShadcnCol class="bg-blue-300"></ShadcnCol>
-        <ShadcnCol class="bg-blue-400"></ShadcnCol>
-        <ShadcnCol class="bg-blue-500"></ShadcnCol>
+        <ShadcnCol class="bg-blue-200 h-12"></ShadcnCol>
+        <ShadcnCol class="bg-blue-300 h-12"></ShadcnCol>
+        <ShadcnCol class="bg-blue-400 h-12"></ShadcnCol>
+        <ShadcnCol class="bg-blue-500 h-12"></ShadcnCol>
     </ShadcnRow>
 </CodeRunner>
 
@@ -53,10 +53,10 @@ This document is mainly used to describe some features and usage of the ShadcnRo
 ```vue
 <template>
     <ShadcnRow :gutter="30">
-        <ShadcnCol class="bg-blue-200"></ShadcnCol>
-        <ShadcnCol class="bg-blue-300"></ShadcnCol>
-        <ShadcnCol class="bg-blue-400"></ShadcnCol>
-        <ShadcnCol class="bg-blue-500"></ShadcnCol>
+        <ShadcnCol class="bg-blue-200 h-12"></ShadcnCol>
+        <ShadcnCol class="bg-blue-300 h-12"></ShadcnCol>
+        <ShadcnCol class="bg-blue-400 h-12"></ShadcnCol>
+        <ShadcnCol class="bg-blue-500 h-12"></ShadcnCol>
     </ShadcnRow>
 </template>
 
@@ -196,7 +196,7 @@ This document is mainly used to describe some features and usage of the ShadcnRo
     description="Created a simple row and col with wrap">
     <div class="space-y-2 p-3">
         <ShadcnRow wrap :gutter="2">
-            <ShadcnCol v-for="i in 40" class="bg-blue-200"/>
+            <ShadcnCol v-for="i in 40" class="bg-blue-200 h-12"/>
         </ShadcnRow>
     </div>
 </CodeRunner>
@@ -216,6 +216,76 @@ This document is mainly used to describe some features and usage of the ShadcnRo
 
 :::
 
+## Col span
+
+<CodeRunner title="Col span"
+    description="Created a simple row and col with col span">
+    <div class="space-y-2 p-3">
+        <ShadcnRow>
+            <ShadcnCol class="bg-blue-200 h-12" span="2"></ShadcnCol>
+            <ShadcnCol class="bg-blue-300 h-12" span="1"></ShadcnCol>
+            <ShadcnCol class="bg-blue-400 h-12" span="3"></ShadcnCol>
+            <ShadcnCol class="bg-blue-500 h-12" span="1"></ShadcnCol>
+        </ShadcnRow>
+        <ShadcnRow>
+            <ShadcnCol class="bg-blue-200 h-12" span="8"></ShadcnCol>
+            <ShadcnCol class="bg-blue-300 h-12" span="3"></ShadcnCol>
+            <ShadcnCol class="bg-blue-400 h-12" span="3"></ShadcnCol>
+            <ShadcnCol class="bg-blue-500 h-12" span="1"></ShadcnCol>
+        </ShadcnRow>
+    </div>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnRow>
+        <ShadcnCol class="bg-blue-200 h-12" span="2"></ShadcnCol>
+        <ShadcnCol class="bg-blue-300 h-12" span="1"></ShadcnCol>
+        <ShadcnCol class="bg-blue-400 h-12" span="3"></ShadcnCol>
+        <ShadcnCol class="bg-blue-500 h-12" span="1"></ShadcnCol>
+    </ShadcnRow>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
+## Col order
+
+<CodeRunner title="Col order"
+    description="Created a simple row and col with col order">
+    <div class="space-y-2 p-3">
+        <ShadcnRow>
+            <ShadcnCol class="bg-blue-200 h-12" order="2" span="3">1 | order 2</ShadcnCol>
+            <ShadcnCol class="bg-blue-300 h-12" order="1" span="3">2 | order 1</ShadcnCol>
+            <ShadcnCol class="bg-blue-400 h-12" order="3" span="3">3 | order 3</ShadcnCol>
+            <ShadcnCol class="bg-blue-500 h-12" order="4" span="3">4 | order 4</ShadcnCol>
+        </ShadcnRow>
+    </div>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnRow>
+        <ShadcnCol class="bg-blue-200 h-12" order="2" span="3">1 | order 2</ShadcnCol>
+        <ShadcnCol class="bg-blue-300 h-12" order="1" span="3">2 | order 1</ShadcnCol>
+        <ShadcnCol class="bg-blue-400 h-12" order="3" span="3">3 | order 3</ShadcnCol>
+        <ShadcnCol class="bg-blue-500 h-12" order="4" span="3">4 | order 4</ShadcnCol>
+    </ShadcnRow>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Row Props"
@@ -225,5 +295,15 @@ This document is mainly used to describe some features and usage of the ShadcnRo
         ['align', 'Vertical alignment under layout', 'Enum', '-', 'top | middle | bottom'],
         ['justify', 'Horizontal alignment under layout', 'Enum', '-', 'start | center | end | between | around | evenly | normal | stretch'],
         ['wrap', 'Whether to automatically wrap', 'Boolean', 'false', '-'],
+    ]">
+</ApiTable>
+
+<br />
+
+<ApiTable title="Col Props"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :columns="[
+        ['span', 'The number of placeholders for the grid. The optional value is an integer from 1 to 12. For example, if the child element under the same ShadcnRow exceeds 12, it will automatically wrap.', 'String | Number', '1', '1 - 12'],
+        ['order', 'The order of the grid', 'String | Number', '-', '-'],
     ]">
 </ApiTable>
