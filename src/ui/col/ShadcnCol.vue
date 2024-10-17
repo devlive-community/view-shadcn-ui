@@ -7,8 +7,13 @@
 <script setup lang="ts">
 import { inject, onMounted } from 'vue'
 
+interface RowContext
+{
+  registerCol: () => void
+}
+
 // Inject the context of ShadcnRow
-const rowContext = inject('ShadcnRowContext', null)
+const rowContext = inject<RowContext | null>('ShadcnRowContext', null)
 
 onMounted(() => {
   if (!rowContext) {

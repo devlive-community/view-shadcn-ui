@@ -11,7 +11,7 @@ import { onMounted, provide, ref } from 'vue'
 import { cn } from '@/lib/utils.ts'
 import { Align } from '@/ui/enum/Align.ts'
 
-const props = withDefaults(defineProps<{
+withDefaults(defineProps<{
   gutter?: number
   align?: keyof typeof Align
 }>(), {
