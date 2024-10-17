@@ -48,7 +48,8 @@ export default {
         input: 'Input',
         copy: 'Copy',
         tooltip: 'Tooltip',
-        code: 'Code'
+        code: 'Code',
+        rowCol: 'Row/Col',
     },
     tip: {
         signInInfo: 'Enter your information to sign in to your account.',

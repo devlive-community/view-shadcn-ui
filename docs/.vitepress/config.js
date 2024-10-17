@@ -10,13 +10,18 @@ export default {
                 activeMatch: '/guide/'
             },
             {
-                text: 'Components (v2024.1.1)',
+                text: 'Components (v2024.1.2)',
                 items: [
+                    {
+                        text: '2024.1.2',
+                        link: '/components/2024.1.2/release-notes',
+                        activeMatch: '/components/2024.1.2/'
+                    },
                     {
                         text: '2024.1.1',
                         link: '/components/2024.1.1/release-notes',
                         activeMatch: '/components/2024.1.1/'
-                    },
+                    }
                 ]
             }
         ],
@@ -32,6 +37,50 @@ export default {
                     items: [
                         {text: "Installation", link: "installation"},
                         {text: "Quick Start", link: "quickstart"},
+                    ]
+                }
+            ],
+            '/components/2024.1.2/': [
+                {
+                    text: 'Release Notes',
+                    base: '/components/2024.1.2/',
+                    link: 'release-notes',
+                },
+                {
+                    text: 'Base Components',
+                    base: '/components/2024.1.1/',
+                    collapsed: false,
+                    items: [
+                        {text: 'Button', link: 'button'},
+                        {text: 'Icon', link: 'icon'},
+                        {text: 'Copy', link: 'copy'},
+                    ]
+                },
+                {
+                    text: 'Layout Components',
+                    collapsed: false,
+                    base: '/components/2024.1.2/',
+                    items: [
+                        {text: 'Card', link: '/components/2024.1.1/card'},
+                        {text: 'Row / Col', link: 'row-col'},
+                    ]
+                },
+                {
+                    text: 'View Components',
+                    base: '/components/2024.1.1/',
+                    collapsed: false,
+                    items: [
+                        {text: 'Modal', link: 'modal'},
+                        {text: 'Tooltip', link: 'tooltip'},
+                        {text: 'Code', link: 'code'},
+                    ]
+                },
+                {
+                    text: 'Form Components',
+                    base: '/components/2024.1.1/',
+                    collapsed: false,
+                    items: [
+                        {text: 'Input', link: 'input'},
                     ]
                 }
             ],

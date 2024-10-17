@@ -2,7 +2,7 @@
   "name": "view-shadcn-ui",
   "description": "View Shadcn UI is a component library built on Shadcn UI and Tailwind CSS.",
   "private": false,
-  "version": "2024.1.1",
+  "version": "2024.1.2",
   "license": "MIT",
   "main": "./dist/view-shadcn.umd.ts",
   "module": "./dist/view-shadcn.es.ts",
