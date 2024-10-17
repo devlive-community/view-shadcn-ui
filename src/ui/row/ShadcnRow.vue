@@ -1,6 +1,7 @@
 <template>
   <div :class="cn('flex flex-row',
-                  align && `items-${Align[align]}`)"
+                  align && `items-${Align[align]}`,
+                  justify && `justify-${Align[justify]}`)"
        :style="{ 'gap': `${gutter}px` }">
     <slot/>
   </div>
@@ -14,6 +15,7 @@ import { Align } from '@/ui/enum/Align.ts'
 withDefaults(defineProps<{
   gutter?: number
   align?: keyof typeof Align
+  justify?: keyof typeof Align
 }>(), {
   gutter: 0
 })
