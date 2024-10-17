@@ -71,21 +71,18 @@ This document is mainly used to describe some features and usage of the ShadcnRo
 <CodeRunner title="Align"
     description="Created a simple row and col with align">
     <div class="space-y-2">
-        Top
         <ShadcnRow align="top">
             <ShadcnCol class="bg-blue-200 h-16"></ShadcnCol>
             <ShadcnCol class="bg-blue-300 h-14"></ShadcnCol>
             <ShadcnCol class="bg-blue-400 h-10"></ShadcnCol>
             <ShadcnCol class="bg-blue-500 h-14"></ShadcnCol>
         </ShadcnRow>
-        Middle
         <ShadcnRow align="middle">
             <ShadcnCol class="bg-blue-200 h-16"></ShadcnCol>
             <ShadcnCol class="bg-blue-300 h-14"></ShadcnCol>
             <ShadcnCol class="bg-blue-400 h-10"></ShadcnCol>
             <ShadcnCol class="bg-blue-500 h-14"></ShadcnCol>
         </ShadcnRow>
-        Bottom
         <ShadcnRow align="bottom">
             <ShadcnCol class="bg-blue-200 h-16"></ShadcnCol>
             <ShadcnCol class="bg-blue-300 h-14"></ShadcnCol>
@@ -125,12 +122,81 @@ This document is mainly used to describe some features and usage of the ShadcnRo
 
 :::
 
+## Justify
+
+<CodeRunner title="Justify"
+    description="Created a simple row and col with justify">
+    <div class="space-y-2">
+        <ShadcnRow justify="start">
+            <ShadcnCol class="bg-blue-200 h-16"></ShadcnCol>
+            <ShadcnCol class="bg-blue-300 h-14"></ShadcnCol>
+            <ShadcnCol class="bg-blue-400 h-10"></ShadcnCol>
+            <ShadcnCol class="bg-blue-500 h-14"></ShadcnCol>
+        </ShadcnRow>
+        <ShadcnRow justify="center">
+            <ShadcnCol class="bg-blue-200 h-16"></ShadcnCol>
+            <ShadcnCol class="bg-blue-300 h-14"></ShadcnCol>
+            <ShadcnCol class="bg-blue-400 h-10"></ShadcnCol>
+            <ShadcnCol class="bg-blue-500 h-14"></ShadcnCol>
+        </ShadcnRow>
+        <ShadcnRow justify="end">
+            <ShadcnCol class="bg-blue-200 h-16"></ShadcnCol>
+            <ShadcnCol class="bg-blue-300 h-14"></ShadcnCol>
+            <ShadcnCol class="bg-blue-400 h-10"></ShadcnCol>
+            <ShadcnCol class="bg-blue-500 h-14"></ShadcnCol>
+        </ShadcnRow>
+        <ShadcnRow justify="between">
+            <ShadcnCol class="bg-blue-200 h-16"></ShadcnCol>
+            <ShadcnCol class="bg-blue-300 h-14"></ShadcnCol>
+            <ShadcnCol class="bg-blue-400 h-10"></ShadcnCol>
+            <ShadcnCol class="bg-blue-500 h-14"></ShadcnCol>
+        </ShadcnRow>
+    </div>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnRow justify="start">
+        <ShadcnCol class="bg-blue-200 h-16"></ShadcnCol>
+        <ShadcnCol class="bg-blue-300 h-14"></ShadcnCol>
+        <ShadcnCol class="bg-blue-400 h-10"></ShadcnCol>
+        <ShadcnCol class="bg-blue-500 h-14"></ShadcnCol>
+    </ShadcnRow>
+    <ShadcnRow justify="center">
+        <ShadcnCol class="bg-blue-200 h-16"></ShadcnCol>
+        <ShadcnCol class="bg-blue-300 h-14"></ShadcnCol>
+        <ShadcnCol class="bg-blue-400 h-10"></ShadcnCol>
+        <ShadcnCol class="bg-blue-500 h-14"></ShadcnCol>
+    </ShadcnRow>
+    <ShadcnRow justify="end">
+        <ShadcnCol class="bg-blue-200 h-16"></ShadcnCol>
+        <ShadcnCol class="bg-blue-300 h-14"></ShadcnCol>
+        <ShadcnCol class="bg-blue-400 h-10"></ShadcnCol>
+        <ShadcnCol class="bg-blue-500 h-14"></ShadcnCol>
+    </ShadcnRow>
+    <ShadcnRow justify="between">
+        <ShadcnCol class="bg-blue-200 h-16"></ShadcnCol>
+        <ShadcnCol class="bg-blue-300 h-14"></ShadcnCol>
+        <ShadcnCol class="bg-blue-400 h-10"></ShadcnCol>
+        <ShadcnCol class="bg-blue-500 h-14"></ShadcnCol>
+    </ShadcnRow>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Row Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
     :columns="[
         ['gutter', 'Grid spacing, unit px, divided equally between left and right', 'Number', '0', '-'],
-        ['align', 'Vertical alignment under layout', 'Enum', 'top', 'top, middle, bottom'],
+        ['align', 'Vertical alignment under layout', 'Enum', '-', 'top | middle | bottom'],
+        ['justify', 'Horizontal alignment under layout', 'Enum', '-', 'start | center | end | between | around | evenly | normal | stretch'],
     ]">
 </ApiTable>

@@ -50,14 +50,47 @@
         </div>
       </template>
     </ShadcnCard>
+
+    <ShadcnCard title="Justify">
+      <template #content>
+        <div class="space-y-2 p-3">
+          <ShadcnRow justify="start">
+            <ShadcnCol class="bg-blue-200 h-16"></ShadcnCol>
+            <ShadcnCol class="bg-blue-300 h-14"></ShadcnCol>
+            <ShadcnCol class="bg-blue-400 h-10"></ShadcnCol>
+            <ShadcnCol class="bg-blue-500 h-14"></ShadcnCol>
+          </ShadcnRow>
+          <ShadcnRow justify="center">
+            <ShadcnCol class="bg-blue-200 h-16"></ShadcnCol>
+            <ShadcnCol class="bg-blue-300 h-14"></ShadcnCol>
+            <ShadcnCol class="bg-blue-400 h-10"></ShadcnCol>
+            <ShadcnCol class="bg-blue-500 h-14"></ShadcnCol>
+          </ShadcnRow>
+          <ShadcnRow justify="end">
+            <ShadcnCol class="bg-blue-200 h-16"></ShadcnCol>
+            <ShadcnCol class="bg-blue-300 h-14"></ShadcnCol>
+            <ShadcnCol class="bg-blue-400 h-10"></ShadcnCol>
+            <ShadcnCol class="bg-blue-500 h-14"></ShadcnCol>
+          </ShadcnRow>
+          <ShadcnRow justify="between">
+            <ShadcnCol class="bg-blue-200 h-16"></ShadcnCol>
+            <ShadcnCol class="bg-blue-300 h-14"></ShadcnCol>
+            <ShadcnCol class="bg-blue-400 h-10"></ShadcnCol>
+            <ShadcnCol class="bg-blue-500 h-14"></ShadcnCol>
+          </ShadcnRow>
+        </div>
+      </template>
+    </ShadcnCard>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import ShadcnCard from '@/ui/card'
 
 export default defineComponent({
-  name: 'RowColHome'
+  name: 'RowColHome',
+  components: { ShadcnCard }
 })
 </script>
 
