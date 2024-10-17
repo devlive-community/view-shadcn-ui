@@ -2,6 +2,32 @@ export default {
     title: 'View Shadcn UI',
     description: 'A component library built on Shadcn UI and Tailwind CSS.',
     themeConfig: {
+        socialLinks: [
+            {icon: "github", link: "https://github.com/devlive-community/view-shadcn-ui"},
+            {icon: 'npm', link: 'https://www.npmjs.com/package/view-shadcn-ui'}
+        ],
+        editLink: {
+            pattern: 'https://github.com/devlive-community/view-shadcn-ui/edit/dev/docs/:path',
+            text: 'Edit this page on GitHub'
+        },
+        lastUpdated: {
+            text: 'Updated at',
+            formatOptions: {
+                dateStyle: 'full',
+                timeStyle: 'medium'
+            }
+        },
+        footer: {
+            message: 'Released under the MIT License.',
+            copyright: 'Copyright © 2024 Present by <a href="https://community.devlive.org" target="_blank">Devlive Community</a>'
+        },
+        docFooter: {
+            prev: 'Previous page',
+            next: 'Next page'
+        },
+        search: {
+            provider: 'local'
+        },
         nav: [
             {text: 'Home', link: '/'},
             {
@@ -24,9 +50,6 @@ export default {
                     }
                 ]
             }
-        ],
-        socialLinks: [
-            {icon: "github", link: "https://github.com/devlive-community/view-shadcn-ui"},
         ],
         sidebar: {
             "/guide/": [
@@ -61,7 +84,7 @@ export default {
                     collapsed: false,
                     base: '/components/2024.1.2/',
                     items: [
-                        {text: 'Card', link: '/components/2024.1.1/card'},
+                        {text: 'Card', link: '../2024.1.1/card'},
                         {text: 'Row / Col', link: 'row-col'},
                     ]
                 },
