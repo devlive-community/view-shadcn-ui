@@ -1,7 +1,8 @@
 <template>
   <div :class="cn('flex flex-row',
                   align && `items-${Align[align]}`,
-                  justify && `justify-${justify}`)"
+                  justify && `justify-${justify}`,
+                  wrap && 'flex-wrap',)"
        :style="{ 'gap': `${gutter}px` }">
     <slot/>
   </div>
@@ -16,6 +17,7 @@ withDefaults(defineProps<{
   gutter?: number
   align?: keyof typeof Align
   justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly' | 'normal' | 'stretch'
+  wrap?: boolean
 }>(), {
   gutter: 0
 })

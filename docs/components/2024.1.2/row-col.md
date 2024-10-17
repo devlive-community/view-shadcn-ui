@@ -190,6 +190,32 @@ This document is mainly used to describe some features and usage of the ShadcnRo
 
 :::
 
+## Wrap
+
+<CodeRunner title="Wrap"
+    description="Created a simple row and col with wrap">
+    <div class="space-y-2 p-3">
+        <ShadcnRow wrap :gutter="2">
+            <ShadcnCol v-for="i in 40" class="bg-blue-200"/>
+        </ShadcnRow>
+    </div>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnRow wrap :gutter="2">
+        <ShadcnCol v-for="i in 40" class="bg-blue-200"/>
+    </ShadcnRow>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Row Props"
@@ -198,5 +224,6 @@ This document is mainly used to describe some features and usage of the ShadcnRo
         ['gutter', 'Grid spacing, unit px, divided equally between left and right', 'Number', '0', '-'],
         ['align', 'Vertical alignment under layout', 'Enum', '-', 'top | middle | bottom'],
         ['justify', 'Horizontal alignment under layout', 'Enum', '-', 'start | center | end | between | around | evenly | normal | stretch'],
+        ['wrap', 'Whether to automatically wrap', 'Boolean', 'false', '-'],
     ]">
 </ApiTable>
