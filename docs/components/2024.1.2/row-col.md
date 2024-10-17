@@ -254,6 +254,38 @@ This document is mainly used to describe some features and usage of the ShadcnRo
 
 :::
 
+## Col order
+
+<CodeRunner title="Col order"
+    description="Created a simple row and col with col order">
+    <div class="space-y-2 p-3">
+        <ShadcnRow>
+            <ShadcnCol class="bg-blue-200 h-12" order="2" span="3">1 | order 2</ShadcnCol>
+            <ShadcnCol class="bg-blue-300 h-12" order="1" span="3">2 | order 1</ShadcnCol>
+            <ShadcnCol class="bg-blue-400 h-12" order="3" span="3">3 | order 3</ShadcnCol>
+            <ShadcnCol class="bg-blue-500 h-12" order="4" span="3">4 | order 4</ShadcnCol>
+        </ShadcnRow>
+    </div>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnRow>
+        <ShadcnCol class="bg-blue-200 h-12" order="2" span="3">1 | order 2</ShadcnCol>
+        <ShadcnCol class="bg-blue-300 h-12" order="1" span="3">2 | order 1</ShadcnCol>
+        <ShadcnCol class="bg-blue-400 h-12" order="3" span="3">3 | order 3</ShadcnCol>
+        <ShadcnCol class="bg-blue-500 h-12" order="4" span="3">4 | order 4</ShadcnCol>
+    </ShadcnRow>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Row Props"
@@ -272,5 +304,6 @@ This document is mainly used to describe some features and usage of the ShadcnRo
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
     :columns="[
         ['span', 'The number of placeholders for the grid. The optional value is an integer from 1 to 12. For example, if the child element under the same ShadcnRow exceeds 12, it will automatically wrap.', 'String | Number', '1', '1 - 12'],
+        ['order', 'The order of the grid', 'String | Number', '-', '-'],
     ]">
 </ApiTable>

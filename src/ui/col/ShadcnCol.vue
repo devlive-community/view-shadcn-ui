@@ -1,5 +1,6 @@
 <template>
-  <div :style="{ width: calcColWidth }">
+  <div :class="cn(order && `order-${order}`)"
+       :style="{ width: calcColWidth }">
     <slot/>
   </div>
 </template>
@@ -7,6 +8,7 @@
 <script setup lang="ts">
 import { computed, inject, onMounted } from 'vue'
 import { toNumber } from 'lodash'
+import { cn } from '@/lib/utils.ts'
 
 interface RowContext
 {
@@ -15,6 +17,7 @@ interface RowContext
 
 const props = withDefaults(defineProps<{
   span?: number | string
+  order?: number | string
 }>(), {
   span: 1
 })

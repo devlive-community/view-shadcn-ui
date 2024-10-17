@@ -117,6 +117,23 @@
         </div>
       </template>
     </ShadcnCard>
+
+    <ShadcnCard title="Order">
+      <template #content>
+        <div class="space-y-2 p-3">
+          <ShadcnRow class="bg-amber-100">
+            <ShadcnCol class="bg-blue-200 h-16" span="3" order="3">1 | order-3</ShadcnCol>
+            <ShadcnCol class="bg-blue-300 h-14" span="4" order="4">2 | order-4</ShadcnCol>
+            <ShadcnCol class="bg-blue-400 h-10" span="5" order="5">3 | order-5</ShadcnCol>
+          </ShadcnRow>
+          <ShadcnRow class="bg-amber-100">
+            <ShadcnCol class="bg-blue-200 h-16" span="3" order="3">1 | order-3</ShadcnCol>
+            <ShadcnCol class="bg-blue-300 h-14" span="4" order="5">2 | order-5</ShadcnCol>
+            <ShadcnCol class="bg-blue-400 h-10" span="5" order="2">3 | order-2</ShadcnCol>
+          </ShadcnRow>
+        </div>
+      </template>
+    </ShadcnCard>
   </div>
 </template>
 
