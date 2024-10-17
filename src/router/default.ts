@@ -244,6 +244,11 @@ const createComponentRouter = (router: Router): void => {
                 name: 'code',
                 path: 'code',
                 component: () => import('@/views/pages/components/CodeHome.vue')
+            },
+            {
+                name: 'rowCol',
+                path: 'rowCol',
+                component: () => import('@/views/pages/components/RowColHome.vue')
             }
         ]
     })

@@ -7,6 +7,8 @@ import ShadcnIcon from '@/ui/icon'
 import ShadcnModal from '@/ui/modal'
 import ShadcnTooltip from '@/ui/tooltip'
 import ShadcnCode from '@/ui/code'
+import ShadcnRow from '@/ui/row'
+import ShadcnCol from '@/ui/col/ShadcnCol.vue'
 
 let components = [
     ShadcnButton,
@@ -16,7 +18,9 @@ let components = [
     ShadcnInput,
     ShadcnIcon,
     ShadcnModal,
-    ShadcnTooltip
+    ShadcnTooltip,
+    ShadcnRow,
+    ShadcnCol
 ]
 
 const install = (Vue: App) => {
@@ -46,6 +50,8 @@ export { default as ShadcnInput } from '@/ui/input'
 export { default as ShadcnIcon } from '@/ui/icon'
 export { default as ShadcnModal } from '@/ui/modal'
 export { default as ShadcnTooltip } from '@/ui/tooltip'
+export { default as ShadcnRow } from '@/ui/row'
+export { default as ShadcnCol } from '@/ui/col'
 
 // Support global import
 export default install
