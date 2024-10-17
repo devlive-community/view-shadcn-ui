@@ -12,6 +12,19 @@
         </div>
       </template>
     </ShadcnCard>
+
+    <ShadcnCard title="Gutter">
+      <template #content>
+        <div class="flex items-center justify-center space-x-2 h-32 p-3">
+          <ShadcnRow :gutter="30">
+            <ShadcnCol class="bg-blue-200"></ShadcnCol>
+            <ShadcnCol class="bg-blue-300"></ShadcnCol>
+            <ShadcnCol class="bg-blue-400"></ShadcnCol>
+            <ShadcnCol class="bg-blue-500"></ShadcnCol>
+          </ShadcnRow>
+        </div>
+      </template>
+    </ShadcnCard>
   </div>
 </template>
 

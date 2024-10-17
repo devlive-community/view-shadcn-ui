@@ -1,12 +1,13 @@
 <template>
-  <div class="flex flex-row"
-       :style="{ '--gutter': `${props.gutter}px` }">
+  <div :class="cn('flex flex-row')"
+       :style="{ 'gap': `${gutter}px` }">
     <slot/>
   </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, provide, ref } from 'vue'
+import { cn } from '@/lib/utils.ts'
 
 const props = withDefaults(defineProps<{
   gutter?: number
