@@ -25,6 +25,31 @@
         </div>
       </template>
     </ShadcnCard>
+
+    <ShadcnCard title="Align">
+      <template #content>
+        <div class="space-y-2 p-3 content-center">
+          <ShadcnRow align="top">
+            <ShadcnCol class="bg-blue-200 h-16"></ShadcnCol>
+            <ShadcnCol class="bg-blue-300 h-14"></ShadcnCol>
+            <ShadcnCol class="bg-blue-400 h-10"></ShadcnCol>
+            <ShadcnCol class="bg-blue-500 h-14"></ShadcnCol>
+          </ShadcnRow>
+          <ShadcnRow align="middle">
+            <ShadcnCol class="bg-blue-200 h-16"></ShadcnCol>
+            <ShadcnCol class="bg-blue-300 h-14"></ShadcnCol>
+            <ShadcnCol class="bg-blue-400 h-10"></ShadcnCol>
+            <ShadcnCol class="bg-blue-500 h-14"></ShadcnCol>
+          </ShadcnRow>
+          <ShadcnRow align="bottom">
+            <ShadcnCol class="bg-blue-200 h-16"></ShadcnCol>
+            <ShadcnCol class="bg-blue-300 h-14"></ShadcnCol>
+            <ShadcnCol class="bg-blue-400 h-10"></ShadcnCol>
+            <ShadcnCol class="bg-blue-500 h-14"></ShadcnCol>
+          </ShadcnRow>
+        </div>
+      </template>
+    </ShadcnCard>
   </div>
 </template>
 
@@ -35,3 +60,11 @@ export default defineComponent({
   name: 'RowColHome'
 })
 </script>
+
+<style scoped>
+.content-center {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+</style>

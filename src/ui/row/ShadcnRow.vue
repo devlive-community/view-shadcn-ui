@@ -1,5 +1,6 @@
 <template>
-  <div :class="cn('flex flex-row')"
+  <div :class="cn('flex flex-row',
+                  align && `items-${Align[align]}`)"
        :style="{ 'gap': `${gutter}px` }">
     <slot/>
   </div>
@@ -8,9 +9,11 @@
 <script setup lang="ts">
 import { onMounted, provide, ref } from 'vue'
 import { cn } from '@/lib/utils.ts'
+import { Align } from '@/ui/enum/Align.ts'
 
 const props = withDefaults(defineProps<{
   gutter?: number
+  align?: keyof typeof Align
 }>(), {
   gutter: 0
 })

@@ -58,10 +58,11 @@ export default {
                 },
                 {
                     text: 'Layout Components',
-                    base: '/components/2024.1.1/',
                     collapsed: false,
+                    base: '/components/2024.1.2/',
                     items: [
-                        {text: 'Card', link: 'card'}
+                        {text: 'Card', link: '/components/2024.1.1/card'},
+                        {text: 'Row / Col', link: 'row-col'},
                     ]
                 },
                 {
