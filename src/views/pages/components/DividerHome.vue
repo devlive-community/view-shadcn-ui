@@ -21,6 +21,14 @@
         </div>
       </div>
     </ShadcnCard>
+
+    <ShadcnCard title="Position">
+      <div class="h-32 p-3 space-y-2">
+        <ShadcnDivider orientation="left">Left</ShadcnDivider>
+        <ShadcnDivider orientation="center">Center</ShadcnDivider>
+        <ShadcnDivider orientation="right">Right</ShadcnDivider>
+      </div>
+    </ShadcnCard>
   </div>
 </template>
 

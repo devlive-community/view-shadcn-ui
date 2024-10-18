@@ -63,3 +63,47 @@ This document is mainly used to describe some features and usage of the ShadcnDi
 ```
 
 :::
+
+## Position
+
+<CodeRunner title="Position"
+    description="Created a position divider">
+    <ShadcnDivider orientation="left">Left</ShadcnDivider>
+    <ShadcnDivider orientation="center">Center</ShadcnDivider>
+    <ShadcnDivider orientation="right">Right</ShadcnDivider>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnDivider orientation="left">Left</ShadcnDivider>
+    <ShadcnDivider orientation="center">Center</ShadcnDivider>
+    <ShadcnDivider orientation="right">Right</ShadcnDivider>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
+## API Attributes
+
+<ApiTable title="Divider Props"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :columns="[
+        ['text', 'Text content', 'String', '-', '-'],
+        ['type', 'Divider type', 'Enum', '-', 'horizontal | vertical'],
+        ['orientation', 'The position of the dividing line title', 'Enum', '-', 'left | center | right'],
+    ]">
+</ApiTable>
+
+<br />
+
+<ApiTable title="Divider Slots"
+    :headers="['Slot', 'Description']"
+    :columns="[
+        ['default', 'Default slot'],
+    ]">
+</ApiTable>
