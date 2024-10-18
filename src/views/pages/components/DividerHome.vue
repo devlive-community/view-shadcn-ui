@@ -29,6 +29,10 @@
         <ShadcnDivider orientation="right">Right</ShadcnDivider>
       </div>
     </ShadcnCard>
+
+    <ShadcnCard title="Dashed">
+      <ShadcnDivider class="mt-10" dashed/>
+    </ShadcnCard>
   </div>
 </template>
 

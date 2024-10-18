@@ -1,7 +1,8 @@
 <template>
   <div :class="cn(type === 'vertical' ? 'border-l' : 'flex items-center w-full')">
     <div v-if="orientation !== 'left'"
-         :class="cn(type === 'vertical' ? 'bg-gray-300' : 'flex-grow border-t border-gray-300')"/>
+         :class="cn(type === 'vertical' ? 'bg-gray-300' : 'flex-grow border-t border-gray-300',
+                    dashed && 'border-dashed')"/>
 
     <div :class="cn(
            orientation === 'left' && (type === 'vertical' ? 'order-first mb-2' : 'order-first mr-4'),
@@ -13,7 +14,8 @@
     </div>
 
     <div v-if="orientation !== 'right'"
-         :class="cn(type === 'vertical' ? 'bg-gray-300' : 'flex-grow border-t border-gray-300')"/>
+         :class="cn(type === 'vertical' ? 'bg-gray-300' : 'flex-grow border-t border-gray-300',
+                    dashed && 'border-dashed')"/>
   </div>
 </template>
 
@@ -24,7 +26,9 @@ withDefaults(defineProps<{
   text?: string
   type?: 'horizontal' | 'vertical'
   orientation?: 'left' | 'center' | 'right'
+  dashed?: boolean
 }>(), {
-  type: 'horizontal'
+  type: 'horizontal',
+  dashed: false
 })
 </script>

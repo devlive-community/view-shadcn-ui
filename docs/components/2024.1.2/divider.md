@@ -88,6 +88,26 @@ This document is mainly used to describe some features and usage of the ShadcnDi
 
 :::
 
+## Dashed
+
+<CodeRunner title="Dashed"
+    description="Created a dashed divider">
+    <ShadcnDivider dashed />
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnDivider dashed />
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Divider Props"
@@ -96,14 +116,15 @@ This document is mainly used to describe some features and usage of the ShadcnDi
         ['text', 'Text content', 'String', '-', '-'],
         ['type', 'Divider type', 'Enum', '-', 'horizontal | vertical'],
         ['orientation', 'The position of the dividing line title', 'Enum', '-', 'left | center | right'],
+        ['dashed', 'Whether the divider is dashed', 'Boolean', 'false', '-'],
     ]">
 </ApiTable>
 
 <br />
 
 <ApiTable title="Divider Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['Slot', 'Description', 'Props Reference']"
     :columns="[
-        ['default', 'Default slot'],
+        ['default', 'Default slot', 'text'],
     ]">
 </ApiTable>

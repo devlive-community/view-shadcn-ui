@@ -86,7 +86,7 @@ export default {
                     items: [
                         {text: 'Card', link: '../2024.1.1/card'},
                         {text: 'Row / Col', link: 'row-col'},
-                        {text: 'Divider', link: 'divider'},
+                        {text: 'Divider <Badge type="info" text="default" />', link: 'divider'},
                     ]
                 },
                 {
