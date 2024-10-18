@@ -27,3 +27,39 @@ This document is mainly used to describe some features and usage of the ShadcnDi
 ```
 
 :::
+
+## Type
+
+<CodeRunner title="Type"
+    description="Created a type divider">
+    <div>Horizontal</div>
+    <ShadcnDivider type="horizontal" />
+    <div class="flex space-x-2 mt-2">
+        <div>Vertical</div>
+        <ShadcnDivider type="vertical" />
+        <a href="#">Link</a>
+        <ShadcnDivider type="vertical" />
+        <div>Vertical</div>
+    </div>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <div>Horizontal</div>
+    <ShadcnDivider type="horizontal" />
+    <div class="flex space-x-2">
+        <div>Vertical</div>
+        <ShadcnDivider type="vertical" />
+        <a href="#">Link</a>
+        <ShadcnDivider type="vertical" />
+        <div>Vertical</div>
+    </div>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
