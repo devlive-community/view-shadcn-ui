@@ -50,6 +50,7 @@ export default {
         tooltip: '提示',
         code: '代码',
         rowCol: '行/列',
+        divider: '分隔线',
     },
     tip: {
         signInInfo: '输入您的信息以登录您的帐户。',

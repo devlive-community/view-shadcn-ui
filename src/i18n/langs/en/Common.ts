@@ -50,6 +50,7 @@ export default {
         tooltip: 'Tooltip',
         code: 'Code',
         rowCol: 'Row/Col',
+        divider: 'Divider',
     },
     tip: {
         signInInfo: 'Enter your information to sign in to your account.',

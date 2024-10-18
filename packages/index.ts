@@ -9,6 +9,7 @@ import ShadcnTooltip from '@/ui/tooltip'
 import ShadcnCode from '@/ui/code'
 import ShadcnRow from '@/ui/row'
 import ShadcnCol from '@/ui/col/ShadcnCol.vue'
+import ShadcnDivider from '@/ui/divider'
 
 let components = [
     ShadcnButton,
@@ -20,7 +21,8 @@ let components = [
     ShadcnModal,
     ShadcnTooltip,
     ShadcnRow,
-    ShadcnCol
+    ShadcnCol,
+    ShadcnDivider
 ]
 
 const install = (Vue: App) => {
@@ -52,6 +54,7 @@ export { default as ShadcnModal } from '@/ui/modal'
 export { default as ShadcnTooltip } from '@/ui/tooltip'
 export { default as ShadcnRow } from '@/ui/row'
 export { default as ShadcnCol } from '@/ui/col'
+export { default as ShadcnDivider } from '@/ui/divider'
 
 // Support global import
 export default install
