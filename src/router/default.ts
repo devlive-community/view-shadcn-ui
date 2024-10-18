@@ -249,6 +249,11 @@ const createComponentRouter = (router: Router): void => {
                 name: 'rowCol',
                 path: 'rowCol',
                 component: () => import('@/views/pages/components/RowColHome.vue')
+            },
+            {
+                name: 'divider',
+                path: 'divider',
+                component: () => import('@/views/pages/components/DividerHome.vue')
             }
         ]
     })
