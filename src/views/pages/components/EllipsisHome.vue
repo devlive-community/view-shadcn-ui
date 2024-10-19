@@ -19,6 +19,12 @@
         <ShadcnEllipsis :text="text" tooltip line="2"/>
       </div>
     </ShadcnCard>
+
+    <ShadcnCard title="Length">
+      <div class="p-3">
+        <ShadcnEllipsis :text="text" length="120"/>
+      </div>
+    </ShadcnCard>
   </div>
 </template>
 

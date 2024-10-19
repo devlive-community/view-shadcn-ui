@@ -1,7 +1,8 @@
 <template>
   <div ref="ellipsisContent"
-       :class="cn('overflow-hidden max-w-full',
-                  isMultiLine ? 'overflow-hidden' : 'whitespace-nowrap overflow-ellipsis')"
+       :class="cn('max-w-full',
+                  isMultiLine ? 'overflow-hidden' : 'whitespace-nowrap overflow-ellipsis',
+                  length ? 'whitespace-normal' : 'overflow-hidden')"
        :style="isMultiLine ? { '-webkit-line-clamp': line, '-webkit-box-orient': 'vertical', display: '-webkit-box' } : {}">
     <ShadcnTooltip v-if="tooltip" :content="text">
       <template v-if="text">{{ displayedText }}</template>
@@ -24,6 +25,7 @@ const props = withDefaults(defineProps<{
   text?: string
   line?: number | string
   tooltip?: boolean
+  length?: number | string
 }>(), {
   line: 1
 })
@@ -31,16 +33,26 @@ const props = withDefaults(defineProps<{
 const isMultiLine = computed(() => toNumber(props.line) > 1)
 const displayedText = ref(props.text)
 
+const getDisplayedText = (text: string | undefined, length: number | string | undefined) => {
+  if (!text) {
+    return ''
+  }
+  const lengthAsNumber = toNumber(length)
+  if (lengthAsNumber && text.length > lengthAsNumber) {
+    return text.slice(0, lengthAsNumber) + '...'
+  }
+  return text
+}
+
 const ellipsisContent = ref<HTMLElement | null>(null)
 
 const applyEllipsis = () => {
   const content = ellipsisContent.value
   if (content && !supportsLineClamp()) {
-    // If the browser does not support line-clamp manual truncation
     const lineHeight = parseInt(getComputedStyle(content).lineHeight, 10)
     const maxHeight = lineHeight * toNumber(props.line)
+
     if (content.scrollHeight > maxHeight) {
-      // Manually capture text and add ellipses
       let text = props.text || ''
       while (content.scrollHeight > maxHeight && text.length > 0) {
         text = text.slice(0, -1)
@@ -56,6 +68,8 @@ const supportsLineClamp = () => {
 }
 
 onMounted(() => {
+  displayedText.value = getDisplayedText(props.text, props.length)
+
   if (!supportsLineClamp()) {
     applyEllipsis()
   }
