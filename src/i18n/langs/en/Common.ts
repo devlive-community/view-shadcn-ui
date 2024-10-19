@@ -51,6 +51,7 @@ export default {
         code: 'Code',
         rowCol: 'Row/Col',
         divider: 'Divider',
+        ellipsis: 'Ellipsis',
     },
     tip: {
         signInInfo: 'Enter your information to sign in to your account.',
