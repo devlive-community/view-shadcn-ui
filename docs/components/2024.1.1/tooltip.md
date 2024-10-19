@@ -152,15 +152,39 @@ This document is mainly used to describe some features and usage of the ShadcnTo
 
 :::
 
+## Width
+
+<CodeRunner title="Width">
+    <ShadcnTooltip content="Steve Jobs (English: Steve Jobs) is an American entrepreneur, marketer and inventor. He is one of the co-founders of Apple and has served as chairman and CEO. He is also the founder and CEO of NeXT and the founder and former CEO of Pixar Animation. He was a member of the board of directors of the Walt Disney Company in 2006. The place where Apple's press conference was held in September 2017 was named Steve Jobs Theater after him." width="200">
+        <ShadcnButton>Hover</ShadcnButton>
+    </ShadcnTooltip>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnTooltip content="Steve Jobs (English: Steve Jobs) is an American entrepreneur, marketer and inventor. He is one of the co-founders of Apple and has served as chairman and CEO. He is also the founder and CEO of NeXT and the founder and former CEO of Pixar Animation. He was a member of the board of directors of the Walt Disney Company in 2006. The place where Apple's press conference was held in September 2017 was named Steve Jobs Theater after him." width="200">
+        <ShadcnButton>Hover</ShadcnButton>
+    </ShadcnTooltip>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Tooltip Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List', 'Latest Version']"
     :columns="[
-        ['content', 'The content of the tooltip', 'Object', '-', '-', '-'],
+        ['content', 'The content of the tooltip', 'Object', '-', '-', '-', '-'],
         ['delay', 'Delay time', 'Number', '0', '-', '-'],
-        ['position', 'The position of the tooltip', 'Enum', 'top', '-', 'top, bottom, left, right'],
-        ['arrow', 'Show arrow', 'Boolean', 'true', '-', '-']
+        ['position', 'The position of the tooltip', 'Enum', 'top', '-', 'top, bottom, left, right', '-'],
+        ['arrow', 'Show arrow', 'Boolean', 'true', '-', '-', '-'],
+        ['width', 'The width of the tooltip', 'Number | String', '200', '-', '-', '2024.1.2']
     ]">
 </ApiTable>
 

@@ -254,6 +254,11 @@ const createComponentRouter = (router: Router): void => {
                 name: 'divider',
                 path: 'divider',
                 component: () => import('@/views/pages/components/DividerHome.vue')
+            },
+            {
+                name: 'ellipsis',
+                path: 'ellipsis',
+                component: () => import('@/views/pages/components/EllipsisHome.vue')
             }
         ]
     })

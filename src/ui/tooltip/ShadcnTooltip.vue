@@ -1,10 +1,13 @@
 <template>
   <TooltipProvider :delay-duration="delay">
     <Tooltip>
-      <TooltipTrigger>
-        <slot/>
+      <TooltipTrigger asChild>
+        <span>
+          <slot/>
+        </span>
       </TooltipTrigger>
-      <TooltipContent :side="position">
+      <TooltipContent :side="position"
+                      :style="{ width : `${width}px`, minWidth: `${width}px`, maxWidth: `${width}px`}">
         <template v-if="content">{{ content }}</template>
         <slot v-else name="content"/>
         <TooltipArrow v-if="arrow"/>
@@ -22,9 +25,11 @@ withDefaults(defineProps<{
   delay?: number
   position?: 'top' | 'right' | 'bottom' | 'left'
   arrow?: boolean
+  width?: string | number
 }>(), {
   delay: 0,
   position: 'top',
-  arrow: true
+  arrow: true,
+  width: 200
 })
 </script>

@@ -73,7 +73,8 @@ const createNavigation = (): void => {
     const code = createNavigationItem('common.common.code', undefined, '/components/code', undefined, NavigationPosition.LEFT_TOP)
     const rowCol = createNavigationItem('common.common.rowCol', undefined, '/components/rowCol', undefined, NavigationPosition.LEFT_TOP)
     const divider = createNavigationItem('common.common.divider', undefined, '/components/divider', undefined, NavigationPosition.LEFT_TOP)
-    const componentArray = [button, card, tree, timeline, tab, modal, input, icon, copy, tooltip, code, rowCol, divider]
+    const ellipsis = createNavigationItem('common.common.ellipsis', undefined, '/components/ellipsis', undefined, NavigationPosition.LEFT_TOP)
+    const componentArray = [button, card, tree, timeline, tab, modal, input, icon, copy, tooltip, code, rowCol, divider, ellipsis]
     const components = createNavigationItem('common.common.component', componentArray.length.toString(), '/components', Command, NavigationPosition.LEFT_TOP, componentArray)
     NavigationService.addNavigation(components)
 
