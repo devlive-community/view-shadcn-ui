@@ -1,8 +1,10 @@
 <template>
   <TooltipProvider :delay-duration="delay">
     <Tooltip>
-      <TooltipTrigger>
-        <slot/>
+      <TooltipTrigger asChild>
+        <span>
+          <slot/>
+        </span>
       </TooltipTrigger>
       <TooltipContent :side="position">
         <template v-if="content">{{ content }}</template>

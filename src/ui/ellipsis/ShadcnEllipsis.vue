@@ -1,21 +1,29 @@
 <template>
   <div ref="ellipsisContent"
        :class="cn('overflow-hidden max-w-full',
-                  isMultiLine ? 'multi-line' : 'single-line')"
-       :style="isMultiLine ? { '-webkit-line-clamp': line } : {}">
-    <span v-if="text">{{ displayedText }}</span>
-    <slot v-else/>
+                  isMultiLine ? 'overflow-hidden' : 'whitespace-nowrap overflow-ellipsis')"
+       :style="isMultiLine ? { '-webkit-line-clamp': line, '-webkit-box-orient': 'vertical', display: '-webkit-box' } : {}">
+    <ShadcnTooltip v-if="tooltip" :content="text">
+      <template v-if="text">{{ displayedText }}</template>
+      <slot v-else/>
+    </ShadcnTooltip>
+    <template v-else>
+      <span v-if="text">{{ displayedText }}</span>
+      <slot v-else/>
+    </template>
   </div>
 </template>
 
 <script setup lang="ts">
 import { cn } from '@/lib/utils.ts'
+import ShadcnTooltip from '@/ui/tooltip'
 import { toNumber } from 'lodash'
 import { computed, onMounted, ref } from 'vue'
 
 const props = withDefaults(defineProps<{
   text?: string
   line?: number | string
+  tooltip?: boolean
 }>(), {
   line: 1
 })
@@ -53,24 +61,3 @@ onMounted(() => {
   }
 })
 </script>
-
-<style>
-.single-line {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.multi-line {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-@supports not (-webkit-line-clamp: 1) {
-  /* For browsers that do not support line-clamp, use a single line ellipsis */
-  .multi-line {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-}
-</style>
