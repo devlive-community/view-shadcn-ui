@@ -4,7 +4,8 @@
     <AvatarImage :src="String(src)"
                  :class="cn('border-2 border-background cursor-pointer',
                             size && Size[size])"
-                 @load="onImageLoaded"/>
+                 @load="onImageLoaded"
+                 @error="onImageFailed"/>
     <AvatarFallback>{{ alt }}</AvatarFallback>
   </Avatar>
 </template>
@@ -20,7 +21,7 @@ enum Size
   large = 'w-14 h-14'
 }
 
-const emit = defineEmits(['on-success'])
+const emit = defineEmits(['on-success', 'on-failed'])
 
 withDefaults(defineProps<{
   src?: string
@@ -32,4 +33,6 @@ withDefaults(defineProps<{
 })
 
 const onImageLoaded = () => emit('on-success')
+
+const onImageFailed = () => emit('on-failed')
 </script>

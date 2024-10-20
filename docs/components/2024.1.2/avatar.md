@@ -104,5 +104,6 @@ This document is mainly used to describe some features and usage of the ShadcnAv
     :headers="['Event', 'Description']"
     :columns="[
         ['on-success', 'Called when the image is successfully loaded'],
+        ['on-failed', 'Called when the image fails to load'],
     ]">
 </ApiTable>
