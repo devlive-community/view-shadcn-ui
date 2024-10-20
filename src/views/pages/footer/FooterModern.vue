@@ -73,7 +73,7 @@ import ICard from '@/ui/card'
 import ModernFooter from '@/views/components/footer/modern/ModernFooter.vue'
 import { Footer } from '@/views/components/footer/Footer.ts'
 import IRouterLink from '@/views/components/link/IRouterLink.vue'
-import IAvatar from '@/ui/avatar/index.vue'
+import IAvatar from '@/ui/avatar'
 import IButton from '@/ui/button'
 import { Github } from 'lucide-vue-next'
 

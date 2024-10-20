@@ -51,7 +51,8 @@ export default {
         code: '代码',
         rowCol: '行/列',
         divider: '分隔线',
-        ellipsis: '自动省略'
+        ellipsis: '自动省略',
+        example: '示例',
     },
     tip: {
         signInInfo: '输入您的信息以登录您的帐户。',

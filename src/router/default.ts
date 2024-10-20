@@ -259,6 +259,11 @@ const createComponentRouter = (router: Router): void => {
                 name: 'ellipsis',
                 path: 'ellipsis',
                 component: () => import('@/views/pages/components/EllipsisHome.vue')
+            },
+            {
+                name: 'example',
+                path: 'example',
+                component: () => import('@/views/pages/components/ExampleHome.vue')
             }
         ]
     })

@@ -88,6 +88,7 @@ export default {
                         {text: 'Row / Col', link: 'row-col'},
                         {text: 'Divider', link: 'divider'},
                         {text: 'Ellipsis', link: 'ellipsis'},
+                        {text: 'Avatar', link: 'avatar'},
                     ]
                 },
                 {
