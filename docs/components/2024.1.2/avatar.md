@@ -97,3 +97,12 @@ This document is mainly used to describe some features and usage of the ShadcnAv
         ['square', 'Square', 'Boolean', 'false', '-'],
     ]">
 </ApiTable>
+
+<br />
+
+<ApiTable title="Avatar Events"
+    :headers="['Event', 'Description']"
+    :columns="[
+        ['on-success', 'Called when the image is successfully loaded'],
+    ]">
+</ApiTable>

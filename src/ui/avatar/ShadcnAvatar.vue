@@ -3,7 +3,8 @@
                      square && 'rounded-sm')">
     <AvatarImage :src="String(src)"
                  :class="cn('border-2 border-background cursor-pointer',
-                            size && Size[size])"/>
+                            size && Size[size])"
+                 @load="onImageLoaded"/>
     <AvatarFallback>{{ alt }}</AvatarFallback>
   </Avatar>
 </template>
@@ -19,6 +20,8 @@ enum Size
   large = 'w-14 h-14'
 }
 
+const emit = defineEmits(['on-success'])
+
 withDefaults(defineProps<{
   src?: string
   alt?: string
@@ -27,4 +30,6 @@ withDefaults(defineProps<{
 }>(), {
   size: 'default'
 })
+
+const onImageLoaded = () => emit('on-success')
 </script>
