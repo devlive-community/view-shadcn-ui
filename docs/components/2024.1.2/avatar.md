@@ -44,6 +44,29 @@ This document is mainly used to describe some features and usage of the ShadcnAv
 
 :::
 
+## Size
+
+<CodeRunner title="Size">
+    <ShadcnAvatar src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png" size="large" />
+    <ShadcnAvatar src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png" size="default" />
+    <ShadcnAvatar src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png" size="small" />
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnAvatar src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png" size="large" />
+    <ShadcnAvatar src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png" size="default" />
+    <ShadcnAvatar src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png" size="small" />
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Avatar Props"
@@ -51,5 +74,6 @@ This document is mainly used to describe some features and usage of the ShadcnAv
     :columns="[
         ['src', 'Image URL', 'String', '-', '-'],
         ['alt', 'Alternative text', 'String', '-', '-'],
+        ['size', 'Size', 'String', 'default', 'large, default, small'],
     ]">
 </ApiTable>
