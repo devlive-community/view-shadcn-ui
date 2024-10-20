@@ -1,5 +1,6 @@
 <template>
-  <Avatar :class="cn(size && Size[size])">
+  <Avatar :class="cn(size && Size[size],
+                     square && 'rounded-sm')">
     <AvatarImage :src="String(src)"
                  :class="cn('border-2 border-background cursor-pointer',
                             size && Size[size])"/>
@@ -22,6 +23,7 @@ withDefaults(defineProps<{
   src?: string
   alt?: string
   size?: keyof typeof Size
+  square?: boolean
 }>(), {
   size: 'default'
 })

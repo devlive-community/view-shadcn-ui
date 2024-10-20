@@ -67,6 +67,25 @@ This document is mainly used to describe some features and usage of the ShadcnAv
 
 :::
 
+## Square
+
+<CodeRunner title="Square">
+    <ShadcnAvatar src="" square />
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnAvatar src="" square />
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Avatar Props"
@@ -75,5 +94,6 @@ This document is mainly used to describe some features and usage of the ShadcnAv
         ['src', 'Image URL', 'String', '-', '-'],
         ['alt', 'Alternative text', 'String', '-', '-'],
         ['size', 'Size', 'String', 'default', 'large, default, small'],
+        ['square', 'Square', 'Boolean', 'false', '-'],
     ]">
 </ApiTable>
