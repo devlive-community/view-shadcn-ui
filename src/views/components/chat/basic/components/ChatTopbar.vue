@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import IAvatar from '@/ui/avatar/index.vue'
+import IAvatar from '@/ui/avatar'
 import IButton from '@/ui/button'
 import { User } from '@/views/components/chat/Chat.ts'
 import ChatUser from '@/views/components/chat/basic/components/ChatUser.vue'

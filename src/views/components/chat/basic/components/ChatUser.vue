@@ -42,7 +42,7 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, Command
 import { CheckIcon } from 'lucide-vue-next'
 import { User } from '@/views/components/chat/Chat.ts'
 import IButton from '@/ui/button'
-import IAvatar from '@/ui/avatar/index.vue'
+import IAvatar from '@/ui/avatar'
 
 export default defineComponent({
   name: 'ChatUser',

@@ -35,7 +35,7 @@ import { Chat } from '@/views/components/chat/Chat.ts'
 import Button from '@/ui/button'
 import { cn } from '@/lib/utils.ts'
 import { buttonVariants } from '@/components/ui/button'
-import IAvatar from '@/ui/avatar/index.vue'
+import IAvatar from '@/ui/avatar'
 
 export default defineComponent({
   name: 'ChatSidebar',

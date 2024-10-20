@@ -52,6 +52,7 @@ export default {
         rowCol: 'Row/Col',
         divider: 'Divider',
         ellipsis: 'Ellipsis',
+        example: 'Example',
     },
     tip: {
         signInInfo: 'Enter your information to sign in to your account.',

@@ -29,7 +29,7 @@
 import { defineComponent, onMounted, watch } from 'vue'
 import { Message } from '@/views/components/chat/Chat.ts'
 import { cn } from '@/lib/utils.ts'
-import IAvatar from '@/ui/avatar/index.vue'
+import IAvatar from '@/ui/avatar'
 import ChatBottombar from '@/views/components/chat/basic/components/ChatBottombar.vue'
 
 export default defineComponent({
