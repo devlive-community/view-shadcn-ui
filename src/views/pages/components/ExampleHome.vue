@@ -32,6 +32,10 @@
         <span class="demo-badge"/>
       </ShadcnBadge>
     </div>
+
+    <div>
+      <ShadcnAlert>Alert</ShadcnAlert>
+    </div>
   </div>
 </template>
 
