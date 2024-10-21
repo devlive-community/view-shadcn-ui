@@ -74,9 +74,9 @@ export default {
                     base: '/components/2024.1.1/',
                     collapsed: false,
                     items: [
-                        {text: 'Button', link: 'button'},
-                        {text: 'Icon', link: 'icon'},
-                        {text: 'Copy', link: 'copy'},
+                        {text: 'Button', link: '../2024.1.1/button'},
+                        {text: 'Icon', link: '../2024.1.1/icon'},
+                        {text: 'Copy', link: '../2024.1.1/copy'},
                     ]
                 },
                 {
@@ -97,9 +97,9 @@ export default {
                     base: '/components/2024.1.1/',
                     collapsed: false,
                     items: [
-                        {text: 'Modal', link: 'modal'},
-                        {text: 'Tooltip', link: 'tooltip'},
-                        {text: 'Code', link: 'code'},
+                        {text: 'Modal', link: '../2024.1.1/modal'},
+                        {text: 'Tooltip', link: '../2024.1.1/tooltip'},
+                        {text: 'Code', link: '../2024.1.1/code'},
                     ]
                 },
                 {
@@ -107,7 +107,7 @@ export default {
                     base: '/components/2024.1.1/',
                     collapsed: false,
                     items: [
-                        {text: 'Input', link: 'input'},
+                        {text: 'Input', link: '../2024.1.1/input'},
                     ]
                 }
             ],
