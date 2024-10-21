@@ -1,16 +1,32 @@
 <template>
-  <ShadcnAvatar src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png"
-                alt="Shadcn UI"
-                size="small"
-                square
-                @on-success="onSuccess"/>
+  <div class="space-y-2 space-x-2">
+    <ShadcnAvatar src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png"
+                  alt="Shadcn UI"
+                  size="small"
+                  square
+                  @on-success="onSuccess"/>
 
-  <ShadcnBadge>Badge</ShadcnBadge>
-  <ShadcnBadge>
-      <template #text>
-        <ShadcnIcon icon="Save" size="12"/>
-      </template>
-  </ShadcnBadge>
+    <div>
+      <ShadcnBadge text="Badge">
+        <span class="demo-badge"/>
+      </ShadcnBadge>
+    </div>
+
+    <div>
+      <ShadcnBadge>
+        <span class="demo-badge"/>
+        <template #text>
+          <ShadcnIcon icon="Save" size="12"/>
+        </template>
+      </ShadcnBadge>
+    </div>
+
+    <div>
+      <ShadcnBadge dot>
+        <span class="demo-badge"/>
+      </ShadcnBadge>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -26,3 +42,13 @@ export default defineComponent({
   }
 })
 </script>
+
+<style scoped>
+.demo-badge {
+  width: 42px;
+  height: 42px;
+  background: #eee;
+  border-radius: 6px;
+  display: inline-block;
+}
+</style>

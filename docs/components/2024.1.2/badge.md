@@ -69,6 +69,25 @@ This document is mainly used to describe some features and usage of the ShadcnBa
 
 :::
 
+## Dot
+
+<CodeRunner title="Dot">
+    <ShadcnBadge dot />
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnBadge dot />
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Badge Props"
@@ -76,6 +95,7 @@ This document is mainly used to describe some features and usage of the ShadcnBa
     :columns="[
         ['type', 'The type of the badge', 'Enum', 'primary', 'primary, success, warning, danger, info, text'],
         ['text', 'The content of the badge', 'String', '-', '-'],
+        ['dot', 'Whether to display a dot', 'Boolean', 'false', '-'],
     ]">
 </ApiTable>
 
