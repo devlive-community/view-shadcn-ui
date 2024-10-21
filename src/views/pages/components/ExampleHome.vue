@@ -1,45 +1,75 @@
 <template>
-  <div class="space-y-2 space-x-2">
-    <ShadcnAvatar src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png"
-                  alt="Shadcn UI"
-                  size="small"
-                  square
-                  @on-success="onSuccess"/>
+  <div class="flex w-full flex-col gap-4 md:gap-8 md:p-8 lg:grid lg:grid-cols-3">
+    <ShadcnCard title="Avatar">
+      <ShadcnAvatar src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png"
+                    alt="Shadcn UI"
+                    size="small"
+                    square
+                    @on-success="onSuccess"/>
+    </ShadcnCard>
 
-    <div>
-      <ShadcnBadge text="Badge">
-        <span class="demo-badge"/>
-      </ShadcnBadge>
-    </div>
+    <ShadcnCard title="Badge">
+      <div class="space-x-10 p-3">
+        <ShadcnBadge text="Badge">
+          <span class="demo-badge"/>
+        </ShadcnBadge>
+        <ShadcnBadge>
+          <span class="demo-badge"/>
+          <template #text>
+            <ShadcnIcon icon="Save" size="12"/>
+          </template>
+        </ShadcnBadge>
+        <ShadcnBadge dot>
+          <span class="demo-badge"/>
+        </ShadcnBadge>
+        <ShadcnBadge text="10000" max="1000">
+          <span class="demo-badge"/>
+        </ShadcnBadge>
+      </div>
+    </ShadcnCard>
 
-    <div>
-      <ShadcnBadge>
-        <span class="demo-badge"/>
-        <template #text>
-          <ShadcnIcon icon="Save" size="12"/>
-        </template>
-      </ShadcnBadge>
-    </div>
+    <ShadcnCard title="Alert">
+      <div class="space-y-2 p-3">
+        <ShadcnAlert>Alert</ShadcnAlert>
+        <ShadcnAlert title="Alert title">Alert Content</ShadcnAlert>
 
-    <div>
-      <ShadcnBadge dot>
-        <span class="demo-badge"/>
-      </ShadcnBadge>
-    </div>
+        <ShadcnAlert type="success">Alert</ShadcnAlert>
+        <ShadcnAlert type="warning">Alert</ShadcnAlert>
+        <ShadcnAlert type="error">Alert</ShadcnAlert>
+        <ShadcnAlert type="info">Alert</ShadcnAlert>
 
-    <div>
-      <ShadcnBadge text="10000" max="1000">
-        <span class="demo-badge"/>
-      </ShadcnBadge>
-    </div>
+        <ShadcnAlert type="success" show-icon>Alert</ShadcnAlert>
+        <ShadcnAlert type="warning" show-icon>Alert</ShadcnAlert>
+        <ShadcnAlert type="error" show-icon>Alert</ShadcnAlert>
+        <ShadcnAlert title="Alert" type="info" show-icon>Alert</ShadcnAlert>
+        <ShadcnAlert>
+          <template #icon>
+            <ShadcnIcon icon="Save"/>
+          </template>
+          Alert
+        </ShadcnAlert>
+
+        <ShadcnAlert type="info" banner>Alert</ShadcnAlert>
+
+        <ShadcnAlert type="success" closable>Alert</ShadcnAlert>
+        <ShadcnAlert type="warning" closable>
+          <template #close>
+            Close
+          </template>
+          Alert
+        </ShadcnAlert>
+      </div>
+    </ShadcnCard>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import ShadcnAlert from '@/ui/alert'
 
 export default defineComponent({
   name: 'ExampleHome',
+  components: { ShadcnAlert },
   methods: {
     onSuccess()
     {

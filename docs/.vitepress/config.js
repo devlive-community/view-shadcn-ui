@@ -94,12 +94,13 @@ export default {
                 },
                 {
                     text: 'View Components',
-                    base: '/components/2024.1.1/',
+                    base: '/components/2024.1.2/',
                     collapsed: false,
                     items: [
                         {text: 'Modal', link: '../2024.1.1/modal'},
                         {text: 'Tooltip', link: '../2024.1.1/tooltip'},
                         {text: 'Code', link: '../2024.1.1/code'},
+                        {text: 'Alert', link: 'alert'},
                     ]
                 },
                 {
