@@ -25,9 +25,38 @@ This document is mainly used to describe some features and usage of the ShadcnBa
 
 :::
 
+## Type
+
+<CodeRunner title="Type">
+    <ShadcnBadge type="primary">Primary</ShadcnBadge>
+    <ShadcnBadge type="success">Success</ShadcnBadge>
+    <ShadcnBadge type="warning">Warning</ShadcnBadge>
+    <ShadcnBadge type="danger">Danger</ShadcnBadge>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnBadge type="primary">Primary</ShadcnBadge>
+    <ShadcnBadge type="success">Success</ShadcnBadge>
+    <ShadcnBadge type="warning">Warning</ShadcnBadge>
+    <ShadcnBadge type="danger">Danger</ShadcnBadge>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## API Attributes
 
-<ApiTable title="Badge Props">
+<ApiTable title="Badge Props"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :columns="[
+        ['type', 'The type of the badge', 'Enum', 'primary', 'primary, success, warning, danger, info, text'],
+    ]">
 </ApiTable>
 
 <br /> 
