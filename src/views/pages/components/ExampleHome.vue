@@ -6,6 +6,11 @@
                 @on-success="onSuccess"/>
 
   <ShadcnBadge>Badge</ShadcnBadge>
+  <ShadcnBadge>
+      <template #text>
+        <ShadcnIcon icon="Save" size="12"/>
+      </template>
+  </ShadcnBadge>
 </template>
 
 <script lang="ts">

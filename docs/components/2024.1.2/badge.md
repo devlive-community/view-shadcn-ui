@@ -50,12 +50,32 @@ This document is mainly used to describe some features and usage of the ShadcnBa
 
 :::
 
+## Text
+
+<CodeRunner title="Text">
+    <ShadcnBadge text="Text" />
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnBadge text="Text"/>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Badge Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
     :columns="[
         ['type', 'The type of the badge', 'Enum', 'primary', 'primary, success, warning, danger, info, text'],
+        ['text', 'The content of the badge', 'String', '-', '-'],
     ]">
 </ApiTable>
 
@@ -64,6 +84,7 @@ This document is mainly used to describe some features and usage of the ShadcnBa
 <ApiTable title="Badge Slots"
     :headers="['Slot', 'Description']"
     :columns="[
-        ['default', 'Content']
+        ['default', 'Content text'],
+        ['text', 'Content text'],
     ]">
 </ApiTable>
