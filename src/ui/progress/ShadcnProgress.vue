@@ -1,5 +1,6 @@
 <template>
-  <div class="w-full bg-gray-200 rounded-lg h-5">
+  <div :class="cn('w-full bg-gray-200 rounded-lg',
+                  size && Size[size])">
     <div :class="cn('h-full rounded-lg transition-all',
                     status && Status[status])"
          :style="{ width: localValue + '%' }"></div>
@@ -18,11 +19,19 @@ enum Status
   info = 'bg-blue-500'
 }
 
+enum Size
+{
+  default = 'h-2',
+  large = 'h-4'
+}
+
 const props = withDefaults(defineProps<{
   modelValue: number
   status?: keyof typeof Status
+  size?: keyof typeof Size
 }>(), {
-  status: 'info'
+  status: 'info',
+  size: 'default'
 })
 
 const applyValue = (value: number) => {

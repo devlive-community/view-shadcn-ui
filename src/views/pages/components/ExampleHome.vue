@@ -67,6 +67,8 @@
         <ShadcnProgress v-model="defaultProgress" status="error"/>
         <ShadcnProgress v-model="defaultProgress" status="warning"/>
         <ShadcnProgress v-model="defaultProgress" status="success"/>
+
+        <ShadcnProgress v-model="defaultProgress" size="large"/>
       </div>
     </ShadcnCard>
   </div>

@@ -58,6 +58,32 @@ const value = ref(10)
 
 :::
 
+## Size
+
+<CodeRunner title="Size">
+    <div class="space-y-2">
+        <ShadcnProgress v-model="value" size="default">Default</ShadcnProgress>
+        <ShadcnProgress v-model="value" size="large">Large</ShadcnProgress>
+    </div>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnProgress v-model="value" size="default">Default</ShadcnProgress>
+    <ShadcnProgress v-model="value" size="large">Large</ShadcnProgress>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const value = ref(10)
+</script>
+```
+
+:::
+
 <script setup lang="ts">
 import { ref } from 'vue';
 
@@ -71,5 +97,6 @@ const value = ref(10)
     :columns="[
         ['modelValue', 'Detailed data, support port binding, less than 0 is reset to 0, greater than 100 is reset to 100.', 'number', '0', '-', '—'],
         ['status', 'Progress status.', 'Enum', '-', '-', 'success, error, warning, info'],
+        ['size', 'Progress size.', 'Enum', '-', '-', 'default, large'],
     ]">
 </ApiTable>
