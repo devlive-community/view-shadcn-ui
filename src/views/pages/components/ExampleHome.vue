@@ -36,6 +36,11 @@
     <div class="space-y-2">
       <ShadcnAlert>Alert</ShadcnAlert>
       <ShadcnAlert title="Alert title">Alert Content</ShadcnAlert>
+
+      <ShadcnAlert type="success">Alert</ShadcnAlert>
+      <ShadcnAlert type="warning">Alert</ShadcnAlert>
+      <ShadcnAlert type="error">Alert</ShadcnAlert>
+      <ShadcnAlert type="info">Alert</ShadcnAlert>
     </div>
   </div>
 </template>

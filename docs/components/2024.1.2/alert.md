@@ -44,12 +44,40 @@ This document is mainly used to describe some features and usage of the ShadcnAl
 
 :::
 
+## Type
+
+<CodeRunner title="Type">
+    <div class="space-y-2">
+        <ShadcnAlert type="info">Alert</ShadcnAlert>
+        <ShadcnAlert type="success">Alert</ShadcnAlert>
+        <ShadcnAlert type="warning">Alert</ShadcnAlert>
+        <ShadcnAlert type="error">Alert</ShadcnAlert>
+    </div>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnAlert type="info">Alert</ShadcnAlert>
+    <ShadcnAlert type="success">Alert</ShadcnAlert>
+    <ShadcnAlert type="warning">Alert</ShadcnAlert>
+    <ShadcnAlert type="error">Alert</ShadcnAlert>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Alert Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
     :columns="[
         ['title', 'The title of the alert', 'String', '-', '-', '-'],
+        ['type', 'The type of the alert', 'Enum', 'info', '-', 'info, success, warning, error'],
     ]">
 </ApiTable>
 
