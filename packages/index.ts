@@ -14,6 +14,7 @@ import ShadcnEllipsis from '@/ui/ellipsis'
 import ShadcnAvatar from '@/ui/avatar'
 import ShadcnBadge from '@/ui/badge'
 import ShadcnAlert from '@/ui/alert'
+import ShadcnProgress from '@/ui/progress'
 
 let components = [
     ShadcnButton,
@@ -30,7 +31,8 @@ let components = [
     ShadcnEllipsis,
     ShadcnAvatar,
     ShadcnBadge,
-    ShadcnAlert
+    ShadcnAlert,
+    ShadcnProgress
 ]
 
 const install = (Vue: App) => {
@@ -67,6 +69,7 @@ export { default as ShadcnEllipsis } from '@/ui/ellipsis'
 export { default as ShadcnAvatar } from '@/ui/avatar'
 export { default as ShadcnBadge } from '@/ui/badge'
 export { default as ShadcnAlert } from '@/ui/alert'
+export { default as ShadcnProgress } from '@/ui/progress'
 
 // Support global import
 export default install
