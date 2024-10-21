@@ -26,6 +26,12 @@
         <span class="demo-badge"/>
       </ShadcnBadge>
     </div>
+
+    <div>
+      <ShadcnBadge text="10000" max="1000">
+        <span class="demo-badge"/>
+      </ShadcnBadge>
+    </div>
   </div>
 </template>
 
