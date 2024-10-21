@@ -62,8 +62,11 @@
     </ShadcnCard>
 
     <ShadcnCard title="Progress">
-      <div class="p-3">
+      <div class="p-3 space-y-2">
         <ShadcnProgress v-model="defaultProgress"/>
+        <ShadcnProgress v-model="defaultProgress" status="error"/>
+        <ShadcnProgress v-model="defaultProgress" status="warning"/>
+        <ShadcnProgress v-model="defaultProgress" status="success"/>
       </div>
     </ShadcnCard>
   </div>
@@ -74,9 +77,10 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'ExampleHome',
-  data() {
+  data()
+  {
     return {
-      defaultProgress: 500
+      defaultProgress: 50
     }
   },
   methods: {

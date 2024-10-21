@@ -28,6 +28,36 @@ const value = ref(10)
 
 :::
 
+## Status
+
+<CodeRunner title="Status">
+    <div class="space-y-2">
+        <ShadcnProgress v-model="value" status="success">Success</ShadcnProgress>
+        <ShadcnProgress v-model="value" status="error">Error</ShadcnProgress>
+        <ShadcnProgress v-model="value" status="warning">Warning</ShadcnProgress>
+        <ShadcnProgress v-model="value" status="info">Info</ShadcnProgress>
+    </div>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnProgress v-model="value" status="success">Success</ShadcnProgress>
+    <ShadcnProgress v-model="value" status="error">Error</ShadcnProgress>
+    <ShadcnProgress v-model="value" status="warning">Warning</ShadcnProgress>
+    <ShadcnProgress v-model="value" status="info">Info</ShadcnProgress>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const value = ref(10)
+</script>
+```
+
+:::
+
 <script setup lang="ts">
 import { ref } from 'vue';
 
@@ -39,8 +69,7 @@ const value = ref(10)
 <ApiTable title="Progress Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
     :columns="[
-        ['modelValue', 'Detailed data, support port binding, less than 0 is reset to 0, greater than 100 is reset to 100.', 'number', '0', '—', '—'],
+        ['modelValue', 'Detailed data, support port binding, less than 0 is reset to 0, greater than 100 is reset to 100.', 'number', '0', '-', '—'],
+        ['status', 'Progress status.', 'Enum', '-', '-', 'success, error, warning, info'],
     ]">
 </ApiTable>
-
-
