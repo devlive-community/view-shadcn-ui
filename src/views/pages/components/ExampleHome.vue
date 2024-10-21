@@ -99,8 +99,11 @@
     <ShadcnCard title="Switch">
       <div class="p-3">
         Switch Value: {{ defaultSwitch }}
-        <ShadcnSpace size="large">
+        <ShadcnSpace size="large" wrap>
           <ShadcnSwitch v-model="defaultSwitch"/>
+          <ShadcnSwitch v-model="defaultSwitch" type="error"/>
+          <ShadcnSwitch v-model="defaultSwitch" type="warning"/>
+          <ShadcnSwitch v-model="defaultSwitch" type="success"/>
         </ShadcnSpace>
       </div>
     </ShadcnCard>

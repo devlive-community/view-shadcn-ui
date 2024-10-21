@@ -28,12 +28,41 @@ const checked = ref(false)
 
 :::
 
+## Type
+
+<CodeRunner title="Type">
+    <ShadcnSwitch v-model="checked" type="success" />
+    <ShadcnSwitch v-model="checked" type="warning" />
+    <ShadcnSwitch v-model="checked" type="error" />
+    <ShadcnSwitch v-model="checked" type="primary" />
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSwitch v-model="checked" type="success" />
+    <ShadcnSwitch v-model="checked" type="warning" />
+    <ShadcnSwitch v-model="checked" type="error" />
+    <ShadcnSwitch v-model="checked" type="primary" />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const checked = ref(false)
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Switch Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
     :columns="[
         ['modelValue', 'The value of the switch', 'Boolean', 'false', '-', '-'],
+        ['type', 'The type of the switch', 'String', '-', '-', 'success, warning, error, primary'],
     ]">
 </ApiTable>
 
