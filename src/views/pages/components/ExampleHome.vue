@@ -67,23 +67,29 @@
     </ShadcnCard>
 
     <ShadcnCard title="Space">
-      <ShadcnSpace>
-        <ShadcnButton type="primary">Button</ShadcnButton>
-        <ShadcnButton type="primary">Button</ShadcnButton>
-        <ShadcnButton type="primary">Button</ShadcnButton>
-      </ShadcnSpace>
+      <div class="space-y-2">
+        <ShadcnSpace>
+          <ShadcnButton type="primary">Button</ShadcnButton>
+          <ShadcnButton type="primary">Button</ShadcnButton>
+          <ShadcnButton type="primary">Button</ShadcnButton>
+        </ShadcnSpace>
 
-      <ShadcnSpace size="large">
-        <ShadcnButton type="primary">Button</ShadcnButton>
-        <ShadcnButton type="primary">Button</ShadcnButton>
-        <ShadcnButton type="primary">Button</ShadcnButton>
-      </ShadcnSpace>
+        <ShadcnSpace size="large">
+          <ShadcnButton type="primary">Button</ShadcnButton>
+          <ShadcnButton type="primary">Button</ShadcnButton>
+          <ShadcnButton type="primary">Button</ShadcnButton>
+        </ShadcnSpace>
 
-      <ShadcnSpace size="30">
-        <ShadcnButton type="primary">Button</ShadcnButton>
-        <ShadcnButton type="primary">Button</ShadcnButton>
-        <ShadcnButton type="primary">Button</ShadcnButton>
-      </ShadcnSpace>
+        <ShadcnSpace size="30">
+          <ShadcnButton type="primary">Button</ShadcnButton>
+          <ShadcnButton type="primary">Button</ShadcnButton>
+          <ShadcnButton type="primary">Button</ShadcnButton>
+        </ShadcnSpace>
+
+        <ShadcnSpace wrap>
+          <ShadcnButton v-for="i in 6" type="primary">Wrap {{ i }}</ShadcnButton>
+        </ShadcnSpace>
+      </div>
     </ShadcnCard>
   </div>
 </template>

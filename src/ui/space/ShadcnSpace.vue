@@ -1,5 +1,6 @@
 <template>
-  <div :class="cn('flex')"
+  <div :class="cn('flex',
+                  wrap && 'flex-wrap')"
        :style="{ gap: `${computedGap}px` }">
     <slot/>
   </div>
@@ -18,6 +19,7 @@ enum Size
 
 const props = withDefaults(defineProps<{
   size?: keyof typeof Size | number | string
+  wrap?: boolean
 }>(), {
   size: 'small'
 })

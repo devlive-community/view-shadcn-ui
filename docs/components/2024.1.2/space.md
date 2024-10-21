@@ -58,11 +58,35 @@ This document is mainly used to describe some features and usage of the ShadcnSp
 
 :::
 
+## Wrap
+
+<CodeRunner title="Wrap">
+    <ShadcnSpace wrap>
+        <ShadcnButton v-for="i in 20" type="primary">Wrap {{ i }}</ShadcnButton>
+    </ShadcnSpace>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSpace wrap>
+        <ShadcnButton v-for="i in 20" type="primary">Wrap {{ i }}</ShadcnButton>
+    </ShadcnSpace>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Space Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
     :columns="[
         ['size', 'Space size', 'Enum | String | Number', 'default', 'small, default, large'],
+        ['wrap', 'Whether to wrap', 'Boolean', 'false', '']
     ]">
 </ApiTable>
