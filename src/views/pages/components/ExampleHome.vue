@@ -33,8 +33,9 @@
       </ShadcnBadge>
     </div>
 
-    <div>
+    <div class="space-y-2">
       <ShadcnAlert>Alert</ShadcnAlert>
+      <ShadcnAlert title="Alert title">Alert Content</ShadcnAlert>
     </div>
   </div>
 </template>
