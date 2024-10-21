@@ -1,7 +1,7 @@
 <template>
   <div :class="cn('flex',
                   wrap && 'flex-wrap')"
-       :style="{ gap: `${computedGap}px` }">
+       :style="{ gap: `${computedGap}` }">
     <slot/>
   </div>
 </template>
@@ -12,22 +12,25 @@ import { computed } from 'vue'
 
 enum Size
 {
-  small = '5',
-  default = '10',
-  large = '15'
+  small = '8',
+  default = '16',
+  large = '24'
 }
 
 const props = withDefaults(defineProps<{
-  size?: keyof typeof Size | number | string
+  size?: keyof typeof Size | number | string | [number, number]
   wrap?: boolean
 }>(), {
   size: 'small'
 })
 
 const computedGap = computed(() => {
-  if (props.size in Size) {
-    return Size[props.size]
+  if (Array.isArray(props.size)) {
+    return `${ props.size[0] }px ${ props.size[1] }px`
   }
-  return props.size
+  else if (props.size in Size) {
+    return `${ Size[props.size] }px`
+  }
+  return `${ props.size }px`
 })
 </script>

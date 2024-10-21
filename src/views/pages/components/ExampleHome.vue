@@ -89,6 +89,10 @@
         <ShadcnSpace wrap>
           <ShadcnButton v-for="i in 6" type="primary">Wrap {{ i }}</ShadcnButton>
         </ShadcnSpace>
+
+        <ShadcnSpace wrap :size="[40, 80]">
+          <ShadcnButton v-for="i in 6" type="primary">Wrap {{ i }}</ShadcnButton>
+        </ShadcnSpace>
       </div>
     </ShadcnCard>
   </div>

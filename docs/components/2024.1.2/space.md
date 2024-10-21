@@ -64,6 +64,10 @@ This document is mainly used to describe some features and usage of the ShadcnSp
     <ShadcnSpace wrap>
         <ShadcnButton v-for="i in 20" type="primary">Wrap {{ i }}</ShadcnButton>
     </ShadcnSpace>
+    <p>Array Size</p>
+    <ShadcnSpace wrap :size="[40, 80]">
+        <ShadcnButton v-for="i in 20">Wrap {{ i }}</ShadcnButton>
+    </ShadcnSpace>
 </CodeRunner>
 
 ::: details Show code
@@ -72,6 +76,10 @@ This document is mainly used to describe some features and usage of the ShadcnSp
 <template>
     <ShadcnSpace wrap>
         <ShadcnButton v-for="i in 20" type="primary">Wrap {{ i }}</ShadcnButton>
+    </ShadcnSpace>
+    <p>Array Size</p>
+    <ShadcnSpace wrap :size="[40, 80]">
+        <ShadcnButton v-for="i in 20">Wrap {{ i }}</ShadcnButton>
     </ShadcnSpace>
 </template>
 
@@ -86,7 +94,7 @@ This document is mainly used to describe some features and usage of the ShadcnSp
 <ApiTable title="Space Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
     :columns="[
-        ['size', 'Space size', 'Enum | String | Number', 'default', 'small, default, large'],
+        ['size', 'Space size, If it is an array parameter, it is passed as \[x, y\]', 'Enum | String | Number | Array', 'default', 'small, default, large'],
         ['wrap', 'Whether to wrap', 'Boolean', 'false', '']
     ]">
 </ApiTable>
