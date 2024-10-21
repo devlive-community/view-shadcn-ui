@@ -109,6 +109,25 @@ This document is mainly used to describe some features and usage of the ShadcnAl
 
 :::
 
+## Closable
+
+<CodeRunner title="Closable">
+    <ShadcnAlert title="Title" closable>Alert</ShadcnAlert>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnAlert title="Title" closable>Alert</ShadcnAlert>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Alert Props"
@@ -118,6 +137,16 @@ This document is mainly used to describe some features and usage of the ShadcnAl
         ['type', 'The type of the alert', 'Enum', 'info', '-', 'info, success, warning, error'],
         ['show-icon', 'Whether to show the icon', 'Boolean', 'false', '-', '-'],
         ['banner', 'Whether to create a banner alert', 'Boolean', 'false', '-', '-'],
+        ['closable', 'Whether to show the close button', 'Boolean', 'false', '-', '-'],
+    ]">
+</ApiTable>
+
+<br />
+
+<ApiTable title="Alert Events"
+    :headers="['Event', 'Description', 'Callback Parameters']"
+    :columns="[
+        ['close', 'Close event', 'true | false'],
     ]">
 </ApiTable>
 
@@ -128,5 +157,6 @@ This document is mainly used to describe some features and usage of the ShadcnAl
     :columns="[
         ['default', 'Default slot', '-'],
         ['icon', 'Icon slot', '-'],
+        ['close', 'Close slot', '-'],
     ]">
 </ApiTable>
