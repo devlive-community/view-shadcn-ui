@@ -117,9 +117,9 @@ const value = ref(10)
 <ApiTable title="Progress Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
     :columns="[
-        ['modelValue', 'Detailed data, support port binding, less than 0 is reset to 0, greater than 100 is reset to 100.', 'number', '0', '-', '—'],
+        ['modelValue', 'Detailed data, support port binding, less than 0 is reset to 0, greater than 100 is reset to 100.', 'number', '0', '-', '-'],
         ['status', 'Progress status.', 'Enum', '-', '-', 'success, error, warning, info'],
         ['size', 'Progress size.', 'Enum', '-', '-', 'default, large'],
-        ['showLabel', 'Show progress label.', 'boolean', 'false', '-', '—'],
+        ['showLabel', 'Show progress label.', 'boolean', 'false', '-', '-'],
     ]">
 </ApiTable>

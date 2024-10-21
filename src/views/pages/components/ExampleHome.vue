@@ -33,14 +33,6 @@
         <ShadcnAlert>Alert</ShadcnAlert>
         <ShadcnAlert title="Alert title">Alert Content</ShadcnAlert>
 
-        <ShadcnAlert type="success">Alert</ShadcnAlert>
-        <ShadcnAlert type="warning">Alert</ShadcnAlert>
-        <ShadcnAlert type="error">Alert</ShadcnAlert>
-        <ShadcnAlert type="info">Alert</ShadcnAlert>
-
-        <ShadcnAlert type="success" show-icon>Alert</ShadcnAlert>
-        <ShadcnAlert type="warning" show-icon>Alert</ShadcnAlert>
-        <ShadcnAlert type="error" show-icon>Alert</ShadcnAlert>
         <ShadcnAlert title="Alert" type="info" show-icon>Alert</ShadcnAlert>
         <ShadcnAlert>
           <template #icon>
@@ -71,6 +63,36 @@
         <ShadcnProgress v-model="defaultProgress" size="large"/>
 
         <ShadcnProgress v-model="defaultProgress" show-label/>
+      </div>
+    </ShadcnCard>
+
+    <ShadcnCard title="Space">
+      <div class="space-y-2">
+        <ShadcnSpace>
+          <ShadcnButton type="primary">Button</ShadcnButton>
+          <ShadcnButton type="primary">Button</ShadcnButton>
+          <ShadcnButton type="primary">Button</ShadcnButton>
+        </ShadcnSpace>
+
+        <ShadcnSpace size="large">
+          <ShadcnButton type="primary">Button</ShadcnButton>
+          <ShadcnButton type="primary">Button</ShadcnButton>
+          <ShadcnButton type="primary">Button</ShadcnButton>
+        </ShadcnSpace>
+
+        <ShadcnSpace size="30">
+          <ShadcnButton type="primary">Button</ShadcnButton>
+          <ShadcnButton type="primary">Button</ShadcnButton>
+          <ShadcnButton type="primary">Button</ShadcnButton>
+        </ShadcnSpace>
+
+        <ShadcnSpace wrap>
+          <ShadcnButton v-for="i in 6" type="primary">Wrap {{ i }}</ShadcnButton>
+        </ShadcnSpace>
+
+        <ShadcnSpace wrap :size="[40, 80]">
+          <ShadcnButton v-for="i in 6" type="primary">Wrap {{ i }}</ShadcnButton>
+        </ShadcnSpace>
       </div>
     </ShadcnCard>
   </div>
