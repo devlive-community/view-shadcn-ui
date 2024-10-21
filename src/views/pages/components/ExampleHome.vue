@@ -111,6 +111,8 @@
           <ShadcnSwitch v-model="defaultSwitch" size="default"/>
           <ShadcnSwitch v-model="defaultSwitch" size="large"/>
         </ShadcnSpace>
+        Disabled
+        <ShadcnSwitch v-model="defaultSwitch" disabled/>
       </div>
     </ShadcnCard>
   </div>

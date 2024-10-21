@@ -82,6 +82,28 @@ const checked = ref(false)
 
 :::
 
+## Disabled
+
+<CodeRunner title="Disabled">
+    <ShadcnSwitch v-model="checked" disabled />
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSwitch v-model="checked" disabled />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const checked = ref(false)
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Switch Props"
@@ -90,6 +112,7 @@ const checked = ref(false)
         ['modelValue', 'The value of the switch', 'Boolean', 'false', '-', '-'],
         ['type', 'The type of the switch', 'String', '-', '-', 'success, warning, error, primary'],
         ['size', 'The size of the switch', 'String', '-', '-', 'small, default, large'],
+        ['disabled', 'Whether the switch is disabled', 'Boolean', 'false', '-', '-'],
     ]">
 </ApiTable>
 

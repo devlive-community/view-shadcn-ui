@@ -1,6 +1,10 @@
 <template>
-  <div :class="['relative inline-flex items-center cursor-pointer',
-                Size[size]
+  <div :class="['relative inline-flex items-center',
+                Size[size],
+                {
+                  'cursor-pointer': !disabled,
+                  'cursor-not-allowed opacity-50': disabled
+                }
        ]"
        @click="toggleSwitch">
     <!-- Switch track -->
@@ -53,6 +57,7 @@ const props = withDefaults(defineProps<{
   modelValue?: boolean
   type?: 'primary' | 'success' | 'warning' | 'error'
   size?: keyof typeof Size
+  disabled?: boolean
 }>(), {
   modelValue: false,
   type: 'primary',
@@ -60,11 +65,17 @@ const props = withDefaults(defineProps<{
 })
 
 const toggleSwitch = () => {
+  if (props.disabled) {
+    return
+  }
   emit('update:modelValue', !props.modelValue)
   emit('on-change', !props.modelValue)
 }
 
 const onChange = (event: Event) => {
+  if (props.disabled) {
+    return
+  }
   const target = event.target as HTMLInputElement
   emit('update:modelValue', target.checked)
   emit('on-change', target.checked)
