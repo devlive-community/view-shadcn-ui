@@ -95,6 +95,15 @@
         </ShadcnSpace>
       </div>
     </ShadcnCard>
+
+    <ShadcnCard title="Switch">
+      <div class="p-3">
+        Switch Value: {{ defaultSwitch }}
+        <ShadcnSpace size="large">
+          <ShadcnSwitch v-model="defaultSwitch"/>
+        </ShadcnSpace>
+      </div>
+    </ShadcnCard>
   </div>
 </template>
 
@@ -106,7 +115,8 @@ export default defineComponent({
   data()
   {
     return {
-      defaultProgress: 50
+      defaultProgress: 50,
+      defaultSwitch: false
     }
   },
   methods: {
