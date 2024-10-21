@@ -104,6 +104,34 @@ const checked = ref(false)
 
 :::
 
+## Slot
+
+<CodeRunner title="Slot">
+    <ShadcnSwitch v-model="checked">
+        <template #open>ON</template>
+        <template #close>OFF</template>
+    </ShadcnSwitch>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSwitch v-model="checked">
+        <template #open>ON</template>
+        <template #close>OFF</template>
+    </ShadcnSwitch>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const checked = ref(false)
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Switch Props"
@@ -113,6 +141,26 @@ const checked = ref(false)
         ['type', 'The type of the switch', 'String', '-', '-', 'success, warning, error, primary'],
         ['size', 'The size of the switch', 'String', '-', '-', 'small, default, large'],
         ['disabled', 'Whether the switch is disabled', 'Boolean', 'false', '-', '-'],
+    ]">
+</ApiTable>
+
+<br />
+
+<ApiTable title="Switch Events"
+    :headers="['Event', 'Description', 'Callback Parameters']"
+    :columns="[
+        ['update:modelValue', 'Triggered when the value of the switch is changed', 'boolean'],
+        ['on-change', 'Triggered when the value of the switch is changed', 'boolean'],
+    ]">
+</ApiTable>
+
+<br />
+
+<ApiTable title="Switch Slots"
+    :headers="['Slot', 'Description']"
+    :columns="[
+        ['open', 'Open label'],
+        ['close', 'Close label'],
     ]">
 </ApiTable>
 

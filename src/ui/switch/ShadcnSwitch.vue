@@ -7,33 +7,47 @@
                 }
        ]"
        @click="toggleSwitch">
+
     <!-- Switch track -->
-    <div :class="['absolute w-full h-full rounded-full transition-colors duration-300',
-                  {
-                    'bg-blue-400': type === 'primary' && modelValue,
-                    'bg-green-400': type === 'success' && modelValue,
-                    'bg-yellow-400': type === 'warning' && modelValue,
-                    'bg-red-400': type === 'error' && modelValue,
-                    'bg-gray-300': !modelValue
-                  }
+    <div :class="['relative w-full flex items-center justify-between',
+                  Size[size]
                 ]">
-    </div>
 
-    <!-- Switch toggle -->
-    <div :class="['absolute h-full bg-white rounded-full transition-all duration-300',
-                  ToggleSize[size],
-                  {
-                    'left-0': !modelValue,
-                    'right-0': modelValue
-                  }
-                ]">
-    </div>
+      <div v-if="$slots.close && modelValue" class="absolute left-0 pl-1.5 text-white text-xs z-10">
+        <slot name="close"/>
+      </div>
 
-    <!-- Hidden checkbox for accessibility -->
-    <input type="checkbox"
-           class="sr-only"
-           :checked="modelValue"
-           @change="onChange"/>
+      <div :class="['absolute w-full h-full rounded-full transition-colors duration-300',
+                    {
+                      'bg-blue-400': type === 'primary' && modelValue,
+                      'bg-green-400': type === 'success' && modelValue,
+                      'bg-yellow-400': type === 'warning' && modelValue,
+                      'bg-red-400': type === 'error' && modelValue,
+                      'bg-gray-300': !modelValue
+                    }
+                  ]">
+      </div>
+
+      <div v-if="$slots.open && !modelValue" class="absolute right-0 pr-1.5 text-white text-xs">
+        <slot name="open"/>
+      </div>
+
+      <!-- Switch toggle -->
+      <div :class="['absolute h-full bg-white rounded-full transition-all duration-300',
+                    ToggleSize[size],
+                    {
+                      'left-0': !modelValue,
+                      'right-0': modelValue
+                    }
+                  ]">
+      </div>
+
+      <!-- Hidden checkbox for accessibility -->
+      <input type="checkbox"
+             class="sr-only"
+             :checked="modelValue"
+             @change="onChange"/>
+    </div>
   </div>
 </template>
 

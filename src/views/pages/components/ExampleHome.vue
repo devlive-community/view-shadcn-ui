@@ -112,7 +112,19 @@
           <ShadcnSwitch v-model="defaultSwitch" size="large"/>
         </ShadcnSpace>
         Disabled
-        <ShadcnSwitch v-model="defaultSwitch" disabled/>
+        <ShadcnSpace size="large" wrap>
+          <ShadcnSwitch v-model="defaultSwitch" disabled/>
+          <ShadcnSwitch v-model="defaultSwitch" type="error" disabled/>
+          <ShadcnSwitch v-model="defaultSwitch" type="warning" disabled/>
+          <ShadcnSwitch v-model="defaultSwitch" type="success" disabled/>
+        </ShadcnSpace>
+        Slot
+        <ShadcnSpace size="large" wrap>
+          <ShadcnSwitch v-model="defaultSwitch" @on-change="onChange">
+            <template #open>ON</template>
+            <template #close>OFF</template>
+          </ShadcnSwitch>
+        </ShadcnSpace>
       </div>
     </ShadcnCard>
   </div>
@@ -134,6 +146,10 @@ export default defineComponent({
     onSuccess()
     {
       console.log('onSuccess')
+    },
+    onChange(value: boolean)
+    {
+      console.log('onChange', value)
     }
   }
 })
