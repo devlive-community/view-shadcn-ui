@@ -32,3 +32,37 @@ This document is mainly used to describe some features and usage of the ShadcnSp
 ```
 
 :::
+
+## Size
+
+<CodeRunner title="Size">
+    <ShadcnSpace size="large">
+        <ShadcnButton>Button 1</ShadcnButton>
+        <ShadcnButton>Button 2</ShadcnButton>
+    </ShadcnSpace>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSpace size="large">
+        <ShadcnButton>Button 1</ShadcnButton>
+        <ShadcnButton>Button 2</ShadcnButton>
+    </ShadcnSpace>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
+## API Attributes
+
+<ApiTable title="Space Props"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :columns="[
+        ['size', 'Space size', 'Enum', 'default', 'small, default, large'],
+    ]">
+</ApiTable>
