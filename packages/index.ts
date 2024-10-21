@@ -15,6 +15,7 @@ import ShadcnAvatar from '@/ui/avatar'
 import ShadcnBadge from '@/ui/badge'
 import ShadcnAlert from '@/ui/alert'
 import ShadcnProgress from '@/ui/progress'
+import ShadcnSpace from '@/ui/space'
 
 let components = [
     ShadcnButton,
@@ -32,7 +33,8 @@ let components = [
     ShadcnAvatar,
     ShadcnBadge,
     ShadcnAlert,
-    ShadcnProgress
+    ShadcnProgress,
+    ShadcnSpace
 ]
 
 const install = (Vue: App) => {
@@ -70,6 +72,7 @@ export { default as ShadcnAvatar } from '@/ui/avatar'
 export { default as ShadcnBadge } from '@/ui/badge'
 export { default as ShadcnAlert } from '@/ui/alert'
 export { default as ShadcnProgress } from '@/ui/progress'
+export { default as ShadcnSpace } from '@/ui/space'
 
 // Support global import
 export default install

@@ -90,6 +90,7 @@ export default {
                         {text: 'Ellipsis', link: 'ellipsis'},
                         {text: 'Avatar', link: 'avatar'},
                         {text: 'Badge', link: 'badge'},
+                        {text: 'Space', link: 'space'},
                     ]
                 },
                 {

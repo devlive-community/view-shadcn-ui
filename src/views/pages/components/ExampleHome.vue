@@ -33,14 +33,6 @@
         <ShadcnAlert>Alert</ShadcnAlert>
         <ShadcnAlert title="Alert title">Alert Content</ShadcnAlert>
 
-        <ShadcnAlert type="success">Alert</ShadcnAlert>
-        <ShadcnAlert type="warning">Alert</ShadcnAlert>
-        <ShadcnAlert type="error">Alert</ShadcnAlert>
-        <ShadcnAlert type="info">Alert</ShadcnAlert>
-
-        <ShadcnAlert type="success" show-icon>Alert</ShadcnAlert>
-        <ShadcnAlert type="warning" show-icon>Alert</ShadcnAlert>
-        <ShadcnAlert type="error" show-icon>Alert</ShadcnAlert>
         <ShadcnAlert title="Alert" type="info" show-icon>Alert</ShadcnAlert>
         <ShadcnAlert>
           <template #icon>
@@ -72,6 +64,14 @@
 
         <ShadcnProgress v-model="defaultProgress" show-label/>
       </div>
+    </ShadcnCard>
+
+    <ShadcnCard title="Space">
+      <ShadcnSpace>
+        <ShadcnButton type="primary">Button</ShadcnButton>
+        <ShadcnButton type="primary">Button</ShadcnButton>
+        <ShadcnButton type="primary">Button</ShadcnButton>
+      </ShadcnSpace>
     </ShadcnCard>
   </div>
 </template>
