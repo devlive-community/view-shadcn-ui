@@ -12,6 +12,7 @@ import ShadcnCol from '@/ui/col/ShadcnCol.vue'
 import ShadcnDivider from '@/ui/divider'
 import ShadcnEllipsis from '@/ui/ellipsis'
 import ShadcnAvatar from '@/ui/avatar'
+import ShadcnBadge from '@/ui/badge'
 
 let components = [
     ShadcnButton,
@@ -26,7 +27,8 @@ let components = [
     ShadcnCol,
     ShadcnDivider,
     ShadcnEllipsis,
-    ShadcnAvatar
+    ShadcnAvatar,
+    ShadcnBadge
 ]
 
 const install = (Vue: App) => {
@@ -61,6 +63,7 @@ export { default as ShadcnCol } from '@/ui/col'
 export { default as ShadcnDivider } from '@/ui/divider'
 export { default as ShadcnEllipsis } from '@/ui/ellipsis'
 export { default as ShadcnAvatar } from '@/ui/avatar'
+export { default as ShadcnBadge } from '@/ui/badge'
 
 // Support global import
 export default install
