@@ -63,6 +63,6 @@ This document is mainly used to describe some features and usage of the ShadcnSp
 <ApiTable title="Space Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
     :columns="[
-        ['size', 'Space size', 'Enum', 'default', 'small, default, large'],
+        ['size', 'Space size', 'Enum | String | Number', 'default', 'small, default, large'],
     ]">
 </ApiTable>

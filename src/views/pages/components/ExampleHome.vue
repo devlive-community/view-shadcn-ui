@@ -78,6 +78,12 @@
         <ShadcnButton type="primary">Button</ShadcnButton>
         <ShadcnButton type="primary">Button</ShadcnButton>
       </ShadcnSpace>
+
+      <ShadcnSpace size="30">
+        <ShadcnButton type="primary">Button</ShadcnButton>
+        <ShadcnButton type="primary">Button</ShadcnButton>
+        <ShadcnButton type="primary">Button</ShadcnButton>
+      </ShadcnSpace>
     </ShadcnCard>
   </div>
 </template>
