@@ -105,6 +105,12 @@
           <ShadcnSwitch v-model="defaultSwitch" type="warning"/>
           <ShadcnSwitch v-model="defaultSwitch" type="success"/>
         </ShadcnSpace>
+        Size
+        <ShadcnSpace size="large" wrap>
+          <ShadcnSwitch v-model="defaultSwitch" size="small"/>
+          <ShadcnSwitch v-model="defaultSwitch" size="default"/>
+          <ShadcnSwitch v-model="defaultSwitch" size="large"/>
+        </ShadcnSpace>
       </div>
     </ShadcnCard>
   </div>

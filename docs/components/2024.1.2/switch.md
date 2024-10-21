@@ -56,6 +56,32 @@ const checked = ref(false)
 
 :::
 
+## Size
+
+<CodeRunner title="Size">
+    <ShadcnSwitch v-model="checked" size="small" />
+    <ShadcnSwitch v-model="checked" size="default" />
+    <ShadcnSwitch v-model="checked" size="large" />
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSwitch v-model="checked" size="small" />
+    <ShadcnSwitch v-model="checked" size="default" />
+    <ShadcnSwitch v-model="checked" size="large" />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const checked = ref(false)
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Switch Props"
@@ -63,6 +89,7 @@ const checked = ref(false)
     :columns="[
         ['modelValue', 'The value of the switch', 'Boolean', 'false', '-', '-'],
         ['type', 'The type of the switch', 'String', '-', '-', 'success, warning, error, primary'],
+        ['size', 'The size of the switch', 'String', '-', '-', 'small, default, large'],
     ]">
 </ApiTable>
 
