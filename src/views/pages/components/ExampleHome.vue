@@ -60,16 +60,33 @@
         </ShadcnAlert>
       </div>
     </ShadcnCard>
+
+    <ShadcnCard title="Progress">
+      <div class="p-3 space-y-2">
+        <ShadcnProgress v-model="defaultProgress"/>
+        <ShadcnProgress v-model="defaultProgress" status="error"/>
+        <ShadcnProgress v-model="defaultProgress" status="warning"/>
+        <ShadcnProgress v-model="defaultProgress" status="success"/>
+
+        <ShadcnProgress v-model="defaultProgress" size="large"/>
+
+        <ShadcnProgress v-model="defaultProgress" show-label/>
+      </div>
+    </ShadcnCard>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import ShadcnAlert from '@/ui/alert'
 
 export default defineComponent({
   name: 'ExampleHome',
-  components: { ShadcnAlert },
+  data()
+  {
+    return {
+      defaultProgress: 50
+    }
+  },
   methods: {
     onSuccess()
     {
