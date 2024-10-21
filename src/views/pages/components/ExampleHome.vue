@@ -4,6 +4,8 @@
                 size="small"
                 square
                 @on-success="onSuccess"/>
+
+  <ShadcnBadge>Badge</ShadcnBadge>
 </template>
 
 <script lang="ts">

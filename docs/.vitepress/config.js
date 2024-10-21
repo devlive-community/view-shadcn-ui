@@ -89,6 +89,7 @@ export default {
                         {text: 'Divider', link: 'divider'},
                         {text: 'Ellipsis', link: 'ellipsis'},
                         {text: 'Avatar', link: 'avatar'},
+                        {text: 'Badge', link: 'badge'},
                     ]
                 },
                 {

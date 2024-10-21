@@ -1,5 +1,5 @@
 ---
-title: Row and Col
+title: Shadcn Row and Shadcn Col
 ---
 
 # Introduction
