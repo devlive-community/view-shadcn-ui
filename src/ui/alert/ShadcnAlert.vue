@@ -1,14 +1,15 @@
 <template>
-  <Alert class="flex items-center space-x-2"
+  <Alert :class="cn('flex items-center space-x-2',
+                    banner && 'rounded-none')"
          :style="{ backgroundColor: Type[type] }">
-    <div v-if="showIcon">
+    <div v-if="!banner && showIcon">
       <ShadcnIcon :icon="Icon[type]"/>
     </div>
     <div v-else-if="$slots.icon">
       <slot name="icon"/>
     </div>
     <div class="flex-1">
-      <AlertTitle v-if="title || $slots.title">
+      <AlertTitle v-if="!banner && (title || $slots.title)">
         <span v-if="title">{{ title }}</span>
         <slot v-else-if="$slots.title" name="title"/>
       </AlertTitle>
@@ -21,6 +22,7 @@
 
 <script setup lang="ts">
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { cn } from '@/lib/utils.ts'
 
 enum Type
 {
@@ -42,6 +44,7 @@ withDefaults(defineProps<{
   title?: string
   type?: keyof typeof Type
   showIcon?: boolean
+  banner?: boolean
 }>(), {
   type: 'info'
 })

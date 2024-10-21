@@ -52,6 +52,8 @@
         </template>
         Alert
       </ShadcnAlert>
+
+      <ShadcnAlert type="info" banner>Alert</ShadcnAlert>
     </div>
   </div>
 </template>
