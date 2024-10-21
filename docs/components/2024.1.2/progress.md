@@ -84,6 +84,28 @@ const value = ref(10)
 
 :::
 
+## Show Label
+
+<CodeRunner title="Show Label">
+    <ShadcnProgress v-model="value" size="large" show-label>Progress</ShadcnProgress>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnProgress v-model="value" size="large" show-label>Progress</ShadcnProgress>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const value = ref(10)
+</script>
+```
+
+:::
+
 <script setup lang="ts">
 import { ref } from 'vue';
 
@@ -98,5 +120,6 @@ const value = ref(10)
         ['modelValue', 'Detailed data, support port binding, less than 0 is reset to 0, greater than 100 is reset to 100.', 'number', '0', '-', '—'],
         ['status', 'Progress status.', 'Enum', '-', '-', 'success, error, warning, info'],
         ['size', 'Progress size.', 'Enum', '-', '-', 'default, large'],
+        ['showLabel', 'Show progress label.', 'boolean', 'false', '-', '—'],
     ]">
 </ApiTable>

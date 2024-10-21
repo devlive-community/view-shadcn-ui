@@ -1,9 +1,13 @@
 <template>
-  <div :class="cn('w-full bg-gray-200 rounded-lg',
+  <div :class="cn('relative w-full bg-gray-200 rounded-lg',
                   size && Size[size])">
     <div :class="cn('h-full rounded-lg transition-all',
                     status && Status[status])"
-         :style="{ width: localValue + '%' }"></div>
+         :style="{ width: localValue + '%' }">
+    </div>
+    <div v-if="showLabel" class="absolute inset-0 flex items-center justify-center text-white text-xs font-normal">
+      {{ localValue }}%
+    </div>
   </div>
 </template>
 
@@ -21,14 +25,15 @@ enum Status
 
 enum Size
 {
-  default = 'h-2',
-  large = 'h-4'
+  default = 'h-2.5',
+  large = 'h-5'
 }
 
 const props = withDefaults(defineProps<{
   modelValue: number
   status?: keyof typeof Status
   size?: keyof typeof Size
+  showLabel?: boolean
 }>(), {
   status: 'info',
   size: 'default'
