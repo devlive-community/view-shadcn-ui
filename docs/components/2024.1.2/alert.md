@@ -71,6 +71,25 @@ This document is mainly used to describe some features and usage of the ShadcnAl
 
 :::
 
+## Icon
+
+<CodeRunner title="Icon">
+    <ShadcnAlert title="Title" show-icon>Alert</ShadcnAlert>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnAlert title="Title" show-icon>Alert</ShadcnAlert>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Alert Props"
@@ -87,5 +106,6 @@ This document is mainly used to describe some features and usage of the ShadcnAl
     :headers="['Name', 'Description', 'Props Reference']"
     :columns="[
         ['default', 'Default slot', '-'],
+        ['icon', 'Icon slot', '-'],
     ]">
 </ApiTable>

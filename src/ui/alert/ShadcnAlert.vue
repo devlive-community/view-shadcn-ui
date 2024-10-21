@@ -1,12 +1,21 @@
 <template>
-  <Alert :style="{ backgroundColor: Type[type] }">
-    <AlertTitle v-if="title || $slots.title">
-      <span v-if="title">{{ title }}</span>
-      <slot v-else-if="$slots.title" name="title"/>
-    </AlertTitle>
-    <AlertDescription>
-      <slot/>
-    </AlertDescription>
+  <Alert class="flex items-center space-x-2"
+         :style="{ backgroundColor: Type[type] }">
+    <div v-if="showIcon">
+      <ShadcnIcon :icon="Icon[type]"/>
+    </div>
+    <div v-else-if="$slots.icon">
+      <slot name="icon"/>
+    </div>
+    <div class="flex-1">
+      <AlertTitle v-if="title || $slots.title">
+        <span v-if="title">{{ title }}</span>
+        <slot v-else-if="$slots.title" name="title"/>
+      </AlertTitle>
+      <AlertDescription>
+        <slot/>
+      </AlertDescription>
+    </div>
   </Alert>
 </template>
 
@@ -21,9 +30,18 @@ enum Type
   error = '#ffefe6'
 }
 
+enum Icon
+{
+  info = 'Info',
+  success = 'CheckCircle',
+  warning = 'TriangleAlert',
+  error = 'XCircle'
+}
+
 withDefaults(defineProps<{
   title?: string
   type?: keyof typeof Type
+  showIcon?: boolean
 }>(), {
   type: 'info'
 })

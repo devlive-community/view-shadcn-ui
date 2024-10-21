@@ -41,15 +41,28 @@
       <ShadcnAlert type="warning">Alert</ShadcnAlert>
       <ShadcnAlert type="error">Alert</ShadcnAlert>
       <ShadcnAlert type="info">Alert</ShadcnAlert>
+
+      <ShadcnAlert type="success" show-icon>Alert</ShadcnAlert>
+      <ShadcnAlert type="warning" show-icon>Alert</ShadcnAlert>
+      <ShadcnAlert type="error" show-icon>Alert</ShadcnAlert>
+      <ShadcnAlert title="Alert" type="info" show-icon>Alert</ShadcnAlert>
+      <ShadcnAlert>
+        <template #icon>
+          <ShadcnIcon icon="Save"/>
+        </template>
+        Alert
+      </ShadcnAlert>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import ShadcnAlert from '@/ui/alert'
 
 export default defineComponent({
   name: 'ExampleHome',
+  components: { ShadcnAlert },
   methods: {
     onSuccess()
     {
