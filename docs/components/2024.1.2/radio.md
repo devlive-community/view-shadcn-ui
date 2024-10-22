@@ -80,6 +80,34 @@ const checked = ref('Default')
 
 :::
 
+## Type
+
+<CodeRunner title="Type">
+    <ShadcnRadio v-model="checked" value="Primary" type="primary">Primary</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="Success" type="success">Success</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="Warning" type="warning">Warning</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="Error" type="error">Error</ShadcnRadio>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnRadio v-model="checked" value="Primary" type="primary">Primary</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="Success" type="success">Success</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="Warning" type="warning">Warning</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="Error" type="error">Error</ShadcnRadio>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const checked = ref('Primary')
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Radio Props"
@@ -89,6 +117,7 @@ const checked = ref('Default')
         ['value', 'The value of the radio', 'Any', '-', '-', '-'],
         ['disabled', 'Whether the radio is disabled', 'boolean', 'false', '-', '-'],
         ['size', 'The size of the radio', 'Enum', 'default', '-', 'small | default | large'],
+        ['type', 'The type of the radio', 'Enum', 'primary', '-', 'primary | success | warning | error'],
     ]">
 </ApiTable>
 

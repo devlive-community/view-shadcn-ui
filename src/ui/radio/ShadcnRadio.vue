@@ -18,9 +18,10 @@
     <div :class="['flex items-center justify-center rounded-full border transition-colors duration-300',
                   Size[size],
                   {
-                    'border-blue-500': modelValue === value,
-                    'border-gray-300': modelValue !== value,
-                    'bg-blue-500': modelValue === value,
+                    'bg-blue-400': type === 'primary' && modelValue === value,
+                    'bg-green-400': type === 'success' && modelValue === value,
+                    'bg-yellow-400': type === 'warning' && modelValue === value,
+                    'bg-red-400': type === 'error' && modelValue === value,
                     'bg-white': modelValue !== value
                   }]">
       <div v-if="modelValue === value"
@@ -61,9 +62,11 @@ const props = withDefaults(defineProps<{
   value: any,
   disabled?: boolean
   size?: keyof typeof Size
+  type?: 'primary' | 'success' | 'warning' | 'error'
 }>(), {
   disabled: false,
-  size: 'default'
+  size: 'default',
+  type: 'primary'
 })
 
 const onChange = () => {

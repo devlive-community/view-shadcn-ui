@@ -18,6 +18,13 @@
           <ShadcnRadio v-model="defaultRadio" value="Small" size="small" @on-change="onChange">Small</ShadcnRadio>
           <ShadcnRadio v-model="defaultRadio" value="Large" size="large" @on-change="onChange">Large</ShadcnRadio>
         </ShadcnSpace>
+        Type
+        <ShadcnSpace size="large" wrap>
+          <ShadcnRadio v-model="defaultRadio" value="Primary" type="primary" @on-change="onChange">Primary</ShadcnRadio>
+          <ShadcnRadio v-model="defaultRadio" value="Success" type="success" @on-change="onChange">Success</ShadcnRadio>
+          <ShadcnRadio v-model="defaultRadio" value="Warning" type="warning" @on-change="onChange">Warning</ShadcnRadio>
+          <ShadcnRadio v-model="defaultRadio" value="Error" type="error" @on-change="onChange">Error</ShadcnRadio>
+        </ShadcnSpace>
       </div>
     </ShadcnCard>
 
