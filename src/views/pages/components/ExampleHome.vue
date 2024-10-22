@@ -12,6 +12,12 @@
           <ShadcnRadio v-model="defaultRadio" value="ON" disabled @on-change="onChange">ON</ShadcnRadio>
           <ShadcnRadio v-model="defaultRadio" value="OFF" @on-change="onChange">OFF</ShadcnRadio>
         </ShadcnSpace>
+        Size
+        <ShadcnSpace size="large" wrap>
+          <ShadcnRadio v-model="defaultRadio" value="Default" size="default" @on-change="onChange">Default</ShadcnRadio>
+          <ShadcnRadio v-model="defaultRadio" value="Small" size="small" @on-change="onChange">Small</ShadcnRadio>
+          <ShadcnRadio v-model="defaultRadio" value="Large" size="large" @on-change="onChange">Large</ShadcnRadio>
+        </ShadcnSpace>
       </div>
     </ShadcnCard>
 

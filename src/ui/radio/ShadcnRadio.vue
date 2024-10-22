@@ -15,14 +15,18 @@
            class="sr-only"/>
 
     <!-- Custom Radio Style -->
-    <div :class="['w-4 h-4 flex items-center justify-center rounded-full border transition-colors duration-300',
+    <div :class="['flex items-center justify-center rounded-full border transition-colors duration-300',
+                  Size[size],
                   {
                     'border-blue-500': modelValue === value,
                     'border-gray-300': modelValue !== value,
                     'bg-blue-500': modelValue === value,
                     'bg-white': modelValue !== value
                   }]">
-      <div v-if="modelValue === value" class="w-2 h-2 bg-white rounded-full"/>
+      <div v-if="modelValue === value"
+           :class="['bg-white rounded-full',
+                    ToggleSize[size],
+            ]"/>
     </div>
 
     <!-- Label Slot -->
@@ -38,12 +42,28 @@
 <script setup lang="ts">
 const emit = defineEmits(['update:modelValue', 'on-change'])
 
+enum Size
+{
+  default = 'w-5 h-5',
+  small = 'w-4 h-4',
+  large = 'w-6 h-6'
+}
+
+enum ToggleSize
+{
+  default = 'w-3 h-3',
+  small = 'w-2 h-2',
+  large = 'w-4 h-4'
+}
+
 const props = withDefaults(defineProps<{
   modelValue?: any,
   value: any,
   disabled?: boolean
+  size?: keyof typeof Size
 }>(), {
-  disabled: false
+  disabled: false,
+  size: 'default'
 })
 
 const onChange = () => {

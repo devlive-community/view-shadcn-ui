@@ -54,6 +54,32 @@ const checked = ref('ON')
 
 :::
 
+## Size
+
+<CodeRunner title="Size">
+    <ShadcnRadio v-model="checked" value="Default" size="default">Default</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="Small" size="small">Small</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="Large" size="large">Large</ShadcnRadio>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnRadio v-model="checked" value="Default" size="default">Default</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="Small" size="small">Small</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="Large" size="large">Large</ShadcnRadio>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const checked = ref('Default')
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Radio Props"
@@ -61,6 +87,8 @@ const checked = ref('ON')
     :columns="[
         ['modelValue', 'The value of the radio', 'Any', '-', '-', '-'],
         ['value', 'The value of the radio', 'Any', '-', '-', '-'],
+        ['disabled', 'Whether the radio is disabled', 'boolean', 'false', '-', '-'],
+        ['size', 'The size of the radio', 'Enum', 'default', '-', 'small | default | large'],
     ]">
 </ApiTable>
 
