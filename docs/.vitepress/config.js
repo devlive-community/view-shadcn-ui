@@ -112,6 +112,7 @@ export default {
                     items: [
                         {text: 'Input', link: '../2024.1.1/input'},
                         {text: 'Switch', link: 'switch'},
+                        {text: 'Radio', link: 'radio'},
                     ]
                 }
             ],

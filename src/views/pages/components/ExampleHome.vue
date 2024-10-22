@@ -1,5 +1,15 @@
 <template>
   <div class="flex w-full flex-col gap-4 md:gap-8 md:p-8 lg:grid lg:grid-cols-3">
+    <ShadcnCard title="Radio">
+      <div class="p-3">
+        Radio Value: {{ defaultRadio }}
+        <ShadcnSpace size="large" wrap>
+          <ShadcnRadio v-model="defaultRadio" value="ON" @on-change="onChange">ON</ShadcnRadio>
+          <ShadcnRadio v-model="defaultRadio" value="OFF" @on-change="onChange">OFF</ShadcnRadio>
+        </ShadcnSpace>
+      </div>
+    </ShadcnCard>
+
     <ShadcnCard title="Avatar">
       <ShadcnAvatar src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png"
                     alt="Shadcn UI"
@@ -139,7 +149,8 @@ export default defineComponent({
   {
     return {
       defaultProgress: 50,
-      defaultSwitch: false
+      defaultSwitch: false,
+      defaultRadio: false
     }
   },
   methods: {
