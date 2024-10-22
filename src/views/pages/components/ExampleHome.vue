@@ -1,5 +1,33 @@
 <template>
   <div class="flex w-full flex-col gap-4 md:gap-8 md:p-8 lg:grid lg:grid-cols-3">
+    <ShadcnCard title="Radio">
+      <div class="p-3">
+        Radio Value: {{ defaultRadio }}
+        <ShadcnSpace size="large" wrap>
+          <ShadcnRadio v-model="defaultRadio" value="ON" @on-change="onChange">ON</ShadcnRadio>
+          <ShadcnRadio v-model="defaultRadio" value="OFF" @on-change="onChange">OFF</ShadcnRadio>
+        </ShadcnSpace>
+        Disabled
+        <ShadcnSpace size="large" wrap>
+          <ShadcnRadio v-model="defaultRadio" value="ON" disabled @on-change="onChange">ON</ShadcnRadio>
+          <ShadcnRadio v-model="defaultRadio" value="OFF" @on-change="onChange">OFF</ShadcnRadio>
+        </ShadcnSpace>
+        Size
+        <ShadcnSpace size="large" wrap>
+          <ShadcnRadio v-model="defaultRadio" value="Default" size="default" @on-change="onChange">Default</ShadcnRadio>
+          <ShadcnRadio v-model="defaultRadio" value="Small" size="small" @on-change="onChange">Small</ShadcnRadio>
+          <ShadcnRadio v-model="defaultRadio" value="Large" size="large" @on-change="onChange">Large</ShadcnRadio>
+        </ShadcnSpace>
+        Type
+        <ShadcnSpace size="large" wrap>
+          <ShadcnRadio v-model="defaultRadio" value="Primary" type="primary" @on-change="onChange">Primary</ShadcnRadio>
+          <ShadcnRadio v-model="defaultRadio" value="Success" type="success" @on-change="onChange">Success</ShadcnRadio>
+          <ShadcnRadio v-model="defaultRadio" value="Warning" type="warning" @on-change="onChange">Warning</ShadcnRadio>
+          <ShadcnRadio v-model="defaultRadio" value="Error" type="error" @on-change="onChange">Error</ShadcnRadio>
+        </ShadcnSpace>
+      </div>
+    </ShadcnCard>
+
     <ShadcnCard title="Avatar">
       <ShadcnAvatar src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png"
                     alt="Shadcn UI"
@@ -95,6 +123,38 @@
         </ShadcnSpace>
       </div>
     </ShadcnCard>
+
+    <ShadcnCard title="Switch">
+      <div class="p-3">
+        Switch Value: {{ defaultSwitch }}
+        <ShadcnSpace size="large" wrap>
+          <ShadcnSwitch v-model="defaultSwitch"/>
+          <ShadcnSwitch v-model="defaultSwitch" type="error"/>
+          <ShadcnSwitch v-model="defaultSwitch" type="warning"/>
+          <ShadcnSwitch v-model="defaultSwitch" type="success"/>
+        </ShadcnSpace>
+        Size
+        <ShadcnSpace size="large" wrap>
+          <ShadcnSwitch v-model="defaultSwitch" size="small"/>
+          <ShadcnSwitch v-model="defaultSwitch" size="default"/>
+          <ShadcnSwitch v-model="defaultSwitch" size="large"/>
+        </ShadcnSpace>
+        Disabled
+        <ShadcnSpace size="large" wrap>
+          <ShadcnSwitch v-model="defaultSwitch" disabled/>
+          <ShadcnSwitch v-model="defaultSwitch" type="error" disabled/>
+          <ShadcnSwitch v-model="defaultSwitch" type="warning" disabled/>
+          <ShadcnSwitch v-model="defaultSwitch" type="success" disabled/>
+        </ShadcnSpace>
+        Slot
+        <ShadcnSpace size="large" wrap>
+          <ShadcnSwitch v-model="defaultSwitch" @on-change="onChange">
+            <template #open>ON</template>
+            <template #close>OFF</template>
+          </ShadcnSwitch>
+        </ShadcnSpace>
+      </div>
+    </ShadcnCard>
   </div>
 </template>
 
@@ -106,13 +166,19 @@ export default defineComponent({
   data()
   {
     return {
-      defaultProgress: 50
+      defaultProgress: 50,
+      defaultSwitch: false,
+      defaultRadio: 'ON'
     }
   },
   methods: {
     onSuccess()
     {
       console.log('onSuccess')
+    },
+    onChange(value: boolean)
+    {
+      console.log('onChange', value)
     }
   }
 })

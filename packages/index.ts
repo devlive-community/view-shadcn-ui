@@ -16,6 +16,8 @@ import ShadcnBadge from '@/ui/badge'
 import ShadcnAlert from '@/ui/alert'
 import ShadcnProgress from '@/ui/progress'
 import ShadcnSpace from '@/ui/space'
+import ShadcnSwitch from '@/ui/switch'
+import ShadcnRadio from '@/ui/radio'
 
 let components = [
     ShadcnButton,
@@ -34,7 +36,9 @@ let components = [
     ShadcnBadge,
     ShadcnAlert,
     ShadcnProgress,
-    ShadcnSpace
+    ShadcnSpace,
+    ShadcnSwitch,
+    ShadcnRadio
 ]
 
 const install = (Vue: App) => {
@@ -73,6 +77,8 @@ export { default as ShadcnBadge } from '@/ui/badge'
 export { default as ShadcnAlert } from '@/ui/alert'
 export { default as ShadcnProgress } from '@/ui/progress'
 export { default as ShadcnSpace } from '@/ui/space'
+export { default as ShadcnSwitch } from '@/ui/switch'
+export { default as ShadcnRadio } from '@/ui/radio'
 
 // Support global import
 export default install

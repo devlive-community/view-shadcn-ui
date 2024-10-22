@@ -107,10 +107,12 @@ export default {
                 },
                 {
                     text: 'Form Components',
-                    base: '/components/2024.1.1/',
+                    base: '/components/2024.1.2/',
                     collapsed: false,
                     items: [
                         {text: 'Input', link: '../2024.1.1/input'},
+                        {text: 'Switch', link: 'switch'},
+                        {text: 'Radio', link: 'radio'},
                     ]
                 }
             ],
