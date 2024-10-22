@@ -7,6 +7,11 @@
           <ShadcnRadio v-model="defaultRadio" value="ON" @on-change="onChange">ON</ShadcnRadio>
           <ShadcnRadio v-model="defaultRadio" value="OFF" @on-change="onChange">OFF</ShadcnRadio>
         </ShadcnSpace>
+        Disabled
+        <ShadcnSpace size="large" wrap>
+          <ShadcnRadio v-model="defaultRadio" value="ON" disabled @on-change="onChange">ON</ShadcnRadio>
+          <ShadcnRadio v-model="defaultRadio" value="OFF" @on-change="onChange">OFF</ShadcnRadio>
+        </ShadcnSpace>
       </div>
     </ShadcnCard>
 
@@ -150,7 +155,7 @@ export default defineComponent({
     return {
       defaultProgress: 50,
       defaultSwitch: false,
-      defaultRadio: false
+      defaultRadio: 'ON'
     }
   },
   methods: {

@@ -1,12 +1,17 @@
 <template>
   <div :class="[
                 'inline-flex items-center cursor-pointer',
+                {
+                  'cursor-pointer': !disabled,
+                  'cursor-not-allowed opacity-50': disabled
+                }
         ]"
        @click="onChange">
     <!-- Radio Input -->
     <input type="radio"
            :value="value"
            :checked="modelValue === value"
+           :disabled="disabled"
            class="sr-only"/>
 
     <!-- Custom Radio Style -->
@@ -36,13 +41,15 @@ const emit = defineEmits(['update:modelValue', 'on-change'])
 const props = withDefaults(defineProps<{
   modelValue?: any,
   value: any,
+  disabled?: boolean
 }>(), {
-  modelValue: null,
   disabled: false
 })
 
 const onChange = () => {
-  emit('update:modelValue', props.value)
-  emit('on-change', props.value)
+  if (!props.disabled) {
+    emit('update:modelValue', props.value)
+    emit('on-change', props.value)
+  }
 }
 </script>
