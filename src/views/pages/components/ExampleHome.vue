@@ -21,6 +21,13 @@
           <ShadcnCheckbox v-model="defaultCheckbox" value="Small" size="small" @on-change="onChange">Small</ShadcnCheckbox>
           <ShadcnCheckbox v-model="defaultCheckbox" value="Large" size="large" @on-change="onChange">Large</ShadcnCheckbox>
         </ShadcnSpace>
+        Type
+        <ShadcnSpace size="large" wrap>
+          <ShadcnCheckbox v-model="defaultCheckbox" value="Primary" type="primary" @on-change="onChange">Primary</ShadcnCheckbox>
+          <ShadcnCheckbox v-model="defaultCheckbox" value="Success" type="success" @on-change="onChange">Success</ShadcnCheckbox>
+          <ShadcnCheckbox v-model="defaultCheckbox" value="Warning" type="warning" @on-change="onChange">Warning</ShadcnCheckbox>
+          <ShadcnCheckbox v-model="defaultCheckbox" value="Error" type="error" @on-change="onChange">Error</ShadcnCheckbox>
+        </ShadcnSpace>
       </div>
     </ShadcnCard>
 

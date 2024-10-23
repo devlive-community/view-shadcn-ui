@@ -17,10 +17,11 @@
     <div :class="['flex items-center justify-center rounded border transition-colors duration-300',
                   Size[size],
                   {
-                    'border-blue-500': isChecked,
-                    'border-gray-300': !isChecked,
-                    'bg-blue-500': isChecked,
-                    'bg-white': !isChecked
+                    'bg-blue-400': type === 'primary' && modelValue === value,
+                    'bg-green-400': type === 'success' && modelValue === value,
+                    'bg-yellow-400': type === 'warning' && modelValue === value,
+                    'bg-red-400': type === 'error' && modelValue === value,
+                    'bg-white': modelValue !== value
                   }]">
       <svg v-if="isChecked"
            xmlns="http://www.w3.org/2000/svg"
@@ -69,10 +70,12 @@ const props = withDefaults(defineProps<{
   value?: any,
   disabled?: boolean
   size?: keyof typeof Size
+  type?: 'primary' | 'success' | 'warning' | 'error'
 }>(), {
   modelValue: null,
   disabled: false,
-  size: 'default'
+  size: 'default',
+  type: 'primary'
 })
 
 // Computed property to check if the checkbox is checked based on modelValue and value
