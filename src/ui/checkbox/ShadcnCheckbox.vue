@@ -17,11 +17,11 @@
     <div :class="['flex items-center justify-center rounded border transition-colors duration-300',
                   Size[size],
                   {
-                    'bg-blue-400': type === 'primary' && modelValue === value,
-                    'bg-green-400': type === 'success' && modelValue === value,
-                    'bg-yellow-400': type === 'warning' && modelValue === value,
-                    'bg-red-400': type === 'error' && modelValue === value,
-                    'bg-white': modelValue !== value
+                    'bg-blue-400': type === 'primary' && isChecked,
+                    'bg-green-400': type === 'success' && isChecked,
+                    'bg-yellow-400': type === 'warning' && isChecked,
+                    'bg-red-400': type === 'error' && isChecked,
+                    'bg-white': !isChecked
                   }]">
       <svg v-if="isChecked"
            xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, inject } from 'vue'
 
 enum Size
 {
@@ -68,8 +68,8 @@ const emit = defineEmits(['update:modelValue', 'on-change'])
 const props = withDefaults(defineProps<{
   modelValue?: any,
   value?: any,
-  disabled?: boolean
-  size?: keyof typeof Size
+  disabled?: boolean,
+  size?: keyof typeof Size,
   type?: 'primary' | 'success' | 'warning' | 'error'
 }>(), {
   modelValue: null,
@@ -78,14 +78,29 @@ const props = withDefaults(defineProps<{
   type: 'primary'
 })
 
-// Computed property to check if the checkbox is checked based on modelValue and value
-const isChecked = computed(() => props.modelValue === props.value)
+// Get the checkboxGroup data
+const checkboxGroup = inject<{ modelValue: { modelValue: any[] }, updateModelValue: Function } | null>('checkboxGroup', null)
 
+// Computed property to check if the checkbox is checked
+const isChecked = computed(() => {
+  if (checkboxGroup) {
+    return checkboxGroup.modelValue.modelValue.includes(props.value)
+  }
+  return props.modelValue === props.value
+})
+
+// Function to handle checkbox change
 const onChange = () => {
   if (!props.disabled) {
-    const newValue = isChecked.value ? null : props.value
-    emit('update:modelValue', newValue)
-    emit('on-change', newValue)
+    if (checkboxGroup) {
+      // Call updateModelValue to update the group state
+      checkboxGroup.updateModelValue(props.value, !isChecked.value)
+    }
+    else {
+      const newValue = isChecked.value ? null : props.value
+      emit('update:modelValue', newValue)
+      emit('on-change', newValue)
+    }
   }
 }
 </script>

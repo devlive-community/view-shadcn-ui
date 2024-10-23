@@ -109,6 +109,35 @@ const checked = ref('Primary')
 
 :::
 
+## Group
+
+<CodeRunner title="Group">
+    Checkbox Group Value: {{ checkedGroup }}
+    <ShadcnCheckboxGroup v-model="checkedGroup">
+        <ShadcnCheckbox value="Vue">Vue</ShadcnCheckbox>
+        <ShadcnCheckbox value="Nuxt">Nuxt</ShadcnCheckbox>
+    </ShadcnCheckboxGroup>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnCheckboxGroup v-model="checkedGroup">
+    <ShadcnCheckbox value="Vue">Vue</ShadcnCheckbox>
+    <ShadcnCheckbox value="Nuxt">Nuxt</ShadcnCheckbox>
+  </ShadcnCheckboxGroup>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const checkedGroup = ref(['Vue'])
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Checkbox Props"
@@ -124,10 +153,28 @@ const checked = ref('Primary')
 
 <br />
 
+<ApiTable title="Checkbox Group Props"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :columns="[
+        ['modelValue', 'You can use v-model to bind data in both directions', 'Any[]', '-', '-', '-'],
+    ]">
+</ApiTable>
+
+<br />
+
 <ApiTable title="Checkbox Events"
     :headers="['Event', 'Description', 'Callback Parameters']"
     :columns="[
         ['on-change', 'Triggered when the value of the checkbox is changed', 'boolean'],
+    ]">
+</ApiTable>
+
+<br />
+
+<ApiTable title="Checkbox Group Events"
+    :headers="['Event', 'Description', 'Callback Parameters']"
+    :columns="[
+        ['on-change', 'Triggered when the value of the checkbox group is changed', '[]'],
     ]">
 </ApiTable>
 
@@ -145,4 +192,5 @@ const checked = ref('Primary')
 import { ref } from 'vue'
 
 const checked = ref('Vue')
+const checkedGroup = ref(['Vue'])
 </script>

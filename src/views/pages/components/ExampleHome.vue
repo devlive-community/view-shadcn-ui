@@ -28,6 +28,14 @@
           <ShadcnCheckbox v-model="defaultCheckbox" value="Warning" type="warning" @on-change="onChange">Warning</ShadcnCheckbox>
           <ShadcnCheckbox v-model="defaultCheckbox" value="Error" type="error" @on-change="onChange">Error</ShadcnCheckbox>
         </ShadcnSpace>
+        Checkbox Group Value: {{ defaultCheckboxGroup }}
+        <ShadcnSpace>
+          <ShadcnCheckboxGroup v-model="defaultCheckboxGroup">
+            <ShadcnCheckbox value="Vue" @on-change="onChange">Vue</ShadcnCheckbox>
+            <ShadcnCheckbox value="Nuxt" @on-change="onChange">Nuxt</ShadcnCheckbox>
+            <ShadcnCheckbox value="Java" disabled @on-change="onChange">Java</ShadcnCheckbox>
+          </ShadcnCheckboxGroup>
+        </ShadcnSpace>
       </div>
     </ShadcnCard>
 
@@ -201,7 +209,8 @@ export default defineComponent({
       defaultProgress: 50,
       defaultSwitch: false,
       defaultRadio: 'ON',
-      defaultCheckbox: 'Vue'
+      defaultCheckbox: 'Vue',
+      defaultCheckboxGroup: []
     }
   },
   methods: {
