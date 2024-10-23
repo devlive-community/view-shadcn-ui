@@ -36,7 +36,7 @@ export default {
                 activeMatch: '/guide/'
             },
             {
-                text: 'Components (v2024.1.2)',
+                text: 'Components (v2024.1.2 Alpha)',
                 items: [
                     {
                         text: '2024.1.2',
@@ -113,6 +113,7 @@ export default {
                         {text: 'Input', link: '../2024.1.1/input'},
                         {text: 'Switch', link: 'switch'},
                         {text: 'Radio', link: 'radio'},
+                        {text: 'Checkbox', link: 'checkbox'},
                     ]
                 }
             ],

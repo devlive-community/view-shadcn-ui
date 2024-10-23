@@ -1,5 +1,18 @@
 <template>
   <div class="flex w-full flex-col gap-4 md:gap-8 md:p-8 lg:grid lg:grid-cols-3">
+
+    <ShadcnCard title="Checkbox">
+      <div class="p-3">
+        Checkbox Value: {{ defaultCheckbox }}
+        <ShadcnSpace size="large" wrap>
+          <ShadcnCheckbox v-model="defaultCheckbox" value="Vue" @on-change="onChange">Vue</ShadcnCheckbox>
+          <ShadcnCheckbox v-model="defaultCheckbox" value="Nuxt" @on-change="onChange">Nuxt</ShadcnCheckbox>
+          <ShadcnCheckbox v-model="defaultCheckbox" value="Java" @on-change="onChange">Java</ShadcnCheckbox>
+        </ShadcnSpace>
+      </div>
+    </ShadcnCard>
+
+
     <ShadcnCard title="Radio">
       <div class="p-3">
         Radio Value: {{ defaultRadio }}
@@ -168,7 +181,8 @@ export default defineComponent({
     return {
       defaultProgress: 50,
       defaultSwitch: false,
-      defaultRadio: 'ON'
+      defaultRadio: 'ON',
+      defaultCheckbox: 'Vue'
     }
   },
   methods: {
