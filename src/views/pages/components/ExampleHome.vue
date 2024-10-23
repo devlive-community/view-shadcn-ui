@@ -39,7 +39,6 @@
       </div>
     </ShadcnCard>
 
-
     <ShadcnCard title="Radio">
       <div class="p-3">
         Radio Value: {{ defaultRadio }}
@@ -64,6 +63,14 @@
           <ShadcnRadio v-model="defaultRadio" value="Success" type="success" @on-change="onChange">Success</ShadcnRadio>
           <ShadcnRadio v-model="defaultRadio" value="Warning" type="warning" @on-change="onChange">Warning</ShadcnRadio>
           <ShadcnRadio v-model="defaultRadio" value="Error" type="error" @on-change="onChange">Error</ShadcnRadio>
+        </ShadcnSpace>
+        Radio Group Value: {{ defaultRadioGroup }}
+        <ShadcnSpace>
+          <ShadcnRadioGroup v-model="defaultRadioGroup">
+            <ShadcnRadio value="Vue" @on-change="onChange">Vue</ShadcnRadio>
+            <ShadcnRadio value="Nuxt" @on-change="onChange">Nuxt</ShadcnRadio>
+            <ShadcnRadio value="Java" disabled @on-change="onChange">Java</ShadcnRadio>
+          </ShadcnRadioGroup>
         </ShadcnSpace>
       </div>
     </ShadcnCard>
@@ -209,6 +216,7 @@ export default defineComponent({
       defaultProgress: 50,
       defaultSwitch: false,
       defaultRadio: 'ON',
+      defaultRadioGroup: 'Vue',
       defaultCheckbox: 'Vue',
       defaultCheckboxGroup: []
     }

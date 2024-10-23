@@ -1,6 +1,6 @@
 <template>
   <div :class="[
-                'inline-flex items-center cursor-pointer',
+                'inline-flex items-center',
                 {
                   'cursor-pointer': !disabled,
                   'cursor-not-allowed opacity-50': disabled
@@ -10,7 +10,7 @@
     <!-- Radio Input -->
     <input type="radio"
            :value="value"
-           :checked="modelValue === value"
+           :checked="isChecked"
            :disabled="disabled"
            class="sr-only"/>
 
@@ -18,13 +18,13 @@
     <div :class="['flex items-center justify-center rounded-full border transition-colors duration-300',
                   Size[size],
                   {
-                    'bg-blue-400': type === 'primary' && modelValue === value,
-                    'bg-green-400': type === 'success' && modelValue === value,
-                    'bg-yellow-400': type === 'warning' && modelValue === value,
-                    'bg-red-400': type === 'error' && modelValue === value,
-                    'bg-white': modelValue !== value
+                    'bg-blue-400': type === 'primary' && isChecked,
+                    'bg-green-400': type === 'success' && isChecked,
+                    'bg-yellow-400': type === 'warning' && isChecked,
+                    'bg-red-400': type === 'error' && isChecked,
+                    'bg-white': !isChecked
                   }]">
-      <div v-if="modelValue === value"
+      <div v-if="isChecked"
            :class="['bg-white rounded-full',
                     ToggleSize[size],
             ]"/>
@@ -41,6 +41,8 @@
 </template>
 
 <script setup lang="ts">
+import { computed, inject } from 'vue'
+
 const emit = defineEmits(['update:modelValue', 'on-change'])
 
 enum Size
@@ -58,8 +60,8 @@ enum ToggleSize
 }
 
 const props = withDefaults(defineProps<{
-  modelValue?: any,
-  value: any,
+  modelValue?: any
+  value: any
   disabled?: boolean
   size?: keyof typeof Size
   type?: 'primary' | 'success' | 'warning' | 'error'
@@ -69,10 +71,24 @@ const props = withDefaults(defineProps<{
   type: 'primary'
 })
 
+const radioGroup = inject<{ modelValue: { modelValue: any }, updateModelValue: Function } | null>('radioGroup', null)
+
+const isChecked = computed(() => {
+  if (radioGroup) {
+    return radioGroup.modelValue.modelValue === props.value
+  }
+  return props.modelValue === props.value
+})
+
 const onChange = () => {
   if (!props.disabled) {
-    emit('update:modelValue', props.value)
-    emit('on-change', props.value)
+    if (radioGroup) {
+      radioGroup.updateModelValue(props.value)
+    }
+    else {
+      emit('update:modelValue', props.value)
+      emit('on-change', props.value)
+    }
   }
 }
 </script>

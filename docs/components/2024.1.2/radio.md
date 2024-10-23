@@ -108,6 +108,37 @@ const checked = ref('Primary')
 
 :::
 
+## Group
+
+<CodeRunner title="Group">
+    Checkbox Group Value: {{ checkedGroup }}
+    <ShadcnRadioGroup v-model="checkedGroup">
+        <ShadcnRadio value="ON">ON</ShadcnRadio>
+        <ShadcnRadio value="OFF">OFF</ShadcnRadio>
+        <ShadcnRadio value="Disabled" disabled>Disabled</ShadcnRadio>
+    </ShadcnRadioGroup>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnRadioGroup v-model="checkedGroup">
+        <ShadcnRadio value="ON">ON</ShadcnRadio>
+        <ShadcnRadio value="OFF">OFF</ShadcnRadio>
+        <ShadcnRadio value="Disabled" disabled>Disabled</ShadcnRadio>
+    </ShadcnRadioGroup>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const checkedGroup = ref('ON')
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Radio Props"
@@ -123,10 +154,27 @@ const checked = ref('Primary')
 
 <br />
 
+<ApiTable title="Radio Group Props"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :columns="[
+        ['modelValue', 'The value of the radio group', 'Any', '-', '-', '-'],
+    ]">
+</ApiTable>
+
+<br />
+
 <ApiTable title="Radio Events"
     :headers="['Event', 'Description', 'Callback Parameters']"
     :columns="[
-        ['update:modelValue', 'Triggered when the value of the radio is changed', 'boolean'],
+        ['on-change', 'Triggered when the value of the radio is changed', 'boolean'],
+    ]">
+</ApiTable>
+
+<br />
+
+<ApiTable title="Radio Group Events"
+    :headers="['Event', 'Description', 'Callback Parameters']"
+    :columns="[
         ['on-change', 'Triggered when the value of the radio is changed', 'boolean'],
     ]">
 </ApiTable>
@@ -145,4 +193,5 @@ const checked = ref('Primary')
 import { ref } from 'vue'
 
 const checked = ref('ON')
+const checkedGroup = ref('ON')
 </script>
