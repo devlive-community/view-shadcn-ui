@@ -31,6 +31,30 @@ const checked = ref('Vue')
 
 :::
 
+## Disabled
+
+<CodeRunner title="Disabled">
+    <ShadcnCheckbox v-model="checked" value="Vue" disabled>Vue</ShadcnCheckbox>
+    <ShadcnCheckbox v-model="checked" value="Nuxt">Nuxt</ShadcnCheckbox>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnCheckbox v-model="checked" value="Vue" disabled>Vue</ShadcnCheckbox>
+  <ShadcnCheckbox v-model="checked" value="Nuxt">Nuxt</ShadcnCheckbox>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const checked = ref('Vue')
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Checkbox Props"
@@ -38,6 +62,7 @@ const checked = ref('Vue')
     :columns="[
         ['modelValue', 'You can use v-model to bind data in both directions', 'Any', '-', '-', '-'],
         ['value', 'The value of the checkbox', 'Any', '-', '-', '-'],
+        ['disabled', 'Whether the checkbox is disabled', 'boolean', 'false', '-', '-'],
     ]">
 </ApiTable>
 

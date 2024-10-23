@@ -1,6 +1,10 @@
 <template>
   <div :class="[
-                'inline-flex items-center cursor-pointer',
+                'inline-flex items-center',
+                {
+                  'cursor-pointer': !disabled,
+                  'cursor-not-allowed opacity-50': disabled
+                }
         ]"
        @click="onChange">
     <!-- Hidden Checkbox Input -->
@@ -48,17 +52,20 @@ const emit = defineEmits(['update:modelValue', 'on-change'])
 const props = withDefaults(defineProps<{
   modelValue?: any,
   value?: any,
+  disabled?: boolean
 }>(), {
   modelValue: null,
-  value: true
+  disabled: false
 })
 
 // Computed property to check if the checkbox is checked based on modelValue and value
 const isChecked = computed(() => props.modelValue === props.value)
 
 const onChange = () => {
-  const newValue = isChecked.value ? null : props.value
-  emit('update:modelValue', newValue)
-  emit('on-change', newValue)
+  if (!props.disabled) {
+    const newValue = isChecked.value ? null : props.value
+    emit('update:modelValue', newValue)
+    emit('on-change', newValue)
+  }
 }
 </script>

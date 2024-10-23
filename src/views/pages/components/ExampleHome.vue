@@ -9,6 +9,12 @@
           <ShadcnCheckbox v-model="defaultCheckbox" value="Nuxt" @on-change="onChange">Nuxt</ShadcnCheckbox>
           <ShadcnCheckbox v-model="defaultCheckbox" value="Java" @on-change="onChange">Java</ShadcnCheckbox>
         </ShadcnSpace>
+        Disabled
+        <ShadcnSpace size="large" wrap>
+          <ShadcnCheckbox v-model="defaultCheckbox" value="Vue" disabled @on-change="onChange">Vue</ShadcnCheckbox>
+          <ShadcnCheckbox v-model="defaultCheckbox" value="Nuxt" @on-change="onChange">Nuxt</ShadcnCheckbox>
+          <ShadcnCheckbox v-model="defaultCheckbox" value="Java" @on-change="onChange">Java</ShadcnCheckbox>
+        </ShadcnSpace>
       </div>
     </ShadcnCard>
 
