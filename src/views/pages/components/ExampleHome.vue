@@ -1,5 +1,45 @@
 <template>
   <div class="flex w-full flex-col gap-4 md:gap-8 md:p-8 lg:grid lg:grid-cols-3">
+
+    <ShadcnCard title="Checkbox">
+      <div class="p-3">
+        Checkbox Value: {{ defaultCheckbox }}
+        <ShadcnSpace size="large" wrap>
+          <ShadcnCheckbox v-model="defaultCheckbox" value="Vue" @on-change="onChange">Vue</ShadcnCheckbox>
+          <ShadcnCheckbox v-model="defaultCheckbox" value="Nuxt" @on-change="onChange">Nuxt</ShadcnCheckbox>
+          <ShadcnCheckbox v-model="defaultCheckbox" value="Java" @on-change="onChange">Java</ShadcnCheckbox>
+        </ShadcnSpace>
+        Disabled
+        <ShadcnSpace size="large" wrap>
+          <ShadcnCheckbox v-model="defaultCheckbox" value="Vue" disabled @on-change="onChange">Vue</ShadcnCheckbox>
+          <ShadcnCheckbox v-model="defaultCheckbox" value="Nuxt" @on-change="onChange">Nuxt</ShadcnCheckbox>
+          <ShadcnCheckbox v-model="defaultCheckbox" value="Java" @on-change="onChange">Java</ShadcnCheckbox>
+        </ShadcnSpace>
+        Size
+        <ShadcnSpace size="large" wrap>
+          <ShadcnCheckbox v-model="defaultCheckbox" value="Default" size="default" @on-change="onChange">Default</ShadcnCheckbox>
+          <ShadcnCheckbox v-model="defaultCheckbox" value="Small" size="small" @on-change="onChange">Small</ShadcnCheckbox>
+          <ShadcnCheckbox v-model="defaultCheckbox" value="Large" size="large" @on-change="onChange">Large</ShadcnCheckbox>
+        </ShadcnSpace>
+        Type
+        <ShadcnSpace size="large" wrap>
+          <ShadcnCheckbox v-model="defaultCheckbox" value="Primary" type="primary" @on-change="onChange">Primary</ShadcnCheckbox>
+          <ShadcnCheckbox v-model="defaultCheckbox" value="Success" type="success" @on-change="onChange">Success</ShadcnCheckbox>
+          <ShadcnCheckbox v-model="defaultCheckbox" value="Warning" type="warning" @on-change="onChange">Warning</ShadcnCheckbox>
+          <ShadcnCheckbox v-model="defaultCheckbox" value="Error" type="error" @on-change="onChange">Error</ShadcnCheckbox>
+        </ShadcnSpace>
+        Checkbox Group Value: {{ defaultCheckboxGroup }}
+        <ShadcnSpace>
+          <ShadcnCheckboxGroup v-model="defaultCheckboxGroup">
+            <ShadcnCheckbox value="Vue" @on-change="onChange">Vue</ShadcnCheckbox>
+            <ShadcnCheckbox value="Nuxt" @on-change="onChange">Nuxt</ShadcnCheckbox>
+            <ShadcnCheckbox value="Java" disabled @on-change="onChange">Java</ShadcnCheckbox>
+          </ShadcnCheckboxGroup>
+        </ShadcnSpace>
+      </div>
+    </ShadcnCard>
+
+
     <ShadcnCard title="Radio">
       <div class="p-3">
         Radio Value: {{ defaultRadio }}
@@ -168,7 +208,9 @@ export default defineComponent({
     return {
       defaultProgress: 50,
       defaultSwitch: false,
-      defaultRadio: 'ON'
+      defaultRadio: 'ON',
+      defaultCheckbox: 'Vue',
+      defaultCheckboxGroup: []
     }
   },
   methods: {
