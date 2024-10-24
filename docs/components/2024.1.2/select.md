@@ -62,13 +62,54 @@ const defaultSelectOptions = [
 
 :::
 
+## Slot
+
+<CodeRunner title="Slot">
+    <p>Select Value: {{ slotSelect }}</p>
+    <ShadcnSelect v-model="slotSelect">
+        <template #options>
+            <ShadcnSelectOption v-for="i in 10"
+                :key="i"
+                :selected="defaultSelect === `Value ${i}`"
+                :disabled="i % 2 === 0"
+                :value="`Value ${i}`"
+                :label="`Option ${i}`"/>
+        </template>
+    </ShadcnSelect>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSelect v-model="defaultSelect">
+        <template #options>
+            <ShadcnSelectOption v-for="i in 10"
+                :key="i"
+                :selected="defaultSelect === `Value ${i}`"
+                :disabled="i % 2 === 0"
+                :value="`Value ${i}`"
+                :label="`Option ${i}`"/>
+        </template>
+    </ShadcnSelect>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const defaultSelect = ref(null)
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Select Props"
     :headers="['Attribute', 'Description', 'Type', 'Default']"
     :columns="[
         ['modelValue', 'The value of the select', 'Any', '-'],
-        ['options', 'The options of the select, format is { label: string, value: any }', 'Array', '-'],
+        ['options', 'The options of the select, format is { label: string, value: any, disabled?: boolean, selected?: boolean }', 'Array', '-'],
         ['disabled', 'Whether the select is disabled', 'Boolean', 'false'],
     ]">
 </ApiTable>
@@ -81,6 +122,15 @@ const defaultSelectOptions = [
         ['label', 'The label of the option', 'String', '-'],
         ['value', 'The value of the option', 'Any', '-'],
         ['disabled', 'Whether the option is disabled', 'Boolean', 'false'],
+    ]">
+</ApiTable>
+
+<br />
+
+<ApiTable title="Select Slots"
+    :headers="['Slot', 'Description']"
+    :columns="[
+        ['options', 'Option slot'],
     ]">
 </ApiTable>
 
@@ -102,4 +152,5 @@ const defaultSelectOptions = [
     { label: 'Nuxt', value: 'Nuxt', disabled: true },
     { label: 'Svelte', value: 'Svelte' }
 ]
+const slotSelect = ref(null)
 </script>

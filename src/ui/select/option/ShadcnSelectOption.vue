@@ -3,29 +3,49 @@
                  {
                    'cursor-not-allowed opacity-50': disabled,
                    'cursor-pointer': !disabled,
-                   'text-blue-600': isSelected
+                   'text-blue-600': selected
                  }
                ]"
-       @click="onClick">
-    <slot>{{ label }}</slot>
+       @click="handleSelect">
+    {{ label }}
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineEmits, defineProps } from 'vue'
-
-const emit = defineEmits(['select'])
+import { defineProps, inject, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps<{
   value: any
   label: string
-  isSelected: boolean
+  selected?: boolean
   disabled?: boolean
 }>()
 
-const onClick = () => {
+const registerOption = inject('registerOption') as (option: ShadcnOption) => void
+const unregisterOption = inject('unregisterOption') as (value: any) => void
+const selectOption = inject('selectOption') as (option: ShadcnOption) => void
+
+const handleSelect = () => {
   if (!props.disabled) {
-    emit('select', { value: props.value, label: props.label })
+    selectOption({
+      value: props.value,
+      label: props.label,
+      disabled: props.disabled,
+      selected: props.selected
+    })
   }
 }
+
+onMounted(() => {
+  registerOption({
+    value: props.value,
+    label: props.label,
+    disabled: props.disabled,
+    selected: props.selected
+  })
+})
+
+onUnmounted(() => {
+  unregisterOption(props.value)
+})
 </script>

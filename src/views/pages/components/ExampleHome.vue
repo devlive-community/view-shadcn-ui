@@ -6,6 +6,17 @@
         <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" @on-change="onChange"/>
         Disabled
         <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" disabled @on-change="onChange"/>
+        Slot
+        <ShadcnSelect v-model="defaultSelect" @on-change="onChange">
+          <template #options>
+            <ShadcnSelectOption v-for="i in 10"
+                                :key="i"
+                                :selected="defaultSelect === `Value ${i}`"
+                                :disabled="i % 2 === 0"
+                                :value="`Value ${i}`"
+                                :label="`Option ${i}`"/>
+          </template>
+        </ShadcnSelect>
       </div>
     </ShadcnCard>
 
@@ -271,7 +282,7 @@ export default defineComponent({
       defaultCheckbox: 'Vue',
       defaultCheckboxGroup: [],
       defaultInput: 'Vue',
-      defaultSelect: 'Vue',
+      defaultSelect: null,
       defaultSelectOptions: [
         {
           label: 'Vue',

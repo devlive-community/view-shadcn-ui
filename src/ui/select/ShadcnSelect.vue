@@ -11,37 +11,29 @@
         {{ selectedLabel || placeholder }}
       </slot>
     </div>
-
     <div v-if="dropdownVisible" class="absolute z-10 bg-white border border-gray-300 rounded mt-1 w-full py-1">
-      <slot name="options">
-        <ShadcnSelectOption v-for="(option, index) in internalOptions"
-                            :key="index"
-                            :value="option.value"
-                            :label="option.label"
-                            :isSelected="option.value === modelValue"
-                            :disabled="option.disabled"
-                            @select="selectOption(option)"/>
-      </slot>
+      <slot v-if="$slots.options" name="options"/>
+      <ShadcnSelectOption v-else-if="options"
+                          v-for="(option, index) in internalOptions"
+                          :key="index"
+                          :value="option.value"
+                          :label="option.label"
+                          :selected="option.value === modelValue"
+                          :disabled="option.disabled"
+                          @select="selectOption(option)"/>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, defineEmits, defineProps, ref, withDefaults } from 'vue'
+import { computed, defineEmits, defineProps, provide, ref, watch, withDefaults } from 'vue'
 import ShadcnSelectOption from './option/ShadcnSelectOption.vue'
-
-interface Option
-{
-  value: any
-  label: string
-  disabled?: boolean
-}
 
 const emit = defineEmits(['update:modelValue', 'on-change'])
 
 const props = withDefaults(defineProps<{
   modelValue: any
-  options?: Option[]
+  options?: ShadcnOption[]
   placeholder?: string
   disabled?: boolean
 }>(), {
@@ -50,13 +42,41 @@ const props = withDefaults(defineProps<{
 })
 
 const dropdownVisible = ref(false)
-const selectedLabel = computed(() => {
-  const selected = props.options?.find(option => option.value === props.modelValue)
-  return selected ? selected.label : ''
-})
+const selectedLabel = ref('')
+const slotOptions = ref<ShadcnOption[]>([])
+
+const registerOption = (option: ShadcnOption) => {
+  const existingIndex = slotOptions.value.findIndex(o => o.value === option.value)
+  if (existingIndex === -1) {
+    slotOptions.value.push(option)
+  }
+  else {
+    slotOptions.value[existingIndex] = option
+  }
+}
+
+const unregisterOption = (value: any) => {
+  const index = slotOptions.value.findIndex(o => o.value === value)
+  if (index !== -1) {
+    slotOptions.value.splice(index, 1)
+  }
+}
+
+provide('registerOption', registerOption)
+provide('unregisterOption', unregisterOption)
+
+const updateSelectedLabel = () => {
+  const allOptions = [...(props.options || []), ...slotOptions.value]
+  const selected = allOptions.find(option => option.value === props.modelValue)
+  selectedLabel.value = selected ? selected.label : ''
+}
+
+watch(() => props.modelValue, () => {
+  updateSelectedLabel()
+}, { immediate: true })
 
 const internalOptions = computed(() => {
-  return props.options
+  return props.options || slotOptions.value
 })
 
 const toggleDropdown = () => {
@@ -65,11 +85,13 @@ const toggleDropdown = () => {
   }
 }
 
-const selectOption = (option: { value: any, label: string }) => {
+const selectOption = (option: ShadcnOption) => {
   if (!props.disabled) {
     emit('update:modelValue', option.value)
     emit('on-change', option)
     dropdownVisible.value = false
   }
 }
+
+provide('selectOption', selectOption)
 </script>
