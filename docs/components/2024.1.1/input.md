@@ -208,6 +208,28 @@ const input = ref('Hello View Shadcn UI')
 
 :::
 
+## Textarea
+
+<CodeRunner title="Textarea">
+    <ShadcnInput placeholder="Input" v-model="input" type="textarea" />
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnInput v-model="input" placeholder="Input" type="textarea" />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const input = ref('Hello View Shadcn UI')
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Input Props"
@@ -220,7 +242,9 @@ const input = ref('Hello View Shadcn UI')
         ['wordCount', 'Show the word count', 'Boolean', 'false', '-', '-'],
         ['maxCount', 'The max count of the input', 'Number', '-', '-', '-'],
         ['disabled', 'Disable the input', 'Boolean', 'false', '-', '-'],
-        ['type', 'The type of the input', 'String', 'text', '-', 'text, password'],
+        ['type', 'The type of the input', 'String', 'text', '-', 'text, password, textarea'],
+        ['rows', 'The rows of the textarea', 'Number', '3', '-', '-'],
+        ['cols', 'The cols of the textarea', 'Number', '20', '-', '-'],
     ]">
 </ApiTable>
 

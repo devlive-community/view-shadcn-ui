@@ -14,7 +14,7 @@ const emit = defineEmits(['on-click'])
 
 const props = withDefaults(defineProps<{
   icon?: string
-  size?: number
+  size?: number | string
   color?: string
 }>(), {
   size: 20

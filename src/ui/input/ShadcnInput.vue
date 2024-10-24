@@ -2,19 +2,22 @@
   <div class="relative w-full max-w-sm items-center"
        @mouseenter="hovered = true"
        @mouseleave="hovered = false">
-    <input :type="currentType"
-           :class="cn('w-full p-2 border-gray-300 active:border-blue-400 hover:border-blue-400 border rounded transition-colors duration-300',
-                   size && Size[size],
-                   $slots.prefix && 'pl-6',
-                   $slots.suffix && 'pr-6'
-           )"
-           :style="wordCount || maxCount ? { paddingRight: paddingRight + 'px' } : ''"
-           :value="localValue"
-           :placeholder="placeholder"
-           :maxlength="maxCount"
-           :disabled="disabled"
-           @input="onInput"
-           @update:modelValue="onModelValueUpdate"/>
+    <component :is="isTextarea ? 'textarea' : 'input'"
+               v-bind="isTextarea
+                       ? { rows: props.rows, cols: props.cols }
+                       : { type: currentType }"
+               :class="cn('w-full p-2 border-gray-300 active:border-blue-400 hover:border-blue-400 border rounded transition-colors duration-300',
+                        type !== 'textarea' && size && Size[size],
+                        $slots.prefix && 'pl-6',
+                        $slots.suffix && 'pr-6'
+               )"
+               :style="wordCount || maxCount ? { paddingRight: paddingRight + 'px' } : ''"
+               :value="localValue"
+               :placeholder="placeholder"
+               :maxlength="maxCount"
+               :disabled="disabled"
+               @input="onInput"
+               @update:modelValue="onModelValueUpdate"/>
 
     <span v-if="clearable && localValue && hovered" class="absolute end-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer"
           @click="onClear">
@@ -60,18 +63,24 @@ const props = withDefaults(defineProps<{
   maxCount?: number | string
   disabled?: boolean
   type?: string
+  rows?: number | string
+  cols?: number | string
 }>(), {
   modelValue: '',
   placeholder: '',
   clearable: false,
   size: 'default',
   wordCount: false,
-  type: 'text'
+  type: 'text',
+  rows: 3,
+  cols: 20
 })
 
 const localValue = ref(props.modelValue)
 const hovered = ref(false)
 const showPassword = ref(false)
+
+const isTextarea = computed(() => props.type === 'textarea')
 
 watch(() => props.modelValue, (newValue) => {
   localValue.value = newValue

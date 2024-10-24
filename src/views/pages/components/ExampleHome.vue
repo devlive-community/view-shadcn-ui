@@ -35,6 +35,8 @@
         Type
         <ShadcnSpace wrap>
           <ShadcnInput v-model="defaultInput" type="password" @on-change="onChange"/>
+          <ShadcnInput v-model="defaultInput" type="textarea" @on-change="onChange"/>
+          <ShadcnInput v-model="defaultInput" type="textarea" cols="10" rows="2" @on-change="onChange"/>
         </ShadcnSpace>
       </div>
     </ShadcnCard>
@@ -245,9 +247,11 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { Textarea } from '@/components/ui/textarea'
 
 export default defineComponent({
   name: 'ExampleHome',
+  components: { Textarea },
   data()
   {
     return {
