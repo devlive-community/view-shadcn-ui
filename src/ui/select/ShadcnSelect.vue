@@ -1,10 +1,11 @@
 <template>
   <div class="relative w-full">
-    <div :class="['flex items-center justify-between border border-gray-300 rounded p-2 hover:border-blue-400',
+    <div :class="['flex items-center justify-between border rounded p-2',
                   Size[size],
                   {
                     'cursor-pointer': !disabled,
-                    'cursor-not-allowed opacity-50 bg-gray-100': disabled
+                    'cursor-not-allowed opacity-50 bg-gray-100': disabled,
+                    [HoverType[type]]: true
                   }
                  ]"
          @click="toggleDropdown">
@@ -21,6 +22,7 @@
                           :label="option.label"
                           :selected="option.value === modelValue"
                           :disabled="option.disabled"
+                          :type="type"
                           @select="selectOption(option)"/>
     </div>
   </div>
@@ -30,6 +32,7 @@
 import { computed, defineEmits, defineProps, provide, ref, watch, withDefaults } from 'vue'
 import ShadcnSelectOption from './option/ShadcnSelectOption.vue'
 import { Size } from '@/ui/common/size.ts'
+import { HoverType } from '@/ui/common/type.ts'
 
 const emit = defineEmits(['update:modelValue', 'on-change'])
 
@@ -39,10 +42,12 @@ const props = withDefaults(defineProps<{
   placeholder?: string
   disabled?: boolean
   size?: keyof typeof Size
+  type?: keyof typeof HoverType
 }>(), {
   placeholder: 'Select an option',
   disabled: false,
-  size: 'default'
+  size: 'default',
+  type: 'primary'
 })
 
 const dropdownVisible = ref(false)
@@ -65,9 +70,6 @@ const unregisterOption = (value: any) => {
     slotOptions.value.splice(index, 1)
   }
 }
-
-provide('registerOption', registerOption)
-provide('unregisterOption', unregisterOption)
 
 const updateSelectedLabel = () => {
   const allOptions = [...(props.options || []), ...slotOptions.value]
@@ -98,4 +100,6 @@ const selectOption = (option: ShadcnOption) => {
 }
 
 provide('selectOption', selectOption)
+provide('registerOption', registerOption)
+provide('unregisterOption', unregisterOption)
 </script>

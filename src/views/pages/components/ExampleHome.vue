@@ -23,6 +23,13 @@
           <ShadcnSelect v-model="defaultSelect" size="default" :options="defaultSelectOptions" @on-change="onChange"/>
           <ShadcnSelect v-model="defaultSelect" size="large" :options="defaultSelectOptions" @on-change="onChange"/>
         </ShadcnSpace>
+        Type
+        <ShadcnSpace wrap>
+          <ShadcnSelect v-model="defaultSelect" type="primary" :options="defaultSelectOptions" @on-change="onChange"/>
+          <ShadcnSelect v-model="defaultSelect" type="success" :options="defaultSelectOptions" @on-change="onChange"/>
+          <ShadcnSelect v-model="defaultSelect" type="warning" :options="defaultSelectOptions" @on-change="onChange"/>
+          <ShadcnSelect v-model="defaultSelect" type="error" :options="defaultSelectOptions" @on-change="onChange"/>
+        </ShadcnSpace>
       </div>
     </ShadcnCard>
 

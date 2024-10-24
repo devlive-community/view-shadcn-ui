@@ -3,7 +3,7 @@
                  {
                    'cursor-not-allowed opacity-50': disabled,
                    'cursor-pointer': !disabled,
-                   'text-blue-600': selected
+                   [TextType[type]]: selected
                  }
                ]"
        @click="handleSelect">
@@ -13,13 +13,17 @@
 
 <script setup lang="ts">
 import { defineProps, inject, onMounted, onUnmounted } from 'vue'
+import { TextType } from '@/ui/common/type.ts'
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   value: any
   label: string
   selected?: boolean
   disabled?: boolean
-}>()
+  type?: keyof typeof TextType
+}>(), {
+  type: 'primary'
+})
 
 const registerOption = inject('registerOption') as (option: ShadcnOption) => void
 const unregisterOption = inject('unregisterOption') as (value: any) => void
