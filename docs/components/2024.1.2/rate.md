@@ -82,6 +82,37 @@ const rate = ref(1)
 
 :::
 
+## Type
+
+<CodeRunner title="Type">
+    Rate Value: {{ rate }}
+    <ShadcnSpace wrap>
+        <ShadcnRate v-model="rate" max="10" type="primary"/>
+        <ShadcnRate v-model="rate" max="10" type="success"/>
+        <ShadcnRate v-model="rate" max="10" type="warning"/>
+        <ShadcnRate v-model="rate" max="10" allow-half type="error"/>
+    </ShadcnSpace>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnRate v-model="rate" max="10" type="primary"/>
+    <ShadcnRate v-model="rate" max="10" type="success"/>
+    <ShadcnRate v-model="rate" max="10" type="warning"/>
+    <ShadcnRate v-model="rate" max="10" allow-half type="error"/>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const rate = ref(1)
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Rate Props"
@@ -89,6 +120,8 @@ const rate = ref(1)
     :columns="[
         ['modelValue', 'Rate value', 'number', '0', '-'],
         ['max', 'Maximum value', 'number', '5', '-'],
+        ['allowHalf', 'Allow half', 'boolean', 'false', '-'],
+        ['type', 'Rate type', 'string', 'default', 'primary, success, warning, error'],
     ]">
 </ApiTable>
 

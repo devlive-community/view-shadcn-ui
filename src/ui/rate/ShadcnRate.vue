@@ -28,14 +28,17 @@
 import { defineEmits, defineProps, ref, watch } from 'vue'
 import { toNumber } from 'lodash'
 import ShadcnSpace from '@/ui/space'
+import { TextType } from '@/ui/common/type.ts'
 
 const props = withDefaults(defineProps<{
   modelValue: number
   max?: number | string
   allowHalf?: boolean
+  type?: keyof typeof TextType
 }>(), {
   max: 5,
-  allowHalf: false
+  allowHalf: false,
+  type: 'primary'
 })
 
 const emit = defineEmits(['update:modelValue', 'on-change'])
@@ -89,7 +92,7 @@ const getStarClass = (index: number, isLeft: boolean) => {
 
   return [
     'transition-all duration-150',
-    (isFull || isHalf) ? 'text-blue-400' : 'text-gray-300'
+    (isFull || isHalf) ? TextType[props.type] : 'text-gray-300'
   ]
 }
 </script>
