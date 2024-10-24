@@ -1,6 +1,11 @@
 <template>
   <div class="relative w-full">
-    <div class="flex items-center justify-between border border-gray-300 rounded p-2 cursor-pointer hover:border-blue-400 h-8"
+    <div :class="['flex items-center justify-between border border-gray-300 rounded p-2 hover:border-blue-400 h-8',
+                  {
+                    'cursor-pointer': !disabled,
+                    'cursor-not-allowed opacity-50 bg-gray-100': disabled
+                  }
+                 ]"
          @click="toggleDropdown">
       <slot name="selected">
         {{ selectedLabel || placeholder }}
@@ -14,6 +19,7 @@
                             :value="option.value"
                             :label="option.label"
                             :isSelected="option.value === modelValue"
+                            :disabled="option.disabled"
                             @select="selectOption(option)"/>
       </slot>
     </div>
@@ -28,6 +34,7 @@ interface Option
 {
   value: any
   label: string
+  disabled?: boolean
 }
 
 const emit = defineEmits(['update:modelValue', 'on-change'])
@@ -36,8 +43,10 @@ const props = withDefaults(defineProps<{
   modelValue: any
   options?: Option[]
   placeholder?: string
+  disabled?: boolean
 }>(), {
-  placeholder: 'Select an option'
+  placeholder: 'Select an option',
+  disabled: false
 })
 
 const dropdownVisible = ref(false)
@@ -47,16 +56,20 @@ const selectedLabel = computed(() => {
 })
 
 const internalOptions = computed(() => {
-  return props.options || []
+  return props.options
 })
 
 const toggleDropdown = () => {
-  dropdownVisible.value = !dropdownVisible.value
+  if (!props.disabled) {
+    dropdownVisible.value = !dropdownVisible.value
+  }
 }
 
 const selectOption = (option: { value: any, label: string }) => {
-  emit('update:modelValue', option.value)
-  emit('on-change', option)
-  dropdownVisible.value = false
+  if (!props.disabled) {
+    emit('update:modelValue', option.value)
+    emit('on-change', option)
+    dropdownVisible.value = false
+  }
 }
 </script>

@@ -1,6 +1,11 @@
 <template>
-  <div :class="cn('flex items-center p-2 cursor-pointer hover:bg-gray-200 h-8',
-                  isSelected && 'text-blue-600')"
+  <div :class="['flex items-center p-2 hover:bg-gray-200 h-8',
+                 {
+                   'cursor-not-allowed opacity-50': disabled,
+                   'cursor-pointer': !disabled,
+                   'text-blue-600': isSelected
+                 }
+               ]"
        @click="onClick">
     <slot>{{ label }}</slot>
   </div>
@@ -8,7 +13,6 @@
 
 <script setup lang="ts">
 import { defineEmits, defineProps } from 'vue'
-import { cn } from '@/lib/utils.ts'
 
 const emit = defineEmits(['select'])
 
@@ -16,9 +20,12 @@ const props = defineProps<{
   value: any
   label: string
   isSelected: boolean
+  disabled?: boolean
 }>()
 
 const onClick = () => {
-  emit('select', { value: props.value, label: props.label })
+  if (!props.disabled) {
+    emit('select', { value: props.value, label: props.label })
+  }
 }
 </script>

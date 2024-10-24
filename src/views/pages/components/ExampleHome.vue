@@ -4,6 +4,8 @@
       <div class="p-3">
         Select Value: {{ defaultSelect }}
         <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" @on-change="onChange"/>
+        Disabled
+        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" disabled @on-change="onChange"/>
       </div>
     </ShadcnCard>
 
@@ -277,7 +279,8 @@ export default defineComponent({
         },
         {
           label: 'React',
-          value: 'React'
+          value: 'React',
+          disabled: true
         },
         {
           label: 'Angular',
