@@ -2,14 +2,13 @@
   <div class="relative w-full max-w-sm items-center"
        @mouseenter="hovered = true"
        @mouseleave="hovered = false">
-    <Input type="text"
-           :class="cn('focus-visible:border-blue-300 focus-visible:ring-0 active:border-blue-300',
+    <input type="text"
+           :class="cn('w-full p-2 border-gray-300 active:border-blue-400 border rounded transition-colors duration-300',
                    size && Size[size],
                    $slots.prefix && 'pl-6',
                    $slots.suffix && 'pr-6'
            )"
            :style="wordCount || maxCount ? { paddingRight: paddingRight + 'px' } : ''"
-           :default-value="localValue"
            :value="localValue"
            :placeholder="placeholder"
            :maxlength="maxCount"
@@ -39,7 +38,6 @@
 </template>
 
 <script setup lang="ts">
-import { Input } from '@/components/ui/input'
 import { cn } from '@/lib/utils.ts'
 import { CircleXIcon } from 'lucide-vue-next'
 import { computed, nextTick, onMounted, ref, watch } from 'vue'

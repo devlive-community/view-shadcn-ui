@@ -1,5 +1,39 @@
 <template>
   <div class="flex w-full flex-col gap-4 md:gap-8 md:p-8 lg:grid lg:grid-cols-3">
+    <ShadcnCard title="Input">
+      <div class="p-3">
+        Input Value: {{ defaultInput }}
+        <ShadcnInput v-model="defaultInput" @on-change="onChange"/>
+        Disabled
+        <ShadcnInput v-model="defaultInput" disabled @on-change="onChange"/>
+        Size
+        <ShadcnSpace wrap>
+          <ShadcnInput v-model="defaultInput" size="small" @on-change="onChange"/>
+          <ShadcnInput v-model="defaultInput" size="default" @on-change="onChange"/>
+          <ShadcnInput v-model="defaultInput" size="large" @on-change="onChange"/>
+        </ShadcnSpace>
+        Prefix and Suffix
+        <ShadcnSpace wrap>
+          <ShadcnInput v-model="defaultInput" @on-change="onChange">
+            <template #prefix>
+              <span class="text-xs text-gray-300">P</span>
+            </template>
+          </ShadcnInput>
+          <ShadcnInput v-model="defaultInput" suffix=".com" @on-change="onChange">
+            <template #suffix>
+              <span class="text-xs text-gray-300">S</span>
+            </template>
+          </ShadcnInput>
+        </ShadcnSpace>
+        Word Count and Max Count
+        <ShadcnSpace wrap>
+          <ShadcnInput v-model="defaultInput" word-count @on-change="onChange"/>
+          <ShadcnInput v-model="defaultInput" word-count max-count="10" @on-change="onChange"/>
+        </ShadcnSpace>
+        Clearable
+        <ShadcnInput v-model="defaultInput" clearable @on-change="onChange"/>
+      </div>
+    </ShadcnCard>
 
     <ShadcnCard title="Checkbox">
       <div class="p-3">
@@ -218,7 +252,8 @@ export default defineComponent({
       defaultRadio: 'ON',
       defaultRadioGroup: 'Vue',
       defaultCheckbox: 'Vue',
-      defaultCheckboxGroup: []
+      defaultCheckboxGroup: [],
+      defaultInput: 'Vue',
     }
   },
   methods: {
