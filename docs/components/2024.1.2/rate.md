@@ -113,6 +113,29 @@ const rate = ref(1)
 
 :::
 
+## Disabled
+
+<CodeRunner title="Disabled">
+    Rate Value: {{ rate }}
+    <ShadcnRate v-model="rate" disabled />
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnRate v-model="rate" disabled />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const rate = ref(1)
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Rate Props"
@@ -122,6 +145,7 @@ const rate = ref(1)
         ['max', 'Maximum value', 'number', '5', '-'],
         ['allowHalf', 'Allow half', 'boolean', 'false', '-'],
         ['type', 'Rate type', 'string', 'default', 'primary, success, warning, error'],
+        ['disabled', 'Disabled', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 

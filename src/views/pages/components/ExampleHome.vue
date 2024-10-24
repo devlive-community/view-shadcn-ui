@@ -7,12 +7,7 @@
       <template #character>好</template>
     </ShadcnRate>
 
-    <ShadcnSpace>
-      <ShadcnRate v-model="defaultValue" max="10" type="primary"/>
-      <ShadcnRate v-model="defaultValue" max="10" type="success"/>
-      <ShadcnRate v-model="defaultValue" max="10" type="warning"/>
-      <ShadcnRate v-model="defaultValue" max="10" allow-half type="error"/>
-    </ShadcnSpace>
+    <ShadcnRate v-model="defaultValue" disabled max="10" type="primary"/>
   </div>
 </template>
 

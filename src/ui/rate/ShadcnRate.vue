@@ -3,7 +3,12 @@
     <ShadcnSpace>
       <span v-for="index in toNumber(max)"
             :key="index"
-            class="relative cursor-pointer flex text-xl"
+            :class="['relative flex text-xl',
+                    {
+                      'cursor-not-allowed': disabled,
+                      'cursor-pointer': !disabled
+                    }
+            ]"
             @click="onClick(index, $event)"
             @mousemove="handleMouseOver(index, $event)"
             @mouseleave="handleMouseLeave">
@@ -15,7 +20,7 @@
             <slot name="character">★</slot>
           </span>
           <!-- Right -->
-          <span class="text-gray-300">
+          <span :class="disabled ? 'text-gray-400' : 'text-gray-300'">
             <slot name="character">★</slot>
           </span>
         </span>
@@ -35,10 +40,12 @@ const props = withDefaults(defineProps<{
   max?: number | string
   allowHalf?: boolean
   type?: keyof typeof TextType
+  disabled?: boolean
 }>(), {
   max: 5,
   allowHalf: false,
-  type: 'primary'
+  type: 'primary',
+  disabled: false
 })
 
 const emit = defineEmits(['update:modelValue', 'on-change'])
@@ -53,28 +60,34 @@ const isLeftHalf = (event: MouseEvent) => {
 }
 
 const onClick = (index: number, event: MouseEvent) => {
-  let newValue = index
-  if (props.allowHalf && isLeftHalf(event)) {
-    newValue -= 0.5
+  if (!props.disabled) {
+    let newValue = index
+    if (props.allowHalf && isLeftHalf(event)) {
+      newValue -= 0.5
+    }
+    emit('update:modelValue', newValue)
+    emit('on-change', newValue)
   }
-  emit('update:modelValue', newValue)
-  emit('on-change', newValue)
 }
 
 const handleMouseOver = (index: number, event: MouseEvent) => {
-  if (props.allowHalf && isLeftHalf(event)) {
-    hoverValue.value = index - 0.5
-    isHalf.value = true
-  }
-  else {
-    hoverValue.value = index
-    isHalf.value = false
+  if (!props.disabled) {
+    if (props.allowHalf && isLeftHalf(event)) {
+      hoverValue.value = index - 0.5
+      isHalf.value = true
+    }
+    else {
+      hoverValue.value = index
+      isHalf.value = false
+    }
   }
 }
 
 const handleMouseLeave = () => {
-  hoverValue.value = props.modelValue || 0
-  isHalf.value = props.modelValue % 1 !== 0
+  if (!props.disabled) {
+    hoverValue.value = props.modelValue || 0
+    isHalf.value = props.modelValue % 1 !== 0
+  }
 }
 
 watch(() => props.modelValue, (newValue) => {
