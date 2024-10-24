@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center">
-    <span v-for="index in 5"
+    <span v-for="index in toNumber(max)"
           :key="index"
           :class="['cursor-pointer',
                    index <= hoverValue ? 'text-blue-400' : 'text-gray-300'
@@ -17,10 +17,14 @@
 
 <script setup lang="ts">
 import { defineEmits, defineProps, ref, watch } from 'vue'
+import { toNumber } from 'lodash'
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   modelValue: number
-}>()
+  max?: number | string
+}>(), {
+  max: 5
+})
 
 const emit = defineEmits(['update:modelValue', 'on-change'])
 
