@@ -1,5 +1,38 @@
 <template>
   <div class="flex w-full flex-col gap-4 md:gap-8 md:p-8 lg:grid lg:grid-cols-3">
+    <ShadcnCard title="Select">
+      <div class="p-3">
+        Select Value: {{ defaultSelect }}
+        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" @on-change="onChange"/>
+        Disabled
+        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" disabled @on-change="onChange"/>
+        Slot
+        <ShadcnSelect v-model="defaultSelect" @on-change="onChange">
+          <template #options>
+            <ShadcnSelectOption v-for="i in 10"
+                                :key="i"
+                                :selected="defaultSelect === `Value ${i}`"
+                                :disabled="i % 2 === 0"
+                                :value="`Value ${i}`"
+                                :label="`Option ${i}`"/>
+          </template>
+        </ShadcnSelect>
+        Size
+        <ShadcnSpace wrap>
+          <ShadcnSelect v-model="defaultSelect" size="small" :options="defaultSelectOptions" @on-change="onChange"/>
+          <ShadcnSelect v-model="defaultSelect" size="default" :options="defaultSelectOptions" @on-change="onChange"/>
+          <ShadcnSelect v-model="defaultSelect" size="large" :options="defaultSelectOptions" @on-change="onChange"/>
+        </ShadcnSpace>
+        Type
+        <ShadcnSpace wrap>
+          <ShadcnSelect v-model="defaultSelect" type="primary" :options="defaultSelectOptions" @on-change="onChange"/>
+          <ShadcnSelect v-model="defaultSelect" type="success" :options="defaultSelectOptions" @on-change="onChange"/>
+          <ShadcnSelect v-model="defaultSelect" type="warning" :options="defaultSelectOptions" @on-change="onChange"/>
+          <ShadcnSelect v-model="defaultSelect" type="error" :options="defaultSelectOptions" @on-change="onChange"/>
+        </ShadcnSpace>
+      </div>
+    </ShadcnCard>
+
     <ShadcnCard title="Input">
       <div class="p-3">
         Input Value: {{ defaultInput }}
@@ -262,6 +295,22 @@ export default defineComponent({
       defaultCheckbox: 'Vue',
       defaultCheckboxGroup: [],
       defaultInput: 'Vue',
+      defaultSelect: null,
+      defaultSelectOptions: [
+        {
+          label: 'Vue',
+          value: 'Vue'
+        },
+        {
+          label: 'React',
+          value: 'React',
+          disabled: true
+        },
+        {
+          label: 'Angular',
+          value: 'Angular'
+        }
+      ]
     }
   },
   methods: {

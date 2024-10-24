@@ -1,12 +1,12 @@
 <template>
-  <div class="relative w-full max-w-sm items-center"
+  <div class="relative w-full max-w-sm items-center border-gray-300 active:border-blue-400 hover:border-blue-400 border rounded transition-colors duration-300"
        @mouseenter="hovered = true"
        @mouseleave="hovered = false">
     <component :is="isTextarea ? 'textarea' : 'input'"
                v-bind="isTextarea
                        ? { rows: props.rows, cols: props.cols }
                        : { type: currentType }"
-               :class="cn('w-full p-2 border-gray-300 active:border-blue-400 hover:border-blue-400 border rounded transition-colors duration-300',
+               :class="cn('w-full p-2 rounded',
                         type !== 'textarea' && size && Size[size],
                         $slots.prefix && 'pl-6',
                         $slots.suffix && 'pr-6'
