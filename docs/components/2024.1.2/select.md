@@ -103,14 +103,50 @@ const defaultSelect = ref(null)
 
 :::
 
+## Size
+
+<CodeRunner title="Size">
+    <div class="space-y-2">
+        <p>Select Value: {{ defaultSelect }}</p>
+        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" size="small" />
+        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" size="default" />
+        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" size="large" />
+    </div>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <p>Select Value: {{ defaultSelect }}</p>
+    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" size="small" />
+    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" size="default" />
+    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" size="large" />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const defaultSelect = ref('')
+const defaultSelectOptions = [
+    { label: 'Vue', value: 'Vue' },
+    { label: 'Nuxt', value: 'Nuxt', disabled: true },
+    { label: 'Svelte', value: 'Svelte' }
+]
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Select Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default']"
+    :headers="['Attribute', 'Description', 'Type', 'Default', 'List']"
     :columns="[
-        ['modelValue', 'The value of the select', 'Any', '-'],
-        ['options', 'The options of the select, format is { label: string, value: any, disabled?: boolean, selected?: boolean }', 'Array', '-'],
-        ['disabled', 'Whether the select is disabled', 'Boolean', 'false'],
+        ['modelValue', 'The value of the select', 'Any', '-', '-'],
+        ['options', 'The options of the select, format is { label: string, value: any, disabled?: boolean, selected?: boolean }', 'Array', '-', '-'],
+        ['disabled', 'Whether the select is disabled', 'Boolean', 'false', 'true | false'],
+        ['size', 'The size of the select', 'Enum', 'default', 'small | default | large'],
     ]">
 </ApiTable>
 
@@ -122,6 +158,7 @@ const defaultSelect = ref(null)
         ['label', 'The label of the option', 'String', '-'],
         ['value', 'The value of the option', 'Any', '-'],
         ['disabled', 'Whether the option is disabled', 'Boolean', 'false'],
+        ['selected', 'Whether the option is selected', 'Boolean', 'false'],
     ]">
 </ApiTable>
 

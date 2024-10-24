@@ -1,6 +1,7 @@
 <template>
   <div class="relative w-full">
-    <div :class="['flex items-center justify-between border border-gray-300 rounded p-2 hover:border-blue-400 h-8',
+    <div :class="['flex items-center justify-between border border-gray-300 rounded p-2 hover:border-blue-400',
+                  Size[size],
                   {
                     'cursor-pointer': !disabled,
                     'cursor-not-allowed opacity-50 bg-gray-100': disabled
@@ -28,6 +29,7 @@
 <script setup lang="ts">
 import { computed, defineEmits, defineProps, provide, ref, watch, withDefaults } from 'vue'
 import ShadcnSelectOption from './option/ShadcnSelectOption.vue'
+import { Size } from '@/ui/common/size.ts'
 
 const emit = defineEmits(['update:modelValue', 'on-change'])
 
@@ -36,9 +38,11 @@ const props = withDefaults(defineProps<{
   options?: ShadcnOption[]
   placeholder?: string
   disabled?: boolean
+  size?: keyof typeof Size
 }>(), {
   placeholder: 'Select an option',
-  disabled: false
+  disabled: false,
+  size: 'default'
 })
 
 const dropdownVisible = ref(false)

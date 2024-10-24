@@ -17,6 +17,12 @@
                                 :label="`Option ${i}`"/>
           </template>
         </ShadcnSelect>
+        Size
+        <ShadcnSpace wrap>
+          <ShadcnSelect v-model="defaultSelect" size="small" :options="defaultSelectOptions" @on-change="onChange"/>
+          <ShadcnSelect v-model="defaultSelect" size="default" :options="defaultSelectOptions" @on-change="onChange"/>
+          <ShadcnSelect v-model="defaultSelect" size="large" :options="defaultSelectOptions" @on-change="onChange"/>
+        </ShadcnSpace>
       </div>
     </ShadcnCard>
 
