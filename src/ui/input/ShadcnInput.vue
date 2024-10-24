@@ -12,6 +12,7 @@
            :value="localValue"
            :placeholder="placeholder"
            :maxlength="maxCount"
+           :disabled="disabled"
            @input="onInput"
            @update:modelValue="onModelValueUpdate"/>
 
@@ -51,7 +52,8 @@ const props = withDefaults(defineProps<{
   clearable?: boolean
   size?: keyof typeof Size
   wordCount?: boolean
-  maxCount?: number
+  maxCount?: number | string
+  disabled?: boolean
 }>(), {
   modelValue: '',
   placeholder: '',

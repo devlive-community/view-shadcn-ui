@@ -164,6 +164,28 @@ const input = ref('Hello View Shadcn UI')
 
 :::
 
+## Disabled
+
+<CodeRunner title="Disabled">
+    <ShadcnInput placeholder="Input" v-model="input" disabled />
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnInput v-model="input" placeholder="Input" disabled />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const input = ref('Hello View Shadcn UI')
+</script>
+```
+
+:::
+
 <script setup lang="ts">
 import { ref } from 'vue';
 
@@ -181,6 +203,7 @@ const input = ref('Hello View Shadcn UI')
         ['size', 'The size of the input', 'String', 'default', '-', 'small, default, large'],
         ['wordCount', 'Show the word count', 'Boolean', 'false', '-', '-'],
         ['maxCount', 'The max count of the input', 'Number', '-', '-', '-'],
+        ['disabled', 'Disable the input', 'Boolean', 'false', '-', '-'],
     ]">
 </ApiTable>
 
