@@ -60,22 +60,12 @@ const createNavigation = (): void => {
         NavigationPosition.LEFT_TOP, pageArray, undefined, 'common.common.page')
     NavigationService.addNavigation(pages)
 
-    const button = createNavigationItem('common.common.button', undefined, '/components/button', undefined, NavigationPosition.LEFT_TOP)
     const card = createNavigationItem('common.common.card', undefined, '/components/card', undefined, NavigationPosition.LEFT_TOP)
     const tree = createNavigationItem('common.common.tree', undefined, '/components/tree', undefined, NavigationPosition.LEFT_TOP)
     const timeline = createNavigationItem('common.common.timeline', undefined, '/components/timeline', undefined, NavigationPosition.LEFT_TOP)
     const tab = createNavigationItem('common.common.tab', undefined, '/components/tab', undefined, NavigationPosition.LEFT_TOP)
-    const modal = createNavigationItem('common.common.modal', undefined, '/components/modal', undefined, NavigationPosition.LEFT_TOP)
-    const input = createNavigationItem('common.common.input', undefined, '/components/input', undefined, NavigationPosition.LEFT_TOP)
-    const icon = createNavigationItem('common.common.icon', undefined, '/components/icon', undefined, NavigationPosition.LEFT_TOP)
-    const copy = createNavigationItem('common.common.copy', undefined, '/components/copy', undefined, NavigationPosition.LEFT_TOP)
-    const tooltip = createNavigationItem('common.common.tooltip', undefined, '/components/tooltip', undefined, NavigationPosition.LEFT_TOP)
-    const code = createNavigationItem('common.common.code', undefined, '/components/code', undefined, NavigationPosition.LEFT_TOP)
-    const rowCol = createNavigationItem('common.common.rowCol', undefined, '/components/rowCol', undefined, NavigationPosition.LEFT_TOP)
-    const divider = createNavigationItem('common.common.divider', undefined, '/components/divider', undefined, NavigationPosition.LEFT_TOP)
-    const ellipsis = createNavigationItem('common.common.ellipsis', undefined, '/components/ellipsis', undefined, NavigationPosition.LEFT_TOP)
     const example = createNavigationItem('common.common.example', undefined, '/components/example', undefined, NavigationPosition.LEFT_TOP)
-    const componentArray = [button, card, tree, timeline, tab, modal, input, icon, copy, tooltip, code, rowCol, divider, ellipsis, example]
+    const componentArray = [card, tree, timeline, tab, example]
     const components = createNavigationItem('common.common.component', componentArray.length.toString(), '/components', Command, NavigationPosition.LEFT_TOP, componentArray)
     NavigationService.addNavigation(components)
 
