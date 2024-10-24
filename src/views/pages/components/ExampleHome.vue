@@ -1,5 +1,45 @@
 <template>
   <div class="flex w-full flex-col gap-4 md:gap-8 md:p-8 lg:grid lg:grid-cols-3">
+    <ShadcnCard title="Input">
+      <div class="p-3">
+        Input Value: {{ defaultInput }}
+        <ShadcnInput v-model="defaultInput" @on-change="onChange"/>
+        Disabled
+        <ShadcnInput v-model="defaultInput" disabled @on-change="onChange"/>
+        Size
+        <ShadcnSpace wrap>
+          <ShadcnInput v-model="defaultInput" size="small" @on-change="onChange"/>
+          <ShadcnInput v-model="defaultInput" size="default" @on-change="onChange"/>
+          <ShadcnInput v-model="defaultInput" size="large" @on-change="onChange"/>
+        </ShadcnSpace>
+        Prefix and Suffix
+        <ShadcnSpace wrap>
+          <ShadcnInput v-model="defaultInput" @on-change="onChange">
+            <template #prefix>
+              <span class="text-xs text-gray-300">P</span>
+            </template>
+          </ShadcnInput>
+          <ShadcnInput v-model="defaultInput" suffix=".com" @on-change="onChange">
+            <template #suffix>
+              <span class="text-xs text-gray-300">S</span>
+            </template>
+          </ShadcnInput>
+        </ShadcnSpace>
+        Word Count and Max Count
+        <ShadcnSpace wrap>
+          <ShadcnInput v-model="defaultInput" word-count @on-change="onChange"/>
+          <ShadcnInput v-model="defaultInput" word-count max-count="10" @on-change="onChange"/>
+        </ShadcnSpace>
+        Clearable
+        <ShadcnInput v-model="defaultInput" clearable @on-change="onChange"/>
+        Type
+        <ShadcnSpace wrap>
+          <ShadcnInput v-model="defaultInput" type="password" @on-change="onChange"/>
+          <ShadcnInput v-model="defaultInput" type="textarea" @on-change="onChange"/>
+          <ShadcnInput v-model="defaultInput" type="textarea" cols="10" rows="2" @on-change="onChange"/>
+        </ShadcnSpace>
+      </div>
+    </ShadcnCard>
 
     <ShadcnCard title="Checkbox">
       <div class="p-3">
@@ -39,7 +79,6 @@
       </div>
     </ShadcnCard>
 
-
     <ShadcnCard title="Radio">
       <div class="p-3">
         Radio Value: {{ defaultRadio }}
@@ -64,6 +103,14 @@
           <ShadcnRadio v-model="defaultRadio" value="Success" type="success" @on-change="onChange">Success</ShadcnRadio>
           <ShadcnRadio v-model="defaultRadio" value="Warning" type="warning" @on-change="onChange">Warning</ShadcnRadio>
           <ShadcnRadio v-model="defaultRadio" value="Error" type="error" @on-change="onChange">Error</ShadcnRadio>
+        </ShadcnSpace>
+        Radio Group Value: {{ defaultRadioGroup }}
+        <ShadcnSpace>
+          <ShadcnRadioGroup v-model="defaultRadioGroup">
+            <ShadcnRadio value="Vue" @on-change="onChange">Vue</ShadcnRadio>
+            <ShadcnRadio value="Nuxt" @on-change="onChange">Nuxt</ShadcnRadio>
+            <ShadcnRadio value="Java" disabled @on-change="onChange">Java</ShadcnRadio>
+          </ShadcnRadioGroup>
         </ShadcnSpace>
       </div>
     </ShadcnCard>
@@ -200,17 +247,21 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { Textarea } from '@/components/ui/textarea'
 
 export default defineComponent({
   name: 'ExampleHome',
+  components: { Textarea },
   data()
   {
     return {
       defaultProgress: 50,
       defaultSwitch: false,
       defaultRadio: 'ON',
+      defaultRadioGroup: 'Vue',
       defaultCheckbox: 'Vue',
-      defaultCheckboxGroup: []
+      defaultCheckboxGroup: [],
+      defaultInput: 'Vue',
     }
   },
   methods: {

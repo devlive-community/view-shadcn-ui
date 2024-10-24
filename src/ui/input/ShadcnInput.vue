@@ -2,23 +2,31 @@
   <div class="relative w-full max-w-sm items-center"
        @mouseenter="hovered = true"
        @mouseleave="hovered = false">
-    <Input type="text"
-           :class="cn('focus-visible:border-blue-300 focus-visible:ring-0 active:border-blue-300',
-                   size && Size[size],
-                   $slots.prefix && 'pl-6',
-                   $slots.suffix && 'pr-6'
-           )"
-           :style="wordCount || maxCount ? { paddingRight: paddingRight + 'px' } : ''"
-           :default-value="localValue"
-           :value="localValue"
-           :placeholder="placeholder"
-           :maxlength="maxCount"
-           @input="onInput"
-           @update:modelValue="onModelValueUpdate"/>
+    <component :is="isTextarea ? 'textarea' : 'input'"
+               v-bind="isTextarea
+                       ? { rows: props.rows, cols: props.cols }
+                       : { type: currentType }"
+               :class="cn('w-full p-2 border-gray-300 active:border-blue-400 hover:border-blue-400 border rounded transition-colors duration-300',
+                        type !== 'textarea' && size && Size[size],
+                        $slots.prefix && 'pl-6',
+                        $slots.suffix && 'pr-6'
+               )"
+               :style="wordCount || maxCount ? { paddingRight: paddingRight + 'px' } : ''"
+               :value="localValue"
+               :placeholder="placeholder"
+               :maxlength="maxCount"
+               :disabled="disabled"
+               @input="onInput"
+               @update:modelValue="onModelValueUpdate"/>
 
     <span v-if="clearable && localValue && hovered" class="absolute end-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer"
           @click="onClear">
-      <CircleXIcon class="size-5 text-muted-foreground"/>
+      <ShadcnIcon class="size-5 text-muted-foreground" icon="CircleX"/>
+    </span>
+
+    <span v-if="type === 'password'" class="absolute end-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer"
+          @click="togglePasswordVisibility">
+      <ShadcnIcon :icon="showPassword ? 'Eye' : 'EyeOff'" class="size-5 text-muted-foreground"/>
     </span>
 
     <span v-if="wordCount" ref="wordCountSpan" class="absolute end-0 inset-y-0 flex items-center justify-center px-2 text-gray-400 text-xs font-thin w-auto">
@@ -39,11 +47,10 @@
 </template>
 
 <script setup lang="ts">
-import { Input } from '@/components/ui/input'
 import { cn } from '@/lib/utils.ts'
-import { CircleXIcon } from 'lucide-vue-next'
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { Size } from '@/ui/enum/Size.ts'
+import ShadcnIcon from '@/ui/icon'
 
 const emit = defineEmits(['on-change', 'on-clear', 'on-prefix-click', 'on-suffix-click', 'update:modelValue'])
 
@@ -53,21 +60,35 @@ const props = withDefaults(defineProps<{
   clearable?: boolean
   size?: keyof typeof Size
   wordCount?: boolean
-  maxCount?: number
+  maxCount?: number | string
+  disabled?: boolean
+  type?: string
+  rows?: number | string
+  cols?: number | string
 }>(), {
   modelValue: '',
   placeholder: '',
   clearable: false,
   size: 'default',
-  wordCount: false
+  wordCount: false,
+  type: 'text',
+  rows: 3,
+  cols: 20
 })
 
 const localValue = ref(props.modelValue)
 const hovered = ref(false)
+const showPassword = ref(false)
+
+const isTextarea = computed(() => props.type === 'textarea')
 
 watch(() => props.modelValue, (newValue) => {
   localValue.value = newValue
 }, { immediate: true })
+
+const currentType = computed(() => {
+  return showPassword.value ? 'text' : props.type
+})
 
 // Count the total number of characters entered
 const textCount = computed(() => {
@@ -112,6 +133,10 @@ const onClear = () => {
   emit('update:modelValue', newValue)
   emit('on-change', newValue)
   emit('on-clear')
+}
+
+const togglePasswordVisibility = () => {
+  showPassword.value = !showPassword.value
 }
 
 const onPrefixClick = () => {
