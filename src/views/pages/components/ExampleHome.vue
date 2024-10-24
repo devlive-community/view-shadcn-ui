@@ -1,7 +1,11 @@
 <template>
   <div class="flex w-full flex-col gap-4 md:gap-8 md:p-8 lg:grid lg:grid-cols-3">
     Rate Value : {{ defaultValue }}
-    <ShadcnRate v-model="defaultValue" max="10"></ShadcnRate>
+    <ShadcnRate v-model="defaultValue" max="10" allow-half></ShadcnRate>
+
+    <ShadcnRate v-model="defaultValue" max="10" allow-half>
+      <template #character>好</template>
+    </ShadcnRate>
   </div>
 </template>
 
