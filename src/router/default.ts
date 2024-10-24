@@ -191,16 +191,6 @@ const createComponentRouter = (router: Router): void => {
         component: LayoutContainer,
         children: [
             {
-                name: 'button',
-                path: 'button',
-                component: () => import('@/views/pages/components/ButtonHome.vue')
-            },
-            {
-                name: 'card',
-                path: 'card',
-                component: () => import('@/views/pages/components/CardHome.vue')
-            },
-            {
                 name: 'tree',
                 path: 'tree',
                 component: () => import('@/views/pages/components/TreeHome.vue')
@@ -214,51 +204,6 @@ const createComponentRouter = (router: Router): void => {
                 name: 'tab',
                 path: 'tab',
                 component: () => import('@/views/pages/components/TabHome.vue')
-            },
-            {
-                name: 'modal',
-                path: 'modal',
-                component: () => import('@/views/pages/components/ModalHome.vue')
-            },
-            {
-                name: 'input',
-                path: 'input',
-                component: () => import('@/views/pages/components/InputHome.vue')
-            },
-            {
-                name: 'icon',
-                path: 'icon',
-                component: () => import('@/views/pages/components/IconHome.vue')
-            },
-            {
-                name: 'copy',
-                path: 'copy',
-                component: () => import('@/views/pages/components/CopyHome.vue')
-            },
-            {
-                name: 'tooltip',
-                path: 'tooltip',
-                component: () => import('@/views/pages/components/TooltipHome.vue')
-            },
-            {
-                name: 'code',
-                path: 'code',
-                component: () => import('@/views/pages/components/CodeHome.vue')
-            },
-            {
-                name: 'rowCol',
-                path: 'rowCol',
-                component: () => import('@/views/pages/components/RowColHome.vue')
-            },
-            {
-                name: 'divider',
-                path: 'divider',
-                component: () => import('@/views/pages/components/DividerHome.vue')
-            },
-            {
-                name: 'ellipsis',
-                path: 'ellipsis',
-                component: () => import('@/views/pages/components/EllipsisHome.vue')
             },
             {
                 name: 'example',

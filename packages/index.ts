@@ -23,6 +23,7 @@ import ShadcnCheckboxGroup from '@/ui/checkbox/group'
 import ShadcnRadioGroup from '@/ui/radio/group'
 import ShadcnSelect from '@/ui/select'
 import ShadcnSelectOption from '@/ui/select/option'
+import ShadcnRate from '@/ui/rate'
 
 let components = [
     ShadcnButton,
@@ -48,7 +49,8 @@ let components = [
     ShadcnCheckbox,
     ShadcnCheckboxGroup,
     ShadcnSelect,
-    ShadcnSelectOption
+    ShadcnSelectOption,
+    ShadcnRate
 ]
 
 const install = (Vue: App) => {
@@ -94,6 +96,7 @@ export { default as ShadcnCheckbox } from '@/ui/checkbox'
 export { default as ShadcnCheckboxGroup } from '@/ui/checkbox/group'
 export { default as ShadcnSelect } from '@/ui/select'
 export { default as ShadcnSelectOption } from '@/ui/select/option'
+export { default as ShadcnRate } from '@/ui/rate'
 
 // Support global import
 export default install

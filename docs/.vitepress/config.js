@@ -115,6 +115,7 @@ export default {
                         {text: 'Radio', link: 'radio'},
                         {text: 'Checkbox', link: 'checkbox'},
                         {text: 'Select', link: 'select'},
+                        {text: 'Rate', link: 'rate'},
                     ]
                 }
             ],
