@@ -25,6 +25,15 @@
           </span>
         </span>
       </span>
+      <span v-if="showText"
+            :class="['ml-2 text-sm flex items-center',
+                      TextType[props.type]
+               ]">
+        <ShadcnSpace :size="[0, 4]" class="flex items-center">
+          <span>{{ modelValue }}</span>
+          <slot name="text"/>
+        </ShadcnSpace>
+      </span>
     </ShadcnSpace>
   </div>
 </template>
@@ -41,11 +50,13 @@ const props = withDefaults(defineProps<{
   allowHalf?: boolean
   type?: keyof typeof TextType
   disabled?: boolean
+  showText?: boolean
 }>(), {
   max: 5,
   allowHalf: false,
   type: 'primary',
-  disabled: false
+  disabled: false,
+  showText: false
 })
 
 const emit = defineEmits(['update:modelValue', 'on-change'])

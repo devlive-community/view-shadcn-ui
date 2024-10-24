@@ -14,7 +14,7 @@
 ![GitHub contributors](https://img.shields.io/github/contributors-anon/devlive-community/shadcn-ui-vue-admin?style=flat-square)
 ![GitHub last commit](https://img.shields.io/github/last-commit/devlive-community/shadcn-ui-vue-admin?style=flat-square)
 
-View Shadcn UI 是一个基于 Shadcn UI 和 Tailwind CSS 构建的组件库。
+View Shadcn UI 是一个基于 Shadcn UI 和 Tailwind CSS 构建的 Vue3 组件库。
 
 </div>
 

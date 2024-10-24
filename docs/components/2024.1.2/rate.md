@@ -136,6 +136,36 @@ const rate = ref(1)
 
 :::
 
+## Show Text
+
+<CodeRunner title="Show Text">
+    Rate Value: {{ rate }}
+    <ShadcnRate v-model="rate" show-text />
+    <p>Custom Text</p>
+    <ShadcnRate v-model="rate" show-text>
+        <template #text>Love</template>
+    </ShadcnRate>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnRate v-model="rate" show-text />
+    <ShadcnRate v-model="rate" show-text>
+        <template #text>Love</template>
+    </ShadcnRate>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const rate = ref(1)
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Rate Props"
@@ -146,6 +176,7 @@ const rate = ref(1)
         ['allowHalf', 'Allow half', 'boolean', 'false', '-'],
         ['type', 'Rate type', 'string', 'default', 'primary, success, warning, error'],
         ['disabled', 'Disabled', 'boolean', 'false', '-'],
+        ['showText', 'Show text', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
@@ -154,7 +185,8 @@ const rate = ref(1)
 <ApiTable title="Rate Slots"
     :headers="['Slot', 'Description']"
     :columns="[
-        ['character', 'Rate slot'],
+        ['character', 'Rate character slot'],
+        ['text', 'Rate text slot'],
     ]">
 </ApiTable>
 
