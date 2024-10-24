@@ -1,5 +1,12 @@
 <template>
   <div class="flex w-full flex-col gap-4 md:gap-8 md:p-8 lg:grid lg:grid-cols-3">
+    <ShadcnCard title="Select">
+      <div class="p-3">
+        Select Value: {{ defaultSelect }}
+        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" @on-change="onChange"/>
+      </div>
+    </ShadcnCard>
+
     <ShadcnCard title="Input">
       <div class="p-3">
         Input Value: {{ defaultInput }}
@@ -262,6 +269,21 @@ export default defineComponent({
       defaultCheckbox: 'Vue',
       defaultCheckboxGroup: [],
       defaultInput: 'Vue',
+      defaultSelect: 'Vue',
+      defaultSelectOptions: [
+        {
+          label: 'Vue',
+          value: 'Vue'
+        },
+        {
+          label: 'React',
+          value: 'React'
+        },
+        {
+          label: 'Angular',
+          value: 'Angular'
+        }
+      ]
     }
   },
   methods: {
