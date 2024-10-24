@@ -32,6 +32,10 @@
         </ShadcnSpace>
         Clearable
         <ShadcnInput v-model="defaultInput" clearable @on-change="onChange"/>
+        Type
+        <ShadcnSpace wrap>
+          <ShadcnInput v-model="defaultInput" type="password" @on-change="onChange"/>
+        </ShadcnSpace>
       </div>
     </ShadcnCard>
 

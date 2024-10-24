@@ -186,11 +186,27 @@ const input = ref('Hello View Shadcn UI')
 
 :::
 
+## Password
+
+<CodeRunner title="Password">
+    <ShadcnInput placeholder="Input" v-model="input" type="password" />
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnInput v-model="input" placeholder="Input" type="password" />
+</template>
+
 <script setup lang="ts">
 import { ref } from 'vue';
 
 const input = ref('Hello View Shadcn UI')
 </script>
+```
+
+:::
 
 ## API Attributes
 
@@ -204,6 +220,7 @@ const input = ref('Hello View Shadcn UI')
         ['wordCount', 'Show the word count', 'Boolean', 'false', '-', '-'],
         ['maxCount', 'The max count of the input', 'Number', '-', '-', '-'],
         ['disabled', 'Disable the input', 'Boolean', 'false', '-', '-'],
+        ['type', 'The type of the input', 'String', 'text', '-', 'text, password'],
     ]">
 </ApiTable>
 
@@ -228,3 +245,9 @@ const input = ref('Hello View Shadcn UI')
         ['suffix', 'Input suffix'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const input = ref('Hello View Shadcn UI')
+</script>

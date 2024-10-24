@@ -2,8 +2,8 @@
   <div class="relative w-full max-w-sm items-center"
        @mouseenter="hovered = true"
        @mouseleave="hovered = false">
-    <input type="text"
-           :class="cn('w-full p-2 border-gray-300 active:border-blue-400 border rounded transition-colors duration-300',
+    <input :type="currentType"
+           :class="cn('w-full p-2 border-gray-300 active:border-blue-400 hover:border-blue-400 border rounded transition-colors duration-300',
                    size && Size[size],
                    $slots.prefix && 'pl-6',
                    $slots.suffix && 'pr-6'
@@ -18,7 +18,12 @@
 
     <span v-if="clearable && localValue && hovered" class="absolute end-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer"
           @click="onClear">
-      <CircleXIcon class="size-5 text-muted-foreground"/>
+      <ShadcnIcon class="size-5 text-muted-foreground" icon="CircleX"/>
+    </span>
+
+    <span v-if="type === 'password'" class="absolute end-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer"
+          @click="togglePasswordVisibility">
+      <ShadcnIcon :icon="showPassword ? 'Eye' : 'EyeOff'" class="size-5 text-muted-foreground"/>
     </span>
 
     <span v-if="wordCount" ref="wordCountSpan" class="absolute end-0 inset-y-0 flex items-center justify-center px-2 text-gray-400 text-xs font-thin w-auto">
@@ -40,9 +45,9 @@
 
 <script setup lang="ts">
 import { cn } from '@/lib/utils.ts'
-import { CircleXIcon } from 'lucide-vue-next'
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { Size } from '@/ui/enum/Size.ts'
+import ShadcnIcon from '@/ui/icon'
 
 const emit = defineEmits(['on-change', 'on-clear', 'on-prefix-click', 'on-suffix-click', 'update:modelValue'])
 
@@ -54,20 +59,27 @@ const props = withDefaults(defineProps<{
   wordCount?: boolean
   maxCount?: number | string
   disabled?: boolean
+  type?: string
 }>(), {
   modelValue: '',
   placeholder: '',
   clearable: false,
   size: 'default',
-  wordCount: false
+  wordCount: false,
+  type: 'text'
 })
 
 const localValue = ref(props.modelValue)
 const hovered = ref(false)
+const showPassword = ref(false)
 
 watch(() => props.modelValue, (newValue) => {
   localValue.value = newValue
 }, { immediate: true })
+
+const currentType = computed(() => {
+  return showPassword.value ? 'text' : props.type
+})
 
 // Count the total number of characters entered
 const textCount = computed(() => {
@@ -112,6 +124,10 @@ const onClear = () => {
   emit('update:modelValue', newValue)
   emit('on-change', newValue)
   emit('on-clear')
+}
+
+const togglePasswordVisibility = () => {
+  showPassword.value = !showPassword.value
 }
 
 const onPrefixClick = () => {
