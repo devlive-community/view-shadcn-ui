@@ -29,3 +29,11 @@ export enum BorderType
     warning = 'border-yellow-400',
     error = 'border-red-400'
 }
+
+export enum SkeletonType
+{
+    circle,
+    square,
+    rect,
+    image
+}

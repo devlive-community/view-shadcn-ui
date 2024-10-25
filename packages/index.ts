@@ -26,6 +26,8 @@ import ShadcnSelectOption from '@/ui/select/option'
 import ShadcnRate from '@/ui/rate'
 import ShadcnTab from '@/ui/tab'
 import ShadcnTabItem from '@/ui/tab/item'
+import ShadcnSkeleton from '@/ui/skeleton'
+import ShadcnSkeletonItem from '@/ui/skeleton/item'
 
 let components = [
     ShadcnButton,
@@ -54,7 +56,9 @@ let components = [
     ShadcnSelectOption,
     ShadcnRate,
     ShadcnTab,
-    ShadcnTabItem
+    ShadcnTabItem,
+    ShadcnSkeleton,
+    ShadcnSkeletonItem
 ]
 
 const install = (Vue: App) => {
@@ -103,6 +107,8 @@ export { default as ShadcnSelectOption } from '@/ui/select/option'
 export { default as ShadcnRate } from '@/ui/rate'
 export { default as ShadcnTab } from '@/ui/tab'
 export { default as ShadcnTabItem } from '@/ui/tab/item'
+export { default as ShadcnSkeleton } from '@/ui/skeleton'
+export { default as ShadcnSkeletonItem } from '@/ui/skeleton/item'
 
 // Support global import
 export default install

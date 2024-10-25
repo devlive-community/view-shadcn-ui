@@ -1,14 +1,20 @@
 <template>
   <div class="flex w-full flex-col gap-4 md:gap-8 md:p-8 ">
-    Tab Value : {{ defaultValue }}
-    <ShadcnTab v-model="defaultValue" size="small" card closable @on-change="onChange">
-      <template #extra>
-        <ShadcnButton @click="addTab">Add</ShadcnButton>
-      </template>
-      <ShadcnTabItem v-for="item in tabs" :label="item.label" :value="item.value" :icon="item.icon" :disabled="item.disabled">
-        This is {{ item.label }}
-      </ShadcnTabItem>
-    </ShadcnTab>
+    Default Value : {{ defaultValue }}
+    <ShadcnSkeletonItem animation type="circle"/>
+    <ShadcnSkeletonItem animation type="square"/>
+    <ShadcnSkeletonItem animation type="rect"/>
+    <ShadcnSkeletonItem animation type="image"/>
+    Small
+    <ShadcnSkeletonItem animation type="circle" size="small"/>
+    <ShadcnSkeletonItem animation type="square" size="small"/>
+    <ShadcnSkeletonItem animation type="rect" size="small"/>
+    <ShadcnSkeletonItem animation type="image" size="small"/>
+    Large
+    <ShadcnSkeletonItem animation type="circle" size="large"/>
+    <ShadcnSkeletonItem animation type="square" size="large"/>
+    <ShadcnSkeletonItem animation type="rect" size="large"/>
+    <ShadcnSkeletonItem animation type="image" size="large"/>
   </div>
 </template>
 
@@ -20,24 +26,7 @@ export default defineComponent({
   data()
   {
     return {
-      defaultValue: 'Mac OS X',
-      tabs: [
-        {
-          label: 'Linux',
-          value: 'Linux',
-          disabled: false
-        },
-        {
-          label: 'Windows',
-          value: 'Windows',
-          disabled: true
-        },
-        {
-          label: 'Mac OS X',
-          value: 'Mac OS X',
-          icon: 'Save'
-        }
-      ]
+      defaultValue: 'Mac OS X'
     }
   },
   methods: {
@@ -48,16 +37,6 @@ export default defineComponent({
     onChange(value: boolean)
     {
       console.log('onChange', value)
-    },
-    addTab()
-    {
-      const tab = `Tab ${ this.tabs.length + 1 }`
-      this.tabs.push({
-        label: tab,
-        value: tab,
-        disabled: false
-      })
-      this.defaultValue = tab
     }
   }
 })
