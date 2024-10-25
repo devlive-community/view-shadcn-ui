@@ -1,8 +1,6 @@
 <template>
   <div class="flex flex-col h-screen">
-    <div class="flex-1 overflow-y-auto">
-      <slot/>
-    </div>
+    <slot></slot>
   </div>
 </template>
 
@@ -10,5 +8,7 @@
 import { provide, ref } from 'vue'
 
 const isInLayout = ref(true)
+const hasHeader = ref(false)
 provide('isInLayout', isInLayout)
+provide('hasHeader', hasHeader)
 </script>
