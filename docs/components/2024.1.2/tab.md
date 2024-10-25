@@ -255,6 +255,35 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
+## Extra
+
+<CodeRunner title="Extra">
+    <ShadcnTab>
+        <template #extra>Close</template>
+        <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 2" value="Tab 2">Tab 2 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
+    </ShadcnTab>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnTab>
+        <template #extra>Close</template>
+        <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 2" value="Tab 2">Tab 2 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
+    </ShadcnTab>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Tab Props"
@@ -286,14 +315,15 @@ This document is mainly used to describe some features and usage of the ShadcnTa
     :headers="['Event', 'Description', 'Callback Parameters']"
     :columns="[
         ['on-change', 'Emitted when the active tab changes', 'String'],
+        ['on-tab-remove', 'Emitted when the tab is removed', 'String'],
     ]">
 </ApiTable>
 
 <br />
 
-<ApiTable title="Tab Item Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+<ApiTable title="Tab Slots"
+    :headers="['Slot', 'Description']"
     :columns="[
-        ['on-tab-remove', 'Emitted when the tab is removed', 'String'],
+        ['extra', 'Extra slot'],
     ]">
 </ApiTable>

@@ -1,7 +1,8 @@
 <template>
-  <div class="flex w-full flex-col gap-4 md:gap-8 md:p-8 lg:grid lg:grid-cols-3">
+  <div class="flex w-full flex-col gap-4 md:gap-8 md:p-8 ">
     Tab Value : {{ defaultValue }}
     <ShadcnTab v-model="defaultValue" size="default" card closable @on-change="onChange">
+      <template #extra>关闭</template>
       <ShadcnTabItem label="Linux" value="Linux">这是 Tab 1 的内容</ShadcnTabItem>
       <ShadcnTabItem label="Windows" value="Windows" disabled>这是 Tab 2 的内容</ShadcnTabItem>
       <ShadcnTabItem label="Mac OS X" value="Mac OS X" icon="Save">这是 Tab 3 的内容</ShadcnTabItem>
