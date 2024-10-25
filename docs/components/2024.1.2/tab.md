@@ -348,6 +348,57 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
+## Dynamic Tabs
+
+<CodeRunner title="Dynamic Tabs">
+    Tab Value: {{ defaultValue }}
+    <ShadcnTab v-model="defaultValue" size="small" card closable @on-change="onChange">
+      <template #extra>
+        <ShadcnButton @click="addTab">Add</ShadcnButton>
+      </template>
+      <ShadcnTabItem v-for="item in tabs" :label="item.label" :value="item.value" :icon="item.icon" :disabled="item.disabled">
+        This is {{ item.label }}
+      </ShadcnTabItem>
+    </ShadcnTab>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnTab v-model="defaultValue" size="small" card closable @on-change="onChange">
+      <template #extra>
+        <ShadcnButton @click="addTab">Add</ShadcnButton>
+      </template>
+      <ShadcnTabItem v-for="item in tabs" :label="item.label" :value="item.value" :icon="item.icon" :disabled="item.disabled">
+        This is {{ item.label }}
+      </ShadcnTabItem>
+    </ShadcnTab>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+const tabs = ref([
+    { label: 'Tab 1', value: 'Tab 1', icon: 'tabler:home', disabled: false },
+    { label: 'Tab 2', value: 'Tab 2', icon: 'tabler:home', disabled: false },
+    { label: 'Tab 3', value: 'Tab 3', icon: 'tabler:home', disabled: false },
+])
+const defaultValue = ref('Tab 1')
+
+const addTab = () => {
+    const tab = `Tab ${tabs.value.length + 1}`
+    tabs.value.push({
+        label: tab,
+        value: tab,
+        disabled: false,
+    })
+    defaultValue.value = tab
+}
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Tab Props"
@@ -393,3 +444,25 @@ This document is mainly used to describe some features and usage of the ShadcnTa
         ['extra', 'Extra slot'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { ref } from 'vue' 
+
+const defaultValue = ref('Tab 1')
+
+const tabs = ref([
+    { label: 'Tab 1', value: 'Tab 1', icon: 'tabler:home', disabled: false },
+    { label: 'Tab 2', value: 'Tab 2', icon: 'tabler:home', disabled: false },
+    { label: 'Tab 3', value: 'Tab 3', icon: 'tabler:home', disabled: false },
+])
+
+const addTab = () => {
+    const tab = `Tab ${tabs.value.length + 1}`
+    tabs.value.push({
+      label: tab,
+      value: tab,
+      disabled: false,
+    })
+    defaultValue.value = tab
+}
+</script>

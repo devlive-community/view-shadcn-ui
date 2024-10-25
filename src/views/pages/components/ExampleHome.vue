@@ -2,46 +2,12 @@
   <div class="flex w-full flex-col gap-4 md:gap-8 md:p-8 ">
     Tab Value : {{ defaultValue }}
     <ShadcnTab v-model="defaultValue" size="small" card closable @on-change="onChange">
-      <template #extra>关闭</template>
-      <ShadcnTabItem label="Linux" value="Linux">这是 Tab 1 的内容</ShadcnTabItem>
-      <ShadcnTabItem label="Windows" value="Windows" disabled>这是 Tab 2 的内容</ShadcnTabItem>
-      <ShadcnTabItem label="Mac OS X" value="Mac OS X" icon="Save">这是 Tab 3 的内容</ShadcnTabItem>
-    </ShadcnTab>
-    <ShadcnTab v-model="defaultValue" size="default" closable @on-change="onChange">
-      <template #extra>关闭</template>
-      <ShadcnTabItem label="Linux" value="Linux">这是 Tab 1 的内容</ShadcnTabItem>
-      <ShadcnTabItem label="Windows" value="Windows" disabled>这是 Tab 2 的内容</ShadcnTabItem>
-      <ShadcnTabItem label="Mac OS X" value="Mac OS X" icon="Save">这是 Tab 3 的内容</ShadcnTabItem>
-    </ShadcnTab>
-    <ShadcnTab v-model="defaultValue" size="small" closable @on-change="onChange">
-      <template #extra>关闭</template>
-      <ShadcnTabItem label="Linux" value="Linux">这是 Tab 1 的内容</ShadcnTabItem>
-      <ShadcnTabItem label="Windows" value="Windows" disabled>这是 Tab 2 的内容</ShadcnTabItem>
-      <ShadcnTabItem label="Mac OS X" value="Mac OS X" icon="Save">这是 Tab 3 的内容</ShadcnTabItem>
-    </ShadcnTab>
-    <ShadcnTab v-model="defaultValue" size="default" card closable direction="vertical" @on-change="onChange">
-      <template #extra>关闭</template>
-      <ShadcnTabItem label="Linux" value="Linux">这是 Tab 1 的内容</ShadcnTabItem>
-      <ShadcnTabItem label="Windows" value="Windows" disabled>这是 Tab 2 的内容</ShadcnTabItem>
-      <ShadcnTabItem label="Mac OS X" value="Mac OS X" icon="Save">这是 Tab 3 的内容</ShadcnTabItem>
-    </ShadcnTab>
-    <ShadcnTab v-model="defaultValue" size="default" closable direction="vertical" @on-change="onChange">
-      <template #extra>关闭</template>
-      <ShadcnTabItem label="Linux" value="Linux">这是 Tab 1 的内容</ShadcnTabItem>
-      <ShadcnTabItem label="Windows" value="Windows" disabled>这是 Tab 2 的内容</ShadcnTabItem>
-      <ShadcnTabItem label="Mac OS X" value="Mac OS X" icon="Save">这是 Tab 3 的内容</ShadcnTabItem>
-    </ShadcnTab>
-    <ShadcnTab v-model="defaultValue" size="default" card closable direction="vertical" position="right" @on-change="onChange">
-      <template #extra>关闭</template>
-      <ShadcnTabItem label="Linux" value="Linux">这是 Tab 1 的内容</ShadcnTabItem>
-      <ShadcnTabItem label="Windows" value="Windows" disabled>这是 Tab 2 的内容</ShadcnTabItem>
-      <ShadcnTabItem label="Mac OS X" value="Mac OS X" icon="Save">这是 Tab 3 的内容</ShadcnTabItem>
-    </ShadcnTab>
-    <ShadcnTab v-model="defaultValue" size="default" closable direction="vertical" position="right" @on-change="onChange">
-      <template #extra>关闭</template>
-      <ShadcnTabItem label="Linux" value="Linux" class="bg-blue-400">这是 Tab 1 的内容</ShadcnTabItem>
-      <ShadcnTabItem label="Windows" value="Windows" disabled>这是 Tab 2 的内容</ShadcnTabItem>
-      <ShadcnTabItem label="Mac OS X" value="Mac OS X" icon="Save">这是 Tab 3 的内容</ShadcnTabItem>
+      <template #extra>
+        <ShadcnButton @click="addTab">Add</ShadcnButton>
+      </template>
+      <ShadcnTabItem v-for="item in tabs" :label="item.label" :value="item.value" :icon="item.icon" :disabled="item.disabled">
+        This is {{ item.label }}
+      </ShadcnTabItem>
     </ShadcnTab>
   </div>
 </template>
@@ -54,7 +20,24 @@ export default defineComponent({
   data()
   {
     return {
-      defaultValue: 'Mac OS X'
+      defaultValue: 'Mac OS X',
+      tabs: [
+        {
+          label: 'Linux',
+          value: 'Linux',
+          disabled: false
+        },
+        {
+          label: 'Windows',
+          value: 'Windows',
+          disabled: true
+        },
+        {
+          label: 'Mac OS X',
+          value: 'Mac OS X',
+          icon: 'Save'
+        }
+      ]
     }
   },
   methods: {
@@ -65,6 +48,13 @@ export default defineComponent({
     onChange(value: boolean)
     {
       console.log('onChange', value)
+    },
+    addTab() {
+      this.tabs.push({
+        label: 'New Tab',
+        value: 'New Tab',
+        disabled: false
+      })
     }
   }
 })
