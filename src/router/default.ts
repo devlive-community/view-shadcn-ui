@@ -201,11 +201,6 @@ const createComponentRouter = (router: Router): void => {
                 component: () => import('@/views/pages/components/TimelineHome.vue')
             },
             {
-                name: 'tab',
-                path: 'tab',
-                component: () => import('@/views/pages/components/TabHome.vue')
-            },
-            {
                 name: 'example',
                 path: 'example',
                 component: () => import('@/views/pages/components/ExampleHome.vue')

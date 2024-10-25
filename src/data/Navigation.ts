@@ -60,12 +60,10 @@ const createNavigation = (): void => {
         NavigationPosition.LEFT_TOP, pageArray, undefined, 'common.common.page')
     NavigationService.addNavigation(pages)
 
-    const card = createNavigationItem('common.common.card', undefined, '/components/card', undefined, NavigationPosition.LEFT_TOP)
     const tree = createNavigationItem('common.common.tree', undefined, '/components/tree', undefined, NavigationPosition.LEFT_TOP)
     const timeline = createNavigationItem('common.common.timeline', undefined, '/components/timeline', undefined, NavigationPosition.LEFT_TOP)
-    const tab = createNavigationItem('common.common.tab', undefined, '/components/tab', undefined, NavigationPosition.LEFT_TOP)
     const example = createNavigationItem('common.common.example', undefined, '/components/example', undefined, NavigationPosition.LEFT_TOP)
-    const componentArray = [card, tree, timeline, tab, example]
+    const componentArray = [tree, timeline, example]
     const components = createNavigationItem('common.common.component', componentArray.length.toString(), '/components', Command, NavigationPosition.LEFT_TOP, componentArray)
     NavigationService.addNavigation(components)
 
