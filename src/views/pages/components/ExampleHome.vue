@@ -4,7 +4,7 @@
     <ShadcnTab v-model="defaultValue" size="default" @on-change="onChange">
       <ShadcnTabItem label="Linux" value="Linux">这是 Tab 1 的内容</ShadcnTabItem>
       <ShadcnTabItem label="Windows" value="Windows" disabled>这是 Tab 2 的内容</ShadcnTabItem>
-      <ShadcnTabItem label="Mac OS X" value="Mac OS X">这是 Tab 3 的内容</ShadcnTabItem>
+      <ShadcnTabItem label="Mac OS X" value="Mac OS X" icon="Save">这是 Tab 3 的内容</ShadcnTabItem>
     </ShadcnTab>
   </div>
 </template>

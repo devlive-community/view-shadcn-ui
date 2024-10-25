@@ -2,7 +2,6 @@
   <div class="w-full">
     <div class="flex border-b">
       <div v-for="tab in tabs"
-           type="button"
            :key="tab.value"
            :class="[
                 'px-4 py-1 -mb-px transition-colors duration-200',
@@ -16,9 +15,12 @@
                   [HoverType[type]]: activeTab !== tab.value && !tab.disabled,
                   'text-gray-400 cursor-not-allowed opacity-50': tab.disabled
                 }
-              ]"
+           ]"
            @click="!tab.disabled && setActiveTab(tab.value)">
-        {{ tab.label }}
+        <div class="flex items-center space-x-1">
+          <ShadcnIcon v-if="tab.icon" :icon="tab.icon"/>
+          <div>{{ tab.label }}</div>
+        </div>
       </div>
     </div>
     <div class="py-2">
@@ -31,12 +33,14 @@
 import { provide, ref, watch } from 'vue'
 import { BorderType, HoverTextType, HoverType, TextType } from '@/ui/common/type.ts'
 import { TabSize } from '@/ui/common/size.ts'
+import ShadcnIcon from '@/ui/icon'
 
 interface Tab
 {
   label: string
   value: string
   disabled?: boolean
+  icon?: string
 }
 
 const emit = defineEmits(['update:modelValue', 'on-change'])
@@ -61,9 +65,9 @@ const setActiveTab = (value: string) => {
   }
 }
 
-const registerTab = (label: string, value: string, disabled: boolean = false) => {
+const registerTab = (label: string, value: string, disabled: boolean = false, icon?: string) => {
   if (!tabs.value.some(tab => tab.value === value)) {
-    tabs.value.push({ label, value, disabled })
+    tabs.value.push({ label, value, disabled, icon })
   }
 }
 

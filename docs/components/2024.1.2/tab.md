@@ -174,6 +174,33 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
+## Icon
+
+<CodeRunner title="Icon">
+    <ShadcnTab>
+        <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 2" value="Tab 2" icon="Save" disabled>Tab 2 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
+    </ShadcnTab>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnTab>
+        <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 2" value="Tab 2" icon="Save" disabled>Tab 2 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
+    </ShadcnTab>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Tab Props"
@@ -193,6 +220,7 @@ This document is mainly used to describe some features and usage of the ShadcnTa
         ['label', 'The label of the tab', 'String', '-', '-', '-'],
         ['value', 'The value of the tab', 'String', '-', '-', '-'],
         ['disabled', 'Whether the tab is disabled', 'Boolean', 'false', '-', '-'],
+        ['icon', 'The icon of the tab', 'String', '-', '-', '-'],
     ]">
 </ApiTable>
 
