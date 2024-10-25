@@ -31,6 +31,7 @@ import ShadcnSkeletonItem from '@/ui/skeleton/item'
 import ShadcnLayout from '@/ui/layout'
 import ShadcnLayoutHeader from '@/ui/layout/header'
 import ShadcnLayoutContent from '@/ui/layout/content'
+import ShadcnLayoutFooter from '@/ui/layout/footer'
 
 let components = [
     ShadcnButton,
@@ -64,7 +65,8 @@ let components = [
     ShadcnSkeletonItem,
     ShadcnLayout,
     ShadcnLayoutHeader,
-    ShadcnLayoutContent
+    ShadcnLayoutContent,
+    ShadcnLayoutFooter
 ]
 
 const install = (Vue: App) => {
@@ -118,6 +120,7 @@ export { default as ShadcnSkeletonItem } from '@/ui/skeleton/item'
 export { default as ShadcnLayout } from '@/ui/layout'
 export { default as ShadcnLayoutHeader } from '@/ui/layout/header'
 export { default as ShadcnLayoutContent } from '@/ui/layout/content'
+export { default as ShadcnLayoutFooter } from '@/ui/layout/footer'
 
 // Support global import
 export default install
