@@ -25,4 +25,4 @@ yarn.lock
 src/components/ui
 .npmrc
 docs/.vitepress/cache
-!src/views/pages/components/ExampleHome.vue
+src/views/pages/components/ExampleHome.vue
