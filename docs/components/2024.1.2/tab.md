@@ -137,6 +137,43 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
+## Size
+
+<CodeRunner title="Size">
+    <ShadcnTab size="default">
+        <ShadcnTabItem label="Default 1" value="Default 1">Tab 1 content</ShadcnTabItem>
+        <ShadcnTabItem label="Default 2" value="Default 2" disabled>Tab 2 content</ShadcnTabItem>
+        <ShadcnTabItem label="Default 3" value="Default 3">Tab 3 content</ShadcnTabItem>
+    </ShadcnTab>
+    <ShadcnTab size="small">
+        <ShadcnTabItem label="Small 1" value="Small 1">Tab 1 content</ShadcnTabItem>
+        <ShadcnTabItem label="Small 2" value="Small 2" disabled>Tab 2 content</ShadcnTabItem>
+        <ShadcnTabItem label="Small 3" value="Small 3">Tab 3 content</ShadcnTabItem>
+    </ShadcnTab>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnTab size="default">
+        <ShadcnTabItem label="Default 1" value="Default 1">Tab 1 content</ShadcnTabItem>
+        <ShadcnTabItem label="Default 2" value="Default 2" disabled>Tab 2 content</ShadcnTabItem>
+        <ShadcnTabItem label="Default 3" value="Default 3">Tab 3 content</ShadcnTabItem>
+    </ShadcnTab>
+    <ShadcnTab size="small">
+        <ShadcnTabItem label="Small 1" value="Small 1">Tab 1 content</ShadcnTabItem>
+        <ShadcnTabItem label="Small 2" value="Small 2" disabled>Tab 2 content</ShadcnTabItem>
+        <ShadcnTabItem label="Small 3" value="Small 3">Tab 3 content</ShadcnTabItem>
+    </ShadcnTab>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Tab Item Props"
@@ -146,5 +183,6 @@ This document is mainly used to describe some features and usage of the ShadcnTa
         ['value', 'The value of the tab', 'String', '-', '-', '-'],
         ['disabled', 'Whether the tab is disabled', 'Boolean', 'false', '-', '-'],
         ['type', 'The type of the tab', 'String', 'primary', '-', 'primary | success | warning | error'],
+        ['size', 'The size of the tab', 'String', 'default', '-', 'default | small'],
     ]">
 </ApiTable>

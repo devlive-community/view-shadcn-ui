@@ -4,3 +4,9 @@ export enum Size
     small = 'h-6',
     large = 'h-10'
 }
+
+export enum TabSize
+{
+    default = 'h-10',
+    small = 'h-8',
+}

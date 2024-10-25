@@ -6,6 +6,7 @@
            :key="tab.value"
            :class="[
                 'px-4 py-1 -mb-px transition-colors duration-200',
+                [TabSize[size]],
                 {
                   'border-b-2 cursor-pointer': activeTab === tab.value && !tab.disabled,
                   [TextType[type]]: activeTab === tab.value && !tab.disabled,
@@ -29,6 +30,7 @@
 <script setup lang="ts">
 import { provide, ref } from 'vue'
 import { BorderType, HoverTextType, HoverType, TextType } from '@/ui/common/type.ts'
+import { TabSize } from '@/ui/common/size.ts'
 
 interface Tab
 {
@@ -39,8 +41,10 @@ interface Tab
 
 withDefaults(defineProps<{
   type?: keyof typeof TextType
+  size?: keyof typeof TabSize
 }>(), {
-  type: 'primary'
+  type: 'primary',
+  size: 'default'
 })
 
 const activeTab = ref('')
