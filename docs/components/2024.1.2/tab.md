@@ -176,13 +176,31 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 ## API Attributes
 
+<ApiTable title="Tab Props"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :columns="[
+        ['modelValue', 'The value of the active tab', 'String', '-', '-', '-'],
+        ['type', 'The type of the tab', 'String', 'primary', '-', 'primary | success | warning | error'],
+        ['size', 'The size of the tab', 'String', 'default', '-', 'default | small'],
+    ]">
+</ApiTable>
+
+<br />
+
 <ApiTable title="Tab Item Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
     :columns="[
         ['label', 'The label of the tab', 'String', '-', '-', '-'],
         ['value', 'The value of the tab', 'String', '-', '-', '-'],
         ['disabled', 'Whether the tab is disabled', 'Boolean', 'false', '-', '-'],
-        ['type', 'The type of the tab', 'String', 'primary', '-', 'primary | success | warning | error'],
-        ['size', 'The size of the tab', 'String', 'default', '-', 'default | small'],
+    ]">
+</ApiTable>
+
+<br />
+
+<ApiTable title="Tab Events"
+    :headers="['Event', 'Description', 'Callback Parameters']"
+    :columns="[
+        ['on-change', 'Emitted when the active tab changes', 'String'],
     ]">
 </ApiTable>

@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { provide, ref } from 'vue'
+import { provide, ref, watch } from 'vue'
 import { BorderType, HoverTextType, HoverType, TextType } from '@/ui/common/type.ts'
 import { TabSize } from '@/ui/common/size.ts'
 
@@ -39,7 +39,10 @@ interface Tab
   disabled?: boolean
 }
 
-withDefaults(defineProps<{
+const emit = defineEmits(['update:modelValue', 'on-change'])
+
+const props = withDefaults(defineProps<{
+  modelValue?: string
   type?: keyof typeof TextType
   size?: keyof typeof TabSize
 }>(), {
@@ -53,6 +56,8 @@ const tabs = ref<Tab[]>([])
 const setActiveTab = (value: string) => {
   if (activeTab.value !== value) {
     activeTab.value = value
+    emit('update:modelValue', value)
+    emit('on-change', value)
   }
 }
 
@@ -64,4 +69,11 @@ const registerTab = (label: string, value: string, disabled: boolean = false) =>
 
 provide('activeTab', activeTab)
 provide('registerTab', registerTab)
+
+// Watch modelValue to update the active tab
+watch(() => props.modelValue, (newValue) => {
+  if (newValue) {
+    setActiveTab(newValue)
+  }
+}, { immediate: true })
 </script>
