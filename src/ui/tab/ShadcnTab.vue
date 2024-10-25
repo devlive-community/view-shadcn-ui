@@ -1,5 +1,10 @@
 <template>
-  <div class="w-full flex" :class="{ 'flex-row': direction === 'vertical', 'flex-col': direction !== 'vertical' }">
+  <div class="w-full flex"
+       :class="{
+         'flex-row': direction === 'vertical' && position !== 'right',
+         'flex-row-reverse': direction === 'vertical' && position === 'right',
+         'flex-col': direction !== 'vertical'
+       }">
     <div :class="[direction !== 'vertical' ? 'border-b' : '',
                   direction === 'vertical' ? 'border-b-0 border-r flex-col' : 'flex justify-between',
                   card ? 'space-x-1' : ''
@@ -15,7 +20,7 @@
              :class="[
                   'py-2 transition-colors duration-200 flex group items-center',
                   direction === 'horizontal' ? 'px-4' : '',
-                  card && direction === 'horizontal' ? [TabSize[size]] : '',
+                  direction === 'horizontal' ? [TabSize[size]] : '',
                   card && direction === 'vertical' ? 'py-2 px-2 h-auto' : '',
                   {
                     'border-b-2 cursor-pointer': activeTab === tab.value && !tab.disabled && direction !== 'vertical',
@@ -64,7 +69,11 @@
       </div>
     </div>
 
-    <div :class="[direction === 'vertical' ? 'ml-4 flex-1' : 'py-2']">
+    <div :class="[
+                  direction === 'vertical' && position === 'right' ? 'mr-4 flex-1' : '',
+                  direction === 'vertical' && position !== 'right' ? 'ml-4 flex-1' : '',
+                  direction !== 'vertical' ? 'py-2' : ''
+                ]">
       <slot/>
     </div>
   </div>
@@ -101,7 +110,7 @@ const props = withDefaults(defineProps<{
   card: false,
   closable: false,
   position: 'left',
-  direction: 'horizontal',
+  direction: 'horizontal'
 })
 
 const activeTab = ref('')

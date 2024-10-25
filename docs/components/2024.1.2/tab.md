@@ -311,6 +311,43 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
+## Position
+
+<CodeRunner title="Position">
+    <ShadcnTab direction="vertical" position="left">
+        <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 2" value="Tab 2">Tab 2 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
+    </ShadcnTab>
+    <ShadcnTab direction="vertical" position="right">
+        <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 2" value="Tab 2">Tab 2 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
+    </ShadcnTab>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnTab direction="vertical" position="left">
+        <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 2" value="Tab 2">Tab 2 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
+    </ShadcnTab>
+    <ShadcnTab direction="vertical" position="right">
+        <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 2" value="Tab 2">Tab 2 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
+    </ShadcnTab>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Tab Props"
@@ -322,6 +359,7 @@ This document is mainly used to describe some features and usage of the ShadcnTa
         ['card', 'Whether the tab is a card', 'Boolean', 'false', '-', '-'],
         ['closable', 'Whether the tab is closable', 'Boolean', 'false', '-', '-'],
         ['direction', 'The direction of the tab', 'String', 'horizontal', '-', 'horizontal | vertical'],
+        ['position', 'The position of the tab', 'String', 'top', '-', 'left | right'],
     ]">
 </ApiTable>
 
