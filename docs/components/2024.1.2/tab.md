@@ -228,6 +228,33 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
+## Closeable
+
+<CodeRunner title="Closeable">
+    <ShadcnTab closable>
+        <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 2" value="Tab 2">Tab 2 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
+    </ShadcnTab>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnTab closable>
+        <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 2" value="Tab 2">Tab 2 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
+    </ShadcnTab>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Tab Props"
@@ -237,6 +264,7 @@ This document is mainly used to describe some features and usage of the ShadcnTa
         ['type', 'The type of the tab', 'String', 'primary', '-', 'primary | success | warning | error'],
         ['size', 'The size of the tab', 'String', 'default', '-', 'default | small'],
         ['card', 'Whether the tab is a card', 'Boolean', 'false', '-', '-'],
+        ['closable', 'Whether the tab is closable', 'Boolean', 'false', '-', '-'],
     ]">
 </ApiTable>
 
@@ -258,5 +286,14 @@ This document is mainly used to describe some features and usage of the ShadcnTa
     :headers="['Event', 'Description', 'Callback Parameters']"
     :columns="[
         ['on-change', 'Emitted when the active tab changes', 'String'],
+    ]">
+</ApiTable>
+
+<br />
+
+<ApiTable title="Tab Item Events"
+    :headers="['Event', 'Description', 'Callback Parameters']"
+    :columns="[
+        ['on-tab-remove', 'Emitted when the tab is removed', 'String'],
     ]">
 </ApiTable>

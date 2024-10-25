@@ -6,7 +6,7 @@
       <div v-for="tab in tabs"
            :key="tab.value"
            :class="[
-                'px-4 py-1 -mb-px transition-colors duration-200 flex',
+                'px-4 py-1 -mb-px transition-colors duration-200 flex group',
                 [TabSize[size]],
                 {
                   'border-b-2 cursor-pointer': activeTab === tab.value && !tab.disabled,
@@ -25,6 +25,14 @@
         <div class="flex items-center space-x-1">
           <ShadcnIcon v-if="tab.icon" :icon="tab.icon"/>
           <div>{{ tab.label }}</div>
+          <ShadcnIcon v-if="closable && !tab.disabled"
+                      icon="CircleX"
+                      :class="{
+                            'inline-block': activeTab === tab.value || closable && !tab.disabled,
+                            'hidden group-hover:inline-block': activeTab !== tab.value && !tab.disabled
+                      }"
+                      style="margin-left: 10px;"
+                      @click.stop="onTabRemove(tab.value)"/>
         </div>
       </div>
     </div>
@@ -48,17 +56,19 @@ interface Tab
   icon?: string
 }
 
-const emit = defineEmits(['update:modelValue', 'on-change'])
+const emit = defineEmits(['update:modelValue', 'on-change', 'on-tab-remove'])
 
 const props = withDefaults(defineProps<{
   modelValue?: string
   type?: keyof typeof TextType
   size?: keyof typeof TabSize
   card?: boolean
+  closable?: boolean
 }>(), {
   type: 'primary',
   size: 'default',
-  card: false
+  card: false,
+  closable: false
 })
 
 const activeTab = ref('')
@@ -87,4 +97,9 @@ watch(() => props.modelValue, (newValue) => {
     setActiveTab(newValue)
   }
 }, { immediate: true })
+
+const onTabRemove = (value: string) => {
+  tabs.value = tabs.value.filter(tab => tab.value !== value)
+  emit('on-tab-remove', value)
+}
 </script>
