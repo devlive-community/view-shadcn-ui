@@ -80,7 +80,7 @@
 </template>
 
 <script setup lang="ts">
-import { provide, ref, watch } from 'vue'
+import { provide, ref, watch, watchEffect } from 'vue'
 import { BorderType, HoverTextType, HoverType, TextType } from '@/ui/common/type.ts'
 import { TabSize } from '@/ui/common/size.ts'
 import ShadcnIcon from '@/ui/icon'
@@ -125,13 +125,52 @@ const setActiveTab = (value: string) => {
 }
 
 const registerTab = (label: string, value: string, disabled: boolean = false, icon?: string) => {
-  if (!tabs.value.some(tab => tab.value === value)) {
-    tabs.value.push({ label, value, disabled, icon })
+  if (!value) {
+    console.warn('Tab value must be a non-empty string')
+    return
+  }
+
+  const existingTab = tabs.value.find(tab => tab.value === value)
+  if (existingTab) {
+    console.warn(`Tab with value "${ value }" already exists`)
+    return
+  }
+
+  tabs.value.push({ label, value, disabled, icon })
+}
+
+const unregisterTab = (value: string) => {
+  const index = tabs.value.findIndex(tab => tab.value === value)
+  if (index !== -1) {
+    // If removing the active tab, activate another tab
+    if (activeTab.value === value) {
+      const previousEnabledTab = [...tabs.value]
+          .slice(0, index)
+          .reverse()
+          .find(tab => !tab.disabled)
+
+      const nextEnabledTab = tabs.value
+                                 .slice(index + 1)
+                                 .find(tab => !tab.disabled)
+
+      const newActiveTab = previousEnabledTab || nextEnabledTab
+
+      if (newActiveTab) {
+        setActiveTab(newActiveTab.value)
+      }
+      else {
+        activeTab.value = ''
+        emit('update:modelValue', '')
+        emit('on-change', '')
+      }
+    }
+    tabs.value.splice(index, 1)
   }
 }
 
 provide('activeTab', activeTab)
 provide('registerTab', registerTab)
+provide('unregisterTab', unregisterTab)
 
 // Watch modelValue to update the active tab
 watch(() => props.modelValue, (newValue) => {
@@ -140,8 +179,24 @@ watch(() => props.modelValue, (newValue) => {
   }
 }, { immediate: true })
 
+watchEffect(() => {
+  if (props.direction === 'vertical' && !['left', 'right'].includes(props.position)) {
+    console.warn('Invalid position for vertical tabs. Must be either "left" or "right"')
+  }
+})
+
 const onTabRemove = (value: string) => {
-  tabs.value = tabs.value.filter(tab => tab.value !== value)
-  emit('on-tab-remove', value)
+  try {
+    if (!tabs.value.some(tab => tab.value === value)) {
+      console.warn(`Cannot remove non-existent tab: ${ value }`)
+      return
+    }
+
+    emit('on-tab-remove', value)
+    unregisterTab(value)
+  }
+  catch (error) {
+    console.error('Error removing tab:', error)
+  }
 }
 </script>

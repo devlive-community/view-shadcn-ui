@@ -49,12 +49,15 @@ export default defineComponent({
     {
       console.log('onChange', value)
     },
-    addTab() {
+    addTab()
+    {
+      const tab = `Tab ${ this.tabs.length + 1 }`
       this.tabs.push({
-        label: 'New Tab',
-        value: 'New Tab',
+        label: tab,
+        value: tab,
         disabled: false
       })
+      this.defaultValue = tab
     }
   }
 })

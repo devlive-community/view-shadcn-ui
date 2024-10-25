@@ -286,7 +286,7 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 ## Direction
 
-<CodeRunner title="Position">
+<CodeRunner title="Direction">
     <ShadcnTab direction="vertical">
         <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 2" value="Tab 2">Tab 2 content</ShadcnTabItem>
@@ -352,7 +352,7 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 <CodeRunner title="Dynamic Tabs">
     Tab Value: {{ defaultValue }}
-    <ShadcnTab v-model="defaultValue" size="small" card closable @on-change="onChange">
+    <ShadcnTab v-model="defaultValue" size="small" card closable>
       <template #extra>
         <ShadcnButton @click="addTab">Add</ShadcnButton>
       </template>
@@ -366,7 +366,7 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 ```vue
 <template>
-    <ShadcnTab v-model="defaultValue" size="small" card closable @on-change="onChange">
+    <ShadcnTab v-model="defaultValue" size="small" card closable>
       <template #extra>
         <ShadcnButton @click="addTab">Add</ShadcnButton>
       </template>
