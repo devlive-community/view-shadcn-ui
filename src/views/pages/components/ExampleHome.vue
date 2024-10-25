@@ -1,7 +1,7 @@
 <template>
   <div class="flex w-full flex-col gap-4 md:gap-8 md:p-8 ">
     Default Value : {{ defaultValue }}
-    <ShadcnSkeleton loading/>
+    <ShadcnSkeleton animation/>
   </div>
 </template>
 
