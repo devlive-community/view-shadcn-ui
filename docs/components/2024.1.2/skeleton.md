@@ -91,6 +91,31 @@ This document is mainly used to describe some features and usage of the ShadcnSk
 
 :::
 
+## Item Size
+
+<CodeRunner title="Item Size">
+    <ShadcnSpace>
+        <ShadcnSkeletonItem animation type="image" size="small"/>
+        <ShadcnSkeletonItem animation type="image" size="default"/>
+        <ShadcnSkeletonItem animation type="image" size="large"/>
+    </ShadcnSpace>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSkeletonItem animation type="image" size="small"/>
+    <ShadcnSkeletonItem animation type="image" size="default"/>
+    <ShadcnSkeletonItem animation type="image" size="large"/>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Skeleton Props"
@@ -111,6 +136,7 @@ This document is mainly used to describe some features and usage of the ShadcnSk
         ['animation', 'Whether to use animation', 'Boolean', 'false', '-', '-'],
         ['width', 'The width of the skeleton item', 'Number | String', '-', '-', '-'],
         ['type', 'The type of the skeleton item', 'Enum', 'rect', '-', 'circle | square | rect | image'],
+        ['size', 'The size of the skeleton item', 'Enum', 'default', '-', 'small | default | large'],
     ]">
 </ApiTable>
 

@@ -5,6 +5,16 @@
     <ShadcnSkeletonItem animation type="square"/>
     <ShadcnSkeletonItem animation type="rect"/>
     <ShadcnSkeletonItem animation type="image"/>
+    Small
+    <ShadcnSkeletonItem animation type="circle" size="small"/>
+    <ShadcnSkeletonItem animation type="square" size="small"/>
+    <ShadcnSkeletonItem animation type="rect" size="small"/>
+    <ShadcnSkeletonItem animation type="image" size="small"/>
+    Large
+    <ShadcnSkeletonItem animation type="circle" size="large"/>
+    <ShadcnSkeletonItem animation type="square" size="large"/>
+    <ShadcnSkeletonItem animation type="rect" size="large"/>
+    <ShadcnSkeletonItem animation type="image" size="large"/>
   </div>
 </template>
 

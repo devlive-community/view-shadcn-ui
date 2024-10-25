@@ -5,7 +5,7 @@
            :class="skeletonShapeClass"
            :style="{ width }">
         <template v-if="props.type === 'image'">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          <svg xmlns="http://www.w3.org/2000/svg" width="50%" height="50%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                stroke-linejoin="round" class="text-gray-400">
             <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
             <circle cx="9" cy="9" r="2"/>
@@ -20,14 +20,17 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { SkeletonType } from '@/ui/common/type.ts'
+import { SkeletonSize } from '@/ui/common/size.ts'
 
 const props = withDefaults(defineProps<{
   animation?: boolean
   width?: string
   type?: keyof typeof SkeletonType
+  size?: keyof typeof SkeletonSize
 }>(), {
   animation: false,
-  type: 'rect'
+  type: 'rect',
+  size: 'default'
 })
 
 const skeletonShapeClass = computed(() => {
@@ -37,22 +40,17 @@ const skeletonShapeClass = computed(() => {
     case 'square':
       return 'rounded aspect-square'
     case 'rect':
-      return 'rounded h-4'
+      return `rounded w-full h-4`
     case 'image':
-      return 'rounded-md w-16 h-16'
+      return `rounded-md ${ SkeletonSize[props.size] }`
   }
 })
 
 const skeletonClass = computed(() => {
-  switch (props.type) {
-    case 'circle':
-      return 'w-16 h-16'
-    case 'square':
-      return 'w-16 h-16'
-    case 'rect':
-      return 'w-full'
-    case 'image':
-      return 'w-16 h-16'
+  // type 为 rect 时强制设置宽度为 w-full
+  if (props.type === 'rect') {
+    return 'w-full'
   }
+  return SkeletonSize[props.size] || SkeletonSize.default
 })
 </script>
