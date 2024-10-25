@@ -284,10 +284,10 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
-## Position
+## Direction
 
 <CodeRunner title="Position">
-    <ShadcnTab position="vertical">
+    <ShadcnTab direction="vertical">
         <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 2" value="Tab 2">Tab 2 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
@@ -298,7 +298,7 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 ```vue
 <template>
-    <ShadcnTab position="vertical">
+    <ShadcnTab direction="vertical">
         <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 2" value="Tab 2">Tab 2 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
@@ -321,7 +321,7 @@ This document is mainly used to describe some features and usage of the ShadcnTa
         ['size', 'The size of the tab', 'String', 'default', '-', 'default | small'],
         ['card', 'Whether the tab is a card', 'Boolean', 'false', '-', '-'],
         ['closable', 'Whether the tab is closable', 'Boolean', 'false', '-', '-'],
-        ['position', 'The position of the tab', 'String', 'horizontal', '-', 'horizontal | vertical'],
+        ['direction', 'The direction of the tab', 'String', 'horizontal', '-', 'horizontal | vertical'],
     ]">
 </ApiTable>
 

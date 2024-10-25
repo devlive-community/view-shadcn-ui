@@ -1,42 +1,43 @@
 <template>
-  <div class="w-full flex" :class="{ 'flex-row': position === 'vertical', 'flex-col': position !== 'vertical' }">
-    <div :class="[position !== 'vertical' ? 'border-b' : '',
-                  position === 'vertical' ? 'border-b-0 border-r flex-col' : 'flex justify-between',
+  <div class="w-full flex" :class="{ 'flex-row': direction === 'vertical', 'flex-col': direction !== 'vertical' }">
+    <div :class="[direction !== 'vertical' ? 'border-b' : '',
+                  direction === 'vertical' ? 'border-b-0 border-r flex-col' : 'flex justify-between',
                   card ? 'space-x-1' : ''
                 ]"
-         :style="{ width: position === 'vertical' ? 'auto' : '100%' }">
+         :style="{ width: direction === 'vertical' ? 'auto' : '100%' }">
       <div :class="[
-                    position === 'vertical' ? 'flex flex-col' : 'flex',
-                    card && position !== 'vertical' ? 'space-x-1' : 'space-y-1'
+                    direction === 'vertical' ? 'flex flex-col' : 'flex',
+                    card && direction !== 'vertical' ? 'space-x-1' : '',
+                    card && direction === 'vertical' ? 'space-y-1' : ''
                   ]">
         <div v-for="tab in tabs"
              :key="tab.value"
              :class="[
                   'py-2 transition-colors duration-200 flex group items-center',
-                  position === 'horizontal' ? 'px-4' : '',
-                  position === 'horizontal' ? [TabSize[size]] : '',
-                  card && position === 'vertical' ? 'py-2 px-2 h-auto' : '',
+                  direction === 'horizontal' ? 'px-4' : '',
+                  card && direction === 'horizontal' ? [TabSize[size]] : '',
+                  card && direction === 'vertical' ? 'py-2 px-2 h-auto' : '',
                   {
-                    'border-b-2 cursor-pointer': activeTab === tab.value && !tab.disabled && position !== 'vertical',
-                    'border-r-2 cursor-pointer': activeTab === tab.value && !tab.disabled && position === 'vertical',
+                    'border-b-2 cursor-pointer': activeTab === tab.value && !tab.disabled && direction !== 'vertical',
+                    'border-r-2 cursor-pointer': activeTab === tab.value && !tab.disabled && direction === 'vertical',
                     [TextType[type]]: activeTab === tab.value && !tab.disabled,
                     [BorderType[type]]: activeTab === tab.value && !tab.disabled,
-                    'text-gray-600 hover:border-b-2 hover:cursor-pointer': activeTab !== tab.value && !tab.disabled && position !== 'vertical',
-                    'text-gray-600 hover:border-r-2 hover:cursor-pointer': activeTab !== tab.value && !tab.disabled && position === 'vertical',
+                    'text-gray-600 hover:border-b-2 hover:cursor-pointer': activeTab !== tab.value && !tab.disabled && direction !== 'vertical',
+                    'text-gray-600 hover:border-r-2 hover:cursor-pointer': activeTab !== tab.value && !tab.disabled && direction === 'vertical',
                     [HoverTextType[type]]: activeTab !== tab.value && !tab.disabled,
                     [HoverType[type]]: activeTab !== tab.value && !tab.disabled,
                     'text-gray-400 cursor-not-allowed opacity-50': tab.disabled
                   },
                   {
-                    'border-t border-l border-r rounded-t items-center': card && position !== 'vertical',
-                    'border-l border-t border-b rounded-l items-center': card && position === 'vertical'
+                    'border-t border-l border-r rounded-t items-center': card && direction !== 'vertical',
+                    'border-l border-t border-b rounded-l items-center': card && direction === 'vertical'
                   }
              ]"
              @click="!tab.disabled && setActiveTab(tab.value)">
           <div :class="['flex items-center',
-                        position === 'vertical' ? 'space-y-1' : 'space-x-1',
+                        direction === 'vertical' ? 'space-y-1' : 'space-x-1',
                 ]"
-               :style="position === 'horizontal' ? {} : {
+               :style="direction === 'horizontal' ? {} : {
                   writingMode: 'vertical-rl',
                   textOrientation: 'mixed',
                   height: 'auto',
@@ -50,20 +51,20 @@
                               'inline-block': activeTab === tab.value || closable && !tab.disabled,
                               'hidden group-hover:inline-block': activeTab !== tab.value && !tab.disabled
                         }"
-                        :style="position === 'vertical' ? {} : {marginLeft: '10px'}"
+                        :style="direction === 'vertical' ? {} : {marginLeft: '10px'}"
                         @click.stop="onTabRemove(tab.value)"/>
           </div>
         </div>
       </div>
       <div v-if="$slots.extra"
            :class="['flex items-center ml-auto',
-                    position === 'vertical' ? 'mt-2' : '',
+                    direction === 'vertical' ? 'mt-2' : '',
             ]">
         <slot name="extra"/>
       </div>
     </div>
 
-    <div :class="[position === 'vertical' ? 'ml-4 flex-1' : 'py-2']">
+    <div :class="[direction === 'vertical' ? 'ml-4 flex-1' : 'py-2']">
       <slot/>
     </div>
   </div>
@@ -74,7 +75,7 @@ import { provide, ref, watch } from 'vue'
 import { BorderType, HoverTextType, HoverType, TextType } from '@/ui/common/type.ts'
 import { TabSize } from '@/ui/common/size.ts'
 import ShadcnIcon from '@/ui/icon'
-import { ArrangePosition } from '@/ui/common/position.ts'
+import { ArrangeDirection, ArrangePosition } from '@/ui/common/position.ts'
 
 interface Tab
 {
@@ -93,12 +94,14 @@ const props = withDefaults(defineProps<{
   card?: boolean
   closable?: boolean
   position?: keyof typeof ArrangePosition
+  direction?: keyof typeof ArrangeDirection
 }>(), {
   type: 'primary',
   size: 'default',
   card: false,
   closable: false,
-  position: 'horizontal'
+  position: 'left',
+  direction: 'horizontal',
 })
 
 const activeTab = ref('')
