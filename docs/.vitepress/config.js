@@ -117,6 +117,14 @@ export default {
                         {text: 'Select', link: 'select'},
                         {text: 'Rate', link: 'rate'},
                     ]
+                },
+                {
+                    text: 'Navigation Components',
+                    base: '/components/2024.1.2/',
+                    collapsed: false,
+                    items: [
+                        {text: 'Tab', link: 'tab'},
+                    ]
                 }
             ],
             '/components/2024.1.1/': [

@@ -1,4 +1,15 @@
 <template>
+  <div class="flex w-full flex-col gap-4 md:gap-8 md:p-8 lg:grid lg:grid-cols-3">
+    <ShadcnTab>
+      <ShadcnTabItem label="Tab 1">
+        <div>这是 Tab 1 的内容</div>
+      </ShadcnTabItem>
+
+      <ShadcnTabItem label="Tab 2">
+          <div>这是 Tab 2 的内容</div>
+      </ShadcnTabItem>
+    </ShadcnTab>
+  </div>
 </template>
 
 <script lang="ts">
@@ -24,13 +35,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style scoped>
-.demo-badge {
-  width: 42px;
-  height: 42px;
-  background: #eee;
-  border-radius: 6px;
-  display: inline-block;
-}
-</style>
