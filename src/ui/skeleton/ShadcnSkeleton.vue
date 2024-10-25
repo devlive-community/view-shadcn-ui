@@ -1,6 +1,9 @@
 <template>
   <div class="space-y-4">
-    <ShadcnSkeletonItem v-for="i in rows" :key="i" :animation="animation"/>
+    <ShadcnSkeletonItem v-for="i in rows"
+                        :key="i"
+                        :width="(title && i === 1) ? title.width : null"
+                        :animation="animation"/>
   </div>
 </template>
 
@@ -11,6 +14,7 @@ withDefaults(defineProps<{
   cols?: number | string
   rows?: number | string
   animation?: boolean
+  title?: any
 }>(), {
   cols: 1,
   rows: 4,

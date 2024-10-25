@@ -44,6 +44,25 @@ This document is mainly used to describe some features and usage of the ShadcnSk
 
 :::
 
+## Title
+
+<CodeRunner title="Title">
+    <ShadcnSkeleton :title="{ width: '30%' }" />
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSkeleton :title="{ width: '30%' }" />
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Skeleton Props"
@@ -52,6 +71,7 @@ This document is mainly used to describe some features and usage of the ShadcnSk
         ['rows', 'The rows of the skeleton', 'Number | String', '4', '-', '-'],
         ['cols', 'The columns of the skeleton', 'Number | String', '1', '-', '-'],
         ['animation', 'Whether to use animation', 'Boolean', 'false', '-', '-'],
+        ['title', 'The title of the skeleton', '{ width: xx% }', '-', '-', '-'],
     ]">
 </ApiTable>
 
@@ -61,5 +81,6 @@ This document is mainly used to describe some features and usage of the ShadcnSk
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
     :columns="[
         ['animation', 'Whether to use animation', 'Boolean', 'false', '-', '-'],
+        ['width', 'The width of the skeleton item', 'Number | String', '-', '-', '-'],
     ]">
 </ApiTable>
