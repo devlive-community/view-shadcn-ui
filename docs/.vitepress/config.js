@@ -91,6 +91,7 @@ export default {
                         {text: 'Avatar', link: 'avatar'},
                         {text: 'Badge', link: 'badge'},
                         {text: 'Space', link: 'space'},
+                        {text: 'Skeleton', link: 'skeleton'},
                     ]
                 },
                 {
