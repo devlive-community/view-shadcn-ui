@@ -7,6 +7,24 @@
       <ShadcnTabItem label="Windows" value="Windows" disabled>这是 Tab 2 的内容</ShadcnTabItem>
       <ShadcnTabItem label="Mac OS X" value="Mac OS X" icon="Save">这是 Tab 3 的内容</ShadcnTabItem>
     </ShadcnTab>
+    <ShadcnTab v-model="defaultValue" size="default" closable @on-change="onChange">
+      <template #extra>关闭</template>
+      <ShadcnTabItem label="Linux" value="Linux">这是 Tab 1 的内容</ShadcnTabItem>
+      <ShadcnTabItem label="Windows" value="Windows" disabled>这是 Tab 2 的内容</ShadcnTabItem>
+      <ShadcnTabItem label="Mac OS X" value="Mac OS X" icon="Save">这是 Tab 3 的内容</ShadcnTabItem>
+    </ShadcnTab>
+    <ShadcnTab v-model="defaultValue" size="default" card closable position="vertical" @on-change="onChange">
+      <template #extra>关闭</template>
+      <ShadcnTabItem label="Linux" value="Linux">这是 Tab 1 的内容</ShadcnTabItem>
+      <ShadcnTabItem label="Windows" value="Windows" disabled>这是 Tab 2 的内容</ShadcnTabItem>
+      <ShadcnTabItem label="Mac OS X" value="Mac OS X" icon="Save">这是 Tab 3 的内容</ShadcnTabItem>
+    </ShadcnTab>
+    <ShadcnTab v-model="defaultValue" size="default" closable position="vertical" @on-change="onChange">
+      <template #extra>关闭</template>
+      <ShadcnTabItem label="Linux" value="Linux">这是 Tab 1 的内容</ShadcnTabItem>
+      <ShadcnTabItem label="Windows" value="Windows" disabled>这是 Tab 2 的内容</ShadcnTabItem>
+      <ShadcnTabItem label="Mac OS X" value="Mac OS X" icon="Save">这是 Tab 3 的内容</ShadcnTabItem>
+    </ShadcnTab>
   </div>
 </template>
 
