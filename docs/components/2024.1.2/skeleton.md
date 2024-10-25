@@ -44,17 +44,45 @@ This document is mainly used to describe some features and usage of the ShadcnSk
 
 :::
 
-## Title
+## Paragraph
 
 <CodeRunner title="Title">
-    <ShadcnSkeleton :title="{ width: '30%' }" />
+    <ShadcnSkeleton :paragraph=" { rows: 5, width: [100, 200, '300px', '50%', '62%'] }"/>
 </CodeRunner>
 
 ::: details Show code
 
 ```vue
 <template>
-    <ShadcnSkeleton :title="{ width: '30%' }" />
+    <ShadcnSkeleton :paragraph=" { rows: 5, width: [100, 200, '300px', '50%', '62%'] }"/>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
+## Item Type
+
+<CodeRunner title="Item Type">
+    <ShadcnSpace>
+        <ShadcnSkeletonItem animation type="circle"/>
+        <ShadcnSkeletonItem animation type="square"/>
+        <ShadcnSkeletonItem animation type="image"/>
+    </ShadcnSpace>
+    <br />
+    <ShadcnSkeletonItem animation type="rect"/>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSkeletonItem animation type="circle"/>
+    <ShadcnSkeletonItem animation type="square"/>
+    <ShadcnSkeletonItem animation type="rect"/>
+    <ShadcnSkeletonItem animation type="image"/>
 </template>
 
 <script setup lang="ts">
@@ -71,7 +99,7 @@ This document is mainly used to describe some features and usage of the ShadcnSk
         ['rows', 'The rows of the skeleton', 'Number | String', '4', '-', '-'],
         ['cols', 'The columns of the skeleton', 'Number | String', '1', '-', '-'],
         ['animation', 'Whether to use animation', 'Boolean', 'false', '-', '-'],
-        ['title', 'The title of the skeleton', '{ width: xx% }', '-', '-', '-'],
+        ['paragraph', 'The paragraph of the skeleton', '{ rows: 5, width: \[100, 200, 300px, 50%, 62%\] }', '-', '-', '-'],
     ]">
 </ApiTable>
 
@@ -82,5 +110,15 @@ This document is mainly used to describe some features and usage of the ShadcnSk
     :columns="[
         ['animation', 'Whether to use animation', 'Boolean', 'false', '-', '-'],
         ['width', 'The width of the skeleton item', 'Number | String', '-', '-', '-'],
+        ['type', 'The type of the skeleton item', 'Enum', 'rect', '-', 'circle | square | rect | image'],
+    ]">
+</ApiTable>
+
+<br />
+
+<ApiTable title="Skeleton Slots"
+    :headers="['Slot', 'Description']"
+    :columns="[
+        ['template', 'Skeleton template slot'],
     ]">
 </ApiTable>
