@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isInLayout" class="w-full">
+  <div v-if="isInLayout" class="shadcn-layout-header w-full">
     <slot/>
   </div>
 </template>
