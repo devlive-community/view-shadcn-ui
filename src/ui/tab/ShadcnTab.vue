@@ -1,14 +1,18 @@
 <template>
   <div class="w-full">
-    <div class="flex border-b border-gray-200">
+    <div class="flex border-b">
       <div v-for="tab in tabs"
            type="button"
            :key="tab.value"
            :class="[
                 'px-4 py-1 -mb-px transition-colors duration-200',
                 {
-                  'border-b-2 border-blue-500 text-blue-600 cursor-pointer': activeTab === tab.value && !tab.disabled,
-                  'text-gray-600 hover:text-blue-500 hover:border-b-2 hover:border-blue-500 hover:cursor-pointer': activeTab !== tab.value && !tab.disabled,
+                  'border-b-2 cursor-pointer': activeTab === tab.value && !tab.disabled,
+                  [TextType[type]]: activeTab === tab.value && !tab.disabled,
+                  [BorderType[type]]: activeTab === tab.value && !tab.disabled,
+                  'text-gray-600 hover:border-b-2 hover:cursor-pointer': activeTab !== tab.value && !tab.disabled,
+                  [HoverTextType[type]]: activeTab !== tab.value && !tab.disabled,
+                  [HoverType[type]]: activeTab !== tab.value && !tab.disabled,
                   'text-gray-400 cursor-not-allowed opacity-50': tab.disabled
                 }
               ]"
@@ -24,6 +28,7 @@
 
 <script setup lang="ts">
 import { provide, ref } from 'vue'
+import { BorderType, HoverTextType, HoverType, TextType } from '@/ui/common/type.ts'
 
 interface Tab
 {
@@ -31,6 +36,12 @@ interface Tab
   value: string
   disabled?: boolean
 }
+
+withDefaults(defineProps<{
+  type?: keyof typeof TextType
+}>(), {
+  type: 'primary'
+})
 
 const activeTab = ref('')
 const tabs = ref<Tab[]>([])
