@@ -201,6 +201,33 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
+## Card
+
+<CodeRunner title="Card">
+    <ShadcnTab type="primary" card>
+        <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 2" value="Tab 2" disabled>Tab 2 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
+    </ShadcnTab>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnTab type="primary" card>
+        <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 2" value="Tab 2" disabled>Tab 2 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
+    </ShadcnTab>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Tab Props"
@@ -209,6 +236,7 @@ This document is mainly used to describe some features and usage of the ShadcnTa
         ['modelValue', 'The value of the active tab', 'String', '-', '-', '-'],
         ['type', 'The type of the tab', 'String', 'primary', '-', 'primary | success | warning | error'],
         ['size', 'The size of the tab', 'String', 'default', '-', 'default | small'],
+        ['card', 'Whether the tab is a card', 'Boolean', 'false', '-', '-'],
     ]">
 </ApiTable>
 

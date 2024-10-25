@@ -1,10 +1,12 @@
 <template>
   <div class="w-full">
-    <div class="flex border-b">
+    <div :class="['flex border-b',
+                  card ? 'space-x-1': ''
+          ]">
       <div v-for="tab in tabs"
            :key="tab.value"
            :class="[
-                'px-4 py-1 -mb-px transition-colors duration-200',
+                'px-4 py-1 -mb-px transition-colors duration-200 flex',
                 [TabSize[size]],
                 {
                   'border-b-2 cursor-pointer': activeTab === tab.value && !tab.disabled,
@@ -14,6 +16,9 @@
                   [HoverTextType[type]]: activeTab !== tab.value && !tab.disabled,
                   [HoverType[type]]: activeTab !== tab.value && !tab.disabled,
                   'text-gray-400 cursor-not-allowed opacity-50': tab.disabled
+                },
+                {
+                  'border-t border-l border-r rounded-t items-center' : card
                 }
            ]"
            @click="!tab.disabled && setActiveTab(tab.value)">
@@ -49,9 +54,11 @@ const props = withDefaults(defineProps<{
   modelValue?: string
   type?: keyof typeof TextType
   size?: keyof typeof TabSize
+  card?: boolean
 }>(), {
   type: 'primary',
-  size: 'default'
+  size: 'default',
+  card: false
 })
 
 const activeTab = ref('')
