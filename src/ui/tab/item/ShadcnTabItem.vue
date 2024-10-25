@@ -1,4 +1,3 @@
-<!-- ShadcnTabItem.vue -->
 <template>
   <div v-show="isActive">
     <slot/>
@@ -6,29 +5,29 @@
 </template>
 
 <script setup lang="ts">
-import { computed, inject, onMounted, onUnmounted } from 'vue'
+import { computed, inject, onMounted } from 'vue'
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   label: string
-}>()
-
-const tabs = inject('tabs') as {
-  addTab: (tab: { label: string }) => void
-  removeTab: (tab: { label: string }) => void
-  activeTab: { value: { label: string } | null }
-}
-
-const tab = { label: props.label }
-
-const isActive = computed(() => {
-  return tabs.activeTab.value?.label === props.label
+  value: string
+  disabled?: boolean
+}>(), {
+  disabled: false
 })
+
+const activeTab = inject('activeTab') as { value: string }
+const registerTab = inject('registerTab') as (label: string, value: string, disabled: boolean) => void
 
 onMounted(() => {
-  tabs.addTab(tab)
+  registerTab(props.label, props.value, props.disabled)
+
+  // For consistency, if it is the first non-disabled tag and there is no currently activated tag, it is set to the activated state.
+  if (activeTab.value === '' && !props.disabled) {
+    activeTab.value = props.value
+  }
 })
 
-onUnmounted(() => {
-  tabs.removeTab(tab)
+const isActive = computed(() => {
+  return activeTab.value === props.value
 })
 </script>

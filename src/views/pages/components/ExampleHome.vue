@@ -1,12 +1,16 @@
 <template>
   <div class="flex w-full flex-col gap-4 md:gap-8 md:p-8 lg:grid lg:grid-cols-3">
     <ShadcnTab>
-      <ShadcnTabItem label="Tab 1">
+      <ShadcnTabItem label="Linux" value="Linux">
         <div>这是 Tab 1 的内容</div>
       </ShadcnTabItem>
 
-      <ShadcnTabItem label="Tab 2">
-          <div>这是 Tab 2 的内容</div>
+      <ShadcnTabItem label="Windows" value="Windows" disabled>
+        <div>这是 Tab 2 的内容</div>
+      </ShadcnTabItem>
+
+      <ShadcnTabItem label="Mac OS X" value="Mac OS X">
+        <div>这是 Tab 3 的内容</div>
       </ShadcnTabItem>
     </ShadcnTab>
   </div>
