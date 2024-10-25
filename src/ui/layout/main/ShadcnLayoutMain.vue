@@ -1,15 +1,15 @@
 <template>
-  <div v-if="isInLayout" class="order-3 w-full">
+  <div v-if="isInLayout" class="flex flex-col flex-1">
     <slot/>
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { inject } from 'vue'
 
 const isInLayout = inject('isInLayout', false)
 
 if (!isInLayout) {
-  console.warn('ShadcnLayoutFooter must be placed inside ShadcnLayout.')
+  console.warn('ShadcnLayoutMain must be placed inside ShadcnLayout.')
 }
 </script>
