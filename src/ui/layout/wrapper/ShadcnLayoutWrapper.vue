@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isInLayout" class="order-2 flex flex-1">
+  <div v-if="isInLayout" class="shadcn-layout-wrapper order-2 flex flex-1">
     <slot/>
   </div>
 </template>

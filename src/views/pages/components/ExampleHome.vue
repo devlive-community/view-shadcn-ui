@@ -72,6 +72,33 @@
         </ShadcnLayoutMain>
       </ShadcnLayoutWrapper>
     </ShadcnLayout>
+
+    <ShadcnLayout>
+      <ShadcnLayoutWrapper>
+        <ShadcnLayoutMain>
+          <ShadcnLayoutHeader class="bg-blue-200 h-12">Header</ShadcnLayoutHeader>
+          <ShadcnLayoutContent class="bg-blue-300 h-32">Content</ShadcnLayoutContent>
+          <ShadcnLayoutFooter class="bg-blue-400 h-20">Footer</ShadcnLayoutFooter>
+        </ShadcnLayoutMain>
+        <ShadcnLayoutSider class="bg-blue-100" collapsible :defaultCollapsed="false" trigger
+                           @on-collapse="handleCollapse">
+          <div class="space-y-4">
+            <div class="flex items-center space-x-2">
+              <ShadcnIcon icon="Home"/>
+              <span>Home</span>
+            </div>
+          </div>
+
+          <template #collapsed>
+            <div class="space-y-4">
+              <div class="flex items-center space-x-2">
+                <ShadcnIcon icon="Home"/>
+              </div>
+            </div>
+          </template>
+        </ShadcnLayoutSider>
+      </ShadcnLayoutWrapper>
+    </ShadcnLayout>
   </div>
 </template>
 
