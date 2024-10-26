@@ -29,13 +29,37 @@ const defaultValue = ref(1)
 
 :::
 
+## Page Size
+
+<CodeRunner title="Page Size">
+    Default Page : {{defaultValue}}
+    <ShadcnPage v-model="defaultValue" total="100" page-size="20"/>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnPage total="100" page-size="20"/>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const defaultValue = ref(1)
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Page Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
     :columns="[
         ['modelValue', 'The current page number', 'Number | String', '1', ''],
-        ['total', 'The total number of pages', 'Number | String', '100', ''],
+        ['total', 'The total number of data count', 'Number | String', '100', ''],
+        ['page-size', 'The number of items per page', 'Number | String', '10', ''],
     ]">
 </ApiTable>
 

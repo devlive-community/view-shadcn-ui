@@ -20,11 +20,13 @@ const emit = defineEmits(['update:modelValue', 'on-change'])
 const props = withDefaults(defineProps<{
   modelValue?: number | string
   total?: number | string
+  pageSize?: number | string
 }>(), {
-  total: 100
+  total: 100,
+  pageSize: 10
 })
 
-const totalPages = computed(() => Math.ceil(toNumber(props.total) / 10))
+const totalPages = computed(() => Math.ceil(toNumber(props.total) / toNumber(props.pageSize)))
 
 const currentPage = ref(props.modelValue)
 
