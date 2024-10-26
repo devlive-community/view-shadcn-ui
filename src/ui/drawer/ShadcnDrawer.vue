@@ -19,7 +19,7 @@
         <!-- Drawer header -->
         <div class="p-2 border-b">
           <slot name="header">
-            <span class="text-lg font-bold">Header</span>
+            <span class="text-lg font-bold">{{ title }}</span>
           </slot>
         </div>
 
@@ -47,6 +47,7 @@ const emit = defineEmits(['update:modelValue', 'on-close'])
 
 const props = defineProps<{
   modelValue: boolean
+  title?: string
 }>()
 
 const isVisible = ref(props.modelValue)

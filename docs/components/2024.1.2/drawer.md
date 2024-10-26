@@ -11,14 +11,15 @@ This document is mainly used to describe some features and usage of the ShadcnDr
 <CodeRunner title="Usage">
     Default Value : {{defaultValue}}
     <ShadcnButton @click="defaultValue = !defaultValue">Open</ShadcnButton>
-    <ShadcnDrawer v-model="defaultValue">Content</ShadcnDrawer>
+    <ShadcnDrawer v-model="defaultValue" title="Title">Content</ShadcnDrawer>
 </CodeRunner>
 
 ::: details Show code
 
 ```vue
 <template>
-  <ShadcnDrawer v-model="defaultValue"/>
+  <ShadcnButton @click="defaultValue = !defaultValue">Open</ShadcnButton>
+  <ShadcnDrawer v-model="defaultValue" title="Title">Content</ShadcnDrawer>
 </template>
 
 <script setup lang="ts">
@@ -36,6 +37,7 @@ const defaultValue = ref(false)
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
     :columns="[
         ['modelValue', 'Whether the drawer is visible', 'Boolean', 'false', '', ''],
+        ['title', 'The title of the drawer', 'String', '-', '', ''],
     ]">
 </ApiTable>
 
