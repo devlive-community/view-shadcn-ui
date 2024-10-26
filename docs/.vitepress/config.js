@@ -89,7 +89,6 @@ export default {
                         {text: 'Divider', link: 'divider'},
                         {text: 'Ellipsis', link: 'ellipsis'},
                         {text: 'Avatar', link: 'avatar'},
-                        {text: 'Badge', link: 'badge'},
                         {text: 'Space', link: 'space'},
                         {text: 'Skeleton', link: 'skeleton'},
                         {text: 'Layout', link: 'layout'},
@@ -128,6 +127,8 @@ export default {
                     items: [
                         {text: 'Tab', link: 'tab'},
                         {text: 'Page', link: 'page'},
+                        {text: 'Menu', link: 'menu'},
+                        {text: 'Badge', link: 'badge'},
                     ]
                 }
             ],
