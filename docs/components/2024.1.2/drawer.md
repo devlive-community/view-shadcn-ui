@@ -33,8 +33,8 @@ const defaultValue = ref(false)
 ## Closeable
 
 <CodeRunner title="Closeable">
-    <ShadcnButton @click="defaultValue = !defaultValue">Open</ShadcnButton>
-    <ShadcnDrawer v-model="defaultValue" closable title="Title">Content</ShadcnDrawer>
+    <ShadcnButton @click="closableValue = !closableValue">Open</ShadcnButton>
+    <ShadcnDrawer v-model="closableValue" closable title="Title">Content</ShadcnDrawer>
 </CodeRunner>
 
 ::: details Show code
@@ -42,6 +42,29 @@ const defaultValue = ref(false)
 ```vue
 <template>
   <ShadcnDrawer closable title="Title">Content</ShadcnDrawer>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const defaultValue = ref(false)
+</script>
+```
+
+:::
+
+## Mask Closable
+
+<CodeRunner title="Mask Closable">
+    <ShadcnButton @click="maskClosableValue = !maskClosableValue">Open</ShadcnButton>
+    <ShadcnDrawer v-model="maskClosableValue" mask-closable title="Title">Content</ShadcnDrawer>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnDrawer v-model="defaultValue" mask-closable title="Title">Content</ShadcnDrawer>
 </template>
 
 <script setup lang="ts">
@@ -61,6 +84,7 @@ const defaultValue = ref(false)
         ['modelValue', 'Whether the drawer is visible', 'Boolean', 'false', '', ''],
         ['title', 'The title of the drawer', 'String', '-', '', ''],
         ['closable', 'Whether the drawer can be closed', 'Boolean', 'false', '', ''],
+        ['maskClosable', 'Whether the mask can be clicked to close the drawer', 'Boolean', 'false', '', ''],
     ]">
 </ApiTable>
 
@@ -88,4 +112,6 @@ const defaultValue = ref(false)
 import { ref } from 'vue'
 
 const defaultValue = ref(false)
+const closableValue = ref(false)
+const maskClosableValue = ref(false)
 </script>

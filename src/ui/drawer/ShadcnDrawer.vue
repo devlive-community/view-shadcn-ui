@@ -6,7 +6,7 @@
       leave-to-class="opacity-0">
     <div v-if="isVisible" class="fixed inset-0 z-50 flex justify-end">
       <!-- Background mask layer -->
-      <div class="fixed inset-0 bg-black bg-opacity-50" @click="onClose"/>
+      <div class="fixed inset-0 bg-black bg-opacity-50" @click="handleMaskClick"/>
 
       <!-- Drawer body -->
       <div :class="['bg-white w-64 h-full shadow-lg flex flex-col transform transition-transform duration-300',
@@ -54,8 +54,10 @@ const props = withDefaults(defineProps<{
   modelValue: boolean
   title?: string
   closable?: boolean
+  maskClosable?: boolean
 }>(), {
-  closable: false
+  closable: false,
+  maskClosable: false
 })
 
 const isVisible = ref(props.modelValue)
@@ -71,5 +73,11 @@ watch(isVisible, (newVal) => {
 
 const onClose = () => {
   isVisible.value = false
+}
+
+const handleMaskClick = () => {
+  if (props.maskClosable) {
+    onClose()
+  }
 }
 </script>
