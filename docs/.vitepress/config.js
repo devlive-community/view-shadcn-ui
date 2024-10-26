@@ -105,6 +105,7 @@ export default {
                         {text: 'Code', link: '../2024.1.1/code'},
                         {text: 'Alert', link: 'alert'},
                         {text: 'Progress', link: 'progress'},
+                        {text: 'Drawer', link: 'drawer'},
                     ]
                 },
                 {

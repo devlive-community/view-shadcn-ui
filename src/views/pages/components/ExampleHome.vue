@@ -1,23 +1,14 @@
 <template>
   <div class="flex w-full flex-col gap-4 md:gap-8 md:p-8 ">
-    Default Page : {{ defaultValue }}
-    <ShadcnPage v-model="defaultValue"
-                total="130"
-                page-size="10"
-                show-total
-                show-sizer/>
-
-    <ShadcnPage v-model="defaultValue"
-                total="130"
-                page-size="10"
-                show-total
-                show-sizer
-                :sizer-options="[5, 10, 20]"/>
+    Default Value : {{defaultValue}}
+    <ShadcnButton @click="defaultValue = !defaultValue">Open</ShadcnButton>
+    <ShadcnDrawer v-model="defaultValue">
+    </ShadcnDrawer>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const defaultValue = ref(1)
+const defaultValue = ref(false)
 </script>
