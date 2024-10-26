@@ -3,7 +3,8 @@
     Default Page : {{defaultValue}}
     <ShadcnPage v-model="defaultValue"
                 total="130"
-                page-size="20"/>
+                max-show-page="8"
+                page-size="10"/>
   </div>
 </template>
 

@@ -75,6 +75,29 @@ const defaultValue = ref(1)
 
 :::
 
+## Show Max Page
+
+<CodeRunner title="Show Max Page">
+    Default Page : {{defaultValue}}
+    <ShadcnPage v-model="defaultValue" total="100" max-show-page="8"/>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnPage total="100" max-show-page="8"/>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const defaultValue = ref(1)
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Page Props"
@@ -85,6 +108,7 @@ const defaultValue = ref(1)
         ['page-size', 'The number of items per page', 'Number | String', '10', ''],
         ['prev-text', 'The text of the previous page button', 'String', 'Prev Page', ''],
         ['next-text', 'The text of the next page button', 'String', 'Next Page', ''],
+        ['max-show-page', 'The maximum number of pages to display', 'Number | String', '5', ''],
     ]">
 </ApiTable>
 
