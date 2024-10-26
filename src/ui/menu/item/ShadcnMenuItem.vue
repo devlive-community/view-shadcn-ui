@@ -31,6 +31,7 @@ const menuContext = inject('menuContext') as {
   activeKey: { value: string | null }
   setActiveKey: (key: string) => void
   direction: 'horizontal' | 'vertical'
+  setExpandedKey: (key: string | null) => void
 }
 
 const isActive = computed(() => {
@@ -41,6 +42,8 @@ const isHorizontal = computed(() => menuContext.direction === 'horizontal')
 
 const onClick = (event: MouseEvent) => {
   menuContext.setActiveKey(props.name)
+  // Reset expandedKey to empty when clicked to hide other expanded submenus
+  menuContext.setExpandedKey(null)
   emit('on-active', !props.active)
   emit('on-click', event)
 }

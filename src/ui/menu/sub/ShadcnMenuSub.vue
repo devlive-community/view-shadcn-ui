@@ -29,7 +29,7 @@
                 leave-from-class="transform scale-100 opacity-100"
                 leave-to-class="transform scale-95 opacity-0">
       <div v-show="isExpanded"
-          :class="[
+           :class="[
             'space-y-1',
             isHorizontal ? 'absolute left-0 mt-2.5 bg-white w-fit shadow-lg px-2 py-2 z-20' : 'pl-4 mt-1'
           ]">
@@ -40,21 +40,30 @@
 </template>
 
 <script setup lang="ts">
-import { inject, ref, computed } from 'vue'
+import { computed, inject } from 'vue'
 
-defineProps<{
-  name?: string
+const props = defineProps<{
+  name: string
 }>()
-
-const isExpanded = ref(false)
 
 const menuContext = inject('menuContext') as {
   direction: 'horizontal' | 'vertical'
+  expandedKey: { value: string | null }
+  setExpandedKey: (key: string | null) => void
 }
 
 const isHorizontal = computed(() => menuContext.direction === 'horizontal')
 
+const isExpanded = computed(() => {
+  return menuContext.expandedKey.value === props.name
+})
+
 const toggleExpand = () => {
-  isExpanded.value = !isExpanded.value
+  if (menuContext.expandedKey.value === props.name) {
+    menuContext.setExpandedKey(null)
+  }
+  else {
+    menuContext.setExpandedKey(props.name)
+  }
 }
 </script>

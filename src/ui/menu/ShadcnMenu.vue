@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { provide, ref, computed } from 'vue'
+import { computed, provide, ref } from 'vue'
 import { calcSize } from '@/utils/common.ts'
 
 const props = withDefaults(defineProps<{
@@ -20,6 +20,7 @@ const props = withDefaults(defineProps<{
 })
 
 const activeKey = ref<string | null>(null)
+const expandedKey = ref<string | null>(null)
 
 const directionClass = computed(() => {
   return props.direction === 'horizontal' ? 'flex-row items-center space-x-4' : 'flex-col space-y-2'
@@ -30,6 +31,10 @@ provide('menuContext', {
   setActiveKey: (key: string) => {
     activeKey.value = key
   },
-  direction: props.direction
+  direction: props.direction,
+  expandedKey,
+  setExpandedKey: (key: string | null) => {
+    expandedKey.value = key
+  }
 })
 </script>
