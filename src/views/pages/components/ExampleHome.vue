@@ -8,17 +8,17 @@
           </template>
           Home
         </ShadcnMenuItem>
-        <ShadcnMenuGroup name="settingGroup">
-          <template #title>Settings</template>
-          <ShadcnMenuSub name="profileSub">
-            <template #title>Profile</template>
-            <template #icon>
-              <ShadcnIcon icon="User"/>
-            </template>
+        <ShadcnMenuSub name="profileSub">
+          <template #title>Profile</template>
+          <template #icon>
+            <ShadcnIcon icon="User"/>
+          </template>
+          <ShadcnMenuGroup name="settingGroup">
+            <template #title>Settings</template>
             <ShadcnMenuItem name="username">Change Username</ShadcnMenuItem>
             <ShadcnMenuItem name="password">Change Password</ShadcnMenuItem>
-          </ShadcnMenuSub>
-        </ShadcnMenuGroup>
+          </ShadcnMenuGroup>
+        </ShadcnMenuSub>
         <ShadcnMenuItem name="email">Change Email</ShadcnMenuItem>
         <ShadcnMenuItem name="logout">
           <template #icon>
@@ -37,17 +37,17 @@
           </template>
           Home
         </ShadcnMenuItem>
-        <ShadcnMenuGroup name="settingGroup">
-          <template #title>Settings</template>
-          <ShadcnMenuSub name="profileSub">
-            <template #title>Profile</template>
-            <template #icon>
-              <ShadcnIcon icon="User"/>
-            </template>
+        <ShadcnMenuSub name="profileSub">
+          <template #title>Profile</template>
+          <template #icon>
+            <ShadcnIcon icon="User"/>
+          </template>
+          <ShadcnMenuGroup name="settingGroup">
+            <template #title>Settings</template>
             <ShadcnMenuItem name="username">Change Username</ShadcnMenuItem>
             <ShadcnMenuItem name="password">Change Password</ShadcnMenuItem>
-          </ShadcnMenuSub>
-        </ShadcnMenuGroup>
+          </ShadcnMenuGroup>
+        </ShadcnMenuSub>
         <ShadcnMenuItem name="email">Change Email</ShadcnMenuItem>
         <ShadcnMenuItem name="logout">
           <template #icon>

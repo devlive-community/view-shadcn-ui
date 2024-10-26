@@ -15,31 +15,31 @@ This document is mainly used to describe some features and usage of the ShadcnMe
 
 <CodeRunner title="Usage">
     <ShadcnMenu>
-      <ShadcnMenuItem name="home">
-        <template #icon>
-          <ShadcnIcon icon="Home"/>
-        </template>
-        Home
-      </ShadcnMenuItem>
-      <ShadcnMenuGroup name="settingGroup">
-        <template #title>Settings</template>
+        <ShadcnMenuItem name="home">
+          <template #icon>
+            <ShadcnIcon icon="Home"/>
+          </template>
+          Home
+        </ShadcnMenuItem>
         <ShadcnMenuSub name="profileSub">
           <template #title>Profile</template>
           <template #icon>
             <ShadcnIcon icon="User"/>
           </template>
-          <ShadcnMenuItem name="username">Change Username</ShadcnMenuItem>
-          <ShadcnMenuItem name="password">Change Password</ShadcnMenuItem>
+          <ShadcnMenuGroup name="settingGroup">
+            <template #title>Settings</template>
+            <ShadcnMenuItem name="username">Change Username</ShadcnMenuItem>
+            <ShadcnMenuItem name="password">Change Password</ShadcnMenuItem>
+          </ShadcnMenuGroup>
         </ShadcnMenuSub>
-      </ShadcnMenuGroup>
-      <ShadcnMenuItem name="email">Change Email</ShadcnMenuItem>
-      <ShadcnMenuItem name="logout">
-        <template #icon>
-          <ShadcnIcon icon="LogOut"/>
-        </template>
-        Logout
-      </ShadcnMenuItem>
-    </ShadcnMenu>
+        <ShadcnMenuItem name="email">Change Email</ShadcnMenuItem>
+        <ShadcnMenuItem name="logout">
+          <template #icon>
+            <ShadcnIcon icon="LogOut"/>
+          </template>
+          Logout
+        </ShadcnMenuItem>
+      </ShadcnMenu>
 </CodeRunner>
 
 ::: details Show code
@@ -53,19 +53,17 @@ This document is mainly used to describe some features and usage of the ShadcnMe
       </template>
       Home
     </ShadcnMenuItem>
-
-    <ShadcnMenuGroup name="settingGroup">
-      <template #title>Settings</template>
-      <ShadcnMenuSub name="profileSub">
-        <template #title>Profile</template>
-        <template #icon>
-          <ShadcnIcon icon="User"/>
-        </template>
+    <ShadcnMenuSub name="profileSub">
+      <template #title>Profile</template>
+      <template #icon>
+        <ShadcnIcon icon="User"/>
+      </template>
+      <ShadcnMenuGroup name="settingGroup">
+        <template #title>Settings</template>
         <ShadcnMenuItem name="username">Change Username</ShadcnMenuItem>
         <ShadcnMenuItem name="password">Change Password</ShadcnMenuItem>
-      </ShadcnMenuSub>
-    </ShadcnMenuGroup>
-
+      </ShadcnMenuGroup>
+    </ShadcnMenuSub>
     <ShadcnMenuItem name="email">Change Email</ShadcnMenuItem>
     <ShadcnMenuItem name="logout">
       <template #icon>
@@ -83,31 +81,31 @@ This document is mainly used to describe some features and usage of the ShadcnMe
 
 <CodeRunner title="Usage">
     <ShadcnMenu width="300">
-      <ShadcnMenuItem name="home">
-        <template #icon>
-          <ShadcnIcon icon="Home"/>
-        </template>
-        Home
-      </ShadcnMenuItem>
-      <ShadcnMenuGroup name="settingGroup">
-        <template #title>Settings</template>
+        <ShadcnMenuItem name="home">
+          <template #icon>
+            <ShadcnIcon icon="Home"/>
+          </template>
+          Home
+        </ShadcnMenuItem>
         <ShadcnMenuSub name="profileSub">
           <template #title>Profile</template>
           <template #icon>
             <ShadcnIcon icon="User"/>
           </template>
-          <ShadcnMenuItem name="username">Change Username</ShadcnMenuItem>
-          <ShadcnMenuItem name="password">Change Password</ShadcnMenuItem>
+          <ShadcnMenuGroup name="settingGroup">
+            <template #title>Settings</template>
+            <ShadcnMenuItem name="username">Change Username</ShadcnMenuItem>
+            <ShadcnMenuItem name="password">Change Password</ShadcnMenuItem>
+          </ShadcnMenuGroup>
         </ShadcnMenuSub>
-      </ShadcnMenuGroup>
-      <ShadcnMenuItem name="email">Change Email</ShadcnMenuItem>
-      <ShadcnMenuItem name="logout">
-        <template #icon>
-          <ShadcnIcon icon="LogOut"/>
-        </template>
-        Logout
-      </ShadcnMenuItem>
-    </ShadcnMenu>
+        <ShadcnMenuItem name="email">Change Email</ShadcnMenuItem>
+        <ShadcnMenuItem name="logout">
+          <template #icon>
+            <ShadcnIcon icon="LogOut"/>
+          </template>
+          Logout
+        </ShadcnMenuItem>
+      </ShadcnMenu>
 </CodeRunner>
 
 ::: details Show code
@@ -121,19 +119,17 @@ This document is mainly used to describe some features and usage of the ShadcnMe
       </template>
       Home
     </ShadcnMenuItem>
-
-    <ShadcnMenuGroup name="settingGroup">
-      <template #title>Settings</template>
-      <ShadcnMenuSub name="profileSub">
-        <template #title>Profile</template>
-        <template #icon>
-          <ShadcnIcon icon="User"/>
-        </template>
+    <ShadcnMenuSub name="profileSub">
+      <template #title>Profile</template>
+      <template #icon>
+        <ShadcnIcon icon="User"/>
+      </template>
+      <ShadcnMenuGroup name="settingGroup">
+        <template #title>Settings</template>
         <ShadcnMenuItem name="username">Change Username</ShadcnMenuItem>
         <ShadcnMenuItem name="password">Change Password</ShadcnMenuItem>
-      </ShadcnMenuSub>
-    </ShadcnMenuGroup>
-
+      </ShadcnMenuGroup>
+    </ShadcnMenuSub>
     <ShadcnMenuItem name="email">Change Email</ShadcnMenuItem>
     <ShadcnMenuItem name="logout">
       <template #icon>
@@ -150,58 +146,56 @@ This document is mainly used to describe some features and usage of the ShadcnMe
 ## Direction
 
 <CodeRunner title="Usage">
-    <ShadcnMenu width="300" direction="horizontal">
-      <ShadcnMenuItem name="home">
-        <template #icon>
-          <ShadcnIcon icon="Home"/>
-        </template>
-        Home
-      </ShadcnMenuItem>
-      <ShadcnMenuGroup name="settingGroup">
-        <template #title>Settings</template>
+    <ShadcnMenu direction="horizontal">
+        <ShadcnMenuItem name="home">
+          <template #icon>
+            <ShadcnIcon icon="Home"/>
+          </template>
+          Home
+        </ShadcnMenuItem>
         <ShadcnMenuSub name="profileSub">
           <template #title>Profile</template>
           <template #icon>
             <ShadcnIcon icon="User"/>
           </template>
-          <ShadcnMenuItem name="username">Change Username</ShadcnMenuItem>
-          <ShadcnMenuItem name="password">Change Password</ShadcnMenuItem>
+          <ShadcnMenuGroup name="settingGroup">
+            <template #title>Settings</template>
+            <ShadcnMenuItem name="username">Change Username</ShadcnMenuItem>
+            <ShadcnMenuItem name="password">Change Password</ShadcnMenuItem>
+          </ShadcnMenuGroup>
         </ShadcnMenuSub>
-      </ShadcnMenuGroup>
-      <ShadcnMenuItem name="email">Change Email</ShadcnMenuItem>
-      <ShadcnMenuItem name="logout">
-        <template #icon>
-          <ShadcnIcon icon="LogOut"/>
-        </template>
-        Logout
-      </ShadcnMenuItem>
-    </ShadcnMenu>
+        <ShadcnMenuItem name="email">Change Email</ShadcnMenuItem>
+        <ShadcnMenuItem name="logout">
+          <template #icon>
+            <ShadcnIcon icon="LogOut"/>
+          </template>
+          Logout
+        </ShadcnMenuItem>
+      </ShadcnMenu>
 </CodeRunner>
 
 ::: details Show code
 
 ```vue
 <template>
-  <ShadcnMenu width="300" direction="horizontal">
+  <ShadcnMenu direction="horizontal">
     <ShadcnMenuItem name="home">
       <template #icon>
         <ShadcnIcon icon="Home"/>
       </template>
       Home
     </ShadcnMenuItem>
-
-    <ShadcnMenuGroup name="settingGroup">
-      <template #title>Settings</template>
-      <ShadcnMenuSub name="profileSub">
-        <template #title>Profile</template>
-        <template #icon>
-          <ShadcnIcon icon="User"/>
-        </template>
+    <ShadcnMenuSub name="profileSub">
+      <template #title>Profile</template>
+      <template #icon>
+        <ShadcnIcon icon="User"/>
+      </template>
+      <ShadcnMenuGroup name="settingGroup">
+        <template #title>Settings</template>
         <ShadcnMenuItem name="username">Change Username</ShadcnMenuItem>
         <ShadcnMenuItem name="password">Change Password</ShadcnMenuItem>
-      </ShadcnMenuSub>
-    </ShadcnMenuGroup>
-
+      </ShadcnMenuGroup>
+    </ShadcnMenuSub>
     <ShadcnMenuItem name="email">Change Email</ShadcnMenuItem>
     <ShadcnMenuItem name="logout">
       <template #icon>
@@ -209,7 +203,7 @@ This document is mainly used to describe some features and usage of the ShadcnMe
       </template>
       Logout
     </ShadcnMenuItem>
-  </ShadcnMenu>
+  </ShadcnMenu> 
 </template>
 ```
 
