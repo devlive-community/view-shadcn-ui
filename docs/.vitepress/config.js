@@ -126,6 +126,7 @@ export default {
                     collapsed: false,
                     items: [
                         {text: 'Tab', link: 'tab'},
+                        {text: 'Page', link: 'page'},
                     ]
                 }
             ],

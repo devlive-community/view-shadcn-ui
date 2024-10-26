@@ -192,7 +192,7 @@ This document is mainly used to describe some features and usage of the ShadcnLa
 <CodeRunner>
     <ShadcnLayout>
       <ShadcnLayoutWrapper>
-        <ShadcnLayoutSider class="bg-blue-100" width="64" collapsible :defaultCollapsed="false" trigger>
+        <ShadcnLayoutSider class="bg-blue-100" collapsible :defaultCollapsed="false" trigger>
           <div class="space-y-4">
             <div class="flex items-center space-x-2">
               <ShadcnIcon icon="Home"/>
@@ -222,7 +222,7 @@ This document is mainly used to describe some features and usage of the ShadcnLa
 <template>
   <ShadcnLayout>
     <ShadcnLayoutWrapper>
-      <ShadcnLayoutSider class="bg-blue-100" width="64" collapsible :defaultCollapsed="false" trigger>
+      <ShadcnLayoutSider class="bg-blue-100" collapsible :defaultCollapsed="false" trigger>
         <div class="space-y-4">
           <div class="flex items-center space-x-2">
             <ShadcnIcon icon="Home"/>

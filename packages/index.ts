@@ -35,6 +35,7 @@ import ShadcnLayoutSider from '@/ui/layout/sider'
 import ShadcnLayoutFooter from '@/ui/layout/footer'
 import ShadcnLayoutWrapper from '@/ui/layout/wrapper'
 import ShadcnLayoutMain from '@/ui/layout/main'
+import ShadcnPage from '@/ui/page'
 
 let components = [
     ShadcnButton,
@@ -72,7 +73,8 @@ let components = [
     ShadcnLayoutSider,
     ShadcnLayoutFooter,
     ShadcnLayoutWrapper,
-    ShadcnLayoutMain
+    ShadcnLayoutMain,
+    ShadcnPage
 ]
 
 const install = (Vue: App) => {
@@ -130,6 +132,7 @@ export { default as ShadcnLayoutSider } from '@/ui/layout/sider'
 export { default as ShadcnLayoutFooter } from '@/ui/layout/footer'
 export { default as ShadcnLayoutWrapper } from '@/ui/layout/wrapper'
 export { default as ShadcnLayoutMain } from '@/ui/layout/main'
+export { default as ShadcnPage } from '@/ui/page'
 
 // Support global import
 export default install
