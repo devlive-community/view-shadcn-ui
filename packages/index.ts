@@ -41,6 +41,9 @@ import ShadcnMenu from '@/ui/menu'
 import ShadcnMenuItem from '@/ui/menu/item'
 import ShadcnMenuSub from '@/ui/menu/sub'
 import ShadcnMenuGroup from '@/ui/menu/group'
+import ShadcnMessage from '@/ui/message'
+
+import Message from './setup/message.ts'
 
 let components = [
     ShadcnButton,
@@ -84,13 +87,17 @@ let components = [
     ShadcnMenu,
     ShadcnMenuItem,
     ShadcnMenuSub,
-    ShadcnMenuGroup
+    ShadcnMenuGroup,
+    ShadcnMessage
 ]
 
 const install = (Vue: App) => {
     components.map((component: any) => {
         Vue.component(component.__name as string, component)
     })
+
+    // Support global import
+    Vue.config.globalProperties.$Message = Message
 }
 
 let windowObj = window as any
@@ -148,6 +155,7 @@ export { default as ShadcnMenu } from '@/ui/menu'
 export { default as ShadcnMenuItem } from '@/ui/menu/item'
 export { default as ShadcnMenuSub } from '@/ui/menu/sub'
 export { default as ShadcnMenuGroup } from '@/ui/menu/group'
+export { default as ShadcnMessage } from '@/ui/message'
 
 // Support global import
 export default install

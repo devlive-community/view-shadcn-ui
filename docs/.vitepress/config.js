@@ -105,6 +105,7 @@ export default {
                         {text: 'Alert', link: 'alert'},
                         {text: 'Progress', link: 'progress'},
                         {text: 'Drawer', link: 'drawer'},
+                        {text: 'Message', link: 'message'},
                     ]
                 },
                 {

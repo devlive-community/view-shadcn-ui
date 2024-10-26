@@ -84,12 +84,22 @@ module.exports = {
                     from: {height: 'var(--radix-collapsible-content-height)'},
                     to: {height: 0},
                 },
+                'slide-down': {
+                    '0%': { transform: 'translate(-50%, -100%)', opacity: '0' },
+                    '100%': { transform: 'translate(-50%, 0)', opacity: '1' }
+                },
+                'slide-up': {
+                    '0%': { transform: 'translate(-50%, 0)', opacity: '1' },
+                    '100%': { transform: 'translate(-50%, -100%)', opacity: '0' }
+                }
             },
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
                 "accordion-up": "accordion-up 0.2s ease-out",
                 "collapsible-down": "collapsible-down 0.2s ease-in-out",
                 "collapsible-up": "collapsible-up 0.2s ease-in-out",
+                'slide-down': 'slide-down 0.3s ease-out forwards',
+                'slide-up': 'slide-up 0.3s ease-in forwards'
             },
         },
     },
