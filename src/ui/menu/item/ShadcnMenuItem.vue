@@ -42,8 +42,12 @@ const isHorizontal = computed(() => menuContext.direction === 'horizontal')
 
 const onClick = (event: MouseEvent) => {
   menuContext.setActiveKey(props.name)
-  // Reset expandedKey to empty when clicked to hide other expanded submenus
-  menuContext.setExpandedKey(null)
+
+  if (menuContext.direction === 'horizontal') {
+    // Close expanded items on click in horizontal mode
+    menuContext.setExpandedKey(null)
+  }
+
   emit('on-active', !props.active)
   emit('on-click', event)
 }
