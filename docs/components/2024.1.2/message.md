@@ -36,6 +36,36 @@ export default defineComponent({
 
 :::
 
+## Show Icon
+
+<CodeRunner title="Show Icon">
+    <ShadcnButton @click="handleClickIcon">Show Message</ShadcnButton>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnButton @click="handleClick">Show Message</ShadcnButton>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  methods: {
+    handleClick() {
+      this.$Message.info({
+        content: 'This is an info message',
+        showIcon: true
+      })
+    }
+  }
+})
+```
+
+:::
+
 ## API
 
 <ApiTable title="Props"
@@ -43,6 +73,7 @@ export default defineComponent({
     :columns="[
             ['content', 'Content content', 'String', '-', '-', '-'],
             ['duration', 'The duration of the message', 'Number', '1500', '-', '-'],
+            ['showIcon', 'Whether to show the icon', 'Boolean', 'true', '-', '-'],
     ]">
 </ApiTable>
 
@@ -74,6 +105,12 @@ export default defineComponent({
         content: 'This is an info message',
         duration: 2000
       });
+    },
+    handleClickIcon() {
+      this.$Message.info({
+        content: 'This is an info message',
+        showIcon: true
+      })
     }
   }
 });

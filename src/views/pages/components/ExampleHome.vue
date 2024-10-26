@@ -12,7 +12,8 @@ export default defineComponent({
     handleClick() {
       (this as any).$Message.info({
         content: 'This is an info message',
-        duration: 2000
+        duration: 2000,
+        showIcon: true
       });
     }
   }

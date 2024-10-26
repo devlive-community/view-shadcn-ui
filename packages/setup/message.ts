@@ -2,7 +2,7 @@ import { createVNode, render } from 'vue'
 import ShadcnMessage from '../../src/ui/message'
 
 const createMessage = (options) => {
-    const { content, duration = 1500, onClose } = options
+    const { content, duration = 1500, showIcon = false, onClose } = options
 
     // Create a new container for each message
     const container = document.createElement('div')
@@ -12,6 +12,7 @@ const createMessage = (options) => {
     const vm = createVNode(ShadcnMessage, {
         content,
         duration,
+        showIcon,
         onClose: () => {
             if (onClose) {
                 onClose()
