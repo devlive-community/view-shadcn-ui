@@ -37,6 +37,10 @@ import ShadcnLayoutWrapper from '@/ui/layout/wrapper'
 import ShadcnLayoutMain from '@/ui/layout/main'
 import ShadcnPage from '@/ui/page'
 import ShadcnDrawer from '@/ui/drawer'
+import ShadcnMenu from '@/ui/menu'
+import ShadcnMenuItem from '@/ui/menu/item'
+import ShadcnMenuSub from '@/ui/menu/sub'
+import ShadcnMenuGroup from '@/ui/menu/group'
 
 let components = [
     ShadcnButton,
@@ -76,7 +80,11 @@ let components = [
     ShadcnLayoutWrapper,
     ShadcnLayoutMain,
     ShadcnPage,
-    ShadcnDrawer
+    ShadcnDrawer,
+    ShadcnMenu,
+    ShadcnMenuItem,
+    ShadcnMenuSub,
+    ShadcnMenuGroup
 ]
 
 const install = (Vue: App) => {
@@ -136,6 +144,10 @@ export { default as ShadcnLayoutWrapper } from '@/ui/layout/wrapper'
 export { default as ShadcnLayoutMain } from '@/ui/layout/main'
 export { default as ShadcnPage } from '@/ui/page'
 export { default as ShadcnDrawer } from '@/ui/drawer'
+export { default as ShadcnMenu } from '@/ui/menu'
+export { default as ShadcnMenuItem } from '@/ui/menu/item'
+export { default as ShadcnMenuSub } from '@/ui/menu/sub'
+export { default as ShadcnMenuGroup } from '@/ui/menu/group'
 
 // Support global import
 export default install

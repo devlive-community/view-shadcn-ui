@@ -1,17 +1,35 @@
 <template>
-  <div class="flex w-full flex-col gap-4 md:gap-8 md:p-8 ">
-    <ShadcnSpace>
-      <ShadcnButton @click="widthValue = !widthValue">Width</ShadcnButton>
-      <ShadcnButton @click="heightValue = !heightValue">Height</ShadcnButton>
-    </ShadcnSpace>
-    <ShadcnDrawer v-model="widthValue" title="Width"/>
-    <ShadcnDrawer v-model="heightValue" title="Height" position="bottom" height="400"/>
+  <div class="flex w-full">
+    <ShadcnMenu>
+      <ShadcnMenuItem name="home">
+        <template #icon>
+          <ShadcnIcon icon="Home"/>
+        </template>
+        Home
+      </ShadcnMenuItem>
+
+      <ShadcnMenuGroup name="settingGroup">
+        <template #title>Settings</template>
+        <ShadcnMenuSub name="profileSub">
+          <template #title>Profile</template>
+          <template #icon>
+            <ShadcnIcon icon="User"/>
+          </template>
+          <ShadcnMenuItem name="username">Change Username</ShadcnMenuItem>
+          <ShadcnMenuItem name="password">Change Password</ShadcnMenuItem>
+        </ShadcnMenuSub>
+      </ShadcnMenuGroup>
+
+      <ShadcnMenuItem name="email">Change Email</ShadcnMenuItem>
+      <ShadcnMenuItem name="logout">
+        <template #icon>
+          <ShadcnIcon icon="LogOut"/>
+        </template>
+        Logout
+      </ShadcnMenuItem>
+    </ShadcnMenu>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
-const widthValue = ref(false)
-const heightValue = ref(false)
 </script>

@@ -128,6 +128,7 @@ export default {
                     items: [
                         {text: 'Tab', link: 'tab'},
                         {text: 'Page', link: 'page'},
+                        {text: 'Menu', link: 'menu'},
                     ]
                 }
             ],
