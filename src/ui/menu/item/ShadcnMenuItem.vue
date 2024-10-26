@@ -1,14 +1,15 @@
 <template>
   <div :class="[
-          'w-full px-3 py-2 text-sm text-left rounded-md hover:bg-gray-100 focus:outline-none focus:bg-gray-100 flex items-center justify-between cursor-pointer',
-          { 'bg-gray-100': isActive }
+          'px-3 py-2 text-sm rounded-md hover:bg-gray-100 focus:outline-none focus:bg-gray-100 cursor-pointer',
+          { 'bg-gray-100': isActive },
+          isHorizontal ? 'inline-flex' : 'flex'
         ]"
        @click="onClick">
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-2 min-w-0">
       <slot name="icon"/>
-      <span>
-          <slot/>
-        </span>
+      <span class="truncate">
+        <slot/>
+      </span>
     </div>
     <slot name="suffix"/>
   </div>
@@ -29,11 +30,14 @@ const emit = defineEmits(['on-active', 'on-click'])
 const menuContext = inject('menuContext') as {
   activeKey: { value: string | null }
   setActiveKey: (key: string) => void
+  direction: 'horizontal' | 'vertical'
 }
 
 const isActive = computed(() => {
   return props.active || menuContext.activeKey.value === props.name
 })
+
+const isHorizontal = computed(() => menuContext.direction === 'horizontal')
 
 const onClick = (event: MouseEvent) => {
   menuContext.setActiveKey(props.name)

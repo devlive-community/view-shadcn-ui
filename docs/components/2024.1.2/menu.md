@@ -147,12 +147,81 @@ This document is mainly used to describe some features and usage of the ShadcnMe
 
 :::
 
+## Direction
+
+<CodeRunner title="Usage">
+    <ShadcnMenu width="300" direction="horizontal">
+      <ShadcnMenuItem name="home">
+        <template #icon>
+          <ShadcnIcon icon="Home"/>
+        </template>
+        Home
+      </ShadcnMenuItem>
+      <ShadcnMenuGroup name="settingGroup">
+        <template #title>Settings</template>
+        <ShadcnMenuSub name="profileSub">
+          <template #title>Profile</template>
+          <template #icon>
+            <ShadcnIcon icon="User"/>
+          </template>
+          <ShadcnMenuItem name="username">Change Username</ShadcnMenuItem>
+          <ShadcnMenuItem name="password">Change Password</ShadcnMenuItem>
+        </ShadcnMenuSub>
+      </ShadcnMenuGroup>
+      <ShadcnMenuItem name="email">Change Email</ShadcnMenuItem>
+      <ShadcnMenuItem name="logout">
+        <template #icon>
+          <ShadcnIcon icon="LogOut"/>
+        </template>
+        Logout
+      </ShadcnMenuItem>
+    </ShadcnMenu>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnMenu width="300" direction="horizontal">
+    <ShadcnMenuItem name="home">
+      <template #icon>
+        <ShadcnIcon icon="Home"/>
+      </template>
+      Home
+    </ShadcnMenuItem>
+
+    <ShadcnMenuGroup name="settingGroup">
+      <template #title>Settings</template>
+      <ShadcnMenuSub name="profileSub">
+        <template #title>Profile</template>
+        <template #icon>
+          <ShadcnIcon icon="User"/>
+        </template>
+        <ShadcnMenuItem name="username">Change Username</ShadcnMenuItem>
+        <ShadcnMenuItem name="password">Change Password</ShadcnMenuItem>
+      </ShadcnMenuSub>
+    </ShadcnMenuGroup>
+
+    <ShadcnMenuItem name="email">Change Email</ShadcnMenuItem>
+    <ShadcnMenuItem name="logout">
+      <template #icon>
+        <ShadcnIcon icon="LogOut"/>
+      </template>
+      Logout
+    </ShadcnMenuItem>
+  </ShadcnMenu>
+</template>
+```
+
+:::
+
 ## API
 
 <ApiTable title="Menu"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
     :columns="[
-        ['width', 'The width of the menu', 'String | Number', '300'],
+        ['width', 'The width of the menu', 'String | Number', '300', '-'],
+        ['direction', 'The direction of the menu', 'String', 'horizontal', 'horizontal | vertical'],
     ]">
 </ApiTable>
 

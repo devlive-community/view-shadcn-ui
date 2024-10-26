@@ -1,15 +1,18 @@
 <template>
-  <div class="w-full px-3 py-2 text-sm text-left rounded-md hover:bg-gray-100 focus:outline-none focus:bg-gray-100 flex items-center justify-between cursor-pointer"
+  <div :class="[
+        'px-3 py-2 text-sm text-left rounded-md hover:bg-gray-100 focus:outline-none focus:bg-gray-100 flex items-center justify-between cursor-pointer',
+        isHorizontal ? 'flex-row' : 'flex-col'
+      ]"
        @click="toggleExpand">
     <div class="flex items-center gap-2">
       <slot name="icon"/>
       <span>
-          <slot name="title"/>
-        </span>
+        <slot name="title"/>
+      </span>
     </div>
     <svg :class="['w-4 h-4 transition-transform duration-200',
-                    { 'rotate-180': isExpanded }
-           ]"
+                  { 'rotate-180': isExpanded }
+          ]"
          fill="currentColor"
          viewBox="0 0 20 20"
          xmlns="http://www.w3.org/2000/svg">
@@ -24,27 +27,28 @@
               leave-active-class="transition duration-75 ease-in"
               leave-from-class="transform scale-100 opacity-100"
               leave-to-class="transform scale-95 opacity-0">
-    <ul v-show="isExpanded" class="pl-4 mt-1 space-y-1">
+    <ul v-show="isExpanded" :class="['pl-4 mt-1', isHorizontal ? 'flex-row' : 'flex-col', 'space-y-1']">
       <slot/>
     </ul>
   </Transition>
 </template>
 
 <script setup lang="ts">
-import { provide, ref } from 'vue'
+import { inject, ref, computed } from 'vue'
 
-const props = defineProps<{
+defineProps<{
   name?: string
 }>()
 
 const isExpanded = ref(false)
 
+const menuContext = inject('menuContext') as {
+  direction: 'horizontal' | 'vertical'
+}
+
+const isHorizontal = computed(() => menuContext.direction === 'horizontal')
+
 const toggleExpand = () => {
   isExpanded.value = !isExpanded.value
 }
-
-provide('subMenuContext', {
-  isExpanded,
-  name: props.name
-})
 </script>
