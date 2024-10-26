@@ -119,6 +119,35 @@ const rightValue = ref(false)
 
 :::
 
+## Width and Height
+
+<CodeRunner title="Width and Height">
+    <ShadcnButton @click="widthValue = !widthValue">Width 400</ShadcnButton>
+    <ShadcnButton @click="heightValue = !heightValue">Height 400</ShadcnButton>
+    <ShadcnDrawer v-model="widthValue" title="Width 400" width="400"/>
+    <ShadcnDrawer v-model="heightValue" title="Height 400" position="top" height="400"/>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnButton @click="widthValue = !widthValue">Width 400</ShadcnButton>
+  <ShadcnButton @click="heightValue = !heightValue">Height 400</ShadcnButton>
+  <ShadcnDrawer v-model="widthValue" title="Width 400" width="400"/>
+  <ShadcnDrawer v-model="heightValue" title="Height 400" position="top" height="400"/>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const widthValue = ref(false)
+const heightValue = ref(false)
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Drawer Props"
@@ -129,6 +158,8 @@ const rightValue = ref(false)
         ['closable', 'Whether the drawer can be closed', 'Boolean', 'false', '', ''],
         ['maskClosable', 'Whether the mask can be clicked to close the drawer', 'Boolean', 'false', '', ''],
         ['position', 'The position of the drawer', 'String', 'bottom', '', 'top, bottom, left, right'],
+        ['width', 'The width of the drawer', 'String | Number', '300', 'position = left || right', ''],
+        ['height', 'The height of the drawer', 'String | Number', '300', 'position = top || bottom', ''],
     ]">
 </ApiTable>
 
@@ -162,4 +193,6 @@ const topValue = ref(false)
 const buttomValue = ref(false)
 const leftValue = ref(false)
 const rightValue = ref(false)
+const widthValue = ref(false)
+const heightValue = ref(false)
 </script>
