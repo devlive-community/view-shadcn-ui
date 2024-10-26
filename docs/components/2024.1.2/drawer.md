@@ -9,7 +9,6 @@ This document is mainly used to describe some features and usage of the ShadcnDr
 ## Usage
 
 <CodeRunner title="Usage">
-    Default Value : {{defaultValue}}
     <ShadcnButton @click="defaultValue = !defaultValue">Open</ShadcnButton>
     <ShadcnDrawer v-model="defaultValue" title="Title">Content</ShadcnDrawer>
 </CodeRunner>
@@ -31,6 +30,29 @@ const defaultValue = ref(false)
 
 :::
 
+## Closeable
+
+<CodeRunner title="Closeable">
+    <ShadcnButton @click="defaultValue = !defaultValue">Open</ShadcnButton>
+    <ShadcnDrawer v-model="defaultValue" closable title="Title">Content</ShadcnDrawer>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnDrawer closable title="Title">Content</ShadcnDrawer>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const defaultValue = ref(false)
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Drawer Props"
@@ -38,6 +60,7 @@ const defaultValue = ref(false)
     :columns="[
         ['modelValue', 'Whether the drawer is visible', 'Boolean', 'false', '', ''],
         ['title', 'The title of the drawer', 'String', '-', '', ''],
+        ['closable', 'Whether the drawer can be closed', 'Boolean', 'false', '', ''],
     ]">
 </ApiTable>
 

@@ -17,9 +17,13 @@
            ]">
 
         <!-- Drawer header -->
-        <div class="p-2 border-b">
+        <div class="p-2 border-b flex items-center">
           <slot name="header">
             <span class="text-lg font-bold">{{ title }}</span>
+            <ShadcnIcon v-if="closable"
+                        icon="X"
+                        class="ml-auto cursor-pointer"
+                        @click="onClose"/>
           </slot>
         </div>
 
@@ -41,14 +45,18 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
+import ShadcnIcon from '@/ui/icon'
 import ShadcnButton from '@/ui/button'
 
 const emit = defineEmits(['update:modelValue', 'on-close'])
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   modelValue: boolean
   title?: string
-}>()
+  closable?: boolean
+}>(), {
+  closable: false
+})
 
 const isVisible = ref(props.modelValue)
 
