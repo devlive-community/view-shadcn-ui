@@ -98,6 +98,29 @@ const defaultValue = ref(1)
 
 :::
 
+## Show Total Count
+
+<CodeRunner title="Show Total Count">
+    Default Page : {{defaultValue}}
+    <ShadcnPage v-model="defaultValue" total="100" show-total/>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnPage total="100" show-total/>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const defaultValue = ref(1)
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Page Props"
@@ -105,10 +128,11 @@ const defaultValue = ref(1)
     :columns="[
         ['modelValue', 'The current page number', 'Number | String', '1', ''],
         ['total', 'The total number of data count', 'Number | String', '100', ''],
-        ['page-size', 'The number of items per page', 'Number | String', '10', ''],
-        ['prev-text', 'The text of the previous page button', 'String', 'Prev Page', ''],
-        ['next-text', 'The text of the next page button', 'String', 'Next Page', ''],
-        ['max-show-page', 'The maximum number of pages to display', 'Number | String', '5', ''],
+        ['pageSize', 'The number of items per page', 'Number | String', '10', ''],
+        ['prevText', 'The text of the previous page button', 'String', 'Prev Page', ''],
+        ['nextText', 'The text of the next page button', 'String', 'Next Page', ''],
+        ['maxShowPage', 'The maximum number of pages to display', 'Number | String', '5', ''],
+        ['showTotal', 'Whether to display the total number of items', 'Boolean', 'false', ''],
     ]">
 </ApiTable>
 

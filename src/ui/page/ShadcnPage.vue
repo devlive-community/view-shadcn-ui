@@ -1,5 +1,11 @@
 <template>
   <div class="flex items-center justify-center space-x-2">
+    <div v-if="showTotal || $slots.showTotal" class="text-sm text-gray-600">
+      <slot name="showTotal">
+        Total {{ total }} items
+      </slot>
+    </div>
+
     <button @click="onPrevPage"
             :class="['px-2 py-1 text-xs h-8 bg-gray-100 rounded',
                     currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''
@@ -43,12 +49,14 @@ const props = withDefaults(defineProps<{
   maxShowPage?: number | string
   prevText?: string
   nextText?: string
+  showTotal?: boolean
 }>(), {
   total: 100,
   pageSize: 10,
   maxShowPage: 5,
   prevText: 'Prev Page',
-  nextText: 'Next Page'
+  nextText: 'Next Page',
+  showTotal: false
 })
 
 const totalPages = computed(() => Math.ceil(toNumber(props.total) / toNumber(props.pageSize)))
