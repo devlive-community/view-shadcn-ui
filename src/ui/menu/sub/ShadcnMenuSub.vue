@@ -2,7 +2,8 @@
   <div :class="[isHorizontal ? 'inline-block relative' : 'block']">
     <div :class="[
           'px-3 py-2 text-sm rounded-md hover:bg-gray-100 focus:outline-none focus:bg-gray-100 cursor-pointer',
-          'flex items-center justify-between gap-2'
+          'flex items-center justify-between gap-2',
+          { 'bg-gray-100': isExpanded || hasActiveChild }
         ]"
          @click="toggleExpand">
       <div class="flex items-center gap-2">
@@ -40,7 +41,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, inject } from 'vue'
+import { computed, inject, onMounted, provide, ref, watch } from 'vue'
 
 const props = defineProps<{
   name: string
@@ -49,18 +50,45 @@ const props = defineProps<{
 const menuContext = inject('menuContext') as {
   direction: 'horizontal' | 'vertical'
   expandedKey: { value: string | null }
+  activeKey: { value: string | null }
   setExpandedKey: (key: string | null) => void
 }
 
-const isHorizontal = computed(() => menuContext.direction === 'horizontal')
+provide('menuContext', {
+  ...menuContext,
+  parentName: props.name
+})
 
-const isExpanded = computed(() => {
-  return menuContext.expandedKey.value === props.name
+const isHorizontal = computed(() => menuContext.direction === 'horizontal')
+const isExpanded = computed(() => menuContext.expandedKey.value === props.name)
+
+const hasActiveChild = ref(false)
+
+const checkActiveChild = () => {
+  const slotElements = document.querySelectorAll(`[data-parent="${ props.name }"]`)
+  hasActiveChild.value = Array.from(slotElements).some(
+      (element: HTMLElement) => element.dataset.name === menuContext.activeKey.value
+  )
+}
+
+watch(
+    () => menuContext.activeKey.value,
+    () => {
+      checkActiveChild()
+    },
+    { immediate: true }
+)
+
+onMounted(() => {
+  checkActiveChild()
 })
 
 const toggleExpand = () => {
+  // If the current expanded item is this component, collapse it; otherwise expand it
   if (menuContext.expandedKey.value === props.name) {
     menuContext.setExpandedKey(null)
+    // Keep the selected state when manually folding, if there is still a selected item in the subitem
+    checkActiveChild()
   }
   else {
     menuContext.setExpandedKey(props.name)

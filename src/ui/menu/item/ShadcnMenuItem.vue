@@ -4,7 +4,9 @@
           { 'bg-gray-100': isActive },
           isHorizontal ? 'inline-flex' : 'flex'
         ]"
-       @click="onClick">
+       @click="onClick"
+       :data-name="props.name"
+       :data-parent="parentName">
     <div class="flex items-center gap-2 min-w-0">
       <slot name="icon"/>
       <span class="truncate">
@@ -32,6 +34,7 @@ const menuContext = inject('menuContext') as {
   setActiveKey: (key: string) => void
   direction: 'horizontal' | 'vertical'
   setExpandedKey: (key: string | null) => void
+  parentName?: string
 }
 
 const isActive = computed(() => {
@@ -39,6 +42,7 @@ const isActive = computed(() => {
 })
 
 const isHorizontal = computed(() => menuContext.direction === 'horizontal')
+const parentName = menuContext.parentName || null
 
 const onClick = (event: MouseEvent) => {
   menuContext.setActiveKey(props.name)
