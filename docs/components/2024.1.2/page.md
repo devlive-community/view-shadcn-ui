@@ -160,7 +160,7 @@ const defaultValue = ref(1)
         ['maxShowPage', 'The maximum number of pages to display', 'Number | String', '5', ''],
         ['showTotal', 'Whether to display the total number of items', 'Boolean', 'false', ''],
         ['showSizer', 'Whether to display the page size selector', 'Boolean', 'false', ''],
-        ['sizerOptions', 'The options of the page size selector', 'Array', '[10, 20, 50, 100]', ''],
+        ['sizerOptions', 'The options of the page size selector', 'Array', '\[10, 20, 50, 100\]', ''],
     ]">
 </ApiTable>
 
@@ -173,6 +173,16 @@ const defaultValue = ref(1)
         ['on-prev', 'Triggered when the previous page button is clicked', 'Number'],
         ['on-next', 'Triggered when the next page button is clicked', 'Number'],
         ['on-change-size', 'Triggered when the page size is changed', 'Number'],
+    ]">
+</ApiTable>
+
+<br />
+
+<ApiTable title="Page Slots"
+    :headers="['Slot', 'Description']"
+    :columns="[
+        ['showTotal', 'The content of the total number of items'],
+        ['sizer', 'The content of the page size selector'],
     ]">
 </ApiTable>
 
