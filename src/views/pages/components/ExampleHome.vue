@@ -29,8 +29,9 @@
       </ShadcnMenu>
     </div>
 
+    Default Value : {{ defaultValue }}
     <div class="bg-blue-200 p-3">
-      <ShadcnMenu direction="horizontal">
+      <ShadcnMenu v-model="defaultValue" direction="horizontal">
         <ShadcnMenuItem name="home">
           <template #icon>
             <ShadcnIcon icon="Home" size="18"/>
@@ -61,4 +62,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+
+const defaultValue = ref('username')
 </script>

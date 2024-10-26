@@ -12,6 +12,7 @@ import { computed, provide, ref } from 'vue'
 import { calcSize } from '@/utils/common.ts'
 
 const props = withDefaults(defineProps<{
+  modelValue?: string | null
   width?: number | string
   direction?: 'horizontal' | 'vertical'
 }>(), {
@@ -19,18 +20,23 @@ const props = withDefaults(defineProps<{
   direction: 'vertical'
 })
 
-const activeKey = ref<string | null>(null)
+const emit = defineEmits(['update:modelValue'])
+
+const activeKey = ref<string | null>(props.modelValue)
 const expandedKey = ref<string | null>(null)
 
 const directionClass = computed(() => {
   return props.direction === 'horizontal' ? 'flex-row items-center space-x-4' : 'flex-col space-y-2'
 })
 
+const updateActiveKey = (key: string) => {
+  activeKey.value = key
+  emit('update:modelValue', key)
+}
+
 provide('menuContext', {
   activeKey,
-  setActiveKey: (key: string) => {
-    activeKey.value = key
-  },
+  setActiveKey: updateActiveKey,
   direction: props.direction,
   expandedKey,
   setExpandedKey: (key: string | null) => {

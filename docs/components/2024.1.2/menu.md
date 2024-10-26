@@ -214,6 +214,7 @@ This document is mainly used to describe some features and usage of the ShadcnMe
 <ApiTable title="Menu"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
     :columns="[
+        ['modelValue', 'The model value of the menu', 'String', ''],
         ['width', 'The width of the menu', 'String | Number', '300', '-'],
         ['direction', 'The direction of the menu', 'String', 'horizontal', 'horizontal | vertical'],
     ]">

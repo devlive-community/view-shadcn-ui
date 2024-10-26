@@ -67,7 +67,7 @@ const hasActiveChild = ref(false)
 const checkActiveChild = () => {
   const slotElements = document.querySelectorAll(`[data-parent="${ props.name }"]`)
   hasActiveChild.value = Array.from(slotElements).some(
-      (element: HTMLElement) => element.dataset.name === menuContext.activeKey.value
+      (element) => (element as HTMLElement).dataset.name === menuContext.activeKey.value
   )
 }
 
