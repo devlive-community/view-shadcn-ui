@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full">
+  <div class="relative">
     <div :class="['flex items-center justify-between border rounded p-2',
                   Size[size],
                   {
