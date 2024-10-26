@@ -121,6 +121,32 @@ const defaultValue = ref(1)
 
 :::
 
+## Show Sizer
+
+<CodeRunner title="Show Sizer">
+    Default Page : {{defaultValue}}
+    <ShadcnPage v-model="defaultValue" total="100" show-sizer/>
+    Custom
+    <ShadcnPage v-model="defaultValue" total="100" show-sizer :sizer-options="[5, 10, 20]"/>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnPage v-model="defaultValue" total="100" show-sizer/>
+  <ShadcnPage v-model="defaultValue" total="100" show-sizer :sizer-options="[5, 10, 20]"/>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const defaultValue = ref(1)
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Page Props"
@@ -133,6 +159,8 @@ const defaultValue = ref(1)
         ['nextText', 'The text of the next page button', 'String', 'Next Page', ''],
         ['maxShowPage', 'The maximum number of pages to display', 'Number | String', '5', ''],
         ['showTotal', 'Whether to display the total number of items', 'Boolean', 'false', ''],
+        ['showSizer', 'Whether to display the page size selector', 'Boolean', 'false', ''],
+        ['sizerOptions', 'The options of the page size selector', 'Array', '[10, 20, 50, 100]', ''],
     ]">
 </ApiTable>
 
@@ -144,6 +172,7 @@ const defaultValue = ref(1)
         ['on-change', 'Triggered when the page number is changed', 'Number'],
         ['on-prev', 'Triggered when the previous page button is clicked', 'Number'],
         ['on-next', 'Triggered when the next page button is clicked', 'Number'],
+        ['on-change-size', 'Triggered when the page size is changed', 'Number'],
     ]">
 </ApiTable>
 

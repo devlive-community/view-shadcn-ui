@@ -33,14 +33,29 @@
             :disabled="currentPage === totalPages">
       {{ nextText }}
     </button>
+
+    <template v-if="showSizer">
+      <slot name="sizer">
+        <ShadcnSelect v-model="pageSize"
+                      class="w-24"
+                      :options="sizerOptions"/>
+      </slot>
+    </template>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { toNumber } from 'lodash'
+import ShadcnSelect from '@/ui/select'
 
-const emit = defineEmits(['update:modelValue', 'on-change', 'on-prev', 'on-next'])
+interface ShadcnOption
+{
+  label: string
+  value: number | string
+}
+
+const emit = defineEmits(['update:modelValue', 'on-change', 'on-prev', 'on-next', 'on-change-size'])
 
 const props = withDefaults(defineProps<{
   modelValue?: number | string
@@ -50,52 +65,49 @@ const props = withDefaults(defineProps<{
   prevText?: string
   nextText?: string
   showTotal?: boolean
+  showSizer?: boolean
+  sizerOptions?: (number | string)[]
 }>(), {
   total: 100,
   pageSize: 10,
   maxShowPage: 5,
   prevText: 'Prev Page',
   nextText: 'Next Page',
-  showTotal: false
+  showTotal: false,
+  showSizer: false,
+  sizerOptions: () => [10, 20, 50, 100]
 })
 
-const totalPages = computed(() => Math.ceil(toNumber(props.total) / toNumber(props.pageSize)))
 const currentPage = ref(toNumber(props.modelValue))
+const pageSize = ref(toNumber(props.pageSize))
+
+const totalPages = computed(() => Math.ceil(toNumber(props.total) / pageSize.value))
 
 const displayPages = computed(() => {
   const maxShow = toNumber(props.maxShowPage)
   const total = totalPages.value
   const current = currentPage.value
 
-  // If the total number of pages is less than or equal to the maximum display number, display all page numbers
   if (total <= maxShow) {
     return Array.from({ length: total }, (_, i) => i + 1)
   }
 
-  // Calculate the number of page numbers that should be displayed on the left and right sides
-  const sidePages = Math.floor((maxShow - 3) / 2) // Subtract the first page, last page and current page
-
+  const sidePages = Math.floor((maxShow - 3) / 2)
   let leftPages: (number | string)[] = []
   let rightPages: (number | string)[] = []
 
-  // Dealing with situations close to the start
   if (current <= sidePages + 2) {
     leftPages = Array.from({ length: maxShow - 2 }, (_, i) => i + 1)
     rightPages = ['...', total]
   }
-  // Dealing with the end situation
   else if (current >= total - sidePages - 1) {
     leftPages = [1, '...']
     rightPages = Array.from({ length: maxShow - 2 }, (_, i) => total - (maxShow - 3) + i)
   }
-  // Dealing with the middle case
   else {
     leftPages = [1, '...']
     const middleStart = current - Math.floor((maxShow - 4) / 2)
-    const middlePages = Array.from(
-        { length: maxShow - 4 },
-        (_, i) => middleStart + i
-    )
+    const middlePages = Array.from({ length: maxShow - 4 }, (_, i) => middleStart + i)
     rightPages = ['...', total]
     return [...leftPages, ...middlePages, ...rightPages]
   }
@@ -103,8 +115,33 @@ const displayPages = computed(() => {
   return [...leftPages, ...rightPages]
 })
 
+const sizerOptions = computed(() => {
+  const options = Array<ShadcnOption>()
+  props.sizerOptions.forEach((item) => {
+    options.push({
+      label: `${ item } items`,
+      value: item
+    })
+  })
+  return options
+})
+
 watch(() => props.modelValue, (newValue) => {
   currentPage.value = toNumber(newValue)
+})
+
+watch(() => props.pageSize, (newValue) => {
+  pageSize.value = toNumber(newValue)
+  currentPage.value = 1
+  emit('update:modelValue', currentPage.value)
+  emit('on-change', currentPage.value)
+})
+
+watch(pageSize, (newValue) => {
+  emit('on-change-size', newValue)
+  currentPage.value = 1
+  emit('update:modelValue', currentPage.value)
+  emit('on-change', currentPage.value)
 })
 
 const goToPage = (page: number | string) => {
