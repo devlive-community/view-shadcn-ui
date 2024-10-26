@@ -12,7 +12,7 @@ import { computed, provide, ref } from 'vue'
 import { calcSize } from '@/utils/common.ts'
 
 const props = withDefaults(defineProps<{
-  modelValue?: string | null
+  modelValue?: string
   width?: number | string
   direction?: 'horizontal' | 'vertical'
 }>(), {
@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<{
 
 const emit = defineEmits(['update:modelValue'])
 
-const activeKey = ref<string | null>(props.modelValue)
+const activeKey = ref<string>(String(props.modelValue))
 const expandedKey = ref<string | null>(null)
 
 const directionClass = computed(() => {
