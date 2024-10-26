@@ -1,7 +1,9 @@
 export enum ArrangePosition
 {
     left,
-    right
+    right,
+    top,
+    bottom
 }
 
 export enum ArrangeDirection

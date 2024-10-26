@@ -76,6 +76,49 @@ const defaultValue = ref(false)
 
 :::
 
+## Position
+
+<CodeRunner title="Position">
+        <ShadcnSpace>
+      <ShadcnButton @click="topValue = !topValue">Top</ShadcnButton>
+      <ShadcnButton @click="buttomValue = !buttomValue">Buttom</ShadcnButton>
+      <ShadcnButton @click="leftValue = !leftValue">Left</ShadcnButton>
+      <ShadcnButton @click="rightValue = !rightValue">Right</ShadcnButton>
+    </ShadcnSpace>
+    <ShadcnDrawer v-model="topValue" title="Top" position="top"/>
+    <ShadcnDrawer v-model="buttomValue" title="Buttom" position="bottom"/>
+    <ShadcnDrawer v-model="leftValue" title="Left" position="left"/>
+    <ShadcnDrawer v-model="rightValue" title="Right" position="right"/>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnSpace>
+    <ShadcnButton @click="topValue = !topValue">Top</ShadcnButton>
+    <ShadcnButton @click="buttomValue = !buttomValue">Buttom</ShadcnButton>
+    <ShadcnButton @click="leftValue = !leftValue">Left</ShadcnButton>
+    <ShadcnButton @click="rightValue = !rightValue">Right</ShadcnButton>
+  </ShadcnSpace>
+  <ShadcnDrawer v-model="topValue" title="Top" position="top"/>
+  <ShadcnDrawer v-model="buttomValue" title="Buttom" position="bottom"/>
+  <ShadcnDrawer v-model="leftValue" title="Left" position="left"/>
+  <ShadcnDrawer v-model="rightValue" title="Right" position="right"/>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const topValue = ref(false)
+const buttomValue = ref(false)
+const leftValue = ref(false)
+const rightValue = ref(false)
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Drawer Props"
@@ -85,6 +128,7 @@ const defaultValue = ref(false)
         ['title', 'The title of the drawer', 'String', '-', '', ''],
         ['closable', 'Whether the drawer can be closed', 'Boolean', 'false', '', ''],
         ['maskClosable', 'Whether the mask can be clicked to close the drawer', 'Boolean', 'false', '', ''],
+        ['position', 'The position of the drawer', 'String', 'bottom', '', 'top, bottom, left, right'],
     ]">
 </ApiTable>
 
@@ -114,4 +158,8 @@ import { ref } from 'vue'
 const defaultValue = ref(false)
 const closableValue = ref(false)
 const maskClosableValue = ref(false)
+const topValue = ref(false)
+const buttomValue = ref(false)
+const leftValue = ref(false)
+const rightValue = ref(false)
 </script>
