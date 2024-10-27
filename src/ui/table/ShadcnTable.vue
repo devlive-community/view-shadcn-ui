@@ -1,5 +1,7 @@
 <template>
-  <div class="w-full border border-gray-200 rounded-md">
+  <div :class="['w-full border-gray-200',
+                border && 'border'
+        ]">
     <div class="overflow-auto">
       <div class="min-w-full inline-block align-middle">
         <table class="min-w-full divide-y divide-gray-200">
@@ -14,7 +16,9 @@
               <ShadcnTableRow v-for="(row, rowIndex) in data"
                               :key="rowIndex"
                               :stripe="(stripe && rowIndex % 2 === 1)">
-                <ShadcnTableCell v-for="col in columns" :key="col.key">
+                <ShadcnTableCell v-for="col in columns"
+                                 :key="col.key"
+                                 :border="border">
                   {{ row[col.key] }}
                 </ShadcnTableCell>
               </ShadcnTableRow>
@@ -41,7 +45,9 @@ withDefaults(defineProps<{
   columns: Array<Header>
   data: Array<any>
   stripe?: boolean
+  border: boolean
 }>(), {
-  stripe: false
+  stripe: false,
+  border: false
 })
 </script>

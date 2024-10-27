@@ -1,6 +1,6 @@
 <template>
   <tr :class="['border-b border-gray-200 last:border-b-0 hover:bg-gray-50',
-              [stripe ? 'bg-gray-50': undefined]
+              stripe && 'bg-gray-50'
       ]">
     <slot/>
   </tr>

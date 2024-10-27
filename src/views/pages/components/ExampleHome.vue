@@ -1,5 +1,5 @@
 <template>
-  <ShadcnTable :columns="columns" :data="data" stripe/>
+  <ShadcnTable :columns="columns" :data="data" stripe border/>
 </template>
 
 <script setup lang="ts">

@@ -64,6 +64,35 @@ const data = [
 
 :::
 
+## Border
+
+<CodeRunner title="Border">
+    <ShadcnTable :columns="columns" :data="data" border/>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnTable :columns="columns" :data="data" border/>
+</template>
+
+<script setup lang="ts">
+const columns = [
+  { label: 'Name', key: 'name' },
+  { label: 'Address', key: 'address' },
+  { label: 'Age', key: 'age' }
+]
+const data = [
+  { name: 'John Doe', address: 'New York No. 1 Lake Park', age: 32 },
+  { name: 'Joe Black', address: 'Sidney No. 1 Lake Park', age: 42 },
+  { name: 'Jim Green', address: 'London No. 1 Lake Park', age: 32 },
+  { name: 'Jim Red', address: 'London No. 2 Lake Park', age: 32 }
+]
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Table Props"
@@ -72,6 +101,7 @@ const data = [
         ['columns', 'The columns of the table', 'Array<{label: string, key: string}>', '-', '-', '-'],
         ['data', 'The data of the table', 'Array', '-', '-', '-'],
         ['stripe', 'Whether the table is striped', 'Boolean', 'false', '-', '-'],
+        ['border', 'Whether the table is bordered', 'Boolean', 'false', '-', '-']
     ]">
 </ApiTable>
 
