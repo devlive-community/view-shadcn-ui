@@ -1,5 +1,7 @@
 <template>
-  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 tracking-wider whitespace-nowrap">
+  <th :class="['px-6 py-3 text-left text-xs font-medium text-gray-500 tracking-wider whitespace-nowrap',
+              border && 'border-r'
+      ]">
     <slot>
       {{ label }}
     </slot>
@@ -7,7 +9,10 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
+withDefaults(defineProps<{
   label?: string
-}>()
+  border?: boolean
+}>(), {
+  border: false
+})
 </script>

@@ -8,7 +8,10 @@
           <slot>
             <ShadcnTableHeader>
               <ShadcnTableRow>
-                <ShadcnTableColumn v-for="c in columns" :key="c.key" :label="c.label"/>
+                <ShadcnTableColumn v-for="c in columns"
+                                   :key="c.key"
+                                   :label="c.label"
+                                   :border="border"/>
               </ShadcnTableRow>
             </ShadcnTableHeader>
 
