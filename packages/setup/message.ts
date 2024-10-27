@@ -4,9 +4,10 @@ import ShadcnMessage from '../../src/ui/message'
 const createMessage = (options) => {
     const {
         content,
-        duration = 1500,
+        duration = 1.5,
         showIcon = false,
         type = 'info',
+        background = false,
         onClose
     } = options
 
@@ -20,6 +21,7 @@ const createMessage = (options) => {
         duration,
         showIcon,
         type,
+        background,
         onClose: () => {
             if (onClose) {
                 onClose()

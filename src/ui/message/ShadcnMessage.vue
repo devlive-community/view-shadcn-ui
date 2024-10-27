@@ -1,7 +1,9 @@
 <template>
   <div v-if="visible"
-       :class="['fixed flex space-x-2 items-center top-5 left-1/2 bg-white border border-gray-300 px-4 py-2 rounded-md shadow-md text-sm text-gray-700 z-50',
+       :class="['fixed flex space-x-2 items-center top-5 left-1/2 border px-4 py-2 rounded-md shadow-md text-sm z-50',
                 isLeaving ? 'animate-slide-up' : 'animate-slide-down',
+                [findBackgroundClass()],
+                [findBorderAndTextClass()]
         ]">
     <ShadcnIcon v-if="showIcon"
                 size="16"
@@ -26,11 +28,13 @@ const props = withDefaults(defineProps<{
   duration?: number
   showIcon?: boolean
   type: keyof typeof MessageType
+  background?: boolean
   onClose?: () => void
 }>(), {
-  duration: 1500,
+  duration: 1.5,
   showIcon: false,
-  type: 'info'
+  type: 'info',
+  background: false
 })
 
 const visible = ref(true)
@@ -54,15 +58,52 @@ const findIcon = () => {
 const findClass = () => {
   switch (props.type) {
     case 'info':
-      return 'text-blue-800'
-    case 'success':
-      return 'text-green-800'
-    case 'warning':
-      return 'text-yellow-800'
-    case 'error':
-      return 'text-red-800'
     case 'loading':
-      return 'text-blue-800'
+      return 'text-blue-600'
+    case 'success':
+      return 'text-green-600'
+    case 'warning':
+      return 'text-yellow-600'
+    case 'error':
+      return 'text-red-600'
+  }
+}
+
+const findBackgroundClass = () => {
+  if (props.background) {
+    switch (props.type) {
+      case 'info':
+      case 'loading':
+        return 'bg-blue-100'
+      case 'success':
+        return 'bg-green-100'
+      case 'warning':
+        return 'bg-yellow-100'
+      case 'error':
+        return 'bg-red-100'
+    }
+  }
+  else {
+    return 'bg-white'
+  }
+}
+
+const findBorderAndTextClass = () => {
+  if (props.background) {
+    switch (props.type) {
+      case 'info':
+      case 'loading':
+        return 'border-blue-200 text-blue-700'
+      case 'success':
+        return 'border-green-200 text-green-700'
+      case 'warning':
+        return 'border-yellow-200 text-yellow-700'
+      case 'error':
+        return 'border-red-200 text-red-700'
+    }
+  }
+  else {
+    return 'border-gray-100 text-gray-700'
   }
 }
 
@@ -81,7 +122,7 @@ const onClose = () => {
 if (props.duration) {
   setTimeout(() => {
     onClose()
-  }, props.duration)
+  }, props.duration * 1000)
 }
 
 // Clear possible timers to prevent memory leaks

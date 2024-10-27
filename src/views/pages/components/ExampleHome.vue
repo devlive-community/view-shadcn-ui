@@ -14,35 +14,39 @@ export default {
       this.$Message.info({
         content: 'This is an info tip',
         type: 'info',
-        showIcon: true
+        showIcon: true,
       });
     },
     success() {
       this.$Message.success({
         content: 'This is a success tip',
         type: 'success',
-        showIcon: true
+        showIcon: true,
+        background: true
       });
     },
     warning() {
       this.$Message.warning({
         content: 'This is a warning tip',
         type: 'warning',
-        showIcon: true
+        showIcon: true,
+        background: true
       });
     },
     error() {
       this.$Message.error({
         content: 'This is an error tip',
         type: 'error',
-        showIcon: true
+        showIcon: true,
+        background: true
       });
     },
     loading() {
       this.$Message.loading({
         content: 'This is a loading tip',
         type: 'loading',
-        showIcon: true
+        showIcon: true,
+        background: true
       });
     }
   }
