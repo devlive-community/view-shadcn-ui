@@ -119,6 +119,7 @@ export default {
                         {text: 'Checkbox', link: 'checkbox'},
                         {text: 'Select', link: 'select'},
                         {text: 'Rate', link: 'rate'},
+                        {text: 'Table', link: 'table'},
                     ]
                 },
                 {

@@ -11,7 +11,9 @@
             </ShadcnTableHeader>
 
             <ShadcnTableBody>
-              <ShadcnTableRow v-for="(row, rowIndex) in data" :key="rowIndex">
+              <ShadcnTableRow v-for="(row, rowIndex) in data"
+                              :key="rowIndex"
+                              :stripe="(stripe && rowIndex % 2 === 1)">
                 <ShadcnTableCell v-for="col in columns" :key="col.key">
                   {{ row[col.key] }}
                 </ShadcnTableCell>
@@ -35,8 +37,11 @@ import { Header } from '@/ui/table/configure.ts'
 
 provide('ShadcnTable', true)
 
-defineProps<{
+withDefaults(defineProps<{
   columns: Array<Header>
   data: Array<any>
-}>()
+  stripe?: boolean
+}>(), {
+  stripe: false
+})
 </script>
