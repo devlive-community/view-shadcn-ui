@@ -1,6 +1,16 @@
 {
   "name": "view-shadcn-ui",
   "description": "View Shadcn UI is a component library built on Shadcn UI and Tailwind CSS.",
+  "keywords": [
+    "vue",
+    "vue3",
+    "component",
+    "library",
+    "shadcn",
+    "tailwind css"
+  ],
+  "author": "devlive-community",
+  "homepage": "https://github.com/devlive-community/view-shadcn-ui",
   "private": false,
   "version": "2024.1.2-alpha.1729873335",
   "license": "MIT",

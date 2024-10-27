@@ -37,3 +37,12 @@ export enum SkeletonType
     rect,
     image
 }
+
+export enum MessageType
+{
+    info,
+    success,
+    warning,
+    error,
+    loading
+}
