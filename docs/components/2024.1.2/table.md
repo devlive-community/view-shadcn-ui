@@ -138,6 +138,35 @@ const click = (row: any, index: number) => {
 
 :::
 
+## Column Fixed
+
+<CodeRunner title="Column Fixed">
+    <ShadcnTable :columns="fixedColumns" :data="data" style="width: 300px;"/>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnTable :columns="columns" :data="data"/>
+</template>
+
+<script setup lang="ts">
+const columns = [
+  { label: 'Name', key: 'name', fixed: 'left' },
+  { label: 'Address', key: 'address', fixed: 'left' },
+  { label: 'Age', key: 'age' }
+]
+const data = [
+  { name: 'John Doe', address: 'New York No. 1 Lake Park', age: 32 },
+  { name: 'Joe Black', address: 'Sidney No. 1 Lake Park', age: 42 },
+  { name: 'Jim Green', address: 'London No. 1 Lake Park', age: 32 },
+  { name: 'Jim Red', address: 'London No. 2 Lake Park', age: 32 }
+]
+```
+
+:::
+
 ## Row Click
 
 <CodeRunner title="Row Click">
@@ -207,6 +236,12 @@ const slotColumns = [
   { label: 'Age', key: 'age' },
   { label: 'Actions', key: 'actions', slot: 'actions' }
 ]
+const fixedColumns = [
+  { label: 'Name', key: 'name', fixed: 'left' },
+  { label: 'Address', key: 'address' },
+  { label: 'Age', key: 'age' },
+  { label: 'Actions', key: 'actions', fixed: 'right' }
+]
 const data = [
   { name: 'John Doe', address: 'New York No. 1 Lake Park', age: 32 },
   { name: 'Joe Black', address: 'Sidney No. 1 Lake Park', age: 42 },
@@ -219,6 +254,7 @@ export default {
       return {
         columns,
         slotColumns,
+        fixedColumns,
         data
       }
     },

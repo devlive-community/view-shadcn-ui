@@ -4,18 +4,18 @@
                stripe
                border
                @on-row-click="onRowClick">
-    <template #actions="{ row }">
-      {{ row }}
+    <template #actions="{ index }">
+      {{ index }}
     </template>
   </ShadcnTable>
 </template>
 
 <script setup lang="ts">
 const columns = [
-  { label: 'Name', key: 'name' },
+  { label: 'Name', key: 'name', fixed: 'left' },
   { label: 'Address', key: 'address' },
   { label: 'Age', key: 'age' },
-  { label: 'Actions', key: 'actions', slot: 'actions' }
+  { label: 'Actions', key: 'actions', slot: 'actions', fixed: 'right' }
 ]
 const data = [
   { name: 'John Doe', address: 'New York No. 1 Lake Park', age: 32 },

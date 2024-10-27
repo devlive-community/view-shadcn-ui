@@ -1,6 +1,5 @@
-<!-- ShadcnTable.vue -->
 <template>
-  <div :class="['w-full border-gray-200',
+  <div :class="['w-full border-gray-200 relative',
                 border && 'border'
        ]">
     <div class="overflow-auto">
@@ -12,7 +11,8 @@
                 <ShadcnTableColumn v-for="c in columns"
                                    :key="c.key"
                                    :label="c.label"
-                                   :border="border"/>
+                                   :border="border"
+                                   :fixed="c.fixed"/>
               </ShadcnTableRow>
             </ShadcnTableHeader>
 
@@ -22,7 +22,9 @@
                               :stripe="(stripe && rowIndex % 2 === 1)"
                               @click="onRowClick(row, rowIndex)">
                 <template v-for="col in columns" :key="col.key">
-                  <ShadcnTableCell :border="border">
+                  <ShadcnTableCell :border="border"
+                                   :fixed="col.fixed"
+                                   :stripe="(stripe && rowIndex % 2 === 1)">
                     <template v-if="col.slot">
                       <template v-if="hasSlot(col.slot)">
                         <slot :name="col.slot" :row="row" :index="rowIndex"/>
