@@ -18,8 +18,8 @@ This document is mainly used to describe some features and usage of the ShadcnLa
 
 <CodeRunner title="Usage">
     <ShadcnLayout>
-        <ShadcnLayoutHeader class="bg-blue-200 h-12">Header</ShadcnLayoutHeader>
-        <ShadcnLayoutContent class="bg-blue-300 h-32">Content</ShadcnLayoutContent>
+        <ShadcnLayoutHeader class="bg-blue-100 h-12">Header</ShadcnLayoutHeader>
+        <ShadcnLayoutContent class="bg-blue-500 h-32">Content</ShadcnLayoutContent>
         <ShadcnLayoutFooter class="bg-blue-400 h-20">Footer</ShadcnLayoutFooter>
     </ShadcnLayout>
 </CodeRunner>
@@ -29,8 +29,8 @@ This document is mainly used to describe some features and usage of the ShadcnLa
 ```vue
 <template>
 <ShadcnLayout>
-    <ShadcnLayoutHeader class="bg-blue-200 h-12">Header</ShadcnLayoutHeader>
-    <ShadcnLayoutContent class="bg-blue-300 h-32">Content</ShadcnLayoutContent>
+    <ShadcnLayoutHeader class="bg-blue-100 h-12">Header</ShadcnLayoutHeader>
+    <ShadcnLayoutContent class="bg-blue-500 h-32">Content</ShadcnLayoutContent>
     <ShadcnLayoutFooter class="bg-blue-400 h-20">Footer</ShadcnLayoutFooter>
 </ShadcnLayout>
 </template>
@@ -48,8 +48,8 @@ This document is mainly used to describe some features and usage of the ShadcnLa
         <ShadcnLayoutWrapper>
             <ShadcnLayoutSider class="w-48 bg-blue-100">Sider</ShadcnLayoutSider>
             <ShadcnLayoutMain>
-                <ShadcnLayoutHeader class="bg-blue-200 h-12">Header</ShadcnLayoutHeader>
-                <ShadcnLayoutContent class="bg-blue-300 h-32">Content</ShadcnLayoutContent>
+                <ShadcnLayoutHeader class="bg-blue-100 h-12">Header</ShadcnLayoutHeader>
+                <ShadcnLayoutContent class="bg-blue-500 h-32">Content</ShadcnLayoutContent>
                 <ShadcnLayoutFooter class="bg-blue-400 h-20">Footer</ShadcnLayoutFooter>
             </ShadcnLayoutMain>
         </ShadcnLayoutWrapper>
@@ -64,8 +64,8 @@ This document is mainly used to describe some features and usage of the ShadcnLa
         <ShadcnLayoutWrapper>
             <ShadcnLayoutSider class="w-48 bg-blue-100">Sider</ShadcnLayoutSider>
             <ShadcnLayoutMain>
-                <ShadcnLayoutHeader class="bg-blue-200 h-12">Header</ShadcnLayoutHeader>
-                <ShadcnLayoutContent class="bg-blue-300 h-32">Content</ShadcnLayoutContent>
+                <ShadcnLayoutHeader class="bg-blue-100 h-12">Header</ShadcnLayoutHeader>
+                <ShadcnLayoutContent class="bg-blue-500 h-32">Content</ShadcnLayoutContent>
                 <ShadcnLayoutFooter class="bg-blue-400 h-20">Footer</ShadcnLayoutFooter>
             </ShadcnLayoutMain>
         </ShadcnLayoutWrapper>
@@ -83,8 +83,8 @@ This document is mainly used to describe some features and usage of the ShadcnLa
 <CodeRunner title="Layout">
     <div class="my-4 ml-2">Header + Content + Footer</div>
     <ShadcnLayout>
-      <ShadcnLayoutHeader class="bg-blue-200 h-12">Header</ShadcnLayoutHeader>
-      <ShadcnLayoutContent class="bg-blue-300 h-32">Content</ShadcnLayoutContent>
+      <ShadcnLayoutHeader class="bg-blue-100 h-12">Header</ShadcnLayoutHeader>
+      <ShadcnLayoutContent class="bg-blue-500 h-32">Content</ShadcnLayoutContent>
       <ShadcnLayoutFooter class="bg-blue-400 h-20">Footer</ShadcnLayoutFooter>
     </ShadcnLayout>
     <div class="my-4">Sider + (Header + Content + Footer)</div>
@@ -92,8 +92,8 @@ This document is mainly used to describe some features and usage of the ShadcnLa
       <ShadcnLayoutWrapper>
         <ShadcnLayoutSider class="w-48 bg-blue-100">Sider</ShadcnLayoutSider>
         <ShadcnLayoutMain>
-          <ShadcnLayoutHeader class="bg-blue-200 h-12">Header</ShadcnLayoutHeader>
-          <ShadcnLayoutContent class="bg-blue-300 h-32">Content</ShadcnLayoutContent>
+          <ShadcnLayoutHeader class="bg-blue-100 h-12">Header</ShadcnLayoutHeader>
+          <ShadcnLayoutContent class="bg-blue-500 h-32">Content</ShadcnLayoutContent>
           <ShadcnLayoutFooter class="bg-blue-400 h-20">Footer</ShadcnLayoutFooter>
         </ShadcnLayoutMain>
       </ShadcnLayoutWrapper>
@@ -102,8 +102,8 @@ This document is mainly used to describe some features and usage of the ShadcnLa
     <ShadcnLayout>
       <ShadcnLayoutWrapper>
         <ShadcnLayoutMain>
-          <ShadcnLayoutHeader class="bg-blue-200 h-12">Header</ShadcnLayoutHeader>
-          <ShadcnLayoutContent class="bg-blue-300 h-32">Content</ShadcnLayoutContent>
+          <ShadcnLayoutHeader class="bg-blue-100 h-12">Header</ShadcnLayoutHeader>
+          <ShadcnLayoutContent class="bg-blue-500 h-32">Content</ShadcnLayoutContent>
           <ShadcnLayoutFooter class="bg-blue-400 h-20">Footer</ShadcnLayoutFooter>
         </ShadcnLayoutMain>
         <ShadcnLayoutSider class="w-48 bg-blue-100">Sider</ShadcnLayoutSider>
@@ -111,18 +111,18 @@ This document is mainly used to describe some features and usage of the ShadcnLa
     </ShadcnLayout>
     <div class="my-4">Header + (Sider + Content) + Footer</div>
     <ShadcnLayout>
-      <ShadcnLayoutHeader class="bg-blue-200 h-12">Header</ShadcnLayoutHeader>
+      <ShadcnLayoutHeader class="bg-blue-100 h-12">Header</ShadcnLayoutHeader>
       <ShadcnLayoutWrapper>
         <ShadcnLayoutSider class="w-48 bg-blue-100">Sider</ShadcnLayoutSider>
-        <ShadcnLayoutContent class="bg-blue-300 h-32">Content</ShadcnLayoutContent>
+        <ShadcnLayoutContent class="bg-blue-500 h-32">Content</ShadcnLayoutContent>
       </ShadcnLayoutWrapper>
       <ShadcnLayoutFooter class="bg-blue-400 h-20">Footer</ShadcnLayoutFooter>
     </ShadcnLayout>
     <div class="my-4">Header + (Content + Sider) + Footer</div>
     <ShadcnLayout>
-      <ShadcnLayoutHeader class="bg-blue-200 h-12">Header</ShadcnLayoutHeader>
+      <ShadcnLayoutHeader class="bg-blue-100 h-12">Header</ShadcnLayoutHeader>
       <ShadcnLayoutWrapper>
-        <ShadcnLayoutContent class="bg-blue-300 h-32">Content</ShadcnLayoutContent>
+        <ShadcnLayoutContent class="bg-blue-500 h-32">Content</ShadcnLayoutContent>
         <ShadcnLayoutSider class="w-48 bg-blue-100">Sider</ShadcnLayoutSider>
       </ShadcnLayoutWrapper>
       <ShadcnLayoutFooter class="bg-blue-400 h-20">Footer</ShadcnLayoutFooter>
@@ -135,8 +135,8 @@ This document is mainly used to describe some features and usage of the ShadcnLa
 <template>
 <div>Header + Content + Footer</div>
 <ShadcnLayout>
-    <ShadcnLayoutHeader class="bg-blue-200 h-12">Header</ShadcnLayoutHeader>
-    <ShadcnLayoutContent class="bg-blue-300 h-32">Content</ShadcnLayoutContent>
+    <ShadcnLayoutHeader class="bg-blue-100 h-12">Header</ShadcnLayoutHeader>
+    <ShadcnLayoutContent class="bg-blue-500 h-32">Content</ShadcnLayoutContent>
     <ShadcnLayoutFooter class="bg-blue-400 h-20">Footer</ShadcnLayoutFooter>
 </ShadcnLayout>
 <div>Sider + (Header + Content + Footer)</div>
@@ -144,8 +144,8 @@ This document is mainly used to describe some features and usage of the ShadcnLa
     <ShadcnLayoutWrapper>
         <ShadcnLayoutSider class="w-48 bg-blue-100">Sider</ShadcnLayoutSider>
         <ShadcnLayoutMain>
-            <ShadcnLayoutHeader class="bg-blue-200 h-12">Header</ShadcnLayoutHeader>
-            <ShadcnLayoutContent class="bg-blue-300 h-32">Content</ShadcnLayoutContent>
+            <ShadcnLayoutHeader class="bg-blue-100 h-12">Header</ShadcnLayoutHeader>
+            <ShadcnLayoutContent class="bg-blue-500 h-32">Content</ShadcnLayoutContent>
             <ShadcnLayoutFooter class="bg-blue-400 h-20">Footer</ShadcnLayoutFooter>
         </ShadcnLayoutMain>
     </ShadcnLayoutWrapper>
@@ -154,8 +154,8 @@ This document is mainly used to describe some features and usage of the ShadcnLa
 <ShadcnLayout>
     <ShadcnLayoutWrapper>
         <ShadcnLayoutMain>
-            <ShadcnLayoutHeader class="bg-blue-200 h-12">Header</ShadcnLayoutHeader>
-            <ShadcnLayoutContent class="bg-blue-300 h-32">Content</ShadcnLayoutContent>
+            <ShadcnLayoutHeader class="bg-blue-100 h-12">Header</ShadcnLayoutHeader>
+            <ShadcnLayoutContent class="bg-blue-500 h-32">Content</ShadcnLayoutContent>
             <ShadcnLayoutFooter class="bg-blue-400 h-20">Footer</ShadcnLayoutFooter>
         </ShadcnLayoutMain>
         <ShadcnLayoutSider class="w-48 bg-blue-100">Sider</ShadcnLayoutSider>
@@ -163,18 +163,18 @@ This document is mainly used to describe some features and usage of the ShadcnLa
 </ShadcnLayout>
 <div>Header + (Sider + Content) + Footer</div>
 <ShadcnLayout>
-    <ShadcnLayoutHeader class="bg-blue-200 h-12">Header</ShadcnLayoutHeader>
+    <ShadcnLayoutHeader class="bg-blue-100 h-12">Header</ShadcnLayoutHeader>
     <ShadcnLayoutWrapper>
         <ShadcnLayoutSider class="w-48 bg-blue-100">Sider</ShadcnLayoutSider>
-        <ShadcnLayoutContent class="bg-blue-300 h-32">Content</ShadcnLayoutContent>
+        <ShadcnLayoutContent class="bg-blue-500 h-32">Content</ShadcnLayoutContent>
     </ShadcnLayoutWrapper>
     <ShadcnLayoutFooter class="bg-blue-400 h-20">Footer</ShadcnLayoutFooter>
 </ShadcnLayout>
 <div>Header + (Content + Sider) + Footer</div>
 <ShadcnLayout>
-    <ShadcnLayoutHeader class="bg-blue-200 h-12">Header</ShadcnLayoutHeader>
+    <ShadcnLayoutHeader class="bg-blue-100 h-12">Header</ShadcnLayoutHeader>
         <ShadcnLayoutWrapper>
-            <ShadcnLayoutContent class="bg-blue-300 h-32">Content</ShadcnLayoutContent>
+            <ShadcnLayoutContent class="bg-blue-500 h-32">Content</ShadcnLayoutContent>
             <ShadcnLayoutSider class="w-48 bg-blue-100">Sider</ShadcnLayoutSider>
         </ShadcnLayoutWrapper>
     <ShadcnLayoutFooter class="bg-blue-400 h-20">Footer</ShadcnLayoutFooter>
@@ -208,8 +208,8 @@ This document is mainly used to describe some features and usage of the ShadcnLa
           </template>
         </ShadcnLayoutSider>
         <ShadcnLayoutMain>
-          <ShadcnLayoutHeader class="bg-blue-200 h-12">Header</ShadcnLayoutHeader>
-          <ShadcnLayoutContent class="bg-blue-300 h-32">Content</ShadcnLayoutContent>
+          <ShadcnLayoutHeader class="bg-blue-100 h-12">Header</ShadcnLayoutHeader>
+          <ShadcnLayoutContent class="bg-blue-500 h-32">Content</ShadcnLayoutContent>
           <ShadcnLayoutFooter class="bg-blue-400 h-20">Footer</ShadcnLayoutFooter>
         </ShadcnLayoutMain>
       </ShadcnLayoutWrapper>
@@ -239,8 +239,8 @@ This document is mainly used to describe some features and usage of the ShadcnLa
         </template>
       </ShadcnLayoutSider>
       <ShadcnLayoutMain>
-        <ShadcnLayoutHeader class="bg-blue-200 h-16">Header</ShadcnLayoutHeader>
-        <ShadcnLayoutContent class="bg-blue-300 flex-1">Content</ShadcnLayoutContent>
+        <ShadcnLayoutHeader class="bg-blue-100 h-16">Header</ShadcnLayoutHeader>
+        <ShadcnLayoutContent class="bg-blue-500 flex-1">Content</ShadcnLayoutContent>
         <ShadcnLayoutFooter class="bg-blue-400 h-24">Footer</ShadcnLayoutFooter>
       </ShadcnLayoutMain>
     </ShadcnLayoutWrapper>
