@@ -211,6 +211,37 @@ export default {
 
 :::
 
+## Closeable
+
+<CodeRunner title="Closeable">
+    <ShadcnButton @click="closeable">Closeable</ShadcnButton>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnButton @click="closeable">Show Message</ShadcnButton>
+</template>
+
+<script>
+  export default {
+    methods: {
+      closeable() {
+        this.$Message.info({
+          content: 'This is an info tip',
+          type: 'info',
+          showIcon: true,
+          closeable: true
+        })
+      }
+    }
+  }
+</script>
+```
+
+:::
+
 ## API
 
 <ApiTable title="Props"
@@ -221,6 +252,7 @@ export default {
             ['showIcon', 'Whether to show the icon', 'Boolean', 'true', '-', '-'],
             ['type', 'Message type', 'String', 'info', 'info | success | warning | error | loading', '-'],
             ['background', 'Whether to show the background, only works when type is set', 'Boolean', 'false', '-', '-'],
+            ['closeable', 'Whether to show the close button', 'Boolean', 'false', '-', '-'],
     ]">
 </ApiTable>
 
@@ -230,6 +262,7 @@ export default {
     :headers="['Slot', 'Description']"
     :columns="[
         ['default', 'Content slot'],
+        ['close', 'Close slot'],
     ]">
 </ApiTable>
 
@@ -284,7 +317,16 @@ export default {
         showIcon: true,
         background: background
       })
-    }
+    },
+    closeable() {
+        this.$Message.info({
+            content: 'This is an info tip',
+            type: 'info',
+            showIcon: true,
+            duration: 0,
+            closeable: true
+        });
+      }
   }
 }
 </script>

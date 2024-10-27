@@ -13,6 +13,15 @@
                 :icon="findIcon()"/>
     <slot v-if="$slots.default"/>
     <span v-else>{{ content }}</span>
+
+    <div v-if="closeable" class="ml-auto text-gray-500 hover:text-gray-700 cursor-pointer"
+         @click="onClose">
+      <slot v-if="$slots.close" name="close"/>
+      <ShadcnIcon v-else
+                  size="16"
+                  class="ml-10"
+                  icon="X"/>
+    </div>
   </div>
 </template>
 
@@ -29,12 +38,14 @@ const props = withDefaults(defineProps<{
   showIcon?: boolean
   type: keyof typeof MessageType
   background?: boolean
+  closeable?: boolean
   onClose?: () => void
 }>(), {
   duration: 1.5,
   showIcon: false,
   type: 'info',
-  background: false
+  background: false,
+  closeable: false
 })
 
 const visible = ref(true)
@@ -69,6 +80,7 @@ const findClass = () => {
   }
 }
 
+// Set background color, which depends on type
 const findBackgroundClass = () => {
   if (props.background) {
     switch (props.type) {
@@ -88,6 +100,7 @@ const findBackgroundClass = () => {
   }
 }
 
+// Set border and text color, which depends on type
 const findBorderAndTextClass = () => {
   if (props.background) {
     switch (props.type) {

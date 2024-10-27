@@ -8,6 +8,7 @@ const createMessage = (options) => {
         showIcon = false,
         type = 'info',
         background = false,
+        closeable = false,
         onClose
     } = options
 
@@ -22,6 +23,7 @@ const createMessage = (options) => {
         showIcon,
         type,
         background,
+        closeable,
         onClose: () => {
             if (onClose) {
                 onClose()
