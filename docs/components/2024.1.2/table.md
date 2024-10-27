@@ -98,7 +98,7 @@ const data = [
 <CodeRunner title="Column Slot">
     <ShadcnTable :columns="slotColumns" :data="data">
       <template #actions="{ row, index }">
-        <ShadcnButton @click="() => console.log(row, index)">Edit</ShadcnButton>
+        <ShadcnButton @click="click(row, index)">Edit</ShadcnButton>
       </template>
     </ShadcnTable>
 </CodeRunner>
@@ -109,7 +109,7 @@ const data = [
 <template>
   <ShadcnTable :columns="columns" :data="data">
     <template #actions="{ row, index }">
-      <ShadcnButton @click="() => console.log(row, index)">Edit</ShadcnButton>
+      <ShadcnButton @click="click(row, index)">Edit</ShadcnButton>
     </template>
   </ShadcnTable>
 </template>
@@ -127,6 +127,48 @@ const data = [
   { name: 'Jim Green', address: 'London No. 1 Lake Park', age: 32 },
   { name: 'Jim Red', address: 'London No. 2 Lake Park', age: 32 }
 ]
+  
+const click = (row: any, index: number) => {
+    this.$Message.info({
+      content: `Click [ ${row.name} ] - [ ${index} ]`,
+    })
+}
+</script>
+```
+
+:::
+
+## Row Click
+
+<CodeRunner title="Row Click">
+    <ShadcnTable :columns="columns" :data="data" @on-row-click="click"/>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnTable :columns="columns" :data="data" @on-row-click="rowClick"/>
+</template>
+
+<script setup lang="ts">
+const columns = [
+  { label: 'Name', key: 'name' },
+  { label: 'Address', key: 'address' },
+  { label: 'Age', key: 'age' }
+]
+const data = [
+  { name: 'John Doe', address: 'New York No. 1 Lake Park', age: 32 },
+  { name: 'Joe Black', address: 'Sidney No. 1 Lake Park', age: 42 },
+  { name: 'Jim Green', address: 'London No. 1 Lake Park', age: 32 },
+  { name: 'Jim Red', address: 'London No. 2 Lake Park', age: 32 }
+]
+
+const rowClick = (row: any, index: number) => {
+    this.$Message.info({
+      content: `Click [ ${row.name} ] - [ ${index} ]`,
+    })
+}
 </script>
 ```
 
@@ -144,7 +186,16 @@ const data = [
     ]">
 </ApiTable>
 
-<script setup lang="ts">
+## Events
+
+<ApiTable title="Table Events"
+    :headers="['Event', 'Description', 'Callback Parameters']"
+    :columns="[
+        ['on-row-click', 'Triggered when the user clicks on a row', '{row: object, index: number}'],
+    ]">
+</ApiTable>
+
+<script lang="ts">
 const columns = [
   { label: 'Name', key: 'name' },
   { label: 'Address', key: 'address' },
@@ -162,4 +213,21 @@ const data = [
   { name: 'Jim Green', address: 'London No. 1 Lake Park', age: 32 },
   { name: 'Jim Red', address: 'London No. 2 Lake Park', age: 32 }
 ]
+
+export default {
+    data() {
+      return {
+        columns,
+        slotColumns,
+        data
+      }
+    },
+    methods: {
+      click(row: any, index: number) {
+        this.$Message.info({
+          content: `Click [ ${row.name} ] - [ ${index} ]`,
+        })
+      }
+    }
+}
 </script>

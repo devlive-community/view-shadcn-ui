@@ -1,5 +1,9 @@
 <template>
-  <ShadcnTable :columns="columns" :data="data" stripe border>
+  <ShadcnTable :columns="columns"
+               :data="data"
+               stripe
+               border
+               @on-row-click="onRowClick">
     <template #actions="{ row }">
       {{ row }}
     </template>
@@ -19,4 +23,8 @@ const data = [
   { name: 'Jim Green', address: 'London No. 1 Lake Park', age: 32 },
   { name: 'Jim Red', address: 'London No. 2 Lake Park', age: 32 }
 ]
+
+const onRowClick = (row: any, index: number) => {
+  console.log(row, index)
+}
 </script>

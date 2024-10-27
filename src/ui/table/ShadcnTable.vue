@@ -19,7 +19,8 @@
             <ShadcnTableBody>
               <ShadcnTableRow v-for="(row, rowIndex) in data"
                               :key="rowIndex"
-                              :stripe="(stripe && rowIndex % 2 === 1)">
+                              :stripe="(stripe && rowIndex % 2 === 1)"
+                              @click="onRowClick(row, rowIndex)">
                 <template v-for="col in columns" :key="col.key">
                   <ShadcnTableCell :border="border">
                     <template v-if="col.slot">
@@ -57,6 +58,8 @@ import { Header } from '@/ui/table/configure.ts'
 
 provide('ShadcnTable', true)
 
+const emit = defineEmits(['on-row-click'])
+
 withDefaults(defineProps<{
   columns: Array<Header>
   data: Array<any>
@@ -80,5 +83,9 @@ const validateSlot = (column: Header) => {
     throw new Error(`The slot "${ column.slot }" is required for column "${ column.label }" but not provided.`)
   }
   return ''
+}
+
+const onRowClick = (row: any, index: number) => {
+  emit('on-row-click', row, index)
 }
 </script>
