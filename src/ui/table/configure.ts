@@ -1,4 +1,4 @@
-export interface Header
+export interface Column
 {
     label: string
     key: string

@@ -1,7 +1,8 @@
 <template>
   <div :class="['w-full border-gray-200 relative',
                 border && 'border'
-       ]">
+       ]"
+       :style="{ width: calcSize(width) }">
     <div class="overflow-auto">
       <div class="min-w-full inline-block align-middle">
         <table class="min-w-full divide-y divide-gray-200">
@@ -56,20 +57,23 @@ import ShadcnTableBody from './ShadcnTableBody.vue'
 import ShadcnTableRow from './ShadcnTableRow.vue'
 import ShadcnTableColumn from './ShadcnTableColumn.vue'
 import ShadcnTableCell from './ShadcnTableCell.vue'
-import { Header } from '@/ui/table/configure.ts'
+import { Column } from '@/ui/table/configure.ts'
+import { calcSize } from '@/utils/common.ts'
 
 provide('ShadcnTable', true)
 
 const emit = defineEmits(['on-row-click'])
 
 withDefaults(defineProps<{
-  columns: Array<Header>
+  columns: Array<Column>
   data: Array<any>
   stripe?: boolean
   border: boolean
+  width?: string | number
 }>(), {
   stripe: false,
-  border: false
+  border: false,
+  width: '100%'
 })
 
 const slots = useSlots()
@@ -80,7 +84,7 @@ const hasSlot = (name: string) => {
 }
 
 // Validates the slot and returns an error message
-const validateSlot = (column: Header) => {
+const validateSlot = (column: Column) => {
   if (column.slot && !hasSlot(column.slot)) {
     throw new Error(`The slot "${ column.slot }" is required for column "${ column.label }" but not provided.`)
   }

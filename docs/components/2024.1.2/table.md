@@ -93,6 +93,35 @@ const data = [
 
 :::
 
+## Width
+
+<CodeRunner title="Width">
+    <ShadcnTable :columns="columns" :data="data" width="300"/>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnTable :columns="columns" :data="data" width="300"/>
+</template>
+
+<script setup lang="ts">
+const columns = [
+  { label: 'Name', key: 'name' },
+  { label: 'Address', key: 'address' },
+  { label: 'Age', key: 'age' }
+]
+const data = [
+  { name: 'John Doe', address: 'New York No. 1 Lake Park', age: 32 },
+  { name: 'Joe Black', address: 'Sidney No. 1 Lake Park', age: 42 },
+  { name: 'Jim Green', address: 'London No. 1 Lake Park', age: 32 },
+  { name: 'Jim Red', address: 'London No. 2 Lake Park', age: 32 }
+]
+```
+
+:::
+
 ## Column Slot
 
 <CodeRunner title="Column Slot">
@@ -141,7 +170,7 @@ const click = (row: any, index: number) => {
 ## Column Fixed
 
 <CodeRunner title="Column Fixed">
-    <ShadcnTable :columns="fixedColumns" :data="data" style="width: 300px;"/>
+    <ShadcnTable :columns="fixedColumns" :data="data" width="300"/>
 </CodeRunner>
 
 ::: details Show code
@@ -206,12 +235,25 @@ const rowClick = (row: any, index: number) => {
 ## Props
 
 <ApiTable title="Table Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
     :columns="[
-        ['columns', 'The columns of the table', 'Array<{label: string, key: string}>', '-', '-', '-'],
-        ['data', 'The data of the table', 'Array', '-', '-', '-'],
-        ['stripe', 'Whether the table is striped', 'Boolean', 'false', '-', '-'],
-        ['border', 'Whether the table is bordered', 'Boolean', 'false', '-', '-']
+        ['columns', 'The columns of the table', 'Array', '-', '-'],
+        ['data', 'The data of the table', 'Array', '-', '-'],
+        ['stripe', 'Whether the table is striped', 'Boolean', 'false', '-'],
+        ['border', 'Whether the table is bordered', 'Boolean', 'false', '-'],
+        ['width', 'The width of the table', 'String', '100%', '-'],
+    ]">
+</ApiTable>
+
+<br />
+
+<ApiTable title="Column Props"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :columns="[
+        ['label', 'The label of the column', 'string', '-', '-'],
+        ['key', 'The key of the column', 'string', '${label}', '-'],
+        ['slot', 'The slot of the column', 'string', '-', '-'],
+        ['fixed', 'Whether the column is fixed', 'Enum', '-', 'left | right'],
     ]">
 </ApiTable>
 

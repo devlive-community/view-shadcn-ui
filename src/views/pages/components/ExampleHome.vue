@@ -3,6 +3,7 @@
                :data="data"
                stripe
                border
+               width="100%"
                @on-row-click="onRowClick">
     <template #actions="{ index }">
       {{ index }}
