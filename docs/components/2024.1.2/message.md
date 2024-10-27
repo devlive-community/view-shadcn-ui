@@ -217,7 +217,7 @@ export default {
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
     :columns="[
             ['content', 'Content content', 'String', '-', '-', '-'],
-            ['duration', 'The duration of the message, in seconds', 'Number', '1.5', '-', '-'],
+            ['duration', 'The duration of the message, in seconds, if the value is 0, the message will not be closed', 'Number', '1.5', '-', '-'],
             ['showIcon', 'Whether to show the icon', 'Boolean', 'true', '-', '-'],
             ['type', 'Message type', 'String', 'info', 'info | success | warning | error | loading', '-'],
             ['background', 'Whether to show the background, only works when type is set', 'Boolean', 'false', '-', '-'],

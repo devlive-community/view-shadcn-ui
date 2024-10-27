@@ -118,8 +118,8 @@ const onClose = () => {
   }, 300)
 }
 
-// Set a timer to hide messages
-if (props.duration) {
+// Set a timer to hide messages if duration is not zero
+if (props.duration && props.duration > 0) {
   setTimeout(() => {
     onClose()
   }, props.duration * 1000)
