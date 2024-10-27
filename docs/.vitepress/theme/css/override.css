@@ -1,5 +1,6 @@
 .vp-doc table {
     margin: 0;
+    display: table;
 }
 
 .vp-doc h3 {

@@ -93,6 +93,45 @@ const data = [
 
 :::
 
+## Column Slot
+
+<CodeRunner title="Column Slot">
+    <ShadcnTable :columns="slotColumns" :data="data">
+      <template #actions="{ row, index }">
+        <ShadcnButton @click="() => console.log(row, index)">Edit</ShadcnButton>
+      </template>
+    </ShadcnTable>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnTable :columns="columns" :data="data">
+    <template #actions="{ row, index }">
+      <ShadcnButton @click="() => console.log(row, index)">Edit</ShadcnButton>
+    </template>
+  </ShadcnTable>
+</template>
+
+<script setup lang="ts">
+const columns = [
+  { label: 'Name', key: 'name' },
+  { label: 'Address', key: 'address' },
+  { label: 'Age', key: 'age' },
+  { label: 'Actions', key: 'actions', slot: 'actions' }
+]
+const data = [
+  { name: 'John Doe', address: 'New York No. 1 Lake Park', age: 32 },
+  { name: 'Joe Black', address: 'Sidney No. 1 Lake Park', age: 42 },
+  { name: 'Jim Green', address: 'London No. 1 Lake Park', age: 32 },
+  { name: 'Jim Red', address: 'London No. 2 Lake Park', age: 32 }
+]
+</script>
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Table Props"
@@ -105,23 +144,22 @@ const data = [
     ]">
 </ApiTable>
 
-<script setup>
-const total = 5
-const columns = []
-const data = []
-
-for (let i = 0; i < total; i++) {
-  columns.push({
-    label: `Address ${i}`,
-    key: `address${i}`
-  })
-}
-
-for (let i = 0; i < total; i++) {
-  const rowData = {}
-  for (let j = 0; j < total; j++) {
-    rowData[`address${j}`] = `New York No. ${i}-${j} Lake Park`
-  }
-  data.push(rowData)
-}
+<script setup lang="ts">
+const columns = [
+  { label: 'Name', key: 'name' },
+  { label: 'Address', key: 'address' },
+  { label: 'Age', key: 'age' }
+]
+const slotColumns = [
+  { label: 'Name', key: 'name' },
+  { label: 'Address', key: 'address' },
+  { label: 'Age', key: 'age' },
+  { label: 'Actions', key: 'actions', slot: 'actions' }
+]
+const data = [
+  { name: 'John Doe', address: 'New York No. 1 Lake Park', age: 32 },
+  { name: 'Joe Black', address: 'Sidney No. 1 Lake Park', age: 42 },
+  { name: 'Jim Green', address: 'London No. 1 Lake Park', age: 32 },
+  { name: 'Jim Red', address: 'London No. 2 Lake Park', age: 32 }
+]
 </script>

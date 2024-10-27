@@ -1,29 +1,22 @@
 <template>
-  <ShadcnTable :columns="columns" :data="data" stripe border/>
+  <ShadcnTable :columns="columns" :data="data" stripe border>
+    <template #actions="{ row }">
+      {{ row }}
+    </template>
+  </ShadcnTable>
 </template>
 
 <script setup lang="ts">
-interface Column {
-  label: string;
-  key: string;
-}
-
-const total = 20;
-const columns: Column[] = [];
-const data: Record<string, string>[] = [];
-
-for (let i = 0; i < total; i++) {
-  columns.push({
-    label: `Address ${i}`,
-    key: `address${i}`
-  });
-}
-
-for (let i = 0; i < total; i++) {
-  const rowData: Record<string, string> = {};
-  for (let j = 0; j < total; j++) {
-    rowData[`address${j}`] = `New York No. ${i}-${j} Lake Park`;
-  }
-  data.push(rowData);
-}
+const columns = [
+  { label: 'Name', key: 'name' },
+  { label: 'Address', key: 'address' },
+  { label: 'Age', key: 'age' },
+  { label: 'Actions', key: 'actions', slot: 'actions' }
+]
+const data = [
+  { name: 'John Doe', address: 'New York No. 1 Lake Park', age: 32 },
+  { name: 'Joe Black', address: 'Sidney No. 1 Lake Park', age: 42 },
+  { name: 'Jim Green', address: 'London No. 1 Lake Park', age: 32 },
+  { name: 'Jim Red', address: 'London No. 2 Lake Park', age: 32 }
+]
 </script>
