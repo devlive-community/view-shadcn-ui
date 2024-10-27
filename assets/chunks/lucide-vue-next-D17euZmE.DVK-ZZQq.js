@@ -1,4 +1,4 @@
-import{m as a,C as e}from"./view-shadcn-ui.es.DgxcvOmb.js";import"./framework.CRtDVrJs.js";/**
+import{g as a,v as e}from"./view-shadcn-ui.es.CvHR3uqC.js";import"./framework.CRtDVrJs.js";/**
  * @license lucide-vue-next v0.360.0 - ISC
  *
  * This source code is licensed under the ISC license.
