@@ -211,28 +211,28 @@ export default {
 
 :::
 
-## Closeable
+## Closable
 
-<CodeRunner title="Closeable">
-    <ShadcnButton @click="closeable">Closeable</ShadcnButton>
+<CodeRunner title="Closable">
+    <ShadcnButton @click="closable">Closable</ShadcnButton>
 </CodeRunner>
 
 ::: details Show code
 
 ```vue
 <template>
-    <ShadcnButton @click="closeable">Show Message</ShadcnButton>
+    <ShadcnButton @click="closable">Show Message</ShadcnButton>
 </template>
 
 <script>
   export default {
     methods: {
-      closeable() {
+      closable() {
         this.$Message.info({
           content: 'This is an info tip',
           type: 'info',
           showIcon: true,
-          closeable: true
+          closable: true
         })
       }
     }
@@ -318,13 +318,13 @@ export default {
         background: background
       })
     },
-    closeable() {
+    closable() {
         this.$Message.info({
             content: 'This is an info tip',
             type: 'info',
             showIcon: true,
             duration: 0,
-            closeable: true
+            closable: true
         });
       }
   }

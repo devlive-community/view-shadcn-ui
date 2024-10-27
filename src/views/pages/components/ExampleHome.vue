@@ -12,7 +12,7 @@ export default {
         type: 'info',
         showIcon: true,
         duration: 0,
-        closeable: true
+        closable: true
       });
     }
   }

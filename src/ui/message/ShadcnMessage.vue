@@ -14,7 +14,7 @@
     <slot v-if="$slots.default"/>
     <span v-else>{{ content }}</span>
 
-    <div v-if="closeable" class="ml-auto text-gray-500 hover:text-gray-700 cursor-pointer"
+    <div v-if="closable" class="ml-auto text-gray-500 hover:text-gray-700 cursor-pointer"
          @click="onClose">
       <slot v-if="$slots.close" name="close"/>
       <ShadcnIcon v-else
@@ -38,14 +38,14 @@ const props = withDefaults(defineProps<{
   showIcon?: boolean
   type: keyof typeof MessageType
   background?: boolean
-  closeable?: boolean
+  closable?: boolean
   onClose?: () => void
 }>(), {
   duration: 1.5,
   showIcon: false,
   type: 'info',
   background: false,
-  closeable: false
+  closable: false
 })
 
 const visible = ref(true)
