@@ -3,6 +3,8 @@ import DefaultTheme from 'vitepress/theme'
 import CodeRunner from './components/CodeRunner.vue'
 import ApiTable from "./components/ApiTable.vue";
 
+import './css/override.css'
+
 export default {
     ...DefaultTheme,
     enhanceApp: async ({app, router, siteData}) => {

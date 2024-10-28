@@ -2,16 +2,6 @@
 title: Shadcn Card
 ---
 
-<style>
-.vp-doc h3 {
-    margin: 0;
-}
-
-.vp-doc p {
-    margin: 0;
-}
-</style>
-
 # Introduction
 
 This document is mainly used to describe some features and usage of the ShadcnCard component.
