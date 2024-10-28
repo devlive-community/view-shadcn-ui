@@ -2,7 +2,7 @@
 <template>
   <div :class="['w-full border-gray-200 relative', border && 'border']"
        :style="{ width: calcSize(width) }">
-    <div class="overflow-auto relative"> <!-- 设置 relative 和 overflow -->
+    <div class="overflow-auto relative">
       <div class="min-w-full inline-block align-middle">
         <table class="min-w-full divide-y divide-gray-200">
           <slot>
@@ -14,6 +14,8 @@
                                    :border="border"
                                    :fixed="c.fixed"
                                    :width="c.width"
+                                   :left-offset="getLeftOffset(index)"
+                                   :right-offset="getRightOffset(index)"
                                    :isLastLeftFixed="isLastLeftFixed(index)"
                                    :isFirstRightFixed="isFirstRightFixed(index)"/>
               </ShadcnTableRow>
@@ -29,6 +31,8 @@
                                    :fixed="col.fixed"
                                    :stripe="(stripe && rowIndex % 2 === 1)"
                                    :width="col.width"
+                                   :left-offset="getLeftOffset(colIndex)"
+                                   :right-offset="getRightOffset(colIndex)"
                                    :isLastLeftFixed="isLastLeftFixed(colIndex)"
                                    :isFirstRightFixed="isFirstRightFixed(colIndex)">
                     <template v-if="col.slot">
@@ -64,6 +68,7 @@ import ShadcnTableColumn from './ShadcnTableColumn.vue'
 import ShadcnTableCell from './ShadcnTableCell.vue'
 import { Column } from '@/ui/table/configure.ts'
 import { calcSize } from '@/utils/common.ts'
+import { toNumber } from 'lodash'
 
 provide('ShadcnTable', true)
 
@@ -104,6 +109,26 @@ const isLastLeftFixed = (currentIndex: number) => {
     }
   }
   return props.columns[currentIndex].fixed === 'left' && isLast
+}
+
+const getLeftOffset = (index: number) => {
+  let offset = 0
+  for (let i = 0; i < index; i++) {
+    if (props.columns[i].fixed === 'left') {
+      offset += toNumber(props.columns[i].width)
+    }
+  }
+  return offset
+}
+
+const getRightOffset = (index: number) => {
+  let offset = 0
+  for (let i = props.columns.length - 1; i > index; i--) {
+    if (props.columns[i].fixed === 'right') {
+      offset += toNumber(props.columns[i].width)
+    }
+  }
+  return offset
 }
 
 // Determine whether it is the first right fixed column

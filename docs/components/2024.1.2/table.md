@@ -205,16 +205,53 @@ const click = (row: any, index: number) => {
 </template>
 
 <script setup lang="ts">
+  const columns = [
+    { label: 'Name', key: 'name', fixed: 'left' },
+    { label: 'Address', key: 'address', fixed: 'left' },
+    { label: 'Age', key: 'age' }
+  ]
+  const data = [
+    { name: 'John Doe', address: 'New York No. 1 Lake Park', age: 32 },
+    { name: 'Joe Black', address: 'Sidney No. 1 Lake Park', age: 42 },
+    { name: 'Jim Green', address: 'London No. 1 Lake Park', age: 32 },
+    { name: 'Jim Red', address: 'London No. 2 Lake Park', age: 32 }
+  ]
+```
+
+:::
+
+## Column Multiple Fixed
+
+::: raw
+
+<CodeRunner title="Column Multiple Fixed">
+    <ShadcnTable :columns="fixedMultiColumns" :data="data"/>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnTable :columns="columns" :data="data"/>
+</template>
+
+<script setup lang="ts">
 const columns = [
-  { label: 'Name', key: 'name', fixed: 'left' },
-  { label: 'Address', key: 'address', fixed: 'left' },
-  { label: 'Age', key: 'age' }
+    { 'label': 'Name', 'key': 'name', 'width': 100, 'fixed': 'left' },
+    { 'label': 'Age', 'key': 'age', 'width': 100, 'fixed': 'left' },
+    { 'label': 'Province', 'key': 'province', 'width': 100 },
+    { 'label': 'City', 'key': 'city', 'width': 100 },
+    { 'label': 'Address', 'key': 'address', 'width': 200 },
+    { 'label': 'Postcode', 'key': 'zip', 'width': 100, 'fixed': 'right' },
+    { 'label': 'Action', 'key': 'action', 'fixed': 'right', 'width': 160 }
 ]
 const data = [
-  { name: 'John Doe', address: 'New York No. 1 Lake Park', age: 32 },
-  { name: 'Joe Black', address: 'Sidney No. 1 Lake Park', age: 42 },
-  { name: 'Jim Green', address: 'London No. 1 Lake Park', age: 32 },
-  { name: 'Jim Red', address: 'London No. 2 Lake Park', age: 32 }
+    { 'name': 'John Brown', 'age': 18, 'address': 'New York No. 1 Lake Park', 'province': 'America', 'city': 'New York', 'zip': 100000 },
+    { 'name': 'Jim Green', 'age': 24, 'address': 'Washington, D.C. No. 1 Lake Park', 'province': 'America', 'city': 'Washington, D.C.', 'zip': 100000 },
+    { 'name': 'Joe Black', 'age': 30, 'address': 'Sydney No. 1 Lake Park', 'province': 'Australian', 'city': 'Sydney', 'zip': 100000 },
+    { 'name': 'Jon Snow', 'age': 26, 'address': 'Ottawa No. 2 Lake Park', 'province': 'Canada', 'city': 'Ottawa', 'zip': 100000 }
 ]
 ```
 
@@ -314,7 +351,7 @@ const rowClick = (row: any, index: number) => {
         ['label', 'The label of the column', 'string', '-', '-'],
         ['key', 'The key of the column', 'string', '${label}', '-'],
         ['slot', 'The slot of the column', 'string', '-', '-'],
-        ['fixed', 'Whether the column is fixed', 'Enum', '-', 'left | right'],
+        ['fixed', 'Whether the column is fixed, must be set width', 'Enum', '-', 'left | right'],
         ['width', 'The width of the column', 'string | number', 'auto', '-'],
     ]">
 </ApiTable>
@@ -330,9 +367,13 @@ const rowClick = (row: any, index: number) => {
 
 <script lang="ts">
 const columns = [
-  { label: 'Name', key: 'name' },
-  { label: 'Address', key: 'address' },
-  { label: 'Age', key: 'age' }
+  { 'label': 'Name', 'key': 'name' },
+  { 'label': 'Age', 'key': 'age' },
+  { 'label': 'Province', 'key': 'province' },
+  { 'label': 'City', 'key': 'city' },
+  { 'label': 'Address', 'key': 'address' },
+  { 'label': 'Postcode', 'key': 'zip' },
+  { 'label': 'Action', 'key': 'action' }
 ]
 const slotColumns = [
   { label: 'Name', key: 'name' },
@@ -347,16 +388,25 @@ const fixedColumns = [
   { label: 'Actions', key: 'actions', fixed: 'right' }
 ]
 const widthColumns = [
-  { label: 'Name', key: 'name', fixed: 'left' },
+  { label: 'Name', key: 'name' },
   { label: 'Address', key: 'address', width: 1000 },
   { label: 'Age', key: 'age' },
-  { label: 'Actions', key: 'actions', fixed: 'right' }
+  { label: 'Actions', key: 'actions' }
+]
+const fixedMultiColumns = [
+  { 'label': 'Name', 'key': 'name', 'width': 100, 'fixed': 'left' },
+  { 'label': 'Age', 'key': 'age', 'width': 100, 'fixed': 'left' },
+  { 'label': 'Province', 'key': 'province', 'width': 100 },
+  { 'label': 'City', 'key': 'city', 'width': 100 },
+  { 'label': 'Address', 'key': 'address', 'width': 200 },
+  { 'label': 'Postcode', 'key': 'zip', 'width': 100, 'fixed': 'right' },
+  { 'label': 'Action', 'key': 'action', 'fixed': 'right', 'width': 160 }
 ]
 const data = [
-  { name: 'John Doe', address: 'New York No. 1 Lake Park', age: 32 },
-  { name: 'Joe Black', address: 'Sidney No. 1 Lake Park', age: 42 },
-  { name: 'Jim Green', address: 'London No. 1 Lake Park', age: 32 },
-  { name: 'Jim Red', address: 'London No. 2 Lake Park', age: 32 }
+  { 'name': 'John Brown', 'age': 18, 'address': 'New York No. 1 Lake Park', 'province': 'America', 'city': 'New York', 'zip': 100000 },
+  { 'name': 'Jim Green', 'age': 24, 'address': 'Washington, D.C. No. 1 Lake Park', 'province': 'America', 'city': 'Washington, D.C.', 'zip': 100000 },
+  { 'name': 'Joe Black', 'age': 30, 'address': 'Sydney No. 1 Lake Park', 'province': 'Australian', 'city': 'Sydney', 'zip': 100000 },
+  { 'name': 'Jon Snow', 'age': 26, 'address': 'Ottawa No. 2 Lake Park', 'province': 'Canada', 'city': 'Ottawa', 'zip': 100000 }
 ]
 
 export default {
@@ -366,6 +416,7 @@ export default {
         slotColumns,
         fixedColumns,
         widthColumns,
+        fixedMultiColumns,
         data
       }
     },
