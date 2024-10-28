@@ -3,20 +3,17 @@
                :data="data"
                stripe
                border
-               width="100%"
+               width="200"
                @on-row-click="onRowClick">
-    <template #actions="{ index }">
-      {{ index }}
-    </template>
   </ShadcnTable>
 </template>
 
 <script setup lang="ts">
 const columns = [
-  { label: 'Name', key: 'name', fixed: 'left' },
-  { label: 'Address', key: 'address' },
-  { label: 'Age', key: 'age' },
-  { label: 'Actions', key: 'actions', slot: 'actions', fixed: 'right' }
+  { label: 'Name', key: 'name' },
+  { label: 'Address', key: 'address', width: 80, fixed: 'left' },
+  { label: 'Age', key: 'age', fixed: 'right' },
+  { label: 'Actions', key: 'actions' }
 ]
 const data = [
   { name: 'John Doe', address: 'New York No. 1 Lake Park', age: 32 },

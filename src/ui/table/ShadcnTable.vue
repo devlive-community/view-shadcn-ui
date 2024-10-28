@@ -1,9 +1,8 @@
+<!-- ShadcnTable.vue -->
 <template>
-  <div :class="['w-full border-gray-200 relative',
-                border && 'border'
-       ]"
+  <div :class="['w-full border-gray-200 relative', border && 'border']"
        :style="{ width: calcSize(width) }">
-    <div class="overflow-auto">
+    <div class="overflow-auto relative"> <!-- 设置 relative 和 overflow -->
       <div class="min-w-full inline-block align-middle">
         <table class="min-w-full divide-y divide-gray-200">
           <slot>
@@ -13,7 +12,8 @@
                                    :key="c.key"
                                    :label="c.label"
                                    :border="border"
-                                   :fixed="c.fixed"/>
+                                   :fixed="c.fixed"
+                                   :width="c.width"/>
               </ShadcnTableRow>
             </ShadcnTableHeader>
 
@@ -25,7 +25,8 @@
                 <template v-for="col in columns" :key="col.key">
                   <ShadcnTableCell :border="border"
                                    :fixed="col.fixed"
-                                   :stripe="(stripe && rowIndex % 2 === 1)">
+                                   :stripe="(stripe && rowIndex % 2 === 1)"
+                                   :width="col.width">
                     <template v-if="col.slot">
                       <template v-if="hasSlot(col.slot)">
                         <slot :name="col.slot" :row="row" :index="rowIndex"/>
@@ -78,12 +79,10 @@ withDefaults(defineProps<{
 
 const slots = useSlots()
 
-// Checks if the slot exists
 const hasSlot = (name: string) => {
   return !!slots[name]
 }
 
-// Validates the slot and returns an error message
 const validateSlot = (column: Column) => {
   if (column.slot && !hasSlot(column.slot)) {
     throw new Error(`The slot "${ column.slot }" is required for column "${ column.label }" but not provided.`)

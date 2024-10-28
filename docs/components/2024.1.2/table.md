@@ -196,6 +196,39 @@ const data = [
 
 :::
 
+## Column Width
+
+::: raw
+
+<CodeRunner title="Column Width">
+    <ShadcnTable :columns="widthColumns" :data="data"/>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnTable :columns="columns" :data="data"/>    
+</template>
+
+<script setup lang="ts">
+const columns = [
+  { label: 'Name', key: 'name', width: 100 },
+  { label: 'Address', key: 'address', width: 200 },
+  { label: 'Age', key: 'age' }
+]
+const data = [
+  { name: 'John Doe', address: 'New York No. 1 Lake Park', age: 32 },
+  { name: 'Joe Black', address: 'Sidney No. 1 Lake Park', age: 42 },
+  { name: 'Jim Green', address: 'London No. 1 Lake Park', age: 32 },
+  { name: 'Jim Red', address: 'London No. 2 Lake Park', age: 32 }
+]
+```
+
+:::
+
 ## Row Click
 
 <CodeRunner title="Row Click">
@@ -237,11 +270,11 @@ const rowClick = (row: any, index: number) => {
 <ApiTable title="Table Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
     :columns="[
-        ['columns', 'The columns of the table', 'Array', '-', '-'],
-        ['data', 'The data of the table', 'Array', '-', '-'],
-        ['stripe', 'Whether the table is striped', 'Boolean', 'false', '-'],
-        ['border', 'Whether the table is bordered', 'Boolean', 'false', '-'],
-        ['width', 'The width of the table', 'String', '100%', '-'],
+        ['columns', 'The columns of the table', 'array', '-', '-'],
+        ['data', 'The data of the table', 'array', '-', '-'],
+        ['stripe', 'Whether the table is striped', 'boolean', 'false', '-'],
+        ['border', 'Whether the table is bordered', 'boolean', 'false', '-'],
+        ['width', 'The width of the table', 'string | number', '100%', '-'],
     ]">
 </ApiTable>
 
@@ -254,6 +287,7 @@ const rowClick = (row: any, index: number) => {
         ['key', 'The key of the column', 'string', '${label}', '-'],
         ['slot', 'The slot of the column', 'string', '-', '-'],
         ['fixed', 'Whether the column is fixed', 'Enum', '-', 'left | right'],
+        ['width', 'The width of the column', 'string | number', 'auto', '-'],
     ]">
 </ApiTable>
 
@@ -284,6 +318,12 @@ const fixedColumns = [
   { label: 'Age', key: 'age' },
   { label: 'Actions', key: 'actions', fixed: 'right' }
 ]
+const widthColumns = [
+  { label: 'Name', key: 'name', fixed: 'left' },
+  { label: 'Address', key: 'address', width: 100 },
+  { label: 'Age', key: 'age' },
+  { label: 'Actions', key: 'actions', fixed: 'right' }
+]
 const data = [
   { name: 'John Doe', address: 'New York No. 1 Lake Park', age: 32 },
   { name: 'Joe Black', address: 'Sidney No. 1 Lake Park', age: 42 },
@@ -297,6 +337,7 @@ export default {
         columns,
         slotColumns,
         fixedColumns,
+        widthColumns,
         data
       }
     },

@@ -4,4 +4,5 @@ export interface Column
     key: string
     slot?: string
     fixed?: 'left' | 'right'
+    width?: string | number
 }
