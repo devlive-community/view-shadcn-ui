@@ -4,7 +4,9 @@
                 fixed && 'sticky z-10 bg-gray-50',
                 fixed === 'left' && 'left-0',
                 fixed === 'right' && 'right-0',
-                'group-hover:bg-gray-50'
+                'group-hover:bg-gray-50',
+                isLastLeftFixed && 'shadow-left-side',
+                isFirstRightFixed && 'shadow-right-side'
       ]"
       :style="{ width: calcSize(width), minWidth: calcSize(width), maxWidth: calcSize(width) }">
     <slot>
@@ -21,9 +23,13 @@ withDefaults(defineProps<{
   border?: boolean
   fixed?: 'left' | 'right'
   width?: string | number
+  isLastLeftFixed?: boolean
+  isFirstRightFixed?: boolean
 }>(), {
   border: false,
   fixed: undefined,
-  width: 'auto'
+  width: 'auto',
+  isLastLeftFixed: false,
+  isFirstRightFixed: false
 })
 </script>

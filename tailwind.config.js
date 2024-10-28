@@ -101,6 +101,10 @@ module.exports = {
                 'slide-down': 'slide-down 0.3s ease-out forwards',
                 'slide-up': 'slide-up 0.3s ease-in forwards'
             },
+            boxShadow: {
+                'left-side': 'inset -8px 0 6px -6px rgba(0, 0, 0, 0.15)',
+                'right-side': 'inset 8px 0 6px -6px rgba(0, 0, 0, 0.15)',
+            }
         },
     },
     plugins: [animate],

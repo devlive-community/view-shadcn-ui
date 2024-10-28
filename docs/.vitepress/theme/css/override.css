@@ -1,17 +1,7 @@
-.vp-doc table {
-    margin: 0;
-    display: table;
-}
-
 .vp-doc h3 {
     margin: 0;
 }
 
 .vp-doc p {
     margin: 0;
-}
-
-.vp-doc th, .vp-doc td
-{
-    border: 0px solid var(--vp-c-divider);
 }

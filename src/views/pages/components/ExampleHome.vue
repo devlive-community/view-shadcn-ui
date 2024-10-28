@@ -3,17 +3,17 @@
                :data="data"
                stripe
                border
-               width="200"
+               width="350"
                @on-row-click="onRowClick">
   </ShadcnTable>
 </template>
 
 <script setup lang="ts">
 const columns = [
-  { label: 'Name', key: 'name' },
-  { label: 'Address', key: 'address', width: 80, fixed: 'left' },
+  { label: 'Name', key: 'name', fixed: 'left' },
+  { label: 'Address', key: 'address', width: 180 },
   { label: 'Age', key: 'age', fixed: 'right' },
-  { label: 'Actions', key: 'actions' }
+  { label: 'Actions', key: 'actions', fixed: 'right' }
 ]
 const data = [
   { name: 'John Doe', address: 'New York No. 1 Lake Park', age: 32 },

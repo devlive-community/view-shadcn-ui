@@ -6,7 +6,9 @@
               fixed === 'right' && 'right-0',
               stripe ? 'group-hover:bg-gray-100' : 'group-hover:bg-gray-50',
               fixed && stripe && 'bg-gray-50',
-              fixed && !stripe && 'bg-white'
+              fixed && !stripe && 'bg-white',
+              isLastLeftFixed && 'shadow-left-side',
+              isFirstRightFixed && 'shadow-right-side'
       ]"
       :style="{ width: calcSize(width), minWidth: calcSize(width), maxWidth: calcSize(width) }">
     <slot/>
@@ -22,11 +24,15 @@ withDefaults(defineProps<{
   stripe?: boolean
   fixed?: 'left' | 'right'
   width?: string | number
+  isLastLeftFixed?: boolean
+  isFirstRightFixed?: boolean
 }>(), {
   border: false,
   stripe: false,
   fixed: undefined,
-  width: 'auto'
+  width: 'auto',
+  isLastLeftFixed: false,
+  isFirstRightFixed: false
 })
 
 const isTable = inject('ShadcnTable', false)

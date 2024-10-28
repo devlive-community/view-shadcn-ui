@@ -8,12 +8,14 @@
           <slot>
             <ShadcnTableHeader>
               <ShadcnTableRow>
-                <ShadcnTableColumn v-for="c in columns"
+                <ShadcnTableColumn v-for="(c, index) in columns"
                                    :key="c.key"
                                    :label="c.label"
                                    :border="border"
                                    :fixed="c.fixed"
-                                   :width="c.width"/>
+                                   :width="c.width"
+                                   :isLastLeftFixed="isLastLeftFixed(index)"
+                                   :isFirstRightFixed="isFirstRightFixed(index)"/>
               </ShadcnTableRow>
             </ShadcnTableHeader>
 
@@ -22,11 +24,13 @@
                               :key="rowIndex"
                               :stripe="(stripe && rowIndex % 2 === 1)"
                               @click="onRowClick(row, rowIndex)">
-                <template v-for="col in columns" :key="col.key">
+                <template v-for="(col, colIndex) in columns" :key="col.key">
                   <ShadcnTableCell :border="border"
                                    :fixed="col.fixed"
                                    :stripe="(stripe && rowIndex % 2 === 1)"
-                                   :width="col.width">
+                                   :width="col.width"
+                                   :isLastLeftFixed="isLastLeftFixed(colIndex)"
+                                   :isFirstRightFixed="isFirstRightFixed(colIndex)">
                     <template v-if="col.slot">
                       <template v-if="hasSlot(col.slot)">
                         <slot :name="col.slot" :row="row" :index="rowIndex"/>
@@ -65,7 +69,7 @@ provide('ShadcnTable', true)
 
 const emit = defineEmits(['on-row-click'])
 
-withDefaults(defineProps<{
+const props = withDefaults(defineProps<{
   columns: Array<Column>
   data: Array<any>
   stripe?: boolean
@@ -88,6 +92,30 @@ const validateSlot = (column: Column) => {
     throw new Error(`The slot "${ column.slot }" is required for column "${ column.label }" but not provided.`)
   }
   return ''
+}
+
+// Determine whether it is the last left fixed column
+const isLastLeftFixed = (currentIndex: number) => {
+  let isLast = true
+  for (let i = currentIndex + 1; i < props.columns.length; i++) {
+    if (props.columns[i].fixed === 'left') {
+      isLast = false
+      break
+    }
+  }
+  return props.columns[currentIndex].fixed === 'left' && isLast
+}
+
+// Determine whether it is the first right fixed column
+const isFirstRightFixed = (currentIndex: number) => {
+  let isFirst = true
+  for (let i = currentIndex - 1; i >= 0; i--) {
+    if (props.columns[i].fixed === 'right') {
+      isFirst = false
+      break
+    }
+  }
+  return props.columns[currentIndex].fixed === 'right' && isFirst
 }
 
 const onRowClick = (row: any, index: number) => {

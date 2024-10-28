@@ -8,9 +8,13 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 ## Usage
 
+::: raw
+
 <CodeRunner title="Usage">
     <ShadcnTable :columns="columns" :data="data"/>
 </CodeRunner>
+
+:::
 
 ::: details Show code
 
@@ -37,9 +41,13 @@ const data = [
 
 ## Stripe
 
+::: raw
+
 <CodeRunner title="Stripe">
     <ShadcnTable :columns="columns" :data="data" stripe/>
 </CodeRunner>
+
+:::
 
 ::: details Show code
 
@@ -66,9 +74,13 @@ const data = [
 
 ## Border
 
+::: raw
+
 <CodeRunner title="Border">
     <ShadcnTable :columns="columns" :data="data" border/>
 </CodeRunner>
+
+:::
 
 ::: details Show code
 
@@ -95,9 +107,13 @@ const data = [
 
 ## Width
 
+::: raw
+
 <CodeRunner title="Width">
     <ShadcnTable :columns="columns" :data="data" width="300"/>
 </CodeRunner>
+
+:::
 
 ::: details Show code
 
@@ -124,6 +140,8 @@ const data = [
 
 ## Column Slot
 
+::: raw
+
 <CodeRunner title="Column Slot">
     <ShadcnTable :columns="slotColumns" :data="data">
       <template #actions="{ row, index }">
@@ -131,6 +149,8 @@ const data = [
       </template>
     </ShadcnTable>
 </CodeRunner>
+
+:::
 
 ::: details Show code
 
@@ -169,9 +189,13 @@ const click = (row: any, index: number) => {
 
 ## Column Fixed
 
+::: raw
+
 <CodeRunner title="Column Fixed">
     <ShadcnTable :columns="fixedColumns" :data="data" width="300"/>
 </CodeRunner>
+
+:::
 
 ::: details Show code
 
@@ -231,9 +255,13 @@ const data = [
 
 ## Row Click
 
+::: raw
+
 <CodeRunner title="Row Click">
     <ShadcnTable :columns="columns" :data="data" @on-row-click="click"/>
 </CodeRunner>
+
+:::
 
 ::: details Show code
 
@@ -314,13 +342,13 @@ const slotColumns = [
 ]
 const fixedColumns = [
   { label: 'Name', key: 'name', fixed: 'left' },
-  { label: 'Address', key: 'address' },
+  { label: 'Address', key: 'address', width: 500 },
   { label: 'Age', key: 'age' },
   { label: 'Actions', key: 'actions', fixed: 'right' }
 ]
 const widthColumns = [
   { label: 'Name', key: 'name', fixed: 'left' },
-  { label: 'Address', key: 'address', width: 100 },
+  { label: 'Address', key: 'address', width: 1000 },
   { label: 'Age', key: 'age' },
   { label: 'Actions', key: 'actions', fixed: 'right' }
 ]
