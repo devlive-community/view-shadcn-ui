@@ -4,6 +4,8 @@ title: "2024.1.1 Release Notes"
 
 # 2024.1.1 Release Notes
 
+<br />
+
 ### General Changes
 
 - [Core] Add release npm repository configuration
