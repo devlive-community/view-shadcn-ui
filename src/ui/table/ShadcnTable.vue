@@ -8,7 +8,7 @@
           <slot>
             <ShadcnTableHeader>
               <ShadcnTableRow>
-                <ShadcnTableColumn v-for="(c, index) in columns"
+                <ShadcnTableColumn v-for="(c, index) in reorderedColumns"
                                    :key="c.key"
                                    :label="c.label"
                                    :border="border"
@@ -26,7 +26,7 @@
                               :key="rowIndex"
                               :stripe="(stripe && rowIndex % 2 === 1)"
                               @click="onRowClick(row, rowIndex)">
-                <template v-for="(col, colIndex) in columns" :key="col.key">
+                <template v-for="(col, colIndex) in reorderedColumns" :key="col.key">
                   <ShadcnTableCell :border="border"
                                    :fixed="col.fixed"
                                    :stripe="(stripe && rowIndex % 2 === 1)"
@@ -60,7 +60,7 @@
 </template>
 
 <script setup lang="ts">
-import { provide, useSlots } from 'vue'
+import { computed, provide, useSlots } from 'vue'
 import ShadcnTableHeader from './ShadcnTableHeader.vue'
 import ShadcnTableBody from './ShadcnTableBody.vue'
 import ShadcnTableRow from './ShadcnTableRow.vue'
@@ -99,48 +99,71 @@ const validateSlot = (column: Column) => {
   return ''
 }
 
-// Determine whether it is the last left fixed column
-const isLastLeftFixed = (currentIndex: number) => {
-  let isLast = true
-  for (let i = currentIndex + 1; i < props.columns.length; i++) {
-    if (props.columns[i].fixed === 'left') {
-      isLast = false
-      break
+// Rearrange the sequence so that the fixed columns are placed on both sides
+const reorderedColumns = computed(() => {
+  const leftFixed = Array<Column>()
+  const notFixed = Array<Column>()
+  const rightFixed = Array<Column>()
+
+  // Categorize the columns
+  for (const col of props.columns) {
+    if (col.fixed === 'left') {
+      leftFixed.push(col)
+    }
+    else if (col.fixed === 'right') {
+      rightFixed.push(col)
+    }
+    else {
+      notFixed.push(col)
     }
   }
-  return props.columns[currentIndex].fixed === 'left' && isLast
+
+  // Merge all columns
+  return [...leftFixed, ...notFixed, ...rightFixed]
+})
+
+const isLastLeftFixed = (currentIndex: number) => {
+  const currentCol = reorderedColumns.value[currentIndex]
+  if (currentCol.fixed !== 'left') {
+    return false
+  }
+
+  // Check if the next column is not a left fixed column
+  const nextCol = reorderedColumns.value[currentIndex + 1]
+  return !nextCol || nextCol.fixed !== 'left'
+}
+
+const isFirstRightFixed = (currentIndex: number) => {
+  const currentCol = reorderedColumns.value[currentIndex]
+  if (currentCol.fixed !== 'right') {
+    return false
+  }
+
+  // Check if the previous column is not a right-pinned column
+  const prevCol = reorderedColumns.value[currentIndex - 1]
+  return !prevCol || prevCol.fixed !== 'right'
 }
 
 const getLeftOffset = (index: number) => {
+  if (!reorderedColumns.value[index].fixed || reorderedColumns.value[index].fixed !== 'left') {
+    return 0
+  }
   let offset = 0
   for (let i = 0; i < index; i++) {
-    if (props.columns[i].fixed === 'left') {
-      offset += toNumber(props.columns[i].width)
-    }
+    offset += toNumber(reorderedColumns.value[i].width)
   }
   return offset
 }
 
 const getRightOffset = (index: number) => {
+  if (!reorderedColumns.value[index].fixed || reorderedColumns.value[index].fixed !== 'right') {
+    return 0
+  }
   let offset = 0
-  for (let i = props.columns.length - 1; i > index; i--) {
-    if (props.columns[i].fixed === 'right') {
-      offset += toNumber(props.columns[i].width)
-    }
+  for (let i = reorderedColumns.value.length - 1; i > index; i--) {
+    offset += toNumber(reorderedColumns.value[i].width)
   }
   return offset
-}
-
-// Determine whether it is the first right fixed column
-const isFirstRightFixed = (currentIndex: number) => {
-  let isFirst = true
-  for (let i = currentIndex - 1; i >= 0; i--) {
-    if (props.columns[i].fixed === 'right') {
-      isFirst = false
-      break
-    }
-  }
-  return props.columns[currentIndex].fixed === 'right' && isFirst
 }
 
 const onRowClick = (row: any, index: number) => {
