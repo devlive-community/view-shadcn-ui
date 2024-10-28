@@ -23,7 +23,7 @@
                   // The other right pinned columns only have a right border
                   !isFirstRightFixed && 'after:absolute after:inset-y-0 after:border-r-gray-200 after:right-0 after:w-[1px]'
                 ],
-                !fixed && 'border-r border-r-gray-200',
+                border ? 'border-r border-r-gray-200' : 'border-b border-b-gray-200',
                 'group-hover:bg-gray-50'
       ]"
       :style="{

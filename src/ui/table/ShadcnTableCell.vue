@@ -1,10 +1,12 @@
-// ShadcnTableCell.vue
 <template>
   <td :class="['px-4 py-4 text-sm text-gray-500 whitespace-normal break-words relative',
               fixed && 'sticky',
               fixed === 'left' && [
                 stripe ? 'bg-gray-50' : 'bg-white',
+                border ? 'border border-r-gray-200' : 'border-b border-b-gray-200',
                 'z-10',
+                'transition-colors duration-200',
+                'group-hover:bg-gray-100',
                 // The last left fixed column adds a special right border and shadow
                 isLastLeftFixed && [
                   'after:absolute after:inset-y-0 after:border-r after:border-r-gray-200 after:right-0 after:w-[1px] after:shadow-left-side',
@@ -12,11 +14,16 @@
                   'shadow-left-side'
                 ],
                 // The other left pinned columns only have a right border
-                !isLastLeftFixed && 'after:absolute after:inset-y-0 after:border-r-gray-200 after:right-0 after:w-[1px]'
+                !isLastLeftFixed && [
+                  'after:absolute after:inset-y-0 after:border-r-gray-200 after:right-0 after:w-[1px]'
+                ]
               ],
               fixed === 'right' && [
                 stripe ? 'bg-gray-50' : 'bg-white',
+                border ? 'border border-r-gray-200' : 'border-b border-b-gray-200',
                 'z-10',
+                'transition-colors duration-200',
+                'group-hover:bg-gray-100',
                 // The first right fixed column adds a special left border and shadow
                 isFirstRightFixed && [
                   'before:absolute before:inset-y-0 before:border-l before:border-l-gray-200 before:left-0 before:w-[1px] before:shadow-right-side',
@@ -24,10 +31,16 @@
                   'shadow-right-side'
                 ],
                 // The other right pinned columns only have a right border
-                !isFirstRightFixed && 'after:absolute after:inset-y-0 after:right-0 after:w-[1px]'
+                !isFirstRightFixed && [
+                  'after:absolute after:inset-y-0 after:right-0 after:w-[1px]'
+                ]
               ],
-              !fixed && 'border-r border-r-gray-200',
-              stripe ? 'hover:bg-gray-100' : 'hover:bg-gray-50'
+              !fixed && [
+                border ? 'border border-r-gray-200' : 'border-b border-b-gray-200',
+                stripe ? 'bg-gray-50' : 'bg-white',
+                'transition-colors duration-200',
+                'group-hover:bg-gray-100'
+              ]
       ]"
       :style="{
               width: calcSize(width),

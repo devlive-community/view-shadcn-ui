@@ -1,4 +1,3 @@
-<!-- ShadcnTable.vue -->
 <template>
   <div :class="['w-full border-gray-200 relative', border && 'border']"
        :style="{ width: calcSize(width) }">
