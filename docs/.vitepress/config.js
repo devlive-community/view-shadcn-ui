@@ -31,12 +31,17 @@ export default {
         nav: [
             {text: 'Home', link: '/'},
             {
+                text: 'Team',
+                link: '/team',
+                activeMatch: '/team'
+            },
+            {
                 text: "Guide",
                 link: "/guide/installation",
                 activeMatch: '/guide/'
             },
             {
-                text: 'Components (v2024.1.2 Alpha)',
+                text: 'Components (v2024.1.3 Alpha)',
                 items: [
                     {
                         text: '2024.1.2',
