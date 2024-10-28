@@ -3,14 +3,17 @@
               fixed && 'sticky',
               fixed === 'left' && [
                 stripe ? 'bg-gray-50' : 'bg-white',
-                border ? 'border border-r-gray-200' : 'border-b border-b-gray-200',
+                border && 'border-b',
+                !border && 'border-b',
                 'z-10',
                 'transition-colors duration-200',
                 'group-hover:bg-gray-100',
                 // The last left fixed column adds a special right border and shadow
                 isLastLeftFixed && [
-                  'after:absolute after:inset-y-0 after:border-r after:border-r-gray-200 after:right-0 after:w-[1px] after:shadow-left-side',
-                  'before:absolute before:inset-y-0 before:border-r before:border-r-gray-200 before:left-0 before:w-[1px]',
+                  border && [
+                      'after:absolute after:inset-y-0 after:border-r after:border-r-gray-200 after:right-0 after:w-[1px] after:shadow-left-side',
+                      'before:absolute before:inset-y-0 before:border-r before:border-r-gray-200 before:left-0 before:w-[1px]'
+                  ],
                   'shadow-left-side'
                 ],
                 // The other left pinned columns only have a right border
@@ -20,14 +23,17 @@
               ],
               fixed === 'right' && [
                 stripe ? 'bg-gray-50' : 'bg-white',
-                border ? 'border border-r-gray-200' : 'border-b border-b-gray-200',
+                border && 'border-b',
+                !border && 'border-b',
                 'z-10',
                 'transition-colors duration-200',
                 'group-hover:bg-gray-100',
                 // The first right fixed column adds a special left border and shadow
                 isFirstRightFixed && [
-                  'before:absolute before:inset-y-0 before:border-l before:border-l-gray-200 before:left-0 before:w-[1px] before:shadow-right-side',
-                  'after:absolute after:inset-y-0 after:border-r after:border-r-gray-200 after:right-0 after:w-[1px]',
+                  border && [
+                      'before:absolute before:inset-y-0 before:border-l before:border-l-gray-200 before:left-0 before:w-[1px] before:shadow-right-side',
+                      'after:absolute after:inset-y-0 after:border-r after:border-r-gray-200 after:right-0 after:w-[1px]'
+                  ],
                   'shadow-right-side'
                 ],
                 // The other right pinned columns only have a right border
@@ -36,7 +42,8 @@
                 ]
               ],
               !fixed && [
-                border ? 'border border-r-gray-200' : 'border-b border-b-gray-200',
+                !border && 'border-b',
+                border && 'border-b border-l',
                 stripe ? 'bg-gray-50' : 'bg-white',
                 'transition-colors duration-200',
                 'group-hover:bg-gray-100'

@@ -1,7 +1,7 @@
 <template>
   <div :class="['w-full border-gray-200 relative', border && 'border']"
-       :style="{ width: calcSize(width) }">
-    <div class="overflow-auto relative">
+       :style="{ width: calcSize(width), height: calcSize(height) }">
+    <div class="overflow-auto relative h-full">
       <div class="min-w-full inline-block align-middle">
         <table class="min-w-full divide-y divide-gray-200">
           <slot>
@@ -79,10 +79,12 @@ const props = withDefaults(defineProps<{
   stripe?: boolean
   border: boolean
   width?: string | number
+  height?: string | number
 }>(), {
   stripe: false,
   border: false,
-  width: '100%'
+  width: '100%',
+  height: 'auto'
 })
 
 const slots = useSlots()

@@ -138,6 +138,39 @@ const data = [
 
 :::
 
+## Height
+
+::: raw
+
+<CodeRunner title="Height">
+    <ShadcnTable :columns="columns" :data="data" height="300"/>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnTable :columns="columns" :data="data" height="300"/>
+</template>
+
+<script setup lang="ts">
+const columns = [
+  { label: 'Name', key: 'name' },
+  { label: 'Address', key: 'address' },
+  { label: 'Age', key: 'age' }
+]
+const data = [
+  { name: 'John Doe', address: 'New York No. 1 Lake Park', age: 32 },
+  { name: 'Joe Black', address: 'Sidney No. 1 Lake Park', age: 42 },
+  { name: 'Jim Green', address: 'London No. 1 Lake Park', age: 32 },
+  { name: 'Jim Red', address: 'London No. 2 Lake Park', age: 32 }
+]
+```
+
+:::
+
 ## Column Slot
 
 ::: raw
@@ -340,6 +373,7 @@ const rowClick = (row: any, index: number) => {
         ['stripe', 'Whether the table is striped', 'boolean', 'false', '-'],
         ['border', 'Whether the table is bordered', 'boolean', 'false', '-'],
         ['width', 'The width of the table', 'string | number', '100%', '-'],
+        ['height', 'The height of the table', 'string | number', 'auto', '-'],
     ]">
 </ApiTable>
 

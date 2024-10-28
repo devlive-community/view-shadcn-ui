@@ -1,6 +1,10 @@
 <template>
   <ShadcnTable :columns="columns"
                :data="data"
+               stripe
+               border
+               width="800"
+               height="150"
                @on-row-click="onRowClick">
   </ShadcnTable>
 </template>
@@ -10,9 +14,9 @@ const columns = [
   { 'label': 'Name', 'key': 'name', 'width': 100 },
   { 'label': 'Age', 'key': 'age', 'width': 100 },
   { 'label': 'Province', 'key': 'province', 'width': 100 },
-  { 'label': 'City', 'key': 'city', 'width': 100 },
+  { 'label': 'City', 'key': 'city', 'width': 100, 'fixed': 'left' },
   { 'label': 'Address', 'key': 'address', 'width': 200, 'fixed': 'left' },
-  { 'label': 'Postcode', 'key': 'zip', 'width': 100 },
+  { 'label': 'Postcode', 'key': 'zip', 'width': 100, 'fixed': 'right' },
   { 'label': 'Action', 'key': 'action', 'width': 160, 'fixed': 'right' }
 ]
 const data = [

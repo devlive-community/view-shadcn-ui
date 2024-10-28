@@ -5,19 +5,23 @@
                   'bg-gray-50 z-10',
                   // The last left fixed column adds a special right border and shadow
                   isLastLeftFixed && [
-                    'after:absolute after:inset-y-0 after:border-r after:border-r-gray-200 after:right-0 after:w-[1px] after:shadow-left-side',
-                    'before:absolute before:inset-y-0 before:border-r before:border-r-gray-200 before:left-0 before:w-[1px]',
+                    border && [
+                        'after:absolute after:inset-y-0 after:border-r after:border-r-gray-200 after:right-0 after:w-[1px] after:shadow-left-side',
+                        'before:absolute before:inset-y-0 before:border-r before:border-r-gray-200 before:left-0 before:w-[1px]'
+                    ],
                     'shadow-left-side'
                   ],
                   // The other left pinned columns only have a right border
-                  !isLastLeftFixed && 'after:absolute after:inset-y-0after:border-r-gray-200 after:right-0 after:w-[1px]'
+                  !isLastLeftFixed && 'after:absolute after:inset-y-0 after:border-r-gray-200 after:right-0 after:w-[1px]'
                 ],
                 fixed === 'right' && [
                   'bg-gray-50 z-10',
                   // The first right fixed column adds a special left border and shadow
                   isFirstRightFixed && [
-                    'before:absolute before:inset-y-0 before:border-l before:border-l-gray-200 before:left-0 before:w-[1px] before:shadow-right-side',
-                    'after:absolute after:inset-y-0 after:border-r after:border-r-gray-200 after:right-0 after:w-[1px]',
+                      border && [
+                          'before:absolute before:inset-y-0 before:border-l before:border-l-gray-200 before:left-0 before:w-[1px] before:shadow-right-side',
+                          'after:absolute after:inset-y-0 after:border-r after:border-r-gray-200 after:right-0 after:w-[1px]'
+                      ],
                     'shadow-right-side'
                   ],
                   // The other right pinned columns only have a right border
