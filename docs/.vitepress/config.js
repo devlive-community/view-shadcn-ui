@@ -52,6 +52,11 @@ export default {
                         text: 'CHANGELOG <span class="VPBadge tip">2024.1.2</span>',
                         link: '/changelog',
                         activeMatch: '/changelog'
+                    },
+                    {
+                        text: 'CONTRIBUTING',
+                        external: true,
+                        link: 'https://github.com/devlive-community/view-shadcn-ui/blob/dev/CONTRIBUTING.md',
                     }
                 ]
             }
