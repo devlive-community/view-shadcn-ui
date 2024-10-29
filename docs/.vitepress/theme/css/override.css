@@ -17,3 +17,19 @@
     font-weight: 500;
     transform: translateY(-2px);
 }
+
+.VPSidebar {
+    background-color: transparent !important;
+}
+
+.VPSidebar .curtain {
+    background-color: white !important;
+}
+
+.dark .VPSidebar .curtain {
+    background-color: hsl(var(--background)) !important;
+}
+
+.dark .VPNavBar:not(.home.top) .content-body {
+    background-color: hsl(var(--background)) !important;
+}
