@@ -7,92 +7,92 @@ hero:
   name: Components
 
 features:
-  - icon: B
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/button.svg" />
     title: <a href="button.html">Shadcn Button <span class="VPBadge tip">2024.1.1</span></a>
     details: Interactive elements used to trigger specific actions or submit data
-  - icon: I
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/icon.svg" />
     title: <a href="icon.html">Shadcn Icon <span class="VPBadge tip">2024.1.1</span></a>
     details: Icon component based on lucide
-  - icon: C
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/copy.svg" />
     title: <a href='copy.html'>Shadcn Copy <span class="VPBadge tip">2024.1.1</span></a>
     details: Copy text to clipboard
-  - icon: C
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/card.svg" />
     title: <a href="card.html">Shadcn Card <span class="VPBadge tip">2024.1.1</span></a>
     details: Card component
-  - icon: M
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/modal.svg" />
     title: <a href="modal.html">Shadcn Modal <span class="VPBadge tip">2024.1.1</span></a>
     details: Modal component
-  - icon: T
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/tooltip.svg" />
     title: <a href='tooltip.html'>Shadcn Tooltip <span class="VPBadge tip">2024.1.1</span></a>
     details: Tooltip component
-  - icon: C
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/code.svg" />
     title: <a href='code.html'>Shadcn Code <span class="VPBadge tip">2024.1.1</span></a>
     details: Code component
-  - icon: I
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/input.svg" />
     title: <a href="input.html">Shadcn Input <span class="VPBadge tip">2024.1.1</span></a>
     details: Input component
 
-  - icon: IC
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/row-col.svg" />
     title: <a href='row-col.html'>Shadcn Row and Col <span class="VPBadge tip">2024.1.2</span></a>
     details: Row and Col component
-  - icon: D
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/divider.svg" />
     title: <a href='divider.html'>Shadcn Divider <span class="VPBadge tip">2024.1.2</span></a>
     details: Divider component
-  - icon: E
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/ellipsis.svg" />
     title: <a href='ellipsis.html'>Shadcn Ellipsis <span class="VPBadge tip">2024.1.2</span></a>
     details: Ellipsis component
-  - icon: A
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/avatar.svg" />
     title: <a href="avatar.html">Shadcn Avatar <span class="VPBadge tip">2024.1.2</span></a>
     details: An avatar is used to display user avatar
-  - icon: S
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/space.svg" />
     title: <a href='space.html'>Shadcn Space <span class="VPBadge tip">2024.1.2</span></a>
     details: Space component
-  - icon: S
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/skeleton.svg" />
     title: <a href='skeleton.html'>Shadcn Skeleton <span class="VPBadge tip">2024.1.2</span></a>
     details: Skeleton component
-  - icon: L
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/layout.svg" />
     title: <a href='layout.html'>Shadcn Layout <span class="VPBadge tip">2024.1.2</span></a>
     details: Layout component
-  - icon: A
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/alert.svg" />
     title: <a href="alert.html">Shadcn Alert <span class="VPBadge tip">2024.1.2</span></a>
     details: Statically present some warning messages, which can be closed manually
-  - icon: P
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/progress.svg" />
     title: <a href="progress.html">Shadcn Progress <span class="VPBadge tip">2024.1.2</span></a>
     details: Progress component
-  - icon: D
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/drawer.svg" />
     title: <a href='drawer.html'>Shadcn Drawer <span class="VPBadge tip">2024.1.2</span></a>
     details: Drawer component
-  - icon: M
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/message.svg" />
     title: <a href='message.html'>Shadcn Message <span class="VPBadge tip">2024.1.2</span></a>
     details: Message component
-  - icon: S
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/switch.svg" />
     title: <a href='switch.html'>Shadcn Switch <span class="VPBadge tip">2024.1.2</span></a>
     details: Switch component
-  - icon: R
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/radio.svg" />
     title: <a href='radio.html'>Shadcn Radio <span class="VPBadge tip">2024.1.2</span></a>
     details: Radio component
-  - icon: C
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/checkbox.svg" />
     title: <a href='checkbox.html'>Shadcn Checkbox <span class="VPBadge tip">2024.1.2</span></a>
     details: Checkbox component
-  - icon: S
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/select.svg" />
     title: <a href='select.html'>Shadcn Select <span class="VPBadge tip">2024.1.2</span></a>
     details: Select component
-  - icon: R
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/rate.svg" />
     title: <a href='rate.html'>Shadcn Rate <span class="VPBadge tip">2024.1.2</span></a>
     details: Rate component
-  - icon: T
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/table.svg" />
     title: <a href='table.html'>Shadcn Table <span class="VPBadge tip">2024.1.2</span></a>
     details: Table component
-  - icon: T
-    title: <a href='tab.html'>Shadcn Tabs <span class="VPBadge tip">2024.1.2</span></a>
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/tabs.svg" />
+    title: <a href='tabs.html'>Shadcn Tabs <span class="VPBadge tip">2024.1.2</span></a>
     details: Tabs component
-  - icon: P
-    title: <a href='page.html'>Shadcn Pagination <span class="VPBadge tip">2024.1.2</span></a>
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/pagination.svg" />
+    title: <a href='pagination.html'>Shadcn Pagination <span class="VPBadge tip">2024.1.2</span></a>
     details: Pagination component
-  - icon: M
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/menu.svg" />
     title: <a href='menu.html'>Shadcn Menu <span class="VPBadge tip">2024.1.2</span></a>
     details: Menu component
-  - icon: B
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/badge.svg" />
     title: <a href='badge.html'>Shadcn Badge <span class="VPBadge tip">2024.1.2</span></a>
     details: Badge component
 ---

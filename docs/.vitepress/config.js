@@ -137,8 +137,8 @@ export default {
                     base: '/components/',
                     collapsed: false,
                     items: [
-                        {text: 'Tab <span class="VPBadge tip">2024.1.2</span>', link: 'tab'},
-                        {text: 'Page <span class="VPBadge tip">2024.1.2</span>', link: 'page'},
+                        {text: 'Tabs <span class="VPBadge tip">2024.1.2</span>', link: 'tabs'},
+                        {text: 'Pagination <span class="VPBadge tip">2024.1.2</span>', link: 'pagination'},
                         {text: 'Menu <span class="VPBadge tip">2024.1.2</span>', link: 'menu'},
                         {text: 'Badge <span class="VPBadge tip">2024.1.2</span>', link: 'badge'},
                     ]
