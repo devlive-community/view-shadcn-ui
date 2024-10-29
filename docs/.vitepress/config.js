@@ -141,6 +141,7 @@ export default {
                         {text: 'Pagination <span class="VPBadge tip">2024.1.2</span>', link: 'pagination'},
                         {text: 'Menu <span class="VPBadge tip">2024.1.2</span>', link: 'menu'},
                         {text: 'Badge <span class="VPBadge tip">2024.1.2</span>', link: 'badge'},
+                        {text: 'Breadcrumb <span class="VPBadge tip">2024.1.3</span>', link: 'breadcrumb'},
                     ]
                 }
             ]
