@@ -1,50 +1,47 @@
 <template>
-  <Button :class="cn(computedSize, 'bg-[--button-bg] hover:bg-[--button-bg-hover]', {
-              'rounded-full': round || circle
-            })"
-          :style="{
-            '--button-bg': computedType,
-            '--button-bg-hover': calculateHoverColor(computedType),
-            backgroundColor: color
-          }"
-          :size="circle ? 'icon' : 'default'">
-    <div v-if="loading" class="flex items-center">
-      <Loader2 class="animate-spin mr-1.5"/>
+  <button type="button"
+          :class="[ButtonSize[size],
+                  ButtonBackgroundType[type],
+                  ButtonHoverType[type],
+                  type === 'text' ? 'text-gray-600' : 'text-white',
+                  {'rounded-full': round || circle},
+                  {'rounded-md': !round && !circle},
+                  {'w-9 h-9 p-0': circle},
+                  {'opacity-70 cursor-not-allowed': loading || disabled},
+          ]"
+          :disabled="loading || disabled"
+          :style="{ backgroundColor: color }">
+    <!-- Loading State -->
+    <div v-if="loading" class="flex items-center justify-center">
+      <Loader2 class="animate-spin" :class="{'mr-1.5': $slots.loading}"/>
       <slot v-if="$slots.loading" name="loading"/>
     </div>
 
-    <div v-else class="flex items-center">
-      <slot v-if="$slots.icon" name="icon" :class="{'mr-1.5': text || $slots.default}"/>
-      <span v-if="text">{{ text }}</span>
+    <!-- Normal State -->
+    <div v-else class="flex items-center justify-center gap-1.5">
+      <slot v-if="$slots.icon" name="icon"/>
+      <span v-if="text" :class="{'ml-0': !$slots.icon}">{{ text }}</span>
       <slot v-else/>
     </div>
-  </Button>
+  </button>
 </template>
 
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue'
-import { Button } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
 import { Loader2 } from 'lucide-vue-next'
-import { calculateHoverColor } from '@/utils/Color.ts'
-import { Size } from '@/ui/enum/Size.ts'
-import { Type } from '@/ui/enum/Type.ts'
+import { ButtonBackgroundType, ButtonHoverType } from '@/ui/common/type.ts'
+import { ButtonSize } from '@/ui/common/size.ts'
 
-const props = defineProps<{
+withDefaults(defineProps<{
   text?: string
-  size?: keyof typeof Size
-  type?: keyof typeof Type
+  size?: keyof typeof ButtonSize
+  type?: keyof typeof ButtonBackgroundType
   round?: boolean
   circle?: boolean
   loading?: boolean
   color?: string
-}>()
-
-const computedSize = ref<string>('default')
-const computedType = ref<string>('primary')
-
-watchEffect(() => {
-  computedSize.value = Size[props.size || 'default']
-  computedType.value = Type[props.type || 'primary']
+  disabled?: boolean
+}>(), {
+  size: 'default',
+  type: 'primary'
 })
 </script>

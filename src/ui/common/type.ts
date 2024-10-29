@@ -38,6 +38,27 @@ export enum BackgroundType
     error = 'bg-red-50'
 }
 
+export enum ButtonBackgroundType
+{
+    primary = 'bg-blue-400',
+    info = 'bg-blue-400',
+    success = 'bg-green-400',
+    warning = 'bg-yellow-400',
+    error = 'bg-red-400',
+    danger = 'bg-red-400',
+    text = 'bg-transparent'
+}
+
+export enum ButtonHoverType {
+    primary = 'hover:bg-blue-500',
+    info = 'hover:bg-blue-500',
+    success = 'hover:bg-green-500',
+    warning = 'hover:bg-yellow-500',
+    error = 'hover:bg-red-500',
+    danger = 'hover:bg-red-500',
+    text = 'hover:bg-transparent'
+}
+
 export enum SkeletonType
 {
     circle,
