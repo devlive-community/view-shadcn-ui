@@ -40,6 +40,7 @@ export enum BackgroundType
 
 export enum ButtonBackgroundType
 {
+    default = 'bg-white',
     primary = 'bg-blue-400',
     info = 'bg-blue-400',
     success = 'bg-green-400',
@@ -50,6 +51,7 @@ export enum ButtonBackgroundType
 }
 
 export enum ButtonHoverType {
+    default = 'hover:bg-white',
     primary = 'hover:bg-blue-500',
     info = 'hover:bg-blue-500',
     success = 'hover:bg-green-500',

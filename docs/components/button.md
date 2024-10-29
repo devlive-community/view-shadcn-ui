@@ -8,15 +8,19 @@ This document is mainly used to describe some features and usage of the ShadcnBu
 
 ## Type
 
-<CodeRunner title="Button Type" 
-            description="Create buttons of different styles by setting type, not setting it to the default style.">
+::: raw
+
+<CodeRunner title="Button Type">
     <ShadcnButton type="primary">Primary</ShadcnButton>
     <ShadcnButton type="success">Success</ShadcnButton>
     <ShadcnButton type="warning">Warning</ShadcnButton>
     <ShadcnButton type="danger">Danger</ShadcnButton>
     <ShadcnButton type="info">Info</ShadcnButton>
     <ShadcnButton type="text">Text</ShadcnButton>
+    <ShadcnButton type="default">Default</ShadcnButton>
 </CodeRunner>
+
+:::
 
 ::: details Show code
 
@@ -28,6 +32,7 @@ This document is mainly used to describe some features and usage of the ShadcnBu
     <ShadcnButton type="danger">Danger</ShadcnButton>
     <ShadcnButton type="info">Info</ShadcnButton>
     <ShadcnButton type="text">Text</ShadcnButton>
+    <ShadcnButton type="default">Default</ShadcnButton>
 </template>
 
 <script setup lang="ts">
@@ -241,7 +246,7 @@ This document is mainly used to describe some features and usage of the ShadcnBu
             :columns="[
                 ['text', 'Button text', 'String', '-', '-'],
                 ['size', 'Button size', 'Enum', 'default', 'small, default, large'],
-                ['type', 'Button type', 'Enum', 'primary', 'primary, success, warning, danger, info, text'],
+                ['type', 'Button type', 'Enum', 'primary', 'primary, success, warning, danger, info, text, default'],
                 ['round', 'Whether to add surrounding fillets', 'Boolean', 'false', '-'],
                 ['circle', 'Whether to create a circle button', 'Boolean', 'false', '-'],
                 ['loading', 'Whether to display loading', 'Boolean', 'false', '-'],
