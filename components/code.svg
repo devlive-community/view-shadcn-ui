@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- Define gradient -->
+    <defs>
+        <linearGradient id="codeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#a5b4fc;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#60a5fa;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="80" fill="url(#codeGradient)" />
+
+    <!-- Main code rectangle -->
+    <rect x="50" y="70" width="100" height="60" rx="8" fill="white" />
+
+    <!-- Code symbols -->
+    <text x="100" y="100" font-size="24" fill="#60a5fa" text-anchor="middle" font-family="Arial, sans-serif">
+        &lt; / &gt;
+    </text>
+
+    <!-- Code lines -->
+    <rect x="60" y="110" width="80" height="8" rx="4" fill="#e5e7eb" />
+</svg>

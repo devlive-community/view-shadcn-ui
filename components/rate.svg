@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- Define gradient -->
+    <defs>
+        <linearGradient id="rateGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#93c5fd;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#a5b4fc;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="80" fill="url(#rateGradient)" />
+
+    <!-- Stars -->
+    <g fill="#ffd700">
+        <polygon points="100,50 110,80 140,80 115,95 125,125 100,110 75,125 85,95 60,80 90,80" />
+        <polygon points="70,80 80,110 100,110 85,125 90,145 70,130 55,145 60,125 40,110 70,110" />
+        <polygon points="130,80 140,110 160,110 145,125 150,145 130,130 115,145 120,125 100,110 130,110" />
+    </g>
+</svg>
