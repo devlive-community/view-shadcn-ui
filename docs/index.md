@@ -9,6 +9,7 @@ hero:
   tagline: A component library built on Shadcn UI and Tailwind CSS.
   image:
     alt: View Shadcn UI
+    src: /logo.svg
   actions:
     - theme: brand
       text: Guide
@@ -30,4 +31,41 @@ features:
   - icon: 🛠️
     title: Quick introduction
     details: Support global | On-demand component introduction, convenient and fast development and testing
+  - icon: ⚙️
+    title: High Customizability
+    details: Provides flexible configuration options to easily customize component styles and functionality
+  - icon: 🚀
+    title: High Performance
+    details: Built using modern frameworks and optimized build tools to ensure fast loading and smooth interactions
+  - icon: 🖥️
+    title: Comprehensive Documentation
+    details: Clear and detailed documentation with examples for quick and easy understanding
+  - icon: 🌐
+    title: Multiple Language Support
+    details: Supports multi-language customization to cater to users from different regions
+  - icon: 🔒
+    title: Security and Stability
+    details: Regular security updates and active maintenance to ensure safe and stable usage
+  - icon: 🎨
+    title: Themeable
+    details: Easily switch between different themes to match your brand or project's design requirements
+  - icon: 📱
+    title: Mobile-first Design
+    details: Responsive and mobile-friendly components to provide a great experience on any device
+  - icon: 🧩
+    title: Modular Structure
+    details: Highly modular components to allow flexible integration and expansion in your projects
+  - icon: 📊
+    title: Data Visualization
+    details: Offers built-in data visualization components for creating interactive and insightful charts
+  - icon: 🧑‍💻
+    title: Developer-friendly APIs
+    details: Intuitive and well-structured APIs to speed up the development process and enhance productivity
+  - icon: 🧩
+    title: Plugin System
+    details: Extensible plugin system for integrating with third-party tools and enhancing functionality
+  - icon: 📝
+    title: Code Examples
+    details: Ready-to-use code examples to help developers quickly learn and integrate components
+
 ---
