@@ -1,7 +1,13 @@
 export default {
     title: 'View Shadcn UI',
     description: 'A component library built on Shadcn UI and Tailwind CSS.',
+
+    head: [
+        ['link', {rel: 'icon', href: '/favicon.ico'}]
+    ],
+
     themeConfig: {
+        logo: '/logo.svg',
         socialLinks: [
             {icon: "github", link: "https://github.com/devlive-community/view-shadcn-ui"},
             {icon: 'npm', link: 'https://www.npmjs.com/package/view-shadcn-ui'}
