@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- Define gradient -->
+    <defs>
+        <linearGradient id="radioGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#93c5fd;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#a5b4fc;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="80" fill="url(#radioGradient)" />
+
+    <!-- Outer circle (radio button) -->
+    <circle cx="100" cy="100" r="35" fill="white" stroke="#60a5fa" stroke-width="3" />
+
+    <!-- Inner circle (selected state) -->
+    <circle cx="100" cy="100" r="15" fill="#60a5fa" />
+</svg>

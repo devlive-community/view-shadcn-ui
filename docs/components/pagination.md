@@ -10,14 +10,14 @@ This document is mainly used to describe some features and usage of the ShadcnPa
 
 <CodeRunner title="Usage">
     Default Page : {{defaultValue}}
-    <ShadcnPage v-model="defaultValue" total="100"/>
+    <ShadcnPagination v-model="defaultValue" total="100"/>
 </CodeRunner>
 
 ::: details Show code
 
 ```vue
 <template>
-  <ShadcnPage total="100"/>
+  <ShadcnPagination total="100"/>
 </template>
 
 <script setup lang="ts">
@@ -33,14 +33,14 @@ const defaultValue = ref(1)
 
 <CodeRunner title="Page Size">
     Default Page : {{defaultValue}}
-    <ShadcnPage v-model="defaultValue" total="100" page-size="20"/>
+    <ShadcnPagination v-model="defaultValue" total="100" page-size="20"/>
 </CodeRunner>
 
 ::: details Show code
 
 ```vue
 <template>
-  <ShadcnPage total="100" page-size="20"/>
+  <ShadcnPagination total="100" page-size="20"/>
 </template>
 
 <script setup lang="ts">
@@ -56,14 +56,14 @@ const defaultValue = ref(1)
 
 <CodeRunner title="Prev and Next">
     Default Page : {{defaultValue}}
-    <ShadcnPage v-model="defaultValue" total="100" prev-text="P" next-text="N"/>
+    <ShadcnPagination v-model="defaultValue" total="100" prev-text="P" next-text="N"/>
 </CodeRunner>
 
 ::: details Show code
 
 ```vue
 <template>
-  <ShadcnPage total="100" prev-text="P" next-text="N"/>
+  <ShadcnPagination total="100" prev-text="P" next-text="N"/>
 </template>
 
 <script setup lang="ts">
@@ -79,14 +79,14 @@ const defaultValue = ref(1)
 
 <CodeRunner title="Show Max Page">
     Default Page : {{defaultValue}}
-    <ShadcnPage v-model="defaultValue" total="100" max-show-page="8"/>
+    <ShadcnPagination v-model="defaultValue" total="100" max-show-page="8"/>
 </CodeRunner>
 
 ::: details Show code
 
 ```vue
 <template>
-  <ShadcnPage total="100" max-show-page="8"/>
+  <ShadcnPagination total="100" max-show-page="8"/>
 </template>
 
 <script setup lang="ts">
@@ -102,14 +102,14 @@ const defaultValue = ref(1)
 
 <CodeRunner title="Show Total Count">
     Default Page : {{defaultValue}}
-    <ShadcnPage v-model="defaultValue" total="100" show-total/>
+    <ShadcnPagination v-model="defaultValue" total="100" show-total/>
 </CodeRunner>
 
 ::: details Show code
 
 ```vue
 <template>
-  <ShadcnPage total="100" show-total/>
+  <ShadcnPagination total="100" show-total/>
 </template>
 
 <script setup lang="ts">
@@ -125,17 +125,17 @@ const defaultValue = ref(1)
 
 <CodeRunner title="Show Sizer">
     Default Page : {{defaultValue}}
-    <ShadcnPage v-model="defaultValue" total="100" show-sizer/>
+    <ShadcnPagination v-model="defaultValue" total="100" show-sizer/>
     Custom
-    <ShadcnPage v-model="defaultValue" total="100" show-sizer :sizer-options="[5, 10, 20]"/>
+    <ShadcnPagination v-model="defaultValue" total="100" show-sizer :sizer-options="[5, 10, 20]"/>
 </CodeRunner>
 
 ::: details Show code
 
 ```vue
 <template>
-  <ShadcnPage v-model="defaultValue" total="100" show-sizer/>
-  <ShadcnPage v-model="defaultValue" total="100" show-sizer :sizer-options="[5, 10, 20]"/>
+  <ShadcnPagination v-model="defaultValue" total="100" show-sizer/>
+  <ShadcnPagination v-model="defaultValue" total="100" show-sizer :sizer-options="[5, 10, 20]"/>
 </template>
 
 <script setup lang="ts">

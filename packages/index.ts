@@ -35,7 +35,7 @@ import ShadcnLayoutSider from '@/ui/layout/sider'
 import ShadcnLayoutFooter from '@/ui/layout/footer'
 import ShadcnLayoutWrapper from '@/ui/layout/wrapper'
 import ShadcnLayoutMain from '@/ui/layout/main'
-import ShadcnPage from '@/ui/page'
+import ShadcnPagination from '@/ui/pagination'
 import ShadcnDrawer from '@/ui/drawer'
 import ShadcnMenu from '@/ui/menu'
 import ShadcnMenuItem from '@/ui/menu/item'
@@ -83,7 +83,7 @@ let components = [
     ShadcnLayoutFooter,
     ShadcnLayoutWrapper,
     ShadcnLayoutMain,
-    ShadcnPage,
+    ShadcnPagination,
     ShadcnDrawer,
     ShadcnMenu,
     ShadcnMenuItem,
@@ -151,7 +151,7 @@ export { default as ShadcnLayoutSider } from '@/ui/layout/sider'
 export { default as ShadcnLayoutFooter } from '@/ui/layout/footer'
 export { default as ShadcnLayoutWrapper } from '@/ui/layout/wrapper'
 export { default as ShadcnLayoutMain } from '@/ui/layout/main'
-export { default as ShadcnPage } from '@/ui/page'
+export { default as ShadcnPagination } from '@/ui/pagination'
 export { default as ShadcnDrawer } from '@/ui/drawer'
 export { default as ShadcnMenu } from '@/ui/menu'
 export { default as ShadcnMenuItem } from '@/ui/menu/item'

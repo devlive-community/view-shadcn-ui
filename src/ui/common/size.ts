@@ -17,3 +17,11 @@ export enum SkeletonSize
     small = 'h-8 w-8',
     large = 'h-16 w-16'
 }
+
+export enum ButtonSize
+{
+    small = 'h-8 px-3 text-sm',
+    default = 'h-9 px-4 text-sm',
+    medium = 'h-10 px-5 text-base',
+    large = 'h-11 px-6 text-base'
+}

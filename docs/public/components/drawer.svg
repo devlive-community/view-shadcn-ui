@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- Define gradient -->
+    <defs>
+        <linearGradient id="drawerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#93c5fd;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#a5b4fc;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="80" fill="url(#drawerGradient)" />
+
+    <!-- Drawer rectangle -->
+    <rect x="40" y="60" width="120" height="80" rx="10" fill="white" stroke="#60a5fa" stroke-width="3" />
+
+    <!-- Drawer handle -->
+    <rect x="90" y="80" width="20" height="5" fill="#60a5fa" />
+
+    <!-- Drawer shadow -->
+    <path d="M40,140 L160,140 Q160,160 140,160 L60,160 Q40,160 40,140 Z" fill="rgba(0, 0, 0, 0.1)" />
+</svg>

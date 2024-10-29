@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- Define gradient -->
+    <defs>
+        <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#93c5fd;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#f0abfc;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="80" fill="url(#cardGradient)" />
+
+    <!-- Main card rectangle -->
+    <rect x="60" y="65" width="80" height="70" rx="12" fill="white" />
+
+    <!-- Card title line -->
+    <rect x="70" y="75" width="60" height="10" rx="5" fill="#60a5fa" />
+
+    <!-- Card content lines -->
+    <rect x="70" y="95" width="50" height="8" rx="4" fill="#a5b4fc" />
+    <rect x="70" y="110" width="40" height="8" rx="4" fill="#a5b4fc" />
+</svg>

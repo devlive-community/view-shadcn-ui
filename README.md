@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="docs/public/logo.svg" width=120 height=120/ alt="Logo"/>
+
 # View Shadcn UI
 
 ![NPM Downloads](https://img.shields.io/npm/d18m/view-shadcn-ui)

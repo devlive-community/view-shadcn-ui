@@ -1,4 +1,23 @@
 <template>
+  <ShadcnSpace wrap>
+    <ShadcnButton type="primary">Primary</ShadcnButton>
+    <ShadcnButton type="success">Success</ShadcnButton>
+    <ShadcnButton type="warning">Warning</ShadcnButton>
+    <ShadcnButton type="danger">Danger</ShadcnButton>
+    <ShadcnButton type="info">Info</ShadcnButton>
+    <ShadcnButton type="text">Text</ShadcnButton>
+    <ShadcnButton type="default">Default</ShadcnButton>
+
+
+    <ShadcnButton type="primary" ghost>Primary</ShadcnButton>
+    <ShadcnButton type="success" ghost>Success</ShadcnButton>
+    <ShadcnButton type="warning" ghost>Warning</ShadcnButton>
+    <ShadcnButton type="danger" ghost>Danger</ShadcnButton>
+    <ShadcnButton type="info" ghost>Info</ShadcnButton>
+    <ShadcnButton type="text" ghost>Text</ShadcnButton>
+    <ShadcnButton type="default" ghost>Default</ShadcnButton>
+  </ShadcnSpace>
+
   <ShadcnTable :columns="columns"
                :data="data"
                stripe

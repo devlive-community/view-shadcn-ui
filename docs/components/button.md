@@ -8,15 +8,19 @@ This document is mainly used to describe some features and usage of the ShadcnBu
 
 ## Type
 
-<CodeRunner title="Button Type" 
-            description="Create buttons of different styles by setting type, not setting it to the default style.">
+::: raw
+
+<CodeRunner title="Button Type">
     <ShadcnButton type="primary">Primary</ShadcnButton>
     <ShadcnButton type="success">Success</ShadcnButton>
     <ShadcnButton type="warning">Warning</ShadcnButton>
     <ShadcnButton type="danger">Danger</ShadcnButton>
     <ShadcnButton type="info">Info</ShadcnButton>
     <ShadcnButton type="text">Text</ShadcnButton>
+    <ShadcnButton type="default">Default</ShadcnButton>
 </CodeRunner>
+
+:::
 
 ::: details Show code
 
@@ -28,6 +32,7 @@ This document is mainly used to describe some features and usage of the ShadcnBu
     <ShadcnButton type="danger">Danger</ShadcnButton>
     <ShadcnButton type="info">Info</ShadcnButton>
     <ShadcnButton type="text">Text</ShadcnButton>
+    <ShadcnButton type="default">Default</ShadcnButton>
 </template>
 
 <script setup lang="ts">
@@ -234,6 +239,37 @@ This document is mainly used to describe some features and usage of the ShadcnBu
 
 :::
 
+## Ghost
+
+<CodeRunner title="Ghost">
+    <ShadcnButton type="primary" ghost>Primary</ShadcnButton>
+    <ShadcnButton type="success" ghost>Success</ShadcnButton>
+    <ShadcnButton type="warning" ghost>Warning</ShadcnButton>
+    <ShadcnButton type="danger" ghost>Danger</ShadcnButton>
+    <ShadcnButton type="info" ghost>Info</ShadcnButton>
+    <ShadcnButton type="text" ghost>Text</ShadcnButton>
+    <ShadcnButton type="default" ghost>Default</ShadcnButton>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnButton type="primary" ghost>Primary</ShadcnButton>
+    <ShadcnButton type="success" ghost>Success</ShadcnButton>
+    <ShadcnButton type="warning" ghost>Warning</ShadcnButton>
+    <ShadcnButton type="danger" ghost>Danger</ShadcnButton>
+    <ShadcnButton type="info" ghost>Info</ShadcnButton>
+    <ShadcnButton type="text" ghost>Text</ShadcnButton>
+    <ShadcnButton type="default" ghost>Default</ShadcnButton>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Button Props" 
@@ -241,11 +277,12 @@ This document is mainly used to describe some features and usage of the ShadcnBu
             :columns="[
                 ['text', 'Button text', 'String', '-', '-'],
                 ['size', 'Button size', 'Enum', 'default', 'small, default, large'],
-                ['type', 'Button type', 'Enum', 'primary', 'primary, success, warning, danger, info, text'],
+                ['type', 'Button type', 'Enum', 'primary', 'primary, success, warning, danger, info, text, default'],
                 ['round', 'Whether to add surrounding fillets', 'Boolean', 'false', '-'],
                 ['circle', 'Whether to create a circle button', 'Boolean', 'false', '-'],
                 ['loading', 'Whether to display loading', 'Boolean', 'false', '-'],
                 ['color', 'Custom colors, supports all colors, and automatically calculates the color difference such as hover used', 'String', '-', 'All supported color values'],
+                ['ghost', 'Whether to create a ghost button', 'Boolean', 'false', '-'],
             ]">
 </ApiTable>
 

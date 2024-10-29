@@ -48,7 +48,7 @@ This document is mainly used to describe some features and usage of the ShadcnAl
 
 <CodeRunner title="Type">
     <div class="space-y-2">
-        <ShadcnAlert type="info">Alert</ShadcnAlert>
+        <ShadcnAlert type="primary">Alert</ShadcnAlert>
         <ShadcnAlert type="success">Alert</ShadcnAlert>
         <ShadcnAlert type="warning">Alert</ShadcnAlert>
         <ShadcnAlert type="error">Alert</ShadcnAlert>
@@ -59,7 +59,7 @@ This document is mainly used to describe some features and usage of the ShadcnAl
 
 ```vue
 <template>
-    <ShadcnAlert type="info">Alert</ShadcnAlert>
+    <ShadcnAlert type="primary">Alert</ShadcnAlert>
     <ShadcnAlert type="success">Alert</ShadcnAlert>
     <ShadcnAlert type="warning">Alert</ShadcnAlert>
     <ShadcnAlert type="error">Alert</ShadcnAlert>
@@ -134,7 +134,7 @@ This document is mainly used to describe some features and usage of the ShadcnAl
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
     :columns="[
         ['title', 'The title of the alert', 'String', '-', '-', '-'],
-        ['type', 'The type of the alert', 'Enum', 'info', '-', 'info, success, warning, error'],
+        ['type', 'The type of the alert', 'Enum', 'primary', '-', 'primary, success, warning, error'],
         ['show-icon', 'Whether to show the icon', 'Boolean', 'false', '-', '-'],
         ['banner', 'Whether to create a banner alert', 'Boolean', 'false', '-', '-'],
         ['closable', 'Whether to show the close button', 'Boolean', 'false', '-', '-'],
