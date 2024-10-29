@@ -11,6 +11,14 @@
 import { onMounted, provide, ref, watch } from 'vue'
 import { generateRandomId } from '@/utils/common.ts'
 
+const props = withDefaults(defineProps<{
+  separator?: string
+}>(), {
+  separator: '/'
+})
+provide('breadcrumbSeparator', props.separator)
+
+// Tag that a parent node exists
 provide('isBreadcrumb', true)
 
 const breadcrumbId = ref(`breadcrumb-${ generateRandomId() }`)

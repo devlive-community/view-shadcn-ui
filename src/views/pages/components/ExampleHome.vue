@@ -5,8 +5,7 @@
     <ShadcnBreadcrumbItem>Summary</ShadcnBreadcrumbItem>
   </ShadcnBreadcrumb>
 
-
-  <ShadcnBreadcrumb>
+  <ShadcnBreadcrumb separator="&">
     <ShadcnBreadcrumbItem href="/">Home</ShadcnBreadcrumbItem>
     <ShadcnBreadcrumbItem href="/products">Products</ShadcnBreadcrumbItem>
     <ShadcnBreadcrumbItem>Summary</ShadcnBreadcrumbItem>

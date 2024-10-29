@@ -4,13 +4,15 @@
     <component :is="href ? 'a' : 'span'"
                :href="href"
                :class="['transition-colors hover:text-foreground',
-                href ? 'cursor-pointer' : 'cursor-default',
-                isLastItem && 'font-medium text-foreground'
-        ]">
+                        href ? 'cursor-pointer' : 'cursor-default',
+                        isLastItem && 'font-medium text-foreground'
+                ]">
       <slot/>
     </component>
 
-    <span v-if="!isLastItem">|</span>
+    <span v-if="!isLastItem" class="text-gray-200">
+      {{ separator }}
+    </span>
   </div>
 </template>
 
@@ -20,6 +22,8 @@ import { computed, inject, ref } from 'vue'
 defineProps<{
   href?: string
 }>()
+
+const separator = inject('breadcrumbSeparator')
 
 const breadcrumbId = inject('breadcrumbId')
 if (!breadcrumbId) {
