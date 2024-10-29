@@ -1,22 +1,16 @@
 <template>
-  <ShadcnSpace wrap>
-    <ShadcnButton type="primary">Primary</ShadcnButton>
-    <ShadcnButton type="success">Success</ShadcnButton>
-    <ShadcnButton type="warning">Warning</ShadcnButton>
-    <ShadcnButton type="danger">Danger</ShadcnButton>
-    <ShadcnButton type="info">Info</ShadcnButton>
-    <ShadcnButton type="text">Text</ShadcnButton>
-    <ShadcnButton type="default">Default</ShadcnButton>
+  <ShadcnBreadcrumb>
+    <ShadcnBreadcrumbItem href="/">Home</ShadcnBreadcrumbItem>
+    <ShadcnBreadcrumbItem href="/products">Products</ShadcnBreadcrumbItem>
+    <ShadcnBreadcrumbItem>Summary</ShadcnBreadcrumbItem>
+  </ShadcnBreadcrumb>
 
 
-    <ShadcnButton type="primary" ghost>Primary</ShadcnButton>
-    <ShadcnButton type="success" ghost>Success</ShadcnButton>
-    <ShadcnButton type="warning" ghost>Warning</ShadcnButton>
-    <ShadcnButton type="danger" ghost>Danger</ShadcnButton>
-    <ShadcnButton type="info" ghost>Info</ShadcnButton>
-    <ShadcnButton type="text" ghost>Text</ShadcnButton>
-    <ShadcnButton type="default" ghost>Default</ShadcnButton>
-  </ShadcnSpace>
+  <ShadcnBreadcrumb>
+    <ShadcnBreadcrumbItem href="/">Home</ShadcnBreadcrumbItem>
+    <ShadcnBreadcrumbItem href="/products">Products</ShadcnBreadcrumbItem>
+    <ShadcnBreadcrumbItem>Summary</ShadcnBreadcrumbItem>
+  </ShadcnBreadcrumb>
 
   <ShadcnTable :columns="columns"
                :data="data"
@@ -29,6 +23,7 @@
 </template>
 
 <script setup lang="ts">
+
 const columns = [
   { 'label': 'Name', 'key': 'name', 'width': 100 },
   { 'label': 'Age', 'key': 'age', 'width': 100 },

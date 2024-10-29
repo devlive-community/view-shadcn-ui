@@ -43,6 +43,8 @@ import ShadcnMenuSub from '@/ui/menu/sub'
 import ShadcnMenuGroup from '@/ui/menu/group'
 import ShadcnMessage from '@/ui/message'
 import ShadcnTable from '@/ui/table'
+import ShadcnBreadcrumb from '@/ui/breadcrumb'
+import ShadcnBreadcrumbItem from '@/ui/breadcrumb/item'
 
 import Message from './setup/message.ts'
 
@@ -90,7 +92,9 @@ let components = [
     ShadcnMenuSub,
     ShadcnMenuGroup,
     ShadcnMessage,
-    ShadcnTable
+    ShadcnTable,
+    ShadcnBreadcrumb,
+    ShadcnBreadcrumbItem
 ]
 
 const install = (Vue: App) => {
@@ -159,6 +163,8 @@ export { default as ShadcnMenuSub } from '@/ui/menu/sub'
 export { default as ShadcnMenuGroup } from '@/ui/menu/group'
 export { default as ShadcnMessage } from '@/ui/message'
 export { default as ShadcnTable } from '@/ui/table'
+export { default as ShadcnBreadcrumb } from '@/ui/breadcrumb'
+export { default as ShadcnBreadcrumbItem } from '@/ui/breadcrumb/item'
 
 // Support global import
 export default install

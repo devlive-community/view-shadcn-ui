@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- Define gradient -->
+    <defs>
+        <linearGradient id="breadcrumbGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#93c5fd;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#a5b4fc;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="80" fill="url(#breadcrumbGradient)" />
+
+    <!-- Breadcrumb lines -->
+    <rect x="50" y="90" width="70" height="10" rx="5" fill="white" />
+    <polygon points="130,95 145,85 145,105" fill="white" />
+
+    <rect x="50" y="110" width="70" height="10" rx="5" fill="white" />
+    <polygon points="130,115 145,105 145,125" fill="white" />
+</svg>

@@ -180,3 +180,15 @@ export class SizeCalculator
 export const calcSize = (value: SizeValue, options?: SizeOptions): string => {
     return SizeCalculator.calc(value, options)
 }
+
+/**
+ * Generate random id
+ * @param radix - Radix to use for generating random id
+ * @param start - Start index
+ * @param end - End index
+ **/
+export const generateRandomId = (radix?: number, start?: number, end?: number): string => {
+    return Math.random()
+               .toString(radix ? radix : 36)
+               .slice(start ? start : 2, end ? end : 10)
+}
