@@ -1,0 +1,174 @@
+---
+title: "Release Notes"
+---
+
+# Changelog
+
+## 2024.1.3 Release Notes
+
+<br />
+
+Pending ...
+
+## 2024.1.2 Release Notes
+
+<br />
+
+### General Changes
+
+- [Docs] Add some config
+- [Env] Optimize NPM version release script
+
+### Component Changes
+
+- [Row] Support row, col
+- [Row] Support gutter
+- [Row] Support align
+- [Row] Support justify
+- [Row] Support wrap
+- [Col] Support span
+- [Col] Support order
+- [Divider] Support type
+- [Divider] Support position
+- [Divider] Support dashed
+- [Tooltip] Support width
+- [Tooltip] Support ellipsis
+- [Tooltip] Support length
+- [Tooltip] Support multiple lines
+- [Avatar] Support size
+- [Avatar] Support square
+- [Avatar] Support on-success event
+- [Avatar] Support on-failed event
+- [Badge] Support type
+- [Badge] Support text
+- [Badge] Support max
+- [Badge] Support dot
+- [Alert] Support title
+- [Alert] Support description
+- [Alert] Support type
+- [Alert] Support closable
+- [Alert] Support icon
+- [Alert] Support banner
+- [Progress] Support status
+- [Progress] Support size
+- [Progress] Support show label
+- [Space] Support size
+- [Space] Support cosutom size
+- [Space] Support wrap
+- [Space] Support array size
+- [Switch] Support type
+- [Switch] Support size
+- [Switch] Support disabled
+- [Switch] Support open and close slot
+- [Radio] Support disabled
+- [Radio] Support size
+- [Radio] Support type
+- [Radio] Support group
+- [Checkbox] Support disabled
+- [Checkbox] Support size
+- [Checkbox] Support type
+- [Checkbox] Support group
+- [Input] Fixed border style
+- [Input] Support disabled
+- [Input] Support password
+- [Input] Support textarea
+- [Select] Support disabled
+- [Select] Support slot
+- [Select] Support size
+- [Select] Support type
+- [Rate] Support max
+- [Rate] Support allow half
+- [Rate] Support type
+- [Rate] Support disabled
+- [Rate] Support show text
+- [Tab] Support disabled
+- [Tab] Support type
+- [Tab] Support size
+- [Tab] Support v-model
+- [Tab] Support item icon
+- [Tab] Support card
+- [Tab] Support closable
+- [Tab] Support extra slot
+- [Tab] Support vertical mode
+- [Tab] Support position
+- [Tab] Add dynamic example
+- [Tab] Support remove
+- [Skeleton] Support animation
+- [Skeleton] Support title
+- [Skeleton] Support item type
+- [Skeleton] Support item size
+- [Layout] Support layout and header
+- [Layout] Support content
+- [Layout] Support footer
+- [Layout] Support multiple layout
+- [Layout] Fixed custom width
+- [Layout] Add shadcn-layout-wrapper selector
+- [Layout] Add some selector
+- [Page] Support page size
+- [Page] Support prev and next
+- [Page] Support show max page
+- [Page] Support show total
+- [Page] Support sizer
+- [Page] Add slot
+- [Drawer] Support custom title
+- [Drawer] Support closable
+- [Drawer] Support mask closable
+- [Drawer] Support position
+- [Drawer] Support width and height
+- [Menu] Support width
+- [Menu] Support direction
+- [Menu] Support v-model
+- [Message] Support show icon
+- [Message] Support type
+- [Message] Support background
+- [Message] Support set 0 will not be closed
+- [Message] Support closeable
+- [Table] Support stripe
+- [Table] Support border
+- [Table] Support custom column slot
+- [Table] Support row click event
+- [Table] Support fixed column
+- [Table] Support width
+- [Table] Support column width
+- [Table] Support fixed shadow
+- [Table] Support multiple fixed column
+- [Table] Support height
+
+## 2024.1.1 Release Notes
+
+<br />
+
+### General Changes
+
+- [Core] Add release npm repository configuration
+- [Core] Support compile css
+- [Core] Add docs
+- [Core] Replace sh to bash
+- [Core] Support on-demand import
+
+### Component Changes
+
+- [Tree] Supports expanding parent directories by selecting subnodes
+- [Tabs] Support vertical mode
+- [Tab] Support check slot type
+- [Card] Support loading
+- [Card] Support description
+- [User] User-related pages to enable ICard
+- [Card] Optimize component introduction method
+- [Button] Optimize component introduction method
+- [Modal] Support width and height
+- [Input] Support size
+- [Input] Supports max length
+- [Input] Supports prefix and suffix
+- [Icon] Support icon
+- [Icon] Support size
+- [Icon] Support color
+- [Copy] Support tooltip
+- [Copy] Support position
+- [Tooltip] Support delay
+- [Tooltip] Support position
+- [Tooltip] Support trigger
+- [Tooltip] Support arrow
+- [Code] Support theme
+- [Code] Support language
+- [Code] Support show line numbers

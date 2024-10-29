@@ -46,10 +46,10 @@ export default {
                 activeMatch: '/components'
             },
             {
-                text: '2024.1.3 Alpha',
+                text: '2024.1.3 <span class="VPBadge danger" style="margin-left: -18px; position: absolute; bottom: 38px;">Alpha</span>',
                 items: [
                     {
-                        text: 'CHANGELOG',
+                        text: 'CHANGELOG <span class="VPBadge tip">2024.1.2</span>',
                         link: '/changelog',
                         activeMatch: '/changelog'
                     }
