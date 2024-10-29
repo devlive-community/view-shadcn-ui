@@ -30,6 +30,14 @@ export enum BorderType
     error = 'border-red-400'
 }
 
+export enum BackgroundType
+{
+    primary = 'bg-blue-50',
+    success = 'bg-green-50',
+    warning = 'bg-yellow-50',
+    error = 'bg-red-50'
+}
+
 export enum SkeletonType
 {
     circle,
