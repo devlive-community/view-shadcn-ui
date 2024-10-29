@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- Gradient definition -->
+    <defs>
+        <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#7dd3fc;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#818cf8;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="componentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#f0abfc;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#c084fc;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Main background -->
+    <rect x="20" y="20" width="160" height="160" rx="24"
+          fill="url(#bgGradient)" />
+
+    <!-- Component representation -->
+    <!-- Top component -->
+    <rect x="45" y="45" width="110" height="35" rx="8"
+          fill="white"
+          opacity="0.95"/>
+
+    <!-- Middle component -->
+    <rect x="45" y="90" width="110" height="35" rx="8"
+          fill="url(#componentGradient)"
+          opacity="0.95"/>
+
+    <!-- Bottom component -->
+    <rect x="45" y="135" width="110" height="20" rx="6"
+          fill="white"
+          opacity="0.95"/>
+
+    <!-- Decorative elements -->
+    <circle cx="60" cy="57" r="4" fill="#818cf8"/>
+    <rect x="70" y="55" width="30" height="4" rx="2" fill="#818cf8"/>
+
+    <circle cx="60" cy="102" r="4" fill="white"/>
+    <rect x="70" y="100" width="30" height="4" rx="2" fill="white"/>
+
+    <circle cx="60" cy="145" r="3" fill="#818cf8"/>
+    <rect x="70" y="143" width="20" height="4" rx="2" fill="#818cf8"/>
+
+    <!-- Right side decoration -->
+    <circle cx="130" cy="57" r="2" fill="#c084fc"/>
+    <circle cx="140" cy="57" r="2" fill="#818cf8"/>
+
+    <circle cx="130" cy="102" r="2" fill="white"/>
+    <circle cx="140" cy="102" r="2" fill="white"/>
+</svg>
