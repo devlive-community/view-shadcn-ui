@@ -31,22 +31,27 @@ export default {
         nav: [
             {text: 'Home', link: '/'},
             {
+                text: 'Team',
+                link: '/team',
+                activeMatch: '/team'
+            },
+            {
                 text: "Guide",
                 link: "/guide/installation",
                 activeMatch: '/guide/'
             },
             {
-                text: 'Components (v2024.1.2 Alpha)',
+                text: 'Components',
+                link: '/components',
+                activeMatch: '/components'
+            },
+            {
+                text: '2024.1.3 <span class="VPBadge danger" style="margin-left: -18px; position: absolute; bottom: 38px;">Alpha</span>',
                 items: [
                     {
-                        text: '2024.1.2',
-                        link: '/components/2024.1.2/release-notes',
-                        activeMatch: '/components/2024.1.2/'
-                    },
-                    {
-                        text: '2024.1.1',
-                        link: '/components/2024.1.1/release-notes',
-                        activeMatch: '/components/2024.1.1/'
+                        text: 'CHANGELOG <span class="VPBadge tip">2024.1.2</span>',
+                        link: '/changelog',
+                        activeMatch: '/changelog'
                     }
                 ]
             }
@@ -63,117 +68,68 @@ export default {
                     ]
                 }
             ],
-            '/components/2024.1.2/': [
-                {
-                    text: 'Release Notes',
-                    base: '/components/2024.1.2/',
-                    link: 'release-notes',
-                },
+            '/components/': [
                 {
                     text: 'Base Components',
-                    base: '/components/2024.1.1/',
+                    base: '/components/',
                     collapsed: false,
                     items: [
-                        {text: 'Button', link: '../2024.1.1/button'},
-                        {text: 'Icon', link: '../2024.1.1/icon'},
-                        {text: 'Copy', link: '../2024.1.1/copy'},
+                        {text: 'Button <span class="VPBadge tip">2024.1.1</span>', link: 'button'},
+                        {text: 'Icon <span class="VPBadge tip">2024.1.1</span>', link: 'icon'},
+                        {text: 'Copy <span class="VPBadge tip">2024.1.1</span>', link: 'copy'}
                     ]
                 },
                 {
                     text: 'Layout Components',
+                    base: '/components/',
                     collapsed: false,
-                    base: '/components/2024.1.2/',
                     items: [
-                        {text: 'Card', link: '../2024.1.1/card'},
-                        {text: 'Row / Col', link: 'row-col'},
-                        {text: 'Divider', link: 'divider'},
-                        {text: 'Ellipsis', link: 'ellipsis'},
-                        {text: 'Avatar', link: 'avatar'},
-                        {text: 'Space', link: 'space'},
-                        {text: 'Skeleton', link: 'skeleton'},
-                        {text: 'Layout', link: 'layout'},
+                        {text: 'Card <span class="VPBadge tip">2024.1.1</span>', link: 'card'},
+                        {text: 'Row / Col <span class="VPBadge tip">2024.1.2</span>', link: 'row-col'},
+                        {text: 'Divider <span class="VPBadge tip">2024.1.2</span>', link: 'divider'},
+                        {text: 'Ellipsis <span class="VPBadge tip">2024.1.2</span>', link: 'ellipsis'},
+                        {text: 'Avatar <span class="VPBadge tip">2024.1.2</span>', link: 'avatar'},
+                        {text: 'Space <span class="VPBadge tip">2024.1.2</span>', link: 'space'},
+                        {text: 'Skeleton <span class="VPBadge tip">2024.1.2</span>', link: 'skeleton'},
+                        {text: 'Layout <span class="VPBadge tip">2024.1.2</span>', link: 'layout'},
                     ]
                 },
                 {
                     text: 'View Components',
-                    base: '/components/2024.1.2/',
+                    base: '/components/',
                     collapsed: false,
                     items: [
-                        {text: 'Modal', link: '../2024.1.1/modal'},
-                        {text: 'Tooltip', link: '../2024.1.1/tooltip'},
-                        {text: 'Code', link: '../2024.1.1/code'},
-                        {text: 'Alert', link: 'alert'},
-                        {text: 'Progress', link: 'progress'},
-                        {text: 'Drawer', link: 'drawer'},
-                        {text: 'Message', link: 'message'},
+                        {text: 'Modal <span class="VPBadge tip">2024.1.1</span>', link: 'modal'},
+                        {text: 'Tooltip <span class="VPBadge tip">2024.1.1</span>', link: 'tooltip'},
+                        {text: 'Code <span class="VPBadge tip">2024.1.1</span>', link: 'code'},
+                        {text: 'Alert <span class="VPBadge tip">2024.1.2</span>', link: 'alert'},
+                        {text: 'Progress <span class="VPBadge tip">2024.1.2</span>', link: 'progress'},
+                        {text: 'Drawer <span class="VPBadge tip">2024.1.2</span>', link: 'drawer'},
+                        {text: 'Message <span class="VPBadge tip">2024.1.2</span>', link: 'message'},
                     ]
                 },
                 {
                     text: 'Form Components',
-                    base: '/components/2024.1.2/',
+                    base: '/components/',
                     collapsed: false,
                     items: [
-                        {text: 'Input', link: '../2024.1.1/input'},
-                        {text: 'Switch', link: 'switch'},
-                        {text: 'Radio', link: 'radio'},
-                        {text: 'Checkbox', link: 'checkbox'},
-                        {text: 'Select', link: 'select'},
-                        {text: 'Rate', link: 'rate'},
-                        {text: 'Table', link: 'table'},
+                        {text: 'Input <span class="VPBadge tip">2024.1.1</span>', link: 'input'},
+                        {text: 'Switch <span class="VPBadge tip">2024.1.2</span>', link: 'switch'},
+                        {text: 'Radio <span class="VPBadge tip">2024.1.2</span>', link: 'radio'},
+                        {text: 'Checkbox <span class="VPBadge tip">2024.1.2</span>', link: 'checkbox'},
+                        {text: 'Select <span class="VPBadge tip">2024.1.2</span>', link: 'select'},
+                        {text: 'Rate <span class="VPBadge tip">2024.1.2</span>', link: 'rate'},
+                        {text: 'Table <span class="VPBadge tip">2024.1.2</span>', link: 'table'},
                     ]
-                },
-                {
+                }, {
                     text: 'Navigation Components',
-                    base: '/components/2024.1.2/',
+                    base: '/components/',
                     collapsed: false,
                     items: [
-                        {text: 'Tab', link: 'tab'},
-                        {text: 'Page', link: 'page'},
-                        {text: 'Menu', link: 'menu'},
-                        {text: 'Badge', link: 'badge'},
-                    ]
-                }
-            ],
-            '/components/2024.1.1/': [
-                {
-                    text: 'Release Notes',
-                    base: '/components/2024.1.1/',
-                    link: 'release-notes',
-                },
-                {
-                    text: 'Base Components',
-                    base: '/components/2024.1.1/',
-                    collapsed: false,
-                    items: [
-                        {text: 'Button', link: 'button'},
-                        {text: 'Icon', link: 'icon'},
-                        {text: 'Copy', link: 'copy'},
-                    ]
-                },
-                {
-                    text: 'Layout Components',
-                    base: '/components/2024.1.1/',
-                    collapsed: false,
-                    items: [
-                        {text: 'Card', link: 'card'}
-                    ]
-                },
-                {
-                    text: 'View Components',
-                    base: '/components/2024.1.1/',
-                    collapsed: false,
-                    items: [
-                        {text: 'Modal', link: 'modal'},
-                        {text: 'Tooltip', link: 'tooltip'},
-                        {text: 'Code', link: 'code'},
-                    ]
-                },
-                {
-                    text: 'Form Components',
-                    base: '/components/2024.1.1/',
-                    collapsed: false,
-                    items: [
-                        {text: 'Input', link: 'input'},
+                        {text: 'Tab <span class="VPBadge tip">2024.1.2</span>', link: 'tab'},
+                        {text: 'Page <span class="VPBadge tip">2024.1.2</span>', link: 'page'},
+                        {text: 'Menu <span class="VPBadge tip">2024.1.2</span>', link: 'menu'},
+                        {text: 'Badge <span class="VPBadge tip">2024.1.2</span>', link: 'badge'},
                     ]
                 }
             ]

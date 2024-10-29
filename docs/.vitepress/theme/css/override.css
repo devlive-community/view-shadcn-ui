@@ -5,3 +5,31 @@
 .vp-doc p {
     margin: 0;
 }
+
+.VPBadge {
+    display: inline-block;
+    margin-left: 13px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 0 10px;
+    line-height: 15px;
+    font-size: 10px;
+    font-weight: 500;
+    transform: translateY(-2px);
+}
+
+.VPSidebar {
+    background-color: transparent !important;
+}
+
+.VPSidebar .curtain {
+    background-color: white !important;
+}
+
+.dark .VPSidebar .curtain {
+    background-color: hsl(var(--background)) !important;
+}
+
+.dark .VPNavBar:not(.home.top) .content-body {
+    background-color: hsl(var(--background)) !important;
+}
