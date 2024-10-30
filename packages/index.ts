@@ -51,6 +51,8 @@ import ShadcnBreadcrumb from '@/ui/breadcrumb'
 import ShadcnBreadcrumbItem from '@/ui/breadcrumb/item'
 import ShadcnSlider from '@/ui/slider'
 import ShadcnSpin from '@/ui/spin'
+import ShadcnForm from '@/ui/form'
+import ShadcnFormItem from '@/ui/form/item'
 
 let components = [
     ShadcnButton,
@@ -100,7 +102,9 @@ let components = [
     ShadcnBreadcrumb,
     ShadcnBreadcrumbItem,
     ShadcnSlider,
-    ShadcnSpin
+    ShadcnSpin,
+    ShadcnForm,
+    ShadcnFormItem
 ]
 
 const install = (Vue: App) => {
@@ -174,6 +178,8 @@ export { default as ShadcnBreadcrumb } from '@/ui/breadcrumb'
 export { default as ShadcnBreadcrumbItem } from '@/ui/breadcrumb/item'
 export { default as ShadcnSlider } from '@/ui/slider'
 export { default as ShadcnSpin } from '@/ui/spin'
+export { default as ShadcnForm } from '@/ui/form'
+export { default as ShadcnFormItem } from '@/ui/form/item'
 
 // Support global import
 export default install

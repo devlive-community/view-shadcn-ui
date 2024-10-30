@@ -283,6 +283,9 @@ This document is mainly used to describe some features and usage of the ShadcnBu
                 ['loading', 'Whether to display loading', 'Boolean', 'false', '-'],
                 ['color', 'Custom colors, supports all colors, and automatically calculates the color difference such as hover used', 'String', '-', 'All supported color values'],
                 ['ghost', 'Whether to create a ghost button', 'Boolean', 'false', '-'],
+                ['disabled', 'Whether to disable the button', 'Boolean', 'false', '-'],
+                ['submit', 'Whether to trigger form submission', 'Boolean', 'false', '-'],
+                ['reset', 'Whether to trigger form reset', 'Boolean', 'false', '-'],
             ]">
 </ApiTable>
 

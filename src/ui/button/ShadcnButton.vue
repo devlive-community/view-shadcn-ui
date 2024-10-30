@@ -1,5 +1,5 @@
 <template>
-  <button type="button"
+  <button :type="submit ? 'submit' : reset ? 'reset' : 'button'"
           :class="[
             // Style
             'inline-flex items-center justify-center whitespace-nowrap transition-colors',
@@ -64,12 +64,16 @@ interface Props
   color?: string
   disabled?: boolean
   ghost?: boolean
+  submit?: boolean
+  reset?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   size: 'default',
   type: 'primary',
-  ghost: false
+  ghost: false,
+  submit: false,
+  reset: false
 })
 
 // Ghost button style classes
