@@ -105,4 +105,7 @@ features:
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/spin.svg" />
     title: <a href='spin.html'>Shadcn Spin <span class="VPBadge tip">2024.1.3</span></a>
     details: Spin component
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/form.svg" />
+    title: <a href='form.html'>Shadcn Form <span class="VPBadge tip">2024.1.3</span></a>
+    details: Form component
 ---

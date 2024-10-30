@@ -132,6 +132,7 @@ export default {
                         {text: 'Select <span class="VPBadge tip">2024.1.2</span>', link: 'select'},
                         {text: 'Rate <span class="VPBadge tip">2024.1.2</span>', link: 'rate'},
                         {text: 'Table <span class="VPBadge tip">2024.1.2</span>', link: 'table'},
+                        {text: 'Form <span class="VPBadge tip">2024.1.3</span>', link: 'form'},
                     ]
                 }, {
                     text: 'Navigation Components',
