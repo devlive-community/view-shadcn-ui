@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- Define gradient -->
+    <defs>
+        <linearGradient id="trendGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#93c5fd;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#a5b4fc;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="80" fill="url(#trendGradient)" />
+
+    <!-- Trend line -->
+    <polyline points="50,130 80,90 110,110 140,70 160,100" fill="none" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Trend dots -->
+    <circle cx="50" cy="130" r="6" fill="#60a5fa" />
+    <circle cx="80" cy="90" r="6" fill="#60a5fa" />
+    <circle cx="110" cy="110" r="6" fill="#60a5fa" />
+    <circle cx="140" cy="70" r="6" fill="#60a5fa" />
+    <circle cx="160" cy="100" r="6" fill="#60a5fa" />
+</svg>

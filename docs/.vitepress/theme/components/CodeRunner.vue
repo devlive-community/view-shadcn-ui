@@ -1,7 +1,7 @@
 <template>
   <ShadcnCard>
     <template #content>
-      <div class="p-2 border-b space-y-10">
+      <div class="p-2 border-b">
         <div class="font-bold">{{ title }}</div>
         <div class="text-sm text-muted-foreground">{{ description }}</div>
       </div>
