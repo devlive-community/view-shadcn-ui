@@ -31,12 +31,38 @@ This document is mainly used to describe some features and usage of the ShadcnTr
 
 :::
 
+## Reverse
+
+::: raw
+
+<CodeRunner title="Reverse">
+    <ShadcnTrend :value="10" reverse />
+    <ShadcnTrend :value="-10" reverse />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnTrend :value="10" reverse />
+    <ShadcnTrend :value="-10" reverse />
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
     :columns="[
         ['value', 'The value of the trend, if > 0, rise, if < 0, descend', 'number', '0', '-', '-'],
+        ['reverse', 'Reverse the trend direction', 'boolean', 'false', '-', '-'],
     ]">
 </ApiTable>
 

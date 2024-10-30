@@ -34,9 +34,11 @@ import { computed } from 'vue'
 
 const props = withDefaults(defineProps<{
   value?: number
+  reverse?: boolean
 }>(), {
-  value: 0
+  value: 0,
+  reverse: false
 })
 
-const isPositive = computed(() => props.value > 0)
+const isPositive = computed(() => props.reverse ? props.value < 0 : props.value > 0)
 </script>
