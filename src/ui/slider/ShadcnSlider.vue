@@ -1,12 +1,26 @@
 <template>
   <div class="flex items-center w-full">
-    <input v-model="internalValue"
-           type="range"
-           class="w-full appearance-none h-2 rounded bg-gray-200"
-           :min="min"
-           :max="max"
-           :step="1"
-           @input="onChange"/>
+    <div class="relative w-full h-2">
+      <!-- Background track -->
+      <div class="absolute w-full h-full bg-gray-200 rounded"/>
+
+      <!-- Filled track -->
+      <div class="absolute h-full bg-blue-500 rounded z-[1]"
+           :style="`width: ${percentage}%`"/>
+
+      <!-- Range Input -->
+      <input v-model="internalValue"
+             type="range"
+             class="absolute w-full h-full opacity-0 cursor-pointer z-[3]"
+             :min="min"
+             :max="max"
+             :step="1"
+             @input="onChange"/>
+
+      <!-- Thumb -->
+      <div class="absolute w-4 h-4 bg-white border-2 border-blue-500 rounded-full top-1/2 -translate-y-1/2 hover:bg-blue-600 transition-colors z-[2] pointer-events-none"
+           :style="`left: calc(${percentage}% - 0.5rem)`"/>
+    </div>
     <span class="ml-4">{{ internalValue }}</span>
   </div>
 </template>
@@ -27,10 +41,14 @@ const props = withDefaults(defineProps<{
 
 const internalValue = ref(props.modelValue)
 
-watch(() => props.modelValue, (newValue: number | string) => internalValue.value = Number(newValue))
-
 const min = computed(() => Number(props.min) ?? 0)
 const max = computed(() => Number(props.max) ?? 100)
+
+const percentage = computed(() => {
+  return ((Number(internalValue.value) - min.value) / (max.value - min.value)) * 100
+})
+
+watch(() => props.modelValue, (newValue: number | string) => internalValue.value = Number(newValue))
 
 const onChange = () => {
   emit('update:modelValue', internalValue.value)
