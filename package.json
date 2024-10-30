@@ -16,6 +16,7 @@
   "license": "MIT",
   "main": "./dist/view-shadcn.umd.ts",
   "module": "./dist/view-shadcn.es.ts",
+  "types": "types/view-shadcn.d.ts",
   "exports": {
     ".": {
       "import": "./dist/view-shadcn-ui.es.ts",
@@ -69,13 +70,11 @@
     "@radix-icons/vue": "^1.0.0",
     "@vee-validate/zod": "^4.13.2",
     "@vueuse/core": "^10.11.1",
-    "@vueuse/motion": "^2.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "highlight.js": "^11.10.0",
     "lodash": "^4.17.21",
     "lucide-vue-next": "^0.360.0",
-    "moment": "^2.30.1",
     "radix-vue": "^1.5.3",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",

@@ -17,9 +17,6 @@ importers:
       '@vueuse/core':
         specifier: ^10.11.1
         version: 10.11.1(vue@3.5.12(typescript@5.6.3))
-      '@vueuse/motion':
-        specifier: ^2.1.0
-        version: 2.2.6(rollup@4.24.2)(vue@3.5.12(typescript@5.6.3))
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -35,9 +32,6 @@ importers:
       lucide-vue-next:
         specifier: ^0.360.0
         version: 0.360.0(vue@3.5.12(typescript@5.6.3))
-      moment:
-        specifier: ^2.30.1
-        version: 2.30.1
       radix-vue:
         specifier: ^1.5.3
         version: 1.9.8(vue@3.5.12(typescript@5.6.3))
@@ -2778,6 +2772,9 @@ packages:
 
   view-shadcn-ui@2024.1.2-alpha.1729998318:
     resolution: {integrity: sha512-QYKqI8IIUr1tw+GWLVfHTrkIzWJNRN2/Ppk+RjVm3AAN0WpUIIFEdaNIVuzICoX3V4MiMi+M44FU4mdFqWC7Kw==}
+
+  view-shadcn-ui@2024.1.3-alpha.1730211583:
+    resolution: {integrity: sha512-cQ9g+UsdMKCiYTAfMY8PbvVF/tQkAiM/UxL0tjszcRUYwLeGkASZwB3QBH6PqbKBk6LvlJptSmqAWJ5G91eoUw==}
 
   vite@5.4.10:
     resolution: {integrity: sha512-1hvaPshuPUtxeQ0hsVH3Mud0ZanOLwVTneA1EgbAM5LhaZEqyPWGRQ7BtaMvUrTDeEaC8pxtj6a6jku3x4z6SQ==}
@@ -5906,6 +5903,37 @@ snapshots:
       vfile-message: 4.0.2
 
   view-shadcn-ui@2024.1.2-alpha.1729998318(rollup@4.24.2)(tailwindcss@3.4.14)(typescript@5.6.3):
+    dependencies:
+      '@radix-icons/vue': 1.0.0(vue@3.5.12(typescript@5.6.3))
+      '@vee-validate/zod': 4.14.6(vue@3.5.12(typescript@5.6.3))
+      '@vueuse/core': 10.11.1(vue@3.5.12(typescript@5.6.3))
+      '@vueuse/motion': 2.2.6(rollup@4.24.2)(vue@3.5.12(typescript@5.6.3))
+      class-variance-authority: 0.7.0
+      clsx: 2.1.1
+      highlight.js: 11.10.0
+      lodash: 4.17.21
+      lucide-vue-next: 0.360.0(vue@3.5.12(typescript@5.6.3))
+      moment: 2.30.1
+      radix-vue: 1.9.8(vue@3.5.12(typescript@5.6.3))
+      tailwind-merge: 2.5.4
+      tailwindcss-animate: 1.0.7(tailwindcss@3.4.14)
+      vaul-vue: 0.1.3(radix-vue@1.9.8(vue@3.5.12(typescript@5.6.3)))(vue@3.5.12(typescript@5.6.3))
+      vee-validate: 4.14.6(vue@3.5.12(typescript@5.6.3))
+      view-shadcn-ui: 2024.1.3-alpha.1730211583(rollup@4.24.2)(tailwindcss@3.4.14)(typescript@5.6.3)
+      vue: 3.5.12(typescript@5.6.3)
+      vue-i18n: 9.14.1(vue@3.5.12(typescript@5.6.3))
+      vue-router: 4.4.5(vue@3.5.12(typescript@5.6.3))
+      zod: 3.23.8
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - magicast
+      - rollup
+      - supports-color
+      - tailwindcss
+      - typescript
+      - webpack-sources
+
+  view-shadcn-ui@2024.1.3-alpha.1730211583(rollup@4.24.2)(tailwindcss@3.4.14)(typescript@5.6.3):
     dependencies:
       '@radix-icons/vue': 1.0.0(vue@3.5.12(typescript@5.6.3))
       '@vee-validate/zod': 4.14.6(vue@3.5.12(typescript@5.6.3))

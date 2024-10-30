@@ -29,7 +29,11 @@
       ]
     },
     "allowSyntheticDefaultImports": true,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    /* Declaration */
+    "declaration": true,
+    "declarationDir": "./types",
+    "emitDeclarationOnly": true
   },
   "include": [
     "src/**/*.ts",
