@@ -1,4 +1,7 @@
 import { App } from 'vue'
+
+import Message from './setup/message.ts'
+
 import ShadcnButton from '@/ui/button'
 import ShadcnCard from '@/ui/card'
 import ShadcnCopy from '@/ui/copy'
@@ -45,8 +48,7 @@ import ShadcnMessage from '@/ui/message'
 import ShadcnTable from '@/ui/table'
 import ShadcnBreadcrumb from '@/ui/breadcrumb'
 import ShadcnBreadcrumbItem from '@/ui/breadcrumb/item'
-
-import Message from './setup/message.ts'
+import ShadcnSlider from '@/ui/slider'
 
 let components = [
     ShadcnButton,
@@ -94,7 +96,8 @@ let components = [
     ShadcnMessage,
     ShadcnTable,
     ShadcnBreadcrumb,
-    ShadcnBreadcrumbItem
+    ShadcnBreadcrumbItem,
+    ShadcnSlider
 ]
 
 const install = (Vue: App) => {
@@ -165,6 +168,7 @@ export { default as ShadcnMessage } from '@/ui/message'
 export { default as ShadcnTable } from '@/ui/table'
 export { default as ShadcnBreadcrumb } from '@/ui/breadcrumb'
 export { default as ShadcnBreadcrumbItem } from '@/ui/breadcrumb/item'
+export { default as ShadcnSlider } from '@/ui/slider'
 
 // Support global import
 export default install
