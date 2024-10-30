@@ -1,6 +1,7 @@
 import { App } from 'vue'
 
 import Message from './setup/message.ts'
+import Spin from './setup/spin.ts'
 
 import ShadcnButton from '@/ui/button'
 import ShadcnCard from '@/ui/card'
@@ -109,6 +110,7 @@ const install = (Vue: App) => {
 
     // Support global import
     Vue.config.globalProperties.$Message = Message
+    Vue.config.globalProperties.$Spin = Spin
 }
 
 let windowObj = window as any

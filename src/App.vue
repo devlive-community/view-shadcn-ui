@@ -8,6 +8,8 @@
       </div>
     </ShadcnCard>
 
+    <ShadcnButton @click="showSpin">Show Spin</ShadcnButton>
+
     <ShadcnTable :columns="columns"
                  :data="data"
                  stripe
@@ -19,7 +21,29 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
+export default {
+  data()
+  {
+    return {
+      columns,
+      data
+    }
+  },
+  methods: {
+    onRowClick(row: any, index: number) {
+      (this as any).$Message.info({
+        content: `Click [ ${ row.name } ] - [ ${ index } ]`
+      });
+    },
+    showSpin() {
+      (this as any).$Spin.show();
+      setTimeout(() => {
+        (this as any).$Spin.hide();
+      }, 3000);
+    }
+  }
+}
 
 const columns = [
   { 'label': 'Name', 'key': 'name', 'width': 100 },
@@ -36,8 +60,4 @@ const data = [
   { 'name': 'Joe Black', 'age': 30, 'address': 'Sydney No. 1 Lake Park', 'province': 'Australian', 'city': 'Sydney', 'zip': 100000 },
   { 'name': 'Jon Snow', 'age': 26, 'address': 'Ottawa No. 2 Lake Park', 'province': 'Canada', 'city': 'Ottawa', 'zip': 100000 }
 ]
-
-const onRowClick = (row: any, index: number) => {
-  console.log(row, index)
-}
 </script>

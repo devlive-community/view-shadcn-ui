@@ -11,8 +11,7 @@ This document is mainly used to describe some features and usage of the ShadcnSp
 ::: raw
 
 <CodeRunner title="Usage">
-    Default Value: {{ value }}
-    <ShadcnSpin v-model="value" />
+    <ShadcnSpin />
 </CodeRunner>
 
 :::
@@ -153,6 +152,40 @@ const value = ref(false);
 
 :::
 
+## $Spin
+
+::: raw
+
+<CodeRunner title="$Spin">
+    <ShadcnButton @click="showSpin">Show Spin</ShadcnButton>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnButton @click="showSpin">Show Spin</ShadcnButton>
+</template>
+
+<script lang="ts">
+export default {
+    methods: {
+          showSpin()
+          {
+                this.$Spin.show()
+                setTimeout(() => {
+                    this.$Spin.hide()
+                }, 3000)
+          }
+    }
+}
+</script>
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Props"
@@ -161,6 +194,7 @@ const value = ref(false);
         ['modelValue', 'Spin value', 'boolean', 'false', '-'],
         ['type', 'Spin type', 'enum', 'primary', 'primary | success | warning | error'],
         ['size', 'Spin size', 'enum', 'default', 'default | small | large'],
+        ['fixed', 'Whether to fix the spin, the parent component must use position: relative', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
@@ -182,8 +216,16 @@ const value = ref(false);
     ]">
 </ApiTable>
 
-<script setup lang="ts">
-import { ref } from 'vue';
-
-const value = ref(true);
+<script lang="ts">
+export default {
+    methods: {
+          showSpin()
+          {
+                this.$Spin.show()
+                setTimeout(() => {
+                    this.$Spin.hide()
+                }, 3000)
+          }
+    }
+}
 </script>
