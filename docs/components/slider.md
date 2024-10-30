@@ -85,6 +85,32 @@ const value = ref(50);
 
 :::
 
+## Disabled
+
+::: raw
+
+<CodeRunner title="Disabled">
+    <ShadcnSlider v-model="value" disabled />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSlider v-model="value" disabled />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const value = ref(50);
+</script>
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Props"
@@ -95,6 +121,7 @@ const value = ref(50);
         ['max', 'Maximum value of the slider', 'number', '100'],
         ['step', 'Step value of the slider', 'number', '1'],
         ['tip', 'Display a tooltip', 'boolean', 'false'],
+        ['disabled', 'Disable the slider', 'boolean', 'false'],
     ]">
 </ApiTable>
 

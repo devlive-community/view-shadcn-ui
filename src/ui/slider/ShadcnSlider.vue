@@ -2,26 +2,40 @@
   <div class="flex items-center w-full">
     <div class="relative w-full h-2">
       <!-- Background track -->
-      <div class="absolute w-full h-full bg-gray-200 rounded"/>
+      <div :class="['absolute w-full h-full rounded',
+                    disabled ? 'bg-gray-100' : 'bg-gray-200'
+           ]"/>
 
       <!-- Filled track -->
-      <div class="absolute h-full bg-blue-500 rounded z-[1]"
+      <div :class="['absolute h-full rounded z-[1]',
+                    disabled ? 'bg-gray-300' : 'bg-blue-500'
+           ]"
            :style="`width: ${percentage}%`"/>
 
       <!-- Range Input -->
       <input v-model="internalValue"
              type="range"
-             class="absolute w-full h-full opacity-0 cursor-pointer z-[3]"
+             :class="['absolute w-full h-full opacity-0 z-[3]',
+                      disabled ? 'cursor-not-allowed' : 'cursor-pointer'
+             ]"
              :min="min"
              :max="max"
              :step="step"
+             :disabled="disabled"
              @input="onChange"/>
 
       <!-- Thumb -->
-      <div class="absolute w-4 h-4 bg-white border-2 border-blue-500 rounded-full top-1/2 -translate-y-1/2 hover:bg-blue-600 transition-colors z-[2] pointer-events-none"
+      <div :class="['absolute w-4 h-4 rounded-full top-1/2 -translate-y-1/2 transition-colors z-[2] pointer-events-none border-2',
+                    disabled ? 'bg-gray-50 border-gray-300' : 'bg-white border-blue-500 group-hover:bg-blue-50'
+           ]"
            :style="`left: calc(${percentage}% - 0.5rem)`"/>
     </div>
-    <span v-if="tip" class="ml-3 text-gray-500 text-sm">{{ internalValue }}</span>
+    <span v-if="tip"
+          :class="['ml-3 text-sm',
+                   disabled ? 'text-gray-400' : 'text-gray-500'
+          ]">
+      {{ internalValue }}
+    </span>
   </div>
 </template>
 
@@ -36,11 +50,13 @@ const props = withDefaults(defineProps<{
   max?: number | string
   step?: number | string
   tip?: boolean
+  disabled?: boolean
 }>(), {
   min: 0,
   max: 100,
   step: 1,
-  tip: false
+  tip: false,
+  disabled: false
 })
 
 const internalValue = ref(props.modelValue)
@@ -55,7 +71,9 @@ const percentage = computed(() => {
 watch(() => props.modelValue, (newValue: number | string) => internalValue.value = Number(newValue))
 
 const onChange = () => {
-  emit('update:modelValue', internalValue.value)
-  emit('on-change', internalValue.value)
+  if (!props.disabled) {
+    emit('update:modelValue', internalValue.value)
+    emit('on-change', internalValue.value)
+  }
 }
 </script>
