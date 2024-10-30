@@ -262,6 +262,7 @@ const resetForm = () => {
         ['name', 'The name of the form item', 'String', '-', '-', '-'],
         ['label', 'The label of the form item', 'String', '-', '-', '-'],
         ['rules', 'The rules of the form item', 'Array', '-', '-', '-'],
+        ['validateOnBlur', 'Whether to validate on blur', 'Boolean', 'true', '-', '-'],
     ]">
 </ApiTable>
 

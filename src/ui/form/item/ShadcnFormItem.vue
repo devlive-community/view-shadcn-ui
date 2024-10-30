@@ -6,7 +6,7 @@
     </label>
 
     <div class="relative">
-      <slot></slot>
+      <slot/>
       <span v-if="errorMessage" class="text-sm text-red-500">
         {{ errorMessage }}
       </span>
@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { inject, onMounted, onUnmounted, ref, watch } from 'vue'
+import { inject, onMounted, onUnmounted, provide, ref, watch } from 'vue'
 import Rule from '@/ui/form/rule.ts'
 
 interface Props
@@ -23,9 +23,12 @@ interface Props
   name: string
   label?: string
   rules?: Rule[]
+  validateOnBlur?: boolean
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  validateOnBlur: true
+})
 const errorMessage = ref<string>('')
 
 const formContext = inject('formContext') as any
@@ -82,6 +85,17 @@ const validate = async (): Promise<boolean> => {
   errorMessage.value = ''
   return true
 }
+
+const onBlur = async () => {
+  if (props.validateOnBlur) {
+    await validate()
+  }
+}
+
+provide(`form-item-${ props.name }`, {
+  onBlur,
+  name: props.name
+})
 
 onMounted(() => {
   formContext.registerFormItem({

@@ -245,6 +245,7 @@ const input = ref('Hello View Shadcn UI')
         ['type', 'The type of the input', 'String', 'text', '-', 'text, password, textarea'],
         ['rows', 'The rows of the textarea', 'Number', '3', '-', '-'],
         ['cols', 'The cols of the textarea', 'Number', '20', '-', '-'],
+        ['name', 'The name of the input, support on form', 'String', '-', '-', '-'],
     ]">
 </ApiTable>
 
@@ -255,6 +256,7 @@ const input = ref('Hello View Shadcn UI')
     :columns="[
         ['on-change', 'Triggered when the input value is changed', 'Object'],
         ['on-clear', 'Triggered when the clear icon is clicked', '-'],
+        ['on-blur', 'Triggered when the input loses focus', '-'],
         ['on-prefix-click', 'Triggered when the prefix icon is clicked', '-'],
         ['on-suffix-click', 'Triggered when the suffix icon is clicked', '-'],
     ]">

@@ -1,5 +1,6 @@
 <template>
   <div class="p-6 max-w-2xl mx-auto">
+    {{ formData }}
     <ShadcnForm ref="formRef"
                 v-model="formData"
                 @on-submit="onSubmit"
@@ -11,7 +12,7 @@
                         { min: 3, message: 'Username must be at least 3 characters' },
                         { max: 20, message: 'Username cannot exceed 20 characters' }
                       ]">
-        <ShadcnInput v-model="formData.username"/>
+        <ShadcnInput v-model="formData.username" name="username"/>
       </ShadcnFormItem>
       <ShadcnFormItem name="username"
                       label="Username"

@@ -17,6 +17,7 @@
                :maxlength="maxCount"
                :disabled="disabled"
                @input="onInput"
+               @blur="onBlur"
                @update:modelValue="onModelValueUpdate"/>
 
     <span v-if="clearable && localValue && hovered" class="absolute end-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer"
@@ -48,11 +49,11 @@
 
 <script setup lang="ts">
 import { cn } from '@/lib/utils.ts'
-import { computed, nextTick, onMounted, ref, watch } from 'vue'
+import { computed, inject, nextTick, onMounted, ref, watch } from 'vue'
 import { Size } from '@/ui/enum/Size.ts'
 import ShadcnIcon from '@/ui/icon'
 
-const emit = defineEmits(['on-change', 'on-clear', 'on-prefix-click', 'on-suffix-click', 'update:modelValue'])
+const emit = defineEmits(['on-change', 'on-clear', 'on-blur', 'on-prefix-click', 'on-suffix-click', 'update:modelValue'])
 
 const props = withDefaults(defineProps<{
   modelValue: string
@@ -65,6 +66,7 @@ const props = withDefaults(defineProps<{
   type?: string
   rows?: number | string
   cols?: number | string
+  name?: string
 }>(), {
   modelValue: '',
   placeholder: '',
@@ -118,6 +120,20 @@ const onInput = (event: Event) => {
   localValue.value = newValue
   emit('update:modelValue', newValue)
   emit('on-change', newValue)
+}
+
+const formItemContext = inject(`form-item-${ props.name }`)
+
+const onBlur = (event: FocusEvent) => {
+  const newValue = (event.target as HTMLInputElement).value
+  localValue.value = newValue
+  emit('update:modelValue', newValue)
+  emit('on-change', newValue)
+  emit('on-blur', newValue)
+
+  if (formItemContext) {
+    formItemContext.onBlur()
+  }
 }
 
 const onModelValueUpdate = (value: Object) => {
