@@ -33,6 +33,32 @@ const value = ref(50);
 
 :::
 
+## Step
+
+::: raw
+
+<CodeRunner title="Step">
+    <ShadcnSlider v-model="value" :step="10" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSlider v-model="value" :step="10" />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const value = ref(50);
+</script>
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Props"
@@ -41,6 +67,7 @@ const value = ref(50);
         ['modelValue', 'Slider value', 'number', '0'],
         ['min', 'Minimum value of the slider', 'number', '0'],
         ['max', 'Maximum value of the slider', 'number', '100'],
+        ['step', 'Step value of the slider', 'number', '1'],
     ]">
 </ApiTable>
 

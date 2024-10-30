@@ -14,7 +14,7 @@
              class="absolute w-full h-full opacity-0 cursor-pointer z-[3]"
              :min="min"
              :max="max"
-             :step="1"
+             :step="step"
              @input="onChange"/>
 
       <!-- Thumb -->
@@ -34,9 +34,11 @@ const props = withDefaults(defineProps<{
   modelValue: number | string
   min?: number | string
   max?: number | string
+  step?: number | string
 }>(), {
   min: 0,
-  max: 100
+  max: 100,
+  step: 1
 })
 
 const internalValue = ref(props.modelValue)

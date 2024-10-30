@@ -1,9 +1,8 @@
 <template>
-    <ShadcnSlider
-        v-model="value"
+    <ShadcnSlider v-model="value"
         :min="0"
         :max="100"
-        :step="1"/>
+        :step="2"/>
     <div>当前值: {{ value }}</div>
   <ShadcnTable :columns="columns"
                :data="data"
