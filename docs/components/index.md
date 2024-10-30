@@ -108,4 +108,7 @@ features:
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/form.svg" />
     title: <a href='form.html'>Shadcn Form <span class="VPBadge tip">2024.1.3</span></a>
     details: Form component
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/timeline.svg" />
+    title: <a href='timeline.html'>Shadcn Timeline <span class="VPBadge tip">2024.1.3</span></a>
+    details: Timeline component
 ---

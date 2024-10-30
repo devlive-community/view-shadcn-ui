@@ -33,3 +33,19 @@
 .dark .VPNavBar:not(.home.top) .content-body {
     background-color: hsl(var(--background)) !important;
 }
+
+.fill-emerald-500 {
+    fill: #10b981;
+}
+
+.fill-slate-300 {
+    fill: #cbd5e1;
+}
+
+.fill-slate-500 {
+    fill: #64748b;
+}
+
+.fill-red-500 {
+    fill: #ef4444;
+}
