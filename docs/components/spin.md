@@ -89,6 +89,39 @@ const value = ref(false);
 
 :::
 
+## Slot
+
+::: raw
+
+<CodeRunner title="Slot">
+    <ShadcnSpin>
+      <div class="ml-3 p-2">
+        <p class="text-gray-700">Processing</p>
+        <p class="text-sm text-gray-500">Please wait...</p>
+      </div>
+    </ShadcnSpin>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSpin>
+      <div class="ml-3 p-2">
+        <p class="text-gray-700">Processing</p>
+        <p class="text-sm text-gray-500">Please wait...</p>
+      </div>
+    </ShadcnSpin>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Props"
@@ -97,6 +130,15 @@ const value = ref(false);
         ['modelValue', 'Spin value', 'boolean', 'false', '-'],
         ['type', 'Spin type', 'enum', 'primary', 'primary | success | warning | error'],
         ['size', 'Spin size', 'enum', 'default', 'default | small | large'],
+    ]">
+</ApiTable>
+
+## Slots
+
+<ApiTable title="Slots"
+    :headers="['Slot', 'Description']"
+    :columns="[
+        ['default', 'Content, If set, type and size will not work'],
     ]">
 </ApiTable>
 

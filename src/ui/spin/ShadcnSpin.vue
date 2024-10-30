@@ -2,10 +2,15 @@
   <div v-if="modelValue"
        role="status"
        aria-label="loading"
-       :class="['inline-block animate-spin rounded-full border-2',
-                WrapperSize[size],
-                BorderRightType[type]
-       ]">
+       class="relative inline-flex items-center justify-center">
+    <template v-if="$slots.default">
+      <slot/>
+    </template>
+    <div v-else
+         :class="['inline-block animate-spin rounded-full border-2',
+                  WrapperSize[size],
+                  BorderRightType[type]
+          ]"/>
   </div>
 </template>
 

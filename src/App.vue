@@ -4,6 +4,13 @@
     <ShadcnSpin type="success" size="default"/>
     <ShadcnSpin type="error" size="large"/>
 
+    <ShadcnSpin>
+      <div class="ml-3 p-2">
+        <p class="text-gray-700">Processing</p>
+        <p class="text-sm text-gray-500">Please wait...</p>
+      </div>
+    </ShadcnSpin>
+
     <ShadcnTable :columns="columns"
                  :data="data"
                  stripe
