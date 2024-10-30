@@ -1,37 +1,54 @@
 <template>
-  <AlertDialog :open="modelValue" :default-open="modelValue" @update:open="handleClose">
-    <AlertDialogContent :class="cn('sm:rounded-sm p-0 flex flex-col',
-                                  width && `min-w-[${width}%] w-[${width}%] max-w-[${width}%]`,
-                                  height && `min-h-[${height}%] h-[${height}%] max-h-[${height}%]`)">
-      <AlertDialogHeader v-if="$slots.title || title" class="border-b p-2">
-        <AlertDialogTitle>
-          <span v-if="title">{{ title }}</span>
-          <slot v-else name="title"/>
-        </AlertDialogTitle>
+  <Teleport to="body">
+    <div v-if="modelValue"
+         class="fixed inset-0 z-50 flex items-center justify-center">
+      <!-- Backdrop -->
+      <div class="fixed inset-0 bg-black/50 transition-opacity"
+           @click="handleClose"/>
 
-        <AlertDialogDescription v-if="$slots.description || description">
-          <span v-if="description">{{ description }}</span>
-          <slot v-else name="description"/>
-        </AlertDialogDescription>
-      </AlertDialogHeader>
+      <!-- Dialog -->
+      <div :class="cn('relative bg-white z-50 flex flex-col animate-in fade-in-0 zoom-in-95',
+                      'w-full max-w-lg mx-auto rounded-sm',
+                      width && `min-w-[${width}%] w-[${width}%] max-w-[${width}%]`,
+                      height && `min-h-[${height}%] h-[${height}%] max-h-[${height}%]`)">
+        <!-- Header -->
+        <div v-if="$slots.title || title"
+             class="border-b p-2">
+          <h2 class="text-lg font-semibold">
+            <span v-if="title">{{ title }}</span>
+            <slot v-else name="title"/>
+          </h2>
 
-      <div class="p-2 flex-1 overflow-auto">
-        <slot name="content"/>
-      </div>
-
-      <AlertDialogFooter class="border-t p-2 flex">
-        <slot v-if="$slots.footer" name="footer"/>
-        <div class="space-x-2" v-else>
-          <ShadcnButton type="danger" @click="onCancel">{{ cancelText }}</ShadcnButton>
-          <ShadcnButton @click="onOk">{{ okText }}</ShadcnButton>
+          <p v-if="$slots.description || description"
+             class="text-sm text-muted-foreground">
+            <span v-if="description">{{ description }}</span>
+            <slot v-else name="description"/>
+          </p>
         </div>
-      </AlertDialogFooter>
-    </AlertDialogContent>
-  </AlertDialog>
+
+        <!-- Content -->
+        <div class="p-2 flex-1 overflow-auto">
+          <slot name="content"/>
+        </div>
+
+        <!-- Footer -->
+        <div class="border-t p-2 flex justify-end">
+          <slot v-if="$slots.footer" name="footer"/>
+          <div class="space-x-2" v-else>
+            <ShadcnButton type="danger" @click="onCancel">
+              {{ cancelText }}
+            </ShadcnButton>
+            <ShadcnButton @click="onOk">
+              {{ okText }}
+            </ShadcnButton>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Teleport>
 </template>
 
 <script setup lang="ts">
-// import { AlertDialog, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog'
 import { cn } from '@/lib/utils.ts'
 import ShadcnButton from '@/ui/button'
 

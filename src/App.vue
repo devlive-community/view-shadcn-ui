@@ -1,8 +1,5 @@
 <template>
   <div class="px-36 py-36">
-
-
-
     <ShadcnTable :columns="columns"
                  :data="data"
                  stripe
