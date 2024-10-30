@@ -1,15 +1,12 @@
 <template>
   <div class="px-4 py-4">
-    <ShadcnSpin type="primary" size="small"/>
-    <ShadcnSpin type="success" size="default"/>
-    <ShadcnSpin type="error" size="large"/>
+    <ShadcnSpin/>
 
-    <ShadcnSpin>
-      <div class="ml-3 p-2">
-        <p class="text-gray-700">Processing</p>
-        <p class="text-sm text-gray-500">Please wait...</p>
+    <ShadcnCard title="Spin">
+      <div class="relative min-h-[200px]">
+        <ShadcnSpin fixed/>
       </div>
-    </ShadcnSpin>
+    </ShadcnCard>
 
     <ShadcnTable :columns="columns"
                  :data="data"

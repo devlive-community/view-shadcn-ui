@@ -122,6 +122,37 @@ const value = ref(false);
 
 :::
 
+## Center
+
+::: raw
+
+<CodeRunner title="Center" warning="If fixed is set, the parent component must use position: relative">
+    <ShadcnCard title="Spin">
+      <div class="relative min-h-[200px]">
+        <ShadcnSpin fixed/>
+      </div>
+    </ShadcnCard>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnCard title="Spin">
+      <div class="relative min-h-[200px]">
+        <ShadcnSpin fixed/>
+      </div>
+    </ShadcnCard>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Props"

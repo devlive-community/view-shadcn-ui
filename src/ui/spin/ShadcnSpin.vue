@@ -2,15 +2,19 @@
   <div v-if="modelValue"
        role="status"
        aria-label="loading"
-       class="relative inline-flex items-center justify-center">
+       :class="['inline-flex items-center justify-center',
+                fixed ? 'absolute inset-0 bg-gray-50 z-20' : 'relative'
+       ]">
     <template v-if="$slots.default">
       <slot/>
     </template>
     <div v-else
          :class="['inline-block animate-spin rounded-full border-2',
-                  WrapperSize[size],
-                  BorderRightType[type]
-          ]"/>
+                 'shadow-lg p-2',
+                 fixed ? 'bg-transparent absolute' : 'bg-white',
+                 WrapperSize[size],
+                 BorderRightType[type]
+         ]"/>
   </div>
 </template>
 
@@ -25,10 +29,12 @@ const props = withDefaults(defineProps<{
   modelValue: boolean
   type?: keyof typeof BorderRightType
   size?: keyof typeof WrapperSize
+  fixed?: boolean
 }>(), {
   modelValue: true,
   type: 'primary',
-  size: 'default'
+  size: 'default',
+  fixed: false
 })
 
 watch(() => props.modelValue, (newValue) => {
