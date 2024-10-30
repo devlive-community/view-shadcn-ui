@@ -1,16 +1,11 @@
 <template>
-  <ShadcnBreadcrumb>
-    <ShadcnBreadcrumbItem href="/">Home</ShadcnBreadcrumbItem>
-    <ShadcnBreadcrumbItem href="/products">Products</ShadcnBreadcrumbItem>
-    <ShadcnBreadcrumbItem>Summary</ShadcnBreadcrumbItem>
-  </ShadcnBreadcrumb>
-
-  <ShadcnBreadcrumb separator="&">
-    <ShadcnBreadcrumbItem href="/">Home</ShadcnBreadcrumbItem>
-    <ShadcnBreadcrumbItem href="/products">Products</ShadcnBreadcrumbItem>
-    <ShadcnBreadcrumbItem>Summary</ShadcnBreadcrumbItem>
-  </ShadcnBreadcrumb>
-
+  <ShadcnSlider v-model="value"
+                :min="0"
+                :max="100"
+                :step="2"
+                show-tip
+                show-step/>
+  <div>当前值: {{ value }}</div>
   <ShadcnTable :columns="columns"
                :data="data"
                stripe
@@ -22,6 +17,9 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+
+const value = ref(50)
 
 const columns = [
   { 'label': 'Name', 'key': 'name', 'width': 100 },

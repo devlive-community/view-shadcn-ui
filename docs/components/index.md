@@ -99,4 +99,7 @@ features:
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/breadcrumb.svg" />
     title: <a href='breadcrumb.html'>Shadcn Breadcrumb <span class="VPBadge tip">2024.1.3</span></a>
     details: Breadcrumb component
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/slider.svg" />
+    title: <a href='slider.html'>Shadcn Slider <span class="VPBadge tip">2024.1.3</span></a>
+    details: Slider component
 ---
