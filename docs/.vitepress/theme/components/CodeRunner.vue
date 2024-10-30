@@ -5,7 +5,16 @@
         <div class="font-bold">{{ title }}</div>
         <div class="text-sm text-muted-foreground">{{ description }}</div>
       </div>
-      <div class="p-3 space-x-2">
+
+      <div class="px-2" v-if="warning">
+        <ShadcnAlert class="mt-2"
+                     :title="warning"
+                     type="warning"
+                     show-icon
+                     closable/>
+      </div>
+
+      <div class="p-2 space-x-2">
         <slot/>
       </div>
     </template>
@@ -23,6 +32,7 @@
 const props = withDefaults(defineProps<{
   title: String
   description?: String
+  warning?: String
   onlineLink?: String
   goToOnline?: String
 }>(), {

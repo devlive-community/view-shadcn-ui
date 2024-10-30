@@ -16,6 +16,7 @@
   "license": "MIT",
   "main": "./dist/view-shadcn.umd.ts",
   "module": "./dist/view-shadcn.es.ts",
+  "types": "types/view-shadcn.d.ts",
   "exports": {
     ".": {
       "import": "./dist/view-shadcn-ui.es.ts",
@@ -54,9 +55,7 @@
     ]
   },
   "scripts": {
-    "predev": "bash setup.sh",
     "dev": "vite",
-    "prebuild": "bash setup.sh",
     "build": "vue-tsc && vite build && tailwindcss build src/assets/index.css -o dist/view-shadcn-ui.min.css --minify",
     "preview": "vite preview",
     "docs:dev": "vitepress dev docs",
@@ -67,33 +66,24 @@
   },
   "dependencies": {
     "@radix-icons/vue": "^1.0.0",
-    "@vee-validate/zod": "^4.13.2",
-    "@vueuse/core": "^10.11.1",
-    "@vueuse/motion": "^2.1.0",
+    "@vueuse/core": "^11.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "highlight.js": "^11.10.0",
     "lodash": "^4.17.21",
     "lucide-vue-next": "^0.360.0",
-    "moment": "^2.30.1",
     "radix-vue": "^1.5.3",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
-    "vaul-vue": "^0.1.3",
-    "vee-validate": "^4.13.2",
+    "vaul-vue": "^0.2.0",
+    "vee-validate": "^4.14.6",
     "view-shadcn-ui": "alpha",
-    "vue": "^3.4.21",
-    "vue-i18n": "^9.10.2",
-    "vue-router": "^4.3.0",
-    "zod": "^3.23.8"
+    "vue": "^3.4.21"
   },
   "devDependencies": {
-    "@types/lodash": "^4.17.0",
     "@types/node": "^20.11.30",
     "@vitejs/plugin-vue": "^5.0.4",
     "autoprefixer": "^10.4.19",
-    "commitizen": "^4.3.1",
-    "conventional-changelog-cli": "^5.0.0",
     "postcss": "^8.4.47",
     "standard-version": "^9.5.0",
     "tailwindcss": "^3.4.1",

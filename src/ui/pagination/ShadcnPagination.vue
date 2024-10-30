@@ -17,7 +17,7 @@
     <template v-for="item in displayPages" :key="item">
       <span v-if="item === '...'" class="px-2 py-1">...</span>
       <button v-else
-              @click="goToPage(item)"
+              @click="goToPage(Number(item))"
               :class="['px-2 py-1 text-xs rounded w-8 h-8 flex items-center justify-center',
                       item === currentPage ? 'bg-blue-400 text-white cursor-not-allowed' : 'bg-gray-100'
               ]"
@@ -144,8 +144,7 @@ watch(pageSize, (newValue) => {
   emit('on-change', currentPage.value)
 })
 
-const goToPage = (page: number | string) => {
-  page = toNumber(page)
+const goToPage = (page: number) => {
   if (page >= 1 && page <= totalPages.value) {
     emit('update:modelValue', page)
     emit('on-change', page)

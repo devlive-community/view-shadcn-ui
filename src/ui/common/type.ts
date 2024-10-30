@@ -30,6 +30,14 @@ export enum BorderType
     error = 'border-red-400'
 }
 
+export enum BorderRightType
+{
+    primary = 'border-r-blue-400',
+    success = 'border-r-green-400',
+    warning = 'border-r-yellow-400',
+    error = 'border-r-red-400'
+}
+
 export enum BackgroundType
 {
     primary = 'bg-blue-50',
@@ -50,7 +58,8 @@ export enum ButtonBackgroundType
     text = 'bg-transparent'
 }
 
-export enum ButtonHoverType {
+export enum ButtonHoverType
+{
     default = 'hover:bg-white',
     primary = 'hover:bg-blue-500',
     info = 'hover:bg-blue-500',

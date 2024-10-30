@@ -1,6 +1,7 @@
 import { App } from 'vue'
 
 import Message from './setup/message.ts'
+import Spin from './setup/spin.ts'
 
 import ShadcnButton from '@/ui/button'
 import ShadcnCard from '@/ui/card'
@@ -49,6 +50,7 @@ import ShadcnTable from '@/ui/table'
 import ShadcnBreadcrumb from '@/ui/breadcrumb'
 import ShadcnBreadcrumbItem from '@/ui/breadcrumb/item'
 import ShadcnSlider from '@/ui/slider'
+import ShadcnSpin from '@/ui/spin'
 
 let components = [
     ShadcnButton,
@@ -97,7 +99,8 @@ let components = [
     ShadcnTable,
     ShadcnBreadcrumb,
     ShadcnBreadcrumbItem,
-    ShadcnSlider
+    ShadcnSlider,
+    ShadcnSpin
 ]
 
 const install = (Vue: App) => {
@@ -107,6 +110,7 @@ const install = (Vue: App) => {
 
     // Support global import
     Vue.config.globalProperties.$Message = Message
+    Vue.config.globalProperties.$Spin = Spin
 }
 
 let windowObj = window as any
@@ -169,6 +173,7 @@ export { default as ShadcnTable } from '@/ui/table'
 export { default as ShadcnBreadcrumb } from '@/ui/breadcrumb'
 export { default as ShadcnBreadcrumbItem } from '@/ui/breadcrumb/item'
 export { default as ShadcnSlider } from '@/ui/slider'
+export { default as ShadcnSpin } from '@/ui/spin'
 
 // Support global import
 export default install
