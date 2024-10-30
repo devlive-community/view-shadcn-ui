@@ -8,6 +8,12 @@
 import { provide, ref } from 'vue'
 import { TimelineContext } from './timeline.ts'
 
+const props = withDefaults(defineProps<{
+  split?: boolean
+}>(), {
+  split: false
+})
+
 const timelineItems = ref<Set<symbol>>(new Set())
 
 const addItem = (id: symbol) => {
@@ -27,6 +33,7 @@ provide('getCurrentIndex', () => {
 provide<TimelineContext>('timelineContext', {
   addItem,
   removeItem,
-  items: timelineItems.value
+  items: timelineItems.value,
+  split: props.split
 })
 </script>
