@@ -17,6 +17,7 @@
 <script setup lang="ts">
 import { inject, onMounted, onUnmounted, provide, ref, watch } from 'vue'
 import Rule from '@/ui/form/rule.ts'
+import { FormItemContext } from '@/ui/form/context.ts'
 
 interface Props
 {
@@ -92,7 +93,7 @@ const onBlur = async () => {
   }
 }
 
-provide(`form-item-${ props.name }`, {
+provide<FormItemContext>(`form-item-${ props.name }`, {
   onBlur,
   name: props.name
 })

@@ -52,6 +52,7 @@ import { cn } from '@/lib/utils.ts'
 import { computed, inject, nextTick, onMounted, ref, watch } from 'vue'
 import { Size } from '@/ui/enum/Size.ts'
 import ShadcnIcon from '@/ui/icon'
+import { FormItemContext } from '@/ui/form/context.ts'
 
 const emit = defineEmits(['on-change', 'on-clear', 'on-blur', 'on-prefix-click', 'on-suffix-click', 'update:modelValue'])
 
@@ -122,7 +123,7 @@ const onInput = (event: Event) => {
   emit('on-change', newValue)
 }
 
-const formItemContext = inject(`form-item-${ props.name }`)
+const formItemContext = inject<FormItemContext | null>(`form-item-${ props.name }`)
 
 const onBlur = (event: FocusEvent) => {
   const newValue = (event.target as HTMLInputElement).value
