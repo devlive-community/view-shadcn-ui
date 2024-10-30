@@ -56,6 +56,31 @@ This document is mainly used to describe some features and usage of the ShadcnTr
 
 :::
 
+## Text Color
+
+::: raw
+
+<CodeRunner title="Text Color">
+    <ShadcnTrend :value="10" text-color/>
+    <ShadcnTrend :value="-10" text-color/>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnTrend :value="10" text-color/>
+    <ShadcnTrend :value="-10" text-color/>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Props"
@@ -63,6 +88,7 @@ This document is mainly used to describe some features and usage of the ShadcnTr
     :columns="[
         ['value', 'The value of the trend, if > 0, rise, if < 0, descend', 'number', '0', '-', '-'],
         ['reverse', 'Reverse the trend direction', 'boolean', 'false', '-', '-'],
+        ['text-color', 'Text color', 'boolean', 'false', '-', '-'],
     ]">
 </ApiTable>
 

@@ -1,6 +1,10 @@
 <template>
   <div :class="['inline-flex items-center gap-1']">
-    <div class="text-xs text-gray-500">
+    <div :class="['text-xs',
+                  textColor ? [
+                      isPositive ? 'text-red-500' : 'text-green-500'
+                  ] : 'text-gray-500'
+          ]">
       <slot>{{ value }}</slot>
     </div>
 
@@ -35,9 +39,11 @@ import { computed } from 'vue'
 const props = withDefaults(defineProps<{
   value?: number
   reverse?: boolean
+  textColor?: boolean
 }>(), {
   value: 0,
-  reverse: false
+  reverse: false,
+  textColor: false
 })
 
 const isPositive = computed(() => props.reverse ? props.value < 0 : props.value > 0)
