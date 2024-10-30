@@ -33,12 +33,42 @@ const value = ref(false);
 
 :::
 
+## Type
+
+::: raw
+
+<CodeRunner title="Type">
+    <ShadcnSpin type="primary"/>
+    <ShadcnSpin type="success"/>
+    <ShadcnSpin type="error"/>
+    <ShadcnSpin type="warning"/>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSpin type="primary"/>
+    <ShadcnSpin type="success"/>
+    <ShadcnSpin type="error"/>
+    <ShadcnSpin type="warning"/>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
     :columns="[
-        ['modelValue', 'Spin value', 'boolean', 'false'],
+        ['modelValue', 'Spin value', 'boolean', 'false', '-'],
+        ['type', 'Spin type', 'enum', 'primary', 'primary | success | warning | error'],
     ]">
 </ApiTable>
 
@@ -54,5 +84,5 @@ const value = ref(false);
 <script setup lang="ts">
 import { ref } from 'vue';
 
-const value = ref(false);
+const value = ref(true);
 </script>

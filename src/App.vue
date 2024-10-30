@@ -1,6 +1,11 @@
 <template>
   <div class="px-4 py-4">
-    <ShadcnSpin />
+    <ShadcnSpin/>
+
+    <ShadcnSpin type="primary"/>
+    <ShadcnSpin type="success"/>
+    <ShadcnSpin type="error"/>
+    <ShadcnSpin type="warning"/>
 
     <ShadcnTable :columns="columns"
                  :data="data"
@@ -14,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+
 const columns = [
   { 'label': 'Name', 'key': 'name', 'width': 100 },
   { 'label': 'Age', 'key': 'age', 'width': 100 },
