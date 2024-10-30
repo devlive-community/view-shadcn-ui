@@ -1,14 +1,5 @@
 <template>
   <div class="px-4 py-4">
-    <ShadcnSpin/>
-
-    <ShadcnCard title="Spin">
-      <div class="relative min-h-[200px]">
-        <ShadcnSpin fixed/>
-      </div>
-    </ShadcnCard>
-
-    <ShadcnButton @click="showSpin">Show Spin</ShadcnButton>
 
     <ShadcnTable :columns="columns"
                  :data="data"
@@ -35,12 +26,6 @@ export default {
       (this as any).$Message.info({
         content: `Click [ ${ row.name } ] - [ ${ index } ]`
       });
-    },
-    showSpin() {
-      (this as any).$Spin.show();
-      setTimeout(() => {
-        (this as any).$Spin.hide();
-      }, 3000);
     }
   }
 }

@@ -2,25 +2,25 @@
   <div class="relative inline-block">
     <slot/>
 
-    <Badge :class="cn('absolute top-0 right-0 translate-x-2/4 -translate-y-2/4',
-                      dot ? 'p-1' : 'px-1 py-0.5')"
-           :style="{ backgroundColor: Type[type]}">
+    <div :class="cn('absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 rounded-full text-white text-xs font-medium',
+                    dot ? 'p-1' : 'px-1.5 py-0.5',
+                    ButtonBackgroundType[type]
+          )">
       <template v-if="displayedText">{{ displayedText }}</template>
       <slot v-else-if="$slots.text" name="text"/>
-    </Badge>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Badge } from '@/components/ui/badge'
-import { Type } from '@/ui/enum/Type.ts'
 import { cn } from '@/lib/utils.ts'
 import { computed } from 'vue'
 import { isNaN, toNumber } from 'lodash'
+import { ButtonBackgroundType } from '@/ui/common/type.ts'
 
 const props = withDefaults(defineProps<{
   text?: string | number
-  type?: keyof typeof Type
+  type?: keyof typeof ButtonBackgroundType
   dot?: boolean
   max?: number | string
 }>(), {
