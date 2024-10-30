@@ -1,5 +1,5 @@
 <template>
-  <div class="relative space-y-2">
+  <div class="relative">
     <slot/>
   </div>
 </template>
