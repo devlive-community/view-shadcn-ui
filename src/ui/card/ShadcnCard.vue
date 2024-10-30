@@ -38,7 +38,7 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
 import { cn } from '@/lib/utils'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+// import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Loader2 } from 'lucide-vue-next'
 import { Shadow } from '@/ui/enum/Shadow.ts'
 
