@@ -62,6 +62,33 @@ const value = ref(false);
 
 :::
 
+## Size
+
+::: raw
+
+<CodeRunner title="Size">
+    <ShadcnSpin type="primary" size="small"/>
+    <ShadcnSpin type="success" size="default"/>
+    <ShadcnSpin type="error" size="large"/>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSpin type="primary" size="small"/>
+    <ShadcnSpin type="success" size="default"/>
+    <ShadcnSpin type="error" size="large"/>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Props"
@@ -69,6 +96,7 @@ const value = ref(false);
     :columns="[
         ['modelValue', 'Spin value', 'boolean', 'false', '-'],
         ['type', 'Spin type', 'enum', 'primary', 'primary | success | warning | error'],
+        ['size', 'Spin size', 'enum', 'default', 'default | small | large'],
     ]">
 </ApiTable>
 

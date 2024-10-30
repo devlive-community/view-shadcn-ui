@@ -1,11 +1,8 @@
 <template>
   <div class="px-4 py-4">
-    <ShadcnSpin/>
-
-    <ShadcnSpin type="primary"/>
-    <ShadcnSpin type="success"/>
-    <ShadcnSpin type="error"/>
-    <ShadcnSpin type="warning"/>
+    <ShadcnSpin type="primary" size="small"/>
+    <ShadcnSpin type="success" size="default"/>
+    <ShadcnSpin type="error" size="large"/>
 
     <ShadcnTable :columns="columns"
                  :data="data"

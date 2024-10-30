@@ -2,7 +2,8 @@
   <div v-if="modelValue"
        role="status"
        aria-label="loading"
-       :class="['inline-block animate-spin rounded-full h-4 w-4 border-2',
+       :class="['inline-block animate-spin rounded-full border-2',
+                WrapperSize[size],
                 BorderRightType[type]
        ]">
   </div>
@@ -11,15 +12,18 @@
 <script setup lang="ts">
 import { watch } from 'vue'
 import { BorderRightType } from '@/ui/common/type.ts'
+import { WrapperSize } from '@/ui/common/size.ts'
 
 const emit = defineEmits(['update:modelValue', 'on-change'])
 
 const props = withDefaults(defineProps<{
   modelValue: boolean
   type?: keyof typeof BorderRightType
+  size?: keyof typeof WrapperSize
 }>(), {
   modelValue: true,
-  type: 'primary'
+  type: 'primary',
+  size: 'default'
 })
 
 watch(() => props.modelValue, (newValue) => {
