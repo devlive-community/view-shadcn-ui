@@ -21,7 +21,7 @@
       <div class="absolute w-4 h-4 bg-white border-2 border-blue-500 rounded-full top-1/2 -translate-y-1/2 hover:bg-blue-600 transition-colors z-[2] pointer-events-none"
            :style="`left: calc(${percentage}% - 0.5rem)`"/>
     </div>
-    <span class="ml-4">{{ internalValue }}</span>
+    <span v-if="tip" class="ml-3 text-gray-500 text-sm">{{ internalValue }}</span>
   </div>
 </template>
 
@@ -35,10 +35,12 @@ const props = withDefaults(defineProps<{
   min?: number | string
   max?: number | string
   step?: number | string
+  tip?: boolean
 }>(), {
   min: 0,
   max: 100,
-  step: 1
+  step: 1,
+  tip: false
 })
 
 const internalValue = ref(props.modelValue)
