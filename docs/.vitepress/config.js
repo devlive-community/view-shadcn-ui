@@ -80,21 +80,21 @@ export default {
                 }
             ],
             '/components/': [
-                {
-                    text: 'Base Components',
-                    base: '/components/',
-                    collapsed: false,
-                    items: [
+                (() => {
+                    const items = [
                         {text: 'Button <span class="VPBadge tip">2024.1.1</span>', link: 'button'},
                         {text: 'Icon <span class="VPBadge tip">2024.1.1</span>', link: 'icon'},
                         {text: 'Copy <span class="VPBadge tip">2024.1.1</span>', link: 'copy'}
                     ]
-                },
-                {
-                    text: 'Layout Components',
-                    base: '/components/',
-                    collapsed: false,
-                    items: [
+                    return {
+                        text: `Base [ ${items.length} ]`,
+                        base: '/components/',
+                        collapsed: false,
+                        items: items
+                    }
+                })(),
+                (() => {
+                    const items = [
                         {text: 'Card <span class="VPBadge tip">2024.1.1</span>', link: 'card'},
                         {text: 'Row / Col <span class="VPBadge tip">2024.1.2</span>', link: 'row-col'},
                         {text: 'Divider <span class="VPBadge tip">2024.1.2</span>', link: 'divider'},
@@ -104,12 +104,15 @@ export default {
                         {text: 'Skeleton <span class="VPBadge tip">2024.1.2</span>', link: 'skeleton'},
                         {text: 'Layout <span class="VPBadge tip">2024.1.2</span>', link: 'layout'},
                     ]
-                },
-                {
-                    text: 'View Components',
-                    base: '/components/',
-                    collapsed: false,
-                    items: [
+                    return {
+                        text: `Layout [ ${items.length} ]`,
+                        base: '/components/',
+                        collapsed: false,
+                        items: items
+                    }
+                })(),
+                (() => {
+                    const items = [
                         {text: 'Modal <span class="VPBadge tip">2024.1.1</span>', link: 'modal'},
                         {text: 'Tooltip <span class="VPBadge tip">2024.1.1</span>', link: 'tooltip'},
                         {text: 'Code <span class="VPBadge tip">2024.1.1</span>', link: 'code'},
@@ -118,13 +121,17 @@ export default {
                         {text: 'Drawer <span class="VPBadge tip">2024.1.2</span>', link: 'drawer'},
                         {text: 'Message <span class="VPBadge tip">2024.1.2</span>', link: 'message'},
                         {text: 'Spin <span class="VPBadge tip">2024.1.3</span>', link: 'spin'},
+                        {text: 'Timeline <span class="VPBadge tip">2024.1.3</span>', link: 'timeline'},
                     ]
-                },
-                {
-                    text: 'Form Components',
-                    base: '/components/',
-                    collapsed: false,
-                    items: [
+                    return {
+                        text: `View [ ${items.length} ]`,
+                        base: '/components/',
+                        collapsed: false,
+                        items: items
+                    };
+                })(),
+                (() => {
+                    const items = [
                         {text: 'Input <span class="VPBadge tip">2024.1.1</span>', link: 'input'},
                         {text: 'Switch <span class="VPBadge tip">2024.1.2</span>', link: 'switch'},
                         {text: 'Radio <span class="VPBadge tip">2024.1.2</span>', link: 'radio'},
@@ -134,11 +141,15 @@ export default {
                         {text: 'Table <span class="VPBadge tip">2024.1.2</span>', link: 'table'},
                         {text: 'Form <span class="VPBadge tip">2024.1.3</span>', link: 'form'},
                     ]
-                }, {
-                    text: 'Navigation Components',
-                    base: '/components/',
-                    collapsed: false,
-                    items: [
+                    return {
+                        text: `Form [ ${items.length} ]`,
+                        base: '/components/',
+                        collapsed: false,
+                        items: items
+                    };
+                })(),
+                (() => {
+                    const items = [
                         {text: 'Tabs <span class="VPBadge tip">2024.1.2</span>', link: 'tabs'},
                         {text: 'Pagination <span class="VPBadge tip">2024.1.2</span>', link: 'pagination'},
                         {text: 'Menu <span class="VPBadge tip">2024.1.2</span>', link: 'menu'},
@@ -146,7 +157,13 @@ export default {
                         {text: 'Breadcrumb <span class="VPBadge tip">2024.1.3</span>', link: 'breadcrumb'},
                         {text: 'Slider <span class="VPBadge tip">2024.1.3</span>', link: 'slider'},
                     ]
-                }
+                    return {
+                        text: `Navigation [ ${items.length} ]`,
+                        base: '/components/',
+                        collapsed: false,
+                        items: items
+                    };
+                })(),
             ]
         }
     }

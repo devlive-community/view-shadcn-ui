@@ -53,6 +53,8 @@ import ShadcnSlider from '@/ui/slider'
 import ShadcnSpin from '@/ui/spin'
 import ShadcnForm from '@/ui/form'
 import ShadcnFormItem from '@/ui/form/item'
+import ShadcnTimeline from '@/ui/timeline'
+import ShadcnTimelineItem from '@/ui/timeline/item'
 
 let components = [
     ShadcnButton,
@@ -104,7 +106,9 @@ let components = [
     ShadcnSlider,
     ShadcnSpin,
     ShadcnForm,
-    ShadcnFormItem
+    ShadcnFormItem,
+    ShadcnTimeline,
+    ShadcnTimelineItem
 ]
 
 const install = (Vue: App) => {
@@ -180,6 +184,8 @@ export { default as ShadcnSlider } from '@/ui/slider'
 export { default as ShadcnSpin } from '@/ui/spin'
 export { default as ShadcnForm } from '@/ui/form'
 export { default as ShadcnFormItem } from '@/ui/form/item'
+export { default as ShadcnTimeline } from '@/ui/timeline'
+export { default as ShadcnTimelineItem } from '@/ui/timeline/item'
 
 // Support global import
 export default install
