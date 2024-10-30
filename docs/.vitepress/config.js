@@ -117,6 +117,7 @@ export default {
                         {text: 'Progress <span class="VPBadge tip">2024.1.2</span>', link: 'progress'},
                         {text: 'Drawer <span class="VPBadge tip">2024.1.2</span>', link: 'drawer'},
                         {text: 'Message <span class="VPBadge tip">2024.1.2</span>', link: 'message'},
+                        {text: 'Spin <span class="VPBadge tip">2024.1.3</span>', link: 'spin'},
                     ]
                 },
                 {

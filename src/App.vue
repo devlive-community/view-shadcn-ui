@@ -1,12 +1,6 @@
 <template>
   <div class="px-4 py-4">
-    <ShadcnSlider v-model="value"
-                  :min="0"
-                  :max="100"
-                  :step="2"
-                  show-tip
-                  show-step/>
-    <div>当前值: {{ value }}</div>
+    <ShadcnSpin />
 
     <ShadcnTable :columns="columns"
                  :data="data"
@@ -21,9 +15,6 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
-const value = ref(50)
-
 const columns = [
   { 'label': 'Name', 'key': 'name', 'width': 100 },
   { 'label': 'Age', 'key': 'age', 'width': 100 },

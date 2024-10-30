@@ -67,6 +67,9 @@
     "release:skip": "standard-version --skip.bump=true --skip.tag=true"
   },
   "dependencies": {
+    "@radix-icons/vue": "^1.0.0",
+    "@vueuse/core": "^11.1.0",
+    "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "highlight.js": "^11.10.0",
     "lodash": "^4.17.21",
@@ -74,6 +77,8 @@
     "radix-vue": "^1.5.3",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
+    "vaul-vue": "^0.2.0",
+    "vee-validate": "^4.14.6",
     "view-shadcn-ui": "alpha",
     "vue": "^3.4.21"
   },
