@@ -81,15 +81,12 @@ This document is mainly used to describe some features and usage of the ShadcnFo
         <ShadcnInput v-model="formData.nickname"/>
       </ShadcnFormItem>
       <div class="flex justify-end space-x-2 mt-6">
-        <button type="button"
-                @click="resetForm"
-                class="px-4 py-2 border rounded-md hover:bg-gray-100">
+        <ShadcnButton reset @click="resetForm">
           Reset
-        </button>
-        <button type="submit"
-                class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+        </ShadcnButton>
+        <ShadcnButton submit>
           Submit
-        </button>
+        </ShadcnButton>
       </div>
     </ShadcnForm>
 </CodeRunner>
@@ -178,15 +175,12 @@ This document is mainly used to describe some features and usage of the ShadcnFo
       </ShadcnFormItem>
 
       <div class="flex justify-end space-x-2 mt-6">
-        <button type="button"
-                @click="resetForm"
-                class="px-4 py-2 border rounded-md hover:bg-gray-100">
+        <ShadcnButton reset @click="resetForm">
           Reset
-        </button>
-        <button type="submit"
-                class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+        </ShadcnButton>
+        <ShadcnButton submit>
           Submit
-        </button>
+        </ShadcnButton>
       </div>
     </ShadcnForm>
   </div>
