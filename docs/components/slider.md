@@ -59,12 +59,12 @@ const value = ref(50);
 
 :::
 
-## Tip
+## Show Tip
 
 ::: raw
 
-<CodeRunner title="Tip">
-    <ShadcnSlider v-model="value" tip />
+<CodeRunner title="Show Tip">
+    <ShadcnSlider v-model="value" show-tip />
 </CodeRunner>
 
 :::
@@ -73,7 +73,33 @@ const value = ref(50);
 
 ```vue
 <template>
-    <ShadcnSlider v-model="value" tip />
+    <ShadcnSlider v-model="value" show-tip />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const value = ref(50);
+</script>
+```
+
+:::
+
+## Show Step
+
+::: raw
+
+<CodeRunner title="Show Step">
+    <ShadcnSlider v-model="value" step="10" show-step />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSlider v-model="value" step="10" show-step />
 </template>
 
 <script setup lang="ts">
@@ -120,7 +146,8 @@ const value = ref(50);
         ['min', 'Minimum value of the slider', 'number', '0'],
         ['max', 'Maximum value of the slider', 'number', '100'],
         ['step', 'Step value of the slider', 'number', '1'],
-        ['tip', 'Display a tooltip', 'boolean', 'false'],
+        ['showTip', 'Display a tooltip', 'boolean', 'false'],
+        ['showStep', 'Display a step', 'boolean', 'false'],
         ['disabled', 'Disable the slider', 'boolean', 'false'],
     ]">
 </ApiTable>

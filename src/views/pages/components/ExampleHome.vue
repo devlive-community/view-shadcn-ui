@@ -3,8 +3,8 @@
                 :min="0"
                 :max="100"
                 :step="2"
-                tip
-                disabled/>
+                show-tip
+                show-step/>
   <div>当前值: {{ value }}</div>
   <ShadcnTable :columns="columns"
                :data="data"

@@ -12,6 +12,16 @@
            ]"
            :style="`width: ${percentage}%`"/>
 
+      <!-- Step marks -->
+      <div v-if="showStep">
+        <div v-for="(mark, index) in stepMarks"
+             :key="index"
+             :class="['absolute bg-white top-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full z-[2]',
+                      disabled ? 'bg-gray-300' : 'bg-gray-400'
+             ]"
+             :style="`left: ${mark}%`"/>
+      </div>
+
       <!-- Range Input -->
       <input v-model="internalValue"
              type="range"
@@ -30,7 +40,7 @@
            ]"
            :style="`left: calc(${percentage}% - 0.5rem)`"/>
     </div>
-    <span v-if="tip"
+    <span v-if="showTip"
           :class="['ml-3 text-sm',
                    disabled ? 'text-gray-400' : 'text-gray-500'
           ]">
@@ -49,13 +59,15 @@ const props = withDefaults(defineProps<{
   min?: number | string
   max?: number | string
   step?: number | string
-  tip?: boolean
+  showTip?: boolean
+  showStep?: boolean
   disabled?: boolean
 }>(), {
   min: 0,
   max: 100,
   step: 1,
-  tip: false,
+  showTip: false,
+  showStep: false,
   disabled: false
 })
 
@@ -66,6 +78,22 @@ const max = computed(() => Number(props.max) ?? 100)
 
 const percentage = computed(() => {
   return ((Number(internalValue.value) - min.value) / (max.value - min.value)) * 100
+})
+
+// Calculate step marks
+const stepMarks = computed(() => {
+  const marks = Array<number>()
+  const range = max.value - min.value
+  const stepValue = Number(props.step)
+  const steps = Math.floor(range / stepValue)
+
+  for (let i = 1; i < steps; i++) {
+    const value = min.value + (stepValue * i)
+    if (value <= max.value) {
+      marks.push((value - min.value) / (max.value - min.value) * 100)
+    }
+  }
+  return marks
 })
 
 watch(() => props.modelValue, (newValue: number | string) => internalValue.value = Number(newValue))
