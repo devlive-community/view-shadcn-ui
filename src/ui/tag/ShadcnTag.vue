@@ -4,8 +4,13 @@
             border && 'border',
             border && TagBorderType[type],
             [type === 'default' ? 'text-gray-800' : 'text-white'],
+            [color && 'text-white'],
             TagSize[size]
-        ]">
+        ]"
+       :style="[
+           color && { backgroundColor: color },
+           color && border && { borderColor: getHoverColor(color) }
+       ]">
     <slot>{{ text }}</slot>
     <ShadcnIcon v-if="closable"
                 icon="X"
@@ -20,6 +25,7 @@
 <script setup lang="ts">
 import { TagBackgroundType, TagBorderType } from '@/ui/common/type.ts'
 import { TagSize } from '@/ui/common/size.ts'
+import { getHoverColor } from '@/utils/color.ts'
 
 interface Props
 {
@@ -28,6 +34,7 @@ interface Props
   border?: boolean
   size?: keyof typeof TagSize
   closable?: boolean
+  color?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {

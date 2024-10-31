@@ -167,6 +167,37 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
+## Color
+
+::: raw
+
+<CodeRunner title="Color">
+    <ShadcnSpace wrap>
+        <ShadcnTag text="Default Tag" border color="#D35DD4"/>
+        <ShadcnTag text="Medium Tag" border color="#39604B"/>
+        <ShadcnTag text="Large Tag Width" border color="#301A65"/>
+    </ShadcnSpace>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSpace wrap>
+        <ShadcnTag text="Default Tag" border color="#D35DD4"/>
+        <ShadcnTag text="Medium Tag" border color="#39604B"/>
+        <ShadcnTag text="Large Tag Width" border color="#301A65"/>
+    </ShadcnSpace>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Props"
@@ -177,6 +208,7 @@ This document is mainly used to describe some features and usage of the ShadcnTa
         ['border', 'The border of the tag', 'boolean', 'false', '-', '-'],
         ['size', 'The size of the tag', 'enum', 'default', '-', 'default | medium | large'],
         ['closable', 'Whether the tag can be closed', 'boolean', 'false', '-', '-'],
+        ['color', 'The color of the tag, auto calculate border color', 'string', '-', '-', '-'],
     ]">
 </ApiTable>
 
