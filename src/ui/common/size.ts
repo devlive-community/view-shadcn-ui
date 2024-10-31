@@ -32,3 +32,10 @@ export enum WrapperSize
     small = 'h-6 w-6',
     large = 'h-12 w-12'
 }
+
+export enum TagSize
+{
+    default = 'h-6 px-3',
+    medium = 'h-8 px-2',
+    large = 'h-10 px-4'
+}

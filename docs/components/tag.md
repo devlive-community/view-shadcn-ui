@@ -105,6 +105,68 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
+## Size
+
+::: raw
+
+<CodeRunner title="Size">
+    <ShadcnSpace wrap>
+      <ShadcnTag text="Default Tag" size="default"/>
+      <ShadcnTag text="Medium Tag" size="medium"/>
+      <ShadcnTag text="Large Tag Width" size="large"/>
+    </ShadcnSpace>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSpace wrap>
+      <ShadcnTag text="Default Tag" size="default"/>
+      <ShadcnTag text="Medium Tag" size="medium"/>
+      <ShadcnTag text="Large Tag Width" size="large"/>
+    </ShadcnSpace>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
+## Closeable
+
+::: raw
+
+<CodeRunner title="Closeable">
+    <ShadcnSpace wrap>
+      <ShadcnTag text="Default Tag" size="default" closable @on-close="console.log('on-close')"/>
+      <ShadcnTag text="Medium Tag" size="medium" closable/>
+      <ShadcnTag text="Large Tag Width" size="large" closable/>
+    </ShadcnSpace>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSpace wrap>
+        <ShadcnTag text="Default Tag" size="default" closable @on-close="console.log('on-close')"/>
+        <ShadcnTag text="Medium Tag" size="medium" closable/>
+        <ShadcnTag text="Large Tag Width" size="large" closable/>
+    </ShadcnSpace>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Props"
@@ -113,6 +175,8 @@ This document is mainly used to describe some features and usage of the ShadcnTa
         ['text', 'The content of the tag', 'string', '-', '-', '-'],
         ['type', 'The type of the tag', 'enum', 'default', '-', 'default | primary | success | warning | error'],
         ['border', 'The border of the tag', 'boolean', 'false', '-', '-'],
+        ['size', 'The size of the tag', 'enum', 'default', '-', 'default | medium | large'],
+        ['closable', 'Whether the tag can be closed', 'boolean', 'false', '-', '-'],
     ]">
 </ApiTable>
 

@@ -1,11 +1,10 @@
 <template>
   <div class="p-8 max-w-2xl mx-auto space-y-10">
     <ShadcnSpace wrap>
-      <ShadcnTag text="Text" border/>
-      <ShadcnTag text="Text" type="primary" border/>
-      <ShadcnTag text="Text" type="success" border/>
-      <ShadcnTag text="Text" type="warning" border/>
-      <ShadcnTag text="Text" type="error" border/>
+      <ShadcnTag text="Default Tag"/>
+      <ShadcnTag text="Default Tag" size="default" closable @on-close="console.log('on-close')"/>
+      <ShadcnTag text="Medium Tag" size="medium" closable/>
+      <ShadcnTag text="Large Tag Width" size="large" closable/>
     </ShadcnSpace>
   </div>
 </template>

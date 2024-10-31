@@ -1,25 +1,50 @@
 <template>
-  <div :class="['inline-flex items-center rounded-sm px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
+  <div :class="['inline-flex items-center rounded-sm text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
             TagBackgroundType[type],
             border && 'border',
             border && TagBorderType[type],
-            [type === 'default' ? 'text-gray-800' : 'text-white']
+            [type === 'default' ? 'text-gray-800' : 'text-white'],
+            TagSize[size]
         ]">
-    <slot>
-      {{ text }}
-    </slot>
+    <slot>{{ text }}</slot>
+    <ShadcnIcon v-if="closable"
+                icon="X"
+                :class="['ml-2 h-4 w-4 cursor-pointer text-gray-400 hover:text-gray-500',
+                    border && 'border'
+                ]"
+                @click.stop="onClose"
+                @keydown.enter="onClose"/>
   </div>
 </template>
 
 <script setup lang="ts">
 import { TagBackgroundType, TagBorderType } from '@/ui/common/type.ts'
+import { TagSize } from '@/ui/common/size.ts'
 
-withDefaults(defineProps<{
+interface Props
+{
   text?: string
   type?: keyof typeof TagBackgroundType
   border?: boolean
-}>(), {
+  size?: keyof typeof TagSize
+  closable?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
   type: 'default',
-  border: false
+  border: false,
+  size: 'default',
+  closable: false
 })
+
+const emit = defineEmits<{
+  (e: 'on-close', value?: string): void
+  (e: 'update:modelValue', value: boolean): void
+}>()
+
+const onClose = (event: Event) => {
+  event.preventDefault()
+  emit('on-close', props.text)
+  emit('update:modelValue', false)
+}
 </script>
