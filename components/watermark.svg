@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- Define gradient -->
+    <defs>
+        <linearGradient id="watermarkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#93c5fd;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#a5b4fc;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="80" fill="url(#watermarkGradient)" />
+
+    <!-- Watermark text simulation -->
+    <text x="35" y="110" fill="white" font-size="25" font-family="Arial" font-weight="bold" opacity="0.3" transform="rotate(-20 100 100)">
+        Watermark
+    </text>
+</svg>
