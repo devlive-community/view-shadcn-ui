@@ -129,4 +129,7 @@ features:
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/global-footer.svg" />
     title: <a href='global-footer.html'>Shadcn Global Footer <span class="VPBadge tip">2024.1.3</span></a>
     details: Global Footer component
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/watermark.svg" />
+    title: <a href='watermark.html'>Shadcn Watermark <span class="VPBadge tip">2024.1.3</span></a>
+    details: Watermark component
 ---
