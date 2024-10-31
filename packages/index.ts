@@ -57,6 +57,7 @@ import ShadcnTimeline from '@/ui/timeline'
 import ShadcnTimelineItem from '@/ui/timeline/item'
 import ShadcnTrend from '@/ui/trend'
 import ShadcnException from '@/ui/exception'
+import ShadcnLink from '@/ui/link'
 
 let components = [
     ShadcnButton,
@@ -112,7 +113,8 @@ let components = [
     ShadcnTimeline,
     ShadcnTimelineItem,
     ShadcnTrend,
-    ShadcnException
+    ShadcnException,
+    ShadcnLink
 ]
 
 const install = (Vue: App) => {
@@ -192,6 +194,7 @@ export { default as ShadcnTimeline } from '@/ui/timeline'
 export { default as ShadcnTimelineItem } from '@/ui/timeline/item'
 export { default as ShadcnTrend } from '@/ui/trend'
 export { default as ShadcnException } from '@/ui/exception'
+export { default as ShadcnLink } from '@/ui/link'
 
 // Support global import
 export default install

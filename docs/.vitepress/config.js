@@ -158,6 +158,7 @@ export default {
                         {text: 'Badge <span class="VPBadge tip">2024.1.2</span>', link: 'badge'},
                         {text: 'Breadcrumb <span class="VPBadge tip">2024.1.3</span>', link: 'breadcrumb'},
                         {text: 'Slider <span class="VPBadge tip">2024.1.3</span>', link: 'slider'},
+                        {text: 'Link <span class="VPBadge tip">2024.1.3</span>', link: 'link'},
                     ]
                     return {
                         text: `Navigation [ ${items.length} ]`,

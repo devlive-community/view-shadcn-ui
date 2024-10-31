@@ -117,4 +117,7 @@ features:
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/exception.svg" />
     title: <a href='exception.html'>Shadcn Exception <span class="VPBadge tip">2024.1.3</span></a>
     details: Exception component
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/link.svg" />
+    title: <a href='link.html'>Shadcn Link <span class="VPBadge tip">2024.1.3</span></a>
+    details: Link component
 ---
