@@ -114,4 +114,7 @@ features:
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/trend.svg" />
     title: <a href='trend.html'>Shadcn Trend <span class="VPBadge tip">2024.1.3</span></a>
     details: Trend component
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/exception.svg" />
+    title: <a href='exception.html'>Shadcn Exception <span class="VPBadge tip">2024.1.3</span></a>
+    details: Exception component
 ---

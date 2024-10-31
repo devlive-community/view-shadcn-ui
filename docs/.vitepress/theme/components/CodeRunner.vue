@@ -14,7 +14,7 @@
                      closable/>
       </div>
 
-      <div class="p-2 space-x-2">
+      <div class="p-2 space-x-2 flex">
         <slot/>
       </div>
     </template>
