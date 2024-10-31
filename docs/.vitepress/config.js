@@ -103,6 +103,7 @@ export default {
                         {text: 'Space <span class="VPBadge tip">2024.1.2</span>', link: 'space'},
                         {text: 'Skeleton <span class="VPBadge tip">2024.1.2</span>', link: 'skeleton'},
                         {text: 'Layout <span class="VPBadge tip">2024.1.2</span>', link: 'layout'},
+                        {text: 'Collapse <span class="VPBadge tip">2024.1.3</span>', link: 'collapse'}
                     ]
                     return {
                         text: `Layout [ ${items.length} ]`,
@@ -158,6 +159,7 @@ export default {
                         {text: 'Badge <span class="VPBadge tip">2024.1.2</span>', link: 'badge'},
                         {text: 'Breadcrumb <span class="VPBadge tip">2024.1.3</span>', link: 'breadcrumb'},
                         {text: 'Slider <span class="VPBadge tip">2024.1.3</span>', link: 'slider'},
+                        {text: 'Link <span class="VPBadge tip">2024.1.3</span>', link: 'link'},
                     ]
                     return {
                         text: `Navigation [ ${items.length} ]`,
