@@ -123,4 +123,7 @@ features:
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/collapse.svg" />
     title: <a href='collapse.html'>Shadcn Collapse <span class="VPBadge tip">2024.1.3</span></a>
     details: Collapse component
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/tag.svg" />
+    title: <a href='tag.html'>Shadcn Tag <span class="VPBadge tip">2024.1.3</span></a>
+    details: Tag component
 ---

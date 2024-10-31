@@ -1,0 +1,232 @@
+---
+title: Shadcn Tag
+---
+
+# Introduction
+
+This document is mainly used to describe some features and usage of the ShadcnTag component.
+
+## Usage
+
+::: raw
+
+<CodeRunner title="Usage">
+    <ShadcnSpace wrap>
+      <ShadcnTag text="Text"/>
+      <ShadcnTag>Slot</ShadcnTag>
+    </ShadcnSpace>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnSpace wrap>
+    <ShadcnTag text="Text"/>
+    <ShadcnTag>Slot</ShadcnTag>
+  </ShadcnSpace>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
+## Type
+
+::: raw
+
+<CodeRunner title="Type">
+    <ShadcnSpace wrap>
+      <ShadcnTag text="Text"/>
+      <ShadcnTag text="Text" type="primary"/>
+      <ShadcnTag text="Text" type="success"/>
+      <ShadcnTag text="Text" type="warning"/>
+      <ShadcnTag text="Text" type="error"/>
+    </ShadcnSpace>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSpace wrap>
+      <ShadcnTag text="Text"/>
+      <ShadcnTag text="Text" type="primary"/>
+      <ShadcnTag text="Text" type="success"/>
+      <ShadcnTag text="Text" type="warning"/>
+      <ShadcnTag text="Text" type="error"/>
+    </ShadcnSpace>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
+## Border
+
+::: raw
+
+<CodeRunner title="Border">
+    <ShadcnSpace wrap>
+      <ShadcnTag text="Text" border/>
+      <ShadcnTag text="Text" type="primary" border/>
+      <ShadcnTag text="Text" type="success" border/>
+      <ShadcnTag text="Text" type="warning" border/>
+      <ShadcnTag text="Text" type="error" border/>
+    </ShadcnSpace>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSpace wrap>
+      <ShadcnTag text="Text" border/>
+      <ShadcnTag text="Text" type="primary" border/>
+      <ShadcnTag text="Text" type="success" border/>
+      <ShadcnTag text="Text" type="warning" border/>
+      <ShadcnTag text="Text" type="error" border/>
+    </ShadcnSpace>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
+## Size
+
+::: raw
+
+<CodeRunner title="Size">
+    <ShadcnSpace wrap>
+      <ShadcnTag text="Default Tag" size="default"/>
+      <ShadcnTag text="Medium Tag" size="medium"/>
+      <ShadcnTag text="Large Tag Width" size="large"/>
+    </ShadcnSpace>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSpace wrap>
+      <ShadcnTag text="Default Tag" size="default"/>
+      <ShadcnTag text="Medium Tag" size="medium"/>
+      <ShadcnTag text="Large Tag Width" size="large"/>
+    </ShadcnSpace>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
+## Closeable
+
+::: raw
+
+<CodeRunner title="Closeable">
+    <ShadcnSpace wrap>
+      <ShadcnTag text="Default Tag" size="default" closable @on-close="console.log('on-close')"/>
+      <ShadcnTag text="Medium Tag" size="medium" closable/>
+      <ShadcnTag text="Large Tag Width" size="large" closable/>
+    </ShadcnSpace>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSpace wrap>
+        <ShadcnTag text="Default Tag" size="default" closable @on-close="console.log('on-close')"/>
+        <ShadcnTag text="Medium Tag" size="medium" closable/>
+        <ShadcnTag text="Large Tag Width" size="large" closable/>
+    </ShadcnSpace>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
+## Color
+
+::: raw
+
+<CodeRunner title="Color">
+    <ShadcnSpace wrap>
+        <ShadcnTag text="Default Tag" border color="#D35DD4"/>
+        <ShadcnTag text="Medium Tag" border color="#39604B"/>
+        <ShadcnTag text="Large Tag Width" border color="#301A65"/>
+    </ShadcnSpace>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSpace wrap>
+        <ShadcnTag text="Default Tag" border color="#D35DD4"/>
+        <ShadcnTag text="Medium Tag" border color="#39604B"/>
+        <ShadcnTag text="Large Tag Width" border color="#301A65"/>
+    </ShadcnSpace>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
+## Props
+
+<ApiTable title="Props"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :columns="[
+        ['text', 'The content of the tag', 'string', '-', '-', '-'],
+        ['name', 'The name of the tag, clicked when closable', 'string', '-', '-', '-'],
+        ['type', 'The type of the tag', 'enum', 'default', '-', 'default | primary | success | warning | error'],
+        ['border', 'The border of the tag', 'boolean', 'false', '-', '-'],
+        ['size', 'The size of the tag', 'enum', 'default', '-', 'default | medium | large'],
+        ['closable', 'Whether the tag can be closed', 'boolean', 'false', '-', '-'],
+        ['color', 'The color of the tag, auto calculate border color', 'string', '-', '-', '-'],
+    ]">
+</ApiTable>
+
+## Slots
+
+<ApiTable title="Slots"
+    :headers="['Name', 'Description', 'Props Reference']"
+    :columns="[
+        ['default', 'The content of the tag', 'text'],
+    ]">
+</ApiTable>
+
+## Events
+
+<ApiTable title="Events"
+    :headers="['Event', 'Description', 'Callback Parameters']"
+    :columns="[
+        ['on-close', 'Triggered when the tag is closed', 'event'],
+    ]">
+</ApiTable>
