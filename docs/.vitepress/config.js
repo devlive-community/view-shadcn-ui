@@ -123,6 +123,7 @@ export default {
                         {text: 'Spin <span class="VPBadge tip">2024.1.3</span>', link: 'spin'},
                         {text: 'Timeline <span class="VPBadge tip">2024.1.3</span>', link: 'timeline'},
                         {text: 'Trend <span class="VPBadge tip">2024.1.3</span>', link: 'trend'},
+                        {text: 'Exception <span class="VPBadge tip">2024.1.3</span>', link: 'exception'},
                     ]
                     return {
                         text: `View [ ${items.length} ]`,
