@@ -39,7 +39,7 @@ This document is mainly used to describe some features and usage of the ShadcnWa
 
 <CodeRunner title="Array">
   <ShadcnWatermark :content="['Company', 'Name', 'Time']">
-    <div class="h-96"/>
+    <div style="height: 24rem;"/>
   </ShadcnWatermark>
 </CodeRunner>
 
@@ -55,6 +55,34 @@ This document is mainly used to describe some features and usage of the ShadcnWa
 </template>
 
 <script setup lang="ts">
+</script>
+```
+
+:::
+
+## FullScreen
+
+::: raw
+
+<CodeRunner title="FullScreen">
+  <ShadcnWatermark :content="['Company', 'Name', 'Time']" :fullscreen="fullScreen"/>
+  <ShadcnButton @click="fullScreen = !fullScreen">FullScreen {{ fullScreen ? '[ Close ]' : '[ Open ]' }}</ShadcnButton>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnWatermark :content="['Company', 'Name', 'Time']" :fullscreen="fullScreen"/>
+  <ShadcnButton @click="fullScreen = !fullScreen">FullScreen</ShadcnButton>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const fullScreen = ref(false)
 </script>
 ```
 
@@ -77,6 +105,13 @@ This document is mainly used to describe some features and usage of the ShadcnWa
         ['opacity', 'The opacity of the entire watermark layer', 'number', '1', '-', '-'],
         ['antiTamperLayers', 'Number of anti-tampering layers', 'number', '2', '-', '-'],
         ['fontWeight', 'The font weight of the watermark text', 'number | string', '400', '-', '-'],
-        ['zIndex', 'The z-index of the watermark layer', 'number', '9', '-', '-']
+        ['zIndex', 'The z-index of the watermark layer', 'number', '9', '-', '-'],
+        ['fullScreen', 'Whether to enable full screen mode', 'boolean', 'false', '-', '-'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const fullScreen = ref(false)
+</script>

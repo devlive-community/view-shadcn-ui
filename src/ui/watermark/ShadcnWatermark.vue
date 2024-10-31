@@ -1,37 +1,15 @@
 <template>
-  <div class="relative w-full h-full">
-    <!-- Original Content -->
+  <div v-if="$slots.default" class="relative w-full h-full">
     <div class="relative z-10">
       <slot/>
     </div>
-
-    <!-- Watermark Layer -->
-    <div class="absolute inset-0 pointer-events-none select-none z-0" :style="{ opacity: opacity }"
-         aria-hidden="true">
-      <!-- Watermark Grid Container -->
-      <div class="absolute inset-0"
-           :style="{
-              backgroundImage: `url('data:image/svg+xml,${encodeURIComponent(svgContent)}')`,
-              backgroundRepeat: 'repeat',
-              backgroundSize: `${gapX + width}px ${gapY + height}px`
-           }"/>
-
-      <!-- Anti-Tamper Layer: Create multiple identical layers to prevent easy removal -->
-      <template v-for="index in antiTamperLayers" :key="index">
-        <div class="absolute inset-0"
-             :style="{
-                backgroundImage: `url('data:image/svg+xml,${encodeURIComponent(svgContent)}')`,
-                backgroundRepeat: 'repeat',
-                backgroundSize: `${gapX + width}px ${gapY + height}px`,
-                transform: `translate(${index * 0.1}px, ${index * 0.1}px)`
-            }"/>
-      </template>
-    </div>
+    <WatermarkLayer/>
   </div>
+  <WatermarkLayer v-else-if="fullscreen"/>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted } from 'vue'
+import { computed, defineComponent, h, onMounted, onUnmounted } from 'vue'
 
 interface Props
 {
@@ -61,6 +39,8 @@ interface Props
   fontWeight?: number | string
   // z-index
   zIndex?: number
+  // Enable fullscreen mode
+  fullscreen?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -76,7 +56,8 @@ const props = withDefaults(defineProps<Props>(), {
   opacity: 1,
   antiTamperLayers: 2,
   fontWeight: 400,
-  zIndex: 9
+  zIndex: 9,
+  fullscreen: false
 })
 
 // Calculate SVG content
@@ -100,6 +81,41 @@ const svgContent = computed(() => {
       </g>
     </svg>
   `
+})
+
+// Watermark Layer Component
+const WatermarkLayer = defineComponent({
+  setup()
+  {
+    return () => h('div', {
+      class: ['pointer-events-none select-none', props.fullscreen ? 'fixed' : 'absolute', 'inset-0'],
+      style: { opacity: props.opacity, zIndex: props.zIndex },
+      'aria-hidden': true
+    }, [
+      // Base Layer
+      h('div', {
+        class: 'absolute inset-0',
+        style: {
+          backgroundImage: `url('data:image/svg+xml,${ encodeURIComponent(svgContent.value) }')`,
+          backgroundRepeat: 'repeat',
+          backgroundSize: `${ props.gapX + props.width }px ${ props.gapY + props.height }px`
+        }
+      }),
+      // Anti-Tamper Layers
+      ...[...Array(props.antiTamperLayers)].map((_, index) =>
+          h('div', {
+            key: index,
+            class: 'absolute inset-0',
+            style: {
+              backgroundImage: `url('data:image/svg+xml,${ encodeURIComponent(svgContent.value) }')`,
+              backgroundRepeat: 'repeat',
+              backgroundSize: `${ props.gapX + props.width }px ${ props.gapY + props.height }px`,
+              transform: `translate(${ index * 0.1 }px, ${ index * 0.1 }px)`
+            }
+          })
+      )
+    ])
+  }
 })
 
 // Listens for changes in content to prevent watermarks from being tampered with
