@@ -4,6 +4,7 @@ import Message from './setup/message.ts'
 import Spin from './setup/spin.ts'
 
 import ShadcnButton from '@/ui/button'
+import ShadcnButtonGroup from '@/ui/button/group'
 import ShadcnCard from '@/ui/card'
 import ShadcnCopy from '@/ui/copy'
 import ShadcnInput from '@/ui/input'
@@ -64,6 +65,7 @@ import ShadcnTag from '@/ui/tag'
 
 let components = [
     ShadcnButton,
+    ShadcnButtonGroup,
     ShadcnCard,
     ShadcnCopy,
     ShadcnCode,
@@ -147,6 +149,7 @@ if (typeof window !== 'undefined') {
 
 // Support on-demand import
 export { default as ShadcnButton } from '@/ui/button'
+export { default as ShadcnButtonGroup } from '@/ui/button/group'
 export { default as ShadcnCard } from '@/ui/card'
 export { default as ShadcnCopy } from '@/ui/copy'
 export { default as ShadcnCode } from '@/ui/code'

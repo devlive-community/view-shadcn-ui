@@ -270,6 +270,64 @@ This document is mainly used to describe some features and usage of the ShadcnBu
 
 :::
 
+## Group
+
+::: raw
+
+<CodeRunner title="Button Group">
+    <ShadcnButtonGroup>
+      <ShadcnButton>Left</ShadcnButton>
+      <ShadcnButton>Middle</ShadcnButton>
+      <ShadcnButton>Right</ShadcnButton>
+    </ShadcnButtonGroup>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnButtonGroup>
+      <ShadcnButton>Left</ShadcnButton>
+      <ShadcnButton>Middle</ShadcnButton>
+      <ShadcnButton>Right</ShadcnButton>
+    </ShadcnButtonGroup>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
+## Group Direction
+
+<CodeRunner title="Button Group Direction">
+    <ShadcnButtonGroup direction="vertical">
+        <ShadcnButton type="primary">T</ShadcnButton>
+        <ShadcnButton type="primary">C</ShadcnButton>
+        <ShadcnButton type="primary">B</ShadcnButton>
+    </ShadcnButtonGroup>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnButtonGroup direction="vertical">
+        <ShadcnButton type="primary">T</ShadcnButton>
+        <ShadcnButton type="primary">C</ShadcnButton>
+        <ShadcnButton type="primary">B</ShadcnButton>
+    </ShadcnButtonGroup>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Button Props" 
@@ -286,6 +344,16 @@ This document is mainly used to describe some features and usage of the ShadcnBu
                 ['disabled', 'Whether to disable the button', 'Boolean', 'false', '-'],
                 ['submit', 'Whether to trigger form submission', 'Boolean', 'false', '-'],
                 ['reset', 'Whether to trigger form reset', 'Boolean', 'false', '-'],
+            ]">
+</ApiTable>
+
+<br />
+
+<ApiTable title="Button Group Props"
+            :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+            :columns="[
+                ['size', 'The size of the button group', 'Enum', 'default', 'small, default, large'],
+                ['direction', 'The direction of the button group', 'Enum', 'horizontal', 'horizontal, vertical'],
             ]">
 </ApiTable>
 

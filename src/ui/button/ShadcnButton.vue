@@ -4,7 +4,7 @@
             // Style
             'inline-flex items-center justify-center whitespace-nowrap transition-colors',
             // Size
-            ButtonSize[size],
+            ButtonSize[finalSize],
             // Type style
             ghost ? [
               'bg-transparent',
@@ -48,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ComputedRef, inject } from 'vue'
 import { Loader2 } from 'lucide-vue-next'
 import { ButtonBackgroundType, ButtonHoverType } from '@/ui/common/type.ts'
 import { ButtonSize } from '@/ui/common/size.ts'
@@ -127,4 +127,10 @@ const getHoverClass = computed(() => {
 
   return hoverColorMap[props.type]
 })
+
+const buttonGroupSize = inject<ComputedRef<keyof typeof ButtonSize> | undefined>(
+    'buttonGroupSize',
+    undefined
+)
+const finalSize = computed(() => buttonGroupSize?.value || props.size)
 </script>
