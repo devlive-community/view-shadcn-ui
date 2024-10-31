@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- Define gradient -->
+    <defs>
+        <linearGradient id="footerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#93c5fd;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#a5b4fc;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="80" fill="url(#footerGradient)" />
+
+    <!-- Footer bar -->
+    <rect x="60" y="115" width="80" height="20" rx="5" fill="white" />
+
+    <!-- Footer text lines -->
+    <rect x="65" y="75" width="70" height="10" rx="4" fill="white" opacity="0.8" />
+    <rect x="65" y="95" width="50" height="8" rx="4" fill="white" opacity="0.8" />
+</svg>
