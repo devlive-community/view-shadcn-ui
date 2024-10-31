@@ -35,12 +35,48 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
+## Type
+
+::: raw
+
+<CodeRunner title="Type">
+    <ShadcnSpace wrap>
+      <ShadcnTag text="Text"/>
+      <ShadcnTag text="Text" type="primary"/>
+      <ShadcnTag text="Text" type="success"/>
+      <ShadcnTag text="Text" type="warning"/>
+      <ShadcnTag text="Text" type="error"/>
+    </ShadcnSpace>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSpace wrap>
+      <ShadcnTag text="Text"/>
+      <ShadcnTag text="Text" type="primary"/>
+      <ShadcnTag text="Text" type="success"/>
+      <ShadcnTag text="Text" type="warning"/>
+      <ShadcnTag text="Text" type="error"/>
+    </ShadcnSpace>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
     :columns="[
-        ['text', 'The content of the tag', 'String', '-', '-', '-'],
+        ['text', 'The content of the tag', 'string', '-', '-', '-'],
+        ['type', 'The type of the tag', 'enum', 'default', '-', 'default | primary | success | warning | error'],
     ]">
 </ApiTable>
 
