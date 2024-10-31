@@ -14,9 +14,7 @@
     <slot>{{ text }}</slot>
     <ShadcnIcon v-if="closable"
                 icon="X"
-                :class="['ml-2 h-4 w-4 cursor-pointer text-gray-400 hover:text-gray-500',
-                    border && 'border'
-                ]"
+                :class="['ml-2 h-4 w-4 cursor-pointer']"
                 @click.stop="onClose"
                 @keydown.enter="onClose"/>
   </div>
@@ -30,6 +28,7 @@ import { getHoverColor } from '@/utils/color.ts'
 interface Props
 {
   text?: string
+  name?: string
   type?: keyof typeof TagBackgroundType
   border?: boolean
   size?: keyof typeof TagSize
@@ -51,7 +50,7 @@ const emit = defineEmits<{
 
 const onClose = (event: Event) => {
   event.preventDefault()
-  emit('on-close', props.text)
+  emit('on-close', props.name || props.text)
   emit('update:modelValue', false)
 }
 </script>

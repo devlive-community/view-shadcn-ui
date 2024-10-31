@@ -204,6 +204,7 @@ This document is mainly used to describe some features and usage of the ShadcnTa
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
     :columns="[
         ['text', 'The content of the tag', 'string', '-', '-', '-'],
+        ['name', 'The name of the tag, clicked when closable', 'string', '-', '-', '-'],
         ['type', 'The type of the tag', 'enum', 'default', '-', 'default | primary | success | warning | error'],
         ['border', 'The border of the tag', 'boolean', 'false', '-', '-'],
         ['size', 'The size of the tag', 'enum', 'default', '-', 'default | medium | large'],
@@ -218,5 +219,14 @@ This document is mainly used to describe some features and usage of the ShadcnTa
     :headers="['Name', 'Description', 'Props Reference']"
     :columns="[
         ['default', 'The content of the tag', 'text'],
+    ]">
+</ApiTable>
+
+## Events
+
+<ApiTable title="Events"
+    :headers="['Event', 'Description', 'Callback Parameters']"
+    :columns="[
+        ['on-close', 'Triggered when the tag is closed', 'event'],
     ]">
 </ApiTable>
