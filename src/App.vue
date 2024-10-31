@@ -1,9 +1,9 @@
 <template>
-  <div class="p-8 max-w-2xl mx-auto space-y-10">
-    <ShadcnSpace wrap>
-      <ShadcnTag text="Default Tag" name="11" border color="#D35DD4" closable @on-close="console.log($event)"/>
-    </ShadcnSpace>
-  </div>
+  <ShadcnHighlight text="Vue3 is an awesome framework for building user interfaces"
+      :highlight="['Vue3', 'awesome']"/>
+  <br/>
+  <ShadcnHighlight text="The quick brown fox jumps over the lazy dog"
+                   highlight="the" />
 </template>
 
 <script setup lang="ts">

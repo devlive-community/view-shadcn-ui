@@ -126,4 +126,13 @@ features:
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/tag.svg" />
     title: <a href='tag.html'>Shadcn Tag <span class="VPBadge tip">2024.1.3</span></a>
     details: Tag component
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/global-footer.svg" />
+    title: <a href='global-footer.html'>Shadcn Global Footer <span class="VPBadge tip">2024.1.3</span></a>
+    details: Global Footer component
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/watermark.svg" />
+    title: <a href='watermark.html'>Shadcn Watermark <span class="VPBadge tip">2024.1.3</span></a>
+    details: Watermark component
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/highlight.svg" />
+    title: <a href='highlight.html'>Shadcn Highlight <span class="VPBadge tip">2024.1.3</span></a>
+    details: Highlight component
 ---

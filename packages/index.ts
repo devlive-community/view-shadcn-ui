@@ -4,6 +4,7 @@ import Message from './setup/message.ts'
 import Spin from './setup/spin.ts'
 
 import ShadcnButton from '@/ui/button'
+import ShadcnButtonGroup from '@/ui/button/group'
 import ShadcnCard from '@/ui/card'
 import ShadcnCopy from '@/ui/copy'
 import ShadcnInput from '@/ui/input'
@@ -61,9 +62,13 @@ import ShadcnLink from '@/ui/link'
 import ShadcnCollapse from '@/ui/collapse'
 import ShadcnCollapseItem from '@/ui/collapse/item'
 import ShadcnTag from '@/ui/tag'
+import ShadcnGlobalFooter from '@/ui/footer/global'
+import ShadcnWatermark from '@/ui/watermark'
+import ShadcnHighlight from '@/ui/highlight'
 
 let components = [
     ShadcnButton,
+    ShadcnButtonGroup,
     ShadcnCard,
     ShadcnCopy,
     ShadcnCode,
@@ -120,7 +125,10 @@ let components = [
     ShadcnLink,
     ShadcnCollapse,
     ShadcnCollapseItem,
-    ShadcnTag
+    ShadcnTag,
+    ShadcnGlobalFooter,
+    ShadcnWatermark,
+    ShadcnHighlight
 ]
 
 const install = (Vue: App) => {
@@ -147,6 +155,7 @@ if (typeof window !== 'undefined') {
 
 // Support on-demand import
 export { default as ShadcnButton } from '@/ui/button'
+export { default as ShadcnButtonGroup } from '@/ui/button/group'
 export { default as ShadcnCard } from '@/ui/card'
 export { default as ShadcnCopy } from '@/ui/copy'
 export { default as ShadcnCode } from '@/ui/code'
@@ -204,6 +213,9 @@ export { default as ShadcnLink } from '@/ui/link'
 export { default as ShadcnCollapse } from '@/ui/collapse'
 export { default as ShadcnCollapseItem } from '@/ui/collapse/item'
 export { default as ShadcnTag } from '@/ui/tag'
+export { default as ShadcnGlobalFooter } from '@/ui/footer/global'
+export { default as ShadcnWatermark } from '@/ui/watermark'
+export { default as ShadcnHighlight } from '@/ui/highlight'
 
 // Support global import
 export default install

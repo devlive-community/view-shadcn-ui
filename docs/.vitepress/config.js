@@ -84,7 +84,9 @@ export default {
                     const items = [
                         {text: 'Button <span class="VPBadge tip">2024.1.1</span>', link: 'button'},
                         {text: 'Icon <span class="VPBadge tip">2024.1.1</span>', link: 'icon'},
-                        {text: 'Copy <span class="VPBadge tip">2024.1.1</span>', link: 'copy'}
+                        {text: 'Copy <span class="VPBadge tip">2024.1.1</span>', link: 'copy'},
+                        {text: 'Watermark <span class="VPBadge tip">2024.1.3</span>', link: 'watermark'},
+                        {text: 'Highlight <span class="VPBadge tip">2024.1.3</span>', link: 'highlight'},
                     ]
                     return {
                         text: `Base [ ${items.length} ]`,
@@ -103,7 +105,8 @@ export default {
                         {text: 'Space <span class="VPBadge tip">2024.1.2</span>', link: 'space'},
                         {text: 'Skeleton <span class="VPBadge tip">2024.1.2</span>', link: 'skeleton'},
                         {text: 'Layout <span class="VPBadge tip">2024.1.2</span>', link: 'layout'},
-                        {text: 'Collapse <span class="VPBadge tip">2024.1.3</span>', link: 'collapse'}
+                        {text: 'Collapse <span class="VPBadge tip">2024.1.3</span>', link: 'collapse'},
+                        {text: 'Global Footer <span class="VPBadge tip">2024.1.3</span>', link: 'global-footer'},
                     ]
                     return {
                         text: `Layout [ ${items.length} ]`,
@@ -126,6 +129,7 @@ export default {
                         {text: 'Trend <span class="VPBadge tip">2024.1.3</span>', link: 'trend'},
                         {text: 'Exception <span class="VPBadge tip">2024.1.3</span>', link: 'exception'},
                         {text: 'Tag <span class="VPBadge tip">2024.1.3</span>', link: 'tag'},
+
                     ]
                     return {
                         text: `View [ ${items.length} ]`,
