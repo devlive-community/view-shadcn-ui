@@ -64,6 +64,7 @@ import ShadcnCollapseItem from '@/ui/collapse/item'
 import ShadcnTag from '@/ui/tag'
 import ShadcnGlobalFooter from '@/ui/footer/global'
 import ShadcnWatermark from '@/ui/watermark'
+import ShadcnHighlight from '@/ui/highlight'
 
 let components = [
     ShadcnButton,
@@ -126,7 +127,8 @@ let components = [
     ShadcnCollapseItem,
     ShadcnTag,
     ShadcnGlobalFooter,
-    ShadcnWatermark
+    ShadcnWatermark,
+    ShadcnHighlight
 ]
 
 const install = (Vue: App) => {
@@ -213,6 +215,7 @@ export { default as ShadcnCollapseItem } from '@/ui/collapse/item'
 export { default as ShadcnTag } from '@/ui/tag'
 export { default as ShadcnGlobalFooter } from '@/ui/footer/global'
 export { default as ShadcnWatermark } from '@/ui/watermark'
+export { default as ShadcnHighlight } from '@/ui/highlight'
 
 // Support global import
 export default install
