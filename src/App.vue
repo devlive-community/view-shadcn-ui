@@ -1,14 +1,10 @@
 <template>
   <div class="p-8 max-w-2xl mx-auto space-y-10">
     <ShadcnSpace wrap>
-      <ShadcnException type="500">
-        <template #icon>
-          <ShadcnIcon icon="TriangleAlert" class="text-gray-400" :size="80"/>
-        </template>
-        <template #actions>
-          <ShadcnButton type="primary">Home</ShadcnButton>
-        </template>
-      </ShadcnException>
+      <ShadcnException type="401" />
+      <ShadcnException type="403" />
+      <ShadcnException type="404" />
+      <ShadcnException type="500" />
     </ShadcnSpace>
   </div>
 </template>
