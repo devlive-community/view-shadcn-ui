@@ -111,6 +111,15 @@ const expandedItems = ref<string[]>([])
     ]">
 </ApiTable>
 
+## Events
+
+<ApiTable title="Collapse Events"
+    :headers="['Event', 'Description', 'Parameters']"
+    :columns="[
+        ['on-change', 'The event is triggered when the value changes', 'Any[]'],
+    ]">
+</ApiTable>
+
 <script setup lang="ts">
 import { ref } from 'vue'
 

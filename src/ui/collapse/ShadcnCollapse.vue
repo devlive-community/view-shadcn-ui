@@ -16,6 +16,8 @@ interface Props
 interface Emits
 {
   (e: 'update:modelValue', value: string[]): void
+
+  (e: 'on-change', value: { name: string, value: string[] }): void
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -35,6 +37,7 @@ provide('toggleItem', (name: string) => {
   if (props.accordion) {
     // Accordion Mode: Only the current item is kept
     emit('update:modelValue', index === -1 ? [name] : [])
+    emit('on-change', { name, value: index === -1 ? [name] : [] })
   }
   else {
     // Multiple Mode: The current item is toggled
@@ -45,6 +48,7 @@ provide('toggleItem', (name: string) => {
       currentValue.splice(index, 1)
     }
     emit('update:modelValue', currentValue)
+    emit('on-change', { name, value: currentValue })
   }
 })
 </script>

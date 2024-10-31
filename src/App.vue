@@ -1,8 +1,8 @@
 <template>
   <div class="p-8 max-w-2xl mx-auto space-y-10">
-    {{expandedItems}}
+    {{ expandedItems }}
 
-    <ShadcnCollapse v-model="expandedItems">
+    <ShadcnCollapse v-model="expandedItems" @on-change="console.log($event)">
       <ShadcnCollapseItem title="Section 1" name="1">
         Content for section 1
       </ShadcnCollapseItem>
