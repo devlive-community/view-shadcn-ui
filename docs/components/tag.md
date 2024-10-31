@@ -70,6 +70,41 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
+## Border
+
+::: raw
+
+<CodeRunner title="Border">
+    <ShadcnSpace wrap>
+      <ShadcnTag text="Text" border/>
+      <ShadcnTag text="Text" type="primary" border/>
+      <ShadcnTag text="Text" type="success" border/>
+      <ShadcnTag text="Text" type="warning" border/>
+      <ShadcnTag text="Text" type="error" border/>
+    </ShadcnSpace>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSpace wrap>
+      <ShadcnTag text="Text" border/>
+      <ShadcnTag text="Text" type="primary" border/>
+      <ShadcnTag text="Text" type="success" border/>
+      <ShadcnTag text="Text" type="warning" border/>
+      <ShadcnTag text="Text" type="error" border/>
+    </ShadcnSpace>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Props"
@@ -77,6 +112,7 @@ This document is mainly used to describe some features and usage of the ShadcnTa
     :columns="[
         ['text', 'The content of the tag', 'string', '-', '-', '-'],
         ['type', 'The type of the tag', 'enum', 'default', '-', 'default | primary | success | warning | error'],
+        ['border', 'The border of the tag', 'boolean', 'false', '-', '-'],
     ]">
 </ApiTable>
 
