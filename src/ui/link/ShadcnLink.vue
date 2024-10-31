@@ -1,9 +1,9 @@
 <template>
   <div class="cursor-pointer hover:text-blue-500">
-    <a v-if="external" :href="String(link)">
+    <a v-if="external" :href="String(link)" :target="target">
       <slot/>
     </a>
-    <RouterLink v-else :to="String(link)">
+    <RouterLink v-else :to="String(link)" :target="target">
       <slot/>
     </RouterLink>
   </div>
@@ -13,7 +13,9 @@
 withDefaults(defineProps<{
   external?: boolean
   link?: string
+  target?: string
 }>(), {
-  external: false
+  external: false,
+  target: '_self'
 })
 </script>

@@ -52,6 +52,29 @@ This document is mainly used to describe some features and usage of the ShadcnLi
 
 :::
 
+## Target
+
+::: raw
+
+<CodeRunner title="Target">
+  <ShadcnLink link="https://github.com/devlive-community/view-shadcn-ui" external target="_blank">Router Link</ShadcnLink>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnLink link="https://github.com/devlive-community/view-shadcn-ui" external target="_blank">Router Link</ShadcnLink>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Props"
@@ -59,5 +82,6 @@ This document is mainly used to describe some features and usage of the ShadcnLi
     :columns="[
         ['link', 'The link of the link', 'string', '-', '-', ''],
         ['external', 'Whether the link is external', 'boolean', 'false', '-', ''],
+        ['target', 'The target of the link', 'string', '_self', '-', '_self | _blank | _parent | _top']
     ]">
 </ApiTable>
