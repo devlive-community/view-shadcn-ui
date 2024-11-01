@@ -8,9 +8,7 @@ title: Shadcn Toolbar Footer
 
 <CodeRunner title="Usage">
     <ShadcnToolbarFooter>
-      <template #left>
-        Left
-      </template>
+      <template #left>Basic</template>
     </ShadcnToolbarFooter>
 </CodeRunner>
 
@@ -21,9 +19,7 @@ title: Shadcn Toolbar Footer
 ```vue
 <template>
     <ShadcnToolbarFooter>
-      <template #left>
-        Left
-      </template>
+      <template #left>Basic</template>
     </ShadcnToolbarFooter>
 </template>
 
@@ -38,7 +34,9 @@ title: Shadcn Toolbar Footer
 ::: raw
 
 <CodeRunner title="Auto Hide">
-    <ShadcnToolbarFooter auto-hide />
+    <ShadcnToolbarFooter auto-hide>
+        <template #left>Auto Hide</template> 
+    </ShadcnToolbarFooter>
 </CodeRunner>
 
 :::
@@ -47,7 +45,36 @@ title: Shadcn Toolbar Footer
 
 ```vue
 <template>
-    <ShadcnToolbarFooter auto-hide />
+  <ShadcnToolbarFooter auto-hide>
+    <template #left>Auto Hide</template>
+  </ShadcnToolbarFooter>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
+## Auto Hide Delay
+
+::: raw
+
+<CodeRunner title="Auto Hide Delay">
+    <ShadcnToolbarFooter auto-hide auto-hide-delay="2000">
+        <template #left>Auto Hide Delay</template>
+    </ShadcnToolbarFooter>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnToolbarFooter auto-hide auto-hide-delay="2000">
+    <template #left>Auto Hide Delay</template>
+  </ShadcnToolbarFooter>
 </template>
 
 <script setup lang="ts">
@@ -62,6 +89,7 @@ title: Shadcn Toolbar Footer
     :headers="['Attribute', 'Description', 'Type', 'Default Value']"
     :columns="[
         ['auto-hide', 'Whether to auto hide', 'boolean', 'false'],
+        ['auto-hide-delay', 'Auto hide delay', 'number', '3000'],
     ]">
 </ApiTable>
 

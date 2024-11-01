@@ -36,6 +36,7 @@ interface Props
 {
   modelValue?: boolean
   autoHide?: boolean
+  autoHideDelay?: number
 }
 
 const emit = defineEmits<{
@@ -46,7 +47,8 @@ const emit = defineEmits<{
 
 const props = withDefaults(defineProps<Props>(), {
   modelValue: true,
-  autoHide: false
+  autoHide: false,
+  autoHideDelay: 3000
 })
 
 const isVisible = ref(props.modelValue)
@@ -63,7 +65,7 @@ const startAutoHideTimer = () => {
   autoHideTimer = setTimeout(() => {
     isVisible.value = false
     emit('update:modelValue', isVisible.value)
-  }, 3000)
+  }, props.autoHideDelay)
 }
 
 const onCancel = () => {
