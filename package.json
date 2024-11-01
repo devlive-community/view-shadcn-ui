@@ -1,6 +1,6 @@
 {
   "name": "view-shadcn-ui",
-  "description": "View Shadcn UI is a component library built on Shadcn UI and Tailwind CSS.",
+  "description": "View Shadcn UI is a Vue3 component library built on Tailwind CSS.",
   "keywords": [
     "vue",
     "vue3",

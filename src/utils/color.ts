@@ -1,4 +1,3 @@
-// types.ts
 export interface RGB
 {
     r: number;
@@ -24,7 +23,6 @@ export interface ColorShades
     background: string;
 }
 
-// color-utils.ts
 class ColorUtils
 {
     /**
@@ -171,7 +169,6 @@ class ColorUtils
     }
 }
 
-// Exported utility functions
 /**
  * Check if a color is considered light
  * @param color - Hex color (e.g., '#FF0000' or '#F00')
