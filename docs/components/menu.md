@@ -226,6 +226,8 @@ This document is mainly used to describe some features and usage of the ShadcnMe
     :headers="['Attribute', 'Description', 'Type', 'Default Value']"
     :columns="[
         ['name', 'The name of the menu item', 'String', ''],
+        ['to', 'The to of the menu item, onlu support via vue-router', 'String', ''],
+        ['active', 'Whether the menu item is active', 'boolean', 'false'],
     ]">
 </ApiTable>
 
