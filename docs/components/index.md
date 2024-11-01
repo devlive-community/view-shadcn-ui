@@ -135,4 +135,7 @@ features:
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/highlight.svg" />
     title: <a href='highlight.html'>Shadcn Highlight <span class="VPBadge tip">2024.1.3</span></a>
     details: Highlight component
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/toolbar-footer.svg" />
+    title: <a href='toolbar-footer.html'>Shadcn Toolbar Footer <span class="VPBadge tip">2024.1.3</span></a>
+    details: Toolbar Footer component
 ---

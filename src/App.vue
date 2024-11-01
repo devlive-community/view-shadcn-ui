@@ -1,9 +1,11 @@
 <template>
-  <ShadcnHighlight text="The quick brown fox jumps over the lazy dog"
-                   case-sensitive
-                   highlight="the" />
-  <ShadcnHighlight text="The quick brown fox jumps over the lazy dog"
-                   highlight="the" />
+  <div class="h-screen" style="height: 40000px">
+    <ShadcnToolbarFooter>
+      <template #left>
+        Left
+      </template>
+    </ShadcnToolbarFooter>
+  </div>
 </template>
 
 <script setup lang="ts">
