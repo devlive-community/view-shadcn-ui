@@ -1,10 +1,8 @@
 <template>
   <div class="h-screen" style="height: 40000px">
     {{defaultValue}}
-    <ShadcnToolbarFooter v-model="defaultValue">
-      <template #left>
-        Left
-      </template>
+    <ShadcnToolbarFooter v-model="defaultValue" full-width>
+      <template #left>Full Width</template>
     </ShadcnToolbarFooter>
   </div>
 </template>

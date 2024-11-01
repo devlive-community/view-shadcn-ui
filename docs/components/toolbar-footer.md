@@ -83,6 +83,33 @@ title: Shadcn Toolbar Footer
 
 :::
 
+## Full Width
+
+::: raw
+
+<CodeRunner title="Full Width">
+    <ShadcnToolbarFooter v-model="defaultValue" full-width>
+      <template #left>Full Width</template>
+    </ShadcnToolbarFooter>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnToolbarFooter full-width>
+    <template #left>Full Width</template>
+  </ShadcnToolbarFooter>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Props"
@@ -93,6 +120,7 @@ title: Shadcn Toolbar Footer
         ['autoHideDelay', 'Auto hide delay', 'number', '3000'],
         ['hideOnScroll', 'Whether to hide on scroll', 'boolean', 'true'],
         ['scrollStopDelay', 'Scroll stop delay', 'number', '600'],
+        ['fullWidth', 'Whether to full width', 'boolean', 'false'],
     ]">
 </ApiTable>
 

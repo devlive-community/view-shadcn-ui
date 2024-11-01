@@ -4,7 +4,9 @@
               'transform transition-transform duration-200 ease-in-out',
               isVisible ? 'translate-y-0' : 'translate-y-full'
           ]">
-    <div class="container flex h-16 items-center gap-4 px-4">
+    <div :class="['flex h-16 items-center gap-4 px-4',
+                  fullWidth ? undefined : 'container'
+         ]">
       <!-- Left Section -->
       <div class="flex flex-1 items-center gap-2">
         <slot name="left"/>
@@ -53,6 +55,10 @@ interface Props
    * Delay in ms to wait before showing after scroll stops
    */
   scrollStopDelay?: number
+  /**
+   * Enables full width
+   */
+  fullWidth?: boolean
 }
 
 const emit = defineEmits<{
@@ -66,7 +72,8 @@ const props = withDefaults(defineProps<Props>(), {
   autoHide: false,
   autoHideDelay: 3000,
   hideOnScroll: true,
-  scrollStopDelay: 600
+  scrollStopDelay: 600,
+  fullWidth: false
 })
 
 const isVisible = ref(props.modelValue)
