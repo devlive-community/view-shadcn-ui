@@ -77,6 +77,18 @@ export default {
                         {text: "Installation", link: "installation"},
                         {text: "Quick Start", link: "quickstart"},
                     ]
+                },
+                {
+                    text: "Utils",
+                    collapsed: false,
+                    base: "/guide/",
+                    items: [
+                        {text: 'calcSize <span class="VPBadge tip">2024.1.3</span>', link: 'calc-size'},
+                        {text: 'isLightColor <span class="VPBadge tip">2024.1.3</span>', link: 'is-light-color'},
+                        {text: 'getContrastTextColor <span class="VPBadge tip">2024.1.3</span>', link: 'get-contrast-text-color'},
+                        {text: 'getHoverColor <span class="VPBadge tip">2024.1.3</span>', link: 'get-hover-color'},
+                        {text: 'generateColorShades <span class="VPBadge tip">2024.1.3</span>', link: 'generate-color-shades'},
+                    ]
                 }
             ],
             '/components/': [

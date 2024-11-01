@@ -19,7 +19,7 @@
 ![GitHub contributors](https://img.shields.io/github/contributors-anon/devlive-community/shadcn-ui-vue-admin?style=flat-square)
 ![GitHub last commit](https://img.shields.io/github/last-commit/devlive-community/shadcn-ui-vue-admin?style=flat-square)
 
-View Shadcn UI is a Vue3 component library built on Shadcn UI and Tailwind CSS.
+View Shadcn UI is a Vue3 component library built on Tailwind CSS.
 
 </div>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="cursor-pointer hover:text-blue-500">
+  <div class="cursor-pointer">
     <a v-if="external" :href="String(link)" :target="target">
       <slot/>
     </a>

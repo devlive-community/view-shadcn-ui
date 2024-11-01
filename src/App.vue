@@ -1,14 +1,13 @@
 <template>
-  <div class="h-screen" style="height: 40000px">
-    {{defaultValue}}
-    <ShadcnToolbarFooter v-model="defaultValue" full-width>
-      <template #left>Full Width</template>
-    </ShadcnToolbarFooter>
+  <div class="h-32">
+    <ShadcnTooltip content="This is a tooltip,This is a tooltip,This is a tooltip" position="left">
+      <ShadcnButton>Hover</ShadcnButton>
+    </ShadcnTooltip>
+    <ShadcnTooltip content="This is a tooltip,This is a tooltip,This is a tooltip" position="top">
+      <ShadcnButton>Hover</ShadcnButton>
+    </ShadcnTooltip>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
-const defaultValue = ref(true)
 </script>

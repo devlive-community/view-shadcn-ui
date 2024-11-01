@@ -344,6 +344,7 @@ This document is mainly used to describe some features and usage of the ShadcnBu
                 ['disabled', 'Whether to disable the button', 'Boolean', 'false', '-'],
                 ['submit', 'Whether to trigger form submission', 'Boolean', 'false', '-'],
                 ['reset', 'Whether to trigger form reset', 'Boolean', 'false', '-'],
+                ['to', 'The path to navigate to, only supported in router mode', 'String', '-', '-'],
             ]">
 </ApiTable>
 

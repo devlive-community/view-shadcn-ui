@@ -1,37 +1,6 @@
 <template>
-  <button :type="submit ? 'submit' : reset ? 'reset' : 'button'"
-          :class="[
-            // Style
-            'inline-flex items-center justify-center whitespace-nowrap transition-colors',
-            // Size
-            ButtonSize[finalSize],
-            // Type style
-            ghost ? [
-              'bg-transparent',
-              'border-solid border',
-              getBorderColorClass,
-              getTextColorClass,
-              getHoverClass,
-            ] : type === 'default' ? [
-              'bg-white',
-              'border-solid border border-gray-200',
-              'text-gray-500',
-              'hover:border-gray-300',
-            ] : [
-              ButtonBackgroundType[type],
-              ButtonHoverType[type],
-              type === 'text' ? 'text-gray-500' : 'text-white'
-            ],
-            // Rounded corners
-            {'rounded-full': round || circle},
-            {'rounded-md': !round && !circle},
-            // Rounded
-            {'w-9 h-9 p-0': circle},
-            // State
-            {'opacity-70 cursor-not-allowed': loading || disabled},
-          ]"
-          :disabled="loading || disabled"
-          :style="color ? { backgroundColor: color } : {}">
+  <component :is="to ? ShadcnLink : 'button'"
+             v-bind="buttonProps">
     <!-- Loading State -->
     <div v-if="loading" class="inline-flex items-center justify-center">
       <Loader2 class="animate-spin" :class="{'mr-1.5': $slots.loading}"/>
@@ -44,7 +13,7 @@
       <span v-if="text" :class="{'ml-0': !$slots.icon}">{{ text }}</span>
       <slot v-else/>
     </div>
-  </button>
+  </component>
 </template>
 
 <script setup lang="ts">
@@ -52,6 +21,7 @@ import { computed, ComputedRef, inject } from 'vue'
 import { Loader2 } from 'lucide-vue-next'
 import { ButtonBackgroundType, ButtonHoverType } from '@/ui/common/type.ts'
 import { ButtonSize } from '@/ui/common/size.ts'
+import ShadcnLink from '@/ui/link'
 
 interface Props
 {
@@ -66,6 +36,7 @@ interface Props
   ghost?: boolean
   submit?: boolean
   reset?: boolean
+  to?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -132,5 +103,42 @@ const buttonGroupSize = inject<ComputedRef<keyof typeof ButtonSize> | undefined>
     'buttonGroupSize',
     undefined
 )
+
 const finalSize = computed(() => buttonGroupSize?.value || props.size)
+
+const buttonProps = computed(() => ({
+  ...(props.to ? { link: props.to } : { type: props.submit ? 'submit' : props.reset ? 'reset' : 'button' }),
+  class: [
+    // Style
+    'inline-flex items-center justify-center whitespace-nowrap transition-colors',
+    // Size
+    ButtonSize[finalSize.value],
+    // Type style
+    props.ghost ? [
+      'bg-transparent',
+      'border-solid border',
+      getBorderColorClass.value,
+      getTextColorClass.value,
+      getHoverClass.value
+    ] : props.type === 'default' ? [
+      'bg-white',
+      'border-solid border border-gray-200',
+      'text-gray-500',
+      'hover:border-gray-300'
+    ] : [
+      ButtonBackgroundType[props.type],
+      ButtonHoverType[props.type],
+      props.type === 'text' ? 'text-gray-500' : 'text-white'
+    ],
+    // Rounded corners
+    { 'rounded-full': props.round || props.circle },
+    { 'rounded-md': !props.round && !props.circle },
+    // Rounded
+    { 'w-9 h-9 p-0': props.circle },
+    // State
+    { 'opacity-70 cursor-not-allowed': props.loading || props.disabled }
+  ],
+  disabled: props.loading || props.disabled,
+  style: props.color ? { backgroundColor: props.color } : {}
+}))
 </script>
