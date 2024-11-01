@@ -88,8 +88,10 @@ title: Shadcn Toolbar Footer
 <ApiTable title="Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value']"
     :columns="[
+        ['modelValue', 'The value of the drawer', 'boolean', 'true'],
         ['auto-hide', 'Whether to auto hide', 'boolean', 'false'],
         ['auto-hide-delay', 'Auto hide delay', 'number', '3000'],
+        ['hide-on-scroll', 'Whether to hide on scroll', 'boolean', 'true'],
     ]">
 </ApiTable>
 

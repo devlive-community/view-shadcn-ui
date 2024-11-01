@@ -1,6 +1,5 @@
 <template>
   <footer v-if="isVisible"
-          ref="footerRef"
           :class="['fixed bottom-0 left-0 right-0 z-50 border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60',
               'transform transition-transform duration-200 ease-in-out',
               isVisible ? 'translate-y-0' : 'translate-y-full'
@@ -37,6 +36,7 @@ interface Props
   modelValue?: boolean
   autoHide?: boolean
   autoHideDelay?: number
+  hideOnScroll?: boolean
 }
 
 const emit = defineEmits<{
@@ -48,11 +48,13 @@ const emit = defineEmits<{
 const props = withDefaults(defineProps<Props>(), {
   modelValue: true,
   autoHide: false,
-  autoHideDelay: 3000
+  autoHideDelay: 3000,
+  hideOnScroll: true
 })
 
 const isVisible = ref(props.modelValue)
 let autoHideTimer: ReturnType<typeof setTimeout> | null = null
+let lastScrollTop = 0
 
 watch(() => props.modelValue, (newValue) => {
   isVisible.value = newValue
@@ -68,6 +70,24 @@ const startAutoHideTimer = () => {
   }, props.autoHideDelay)
 }
 
+const handleScroll = () => {
+  if (props.hideOnScroll) {
+    const currentScrollTop = window.scrollY || document.documentElement.scrollTop
+    const isScrollingDown = currentScrollTop > lastScrollTop
+
+    if (isScrollingDown && isVisible.value) {
+      isVisible.value = false
+      emit('update:modelValue', isVisible.value)
+    }
+    else if (!isScrollingDown) {
+      isVisible.value = true
+      emit('update:modelValue', isVisible.value)
+    }
+
+    lastScrollTop = currentScrollTop
+  }
+}
+
 const onCancel = () => {
   isVisible.value = false
   emit('on-cancel')
@@ -81,12 +101,20 @@ const onOk = () => {
 }
 
 onMounted(() => {
+  if (props.hideOnScroll) {
+    window.addEventListener('scroll', handleScroll, { passive: true })
+  }
+
   if (props.autoHide && isVisible.value) {
     startAutoHideTimer()
   }
 })
 
 onBeforeUnmount(() => {
+  if (props.hideOnScroll) {
+    window.removeEventListener('scroll', handleScroll)
+  }
+
   if (autoHideTimer) {
     clearTimeout(autoHideTimer)
   }
