@@ -1,6 +1,7 @@
 <template>
   <div class="h-screen" style="height: 40000px">
-    <ShadcnToolbarFooter>
+    {{defaultValue}}
+    <ShadcnToolbarFooter v-model="defaultValue">
       <template #left>
         Left
       </template>
@@ -9,4 +10,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+
+const defaultValue = ref(true)
 </script>

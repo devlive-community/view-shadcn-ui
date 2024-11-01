@@ -30,22 +30,38 @@
 
 <script setup lang="ts">
 import ShadcnButton from '@/ui/button'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+
+interface Props
+{
+  modelValue?: boolean
+}
 
 const emit = defineEmits<{
+  (e: 'update:modelValue', value: boolean): void
   (e: 'on-cancel'): void
   (e: 'on-ok'): void
 }>()
 
-const isVisible = ref(true)
+const props = withDefaults(defineProps<Props>(), {
+  modelValue: true
+})
+
+const isVisible = ref(props.modelValue)
+
+watch(() => props.modelValue, (newValue) => {
+  isVisible.value = newValue
+})
 
 const onCancel = () => {
   isVisible.value = false
   emit('on-cancel')
+  emit('update:modelValue', isVisible.value)
 }
 
 const onOk = () => {
   isVisible.value = false
   emit('on-ok')
+  emit('update:modelValue', isVisible.value)
 }
 </script>
