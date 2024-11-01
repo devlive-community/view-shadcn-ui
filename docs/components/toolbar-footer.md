@@ -33,6 +33,38 @@ title: Shadcn Toolbar Footer
 
 :::
 
+## Auto Hide
+
+::: raw
+
+<CodeRunner title="Auto Hide">
+    <ShadcnToolbarFooter auto-hide />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnToolbarFooter auto-hide />
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
+## Props
+
+<ApiTable title="Props"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :columns="[
+        ['auto-hide', 'Whether to auto hide', 'boolean', 'false'],
+    ]">
+</ApiTable>
+
 ## Events
 
 <ApiTable title="Events"

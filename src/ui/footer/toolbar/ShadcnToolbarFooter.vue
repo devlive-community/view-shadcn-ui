@@ -29,12 +29,13 @@
 </template>
 
 <script setup lang="ts">
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import ShadcnButton from '@/ui/button'
-import { ref, watch } from 'vue'
 
 interface Props
 {
   modelValue?: boolean
+  autoHide?: boolean
 }
 
 const emit = defineEmits<{
@@ -44,14 +45,26 @@ const emit = defineEmits<{
 }>()
 
 const props = withDefaults(defineProps<Props>(), {
-  modelValue: true
+  modelValue: true,
+  autoHide: false
 })
 
 const isVisible = ref(props.modelValue)
+let autoHideTimer: ReturnType<typeof setTimeout> | null = null
 
 watch(() => props.modelValue, (newValue) => {
   isVisible.value = newValue
 })
+
+const startAutoHideTimer = () => {
+  if (autoHideTimer) {
+    clearTimeout(autoHideTimer)
+  }
+  autoHideTimer = setTimeout(() => {
+    isVisible.value = false
+    emit('update:modelValue', isVisible.value)
+  }, 3000)
+}
 
 const onCancel = () => {
   isVisible.value = false
@@ -64,4 +77,16 @@ const onOk = () => {
   emit('on-ok')
   emit('update:modelValue', isVisible.value)
 }
+
+onMounted(() => {
+  if (props.autoHide && isVisible.value) {
+    startAutoHideTimer()
+  }
+})
+
+onBeforeUnmount(() => {
+  if (autoHideTimer) {
+    clearTimeout(autoHideTimer)
+  }
+})
 </script>

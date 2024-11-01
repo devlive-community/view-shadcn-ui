@@ -1,7 +1,7 @@
 <template>
   <div class="h-screen" style="height: 40000px">
     {{defaultValue}}
-    <ShadcnToolbarFooter v-model="defaultValue">
+    <ShadcnToolbarFooter v-model="defaultValue" auto-hide>
       <template #left>
         Left
       </template>
