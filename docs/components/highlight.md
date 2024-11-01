@@ -37,6 +37,33 @@ This document is mainly used to describe some features and usage of the ShadcnHi
 
 :::
 
+## Case Sensitive
+
+::: raw
+
+<CodeRunner title="Case Sensitive">
+  <ShadcnHighlight text="The quick brown fox jumps over the lazy dog"
+                   case-sensitive
+                   highlight="the" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnHighlight text="The quick brown fox jumps over the lazy dog"
+                   case-sensitive
+                   highlight="the" />
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Props"
@@ -44,5 +71,6 @@ This document is mainly used to describe some features and usage of the ShadcnHi
     :columns="[
         ['text', 'The content of the highlight', 'string', '-', '-', '-'],
         ['highlight', 'The highlight content', 'string | string[]', '-', '-', '-'],
+        ['case-sensitive', 'Whether the highlight is case sensitive', 'boolean', 'false', '-', '-'],
     ]">
 </ApiTable>
