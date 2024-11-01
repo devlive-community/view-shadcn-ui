@@ -2246,6 +2246,9 @@ packages:
   view-shadcn-ui@2024.1.3-alpha.1730211583:
     resolution: {integrity: sha512-cQ9g+UsdMKCiYTAfMY8PbvVF/tQkAiM/UxL0tjszcRUYwLeGkASZwB3QBH6PqbKBk6LvlJptSmqAWJ5G91eoUw==}
 
+  view-shadcn-ui@2024.1.3-alpha.1730388366:
+    resolution: {integrity: sha512-3Qfd+8RZs4q6V6SzMhaMyypEL8pR1qAKdrtYoBaVtX0dscK8pN5eIyL7mrOssrysbIr+DbyW7icP6wIcvs0GCA==}
+
   vite@5.4.10:
     resolution: {integrity: sha512-1hvaPshuPUtxeQ0hsVH3Mud0ZanOLwVTneA1EgbAM5LhaZEqyPWGRQ7BtaMvUrTDeEaC8pxtj6a6jku3x4z6SQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -4850,6 +4853,7 @@ snapshots:
       tailwindcss-animate: 1.0.7(tailwindcss@3.4.14)
       vaul-vue: 0.1.3(radix-vue@1.9.8(vue@3.5.12(typescript@5.6.3)))(vue@3.5.12(typescript@5.6.3))
       vee-validate: 4.14.6(vue@3.5.12(typescript@5.6.3))
+      view-shadcn-ui: 2024.1.3-alpha.1730388366(tailwindcss@3.4.14)(typescript@5.6.3)
       vue: 3.5.12(typescript@5.6.3)
       vue-i18n: 9.14.1(vue@3.5.12(typescript@5.6.3))
       vue-router: 4.4.5(vue@3.5.12(typescript@5.6.3))
@@ -4862,6 +4866,19 @@ snapshots:
       - tailwindcss
       - typescript
       - webpack-sources
+
+  view-shadcn-ui@2024.1.3-alpha.1730388366(tailwindcss@3.4.14)(typescript@5.6.3):
+    dependencies:
+      clsx: 2.1.1
+      highlight.js: 11.10.0
+      lodash: 4.17.21
+      lucide-vue-next: 0.360.0(vue@3.5.12(typescript@5.6.3))
+      tailwind-merge: 2.5.4
+      tailwindcss-animate: 1.0.7(tailwindcss@3.4.14)
+      vue: 3.5.12(typescript@5.6.3)
+    transitivePeerDependencies:
+      - tailwindcss
+      - typescript
 
   vite@5.4.10(@types/node@20.17.1):
     dependencies:
