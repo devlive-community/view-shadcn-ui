@@ -1,15 +1,13 @@
 <template>
-  <div class="h-screen">
-    <ShadcnException type="500">
-      <template #icon>
-        <ShadcnIcon icon="TriangleAlert" class="text-gray-400" :size="80"/>
-      </template>
-      <template #actions>
-        <ShadcnButton type="primary" to="https://shadcn.com">Home</ShadcnButton>
-        <ShadcnButton type="primary" submit>Home</ShadcnButton>
-      </template>
-    </ShadcnException>
-  </div>
+  <ShadcnCard description="Description">
+    <template #title>
+      <div class='flex items-center justify-center mb-4'>
+        <ShadcnIcon icon="Loader2" class="h-5 w-5 animate-spin"/>
+      </div>
+    </template>
+
+    <div class="flex items-center justify-center">Content</div>
+  </ShadcnCard>
 </template>
 
 <script setup lang="ts">
