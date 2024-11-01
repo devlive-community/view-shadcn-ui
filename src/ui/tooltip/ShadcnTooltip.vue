@@ -105,7 +105,7 @@ const computedPosition = computed(() => {
   }
 
   // Find first suitable position based on priority list
-  const priorities = positionPriority[props.position]
+  const priorities = positionPriority[props.position] as Array<'top' | 'right' | 'bottom' | 'left'>
   const suitablePosition = priorities.find(checkPosition) || props.position
 
   return {
