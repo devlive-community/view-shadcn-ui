@@ -1,6 +1,6 @@
 <template>
   <component :is="props.to ? ShadcnLink : 'div'"
-             :to="props.to"
+             :link="props.to"
              :class="[
                'px-3 py-2 text-sm rounded-md hover:bg-gray-100 focus:outline-none focus:bg-gray-100 cursor-pointer',
                { 'bg-gray-100': isActive },
