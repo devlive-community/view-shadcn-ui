@@ -63,6 +63,7 @@ import ShadcnCollapse from '@/ui/collapse'
 import ShadcnCollapseItem from '@/ui/collapse/item'
 import ShadcnTag from '@/ui/tag'
 import ShadcnGlobalFooter from '@/ui/footer/global'
+import ShadcnToolbarFooter from '@/ui/footer/toolbar'
 import ShadcnWatermark from '@/ui/watermark'
 import ShadcnHighlight from '@/ui/highlight'
 
@@ -127,6 +128,7 @@ let components = [
     ShadcnCollapseItem,
     ShadcnTag,
     ShadcnGlobalFooter,
+    ShadcnToolbarFooter,
     ShadcnWatermark,
     ShadcnHighlight
 ]
@@ -214,6 +216,7 @@ export { default as ShadcnCollapse } from '@/ui/collapse'
 export { default as ShadcnCollapseItem } from '@/ui/collapse/item'
 export { default as ShadcnTag } from '@/ui/tag'
 export { default as ShadcnGlobalFooter } from '@/ui/footer/global'
+export { default as ShadcnToolbarFooter } from '@/ui/footer/toolbar'
 export { default as ShadcnWatermark } from '@/ui/watermark'
 export { default as ShadcnHighlight } from '@/ui/highlight'
 

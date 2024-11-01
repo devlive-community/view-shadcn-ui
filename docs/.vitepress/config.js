@@ -107,6 +107,7 @@ export default {
                         {text: 'Layout <span class="VPBadge tip">2024.1.2</span>', link: 'layout'},
                         {text: 'Collapse <span class="VPBadge tip">2024.1.3</span>', link: 'collapse'},
                         {text: 'Global Footer <span class="VPBadge tip">2024.1.3</span>', link: 'global-footer'},
+                        {text: 'Toolbar Footer <span class="VPBadge tip">2024.1.3</span>', link: 'toolbar-footer'},
                     ]
                     return {
                         text: `Layout [ ${items.length} ]`,

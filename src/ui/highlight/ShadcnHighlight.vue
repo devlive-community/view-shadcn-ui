@@ -17,6 +17,7 @@ interface Props
 {
   text: string
   highlight: string | string[]
+  caseSensitive?: boolean
 }
 
 interface HighlightPart
@@ -25,7 +26,9 @@ interface HighlightPart
   isMatch: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {})
+const props = withDefaults(defineProps<Props>(), {
+  caseSensitive: false
+})
 
 const highlights = computed(() => {
   return Array.isArray(props.highlight) ? props.highlight : [props.highlight]
@@ -46,8 +49,8 @@ const highlightedParts = computed(() => {
         return
       }
 
-      const text = part.text
-      const searchText = highlight
+      const text = !props.caseSensitive ? part.text : part.text.toLowerCase()
+      const searchText = !props.caseSensitive ? highlight : highlight.toLowerCase()
       let lastIndex = 0
       let index = text.indexOf(searchText)
 
