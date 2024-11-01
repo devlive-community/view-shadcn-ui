@@ -89,9 +89,10 @@ title: Shadcn Toolbar Footer
     :headers="['Attribute', 'Description', 'Type', 'Default Value']"
     :columns="[
         ['modelValue', 'The value of the drawer', 'boolean', 'true'],
-        ['auto-hide', 'Whether to auto hide', 'boolean', 'false'],
-        ['auto-hide-delay', 'Auto hide delay', 'number', '3000'],
-        ['hide-on-scroll', 'Whether to hide on scroll', 'boolean', 'true'],
+        ['autoHide', 'Whether to auto hide', 'boolean', 'false'],
+        ['autoHideDelay', 'Auto hide delay', 'number', '3000'],
+        ['hideOnScroll', 'Whether to hide on scroll', 'boolean', 'true'],
+        ['scrollStopDelay', 'Scroll stop delay', 'number', '600'],
     ]">
 </ApiTable>
 

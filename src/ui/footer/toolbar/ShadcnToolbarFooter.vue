@@ -33,10 +33,26 @@ import ShadcnButton from '@/ui/button'
 
 interface Props
 {
+  /**
+   * Controls the visibility of the toolbar
+   */
   modelValue?: boolean
+  /**
+   * Enables auto-hide functionality
+   */
   autoHide?: boolean
+  /**
+   * Delay in ms before auto-hiding
+   */
   autoHideDelay?: number
+  /**
+   * Enables scroll-based visibility control
+   */
   hideOnScroll?: boolean
+  /**
+   * Delay in ms to wait before showing after scroll stops
+   */
+  scrollStopDelay?: number
 }
 
 const emit = defineEmits<{
@@ -49,17 +65,24 @@ const props = withDefaults(defineProps<Props>(), {
   modelValue: true,
   autoHide: false,
   autoHideDelay: 3000,
-  hideOnScroll: true
+  hideOnScroll: true,
+  scrollStopDelay: 600
 })
 
 const isVisible = ref(props.modelValue)
 let autoHideTimer: ReturnType<typeof setTimeout> | null = null
+let scrollStopTimer: ReturnType<typeof setTimeout> | null = null
 let lastScrollTop = 0
+let isScrolling = ref(false)
 
+// Watch for model value changes
 watch(() => props.modelValue, (newValue) => {
   isVisible.value = newValue
 })
 
+/**
+ * Starts auto-hide timer
+ */
 const startAutoHideTimer = () => {
   if (autoHideTimer) {
     clearTimeout(autoHideTimer)
@@ -70,39 +93,75 @@ const startAutoHideTimer = () => {
   }, props.autoHideDelay)
 }
 
-const handleScroll = () => {
-  if (props.hideOnScroll) {
-    const currentScrollTop = window.scrollY || document.documentElement.scrollTop
-    const isScrollingDown = currentScrollTop > lastScrollTop
-
-    if (isScrollingDown && isVisible.value) {
-      isVisible.value = false
-      emit('update:modelValue', isVisible.value)
-    }
-    else if (!isScrollingDown) {
-      isVisible.value = true
-      emit('update:modelValue', isVisible.value)
-    }
-
-    lastScrollTop = currentScrollTop
+/**
+ * Shows toolbar when scroll stops
+ */
+const handleScrollStop = () => {
+  if (!isScrolling.value) {
+    return
   }
+
+  isScrolling.value = false
+  isVisible.value = true
+  emit('update:modelValue', isVisible.value)
 }
 
+/**
+ * Handles scroll events
+ */
+const handleScroll = () => {
+  if (!props.hideOnScroll) {
+    return
+  }
+
+  // Clear existing scroll stop timer
+  if (scrollStopTimer) {
+    clearTimeout(scrollStopTimer)
+  }
+
+  const currentScrollTop = window.scrollY || document.documentElement.scrollTop
+  const isScrollingDown = currentScrollTop > lastScrollTop
+
+  isScrolling.value = true
+
+  // Handle scroll down - hide toolbar
+  if (isScrollingDown && isVisible.value) {
+    isVisible.value = false
+    emit('update:modelValue', isVisible.value)
+  }
+
+  // Start scroll stop detection timer
+  scrollStopTimer = setTimeout(() => {
+    handleScrollStop()
+  }, props.scrollStopDelay)
+
+  lastScrollTop = currentScrollTop
+}
+
+/**
+ * Handle cancel button click
+ */
 const onCancel = () => {
   isVisible.value = false
   emit('on-cancel')
   emit('update:modelValue', isVisible.value)
 }
 
+/**
+ * Handle ok button click
+ */
 const onOk = () => {
   isVisible.value = false
   emit('on-ok')
   emit('update:modelValue', isVisible.value)
 }
 
+// Lifecycle hooks
 onMounted(() => {
   if (props.hideOnScroll) {
     window.addEventListener('scroll', handleScroll, { passive: true })
+    // Initialize last scroll position
+    lastScrollTop = window.scrollY || document.documentElement.scrollTop
   }
 
   if (props.autoHide && isVisible.value) {
@@ -111,12 +170,17 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
+  // Clean up event listeners and timers
   if (props.hideOnScroll) {
     window.removeEventListener('scroll', handleScroll)
   }
 
   if (autoHideTimer) {
     clearTimeout(autoHideTimer)
+  }
+
+  if (scrollStopTimer) {
+    clearTimeout(scrollStopTimer)
   }
 })
 </script>
