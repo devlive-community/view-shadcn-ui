@@ -66,6 +66,8 @@ import ShadcnGlobalFooter from '@/ui/footer/global'
 import ShadcnToolbarFooter from '@/ui/footer/toolbar'
 import ShadcnWatermark from '@/ui/watermark'
 import ShadcnHighlight from '@/ui/highlight'
+import ShadcnDropdown from '@/ui/dropdown'
+import ShadcnDropdownItem from '@/ui/dropdown/item'
 
 let components = [
     ShadcnButton,
@@ -130,7 +132,9 @@ let components = [
     ShadcnGlobalFooter,
     ShadcnToolbarFooter,
     ShadcnWatermark,
-    ShadcnHighlight
+    ShadcnHighlight,
+    ShadcnDropdown,
+    ShadcnDropdownItem
 ]
 
 const install = (Vue: App) => {
@@ -219,6 +223,8 @@ export { default as ShadcnGlobalFooter } from '@/ui/footer/global'
 export { default as ShadcnToolbarFooter } from '@/ui/footer/toolbar'
 export { default as ShadcnWatermark } from '@/ui/watermark'
 export { default as ShadcnHighlight } from '@/ui/highlight'
+export { default as ShadcnDropdown } from '@/ui/dropdown'
+export { default as ShadcnDropdownItem } from '@/ui/dropdown/item'
 
 // Support global import
 export default install

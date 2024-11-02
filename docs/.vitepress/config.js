@@ -178,6 +178,7 @@ export default {
                         {text: 'Breadcrumb <span class="VPBadge tip">2024.1.3</span>', link: 'breadcrumb'},
                         {text: 'Slider <span class="VPBadge tip">2024.1.3</span>', link: 'slider'},
                         {text: 'Link <span class="VPBadge tip">2024.1.3</span>', link: 'link'},
+                        {text: 'Dropdown <span class="VPBadge tip">2024.1.3</span>', link: 'dropdown'},
                     ]
                     return {
                         text: `Navigation [ ${items.length} ]`,

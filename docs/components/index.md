@@ -138,4 +138,7 @@ features:
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/toolbar-footer.svg" />
     title: <a href='toolbar-footer.html'>Shadcn Toolbar Footer <span class="VPBadge tip">2024.1.3</span></a>
     details: Toolbar Footer component
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/dropdown.svg" />
+    title: <a href='dropdown.html'>Shadcn Dropdown <span class="VPBadge tip">2024.1.3</span></a>
+    details: Dropdown component
 ---

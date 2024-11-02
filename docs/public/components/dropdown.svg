@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- Define gradient -->
+    <defs>
+        <linearGradient id="dropdownGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#93c5fd;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#a5b4fc;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="80" fill="url(#dropdownGradient)" />
+
+    <!-- Dropdown box with three options -->
+    <rect x="60" y="65" width="80" height="70" rx="8" fill="white" />
+
+    <!-- Dropdown options (simulated) -->
+    <rect x="70" y="75" width="60" height="8" rx="4" fill="#a5b4fc" />
+    <rect x="70" y="90" width="50" height="8" rx="4" fill="#93c5fd" />
+    <rect x="70" y="105" width="40" height="8" rx="4" fill="#60a5fa" />
+
+    <!-- Dropdown arrow -->
+    <path d="M90 125 L100 135 L110 125" fill="#60a5fa" />
+</svg>
