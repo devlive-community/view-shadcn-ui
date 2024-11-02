@@ -1,7 +1,6 @@
 <template>
   <component :is="to ? ShadcnLink : 'div'"
              :link="to"
-             external
              :class="['px-3 py-2 text-sm rounded-md hover:bg-gray-100 focus:outline-none focus:bg-gray-100 cursor-pointer',
                    { 'bg-gray-100': isActive },
                    isHorizontal ? 'inline-flex' : 'flex'

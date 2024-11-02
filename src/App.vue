@@ -1,42 +1,17 @@
 <template>
-  <div class="p-20 space-x-7">
-    <ShadcnDropdown trigger="hover" position="left">
-      <template #trigger>
-        <ShadcnButton>Left</ShadcnButton>
-      </template>
-      <ShadcnDropdownItem>Option 1</ShadcnDropdownItem>
-      <ShadcnDropdownItem active>Option 2</ShadcnDropdownItem>
-      <ShadcnDropdownItem disabled>Option 3</ShadcnDropdownItem>
-    </ShadcnDropdown>
-
-    <ShadcnDropdown trigger="click" position="right">
-      <template #trigger>
-        <ShadcnButton>Right</ShadcnButton>
-      </template>
-      <ShadcnDropdownItem>Option 1</ShadcnDropdownItem>
-      <ShadcnDropdownItem active>Option 2</ShadcnDropdownItem>
-      <ShadcnDropdownItem disabled>Option 3</ShadcnDropdownItem>
-    </ShadcnDropdown>
-
-    <ShadcnDropdown trigger="hover" position="top">
-      <template #trigger>
-        <ShadcnButton>Hover Open</ShadcnButton>
-      </template>
-      <ShadcnDropdownItem>Option 1</ShadcnDropdownItem>
-      <ShadcnDropdownItem active>Option 2</ShadcnDropdownItem>
-      <ShadcnDropdownItem disabled>Option 3</ShadcnDropdownItem>
-    </ShadcnDropdown>
-
-    <ShadcnDropdown trigger="hover" position="bottom">
-      <template #trigger>
-        <ShadcnButton>Hover Open</ShadcnButton>
-      </template>
-      <ShadcnDropdownItem>Option 1</ShadcnDropdownItem>
-      <ShadcnDropdownItem active>Option 2</ShadcnDropdownItem>
-      <ShadcnDropdownItem disabled>Option 3</ShadcnDropdownItem>
-    </ShadcnDropdown>
-  </div>
+  <ShadcnTable :columns="columns" :data="data"/>
 </template>
 
 <script setup lang="ts">
+const columns = [
+  { label: 'Name', key: 'name' },
+  { label: 'Address', key: 'address' },
+  { label: 'Age', key: 'age' }
+]
+const data = [
+  { name: 'John Doe', address: 'New York No. 1 Lake Park', age: 32 },
+  { name: 'Joe Black', address: 'Sidney No. 1 Lake Park', age: 42 },
+  { name: 'Jim Green', address: 'London No. 1 Lake Park', age: 32 },
+  { name: 'Jim Red', address: 'London No. 2 Lake Park', age: 32 }
+]
 </script>
