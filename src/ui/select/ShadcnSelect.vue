@@ -1,19 +1,19 @@
 <template>
   <div class="relative">
-    <div :class="['flex items-center justify-between border rounded p-2',
+    <div :class="['flex items-center justify-between border rounded p-3',
                   Size[size],
                   {
                     'cursor-pointer': !disabled,
                     'cursor-not-allowed opacity-50 bg-gray-100': disabled,
                     [HoverType[type]]: true
                   }
-                 ]"
+         ]"
          @click="toggleDropdown">
       <slot name="selected">
         {{ selectedLabel || placeholder }}
       </slot>
     </div>
-    <div v-if="dropdownVisible" class="absolute z-10 bg-white border border-gray-300 rounded mt-1 w-full py-1">
+    <div v-if="dropdownVisible" class="absolute z-10 bg-white border border-gray-300 rounded-sm mt-1 w-full py-2 px-2">
       <slot v-if="$slots.options" name="options"/>
       <ShadcnSelectOption v-else-if="options"
                           v-for="(option, index) in internalOptions"
@@ -33,17 +33,11 @@ import { computed, defineEmits, defineProps, provide, ref, watch, withDefaults }
 import ShadcnSelectOption from './option/ShadcnSelectOption.vue'
 import { Size } from '@/ui/common/size.ts'
 import { HoverType } from '@/ui/common/type.ts'
+import { SelectEmits, SelectOptionProps, SelectProps } from '@/ui/select/types.ts'
 
-const emit = defineEmits(['update:modelValue', 'on-change'])
+const emit = defineEmits<SelectEmits>()
 
-const props = withDefaults(defineProps<{
-  modelValue: any
-  options?: ShadcnOption[]
-  placeholder?: string
-  disabled?: boolean
-  size?: keyof typeof Size
-  type?: keyof typeof HoverType
-}>(), {
+const props = withDefaults(defineProps<SelectProps>(), {
   placeholder: 'Select an option',
   disabled: false,
   size: 'default',
@@ -52,9 +46,9 @@ const props = withDefaults(defineProps<{
 
 const dropdownVisible = ref(false)
 const selectedLabel = ref('')
-const slotOptions = ref<ShadcnOption[]>([])
+const slotOptions = ref<SelectOptionProps[]>([])
 
-const registerOption = (option: ShadcnOption) => {
+const registerOption = (option: SelectOptionProps) => {
   const existingIndex = slotOptions.value.findIndex(o => o.value === option.value)
   if (existingIndex === -1) {
     slotOptions.value.push(option)
@@ -91,7 +85,7 @@ const toggleDropdown = () => {
   }
 }
 
-const selectOption = (option: ShadcnOption) => {
+const selectOption = (option: SelectOptionProps) => {
   if (!props.disabled) {
     emit('update:modelValue', option.value)
     emit('on-change', option)

@@ -1,31 +1,25 @@
 <template>
-  <ShadcnMenu direction="horizontal">
-    <ShadcnMenuItem name="home">
-      <template #icon>
-        <ShadcnIcon icon="Home"/>
+  <div class="p-20 space-y-2">
+    <ShadcnSelect v-model="defaultSelect">
+      <template #options>
+        <ShadcnSelectGroup label="Group 1">
+          <ShadcnSelectOption v-for="i in 2"
+                              :key="i"
+                              :label="`Option ${i}`"
+                              :value="`Value ${i}`"/>
+        </ShadcnSelectGroup>
+
+        <ShadcnSelectOption v-for="i in 2"
+                            :key="i"
+                            :label="`Option ${i}`"
+                            :value="`Value ${i}`"/>
       </template>
-      Home
-    </ShadcnMenuItem>
-    <ShadcnMenuSub name="profileSub">
-      <template #title>Profile</template>
-      <template #icon>
-        <ShadcnIcon icon="User"/>
-      </template>
-      <ShadcnMenuGroup name="settingGroup">
-        <template #title>Settings</template>
-        <ShadcnMenuItem name="username" to="/settings">Change </ShadcnMenuItem>
-        <ShadcnMenuItem name="password">Change Password</ShadcnMenuItem>
-      </ShadcnMenuGroup>
-    </ShadcnMenuSub>
-    <ShadcnMenuItem name="email">Change Email</ShadcnMenuItem>
-    <ShadcnMenuItem name="logout">
-      <template #icon>
-        <ShadcnIcon icon="LogOut"/>
-      </template>
-      Logout
-    </ShadcnMenuItem>
-  </ShadcnMenu>
+    </ShadcnSelect>
+  </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+
+const defaultSelect = ref('')
 </script>

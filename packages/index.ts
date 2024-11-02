@@ -28,6 +28,7 @@ import ShadcnCheckboxGroup from '@/ui/checkbox/group'
 import ShadcnRadioGroup from '@/ui/radio/group'
 import ShadcnSelect from '@/ui/select'
 import ShadcnSelectOption from '@/ui/select/option'
+import ShadcnSelectGroup from '@/ui/select/group'
 import ShadcnRate from '@/ui/rate'
 import ShadcnTab from '@/ui/tab'
 import ShadcnTabItem from '@/ui/tab/item'
@@ -95,6 +96,7 @@ let components = [
     ShadcnCheckboxGroup,
     ShadcnSelect,
     ShadcnSelectOption,
+    ShadcnSelectGroup,
     ShadcnRate,
     ShadcnTab,
     ShadcnTabItem,
@@ -185,6 +187,7 @@ export { default as ShadcnCheckbox } from '@/ui/checkbox'
 export { default as ShadcnCheckboxGroup } from '@/ui/checkbox/group'
 export { default as ShadcnSelect } from '@/ui/select'
 export { default as ShadcnSelectOption } from '@/ui/select/option'
+export { default as ShadcnSelectGroup } from '@/ui/select/group'
 export { default as ShadcnRate } from '@/ui/rate'
 export { default as ShadcnTab } from '@/ui/tab'
 export { default as ShadcnTabItem } from '@/ui/tab/item'
