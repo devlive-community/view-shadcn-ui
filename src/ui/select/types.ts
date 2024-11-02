@@ -18,6 +18,7 @@ export interface SelectOptionProps
     selected?: boolean
     disabled?: boolean
     type?: keyof typeof TextType
+    parentName?: string
 }
 
 export interface SelectGroupProps

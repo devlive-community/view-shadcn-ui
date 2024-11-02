@@ -171,7 +171,7 @@ This document is mainly used to describe some features and usage of the ShadcnBu
 
 <CodeRunner title="Button Circle"
             description="Create circle buttons.">
-    <ShadcnButton circle></ShadcnButton>
+    <ShadcnButton circle size="large"></ShadcnButton>
     <ShadcnButton type="danger" circle></ShadcnButton>
     <ShadcnButton type="success" size="small" circle></ShadcnButton>
 </CodeRunner> 
@@ -180,7 +180,7 @@ This document is mainly used to describe some features and usage of the ShadcnBu
 
 ```vue
 <template>
-    <ShadcnButton circle></ShadcnButton>
+    <ShadcnButton circle size="large"></ShadcnButton>
     <ShadcnButton type="danger" circle></ShadcnButton>
     <ShadcnButton type="success" size="small" circle></ShadcnButton>
 </template>

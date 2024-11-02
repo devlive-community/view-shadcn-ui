@@ -283,7 +283,7 @@ const defaultSelect = ref('')
 <script setup lang="ts">
 import { ref } from 'vue';
 
-const defaultSelect = ref('')
+const defaultSelect = ref('Value 1')
 const defaultSelectOptions = [
     { label: 'Vue', value: 'Vue' },
     { label: 'Nuxt', value: 'Nuxt', disabled: true },

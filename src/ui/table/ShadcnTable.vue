@@ -1,6 +1,6 @@
 <template>
   <div :class="['w-full border-gray-200 relative', border && 'border']"
-       :style="{ width: calcSize(width), height: calcSize(height) }">
+       :style="{ width: calcSize(width), height: calcSize(height), minHeight: calcSize(minHeight) }">
     <div class="overflow-auto relative h-full">
       <div class="min-w-full inline-block align-middle">
         <table class="min-w-full divide-y divide-gray-200">
@@ -16,13 +16,14 @@
                                    :left-offset="getLeftOffset(index)"
                                    :right-offset="getRightOffset(index)"
                                    :isLastLeftFixed="isLastLeftFixed(index)"
-                                   :isFirstRightFixed="isFirstRightFixed(index)"/>
+                                   :isFirstRightFixed="isFirstRightFixed(index)"
+                                   :size="size"/>
               </ShadcnTableRow>
             </ShadcnTableHeader>
 
             <ShadcnTableBody>
               <ShadcnTableRow v-for="(row, rowIndex) in data"
-                              :key="rowIndex"
+                              :key="String(rowIndex)"
                               :stripe="(stripe && rowIndex % 2 === 1)"
                               @click="onRowClick(row, rowIndex)">
                 <template v-for="(col, colIndex) in reorderedColumns" :key="col.key">
@@ -33,7 +34,8 @@
                                    :left-offset="getLeftOffset(colIndex)"
                                    :right-offset="getRightOffset(colIndex)"
                                    :isLastLeftFixed="isLastLeftFixed(colIndex)"
-                                   :isFirstRightFixed="isFirstRightFixed(colIndex)">
+                                   :isFirstRightFixed="isFirstRightFixed(colIndex)"
+                                   :size="size">
                     <template v-if="col.slot">
                       <template v-if="hasSlot(col.slot)">
                         <slot :name="col.slot" :row="row" :index="rowIndex"/>
@@ -45,7 +47,7 @@
                       </template>
                     </template>
                     <template v-else>
-                      {{ row[col.key] }}
+                      {{ row[String(col.key)] }}
                     </template>
                   </ShadcnTableCell>
                 </template>
@@ -65,26 +67,21 @@ import ShadcnTableBody from './ShadcnTableBody.vue'
 import ShadcnTableRow from './ShadcnTableRow.vue'
 import ShadcnTableColumn from './ShadcnTableColumn.vue'
 import ShadcnTableCell from './ShadcnTableCell.vue'
-import { Column } from '@/ui/table/configure.ts'
 import { calcSize } from '@/utils/common.ts'
 import { toNumber } from 'lodash'
+import { ColumnProps, TableProps } from '@/ui/table/types.ts'
 
 provide('ShadcnTable', true)
 
 const emit = defineEmits(['on-row-click'])
 
-const props = withDefaults(defineProps<{
-  columns: Array<Column>
-  data: Array<any>
-  stripe?: boolean
-  border: boolean
-  width?: string | number
-  height?: string | number
-}>(), {
+const props = withDefaults(defineProps<TableProps>(), {
   stripe: false,
   border: false,
   width: '100%',
-  height: 'auto'
+  height: 'auto',
+  minHeight: 300,
+  size: 'default'
 })
 
 const slots = useSlots()
@@ -93,7 +90,7 @@ const hasSlot = (name: string) => {
   return !!slots[name]
 }
 
-const validateSlot = (column: Column) => {
+const validateSlot = (column: ColumnProps) => {
   if (column.slot && !hasSlot(column.slot)) {
     throw new Error(`The slot "${ column.slot }" is required for column "${ column.label }" but not provided.`)
   }
@@ -102,9 +99,9 @@ const validateSlot = (column: Column) => {
 
 // Rearrange the sequence so that the fixed columns are placed on both sides
 const reorderedColumns = computed(() => {
-  const leftFixed = Array<Column>()
-  const notFixed = Array<Column>()
-  const rightFixed = Array<Column>()
+  const leftFixed = Array<ColumnProps>()
+  const notFixed = Array<ColumnProps>()
+  const rightFixed = Array<ColumnProps>()
 
   // Categorize the columns
   for (const col of props.columns) {

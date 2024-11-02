@@ -1,5 +1,6 @@
 <template>
-  <th :class="['px-4 py-3 text-left text-xs font-medium text-gray-500 tracking-wider whitespace-nowrap break-words relative',
+  <th :class="['text-left text-xs font-medium text-gray-500 tracking-wider whitespace-nowrap break-words relative',
+                TableCellSize[size],
                 fixed && 'sticky',
                 fixed === 'left' && [
                   'bg-gray-50 z-10',
@@ -45,21 +46,14 @@
 
 <script setup lang="ts">
 import { calcSize } from '@/utils/common.ts'
+import { ColumnProps, TableCellSize } from '@/ui/table/types.ts'
 
-withDefaults(defineProps<{
-  label?: string
-  border?: boolean
-  fixed?: 'left' | 'right'
-  width?: string | number
-  isLastLeftFixed?: boolean
-  isFirstRightFixed?: boolean
-  leftOffset?: number
-  rightOffset?: number
-}>(), {
+withDefaults(defineProps<ColumnProps>(), {
   border: false,
   fixed: undefined,
   width: 'auto',
   isLastLeftFixed: false,
-  isFirstRightFixed: false
+  isFirstRightFixed: false,
+  size: 'default'
 })
 </script>

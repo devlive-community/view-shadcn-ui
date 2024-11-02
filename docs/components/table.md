@@ -374,6 +374,8 @@ const rowClick = (row: any, index: number) => {
         ['border', 'Whether the table is bordered', 'boolean', 'false', '-'],
         ['width', 'The width of the table', 'string | number', '100%', '-'],
         ['height', 'The height of the table', 'string | number', 'auto', '-'],
+        ['maxHeight', 'The maximum height of the table', 'string | number', '300', '-'],
+        ['size', 'The size of the table', 'Enum', 'default', 'small | default | large'],
     ]">
 </ApiTable>
 
