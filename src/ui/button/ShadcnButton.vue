@@ -20,7 +20,7 @@
 import { computed, ComputedRef, inject } from 'vue'
 import { Loader2 } from 'lucide-vue-next'
 import { ButtonBackgroundType, ButtonHoverType } from '@/ui/common/type.ts'
-import { ButtonSize } from '@/ui/common/size.ts'
+import { ButtonRoundedSize, ButtonSize } from '@/ui/common/size.ts'
 import ShadcnLink from '@/ui/link'
 
 interface Props
@@ -44,7 +44,8 @@ const props = withDefaults(defineProps<Props>(), {
   type: 'primary',
   ghost: false,
   submit: false,
-  reset: false
+  reset: false,
+  circle: false
 })
 
 // Ghost button style classes
@@ -106,13 +107,22 @@ const buttonGroupSize = inject<ComputedRef<keyof typeof ButtonSize> | undefined>
 
 const finalSize = computed(() => buttonGroupSize?.value || props.size)
 
+const circleClass = computed(() => {
+  if (props.circle) {
+    const sizeKey = finalSize.value as keyof typeof ButtonRoundedSize
+    return {
+      [ButtonRoundedSize[sizeKey]]: true
+    }
+  }
+})
+
 const buttonProps = computed(() => ({
   ...(props.to ? { link: props.to } : { type: props.submit ? 'submit' : props.reset ? 'reset' : 'button' }),
   class: [
     // Style
     'inline-flex items-center justify-center whitespace-nowrap transition-colors',
     // Size
-    ButtonSize[finalSize.value],
+    !props.circle && ButtonSize[finalSize.value],
     // Type style
     props.ghost ? [
       'bg-transparent',
@@ -134,7 +144,7 @@ const buttonProps = computed(() => ({
     { 'rounded-full': props.round || props.circle },
     { 'rounded-md': !props.round && !props.circle },
     // Rounded
-    { 'w-9 h-9 p-0': props.circle },
+    circleClass.value,
     // State
     { 'opacity-70 cursor-not-allowed': props.loading || props.disabled }
   ],

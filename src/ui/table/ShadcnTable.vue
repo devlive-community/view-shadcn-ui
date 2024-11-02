@@ -16,7 +16,8 @@
                                    :left-offset="getLeftOffset(index)"
                                    :right-offset="getRightOffset(index)"
                                    :isLastLeftFixed="isLastLeftFixed(index)"
-                                   :isFirstRightFixed="isFirstRightFixed(index)"/>
+                                   :isFirstRightFixed="isFirstRightFixed(index)"
+                                   :size="size"/>
               </ShadcnTableRow>
             </ShadcnTableHeader>
 

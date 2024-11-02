@@ -1,17 +1,10 @@
 <template>
-  <ShadcnTable :columns="columns" :data="data" size="small"/>
+  <ShadcnButton circle size="default"></ShadcnButton>
+  <ShadcnButton type="danger" circle size="large"></ShadcnButton>
+  <ShadcnButton type="success" size="small" circle>
+    <ShadcnIcon icon="Save" size="12"/>
+  </ShadcnButton>
 </template>
 
 <script setup lang="ts">
-const columns = [
-  { label: 'Name', key: 'name' },
-  { label: 'Address', key: 'address' },
-  { label: 'Age', key: 'age' }
-]
-const data = [
-  { name: 'John Doe', address: 'New York No. 1 Lake Park', age: 32 },
-  { name: 'Joe Black', address: 'Sidney No. 1 Lake Park', age: 42 },
-  { name: 'Jim Green', address: 'London No. 1 Lake Park', age: 32 },
-  { name: 'Jim Red', address: 'London No. 2 Lake Park', age: 32 }
-]
 </script>

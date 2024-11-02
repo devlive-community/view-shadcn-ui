@@ -25,6 +25,13 @@ export enum ButtonSize
     large = 'h-10 px-6 text-base'
 }
 
+export enum ButtonRoundedSize
+{
+    small = 'h-6 w-6',
+    default = 'h-8 w-8',
+    large = 'h-10 w-10'
+}
+
 export enum WrapperSize
 {
     default = 'h-8 w-8',
