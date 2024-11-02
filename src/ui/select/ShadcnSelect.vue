@@ -1,5 +1,5 @@
 <template>
-  <div class="relative">
+  <div ref="selectRef" class="relative">
     <div :class="['flex items-center justify-between border rounded p-3',
                   Size[size],
                   {
@@ -29,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineEmits, defineProps, provide, ref, watch, withDefaults } from 'vue'
+import { computed, defineEmits, defineProps, onMounted, onUnmounted, provide, ref, watch, withDefaults } from 'vue'
 import ShadcnSelectOption from './option/ShadcnSelectOption.vue'
 import { Size } from '@/ui/common/size.ts'
 import { HoverType } from '@/ui/common/type.ts'
@@ -47,6 +47,7 @@ const props = withDefaults(defineProps<SelectProps>(), {
 const dropdownVisible = ref(false)
 const selectedLabel = ref('')
 const slotOptions = ref<SelectOptionProps[]>([])
+const selectRef = ref<HTMLElement | null>(null)
 
 const registerOption = (option: SelectOptionProps) => {
   const existingIndex = slotOptions.value.findIndex(o => o.value === option.value)
@@ -96,4 +97,21 @@ const selectOption = (option: SelectOptionProps) => {
 provide('selectOption', selectOption)
 provide('registerOption', registerOption)
 provide('unregisterOption', unregisterOption)
+
+const onClickOutside = (event: MouseEvent) => {
+  if (selectRef.value && !selectRef.value.contains(event.target as Node)) {
+    if (dropdownVisible.value) {
+      toggleDropdown()
+      emit('on-click-outside', true)
+    }
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('click', onClickOutside)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('click', onClickOutside)
+})
 </script>

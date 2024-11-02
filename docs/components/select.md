@@ -275,7 +275,8 @@ const defaultSelect = ref('')
 <ApiTable title="Select Events"
     :headers="['Event', 'Description', 'Callback Parameters']"
     :columns="[
-        ['on-change', 'Triggered when the value of the select is changed', 'any'],
+        ['onChange', 'Triggered when the value of the select is changed', 'any'],
+        ['onClickOutside', 'Triggered when the click outside the select is triggered', 'boolean'],
     ]">
 </ApiTable>
 

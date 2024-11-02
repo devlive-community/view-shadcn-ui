@@ -28,4 +28,5 @@ export interface SelectGroupProps
 export type SelectEmits = {
     'update:modelValue': [value: any]
     'on-change': [value: any]
+    'on-click-outside': [value: boolean]
 }
