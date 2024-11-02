@@ -1,15 +1,30 @@
 <template>
-  <div class="p-20">
-    <ShadcnDropdown trigger="hover">
-      <template #trigger>
-        <ShadcnButton>Click Open</ShadcnButton>
+  <ShadcnMenu direction="horizontal">
+    <ShadcnMenuItem name="home">
+      <template #icon>
+        <ShadcnIcon icon="Home"/>
       </template>
-      <ShadcnDropdownItem>Option 1</ShadcnDropdownItem>
-      <ShadcnDropdownItem active>Option 2</ShadcnDropdownItem>
-      <ShadcnDropdownItem divided>Option 2</ShadcnDropdownItem>
-      <ShadcnDropdownItem disabled>Option 3</ShadcnDropdownItem>
-    </ShadcnDropdown>
-  </div>
+      Home
+    </ShadcnMenuItem>
+    <ShadcnMenuSub name="profileSub">
+      <template #title>Profile</template>
+      <template #icon>
+        <ShadcnIcon icon="User"/>
+      </template>
+      <ShadcnMenuGroup name="settingGroup">
+        <template #title>Settings</template>
+        <ShadcnMenuItem name="username" to="/settings">Change </ShadcnMenuItem>
+        <ShadcnMenuItem name="password">Change Password</ShadcnMenuItem>
+      </ShadcnMenuGroup>
+    </ShadcnMenuSub>
+    <ShadcnMenuItem name="email">Change Email</ShadcnMenuItem>
+    <ShadcnMenuItem name="logout">
+      <template #icon>
+        <ShadcnIcon icon="LogOut"/>
+      </template>
+      Logout
+    </ShadcnMenuItem>
+  </ShadcnMenu>
 </template>
 
 <script setup lang="ts">

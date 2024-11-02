@@ -1,13 +1,13 @@
 <template>
-  <component :is="props.to ? ShadcnLink : 'div'"
-             :link="props.to"
-             :class="[
-               'px-3 py-2 text-sm rounded-md hover:bg-gray-100 focus:outline-none focus:bg-gray-100 cursor-pointer',
-               { 'bg-gray-100': isActive },
-               isHorizontal ? 'inline-flex' : 'flex'
+  <component :is="to ? ShadcnLink : 'div'"
+             :link="to"
+             external
+             :class="['px-3 py-2 text-sm rounded-md hover:bg-gray-100 focus:outline-none focus:bg-gray-100 cursor-pointer',
+                   { 'bg-gray-100': isActive },
+                   isHorizontal ? 'inline-flex' : 'flex'
              ]"
              @click="onClick"
-             :data-name="props.name"
+             :data-name="name"
              :data-parent="parentName">
     <div class="flex items-center gap-2 min-w-0">
       <slot name="icon"/>
