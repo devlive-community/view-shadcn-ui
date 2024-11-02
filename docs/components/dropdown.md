@@ -1,0 +1,151 @@
+---
+title: Shadcn Dropdown
+---
+
+# Introduction
+
+This document is mainly used to describe some features and usage of the ShadcnDropdown component.
+
+- ShadcnDropdown
+- ShadcnDropdownItem
+
+## Usage
+
+::: raw
+
+<CodeRunner title="Dropdown">
+  <ShadcnDropdown trigger="click">
+    <template #trigger>
+      <ShadcnButton>Click Open</ShadcnButton>
+    </template>
+    <ShadcnDropdownItem>Option 1</ShadcnDropdownItem>
+    <ShadcnDropdownItem active>Option 2</ShadcnDropdownItem>
+    <ShadcnDropdownItem disabled>Option 3</ShadcnDropdownItem>
+  </ShadcnDropdown>
+  <ShadcnDropdown trigger="hover">
+    <template #trigger>
+      <ShadcnButton>Hover Open</ShadcnButton>
+    </template>
+    <ShadcnDropdownItem>Option 1</ShadcnDropdownItem>
+    <ShadcnDropdownItem active>Option 2</ShadcnDropdownItem>
+    <ShadcnDropdownItem disabled>Option 3</ShadcnDropdownItem>
+  </ShadcnDropdown>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnDropdown trigger="click">
+    <template #trigger>
+      <ShadcnButton>Click Open</ShadcnButton>
+    </template>
+    <ShadcnDropdownItem>Option 1</ShadcnDropdownItem>
+    <ShadcnDropdownItem active>Option 2</ShadcnDropdownItem>
+    <ShadcnDropdownItem disabled>Option 3</ShadcnDropdownItem>
+  </ShadcnDropdown>
+  <ShadcnDropdown trigger="hover">
+    <template #trigger>
+      <ShadcnButton>Hover Open</ShadcnButton>
+    </template>
+    <ShadcnDropdownItem>Option 1</ShadcnDropdownItem>
+    <ShadcnDropdownItem active>Option 2</ShadcnDropdownItem>
+    <ShadcnDropdownItem disabled>Option 3</ShadcnDropdownItem>
+  </ShadcnDropdown>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
+## Divided
+
+::: raw
+
+<CodeRunner title="Divided">
+  <ShadcnDropdown trigger="hover">
+    <template #trigger>
+      <ShadcnButton>Hover Open</ShadcnButton>
+    </template>
+    <ShadcnDropdownItem>Option 1</ShadcnDropdownItem>
+    <ShadcnDropdownItem divided>Option 2</ShadcnDropdownItem>
+    <ShadcnDropdownItem disabled>Option 3</ShadcnDropdownItem>
+  </ShadcnDropdown>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnDropdown trigger="click" divided>
+    <template #trigger>
+      <ShadcnButton>Click Open</ShadcnButton>
+    </template>
+    <ShadcnDropdownItem>Option 1</ShadcnDropdownItem>
+    <ShadcnDropdownItem active>Option 2</ShadcnDropdownItem>
+    <ShadcnDropdownItem disabled>Option 3</ShadcnDropdownItem>
+  </ShadcnDropdown>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
+## Props
+
+<ApiTable title="Dropdown Props"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :columns="[
+        ['trigger', 'The trigger of the dropdown', 'enum', 'click', '-', 'click | hover'],
+    ]">
+</ApiTable>
+
+<br />
+
+<ApiTable title="DropdownItem Props"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :columns="[
+        ['name', 'The name of the dropdown item', 'String', '', '-', '-'],
+        ['active', 'Whether the dropdown item is active', 'boolean', 'false', '-', '-'],
+        ['disabled', 'Whether the dropdown item is disabled', 'boolean', 'false', '-', '-'],
+        ['divided', 'Whether the dropdown item is divided', 'boolean', 'false', '-', '-'],
+    ]">
+</ApiTable>
+
+## Slots
+
+<ApiTable title="Dropdown Slots"
+    :headers="['Slot', 'Description']"
+    :columns="[
+        ['trigger', 'The trigger slot of the dropdown'],
+        ['list', 'Dropdown list content'],
+    ]">
+</ApiTable>
+
+## Events
+
+<ApiTable title="Dropdown Events"
+    :headers="['Event', 'Description', 'Callback Parameters']"
+    :columns="[
+        ['onOpen', 'Triggered when the dropdown is opened', 'boolean'],
+        ['onClose', 'Triggered when the dropdown is closed', 'boolean'],
+        ['onClickOutside', 'Triggered when the dropdown is clicked outside', 'boolean'],
+    ]">
+</ApiTable>
+
+<br />
+
+<ApiTable title="DropdownItem Events"
+    :headers="['Event', 'Description', 'Callback Parameters']"
+    :columns="[
+        ['onClick', 'Triggered when the dropdown item is clicked', 'boolean'],
+    ]">
+</ApiTable>

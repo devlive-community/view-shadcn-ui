@@ -19,7 +19,7 @@ interface FormItemInstance
   name: string
   value: any
   rules?: Rule[]
-  validate: () => Promise<boolean>
+  validate: () => Promise<{ isValid: boolean; errorMessage?: string }>
 }
 
 // Props and emits
@@ -52,11 +52,12 @@ const validateField = async (name: string): Promise<boolean> => {
   }
 
   try {
-    if (await item.validate()) {
+    const { isValid, errorMessage } = await item.validate()
+    if (isValid) {
       formState.errors.delete(name)
       return true
     }
-    formState.errors.set(name, 'Validation failed')
+    formState.errors.set(name, errorMessage || 'Validation failed')
     return false
   }
   catch (error) {

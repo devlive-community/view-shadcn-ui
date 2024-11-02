@@ -35,9 +35,9 @@ const errorMessage = ref<string>('')
 const formContext = inject('formContext') as any
 
 // Validation rules
-const validate = async (): Promise<boolean> => {
+const validate = async (): Promise<{ isValid: boolean; errorMessage?: string }> => {
   if (!props.rules) {
-    return true
+    return { isValid: true }
   }
 
   const value = formContext.model[props.name]
@@ -45,26 +45,34 @@ const validate = async (): Promise<boolean> => {
   for (const rule of props.rules) {
     // Required check
     if (rule.required && !value) {
-      errorMessage.value = rule.message || 'This field is required'
-      return false
+      return {
+        isValid: false,
+        errorMessage: rule.message || 'This field is required'
+      }
     }
 
     // Min length check
     if (rule.min !== undefined && String(value).length < rule.min) {
-      errorMessage.value = rule.message || `Minimum length is ${ rule.min }`
-      return false
+      return {
+        isValid: false,
+        errorMessage: rule.message || `Minimum length is ${ rule.min }`
+      }
     }
 
     // Max length check
     if (rule.max !== undefined && String(value).length > rule.max) {
-      errorMessage.value = rule.message || `Maximum length is ${ rule.max }`
-      return false
+      return {
+        isValid: false,
+        errorMessage: rule.message || `Maximum length is ${ rule.max }`
+      }
     }
 
     // Pattern check
     if (rule.pattern && !rule.pattern.test(String(value))) {
-      errorMessage.value = rule.message || 'Invalid format'
-      return false
+      return {
+        isValid: false,
+        errorMessage: rule.message || 'Invalid format'
+      }
     }
 
     // Custom validator
@@ -72,24 +80,33 @@ const validate = async (): Promise<boolean> => {
       try {
         const result = await rule.validator(value)
         if (!result) {
-          errorMessage.value = rule.message || 'Validation failed'
-          return false
+          return {
+            isValid: false,
+            errorMessage: rule.message || 'Validation failed'
+          }
         }
       }
       catch (error) {
-        errorMessage.value = (error as Error).message
-        return false
+        return {
+          isValid: false,
+          errorMessage: (error as Error).message
+        }
       }
     }
   }
 
-  errorMessage.value = ''
-  return true
+  return { isValid: true }
 }
 
 const onBlur = async () => {
   if (props.validateOnBlur) {
-    await validate()
+    const { isValid, errorMessage: validationError } = await validate()
+    if (!isValid) {
+      errorMessage.value = validationError || ''
+    }
+    else {
+      errorMessage.value = ''
+    }
   }
 }
 

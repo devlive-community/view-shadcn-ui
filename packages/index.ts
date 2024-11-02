@@ -28,6 +28,7 @@ import ShadcnCheckboxGroup from '@/ui/checkbox/group'
 import ShadcnRadioGroup from '@/ui/radio/group'
 import ShadcnSelect from '@/ui/select'
 import ShadcnSelectOption from '@/ui/select/option'
+import ShadcnSelectGroup from '@/ui/select/group'
 import ShadcnRate from '@/ui/rate'
 import ShadcnTab from '@/ui/tab'
 import ShadcnTabItem from '@/ui/tab/item'
@@ -66,6 +67,8 @@ import ShadcnGlobalFooter from '@/ui/footer/global'
 import ShadcnToolbarFooter from '@/ui/footer/toolbar'
 import ShadcnWatermark from '@/ui/watermark'
 import ShadcnHighlight from '@/ui/highlight'
+import ShadcnDropdown from '@/ui/dropdown'
+import ShadcnDropdownItem from '@/ui/dropdown/item'
 
 let components = [
     ShadcnButton,
@@ -93,6 +96,7 @@ let components = [
     ShadcnCheckboxGroup,
     ShadcnSelect,
     ShadcnSelectOption,
+    ShadcnSelectGroup,
     ShadcnRate,
     ShadcnTab,
     ShadcnTabItem,
@@ -130,7 +134,9 @@ let components = [
     ShadcnGlobalFooter,
     ShadcnToolbarFooter,
     ShadcnWatermark,
-    ShadcnHighlight
+    ShadcnHighlight,
+    ShadcnDropdown,
+    ShadcnDropdownItem
 ]
 
 const install = (Vue: App) => {
@@ -181,6 +187,7 @@ export { default as ShadcnCheckbox } from '@/ui/checkbox'
 export { default as ShadcnCheckboxGroup } from '@/ui/checkbox/group'
 export { default as ShadcnSelect } from '@/ui/select'
 export { default as ShadcnSelectOption } from '@/ui/select/option'
+export { default as ShadcnSelectGroup } from '@/ui/select/group'
 export { default as ShadcnRate } from '@/ui/rate'
 export { default as ShadcnTab } from '@/ui/tab'
 export { default as ShadcnTabItem } from '@/ui/tab/item'
@@ -219,6 +226,8 @@ export { default as ShadcnGlobalFooter } from '@/ui/footer/global'
 export { default as ShadcnToolbarFooter } from '@/ui/footer/toolbar'
 export { default as ShadcnWatermark } from '@/ui/watermark'
 export { default as ShadcnHighlight } from '@/ui/highlight'
+export { default as ShadcnDropdown } from '@/ui/dropdown'
+export { default as ShadcnDropdownItem } from '@/ui/dropdown/item'
 
 // Support global import
 export default install

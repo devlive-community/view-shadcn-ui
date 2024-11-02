@@ -175,6 +175,58 @@ const defaultSelectOptions = [
 
 :::
 
+## Group
+
+::: raw
+
+<CodeRunner title="Group">
+    <ShadcnSelect v-model="defaultSelect">
+      <template #options>
+        <ShadcnSelectGroup label="Group 1">
+          <ShadcnSelectOption v-for="i in 2"
+            :key="i"
+            :label="`Option ${i}`"
+            :value="`Value ${i}`"/>
+        </ShadcnSelectGroup>
+        <ShadcnSelectOption v-for="i in 2"
+                            :key="i"
+                            :label="`Option ${i}`"
+                            :value="`Value ${i}`"/>
+      </template>
+    </ShadcnSelect>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSelect v-model="defaultSelect">
+      <template #options>
+        <ShadcnSelectGroup label="Group 1">
+          <ShadcnSelectOption v-for="i in 2"
+            :key="i"
+            :label="`Option ${i}`"
+            :value="`Value ${i}`"/>
+        </ShadcnSelectGroup>
+        <ShadcnSelectOption v-for="i in 2"
+                            :key="i"
+                            :label="`Option ${i}`"
+                            :value="`Value ${i}`"/>
+      </template>    
+    </ShadcnSelect>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const defaultSelect = ref('')
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Select Props"
@@ -202,6 +254,15 @@ const defaultSelectOptions = [
 
 <br />
 
+<ApiTable title="Select Group Props"
+    :headers="['Attribute', 'Description', 'Type', 'Default']"
+    :columns="[
+        ['label', 'The label of the group', 'String', '-'],
+    ]">
+</ApiTable>
+
+<br />
+
 <ApiTable title="Select Slots"
     :headers="['Slot', 'Description']"
     :columns="[
@@ -214,7 +275,8 @@ const defaultSelectOptions = [
 <ApiTable title="Select Events"
     :headers="['Event', 'Description', 'Callback Parameters']"
     :columns="[
-        ['on-change', 'Triggered when the value of the select is changed', 'any'],
+        ['onChange', 'Triggered when the value of the select is changed', 'any'],
+        ['onClickOutside', 'Triggered when the click outside the select is triggered', 'boolean'],
     ]">
 </ApiTable>
 
