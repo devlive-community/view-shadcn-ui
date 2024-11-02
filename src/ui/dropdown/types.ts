@@ -10,6 +10,7 @@ export interface DropdownItemProps
     name?: string
     disabled?: boolean
     active?: boolean
+    divided?: boolean
 }
 
 export type DropdownEmits = {

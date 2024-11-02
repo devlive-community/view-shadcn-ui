@@ -1,4 +1,5 @@
 <template>
+  <div v-if="divided" class="h-px my-1 bg-gray-100"/>
   <div @click="handleClick"
        :id="name"
        :class="[ 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900',

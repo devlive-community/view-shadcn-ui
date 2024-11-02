@@ -62,6 +62,43 @@ This document is mainly used to describe some features and usage of the ShadcnDr
 
 :::
 
+## Divided
+
+::: raw
+
+<CodeRunner title="Divided">
+  <ShadcnDropdown trigger="hover">
+    <template #trigger>
+      <ShadcnButton>Hover Open</ShadcnButton>
+    </template>
+    <ShadcnDropdownItem>Option 1</ShadcnDropdownItem>
+    <ShadcnDropdownItem divided>Option 2</ShadcnDropdownItem>
+    <ShadcnDropdownItem disabled>Option 3</ShadcnDropdownItem>
+  </ShadcnDropdown>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnDropdown trigger="click" divided>
+    <template #trigger>
+      <ShadcnButton>Click Open</ShadcnButton>
+    </template>
+    <ShadcnDropdownItem>Option 1</ShadcnDropdownItem>
+    <ShadcnDropdownItem active>Option 2</ShadcnDropdownItem>
+    <ShadcnDropdownItem disabled>Option 3</ShadcnDropdownItem>
+  </ShadcnDropdown>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Dropdown Props"
@@ -71,12 +108,15 @@ This document is mainly used to describe some features and usage of the ShadcnDr
     ]">
 </ApiTable>
 
+<br />
+
 <ApiTable title="DropdownItem Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
     :columns="[
         ['name', 'The name of the dropdown item', 'String', '', '-', '-'],
         ['active', 'Whether the dropdown item is active', 'boolean', 'false', '-', '-'],
         ['disabled', 'Whether the dropdown item is disabled', 'boolean', 'false', '-', '-'],
+        ['divided', 'Whether the dropdown item is divided', 'boolean', 'false', '-', '-'],
     ]">
 </ApiTable>
 
@@ -86,7 +126,7 @@ This document is mainly used to describe some features and usage of the ShadcnDr
     :headers="['Slot', 'Description']"
     :columns="[
         ['trigger', 'The trigger slot of the dropdown'],
-        ['default | list', 'Dropdown list content'],
+        ['list', 'Dropdown list content'],
     ]">
 </ApiTable>
 
@@ -99,6 +139,8 @@ This document is mainly used to describe some features and usage of the ShadcnDr
         ['on-close', 'Triggered when the dropdown is closed', 'boolean'],
     ]">
 </ApiTable>
+
+<br />
 
 <ApiTable title="DropdownItem Events"
     :headers="['Event', 'Description', 'Callback Parameters']"
