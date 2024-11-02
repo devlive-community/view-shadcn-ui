@@ -1,18 +1,14 @@
 <template>
   <div class="p-20 space-y-2">
-    <ShadcnSelect v-model="defaultSelect">
+    Default Value {{ language }}
+    <ShadcnSelect v-model="language" style="width: 150px;">
       <template #options>
-        <ShadcnSelectGroup label="Group 1">
-          <ShadcnSelectOption v-for="i in 2"
-                              :key="i"
-                              :label="`Option ${i}`"
-                              :value="`Value ${i}`"/>
+        <ShadcnSelectGroup label="Asia">
+          <ShadcnSelectOption value="language_zh_cn" label="Chinese" :selected="language === 'language_zh_cn'"/>
         </ShadcnSelectGroup>
-
-        <ShadcnSelectOption v-for="i in 2"
-                            :key="i"
-                            :label="`Option ${i}`"
-                            :value="`Value ${i}`"/>
+        <ShadcnSelectGroup label="Europe">
+          <ShadcnSelectOption value="language_en" label="English" :selected="language === 'language_en'"/>
+        </ShadcnSelectGroup>
       </template>
     </ShadcnSelect>
   </div>
@@ -21,5 +17,5 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const defaultSelect = ref('')
+const language = ref('language_zh_cn')
 </script>
