@@ -56,7 +56,6 @@ const validateField = async (name: string): Promise<boolean> => {
       formState.errors.delete(name)
       return true
     }
-    formState.errors.set(name, 'Validation failed')
     return false
   }
   catch (error) {
