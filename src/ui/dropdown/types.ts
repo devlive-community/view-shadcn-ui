@@ -16,6 +16,7 @@ export interface DropdownItemProps
 export type DropdownEmits = {
     'on-open': [value: boolean]
     'on-close': [value: boolean]
+    'on-click-outside': [value: boolean]
 }
 
 export type DropdownItemEmits = {

@@ -1,6 +1,6 @@
 <template>
   <div class="p-20">
-    <ShadcnDropdown trigger="click">
+    <ShadcnDropdown trigger="hover">
       <template #trigger>
         <ShadcnButton>Click Open</ShadcnButton>
       </template>
@@ -10,7 +10,6 @@
       <ShadcnDropdownItem disabled>Option 3</ShadcnDropdownItem>
     </ShadcnDropdown>
   </div>
-
 </template>
 
 <script setup lang="ts">

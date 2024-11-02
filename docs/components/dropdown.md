@@ -135,8 +135,9 @@ This document is mainly used to describe some features and usage of the ShadcnDr
 <ApiTable title="Dropdown Events"
     :headers="['Event', 'Description', 'Callback Parameters']"
     :columns="[
-        ['on-open', 'Triggered when the dropdown is opened', 'boolean'],
-        ['on-close', 'Triggered when the dropdown is closed', 'boolean'],
+        ['onOpen', 'Triggered when the dropdown is opened', 'boolean'],
+        ['onClose', 'Triggered when the dropdown is closed', 'boolean'],
+        ['onClickOutside', 'Triggered when the dropdown is clicked outside', 'boolean'],
     ]">
 </ApiTable>
 
@@ -145,6 +146,6 @@ This document is mainly used to describe some features and usage of the ShadcnDr
 <ApiTable title="DropdownItem Events"
     :headers="['Event', 'Description', 'Callback Parameters']"
     :columns="[
-        ['on-click', 'Triggered when the dropdown item is clicked', 'boolean'],
+        ['onClick', 'Triggered when the dropdown item is clicked', 'boolean'],
     ]">
 </ApiTable>
