@@ -136,7 +136,7 @@ const onSubmit = async (data: any) => {
 }
 
 const onError = (errors: any) => {
-  console.log('Form validation failed:', errors)
+  console.log(`Validation error field: [ ${ Object.keys(errors).join(', ') } ]`, errors)
 }
 
 const resetForm = () => {
