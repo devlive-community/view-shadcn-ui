@@ -1,21 +1,42 @@
 <template>
-  <div class="p-20 space-y-2">
-    Default Value {{ language }}
-    <ShadcnSelect v-model="language" style="width: 150px;">
-      <template #options>
-        <ShadcnSelectGroup label="Asia">
-          <ShadcnSelectOption value="language_zh_cn" label="Chinese" :selected="language === 'language_zh_cn'"/>
-        </ShadcnSelectGroup>
-        <ShadcnSelectGroup label="Europe">
-          <ShadcnSelectOption value="language_en" label="English" :selected="language === 'language_en'"/>
-        </ShadcnSelectGroup>
+  <div class="p-20 space-x-7">
+    <ShadcnDropdown trigger="hover" position="left">
+      <template #trigger>
+        <ShadcnButton>Left</ShadcnButton>
       </template>
-    </ShadcnSelect>
+      <ShadcnDropdownItem>Option 1</ShadcnDropdownItem>
+      <ShadcnDropdownItem active>Option 2</ShadcnDropdownItem>
+      <ShadcnDropdownItem disabled>Option 3</ShadcnDropdownItem>
+    </ShadcnDropdown>
+
+    <ShadcnDropdown trigger="click" position="right">
+      <template #trigger>
+        <ShadcnButton>Right</ShadcnButton>
+      </template>
+      <ShadcnDropdownItem>Option 1</ShadcnDropdownItem>
+      <ShadcnDropdownItem active>Option 2</ShadcnDropdownItem>
+      <ShadcnDropdownItem disabled>Option 3</ShadcnDropdownItem>
+    </ShadcnDropdown>
+
+    <ShadcnDropdown trigger="hover" position="top">
+      <template #trigger>
+        <ShadcnButton>Hover Open</ShadcnButton>
+      </template>
+      <ShadcnDropdownItem>Option 1</ShadcnDropdownItem>
+      <ShadcnDropdownItem active>Option 2</ShadcnDropdownItem>
+      <ShadcnDropdownItem disabled>Option 3</ShadcnDropdownItem>
+    </ShadcnDropdown>
+
+    <ShadcnDropdown trigger="hover" position="bottom">
+      <template #trigger>
+        <ShadcnButton>Hover Open</ShadcnButton>
+      </template>
+      <ShadcnDropdownItem>Option 1</ShadcnDropdownItem>
+      <ShadcnDropdownItem active>Option 2</ShadcnDropdownItem>
+      <ShadcnDropdownItem disabled>Option 3</ShadcnDropdownItem>
+    </ShadcnDropdown>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
-const language = ref('language_zh_cn')
 </script>

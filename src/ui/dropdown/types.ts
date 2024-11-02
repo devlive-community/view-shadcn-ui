@@ -1,8 +1,11 @@
+import { ArrangePosition } from '@/ui/common/position.ts'
+
 export type DropdownTrigger = 'click' | 'hover'
 
 export interface DropdownProps
 {
     trigger?: DropdownTrigger
+    position?: ArrangePosition
 }
 
 export interface DropdownItemProps

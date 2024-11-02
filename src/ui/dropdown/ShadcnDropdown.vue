@@ -17,7 +17,10 @@
                 leave-from-class="transform scale-100 opacity-100"
                 leave-to-class="transform scale-95 opacity-0">
       <div v-if="isOpen"
-           class="absolute z-50 mt-1 min-w-[8rem] rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+           :class="['absolute z-50 min-w-[8rem] rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none',
+                positionClasses
+           ]"
+           :style="dropdownStyle">
         <div v-if="$slots.list" class="py-1">
           <slot name="list" :close="onClose"/>
         </div>
@@ -30,17 +33,45 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, provide, ref } from 'vue'
+import { computed, onMounted, onUnmounted, provide, ref } from 'vue'
 import type { DropdownEmits, DropdownProps } from './types'
+import { ArrangePosition } from '@/ui/common/position.ts'
 
 const emit = defineEmits<DropdownEmits>()
 
 const props = withDefaults(defineProps<DropdownProps>(), {
-  trigger: 'click'
+  trigger: 'click',
+  position: ArrangePosition.left
 })
 
 const isOpen = ref(false)
 const dropdownRef = ref<HTMLElement | null>(null)
+
+const positionClasses = computed(() => {
+  switch (props.position) {
+    case ArrangePosition.left:
+      return 'left-0 mt-1 origin-top-left'
+    case ArrangePosition.right:
+      return 'right-0 mt-1 origin-top-right'
+    case ArrangePosition.top:
+      return 'bottom-full mb-1 left-0 origin-bottom-left'
+    case ArrangePosition.bottom:
+      return 'top-full mt-1 left-0 origin-top-left'
+    default:
+      return 'left-0 mt-1 origin-top-left'
+  }
+})
+
+const dropdownStyle = computed(() => {
+  switch (props.position) {
+    case ArrangePosition.right:
+      return {
+        transform: 'translateX(0)'
+      }
+    default:
+      return {}
+  }
+})
 
 const onOpen = (event?: MouseEvent) => {
   if (event && props.trigger === 'click') {
@@ -64,7 +95,6 @@ const onClickOutside = (event: MouseEvent) => {
   }
 }
 
-// Provide close function to child components
 provide('closeDropdown', onClose)
 
 onMounted(() => {
