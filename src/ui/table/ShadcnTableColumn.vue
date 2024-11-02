@@ -45,17 +45,9 @@
 
 <script setup lang="ts">
 import { calcSize } from '@/utils/common.ts'
+import { ColumnProps } from '@/ui/table/types.ts'
 
-withDefaults(defineProps<{
-  label?: string
-  border?: boolean
-  fixed?: 'left' | 'right'
-  width?: string | number
-  isLastLeftFixed?: boolean
-  isFirstRightFixed?: boolean
-  leftOffset?: number
-  rightOffset?: number
-}>(), {
+withDefaults(defineProps<ColumnProps>(), {
   border: false,
   fixed: undefined,
   width: 'auto',

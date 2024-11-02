@@ -1,5 +1,6 @@
 <template>
-  <td :class="['px-4 py-4 text-sm text-gray-500 whitespace-normal break-words relative',
+  <td :class="['text-sm text-gray-500 whitespace-normal break-words relative',
+              TableCellSize[size],
               fixed && 'sticky',
               fixed === 'left' && [
                 stripe ? 'bg-gray-50' : 'bg-white',
@@ -63,23 +64,16 @@
 <script setup lang="ts">
 import { inject } from 'vue'
 import { calcSize } from '@/utils/common.ts'
+import { ColumnProps, TableCellSize } from '@/ui/table/types.ts'
 
-withDefaults(defineProps<{
-  border?: boolean
-  stripe?: boolean
-  fixed?: 'left' | 'right'
-  width?: string | number
-  isLastLeftFixed?: boolean
-  isFirstRightFixed?: boolean
-  leftOffset?: number
-  rightOffset?: number
-}>(), {
+withDefaults(defineProps<ColumnProps>(), {
   border: false,
   stripe: false,
   fixed: undefined,
   width: 'auto',
   isLastLeftFixed: false,
-  isFirstRightFixed: false
+  isFirstRightFixed: false,
+  size: 'default'
 })
 
 const isTable = inject('ShadcnTable', false)

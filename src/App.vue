@@ -1,5 +1,5 @@
 <template>
-  <ShadcnTable :columns="columns" :data="data"/>
+  <ShadcnTable :columns="columns" :data="data" size="small"/>
 </template>
 
 <script setup lang="ts">

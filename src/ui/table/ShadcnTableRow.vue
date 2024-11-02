@@ -1,8 +1,7 @@
 <template>
-  <tr :class="[
-        'group',
-        stripe ? 'hover:bg-gray-100' : 'hover:bg-gray-50',
-        stripe && 'bg-gray-50'
+  <tr :class="['group',
+          stripe ? 'hover:bg-gray-100' : 'hover:bg-gray-50',
+          stripe && 'bg-gray-50'
       ]">
     <slot/>
   </tr>
@@ -10,10 +9,9 @@
 
 <script setup lang="ts">
 import { inject } from 'vue'
+import { ColumnProps } from '@/ui/table/types.ts'
 
-withDefaults(defineProps<{
-  stripe?: boolean
-}>(), {
+withDefaults(defineProps<ColumnProps>(), {
   stripe: false
 })
 
