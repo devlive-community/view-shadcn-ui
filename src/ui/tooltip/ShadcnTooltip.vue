@@ -9,19 +9,18 @@
 
     <div v-if="isVisible"
          ref="tooltipRef"
-         :class="[
-           'absolute z-50 px-3 py-2 text-sm text-white bg-black rounded shadow-lg',
-           'animate-in fade-in-0 zoom-in-95',
-           computedPosition.positionClass
+         :class="['absolute z-50 px-3 py-2 text-sm text-white bg-black rounded shadow-lg',
+             'animate-in fade-in-0 zoom-in-95',
+             computedPosition.positionClass,
+             { 'whitespace-nowrap': props.width === 'auto' }
          ]"
-         :style="{ width: `${width}px`, minWidth: `${width}px`, maxWidth: `${width}px` }">
+         :style="computedWidth">
       <template v-if="content">{{ content }}</template>
       <slot v-else name="content"/>
 
       <div v-if="arrow"
-           :class="[
-             'absolute w-2 h-2 rotate-45 bg-black',
-             computedPosition.arrowClass
+           :class="[ 'absolute w-2 h-2 rotate-45 bg-black',
+                computedPosition.arrowClass
            ]"/>
     </div>
   </div>
@@ -46,7 +45,23 @@ const props = withDefaults(defineProps<{
 const isVisible = ref(false)
 const triggerRef = ref<HTMLElement | null>(null)
 const tooltipRef = ref<HTMLElement | null>(null)
-let timeoutId: NodeJS.Timeout | null = null
+let timeoutId = null
+
+const computedWidth = computed(() => {
+  if (props.width === 'auto') {
+    return {}
+  }
+
+  const widthValue = typeof props.width === 'number'
+      ? `${ props.width }px`
+      : props.width
+
+  return {
+    width: widthValue,
+    minWidth: widthValue,
+    maxWidth: widthValue
+  }
+})
 
 // Position classes for the tooltip
 const positionClasses = {
