@@ -31,6 +31,7 @@ import { FormItemContext } from '@/ui/form/context.ts'
 import { FormItemProps } from '@/ui/form/types.ts'
 import ShadcnTooltip from '@/ui/tooltip'
 import ShadcnIcon from '@/ui/icon'
+import { isEmpty } from 'lodash'
 
 const props = withDefaults(defineProps<FormItemProps>(), {
   validateOnBlur: true
@@ -49,15 +50,20 @@ const validate = async (): Promise<{ isValid: boolean; errorMessage?: string }> 
 
   for (const rule of props.rules) {
     // Required check
-    if (rule.required && !value) {
+    if (rule.required && isEmpty(value)) {
       return {
         isValid: false,
         errorMessage: rule.message || 'This field is required'
       }
     }
 
+    let length = String(value).length
+    if (value instanceof Array) {
+      length = value.length
+    }
+
     // Min length check
-    if (rule.min !== undefined && String(value).length < rule.min) {
+    if (rule.min !== undefined && length < rule.min) {
       return {
         isValid: false,
         errorMessage: rule.message || `Minimum length is ${ rule.min }`
@@ -65,7 +71,7 @@ const validate = async (): Promise<{ isValid: boolean; errorMessage?: string }> 
     }
 
     // Max length check
-    if (rule.max !== undefined && String(value).length > rule.max) {
+    if (rule.max !== undefined && length > rule.max) {
       return {
         isValid: false,
         errorMessage: rule.message || `Maximum length is ${ rule.max }`
