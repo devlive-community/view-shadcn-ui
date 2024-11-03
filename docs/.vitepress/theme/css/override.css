@@ -49,3 +49,11 @@
 .fill-red-500 {
     fill: #ef4444;
 }
+
+.min-h-32 {
+    min-height: 8rem;
+}
+
+.h-32 {
+    height: 8rem;
+}

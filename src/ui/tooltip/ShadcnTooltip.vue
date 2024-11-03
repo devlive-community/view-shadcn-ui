@@ -45,7 +45,7 @@ const props = withDefaults(defineProps<{
 const isVisible = ref(false)
 const triggerRef = ref<HTMLElement | null>(null)
 const tooltipRef = ref<HTMLElement | null>(null)
-let timeoutId = null
+let timeoutId: NodeJS.Timeout | null = null
 
 const computedWidth = computed(() => {
   if (props.width === 'auto') {

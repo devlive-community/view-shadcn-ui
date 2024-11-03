@@ -9,7 +9,7 @@
 
       <div v-if="description" class="ml-auto">
         <p class="text-sm text-muted-foreground">
-          <ShadcnTooltip :content="description" width="300">
+          <ShadcnTooltip :content="description">
             <ShadcnIcon icon="HelpCircle"/>
           </ShadcnTooltip>
         </p>

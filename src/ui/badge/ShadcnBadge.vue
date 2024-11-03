@@ -2,12 +2,14 @@
   <div class="relative inline-block">
     <slot/>
 
-    <div :class="cn('absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 rounded-full text-white text-xs font-medium',
+    <div :class="cn('absolute top-0 right-0 rounded-full text-white text-xs font-medium',
                     dot ? 'p-1' : 'px-1.5 py-0.5',
+                    $slots.default && 'translate-x-1/2 -translate-y-1/2',
                     ButtonBackgroundType[type]
           )">
-      <template v-if="displayedText">{{ displayedText }}</template>
-      <slot v-else-if="$slots.text" name="text"/>
+      <slot name="text">
+        {{ displayedText }}
+      </slot>
     </div>
   </div>
 </template>
