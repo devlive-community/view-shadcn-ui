@@ -1,20 +1,25 @@
 <template>
   <ShadcnException>
     <template #actions>
-      <div class="w-56">
-        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" />
-      </div>
+      <ShadcnDropdown trigger="click">
+        <template #trigger>
+          <ShadcnButton>Click Open</ShadcnButton>
+        </template>
+        <ShadcnDropdownItem>Option 1</ShadcnDropdownItem>
+        <ShadcnDropdownItem active>Option 2</ShadcnDropdownItem>
+        <ShadcnDropdownItem disabled>Option 3</ShadcnDropdownItem>
+      </ShadcnDropdown>
+      <ShadcnDropdown trigger="hover" position="right">
+        <template #trigger>
+          <ShadcnButton>Hover Open</ShadcnButton>
+        </template>
+        <ShadcnDropdownItem>Option 1</ShadcnDropdownItem>
+        <ShadcnDropdownItem active>Option 2</ShadcnDropdownItem>
+        <ShadcnDropdownItem disabled>Option 3</ShadcnDropdownItem>
+      </ShadcnDropdown>
     </template>
   </ShadcnException>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-
-const defaultSelect = ref('')
-const defaultSelectOptions = [
-  { label: 'Vue', value: 'Vue' },
-  { label: 'Nuxt', value: 'Nuxt' },
-  { label: 'Svelte', value: 'Svelte' }
-]
 </script>

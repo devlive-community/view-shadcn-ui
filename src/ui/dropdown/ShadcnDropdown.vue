@@ -1,10 +1,10 @@
 <template>
   <div ref="dropdownRef"
-       class="relative inline-block"
-       @mouseleave="trigger === 'hover' && (isOpen = false)">
+       class="relative inline-block">
     <!-- Trigger button -->
     <div @click="trigger === 'click' && onOpen()"
-         @mouseenter="trigger === 'hover' && (isOpen = true)"
+         @mouseenter="trigger === 'hover' && onHover()"
+         @mouseleave="trigger === 'hover' && handleTriggerMouseLeave()"
          class="inline-flex items-center justify-center cursor-pointer">
       <slot name="trigger"/>
     </div>
@@ -18,9 +18,12 @@
                   leave-from-class="transform scale-100 opacity-100"
                   leave-to-class="transform scale-95 opacity-0">
         <div v-if="isOpen"
+             ref="menuRef"
+             @mouseenter="trigger === 'hover' && onMenuMouseEnter()"
+             @mouseleave="trigger === 'hover' && onMenuMouseLeave()"
              :class="['fixed z-50 min-w-[8rem] rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none',
-                  positionClasses
-             ]"
+                 positionClasses
+            ]"
              :style="dropdownStyle">
           <div v-if="$slots.list" class="py-1">
             <slot name="list" :close="onClose"/>
@@ -48,6 +51,8 @@ const props = withDefaults(defineProps<DropdownProps>(), {
 
 const isOpen = ref(false)
 const dropdownRef = ref<HTMLElement | null>(null)
+const menuRef = ref<HTMLElement | null>(null)
+let closeTimer: NodeJS.Timeout | null = null
 
 const updateDropdownPosition = async () => {
   if (!dropdownRef.value || !isOpen.value) {
@@ -103,9 +108,47 @@ const onOpen = async (event?: MouseEvent) => {
   emit('on-open', isOpen.value)
 }
 
+const onHover = async () => {
+  isOpen.value = true
+  await updateDropdownPosition()
+  emit('on-open', isOpen.value)
+}
+
 const onClose = () => {
   isOpen.value = false
   emit('on-close', isOpen.value)
+}
+
+const handleTriggerMouseLeave = () => {
+  if (props.trigger === 'hover') {
+    closeTimer = setTimeout(() => {
+      const menuElement = menuRef.value
+      if (menuElement) {
+        const rect = menuElement.getBoundingClientRect()
+        const { clientX, clientY } = window.event as MouseEvent
+        if (!(clientX >= rect.left && clientX <= rect.right &&
+            clientY >= rect.top && clientY <= rect.bottom)) {
+          onClose()
+        }
+      }
+      else {
+        onClose()
+      }
+    }, 50)
+  }
+}
+
+const onMenuMouseEnter = () => {
+  if (closeTimer) {
+    clearTimeout(closeTimer)
+    closeTimer = null
+  }
+}
+
+const onMenuMouseLeave = () => {
+  if (props.trigger === 'hover') {
+    onClose()
+  }
 }
 
 const onClickOutside = (event: MouseEvent) => {
@@ -132,5 +175,8 @@ onUnmounted(() => {
   document.removeEventListener('click', onClickOutside)
   window.removeEventListener('scroll', updateDropdownPosition)
   window.removeEventListener('resize', updateDropdownPosition)
+  if (closeTimer) {
+    clearTimeout(closeTimer)
+  }
 })
 </script>
