@@ -12,8 +12,20 @@
       <slot name="selected">
         {{ selectedLabel || placeholder }}
       </slot>
+
+      <svg :class="['w-4 h-4 transition-transform duration-200',
+                    { 'rotate-180': isExpanded }
+            ]"
+           fill="currentColor"
+           viewBox="0 0 20 20"
+           xmlns="http://www.w3.org/2000/svg">
+        <path clip-rule="evenodd"
+              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+              fill-rule="evenodd"/>
+      </svg>
     </div>
-    <div v-show="dropdownVisible" class="absolute z-10 bg-white border border-gray-300 rounded-sm mt-1 w-full py-2 px-2">
+
+    <div v-show="isExpanded" class="absolute z-10 bg-white border border-gray-300 rounded-sm mt-1 w-full py-2 px-2">
       <slot name="options">
         <ShadcnSelectOption v-for="(option, index) in internalOptions"
                             :key="index"
@@ -44,7 +56,7 @@ const props = withDefaults(defineProps<SelectProps>(), {
   type: 'primary'
 })
 
-const dropdownVisible = ref(false)
+const isExpanded = ref(false)
 const selectedLabel = ref('')
 const slotOptions = ref<SelectOptionProps[]>([])
 const selectRef = ref<HTMLElement | null>(null)
@@ -100,9 +112,9 @@ const internalOptions = computed(() => {
 
 const toggleDropdown = () => {
   if (!props.disabled) {
-    dropdownVisible.value = !dropdownVisible.value
+    isExpanded.value = !isExpanded.value
     // When the drop-down box appears, make sure that the options are loaded
-    if (dropdownVisible.value) {
+    if (isExpanded.value) {
       nextTick(updateSelectedLabel)
     }
   }
@@ -113,13 +125,13 @@ const selectOption = (option: SelectOptionProps) => {
     selectedLabel.value = option.label
     emit('update:modelValue', option.value)
     emit('on-change', option)
-    dropdownVisible.value = false
+    isExpanded.value = false
   }
 }
 
 const onClickOutside = (event: MouseEvent) => {
   if (selectRef.value && !selectRef.value.contains(event.target as Node)) {
-    if (dropdownVisible.value) {
+    if (isExpanded.value) {
       toggleDropdown()
       emit('on-click-outside', true)
     }
@@ -137,9 +149,9 @@ provide('selectContext', {
 onMounted(() => {
   document.addEventListener('click', onClickOutside)
   // When initializing, a drop-down box is displayed to trigger the mount of the option
-  dropdownVisible.value = true
+  isExpanded.value = true
   nextTick(() => {
-    dropdownVisible.value = false
+    isExpanded.value = false
   })
 })
 

@@ -2,7 +2,7 @@ export enum Size
 {
     default = 'h-8',
     small = 'h-6',
-    large = 'kh-10'
+    large = 'h-10'
 }
 
 export enum TabSize
