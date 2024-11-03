@@ -128,16 +128,30 @@ This document is mainly used to describe some features and usage of the ShadcnCa
 
 ## Loading
 
+::: raw
+
 <CodeRunner title="Loading">
     <ShadcnCard title="Loading" :loading="true">
+        <div class="flex items-center justify-center h-32">Content</div>
+    </ShadcnCard>
+    <ShadcnCard title="Only Content Loading" :loading="true" only-content-loading>
+        <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnCard>
 </CodeRunner>
+
+:::
+
 
 ::: details Show code
 
 ```vue
 <template>
-    <ShadcnCard title="Loading" :loading="true"/>
+  <ShadcnCard title="Loading" :loading="true">
+    <div class="flex items-center justify-center h-32">Content</div>
+  </ShadcnCard>
+  <ShadcnCard title="Only Content Loading" :loading="true" only-content-loading>
+    <div class="flex items-center justify-center h-32">Content</div>
+  </ShadcnCard>
 </template>
 
 <script setup lang="ts">
@@ -309,6 +323,7 @@ This document is mainly used to describe some features and usage of the ShadcnCa
         ['shadow', 'Show shadow mode', 'enum', 'never', '-', 'never | always | hover'],
         ['loading', 'Whether to display loading', 'boolean', 'false', '-', '-'],
         ['border', 'Whether to display border', 'boolean', 'true', '-', '-'],
+        ['onlyContentLoading', 'Whether to display only content loading', 'boolean', 'false', '-', '-'],
     ]">
 </ApiTable>
 

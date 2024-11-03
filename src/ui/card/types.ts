@@ -11,5 +11,6 @@ export interface CardProps
     description?: string
     shadow?: keyof typeof Shadow
     loading?: boolean
+    onlyContentLoading?: boolean
     border?: boolean
 }

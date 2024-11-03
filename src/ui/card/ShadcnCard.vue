@@ -1,12 +1,11 @@
 <template>
-  <div :class="cn('bg-white rounded-sm',
+  <div :class="cn('bg-white rounded-sm relative',
             border && 'border',
             Shadow[shadow])
        ">
-    <div v-if="loading" class="absolute inset-0 bg-gray-100 bg-opacity-50 flex items-center justify-center z-10">
-      <ShadcnIcon icon="Loader2" class="h-5 w-5 animate-spin"/>
-    </div>
-    <div v-else class="relative">
+    <div class="relative">
+      <ShadcnSpin v-if="!onlyContentLoading" v-model="localLoading" fixed/>
+
       <div v-if="$slots.title || title"
            :class="cn('p-2',
                 border && 'border-b',
@@ -28,12 +27,13 @@
           <slot name="extra"/>
         </div>
       </div>
-      <div v-if="$slots.content">
+
+      <div :class="[onlyContentLoading && 'relative']">
+        <ShadcnSpin v-if="onlyContentLoading" v-model="localLoading" fixed/>
         <slot name="content"/>
-      </div>
-      <div v-else>
         <slot/>
       </div>
+
       <div v-if="$slots.footer">
         <slot name="footer"/>
       </div>
@@ -43,11 +43,20 @@
 
 <script setup lang="ts">
 import { cn } from '@/lib/utils'
-import ShadcnIcon from '@/ui/icon'
 import { CardProps, Shadow } from '@/ui/card/types.ts'
+import ShadcnSpin from '@/ui/spin'
+import { ref, watch } from 'vue'
 
-withDefaults(defineProps<CardProps>(), {
+const props = withDefaults(defineProps<CardProps>(), {
   shadow: 'never',
-  border: true
+  border: true,
+  loading: false,
+  onlyContentLoading: false
+})
+
+const localLoading = ref(props.loading)
+
+watch(() => props.loading, (value) => {
+  localLoading.value = value
 })
 </script>
