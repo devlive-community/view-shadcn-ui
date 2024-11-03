@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full max-w-sm items-center border-gray-300 active:border-blue-400 hover:border-blue-400 border rounded transition-colors duration-300"
+  <div class="relative w-full items-center border-gray-300 active:border-blue-400 hover:border-blue-400 border rounded transition-colors duration-300"
        @mouseenter="hovered = true"
        @mouseleave="hovered = false">
     <component :is="isTextarea ? 'textarea' : 'input'"
