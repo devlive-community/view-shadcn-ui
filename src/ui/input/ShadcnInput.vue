@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full max-w-sm items-center border-gray-300 active:border-blue-400 hover:border-blue-400 border rounded transition-colors duration-300"
+  <div class="relative w-full items-center border-gray-300 active:border-blue-400 hover:border-blue-400 border rounded transition-colors duration-300"
        @mouseenter="hovered = true"
        @mouseleave="hovered = false">
     <component :is="isTextarea ? 'textarea' : 'input'"
@@ -95,7 +95,7 @@ const currentType = computed(() => {
 
 // Count the total number of characters entered
 const textCount = computed(() => {
-  return localValue.value.length
+  return localValue.value?.length ?? 0
 })
 
 // Used to calculate and monitor the total number of input characters + length limit

@@ -17,6 +17,7 @@ This document is mainly used to describe some features and usage of the ShadcnFo
                 @on-error="onError">
       <ShadcnFormItem name="username"
                       label="Username"
+                      description="Username must be at least 3 characters and cannot exceed 20 characters."
                       :rules="[
                         { required: true, message: 'Please input username!' },
                         { min: 3, message: 'Username must be at least 3 characters' },
@@ -104,6 +105,7 @@ This document is mainly used to describe some features and usage of the ShadcnFo
                 @on-error="onError">
       <ShadcnFormItem name="username"
                       label="Username"
+                      description="Username must be at least 3 characters and cannot exceed 20 characters."
                       :rules="[
                         { required: true, message: 'Please input username!' },
                         { min: 3, message: 'Username must be at least 3 characters' },
@@ -261,6 +263,7 @@ const resetForm = () => {
     :columns="[
         ['name', 'The name of the form item', 'String', '-', '-', '-'],
         ['label', 'The label of the form item', 'String', '-', '-', '-'],
+        ['description', 'The description of the form item', 'String', '-', '-', '-'],
         ['rules', 'The rules of the form item', 'Array', '-', '-', '-'],
         ['validateOnBlur', 'Whether to validate on blur', 'Boolean', 'true', '-', '-'],
     ]">

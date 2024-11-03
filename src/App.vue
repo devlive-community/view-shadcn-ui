@@ -1,10 +1,10 @@
 <template>
-  <ShadcnButton circle size="default"></ShadcnButton>
-  <ShadcnButton type="danger" circle size="large"></ShadcnButton>
-  <ShadcnButton type="success" size="small" circle>
-    <ShadcnIcon icon="Save" size="12"/>
-  </ShadcnButton>
+  <ShadcnPagination v-model="defaultValue" total="100" show-sizer/>
+  <ShadcnPagination v-model="defaultValue" total="100" show-sizer :sizer-options="[5, 10, 20, 10000, 9988000]"/>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+
+const defaultValue = ref(1)
 </script>

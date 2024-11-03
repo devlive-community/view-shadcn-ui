@@ -1,12 +1,15 @@
 <template>
-  <div :class="cn('bg-white border rounded-sm', computedShadow)">
-    <div v-if="loading" class="absolute inset-0 bg-gray-100 bg-opacity-50 flex items-center justify-center z-10">
-      <ShadcnIcon icon="Loader2" class="h-5 w-5 animate-spin"/>
-    </div>
-    <div v-else class="relative">
+  <div :class="cn('bg-white rounded-sm relative',
+            border && 'border',
+            Shadow[shadow])
+       ">
+    <div class="relative">
+      <ShadcnSpin v-if="!onlyContentLoading" v-model="localLoading" fixed/>
+
       <div v-if="$slots.title || title"
-           :class="cn('border-b p-2',
-              $slots.extra && 'flex flex-row items-center justify-between'
+           :class="cn('p-2',
+                border && 'border-b',
+                $slots.extra && 'flex flex-row items-center justify-between'
            )">
         <div class="grid gap-2">
           <h3 class="text-lg font-semibold leading-none tracking-tight">
@@ -24,12 +27,13 @@
           <slot name="extra"/>
         </div>
       </div>
-      <div v-if="$slots.content">
+
+      <div :class="[onlyContentLoading && 'relative']">
+        <ShadcnSpin v-if="onlyContentLoading" v-model="localLoading" fixed/>
         <slot name="content"/>
-      </div>
-      <div v-else>
         <slot/>
       </div>
+
       <div v-if="$slots.footer">
         <slot name="footer"/>
       </div>
@@ -38,21 +42,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue'
 import { cn } from '@/lib/utils'
-import { Shadow } from '@/ui/enum/Shadow.ts'
-import ShadcnIcon from '@/ui/icon'
+import { CardProps, Shadow } from '@/ui/card/types.ts'
+import ShadcnSpin from '@/ui/spin'
+import { ref, watch } from 'vue'
 
-const props = defineProps<{
-  title?: string
-  description?: string
-  shadow?: keyof typeof Shadow
-  loading?: boolean
-}>()
+const props = withDefaults(defineProps<CardProps>(), {
+  shadow: 'never',
+  border: true,
+  loading: false,
+  onlyContentLoading: false
+})
 
-const computedShadow = ref<string>('never')
+const localLoading = ref(props.loading)
 
-watchEffect(() => {
-  computedShadow.value = Shadow[props.shadow || 'never']
+watch(() => props.loading, (value) => {
+  localLoading.value = value
 })
 </script>

@@ -35,6 +35,7 @@ const data = [
   { name: 'Jim Green', address: 'London No. 1 Lake Park', age: 32 },
   { name: 'Jim Red', address: 'London No. 2 Lake Park', age: 32 }
 ]
+</script>
 ```
 
 :::
@@ -68,6 +69,7 @@ const data = [
   { name: 'Jim Green', address: 'London No. 1 Lake Park', age: 32 },
   { name: 'Jim Red', address: 'London No. 2 Lake Park', age: 32 }
 ]
+</script>
 ```
 
 :::
@@ -101,6 +103,7 @@ const data = [
   { name: 'Jim Green', address: 'London No. 1 Lake Park', age: 32 },
   { name: 'Jim Red', address: 'London No. 2 Lake Park', age: 32 }
 ]
+</script>
 ```
 
 :::
@@ -134,6 +137,7 @@ const data = [
   { name: 'Jim Green', address: 'London No. 1 Lake Park', age: 32 },
   { name: 'Jim Red', address: 'London No. 2 Lake Park', age: 32 }
 ]
+</script>
 ```
 
 :::
@@ -167,6 +171,7 @@ const data = [
   { name: 'Jim Green', address: 'London No. 1 Lake Park', age: 32 },
   { name: 'Jim Red', address: 'London No. 2 Lake Park', age: 32 }
 ]
+</script>
 ```
 
 :::
@@ -249,6 +254,7 @@ const click = (row: any, index: number) => {
     { name: 'Jim Green', address: 'London No. 1 Lake Park', age: 32 },
     { name: 'Jim Red', address: 'London No. 2 Lake Park', age: 32 }
   ]
+</script>
 ```
 
 :::
@@ -286,6 +292,7 @@ const data = [
     { 'name': 'Joe Black', 'age': 30, 'address': 'Sydney No. 1 Lake Park', 'province': 'Australian', 'city': 'Sydney', 'zip': 100000 },
     { 'name': 'Jon Snow', 'age': 26, 'address': 'Ottawa No. 2 Lake Park', 'province': 'Canada', 'city': 'Ottawa', 'zip': 100000 }
 ]
+</script>
 ```
 
 :::
@@ -319,6 +326,7 @@ const data = [
   { name: 'Jim Green', address: 'London No. 1 Lake Park', age: 32 },
   { name: 'Jim Red', address: 'London No. 2 Lake Park', age: 32 }
 ]
+</script>
 ```
 
 :::

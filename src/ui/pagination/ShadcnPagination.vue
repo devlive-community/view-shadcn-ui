@@ -37,7 +37,7 @@
     <template v-if="showSizer">
       <slot name="sizer">
         <ShadcnSelect v-model="pageSize"
-                      class="w-24"
+                      class="w-auto"
                       :options="sizerOptions"/>
       </slot>
     </template>

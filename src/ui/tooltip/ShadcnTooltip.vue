@@ -9,19 +9,19 @@
 
     <div v-if="isVisible"
          ref="tooltipRef"
-         :class="[
-           'absolute z-50 px-3 py-2 text-sm text-white bg-black rounded shadow-lg',
-           'animate-in fade-in-0 zoom-in-95',
-           computedPosition.positionClass
+         :class="['absolute z-50 px-3 py-2 text-sm text-white bg-black rounded shadow-lg',
+             'animate-in fade-in-0 zoom-in-95',
+             computedPosition.positionClass,
+             !maxWidth && { 'whitespace-nowrap': props.width === 'auto' },
+             { 'whitespace-normal': maxWidth }
          ]"
-         :style="{ width: `${width}px`, minWidth: `${width}px`, maxWidth: `${width}px` }">
+         :style="computedWidth">
       <template v-if="content">{{ content }}</template>
       <slot v-else name="content"/>
 
       <div v-if="arrow"
-           :class="[
-             'absolute w-2 h-2 rotate-45 bg-black',
-             computedPosition.arrowClass
+           :class="[ 'absolute w-2 h-2 rotate-45 bg-black',
+                computedPosition.arrowClass
            ]"/>
     </div>
   </div>
@@ -29,6 +29,7 @@
 
 <script setup lang="ts">
 import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue'
+import { calcSize } from '@/utils/common.ts'
 
 const props = withDefaults(defineProps<{
   content?: string
@@ -36,6 +37,7 @@ const props = withDefaults(defineProps<{
   position?: 'top' | 'right' | 'bottom' | 'left'
   arrow?: boolean
   width?: string | number
+  maxWidth?: number | string
 }>(), {
   delay: 0,
   position: 'top',
@@ -47,6 +49,24 @@ const isVisible = ref(false)
 const triggerRef = ref<HTMLElement | null>(null)
 const tooltipRef = ref<HTMLElement | null>(null)
 let timeoutId: NodeJS.Timeout | null = null
+
+const computedWidth = computed(() => {
+  if (props.width === 'auto') {
+    return {
+      maxWidth: calcSize(props.maxWidth)
+    }
+  }
+
+  const widthValue = typeof props.width === 'number'
+      ? `${ props.width }px`
+      : props.width
+
+  return {
+    width: widthValue,
+    minWidth: widthValue,
+    maxWidth: widthValue
+  }
+})
 
 // Position classes for the tooltip
 const positionClasses = {

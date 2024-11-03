@@ -184,7 +184,8 @@ This document is mainly used to describe some features and usage of the ShadcnTo
         ['delay', 'Delay time', 'Number', '0', '-', '-'],
         ['position', 'The position of the tooltip', 'Enum', 'top', '-', 'top, bottom, left, right', '-'],
         ['arrow', 'Show arrow', 'Boolean', 'true', '-', '-', '-'],
-        ['width', 'The width of the tooltip', 'Number | String', '200', '-', '-', '2024.1.2']
+        ['width', 'The width of the tooltip', 'Number | String', '200', '-', '-', '2024.1.2'],
+        ['maxWidth', 'The maximum width of the tooltip, if the width is auto', 'Number | String', '200', '-', '-', '2024.1.2'],
     ]">
 </ApiTable>
 
