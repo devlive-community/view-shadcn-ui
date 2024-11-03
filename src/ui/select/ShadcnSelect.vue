@@ -13,7 +13,7 @@
         {{ selectedLabel || placeholder }}
       </slot>
 
-      <svg :class="['w-4 h-4 transition-transform duration-200',
+      <svg :class="['w-4 h-4 transition-transform duration-200 ml-1',
                     { 'rotate-180': isExpanded }
             ]"
            fill="currentColor"
