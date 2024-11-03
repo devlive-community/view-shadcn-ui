@@ -12,7 +12,8 @@
          :class="['absolute z-50 px-3 py-2 text-sm text-white bg-black rounded shadow-lg',
              'animate-in fade-in-0 zoom-in-95',
              computedPosition.positionClass,
-             { 'whitespace-nowrap': props.width === 'auto' }
+             !maxWidth && { 'whitespace-nowrap': props.width === 'auto' },
+             { 'whitespace-normal': maxWidth }
          ]"
          :style="computedWidth">
       <template v-if="content">{{ content }}</template>
@@ -28,6 +29,7 @@
 
 <script setup lang="ts">
 import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue'
+import { calcSize } from '@/utils/common.ts'
 
 const props = withDefaults(defineProps<{
   content?: string
@@ -35,6 +37,7 @@ const props = withDefaults(defineProps<{
   position?: 'top' | 'right' | 'bottom' | 'left'
   arrow?: boolean
   width?: string | number
+  maxWidth?: number | string
 }>(), {
   delay: 0,
   position: 'top',
@@ -49,7 +52,9 @@ let timeoutId: NodeJS.Timeout | null = null
 
 const computedWidth = computed(() => {
   if (props.width === 'auto') {
-    return {}
+    return {
+      maxWidth: calcSize(props.maxWidth)
+    }
   }
 
   const widthValue = typeof props.width === 'number'

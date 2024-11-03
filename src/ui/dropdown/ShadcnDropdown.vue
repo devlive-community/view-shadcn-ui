@@ -122,19 +122,8 @@ const onClose = () => {
 const handleTriggerMouseLeave = () => {
   if (props.trigger === 'hover') {
     closeTimer = setTimeout(() => {
-      const menuElement = menuRef.value
-      if (menuElement) {
-        const rect = menuElement.getBoundingClientRect()
-        const { clientX, clientY } = window.event as MouseEvent
-        if (!(clientX >= rect.left && clientX <= rect.right &&
-            clientY >= rect.top && clientY <= rect.bottom)) {
-          onClose()
-        }
-      }
-      else {
-        onClose()
-      }
-    }, 50)
+      onClose()
+    }, 100)
   }
 }
 

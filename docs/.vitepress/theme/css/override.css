@@ -57,3 +57,12 @@
 .h-32 {
     height: 8rem;
 }
+
+.bg-blue-200 {
+    background-color: #bfdbfe;
+}
+
+.bg-blue-300
+{
+    background-color: #93c5fd;
+}
