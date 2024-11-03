@@ -1,9 +1,20 @@
 <template>
   <div class="space-y-2">
-    <label v-if="label" :for="name"
-           class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-      {{ label }}
-    </label>
+    <div class="flex items-center">
+      <label v-if="label"
+             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+             :for="name">
+        {{ label }}
+      </label>
+
+      <div v-if="description" class="ml-auto">
+        <p class="text-sm text-muted-foreground">
+          <ShadcnTooltip :content="description" width="300">
+            <ShadcnIcon icon="HelpCircle"/>
+          </ShadcnTooltip>
+        </p>
+      </div>
+    </div>
 
     <div class="relative">
       <slot/>
@@ -16,18 +27,12 @@
 
 <script setup lang="ts">
 import { inject, onMounted, onUnmounted, provide, ref, watch } from 'vue'
-import Rule from '@/ui/form/rule.ts'
 import { FormItemContext } from '@/ui/form/context.ts'
+import { FormItemProps } from '@/ui/form/types.ts'
+import ShadcnTooltip from '@/ui/tooltip'
+import ShadcnIcon from '@/ui/icon'
 
-interface Props
-{
-  name: string
-  label?: string
-  rules?: Rule[]
-  validateOnBlur?: boolean
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<FormItemProps>(), {
   validateOnBlur: true
 })
 const errorMessage = ref<string>('')
