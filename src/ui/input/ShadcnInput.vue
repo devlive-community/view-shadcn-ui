@@ -95,7 +95,7 @@ const currentType = computed(() => {
 
 // Count the total number of characters entered
 const textCount = computed(() => {
-  return localValue.value.length
+  return localValue.value?.length ?? 0
 })
 
 // Used to calculate and monitor the total number of input characters + length limit
