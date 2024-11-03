@@ -1,12 +1,16 @@
 <template>
-  <div :class="cn('bg-white border rounded-sm', computedShadow)">
+  <div :class="cn('bg-white rounded-sm',
+            border && 'border',
+            Shadow[shadow])
+       ">
     <div v-if="loading" class="absolute inset-0 bg-gray-100 bg-opacity-50 flex items-center justify-center z-10">
       <ShadcnIcon icon="Loader2" class="h-5 w-5 animate-spin"/>
     </div>
     <div v-else class="relative">
       <div v-if="$slots.title || title"
-           :class="cn('border-b p-2',
-              $slots.extra && 'flex flex-row items-center justify-between'
+           :class="cn('p-2',
+                border && 'border-b',
+                $slots.extra && 'flex flex-row items-center justify-between'
            )">
         <div class="grid gap-2">
           <h3 class="text-lg font-semibold leading-none tracking-tight">
@@ -38,21 +42,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue'
 import { cn } from '@/lib/utils'
-import { Shadow } from '@/ui/enum/Shadow.ts'
 import ShadcnIcon from '@/ui/icon'
+import { CardProps, Shadow } from '@/ui/card/types.ts'
 
-const props = defineProps<{
-  title?: string
-  description?: string
-  shadow?: keyof typeof Shadow
-  loading?: boolean
-}>()
-
-const computedShadow = ref<string>('never')
-
-watchEffect(() => {
-  computedShadow.value = Shadow[props.shadow || 'never']
+withDefaults(defineProps<CardProps>(), {
+  shadow: 'never',
+  border: true
 })
 </script>

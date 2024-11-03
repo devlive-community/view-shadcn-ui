@@ -128,10 +128,52 @@ This document is mainly used to describe some features and usage of the ShadcnCa
 
 ## Loading
 
-<CodeRunner title="Loading"
-    description="Create a card with loading.">
-    <ShadcnCard title="Loading" :loading="true"/>
+<CodeRunner title="Loading">
+    <ShadcnCard title="Loading" :loading="true">
+    </ShadcnCard>
 </CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnCard title="Loading" :loading="true"/>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
+## Border
+
+<CodeRunner title="Border">
+    <ShadcnCard title="Border" border>
+        <div class="flex items-center justify-center h-32">Content</div>
+    </ShadcnCard>
+    <ShadcnCard title="No Border" :border="false">
+        <div class="flex items-center justify-center h-32">Content</div>
+    </ShadcnCard>
+</CodeRunner>
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnCard title="Border" border>
+        <div class="flex items-center justify-center h-32">Content</div>
+    </ShadcnCard>
+    <ShadcnCard title="No Border" :border="false">
+        <div class="flex items-center justify-center h-32">Content</div>
+    </ShadcnCard>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
 
 ## Custom Title Slot
 
@@ -262,10 +304,11 @@ This document is mainly used to describe some features and usage of the ShadcnCa
 <ApiTable title="Card Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
     :columns="[
-        ['title', 'Card title', 'String', '-', '-', '-'],
-        ['description', 'Card description', 'String', '-', 'title', '-'],
-        ['shadow', 'Show shadow mode', 'Enum', 'never', '-', 'never, always, hover'],
-        ['loading', 'Whether to display loading', 'Boolean', 'false', '-', '-'],
+        ['title', 'Card title', 'string', '-', '-', '-'],
+        ['description', 'Card description', 'string', '-', 'title', '-'],
+        ['shadow', 'Show shadow mode', 'enum', 'never', '-', 'never | always | hover'],
+        ['loading', 'Whether to display loading', 'boolean', 'false', '-', '-'],
+        ['border', 'Whether to display border', 'boolean', 'true', '-', '-'],
     ]">
 </ApiTable>
 
