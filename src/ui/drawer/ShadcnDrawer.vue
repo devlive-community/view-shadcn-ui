@@ -34,14 +34,23 @@
             }">
 
         <!-- Drawer header -->
-        <div class="p-2 border-b flex items-center">
+        <div class="p-2 border-b flex justify-between">
           <slot name="header">
-            <span class="text-lg font-bold">{{ title }}</span>
-            <ShadcnIcon v-if="closable"
-                        icon="X"
-                        class="ml-auto cursor-pointer"
-                        @click="onClose"/>
+            <div class="text-lg font-bold">{{ title }}</div>
           </slot>
+
+          <div v-if="closable" class="flex items-center cursor-pointer" @click="onClose">
+            <slot name="close">
+              <svg xmlns="http://www.w3.org/2000/svg"
+                   fill="none"
+                   viewBox="0 0 24 24"
+                   stroke-width="1.5"
+                   stroke="currentColor"
+                   class="w-5 h-5 text-gray-400 hover:text-muted-foreground">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </slot>
+          </div>
         </div>
 
         <!-- Drawer body -->
@@ -50,10 +59,8 @@
         </div>
 
         <!-- Drawer footer -->
-        <footer class="p-2 border-t">
-          <slot name="footer">
-            <ShadcnButton @click="onClose">Close</ShadcnButton>
-          </slot>
+        <footer v-if="$slots.footer" class="p-2 border-t">
+          <slot name="footer"/>
         </footer>
       </div>
     </div>
@@ -62,9 +69,6 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import ShadcnIcon from '@/ui/icon'
-import ShadcnButton from '@/ui/button'
-import { ArrangePosition } from '@/ui/common/position.ts'
 import { calcSize } from '@/utils/common.ts'
 
 const emit = defineEmits(['update:modelValue', 'on-close'])
@@ -74,11 +78,11 @@ const props = withDefaults(defineProps<{
   title?: string
   closable?: boolean
   maskClosable?: boolean
-  position?: keyof typeof ArrangePosition
+  position?: 'top' | 'right' | 'bottom' | 'left'
   width?: string | number
   height?: string | number
 }>(), {
-  closable: false,
+  closable: true,
   maskClosable: false,
   position: 'right',
   width: 300,

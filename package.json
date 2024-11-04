@@ -12,7 +12,7 @@
   "author": "devlive-community",
   "homepage": "https://github.com/devlive-community/view-shadcn-ui",
   "private": false,
-  "version": "2024.2.0",
+  "version": "2024.2.0-alpha.1730692861",
   "license": "MIT",
   "main": "./dist/view-shadcn.umd.ts",
   "module": "./dist/view-shadcn.es.ts",
@@ -61,9 +61,8 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
-    "release": "standard-version",
-    "release:patch": "standard-version --release-as patch",
-    "release:skip": "standard-version --skip.bump=true --skip.tag=true"
+    "release": "standard-version --skip.bump=true --skip.tag=true --skip.commit=true && sh configure/publish/publish-deploy-page.sh && yes '3' | sh configure/publish/publish-deploy-npm.sh",
+    "release:patch": "standard-version --release-as patch --skip.bump=true --skip.tag=true --skip.commit=true"
   },
   "dependencies": {
     "clsx": "^2.1.0",
