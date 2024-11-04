@@ -1,203 +1,86 @@
 <template>
-  <div class="relative inline-block"
-       ref="triggerRef"
-       @mouseenter="startShowingTooltip"
-       @mouseleave="hideTooltip">
-    <span>
+  <div class="relative inline-block" @mouseenter="showTooltip" @mouseleave="hideTooltip">
+    <div ref="tooltipTrigger">
       <slot/>
-    </span>
+    </div>
 
     <Teleport to="body">
       <div v-if="isVisible"
-           ref="tooltipRef"
-           :class="['fixed z-[100] px-3 py-2 text-sm text-white bg-black rounded shadow-lg',
-                   'transition-opacity duration-200',
-                   !maxWidth && { 'whitespace-nowrap': props.width === 'auto' },
-                   { 'whitespace-normal': maxWidth },
-                   { 'opacity-0': !mounted },
-                   { 'opacity-100': mounted }
-           ]"
-           :style="[computedWidth, tooltipStyle]">
-
-        <template v-if="content">{{ content }}</template>
-        <slot v-else name="content"/>
+           ref="tooltipContent"
+           class="fixed z-[100] px-3 py-2 text-sm text-white bg-black rounded shadow-lg"
+           :style="tooltipStyle">
+        <slot v-if="$slots.content" name="content"/>
+        <div v-else>{{ content }}</div>
 
         <div v-if="arrow"
-             :class="['absolute w-2 h-2 rotate-45 bg-black',
-                      arrowPosition
-             ]"/>
+             :class="[ 'absolute w-2.5 h-2.5 rotate-45 bg-black']"/>
       </div>
     </Teleport>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue'
-import { calcSize } from '@/utils/common.ts'
+import { nextTick, onMounted, onUnmounted, ref } from 'vue'
+import { TooltipProps } from '@/ui/tooltip/types.ts'
+import { getBottomPosition, getLeftPosition, getRightPosition, getTopPosition } from '@/utils/position.ts'
 
-const props = withDefaults(defineProps<{
-  content?: string
-  delay?: number
-  position?: 'top' | 'right' | 'bottom' | 'left'
-  arrow?: boolean
-  width?: string | number
-  maxWidth?: number | string
-  offset?: number
-}>(), {
-  delay: 0,
+const props = withDefaults(defineProps<TooltipProps>(), {
   position: 'top',
-  arrow: true,
-  width: 'auto',
-  offset: 8
+  arrow: false
 })
 
 const isVisible = ref(false)
-const mounted = ref(false)
-const triggerRef = ref<HTMLElement | null>(null)
-const tooltipRef = ref<HTMLElement | null>(null)
+
+// Tooltip trigger element reference
+const tooltipTrigger = ref<HTMLElement | null>(null)
+// Tooltip content element reference
+const tooltipContent = ref<HTMLElement | null>(null)
+// Tooltip style object
 const tooltipStyle = ref({})
-const arrowPosition = ref('')
-let timeoutId: NodeJS.Timeout | null = null
 
-const computedWidth = computed(() => {
-  if (props.width === 'auto') {
-    return {
-      maxWidth: calcSize(props.maxWidth)
-    }
-  }
-
-  const widthValue = typeof props.width === 'number'
-      ? `${ props.width }px`
-      : props.width
-
-  return {
-    width: widthValue,
-    minWidth: widthValue,
-    maxWidth: widthValue
-  }
-})
-
-// Define position combinations for fallback
-const positionMap = {
-  top: ['top', 'bottom', 'right', 'left'],
-  bottom: ['bottom', 'top', 'right', 'left'],
-  left: ['left', 'right', 'top', 'bottom'],
-  right: ['right', 'left', 'top', 'bottom']
+// Show Tooltip
+const showTooltip = () => {
+  isVisible.value = true
+  nextTick(updatePosition)
 }
 
-const getPositionStyle = (position: string, triggerRect: DOMRect, tooltipRect: DOMRect) => {
-  let top = 0
-  let left = 0
-  let arrowPos = ''
-
-  switch (position) {
-    case 'top':
-      top = triggerRect.top - tooltipRect.height - props.offset
-      left = triggerRect.left + (triggerRect.width - tooltipRect.width) / 2
-      arrowPos = 'bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2'
-      break
-    case 'bottom':
-      top = triggerRect.bottom + props.offset
-      left = triggerRect.left + (triggerRect.width - tooltipRect.width) / 2
-      arrowPos = 'top-0 left-1/2 -translate-x-1/2 -translate-y-1/2'
-      break
-    case 'left':
-      top = triggerRect.top + (triggerRect.height - tooltipRect.height) / 2
-      left = triggerRect.left - tooltipRect.width - props.offset
-      arrowPos = 'right-0 top-1/2 translate-x-1/2 -translate-y-1/2'
-      break
-    case 'right':
-      top = triggerRect.top + (triggerRect.height - tooltipRect.height) / 2
-      left = triggerRect.right + props.offset
-      arrowPos = 'left-0 top-1/2 -translate-x-1/2 -translate-y-1/2'
-      break
-  }
-
-  return { top, left, arrowPos }
+// Hide Tooltip
+const hideTooltip = () => {
+  isVisible.value = false
 }
 
-const checkPositionAvailable = (position: string, triggerRect: DOMRect, tooltipRect: DOMRect) => {
-  const { top, left } = getPositionStyle(position, triggerRect, tooltipRect)
-  const margin = props.offset
-
-  const viewportWidth = window.innerWidth
-  const viewportHeight = window.innerHeight
-
-  return (
-      top >= margin &&
-      left >= margin &&
-      top + tooltipRect.height <= viewportHeight - margin &&
-      left + tooltipRect.width <= viewportWidth - margin
-  )
+// Positioning function mapping
+const positionFunctions = {
+  top: (trigger: DOMRect, content: DOMRect) => getTopPosition(trigger, content, 5, true),
+  bottom: (trigger: DOMRect, content: DOMRect) => getBottomPosition(trigger, content, 5, true),
+  left: (trigger: DOMRect, content: DOMRect) => getLeftPosition(trigger, content, 5, true, props.position),
+  right: (trigger: DOMRect, content: DOMRect) => getRightPosition(trigger, content, 5, true, props.position)
 }
 
-const updatePosition = () => {
-  if (!triggerRef.value || !tooltipRef.value) {
+// Update Tooltip position
+const updatePosition = async () => {
+  if (!tooltipContent.value || !tooltipTrigger.value) {
     return
   }
 
-  const triggerRect = triggerRef.value.getBoundingClientRect()
-  const tooltipRect = tooltipRef.value.getBoundingClientRect()
+  const triggerRect = tooltipTrigger.value.getBoundingClientRect()
+  await nextTick()  // Wait for the DOM to update
 
-  // Find the first available position from the fallback list
-  const availablePosition = positionMap[props.position].find(pos =>
-      checkPositionAvailable(pos, triggerRect, tooltipRect)
-  ) || props.position // Use original position as fallback
-
-  const { top, left, arrowPos } = getPositionStyle(availablePosition, triggerRect, tooltipRect)
-
-  // Update styles
-  tooltipStyle.value = {
-    top: `${ top }px`,
-    left: `${ left }px`
-  }
-  arrowPosition.value = arrowPos
+  const contentRect = tooltipContent.value.getBoundingClientRect()
+  tooltipStyle.value = positionFunctions[props.position]?.(triggerRect, contentRect) || {}
 }
 
-// Start showing tooltip with delay
-const startShowingTooltip = () => {
-  if (timeoutId) {
-    clearTimeout(timeoutId)
-  }
-  timeoutId = setTimeout(() => {
-    isVisible.value = true
-    nextTick(() => {
-      updatePosition()
-      mounted.value = true
-    })
-  }, props.delay)
-}
-
-// Hide tooltip and clear timeout
-const hideTooltip = () => {
-  if (timeoutId) {
-    clearTimeout(timeoutId)
-  }
-  mounted.value = false
-  setTimeout(() => {
-    isVisible.value = false
-  }, 200)
-}
-
-// Handle window resize
+// Update Tooltip position on window resize
 const handleResize = () => {
   if (isVisible.value) {
     updatePosition()
   }
 }
 
-// Setup
 onMounted(() => {
   window.addEventListener('resize', handleResize)
-  document.addEventListener('scroll', updatePosition, true)
 })
-
-// Cleanup
 onUnmounted(() => {
   window.removeEventListener('resize', handleResize)
-  document.removeEventListener('scroll', updatePosition, true)
-  if (timeoutId) {
-    clearTimeout(timeoutId)
-  }
 })
 </script>

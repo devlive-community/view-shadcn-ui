@@ -4,7 +4,7 @@
                   isMultiLine ? 'overflow-hidden' : 'whitespace-nowrap overflow-ellipsis',
                   length ? 'whitespace-normal' : 'overflow-hidden')"
        :style="isMultiLine ? { '-webkit-line-clamp': line, '-webkit-box-orient': 'vertical', display: '-webkit-box' } : {}">
-    <ShadcnTooltip v-if="tooltip" :content="text" max-width="auto">
+    <ShadcnTooltip v-if="tooltip" :content="text">
       <template v-if="text">{{ displayedText }}</template>
       <slot v-else/>
     </ShadcnTooltip>
