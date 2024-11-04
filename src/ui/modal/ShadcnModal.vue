@@ -28,7 +28,8 @@
 
         <!-- Content -->
         <div class="p-2 flex-1 overflow-auto">
-          <slot name="content"/>
+          <slot v-if="$slots.content" name="content"/>
+          <slot v-else/>
         </div>
 
         <!-- Footer -->
