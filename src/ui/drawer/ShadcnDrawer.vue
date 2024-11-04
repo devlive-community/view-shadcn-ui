@@ -69,7 +69,6 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import { ArrangePosition } from '@/ui/common/position.ts'
 import { calcSize } from '@/utils/common.ts'
 
 const emit = defineEmits(['update:modelValue', 'on-close'])
@@ -79,7 +78,7 @@ const props = withDefaults(defineProps<{
   title?: string
   closable?: boolean
   maskClosable?: boolean
-  position?: keyof typeof ArrangePosition
+  position?: 'top' | 'right' | 'bottom' | 'left'
   width?: string | number
   height?: string | number
 }>(), {
