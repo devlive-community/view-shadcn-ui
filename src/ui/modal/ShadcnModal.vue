@@ -14,16 +14,36 @@
         <!-- Header -->
         <div v-if="$slots.title || title"
              class="border-b p-2">
-          <h2 class="text-lg font-semibold">
-            <span v-if="title">{{ title }}</span>
-            <slot v-else name="title"/>
-          </h2>
+          <div class="flex justify-between">
+            <div>
+              <!-- Title -->
+              <h2 class="text-lg font-semibold">
+                <span v-if="title">{{ title }}</span>
+                <slot v-else name="title"/>
+              </h2>
 
-          <p v-if="$slots.description || description"
-             class="text-sm text-muted-foreground">
-            <span v-if="description">{{ description }}</span>
-            <slot v-else name="description"/>
-          </p>
+              <!-- Description -->
+              <p v-if="$slots.description || description"
+                 class="text-sm text-muted-foreground">
+                <span v-if="description">{{ description }}</span>
+                <slot v-else name="description"/>
+              </p>
+            </div>
+
+            <!-- Close -->
+            <div v-if="closable" class="flex items-center cursor-pointer" @click="onClose">
+              <slot name="close">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     fill="none"
+                     viewBox="0 0 24 24"
+                     stroke-width="1.5"
+                     stroke="currentColor"
+                     class="w-5 h-5 text-gray-400 hover:text-muted-foreground">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+              </slot>
+            </div>
+          </div>
         </div>
 
         <!-- Content -->
@@ -43,6 +63,7 @@
 
 <script setup lang="ts">
 import { cn } from '@/lib/utils.ts'
+import { ModalProps } from '@/ui/modal/types.ts'
 
 const validateWidthHeight = (value: number) => {
   return value >= 10 && value <= 100 && value % 10 === 0
@@ -50,20 +71,10 @@ const validateWidthHeight = (value: number) => {
 
 const emit = defineEmits(['on-close', 'update:modelValue'])
 
-interface Props
-{
-  modelValue: boolean
-  title?: string
-  description?: string
-  width?: number
-  height?: number
-  okText?: string
-  cancelText?: string
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<ModalProps>(), {
   okText: 'OK',
-  cancelText: 'Cancel'
+  cancelText: 'Cancel',
+  closable: true
 })
 
 if ((props.width && !validateWidthHeight(props.width)) || (props.height && !validateWidthHeight(props.height))) {

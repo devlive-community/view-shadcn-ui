@@ -1,6 +1,6 @@
 <template>
   <ShadcnButton @click="modal = true">Click</ShadcnButton>
-  <ShadcnModal v-model="modal" title="Modal Title" description="This is a modal description" @on-close="console.log('on-close')">
+  <ShadcnModal v-model="modal" title="Modal Title" :closable="false" description="This is a modal description" @on-close="console.log('on-close')">
     <div class="flex items-center justify-center h-32">Content</div>
   </ShadcnModal>
 </template>
