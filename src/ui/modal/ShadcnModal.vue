@@ -4,7 +4,7 @@
          class="fixed inset-0 z-50 flex items-center justify-center">
       <!-- Backdrop -->
       <div class="fixed inset-0 bg-black/50 transition-opacity"
-           @click="handleClose"/>
+           @click="onClose"/>
 
       <!-- Dialog -->
       <div :class="cn('relative bg-white z-50 flex flex-col animate-in fade-in-0 zoom-in-95',
@@ -32,16 +32,8 @@
         </div>
 
         <!-- Footer -->
-        <div class="border-t p-2 flex justify-end">
-          <slot v-if="$slots.footer" name="footer"/>
-          <div class="space-x-2" v-else>
-            <ShadcnButton type="danger" @click="onCancel">
-              {{ cancelText }}
-            </ShadcnButton>
-            <ShadcnButton @click="onOk">
-              {{ okText }}
-            </ShadcnButton>
-          </div>
+        <div v-if="$slots.footer" class="border-t p-2 flex justify-end">
+          <slot name="footer"/>
         </div>
       </div>
     </div>
@@ -50,13 +42,12 @@
 
 <script setup lang="ts">
 import { cn } from '@/lib/utils.ts'
-import ShadcnButton from '@/ui/button'
 
 const validateWidthHeight = (value: number) => {
   return value >= 10 && value <= 100 && value % 10 === 0
 }
 
-const emit = defineEmits(['on-cancel', 'on-ok', 'update:modelValue'])
+const emit = defineEmits(['on-close', 'update:modelValue'])
 
 interface Props
 {
@@ -78,17 +69,8 @@ if ((props.width && !validateWidthHeight(props.width)) || (props.height && !vali
   console.error('Width or Height must be between 10 and 100 and multiples of 10.')
 }
 
-const onCancel = () => {
-  emit('on-cancel')
-  emit('update:modelValue', false)
-}
-
-const onOk = () => {
-  emit('on-ok')
-  emit('update:modelValue', false)
-}
-
-const handleClose = () => {
+const onClose = () => {
+  emit('on-close')
   emit('update:modelValue', false)
 }
 </script>

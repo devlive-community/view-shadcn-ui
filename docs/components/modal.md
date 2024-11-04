@@ -245,8 +245,7 @@ const modal5 = ref(false);
     :headers="['Event', 'Description', 'Callback Parameters']"
     :columns="[
         ['update:modelValue', 'Triggered when display status changes', 'true / false'],
-        ['on-ok', 'Triggered when the OK button is clicked', '-'],
-        ['on-cancel', 'Triggered when the Cancel button is clicked', '-'],
+        ['on-close', 'Triggered when the dialog box is closed', '-'],
     ]">
 </ApiTable>
 
