@@ -37,6 +37,57 @@
           </svg>
         </slot>
       </div>
+
+      <!-- Control -->
+      <div v-if="showControl" class="ml-1">
+        <div class="flex items-center space-x-1">
+          <div :class="[
+                    {
+                      'cursor-pointer rounded-full hover:bg-gray-200': !disabled && validValue,
+                      'cursor-not-allowed opacity-50': !validValue
+                    }
+                ]"
+               @click="onAdd">
+            <slot name="add">
+              <svg viewBox="0 0 24 24"
+                   fill="none"
+                   xmlns="http://www.w3.org/2000/svg"
+                   class="w-6 h-6 p-1 text-gray-400 hover:text-muted-foreground">
+                <path d="M19 12H5"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                <path d="M12 5v14"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+              </svg>
+            </slot>
+          </div>
+          <div :class="[
+                    {
+                      'cursor-pointer rounded-full hover:bg-gray-200': !disabled && validValue,
+                      'cursor-not-allowed opacity-50': !validValue
+                    }
+               ]"
+               @click="onMinus">
+            <slot name="minus">
+              <svg viewBox="0 0 24 24"
+                   fill="none"
+                   xmlns="http://www.w3.org/2000/svg"
+                   class="w-6 h-6 p-1 text-gray-400 hover:text-muted-foreground">
+                <path d="M19 12H5"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+              </svg>
+            </slot>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -56,7 +107,8 @@ const props = withDefaults(defineProps<NumberProps>(), {
   disabled: false,
   min: -Infinity,
   max: Infinity,
-  clearable: false
+  clearable: false,
+  showControl: true
 })
 
 // Create a reactive reference for the modelValue
@@ -123,5 +175,19 @@ const onBlur = (event: FocusEvent) => {
 const onClear = () => {
   onChange(null)
   emit('on-clear', null)
+}
+
+// Function to handle add
+const onAdd = () => {
+  if (validValue.value) {
+    onChange(Number(localValue.value) + 1)
+  }
+}
+
+// Function to handle minus
+const onMinus = () => {
+  if (validValue.value) {
+    onChange(Number(localValue.value) - 1)
+  }
 }
 </script>

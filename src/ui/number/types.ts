@@ -11,7 +11,8 @@ export interface NumberProps
     placeholder?: string
     min?: number | string
     max?: number | string
-    clearable?: boolean
+    clearable?: boolean,
+    showControl?: boolean
 }
 
 export type NumberEmits = {

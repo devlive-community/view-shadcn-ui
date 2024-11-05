@@ -218,6 +218,50 @@ const value = ref(0)
 
 :::
 
+## Show Control
+
+::: raw
+
+<CodeRunner title="Show Control">
+    <div class="space-y-2">
+        <ShadcnNumber v-model="controlValue" placeholder="Enter Number"/>
+        <ShadcnNumber v-model="controlValue" placeholder="Enter Number">
+          <template #add>
+            <div class="text-gray-300 w-4 h-4 m-1 flex items-center justify-center">A</div>
+          </template>
+          <template #minus>
+            <div class="text-gray-300 w-4 h-4 m-1 flex items-center justify-center">M</div>
+          </template>
+        </ShadcnNumber>
+    </div>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnNumber v-model="value" placeholder="Enter Number"/>
+    <ShadcnNumber v-model="value" placeholder="Enter Number">
+      <template #add>
+        <div class="text-gray-300 w-4 h-4 m-1 flex items-center justify-center">A</div>
+      </template>
+      <template #minus>
+        <div class="text-gray-300 w-4 h-4 m-1 flex items-center justify-center">M</div>
+      </template>
+    </ShadcnNumber>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const value = ref(0)
+</script>
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Number Props"
@@ -239,7 +283,9 @@ const value = ref(0)
 <ApiTable title="Number Slots"
     :headers="['Slot', 'Description']"
     :columns="[
-        ['clear', 'Clear icon']
+        ['clear', 'Clear icon'],
+        ['add', 'Add icon'],
+        ['minus', 'Minus icon'],
     ]">
 </ApiTable>
 
@@ -260,4 +306,5 @@ const basicValue = ref(0)
 const placeholderValue = ref(undefined)
 const minAndMaxValue = ref(0)
 const clearableValue = ref(0)
+const controlValue = ref(null)
 </script>
