@@ -10,11 +10,12 @@
          ]">
       <!-- Input field for direct number entry -->
       <input :class="['w-full outline-none text-sm',
-                  !validValue && 'line-through'
+                  (!validValue && localValue) && 'line-through'
              ]"
              type="text"
              :value="localValue"
              :disabled="disabled"
+             :placeholder="placeholder"
              @input="onInput"
              @blur="onBlur"/>
     </div>

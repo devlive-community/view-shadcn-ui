@@ -128,6 +128,32 @@ const value = ref(0)
 
 :::
 
+## Placeholder
+
+::: raw
+
+<CodeRunner title="Placeholder">
+    <ShadcnNumber v-model="placeholderValue" placeholder="Enter Number"/>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnNumber v-model="value" placeholder="Enter Number"/>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const value = ref(0)
+</script>
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Number Props"
@@ -137,6 +163,7 @@ const value = ref(0)
         ['size', 'Size of the number', 'string', 'default', 'small | default | large'],
         ['type', 'Type of the number', 'string', 'default', 'primary | warning | success | error'],
         ['disabled', 'Whether the number is disabled', 'boolean', 'false', '-'],
+        ['placeholder', 'Placeholder of the number', 'string', '-', '-'],
     ]">
 </ApiTable>
 
@@ -153,4 +180,5 @@ const value = ref(0)
 import { ref } from 'vue'
 
 const basicValue = ref(0)
+const placeholderValue = ref(undefined)
 </script>
