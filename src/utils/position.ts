@@ -10,8 +10,6 @@ export const getTopPosition = (
         ? trigger.top + trigger.height + skip // When trigger.top is 0, place tooltip at the bottom
         : trigger.top - content.height - skip // Otherwise, place tooltip at the top
 
-    console.log(content.width, window.innerWidth, window.innerWidth - content.width)
-
     // If tooltip exceeds screen height, set fit to true
     if (content.width !== window.innerWidth) {
         fit = true
