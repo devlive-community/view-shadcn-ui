@@ -2,7 +2,11 @@
   <div class="relative">
     <div :class="['flex items-center justify-between border rounded p-3',
               Size[size],
-              HoverType[type]
+              HoverType[type],
+              {
+                'cursor-pointer': !disabled,
+                'cursor-not-allowed opacity-50 bg-gray-100': disabled
+              }
          ]">
       <!-- Input field for direct number entry -->
       <input :class="['w-full outline-none text-sm',
@@ -10,6 +14,7 @@
              ]"
              type="text"
              :value="localValue"
+             :disabled="disabled"
              @input="onInput"
              @blur="onBlur"/>
     </div>
@@ -27,7 +32,8 @@ import { HoverType } from '@/ui/common/type.ts'
 const emit = defineEmits<NumberEmits>()
 const props = withDefaults(defineProps<NumberProps>(), {
   size: 'default',
-  type: 'primary'
+  type: 'primary',
+  disabled: false
 })
 
 // Create a reactive reference for the modelValue

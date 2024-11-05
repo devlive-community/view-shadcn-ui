@@ -7,6 +7,7 @@ export interface NumberProps
     name?: string
     size?: keyof typeof Size
     type?: keyof typeof HoverType
+    disabled?: boolean
 }
 
 export type NumberEmits = {

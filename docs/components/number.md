@@ -98,6 +98,36 @@ const value = ref(0)
 
 :::
 
+## Disabled
+
+::: raw
+
+<CodeRunner title="Disabled">
+    <div class="space-y-2">
+        <ShadcnNumber v-model="basicValue"/>
+        <ShadcnNumber v-model="basicValue" disabled />
+    </div>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnNumber v-model="value"/>
+    <ShadcnNumber v-model="value" disabled />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const value = ref(0)
+</script>
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Number Props"
@@ -106,6 +136,7 @@ const value = ref(0)
         ['modelValue', 'Number value', 'number', '-', '-'],
         ['size', 'Size of the number', 'string', 'default', 'small | default | large'],
         ['type', 'Type of the number', 'string', 'default', 'primary | warning | success | error'],
+        ['disabled', 'Whether the number is disabled', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
