@@ -1,7 +1,8 @@
 <template>
   <div class="relative">
     <div :class="['flex items-center justify-between border rounded p-3',
-              Size[size]
+              Size[size],
+              HoverType[type]
          ]">
       <!-- Input field for direct number entry -->
       <input :class="['w-full outline-none text-sm',
@@ -21,10 +22,12 @@ import { NumberEmits, NumberProps } from './types'
 import { isNumber } from '@/utils/number.ts'
 import { Size } from '@/ui/common/size.ts'
 import { FormItemContext } from '@/ui/form/context.ts'
+import { HoverType } from '@/ui/common/type.ts'
 
 const emit = defineEmits<NumberEmits>()
 const props = withDefaults(defineProps<NumberProps>(), {
-  size: 'default'
+  size: 'default',
+  type: 'primary'
 })
 
 // Create a reactive reference for the modelValue

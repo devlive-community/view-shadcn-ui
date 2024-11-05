@@ -1,10 +1,12 @@
 import { Size } from '@/ui/common/size.ts'
+import { HoverType } from '@/ui/common/type.ts'
 
 export interface NumberProps
 {
     modelValue?: number | string
     name?: string
     size?: keyof typeof Size
+    type?: keyof typeof HoverType
 }
 
 export type NumberEmits = {

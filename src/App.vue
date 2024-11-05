@@ -1,11 +1,10 @@
 <template>
-  <div class="p-32">
+  <div class="p-32 space-y-2">
     Value: {{ value }}
-    <ShadcnSpace wrap>
-      <ShadcnNumber v-model="value" size="small"/>
-      <ShadcnNumber v-model="value" size="default"/>
-      <ShadcnNumber v-model="value" size="large" @on-blur="console.log($event)"/>
-    </ShadcnSpace>
+    <ShadcnNumber v-model="value" size="small" type="primary"/>
+    <ShadcnNumber v-model="value" size="default" type="warning"/>
+    <ShadcnNumber v-model="value" size="large" type="success"/>
+    <ShadcnNumber v-model="value" size="large" type="error"/>
   </div>
 </template>
 
