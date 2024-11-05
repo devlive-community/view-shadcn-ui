@@ -11,10 +11,12 @@ export interface NumberProps
     placeholder?: string
     min?: number | string
     max?: number | string
+    clearable?: boolean
 }
 
 export type NumberEmits = {
     'update:modelValue': [value: any]
     'on-change': [value: any]
     'on-blur': [value: any]
+    'on-clear': [value: any]
 }

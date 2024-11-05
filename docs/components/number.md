@@ -180,6 +180,44 @@ const value = ref(0)
 
 :::
 
+## Clearable
+
+::: raw
+
+<CodeRunner title="Clearable">
+    <div class="space-y-2">
+    <ShadcnNumber v-model="clearableValue" clearable placeholder="Enter Number"/>
+    <ShadcnNumber v-model="clearableValue" clearable placeholder="Enter Number">
+      <template #clear>
+        <div class="h-4 w-4 p-2 flex items-center justify-center bg-gray-200 rounded-full text-sm text-gray-400 hover:bg-gray-300 hover:text-muted-foreground">X</div>
+      </template>
+    </ShadcnNumber>
+    </div>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnNumber v-model="value" clearable placeholder="Enter Number"/>
+    <ShadcnNumber v-model="value" clearable placeholder="Enter Number">
+      <template #clear>
+        <div class="h-4 w-4 p-2 flex items-center justify-center bg-gray-200 rounded-full text-sm text-gray-400 hover:bg-gray-300 hover:text-muted-foreground">X</div>
+      </template>
+    </ShadcnNumber>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const value = ref(0)
+</script>
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Number Props"
@@ -192,6 +230,16 @@ const value = ref(0)
         ['placeholder', 'Placeholder of the number', 'string', '-', '-'],
         ['min', 'Minimum value of the number', 'number | string', '-', '-'],
         ['max', 'Maximum value of the number', 'number | string', '-', '-'],
+        ['clearable', 'Whether the number can be cleared', 'boolean', 'false', '-'],
+    ]">
+</ApiTable>
+
+## Slots
+
+<ApiTable title="Number Slots"
+    :headers="['Slot', 'Description']"
+    :columns="[
+        ['clear', 'Clear icon']
     ]">
 </ApiTable>
 
@@ -211,4 +259,5 @@ import { ref } from 'vue'
 const basicValue = ref(0)
 const placeholderValue = ref(undefined)
 const minAndMaxValue = ref(0)
+const clearableValue = ref(0)
 </script>
