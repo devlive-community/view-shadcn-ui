@@ -1,7 +1,11 @@
 <template>
   <div class="p-32">
     Value: {{ value }}
-    <ShadcnNumber v-model="value"/>
+    <ShadcnSpace wrap>
+      <ShadcnNumber v-model="value" size="small"/>
+      <ShadcnNumber v-model="value" size="default"/>
+      <ShadcnNumber v-model="value" size="large"/>
+    </ShadcnSpace>
   </div>
 </template>
 

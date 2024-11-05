@@ -1,6 +1,8 @@
 <template>
   <div class="relative">
-    <div :class="['flex items-center justify-between border rounded p-3 h-8']">
+    <div :class="['flex items-center justify-between border rounded p-3',
+              Size[size]
+         ]">
       <!-- Input field for direct number entry -->
       <input :class="['w-full outline-none text-sm',
                   !validValue && 'line-through'
@@ -16,9 +18,12 @@
 import { defineEmits, defineProps, ref, watch } from 'vue'
 import { NumberEmits, NumberProps } from './types'
 import { isNumber } from '@/utils/number.ts'
+import { Size } from '@/ui/common/size.ts'
 
 const emit = defineEmits<NumberEmits>()
-const props = defineProps<NumberProps>()
+const props = withDefaults(defineProps<NumberProps>(), {
+  size: 'default'
+})
 
 // Create a reactive reference for the modelValue
 const localValue = ref(props.modelValue)
