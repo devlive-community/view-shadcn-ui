@@ -97,48 +97,51 @@ features:
     details: Badge component
 
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/breadcrumb.svg" />
-    title: <a href='breadcrumb.html'>Shadcn Breadcrumb <span class="VPBadge tip">2024.1.3</span></a>
+    title: <a href='breadcrumb.html'>Shadcn Breadcrumb <span class="VPBadge tip">2024.2.0</span></a>
     details: Breadcrumb component
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/slider.svg" />
-    title: <a href='slider.html'>Shadcn Slider <span class="VPBadge tip">2024.1.3</span></a>
+    title: <a href='slider.html'>Shadcn Slider <span class="VPBadge tip">2024.2.0</span></a>
     details: Slider component
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/spin.svg" />
-    title: <a href='spin.html'>Shadcn Spin <span class="VPBadge tip">2024.1.3</span></a>
+    title: <a href='spin.html'>Shadcn Spin <span class="VPBadge tip">2024.2.0</span></a>
     details: Spin component
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/form.svg" />
-    title: <a href='form.html'>Shadcn Form <span class="VPBadge tip">2024.1.3</span></a>
+    title: <a href='form.html'>Shadcn Form <span class="VPBadge tip">2024.2.0</span></a>
     details: Form component
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/timeline.svg" />
-    title: <a href='timeline.html'>Shadcn Timeline <span class="VPBadge tip">2024.1.3</span></a>
+    title: <a href='timeline.html'>Shadcn Timeline <span class="VPBadge tip">2024.2.0</span></a>
     details: Timeline component
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/trend.svg" />
-    title: <a href='trend.html'>Shadcn Trend <span class="VPBadge tip">2024.1.3</span></a>
+    title: <a href='trend.html'>Shadcn Trend <span class="VPBadge tip">2024.2.0</span></a>
     details: Trend component
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/exception.svg" />
-    title: <a href='exception.html'>Shadcn Exception <span class="VPBadge tip">2024.1.3</span></a>
+    title: <a href='exception.html'>Shadcn Exception <span class="VPBadge tip">2024.2.0</span></a>
     details: Exception component
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/link.svg" />
-    title: <a href='link.html'>Shadcn Link <span class="VPBadge tip">2024.1.3</span></a>
+    title: <a href='link.html'>Shadcn Link <span class="VPBadge tip">2024.2.0</span></a>
     details: Link component
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/collapse.svg" />
-    title: <a href='collapse.html'>Shadcn Collapse <span class="VPBadge tip">2024.1.3</span></a>
+    title: <a href='collapse.html'>Shadcn Collapse <span class="VPBadge tip">2024.2.0</span></a>
     details: Collapse component
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/tag.svg" />
-    title: <a href='tag.html'>Shadcn Tag <span class="VPBadge tip">2024.1.3</span></a>
+    title: <a href='tag.html'>Shadcn Tag <span class="VPBadge tip">2024.2.0</span></a>
     details: Tag component
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/global-footer.svg" />
-    title: <a href='global-footer.html'>Shadcn Global Footer <span class="VPBadge tip">2024.1.3</span></a>
+    title: <a href='global-footer.html'>Shadcn Global Footer <span class="VPBadge tip">2024.2.0</span></a>
     details: Global Footer component
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/watermark.svg" />
-    title: <a href='watermark.html'>Shadcn Watermark <span class="VPBadge tip">2024.1.3</span></a>
+    title: <a href='watermark.html'>Shadcn Watermark <span class="VPBadge tip">2024.2.0</span></a>
     details: Watermark component
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/highlight.svg" />
-    title: <a href='highlight.html'>Shadcn Highlight <span class="VPBadge tip">2024.1.3</span></a>
+    title: <a href='highlight.html'>Shadcn Highlight <span class="VPBadge tip">2024.2.0</span></a>
     details: Highlight component
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/toolbar-footer.svg" />
-    title: <a href='toolbar-footer.html'>Shadcn Toolbar Footer <span class="VPBadge tip">2024.1.3</span></a>
+    title: <a href='toolbar-footer.html'>Shadcn Toolbar Footer <span class="VPBadge tip">2024.2.0</span></a>
     details: Toolbar Footer component
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/dropdown.svg" />
-    title: <a href='dropdown.html'>Shadcn Dropdown <span class="VPBadge tip">2024.1.3</span></a>
+    title: <a href='dropdown.html'>Shadcn Dropdown <span class="VPBadge tip">2024.2.0</span></a>
     details: Dropdown component
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/number.svg" />
+    title: <a href='number.html'>Shadcn Number <span class="VPBadge tip">2024.3.0</span></a>
+    details: Number component
 ---

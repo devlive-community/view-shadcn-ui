@@ -52,7 +52,7 @@ export default {
                 activeMatch: '/components'
             },
             {
-                text: '2024.2.0 <span class="VPBadge danger" style="margin-left: -18px; position: absolute; bottom: 38px;">Latest</span>',
+                text: '2024.3.0 <span class="VPBadge danger" style="margin-left: -18px; position: absolute; bottom: 38px;">Alpha</span>',
                 items: [
                     {
                         text: 'CHANGELOG <span class="VPBadge tip">2024.2.0</span>',
@@ -83,11 +83,11 @@ export default {
                     collapsed: false,
                     base: "/guide/",
                     items: [
-                        {text: 'calcSize <span class="VPBadge tip">2024.1.3</span>', link: 'calc-size'},
-                        {text: 'isLightColor <span class="VPBadge tip">2024.1.3</span>', link: 'is-light-color'},
-                        {text: 'getContrastTextColor <span class="VPBadge tip">2024.1.3</span>', link: 'get-contrast-text-color'},
-                        {text: 'getHoverColor <span class="VPBadge tip">2024.1.3</span>', link: 'get-hover-color'},
-                        {text: 'generateColorShades <span class="VPBadge tip">2024.1.3</span>', link: 'generate-color-shades'},
+                        {text: 'calcSize <span class="VPBadge tip">2024.2.0</span>', link: 'calc-size'},
+                        {text: 'isLightColor <span class="VPBadge tip">2024.2.0</span>', link: 'is-light-color'},
+                        {text: 'getContrastTextColor <span class="VPBadge tip">2024.2.0</span>', link: 'get-contrast-text-color'},
+                        {text: 'getHoverColor <span class="VPBadge tip">2024.2.0</span>', link: 'get-hover-color'},
+                        {text: 'generateColorShades <span class="VPBadge tip">2024.2.0</span>', link: 'generate-color-shades'},
                     ]
                 }
             ],
@@ -97,8 +97,8 @@ export default {
                         {text: 'Button <span class="VPBadge tip">2024.1.1</span>', link: 'button'},
                         {text: 'Icon <span class="VPBadge tip">2024.1.1</span>', link: 'icon'},
                         {text: 'Copy <span class="VPBadge tip">2024.1.1</span>', link: 'copy'},
-                        {text: 'Watermark <span class="VPBadge tip">2024.1.3</span>', link: 'watermark'},
-                        {text: 'Highlight <span class="VPBadge tip">2024.1.3</span>', link: 'highlight'},
+                        {text: 'Watermark <span class="VPBadge tip">2024.2.0</span>', link: 'watermark'},
+                        {text: 'Highlight <span class="VPBadge tip">2024.2.0</span>', link: 'highlight'},
                     ]
                     return {
                         text: `Base [ ${items.length} ]`,
@@ -117,9 +117,9 @@ export default {
                         {text: 'Space <span class="VPBadge tip">2024.1.2</span>', link: 'space'},
                         {text: 'Skeleton <span class="VPBadge tip">2024.1.2</span>', link: 'skeleton'},
                         {text: 'Layout <span class="VPBadge tip">2024.1.2</span>', link: 'layout'},
-                        {text: 'Collapse <span class="VPBadge tip">2024.1.3</span>', link: 'collapse'},
-                        {text: 'Global Footer <span class="VPBadge tip">2024.1.3</span>', link: 'global-footer'},
-                        {text: 'Toolbar Footer <span class="VPBadge tip">2024.1.3</span>', link: 'toolbar-footer'},
+                        {text: 'Collapse <span class="VPBadge tip">2024.2.0</span>', link: 'collapse'},
+                        {text: 'Global Footer <span class="VPBadge tip">2024.2.0</span>', link: 'global-footer'},
+                        {text: 'Toolbar Footer <span class="VPBadge tip">2024.2.0</span>', link: 'toolbar-footer'},
                     ]
                     return {
                         text: `Layout [ ${items.length} ]`,
@@ -137,11 +137,11 @@ export default {
                         {text: 'Progress <span class="VPBadge tip">2024.1.2</span>', link: 'progress'},
                         {text: 'Drawer <span class="VPBadge tip">2024.1.2</span>', link: 'drawer'},
                         {text: 'Message <span class="VPBadge tip">2024.1.2</span>', link: 'message'},
-                        {text: 'Spin <span class="VPBadge tip">2024.1.3</span>', link: 'spin'},
-                        {text: 'Timeline <span class="VPBadge tip">2024.1.3</span>', link: 'timeline'},
-                        {text: 'Trend <span class="VPBadge tip">2024.1.3</span>', link: 'trend'},
-                        {text: 'Exception <span class="VPBadge tip">2024.1.3</span>', link: 'exception'},
-                        {text: 'Tag <span class="VPBadge tip">2024.1.3</span>', link: 'tag'},
+                        {text: 'Spin <span class="VPBadge tip">2024.2.0</span>', link: 'spin'},
+                        {text: 'Timeline <span class="VPBadge tip">2024.2.0</span>', link: 'timeline'},
+                        {text: 'Trend <span class="VPBadge tip">2024.2.0</span>', link: 'trend'},
+                        {text: 'Exception <span class="VPBadge tip">2024.2.0</span>', link: 'exception'},
+                        {text: 'Tag <span class="VPBadge tip">2024.2.0</span>', link: 'tag'},
 
                     ]
                     return {
@@ -160,7 +160,8 @@ export default {
                         {text: 'Select <span class="VPBadge tip">2024.1.2</span>', link: 'select'},
                         {text: 'Rate <span class="VPBadge tip">2024.1.2</span>', link: 'rate'},
                         {text: 'Table <span class="VPBadge tip">2024.1.2</span>', link: 'table'},
-                        {text: 'Form <span class="VPBadge tip">2024.1.3</span>', link: 'form'},
+                        {text: 'Form <span class="VPBadge tip">2024.2.0</span>', link: 'form'},
+                        {text: 'Number <span class="VPBadge tip">2024.3.0</span>', link: 'number'},
                     ]
                     return {
                         text: `Form [ ${items.length} ]`,
@@ -175,10 +176,10 @@ export default {
                         {text: 'Pagination <span class="VPBadge tip">2024.1.2</span>', link: 'pagination'},
                         {text: 'Menu <span class="VPBadge tip">2024.1.2</span>', link: 'menu'},
                         {text: 'Badge <span class="VPBadge tip">2024.1.2</span>', link: 'badge'},
-                        {text: 'Breadcrumb <span class="VPBadge tip">2024.1.3</span>', link: 'breadcrumb'},
-                        {text: 'Slider <span class="VPBadge tip">2024.1.3</span>', link: 'slider'},
-                        {text: 'Link <span class="VPBadge tip">2024.1.3</span>', link: 'link'},
-                        {text: 'Dropdown <span class="VPBadge tip">2024.1.3</span>', link: 'dropdown'},
+                        {text: 'Breadcrumb <span class="VPBadge tip">2024.2.0</span>', link: 'breadcrumb'},
+                        {text: 'Slider <span class="VPBadge tip">2024.2.0</span>', link: 'slider'},
+                        {text: 'Link <span class="VPBadge tip">2024.2.0</span>', link: 'link'},
+                        {text: 'Dropdown <span class="VPBadge tip">2024.2.0</span>', link: 'dropdown'},
                     ]
                     return {
                         text: `Navigation [ ${items.length} ]`,
