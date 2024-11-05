@@ -9,6 +9,8 @@ export interface NumberProps
     type?: keyof typeof HoverType
     disabled?: boolean
     placeholder?: string
+    min?: number | string
+    max?: number | string
 }
 
 export type NumberEmits = {

@@ -45,6 +45,11 @@ export function isValidNumber(value: any): boolean
         return false
     }
 
+    // Handle Infinity and -Infinity
+    if (value === Infinity || value === -Infinity) {
+        return true
+    }
+
     // If it's already a number type, just check if it's not NaN
     if (typeof value === 'number') {
         return !isNaN(value) && isFinite(value)
@@ -130,8 +135,8 @@ export function validate(value: any, options: NumberValidationOptions = {}): boo
 
     const finalOptions = { ...defaultOptions, ...options }
 
-    // First check if it's a valid number
-    if (!isValidNumber(value)) {
+    // First check if it's a valid number or Infinity
+    if (!isValidNumber(value) && value !== Infinity && value !== -Infinity) {
         return false
     }
 
@@ -139,13 +144,13 @@ export function validate(value: any, options: NumberValidationOptions = {}): boo
     const strValue = String(value).trim().toLowerCase()
 
     // Check number format restrictions
-    if (!finalOptions.allowHex && (strValue.startsWith('0x'))) {
+    if (!finalOptions.allowHex && strValue.startsWith('0x')) {
         return false
     }
-    if (!finalOptions.allowBinary && (strValue.startsWith('0b'))) {
+    if (!finalOptions.allowBinary && strValue.startsWith('0b')) {
         return false
     }
-    if (!finalOptions.allowOctal && (strValue.startsWith('0o'))) {
+    if (!finalOptions.allowOctal && strValue.startsWith('0o')) {
         return false
     }
     if (!finalOptions.allowScientific && /e[+-]?\d+$/i.test(strValue)) {
@@ -154,6 +159,12 @@ export function validate(value: any, options: NumberValidationOptions = {}): boo
 
     // Convert to number for value checking
     const num = Number(value)
+
+    // Check Infinity
+    if ((num === Infinity && (typeof finalOptions.max === 'number' && num > finalOptions.max)) ||
+        (num === -Infinity && (typeof finalOptions.min === 'number' && num < finalOptions.min))) {
+        return false
+    }
 
     // Check zero
     if (!finalOptions.allowZero && num === 0) {

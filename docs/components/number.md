@@ -154,16 +154,44 @@ const value = ref(0)
 
 :::
 
+## Min & Max
+
+::: raw
+
+<CodeRunner title="Min & Max">
+    <ShadcnNumber v-model="minAndMaxValue" min="0" max="10"/>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnNumber v-model="value" min="0" max="10"/>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const value = ref(0)
+</script>
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Number Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
     :columns="[
-        ['modelValue', 'Number value', 'number', '-', '-'],
+        ['modelValue', 'Number value', 'number | string', '-', '-'],
         ['size', 'Size of the number', 'string', 'default', 'small | default | large'],
         ['type', 'Type of the number', 'string', 'default', 'primary | warning | success | error'],
         ['disabled', 'Whether the number is disabled', 'boolean', 'false', '-'],
         ['placeholder', 'Placeholder of the number', 'string', '-', '-'],
+        ['min', 'Minimum value of the number', 'number | string', '-', '-'],
+        ['max', 'Maximum value of the number', 'number | string', '-', '-'],
     ]">
 </ApiTable>
 
@@ -173,6 +201,7 @@ const value = ref(0)
     :headers="['Event', 'Description', 'Callback Parameters']"
     :columns="[
         ['on-change', 'Emitted when the number value changes', 'number'],
+        ['on-blur', 'Emitted when the number loses focus', '-'],
     ]">
 </ApiTable>
 
@@ -181,4 +210,5 @@ import { ref } from 'vue'
 
 const basicValue = ref(0)
 const placeholderValue = ref(undefined)
+const minAndMaxValue = ref(0)
 </script>

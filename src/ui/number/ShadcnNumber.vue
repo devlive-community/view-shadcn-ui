@@ -34,7 +34,9 @@ const emit = defineEmits<NumberEmits>()
 const props = withDefaults(defineProps<NumberProps>(), {
   size: 'default',
   type: 'primary',
-  disabled: false
+  disabled: false,
+  min: -Infinity,
+  max: Infinity
 })
 
 // Create a reactive reference for the modelValue
@@ -47,6 +49,18 @@ const formItemContext = inject<FormItemContext | null>(`form-item-${ props.name 
 // Watch the incoming modelValue prop for changes
 watch(() => props.modelValue, (newValue) => {
   validValue.value = isNumber(newValue)
+
+  // Check if the value is within the min and max range
+  if (isNumber(newValue)) {
+    const numValue = Number(newValue)
+    const min = Number(props.min ?? -Infinity)
+    const max = Number(props.max ?? Infinity)
+
+    if (numValue < min || numValue > max) {
+      validValue.value = false
+    }
+  }
+
   localValue.value = newValue
 })
 
@@ -64,6 +78,7 @@ const onInput = (event: Event) => {
 const onBlur = (event: FocusEvent) => {
   const newValue = (event.target as HTMLInputElement).value
   localValue.value = newValue
+
   onChange(newValue)
   emit('on-blur', newValue)
 
