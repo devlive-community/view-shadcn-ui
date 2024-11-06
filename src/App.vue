@@ -19,6 +19,13 @@
                   checkable
                   :data="data"/>
     </ShadcnCard>
+
+    <ShadcnCard title="Cascade">
+      <ShadcnTree v-model="cascadeValue"
+                  checkable
+                  cascade
+                  :data="data"/>
+    </ShadcnCard>
   </div>
 </template>
 
@@ -28,6 +35,7 @@ import { ref } from "vue";
 const singleValue = ref([])
 const multipleValue = ref([])
 const checkValue = ref(['1.2.1'])
+const cascadeValue = ref(['1.2.1'])
 
 const data = [
   {

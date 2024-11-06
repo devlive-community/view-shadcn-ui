@@ -20,7 +20,11 @@
 
       <span v-else class="w-6"></span>
 
-      <ShadcnCheckbox v-if="checkable" v-model="nodeChecked" size="small" :value="node.value"/>
+      <ShadcnCheckbox v-if="checkable"
+                      v-model="nodeChecked"
+                      size="small"
+                      :value="node.value"
+                      :indeterminate="cascade && isIndeterminate"/>
 
       <span class="text-sm">{{ node.label }}</span>
     </div>
@@ -32,6 +36,7 @@
                       :level="level + 1"
                       :selected-values="selectedValues"
                       :checkable="checkable"
+                      :cascade="cascade"
                       @on-expand="onChildExpand"
                       @on-node-click="onChildNodeClick"/>
     </div>
@@ -46,12 +51,30 @@ import ShadcnCheckbox from '@/ui/checkbox'
 const emit = defineEmits<TreeNodeEmits>()
 const props = withDefaults(defineProps<TreeNodeProps>(), {
   selectedValues: () => [],
-  checkable: false
+  checkable: false,
+  cascade: false
 })
 
 const isExpanded = ref(false)
 const hasChildren = computed(() => props.node.children && props.node.children.length > 0)
 const isSelected = computed(() => props.selectedValues.includes(props.node.value))
+
+// Calculate Semi-Selected Status - Takes effect only in cascading mode
+const isIndeterminate = computed(() => {
+  if (!hasChildren.value || !props.cascade) {
+    return false
+  }
+
+  const childrenSelected = props.node.children?.some(child =>
+      props.selectedValues.includes(child.value)
+  ) ?? false
+
+  const allChildrenSelected = props.node.children?.every(child =>
+      props.selectedValues.includes(child.value)
+  ) ?? false
+
+  return childrenSelected && !allChildrenSelected && !isSelected.value
+})
 
 const nodeChecked = computed({
   get()

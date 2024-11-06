@@ -11,6 +11,7 @@ export interface TreeProps
     data?: TreeNode[]
     multiple?: boolean
     checkable?: boolean
+    cascade?: boolean
 }
 
 export interface TreeNodeProps
@@ -19,6 +20,7 @@ export interface TreeNodeProps
     level: number
     selectedValues?: any[]
     checkable?: boolean
+    cascade?: boolean
 }
 
 export type TreeEmits = {
