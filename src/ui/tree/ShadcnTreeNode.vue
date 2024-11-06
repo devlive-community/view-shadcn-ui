@@ -1,9 +1,11 @@
 <template>
   <div :class="['relative py-0.5']"
        :style="level > 0 ? { paddingLeft: '1.5em' } : undefined">
-    <div :class="['flex items-center py-0.5 px-1.5 rounded-sm cursor-pointer',
+    <div :class="['flex items-center py-0.5 px-1.5 rounded-sm',
               { 'bg-gray-200': isSelected },
-              { 'hover:bg-gray-100': !isSelected }
+              { 'hover:bg-gray-100': !isSelected },
+              { 'cursor-not-allowed': node.disabled },
+              { 'cursor-pointer': !node.disabled }
          ]"
          @click="onNodeClick">
       <button v-if="showExpandIcon"
@@ -36,6 +38,7 @@
                       v-model="nodeChecked"
                       size="small"
                       :value="node.value"
+                      :disabled="node.disabled"
                       :indeterminate="cascade && isIndeterminate"/>
 
       <slot name="label"
@@ -140,8 +143,10 @@ const onExpand = async (event: Event) => {
 const onChildExpand = (node: TreeNode) => emit('on-expand', node)
 
 const onNodeClick = () => {
-  if (!props.checkable) {
-    emit('on-node-click', props.node)
+  if (!props.node.disabled) {
+    if (!props.checkable) {
+      emit('on-node-click', props.node)
+    }
   }
 }
 

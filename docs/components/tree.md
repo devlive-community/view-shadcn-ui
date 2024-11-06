@@ -280,6 +280,56 @@ const loadNodeData = async (node: any): Promise<any[]> => {
 
 :::
 
+## Disabled
+
+::: raw
+
+<CodeRunner title="Disabled">
+    Value: {{ disabledValue }}
+    <ShadcnTree v-model="disabledValue" :data="disabledData"/>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnTree v-model="value" :data="data"/>
+</template>
+
+<script setup lang="ts">
+import { reactive, ref } from "vue"
+const value = ref([])
+const data = reactive([
+  {
+    value: 1,
+    label: 'Parent Node 1',
+    children: [
+      { value: '1.1', label: 'Child Node 1.1' },
+      {
+        value: '1.2',
+        label: 'Child Node 1.2',
+        children: [
+          { value: '1.2.1', label: 'Child Node 1.2.1' }
+        ]
+      }
+    ]
+  },
+  {
+    value: 2,
+    label: 'Parent Node 2',
+    disabled: true,
+    children: [
+      { value: '2.1', label: 'Child Node 2.1' }
+    ]
+  }
+])
+</script>
+```
+
+:::
+
 ## Label Slot
 
 ::: raw
@@ -454,6 +504,7 @@ export default {
             cascadeValue: [],
             customValue: [],
             lazyValue: ref([]),
+            disabledValue: [],
             data: [
                   {
                     value: 1,
@@ -476,7 +527,31 @@ export default {
                       {value: 6, label: 'Child Node 2.1'}
                     ]
                   }
-                ]
+                ],
+            disabledData: [
+                              {
+                                value: 1,
+                                label: 'Parent Node 1',
+                                children: [
+                                  { value: '1.1', label: 'Child Node 1.1' },
+                                  {
+                                    value: '1.2',
+                                    label: 'Child Node 1.2',
+                                    children: [
+                                      { value: '1.2.1', label: 'Child Node 1.2.1' }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                value: 2,
+                                label: 'Parent Node 2',
+                                disabled: true,
+                                children: [
+                                  { value: '2.1', label: 'Child Node 2.1' }
+                                ]
+                              }
+                            ]
         }
     },
     methods: {

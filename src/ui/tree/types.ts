@@ -4,6 +4,7 @@ export interface TreeNode
     value?: any
     children: TreeNode[]
     isLeaf?: boolean
+    disabled?: boolean
 }
 
 export interface TreeProps
