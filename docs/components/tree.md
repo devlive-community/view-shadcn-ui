@@ -23,13 +23,12 @@ This document is mainly used to describe some features and usage of the ShadcnTr
 ::: details Show code
 
 ```vue
-
 <template>
   <ShadcnTree v-model="value" :data="data"/>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref } from "vue"
 const value = ref([])
 const data = [
     {
@@ -82,35 +81,84 @@ console.log('Click Node:', node)
 
 ```vue
 <template>
-  <ShadcnTree v-model="multipleValue" multiple :data="data"/>
+  <ShadcnTree v-model="value" multiple :data="data"/>
 </template>
 
 <script setup>
-import { ref } from "vue";
-const multipleValue = ref([])
+import { ref } from "vue"
+const value = ref([])
 const data = [
-  {
-    value: 1,
-    label: 'Parent Node 1',
-    children: [
-      {value: 2, label: 'Child Node 1.1'},
-      {
-        value: 3,
-        label: 'Child Node 1.2',
-        children: [
-          {value: 4, label: 'Child Node 1.2.1'}
-        ]
-      }
-    ]
-  },
-  {
-    value: 5,
-    label: 'Parent Node 2',
-    children: [
-      {value: 6, label: 'Child Node 2.1'}
-    ]
-  }
-]
+    {
+      value: 1,
+      label: 'Parent Node 1',
+      children: [
+        {value: 2, label: 'Child Node 1.1'},
+        {
+          value: 3,
+          label: 'Child Node 1.2',
+          children: [
+            {value: 4, label: 'Child Node 1.2.1'}
+          ]
+        }
+      ]
+    },
+    {
+      value: 5,
+      label: 'Parent Node 2',
+      children: [
+        {value: 6, label: 'Child Node 2.1'}
+      ]
+    }
+  ]
+</script>
+```
+
+:::
+
+## Checkable
+
+::: raw
+
+<CodeRunner title="Checkable">
+    Value: {{ checkableValue }}
+    <ShadcnTree v-model="checkableValue" multiple checkable :data="data"/>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnTree v-model="value" multiple checkable :data="data"/>
+</template>
+
+<script setup>
+import { ref } from "vue"
+const value = ref([])
+const data = [
+    {
+      value: 1,
+      label: 'Parent Node 1',
+      children: [
+        {value: 2, label: 'Child Node 1.1'},
+        {
+          value: 3,
+          label: 'Child Node 1.2',
+          children: [
+            {value: 4, label: 'Child Node 1.2.1'}
+          ]
+        }
+      ]
+    },
+    {
+      value: 5,
+      label: 'Parent Node 2',
+      children: [
+        {value: 6, label: 'Child Node 2.1'}
+      ]
+    }
+  ]
 </script>
 ```
 
@@ -121,9 +169,10 @@ const data = [
 <ApiTable title="Tree Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
     :columns="[
-        ['modelValue', 'Tree value', 'array', '[]', ''],
-        ['data', 'Tree data', 'array', '[]', ''],
+        ['modelValue', 'Tree value', 'array', '\[\]', ''],
+        ['data', 'Tree data', 'array', '\[\]', ''],
         ['multiple', 'Multiple mode', 'boolean', 'false', ''],
+        ['checkable', 'Checkable mode', 'boolean', 'false', ''],
     ]">
 </ApiTable>
 
@@ -143,6 +192,7 @@ export default {
         return {
             basicValue: [],
             multipleValue: [],
+            checkableValue: [1],
             data: [
                   {
                     value: 1,

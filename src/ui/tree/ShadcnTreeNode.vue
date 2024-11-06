@@ -4,10 +4,10 @@
               { 'bg-gray-200': isSelected },
               { 'hover:bg-gray-100': !isSelected }
          ]"
-         @click="handleNodeClick">
+         @click="onNodeClick">
       <button v-if="hasChildren"
               class="w-4 h-4 flex items-center justify-center mr-2 text-gray-500 hover:text-gray-700"
-              @click.stop="handleExpand">
+              @click.stop="onExpand">
         <svg xmlns="http://www.w3.org/2000/svg"
              viewBox="0 0 20 20"
              fill="currentColor"
@@ -20,6 +20,8 @@
 
       <span v-else class="w-6"></span>
 
+      <ShadcnCheckbox v-if="checkable" v-model="nodeChecked" size="small" :value="node.value"/>
+
       <span class="text-sm">{{ node.label }}</span>
     </div>
 
@@ -29,44 +31,58 @@
                       :node="child"
                       :level="level + 1"
                       :selected-values="selectedValues"
-                      @on-expand="handleChildExpand"
-                      @on-node-click="handleChildClick"/>
+                      :checkable="checkable"
+                      @on-expand="onChildExpand"
+                      @on-node-click="onChildNodeClick"/>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { TreeNode, TreeNodeEmits, TreeNodeProps } from './types'
+import ShadcnCheckbox from '@/ui/checkbox'
 
 const emit = defineEmits<TreeNodeEmits>()
 const props = withDefaults(defineProps<TreeNodeProps>(), {
-  selectedValues: () => []
+  selectedValues: () => [],
+  checkable: false
 })
 
 const isExpanded = ref(false)
 const hasChildren = computed(() => props.node.children && props.node.children.length > 0)
 const isSelected = computed(() => props.selectedValues.includes(props.node.value))
 
-// Handle expand/collapse events
-const handleExpand = (event: Event) => {
+const nodeChecked = computed({
+  get()
+  {
+    return props.selectedValues.includes(props.node.value) ? props.node.value : ''
+  },
+  set()
+  {
+    emit('on-node-click', props.node)
+  }
+})
+
+watch(() => props.selectedValues, (newValues) => {
+  if (newValues.includes(props.node.value) && hasChildren.value) {
+    isExpanded.value = true
+  }
+}, { immediate: true })
+
+const onExpand = (event: Event) => {
   event.stopPropagation()
   isExpanded.value = !isExpanded.value
   emit('on-expand', props.node)
 }
 
-// Handle node click events
-const handleNodeClick = () => {
-  emit('on-node-click', props.node)
+const onChildExpand = (node: TreeNode) => emit('on-expand', node)
+
+const onNodeClick = () => {
+  if (!props.checkable) {
+    emit('on-node-click', props.node)
+  }
 }
 
-// Handles expand/collapse events for child nodes
-const handleChildExpand = (node: TreeNode) => {
-  emit('on-expand', node)
-}
-
-// Handle click events for child nodes
-const handleChildClick = (node: TreeNode) => {
-  emit('on-node-click', node)
-}
+const onChildNodeClick = (node: TreeNode) => emit('on-node-click', node)
 </script>

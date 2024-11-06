@@ -5,6 +5,7 @@
                     :node="item"
                     :level="0"
                     :selected-values="modelValue"
+                    :checkable="checkable"
                     @on-expand="handleExpand"
                     @on-node-click="handleNodeClick"/>
   </div>
@@ -28,9 +29,7 @@ watch(() => props.modelValue, (newValue) => {
   selectedNode.value = newValue ?? []
 })
 
-const handleExpand = (node: TreeNode) => {
-  emit('on-expand', node)
-}
+const handleExpand = (node: TreeNode) => emit('on-expand', node)
 
 const handleNodeClick = (node: TreeNode) => {
   const index = props.modelValue.indexOf(node.value)
