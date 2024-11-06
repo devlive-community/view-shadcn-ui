@@ -1,6 +1,9 @@
 <template>
-  <div :class="['relative', `pl-${level * 4}`]">
-    <div class="flex items-center py-1 px-1.5 hover:bg-gray-100 rounded-lg cursor-pointer"
+  <div :class="['relative py-0.5', `pl-${level * 4}`]">
+    <div :class="['flex items-center py-0.5 px-1.5 rounded-sm cursor-pointer',
+              { 'bg-gray-200': isSelected },
+              { 'hover:bg-gray-100': !isSelected }
+         ]"
          @click="handleNodeClick">
       <button v-if="hasChildren"
               class="w-4 h-4 flex items-center justify-center mr-2 text-gray-500 hover:text-gray-700"
@@ -25,6 +28,7 @@
                       :key="child.value"
                       :node="child"
                       :level="level + 1"
+                      :selected-values="selectedValues"
                       @on-expand="handleChildExpand"
                       @on-node-click="handleChildClick"/>
     </div>
@@ -35,14 +39,14 @@
 import { computed, ref } from 'vue'
 import { TreeNode, TreeNodeEmits, TreeNodeProps } from './types'
 
-const props = defineProps<TreeNodeProps>()
 const emit = defineEmits<TreeNodeEmits>()
+const props = withDefaults(defineProps<TreeNodeProps>(), {
+  selectedValues: () => []
+})
 
 const isExpanded = ref(false)
-
-const hasChildren = computed(() => {
-  return props.node.children && props.node.children.length > 0
-})
+const hasChildren = computed(() => props.node.children && props.node.children.length > 0)
+const isSelected = computed(() => props.selectedValues.includes(props.node.value))
 
 // Handle expand/collapse events
 const handleExpand = (event: Event) => {

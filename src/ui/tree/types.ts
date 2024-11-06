@@ -7,7 +7,7 @@ export interface TreeNode
 
 export interface TreeProps
 {
-    modelValue?: TreeNode
+    modelValue?: string[]
     data?: TreeNode[]
 }
 
@@ -15,6 +15,7 @@ export interface TreeNodeProps
 {
     node: TreeNode
     level: number
+    selectedValues?: []
 }
 
 export type TreeEmits = {
