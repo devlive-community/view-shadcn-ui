@@ -144,4 +144,7 @@ features:
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/number.svg" />
     title: <a href='number.html'>Shadcn Number <span class="VPBadge tip">2024.3.0</span></a>
     details: Number component
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/tree.svg" />
+    title: <a href='tree.html'>Shadcn Tree <span class="VPBadge tip">2024.3.0</span></a>
+    details: Tree component
 ---
