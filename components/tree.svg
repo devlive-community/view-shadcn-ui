@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- Define gradient -->
+    <defs>
+        <linearGradient id="treeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#93c5fd;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#a5b4fc;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="80" fill="url(#treeGradient)" />
+
+    <!-- Tree root -->
+    <circle cx="100" cy="80" r="8" fill="white" />
+
+    <!-- First level branches -->
+    <line x1="100" y1="80" x2="70" y2="110" stroke="white" stroke-width="4" />
+    <line x1="100" y1="80" x2="130" y2="110" stroke="white" stroke-width="4" />
+
+    <!-- Second level branches -->
+    <line x1="70" y1="110" x2="60" y2="140" stroke="white" stroke-width="4" />
+    <line x1="70" y1="110" x2="80" y2="140" stroke="white" stroke-width="4" />
+    <line x1="130" y1="110" x2="120" y2="140" stroke="white" stroke-width="4" />
+    <line x1="130" y1="110" x2="140" y2="140" stroke="white" stroke-width="4" />
+
+    <!-- Tree nodes -->
+    <circle cx="70" cy="110" r="6" fill="#a5b4fc" />
+    <circle cx="130" cy="110" r="6" fill="#a5b4fc" />
+    <circle cx="60" cy="140" r="6" fill="#60a5fa" />
+    <circle cx="80" cy="140" r="6" fill="#60a5fa" />
+    <circle cx="120" cy="140" r="6" fill="#60a5fa" />
+    <circle cx="140" cy="140" r="6" fill="#60a5fa" />
+</svg>
