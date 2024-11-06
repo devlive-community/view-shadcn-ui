@@ -13,6 +13,14 @@
       <template #label="slotProps">
         <slot name="label" v-bind="slotProps"/>
       </template>
+
+      <template #expand="slotProps">
+        <slot name="expand" v-bind="slotProps"/>
+      </template>
+
+      <template #collapse="slotProps">
+        <slot name="collapse" v-bind="slotProps"/>
+      </template>
     </ShadcnTreeNode>
   </div>
 </template>

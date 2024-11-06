@@ -21,18 +21,22 @@
           <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
         </svg>
         <!-- Expand/collapse arrow -->
-        <svg v-else
-             xmlns="http://www.w3.org/2000/svg"
-             viewBox="0 0 20 20"
-             fill="currentColor"
-             :class="['w-4 h-4 transition-transform', { 'rotate-90': isExpanded }]">
-          <path fill-rule="evenodd"
-                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                clip-rule="evenodd"/>
-        </svg>
+        <div v-else>
+          <slot v-if="!isExpanded" name="expand">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 transition-transform">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+            </svg>
+          </slot>
+
+          <slot v-else name="collapse">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 transition-transform rotate-90">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+            </svg>
+          </slot>
+        </div>
       </button>
 
-      <span v-else class="w-6"></span>
+      <span v-else class="w-6"/>
 
       <ShadcnCheckbox v-if="checkable"
                       v-model="nodeChecked"
@@ -62,6 +66,14 @@
                       @on-node-click="onChildNodeClick">
         <template #label="slotProps">
           <slot name="label" v-bind="slotProps"/>
+        </template>
+
+        <template #expand="slotProps">
+          <slot name="expand" v-bind="slotProps"/>
+        </template>
+
+        <template #collapse="slotProps">
+          <slot name="collapse" v-bind="slotProps"/>
         </template>
       </ShadcnTreeNode>
     </div>

@@ -6,7 +6,11 @@
                   v-model="checkValue"
                   multiple
                   checkable
-                  :data="data"/>
+                  :data="data">
+        <template #expand>O</template>
+
+        <template #collapse>C</template>
+      </ShadcnTree>
     </ShadcnCard>
   </div>
 </template>
