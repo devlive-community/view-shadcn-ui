@@ -70,6 +70,7 @@ import ShadcnHighlight from '@/ui/highlight'
 import ShadcnDropdown from '@/ui/dropdown'
 import ShadcnDropdownItem from '@/ui/dropdown/item'
 import ShadcnNumber from '@/ui/number'
+import ShadcnTree from '@/ui/tree'
 
 let components = [
     ShadcnButton,
@@ -138,7 +139,8 @@ let components = [
     ShadcnHighlight,
     ShadcnDropdown,
     ShadcnDropdownItem,
-    ShadcnNumber
+    ShadcnNumber,
+    ShadcnTree
 ]
 
 const install = (Vue: App) => {
@@ -231,6 +233,7 @@ export { default as ShadcnHighlight } from '@/ui/highlight'
 export { default as ShadcnDropdown } from '@/ui/dropdown'
 export { default as ShadcnDropdownItem } from '@/ui/dropdown/item'
 export { default as ShadcnNumber } from '@/ui/number'
+export { default as ShadcnTree } from '@/ui/tree'
 
 // Support global import
 export default install

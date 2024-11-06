@@ -1,20 +1,41 @@
 <template>
-  <div class="p-32 space-y-2">
-    Value: {{ value }}
-    <ShadcnNumber v-model="value" clearable placeholder="Enter Number"/>
-    <ShadcnNumber v-model="value" placeholder="Enter Number">
-      <template #add>
-        <div class="text-gray-300 w-4 h-4 m-1 flex items-center justify-center">A</div>
-      </template>
-      <template #minus>
-        <div class="text-gray-300 w-4 h-4 m-1 flex items-center justify-center">M</div>
-      </template>
-    </ShadcnNumber>
+  <div class="p-4">
+    <ShadcnTree :data="data"
+                @on-expand="onExpand"
+                @on-node-click="onNodeClick"/>
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue'
+<script setup>
+const data = [
+  {
+    value: 1,
+    label: 'Parent Node 1',
+    children: [
+      {value: 2, label: 'Child Node 1.1'},
+      {
+        value: 3,
+        label: 'Child Node 1.2',
+        children: [
+          {value: 4, label: 'Child Node 1.2.1'}
+        ]
+      }
+    ]
+  },
+  {
+    value: 5,
+    label: 'Parent Node 2',
+    children: [
+      {value: 6, label: 'Child Node 2.1'}
+    ]
+  }
+]
 
-const value = ref()
+const onExpand = (node) => {
+  console.log('Expand Node:', node)
+}
+
+const onNodeClick = (node) => {
+  console.log('Click Node:', node)
+}
 </script>
