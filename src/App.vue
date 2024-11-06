@@ -1,70 +1,39 @@
 <template>
   <div class="p-4 space-y-2">
-    <ShadcnCard title="Single">
-      Value: {{ singleValue }}
-      <ShadcnTree v-model="singleValue" :data="data"/>
-    </ShadcnCard>
-
-    <ShadcnCard title="Multiple">
-      Value: {{ multipleValue }}
-      <ShadcnTree v-model="multipleValue"
-                  multiple
-                  :data="data"/>
-    </ShadcnCard>
-
     <ShadcnCard title="Checkbox">
       Value: {{ checkValue }}
-      <ShadcnTree v-model="checkValue"
+      <ShadcnTree key="checkbox-tree"
+                  v-model="checkValue"
                   multiple
                   checkable
-                  :data="data"/>
-    </ShadcnCard>
-
-    <ShadcnCard title="Cascade">
-      Value: {{ cascadeValue }}
-      <ShadcnTree v-model="cascadeValue"
-                  checkable
-                  cascade
-                  :data="data"/>
-    </ShadcnCard>
-
-    <ShadcnCard title="Custom Node Slot">
-      Value: {{ customValue }}
-      <ShadcnTree v-model="customValue"
-                  checkable
-                  cascade
+                  show-line
                   :data="data">
-        <template #label="{ node }">
-          <div class="flex items-center gap-2">
-            <span class="text-sm font-medium">{{ node.label }}</span>
-            <span class="text-xs text-gray-500">({{ node.value }})</span>
-          </div>
-        </template>
+        <template #expand>O</template>
+
+        <template #collapse>C</template>
       </ShadcnTree>
     </ShadcnCard>
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
+<script setup lang="ts">
+import { reactive, ref } from 'vue'
 
-const singleValue = ref([])
-const multipleValue = ref([])
 const checkValue = ref(['1.2.1'])
-const cascadeValue = ref(['1.2.1'])
-const customValue = ref([])
-
-const data = [
+const data = reactive([
   {
     value: 1,
     label: 'Parent Node 1',
     children: [
-      {value: '1.1', label: 'Child Node 1.1'},
+      { value: '1.1', label: 'Child Node 1.1' },
+      { value: '1.11', label: 'Child Node 1.11' },
+      { value: '1.12', label: 'Child Node 1.12' },
+      { value: '1.13', label: 'Child Node 1.13' },
       {
         value: '1.2',
         label: 'Child Node 1.2',
         children: [
-          {value: '1.2.1', label: 'Child Node 1.2.1'}
+          { value: '1.2.1', label: 'Child Node 1.2.1' }
         ]
       }
     ]
@@ -72,9 +41,10 @@ const data = [
   {
     value: 2,
     label: 'Parent Node 2',
+    disabled: true,
     children: [
-      {value: '2.1', label: 'Child Node 2.1'}
+      { value: '2.1', label: 'Child Node 2.1' }
     ]
   }
-]
+])
 </script>
