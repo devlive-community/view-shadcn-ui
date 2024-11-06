@@ -7,8 +7,9 @@
                     :selected-values="modelValue"
                     :checkable="checkable"
                     :cascade="cascade"
-                    @on-expand="handleExpand"
-                    @on-node-click="handleNodeClick">
+                    :loadData="loadData"
+                    @on-expand="onExpand"
+                    @on-node-click="onNodeClick">
       <template #label="slotProps">
         <slot name="label" v-bind="slotProps"/>
       </template>
@@ -27,7 +28,8 @@ const props = withDefaults(defineProps<TreeProps>(), {
   modelValue: () => [],
   multiple: false,
   checkable: false,
-  cascade: false
+  cascade: false,
+  loadData: undefined
 })
 
 const selectedNode = ref<any[]>([])
@@ -36,7 +38,7 @@ watch(() => props.modelValue, (newValue) => {
   selectedNode.value = newValue ?? []
 })
 
-const handleExpand = (node: TreeNode) => emit('on-expand', node)
+const onExpand = (node: TreeNode) => emit('on-expand', node)
 
 // Recursively gets the values of all child nodes
 const getAllChildrenValues = (node: TreeNode): any[] => {
@@ -88,7 +90,7 @@ const areAllChildrenSelected = (node: TreeNode, selectedValues: any[]): boolean 
   })
 }
 
-const handleNodeClick = (node: TreeNode) => {
+const onNodeClick = (node: TreeNode) => {
   if (!props.checkable) {
     const index = props.modelValue.indexOf(node.value)
     let updatedValues: any[]

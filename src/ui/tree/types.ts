@@ -3,6 +3,7 @@ export interface TreeNode
     label: string
     value?: any
     children: TreeNode[]
+    isLeaf?: boolean
 }
 
 export interface TreeProps
@@ -12,6 +13,7 @@ export interface TreeProps
     multiple?: boolean
     checkable?: boolean
     cascade?: boolean
+    loadData?: (node: TreeNode) => Promise<TreeNode[]>
 }
 
 export interface TreeNodeProps
@@ -21,15 +23,18 @@ export interface TreeNodeProps
     selectedValues?: any[]
     checkable?: boolean
     cascade?: boolean
+    loadData?: (node: TreeNode) => Promise<TreeNode[]>
 }
 
 export type TreeEmits = {
-    'update:modelValue': [nodes: TreeNode[]]
-    'on-expand': [node: TreeNode]
-    'on-node-click': [node: TreeNode]
+    (e: 'update:modelValue', value: any[]): void
+    (e: 'on-expand', node: TreeNode): void
+    (e: 'on-node-click', node: TreeNode): void
+    (e: 'on-load', node: TreeNode): void
 }
 
 export type TreeNodeEmits = {
-    'on-expand': [node: TreeNode]
-    'on-node-click': [node: TreeNode]
+    (e: 'on-expand', node: TreeNode): void
+    (e: 'on-node-click', node: TreeNode): void
+    (e: 'on-load', node: TreeNode): void
 }

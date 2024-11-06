@@ -1,20 +1,36 @@
+# Example.vue
 <template>
   <div class="p-4 space-y-2">
+    <ShadcnCard title="Lazy load node">
+      Value: {{ lazyValue }}
+      <ShadcnTree key="lazy-tree"
+                  v-model="lazyValue"
+                  multiple
+                  checkable
+                  cascade
+                  :data="lazyData"
+                  :loadData="loadNodeData"/>
+    </ShadcnCard>
+
     <ShadcnCard title="Single">
       Value: {{ singleValue }}
-      <ShadcnTree v-model="singleValue" :data="data"/>
+      <ShadcnTree key="single-tree"
+                  v-model="singleValue"
+                  :data="data"/>
     </ShadcnCard>
 
     <ShadcnCard title="Multiple">
       Value: {{ multipleValue }}
-      <ShadcnTree v-model="multipleValue"
+      <ShadcnTree key="multiple-tree"
+                  v-model="multipleValue"
                   multiple
                   :data="data"/>
     </ShadcnCard>
 
     <ShadcnCard title="Checkbox">
       Value: {{ checkValue }}
-      <ShadcnTree v-model="checkValue"
+      <ShadcnTree key="checkbox-tree"
+                  v-model="checkValue"
                   multiple
                   checkable
                   :data="data"/>
@@ -22,7 +38,8 @@
 
     <ShadcnCard title="Cascade">
       Value: {{ cascadeValue }}
-      <ShadcnTree v-model="cascadeValue"
+      <ShadcnTree key="cascade-tree"
+                  v-model="cascadeValue"
                   checkable
                   cascade
                   :data="data"/>
@@ -30,7 +47,8 @@
 
     <ShadcnCard title="Custom Node Slot">
       Value: {{ customValue }}
-      <ShadcnTree v-model="customValue"
+      <ShadcnTree key="custom-tree"
+                  v-model="customValue"
                   checkable
                   cascade
                   :data="data">
@@ -45,26 +63,44 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
+<script setup lang="ts">
+import { reactive, ref } from 'vue'
+import { TreeNode } from '@/ui/tree/types.ts'
 
 const singleValue = ref([])
 const multipleValue = ref([])
 const checkValue = ref(['1.2.1'])
 const cascadeValue = ref(['1.2.1'])
 const customValue = ref([])
+const lazyValue = ref([])
 
-const data = [
+const lazyData = reactive<TreeNode[]>([
+  {
+    value: 1,
+    label: 'Parent Node 1',
+    isLeaf: false,
+    children: []
+  },
+  {
+    value: 2,
+    label: 'Parent Node 2',
+    children: [
+      { value: '2.1', label: 'Child Node 2.1', children: [] }
+    ]
+  }
+])
+
+const data = reactive([
   {
     value: 1,
     label: 'Parent Node 1',
     children: [
-      {value: '1.1', label: 'Child Node 1.1'},
+      { value: '1.1', label: 'Child Node 1.1' },
       {
         value: '1.2',
         label: 'Child Node 1.2',
         children: [
-          {value: '1.2.1', label: 'Child Node 1.2.1'}
+          { value: '1.2.1', label: 'Child Node 1.2.1' }
         ]
       }
     ]
@@ -73,8 +109,35 @@ const data = [
     value: 2,
     label: 'Parent Node 2',
     children: [
-      {value: '2.1', label: 'Child Node 2.1'}
+      { value: '2.1', label: 'Child Node 2.1' }
     ]
   }
-]
+])
+
+const generateChildNodes = (parentValue: string, level: number = 1, maxLevel: number = 3): TreeNode[] => {
+  if (level >= maxLevel) {
+    return []
+  }
+
+  const count = Math.floor(Math.random() * 3) + 1
+  return Array.from({ length: count }, (_, index) => {
+    const value = `${ parentValue }.${ index + 1 }`
+    return {
+      value,
+      label: `Node ${ value }`,
+      isLeaf: level === maxLevel - 1,
+      children: []
+    }
+  })
+}
+
+const loadNodeData = async (node: TreeNode): Promise<TreeNode[]> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const level = 0
+      const children = generateChildNodes(node.value, level)
+      resolve(children)
+    }, 1000)
+  })
+}
 </script>

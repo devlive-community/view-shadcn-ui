@@ -16,7 +16,7 @@
         <tbody>
         <tr v-for="(column, rowIndex) in columns" :key="rowIndex">
           <td v-for="(value, colIndex) in column" :key="colIndex" class="p-2">
-            {{ value }}
+            <span v-html="value"/>
           </td>
         </tr>
         </tbody>

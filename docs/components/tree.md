@@ -213,6 +213,73 @@ const data = [
 
 :::
 
+## Lazy Data
+
+::: raw
+
+<CodeRunner title="Lazy Data">
+    Value: {{ lazyValue }}
+    <ShadcnTree v-model="lazyValue" checkable cascade :data="lazyData" :loadData="loadNodeData"/>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnTree v-model="value" checkable cascade :data="data" :loadData="loadNodeData"/>
+</template>
+
+<script setup lang="ts">
+import { reactive, ref } from "vue"
+const value = ref([])
+const data = reactive<[]>([
+  {
+    value: 1,
+    label: 'Parent Node 1',
+    isLeaf: false,
+    children: []
+  },
+  {
+    value: 2,
+    label: 'Parent Node 2',
+    children: [
+      { value: '2.1', label: 'Child Node 2.1', children: [] }
+    ]
+  }
+])
+
+const generateChildNodes = (parentValue: string, level: number = 1, maxLevel: number = 3): TreeNode[] => {
+  if (level >= maxLevel) {
+    return []
+  }
+
+  const count = Math.floor(Math.random() * 3) + 1
+  return Array.from({ length: count }, (_, index) => {
+    const value = `${ parentValue }.${ index + 1 }`
+    return {
+      value,
+      label: `Node ${ value }`,
+      isLeaf: level === maxLevel - 1,
+      children: []
+    }
+  })
+}
+const loadNodeData = async (node: any): Promise<any[]> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const level = 0
+      const children = generateChildNodes(node.value, level)
+      resolve(children)
+    }, 1000)
+  })
+}
+</script>
+```
+
+:::
+
 ## Label Slot
 
 ::: raw
@@ -285,13 +352,26 @@ const data = [
 ## Props
 
 <ApiTable title="Tree Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
     :columns="[
-        ['modelValue', 'Tree value', 'array', '\[\]', ''],
-        ['data', 'Tree data', 'array', '\[\]', ''],
-        ['multiple', 'Multiple mode', 'boolean', 'false', ''],
-        ['checkable', 'Checkable mode', 'boolean', 'false', ''],
-        ['cascade', 'Cascade mode, only works when checkable is true, if cascade is true, checkable become true, single mode is inworked', 'boolean', 'false', ''],
+        ['modelValue', 'Tree value', 'array', '\[\]'],
+        ['data', 'Tree data', 'array', '\[\]'],
+        ['multiple', 'Multiple mode', 'boolean', 'false'],
+        ['checkable', 'Checkable mode', 'boolean', 'false'],
+        ['cascade', 'Cascade mode, only works when checkable is true, if cascade is true, checkable become true, single mode is inworked', 'boolean', 'false'],
+        ['loadData', 'Load data function, only works when <strong>item.isLeaf</strong> is <strong>false</strong>', 'function', 'undefined'],
+    ]">
+</ApiTable>
+
+<br />
+
+<ApiTable title="Tree Node Props"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :columns="[
+        ['value', 'Tree node value', 'string', ''],
+        ['label', 'Tree node label', 'string', ''],
+        ['children', 'Tree node children', 'array', '\[\]'],
+        ['isLeaf', 'Whether the tree node is leaf', 'boolean', 'false'],
     ]">
 </ApiTable>
 
@@ -314,8 +394,58 @@ const data = [
     ]">
 </ApiTable>
 
-<script>
+<script lang="ts">
+import { reactive, ref } from 'vue'
+
 export default {
+    setup() {
+        const lazyData = reactive<[]>([
+  {
+    value: 1,
+    label: 'Parent Node 1',
+    isLeaf: false,
+    children: []
+  },
+  {
+    value: 2,
+    label: 'Parent Node 2',
+    children: [
+      { value: '2.1', label: 'Child Node 2.1', children: [] }
+    ]
+  }
+])
+        const generateChildNodes = (parentValue: string, level: number = 1, maxLevel: number = 3): TreeNode[] => {
+          if (level >= maxLevel) {
+            return []
+          }
+        
+          const count = Math.floor(Math.random() * 3) + 1
+          return Array.from({ length: count }, (_, index) => {
+            const value = `${ parentValue }.${ index + 1 }`
+            return {
+              value,
+              label: `Node ${ value }`,
+              isLeaf: level === maxLevel - 1,
+              children: []
+            }
+          })
+        }
+        const loadNodeData = async (node: TreeNode): Promise<TreeNode[]> => {
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              const level = 0
+              const children = generateChildNodes(node.value, level)
+              console.log('Generated children for node', node.value, ':', children)
+              resolve(children)
+            }, 1000)
+          })
+        }
+
+        return {
+            lazyData,
+            loadNodeData
+        }
+    },
     data() {
         return {
             basicValue: [],
@@ -323,6 +453,7 @@ export default {
             checkableValue: [1],
             cascadeValue: [],
             customValue: [],
+            lazyValue: ref([]),
             data: [
                   {
                     value: 1,

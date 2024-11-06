@@ -44,8 +44,6 @@ const sizeClass = computed(() => {
   return ButtonSize[props.size]
 })
 
-console.log(sizeClass.value)
-
 // Provide size to child buttons
 provide('buttonGroupSize', computed(() => props.size))
 </script>
