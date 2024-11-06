@@ -2,6 +2,7 @@
   <div class="p-4">
     Value: {{ value }}
     <ShadcnTree v-model="value"
+                multiple
                 :data="data"
                 @on-expand="onExpand"
                 @on-node-click="onNodeClick"/>

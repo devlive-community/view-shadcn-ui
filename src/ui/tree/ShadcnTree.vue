@@ -17,14 +17,16 @@ import ShadcnTreeNode from './ShadcnTreeNode.vue'
 
 const emit = defineEmits<TreeEmits>()
 const props = withDefaults(defineProps<TreeProps>(), {
-  data: () => []
+  data: () => [],
+  modelValue: () => [],
+  multiple: false
 })
+
+const selectedNode = ref<any[]>([])
 
 watch(() => props.modelValue, (newValue) => {
-  selectedNode.value = newValue
+  selectedNode.value = newValue ?? []
 })
-
-const selectedNode = ref<TreeNode | null>(null)
 
 const handleExpand = (node: TreeNode) => {
   emit('on-expand', node)
@@ -34,7 +36,12 @@ const handleNodeClick = (node: TreeNode) => {
   const index = props.modelValue.indexOf(node.value)
   let updatedValues: any[]
   if (index === -1) {
-    updatedValues = [node.value]
+    if (!props.multiple) {
+      updatedValues = [node.value]
+    }
+    else {
+      updatedValues = [...props.modelValue, node.value]
+    }
   }
   else {
     updatedValues = props.modelValue.slice()
