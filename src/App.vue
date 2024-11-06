@@ -21,10 +21,26 @@
     </ShadcnCard>
 
     <ShadcnCard title="Cascade">
+      Value: {{ cascadeValue }}
       <ShadcnTree v-model="cascadeValue"
                   checkable
                   cascade
                   :data="data"/>
+    </ShadcnCard>
+
+    <ShadcnCard title="Custom Node Slot">
+      Value: {{ customValue }}
+      <ShadcnTree v-model="customValue"
+                  checkable
+                  cascade
+                  :data="data">
+        <template #label="{ node }">
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-medium">{{ node.label }}</span>
+            <span class="text-xs text-gray-500">({{ node.value }})</span>
+          </div>
+        </template>
+      </ShadcnTree>
     </ShadcnCard>
   </div>
 </template>
@@ -36,6 +52,7 @@ const singleValue = ref([])
 const multipleValue = ref([])
 const checkValue = ref(['1.2.1'])
 const cascadeValue = ref(['1.2.1'])
+const customValue = ref([])
 
 const data = [
   {

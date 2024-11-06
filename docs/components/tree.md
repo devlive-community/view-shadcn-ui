@@ -213,6 +213,75 @@ const data = [
 
 :::
 
+## Label Slot
+
+::: raw
+
+<CodeRunner title="Label Slot">
+      Value: {{ customValue }}
+      <ShadcnTree v-model="customValue"
+                  checkable
+                  cascade
+                  :data="data">
+        <template #label="{ node }">
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-medium">{{ node.label }}</span>
+            <span class="text-xs text-gray-500">({{ node.value }})</span>
+          </div>
+        </template>
+      </ShadcnTree>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnTree v-model="value"
+              checkable
+              cascade
+              :data="data">
+    <template #label="{ node }">
+      <div class="flex items-center gap-2">
+        <span class="text-sm font-medium">{{ node.label }}</span>
+        <span class="text-xs text-gray-500">({{ node.value }})</span>
+      </div>
+    </template>
+  </ShadcnTree>
+</template>
+
+<script setup>
+import { ref } from "vue"
+const value = ref([])
+const data = [
+    {
+      value: 1,
+      label: 'Parent Node 1',
+      children: [
+        {value: 2, label: 'Child Node 1.1'},
+        {
+          value: 3,
+          label: 'Child Node 1.2',
+          children: [
+            {value: 4, label: 'Child Node 1.2.1'}
+          ]
+        }
+      ]
+    },
+    {
+      value: 5,
+      label: 'Parent Node 2',
+      children: [
+        {value: 6, label: 'Child Node 2.1'}
+      ]
+    }
+  ]
+</script>
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Tree Props"
@@ -223,6 +292,15 @@ const data = [
         ['multiple', 'Multiple mode', 'boolean', 'false', ''],
         ['checkable', 'Checkable mode', 'boolean', 'false', ''],
         ['cascade', 'Cascade mode, only works when checkable is true, if cascade is true, checkable become true, single mode is inworked', 'boolean', 'false', ''],
+    ]">
+</ApiTable>
+
+## Slots
+
+<ApiTable title="Tree Slots"
+    :headers="['Slot', 'Description']"
+    :columns="[
+        ['label', 'Tree label'],
     ]">
 </ApiTable>
 
@@ -244,6 +322,7 @@ export default {
             multipleValue: [],
             checkableValue: [1],
             cascadeValue: [],
+            customValue: [],
             data: [
                   {
                     value: 1,

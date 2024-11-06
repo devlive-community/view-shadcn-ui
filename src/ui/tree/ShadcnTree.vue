@@ -8,7 +8,11 @@
                     :checkable="checkable"
                     :cascade="cascade"
                     @on-expand="handleExpand"
-                    @on-node-click="handleNodeClick"/>
+                    @on-node-click="handleNodeClick">
+      <template #label="slotProps">
+        <slot name="label" v-bind="slotProps"/>
+      </template>
+    </ShadcnTreeNode>
   </div>
 </template>
 

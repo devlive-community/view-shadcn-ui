@@ -26,7 +26,13 @@
                       :value="node.value"
                       :indeterminate="cascade && isIndeterminate"/>
 
-      <span class="text-sm">{{ node.label }}</span>
+      <!-- Use scoped slots to customize the node contents -->
+      <slot name="label"
+            :node="node"
+            :level="level"
+            :is-selected="isSelected">
+        <span class="text-sm">{{ node.label }}</span>
+      </slot>
     </div>
 
     <div v-if="hasChildren && isExpanded" class="relative">
@@ -38,7 +44,12 @@
                       :checkable="checkable"
                       :cascade="cascade"
                       @on-expand="onChildExpand"
-                      @on-node-click="onChildNodeClick"/>
+                      @on-node-click="onChildNodeClick">
+        <!-- Pass the parent component's label slot to the child component -->
+        <template #label="slotProps">
+          <slot name="label" v-bind="slotProps"/>
+        </template>
+      </ShadcnTreeNode>
     </div>
   </div>
 </template>
