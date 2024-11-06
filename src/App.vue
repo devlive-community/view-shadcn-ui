@@ -6,6 +6,7 @@
                   v-model="checkValue"
                   multiple
                   checkable
+                  show-line
                   :data="data">
         <template #expand>O</template>
 
@@ -25,6 +26,9 @@ const data = reactive([
     label: 'Parent Node 1',
     children: [
       { value: '1.1', label: 'Child Node 1.1' },
+      { value: '1.11', label: 'Child Node 1.11' },
+      { value: '1.12', label: 'Child Node 1.12' },
+      { value: '1.13', label: 'Child Node 1.13' },
       {
         value: '1.2',
         label: 'Child Node 1.2',

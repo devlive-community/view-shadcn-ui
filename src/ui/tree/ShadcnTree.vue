@@ -7,6 +7,7 @@
                     :selected-values="modelValue"
                     :checkable="checkable"
                     :cascade="cascade"
+                    :show-line="showLine"
                     :loadData="loadData"
                     @on-expand="onExpand"
                     @on-node-click="onNodeClick">
@@ -37,6 +38,7 @@ const props = withDefaults(defineProps<TreeProps>(), {
   multiple: false,
   checkable: false,
   cascade: false,
+  showLine: false,
   loadData: undefined
 })
 

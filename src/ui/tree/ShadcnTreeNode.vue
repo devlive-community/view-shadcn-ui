@@ -1,9 +1,16 @@
 <template>
   <div :class="['relative py-0.5']"
        :style="level > 0 ? { paddingLeft: '1.5em' } : undefined">
+
+    <div v-if="showLine">
+      <div v-if="level > 0" class="absolute top-0 left-0 bottom-0 bg-gray-200" :style="{ left: '0.75em', width: '1px' }"/>
+      <div v-if="level > 0 && !hasChildren" class="absolute top-0 left-0 bottom-0 bg-gray-200" :style="{ left: '2.3em', width: '1px' }"/>
+      <div v-if="level > 0 && !hasChildren" class="absolute top-1/2 left-0 bg-gray-200" :style="{ left: '2.35em', width: '0.8em', height: '1px' }"/>
+    </div>
+
     <div :class="['flex items-center py-0.5 px-1.5 rounded-sm',
-              { 'bg-gray-200': isSelected },
-              { 'hover:bg-gray-100': !isSelected },
+              { 'bg-gray-200': isSelected && !showLine },
+              { 'hover:bg-gray-100': !isSelected && !showLine },
               { 'cursor-not-allowed': node.disabled },
               { 'cursor-pointer': !node.disabled }
          ]"
@@ -49,7 +56,14 @@
             :node="node"
             :level="level"
             :is-selected="isSelected">
-        <span class="text-sm">{{ node.label }}</span>
+        <span :class="['text-sm',
+                      { 'hover:bg-gray-100 px-2 py-0.5 hover:rounded-sm': showLine && !node.disabled },
+                      { 'text-gray-500 px-2': node.disabled && showLine },
+                      { 'text-gray-500': node.disabled && !showLine },
+                      { 'bg-gray-100 rounded-sm': isSelected && showLine }
+              ]">
+          {{ node.label }}
+        </span>
       </slot>
     </div>
 
@@ -61,6 +75,7 @@
                       :selected-values="selectedValues"
                       :checkable="checkable"
                       :cascade="cascade"
+                      :show-line="showLine"
                       :load-data="loadData"
                       @on-expand="onChildExpand"
                       @on-node-click="onChildNodeClick">
@@ -90,6 +105,7 @@ const props = withDefaults(defineProps<TreeNodeProps>(), {
   selectedValues: () => [],
   checkable: false,
   cascade: false,
+  isLastNode: false,
   loadData: undefined
 })
 

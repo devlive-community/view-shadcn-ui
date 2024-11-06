@@ -330,6 +330,27 @@ const data = reactive([
 
 :::
 
+## Show Line
+
+::: raw
+
+<CodeRunner title="Show Line">
+    Value: {{ showLineValue }}
+    <ShadcnTree v-model="basicValue" show-line checkable :data="data"/>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnTree v-model="value" show-line checkable :data="data"/>
+</template>
+```
+
+:::
+
 ## Label Slot
 
 ::: raw
@@ -463,6 +484,7 @@ const data = [
         ['multiple', 'Multiple mode', 'boolean', 'false'],
         ['checkable', 'Checkable mode', 'boolean', 'false'],
         ['cascade', 'Cascade mode, only works when checkable is true, if cascade is true, checkable become true, single mode is inworked', 'boolean', 'false'],
+        ['showLine', 'Show line', 'boolean', 'false'],
         ['loadData', 'Load data function, only works when <strong>item.isLeaf</strong> is <strong>false</strong>', 'function', 'undefined'],
     ]">
 </ApiTable>

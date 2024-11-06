@@ -14,6 +14,7 @@ export interface TreeProps
     multiple?: boolean
     checkable?: boolean
     cascade?: boolean
+    showLine?: boolean
     loadData?: (node: TreeNode) => Promise<TreeNode[]>
 }
 
@@ -24,6 +25,7 @@ export interface TreeNodeProps
     selectedValues?: any[]
     checkable?: boolean
     cascade?: boolean
+    showLine?: boolean
     loadData?: (node: TreeNode) => Promise<TreeNode[]>
 }
 
