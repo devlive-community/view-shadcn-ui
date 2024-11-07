@@ -18,6 +18,7 @@ export interface AvatarGroupProps
 {
     items?: Array<AvatarOptions>
     size?: keyof typeof SkeletonSize
+    square?: boolean
 }
 
 export type AvatarEmits = {

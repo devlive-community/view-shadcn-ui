@@ -4,8 +4,7 @@
                   square ? 'rounded-sm' : 'rounded-full')">
     <img v-if="src"
          :src="String(src)"
-         :class="cn('h-full w-full object-cover cursor-pointer',
-                    size && SkeletonSize[size])"
+         :class="cn('h-full w-full object-cover cursor-pointer border-white border-2')"
          :alt="alt"
          @load="onImageLoaded"
          @error="onImageFailed"/>

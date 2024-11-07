@@ -5,7 +5,8 @@
         <ShadcnAvatar class="ring-2 ring-background"
                       :src="item.src"
                       :alt="item.name"
-                      :size="size"/>
+                      :size="size"
+                      :square="square"/>
       </ShadcnTooltip>
     </template>
   </div>
@@ -17,6 +18,7 @@ import { AvatarGroupProps } from '@/ui/avatar/types.ts'
 import ShadcnTooltip from '@/ui/tooltip'
 
 withDefaults(defineProps<AvatarGroupProps>(), {
-  size: 'default'
+  size: 'default',
+  square: false
 })
 </script>

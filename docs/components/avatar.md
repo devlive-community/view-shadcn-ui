@@ -94,6 +94,7 @@ This document is mainly used to describe some features and usage of the ShadcnAv
     <ShadcnAvatarGroup :items="items" />
     <ShadcnAvatarGroup :items="items" size="small"/>
     <ShadcnAvatarGroup :items="items" size="large"/>
+    <ShadcnAvatarGroup :items="items" square/>
 </CodeRunner>
 
 :::
@@ -105,6 +106,7 @@ This document is mainly used to describe some features and usage of the ShadcnAv
     <ShadcnAvatarGroup :items="items" />
     <ShadcnAvatarGroup :items="items" size="small"/>
     <ShadcnAvatarGroup :items="items" size="large"/>
+    <ShadcnAvatarGroup :items="items" square/>
 </template>
 
 <script setup lang="ts">
@@ -127,7 +129,7 @@ const items = [
     :columns="[
         ['src', 'Image URL', 'String', '-', '-'],
         ['alt', 'Alternative text', 'String', '-', '-'],
-        ['size', 'Size', 'String', 'default', 'large, default, small'],
+        ['size', 'Size', 'String', 'default', 'large | default | small'],
         ['square', 'Square', 'Boolean', 'false', '-'],
     ]">
 </ApiTable>
@@ -135,9 +137,11 @@ const items = [
 <br />
 
 <ApiTable title="Avatar Group Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
     :columns="[
-        ['items', 'The items of the avatar group', 'array<{src: string, name: string}>', '-'],
+        ['items', 'The items of the avatar group', 'array<{src: string, name: string}>', '-', '-'],
+        ['size', 'The size of the avatar group', 'string', 'default', 'large | default | small'],
+        ['square', 'Whether the avatar group is square', 'boolean', 'false'],
     ]">
 </ApiTable>
 
