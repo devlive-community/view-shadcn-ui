@@ -8,6 +8,7 @@
     <ShadcnAvatarGroup :items="items" size="small"/>
     <ShadcnAvatarGroup :items="items" size="large"/>
     <ShadcnAvatarGroup :items="items" square/>
+    <ShadcnAvatarGroup :items="items" max="2"/>
   </div>
 </template>
 

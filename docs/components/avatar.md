@@ -95,6 +95,7 @@ This document is mainly used to describe some features and usage of the ShadcnAv
     <ShadcnAvatarGroup :items="items" size="small"/>
     <ShadcnAvatarGroup :items="items" size="large"/>
     <ShadcnAvatarGroup :items="items" square/>
+    <ShadcnAvatarGroup :items="items" max="2"/>
 </CodeRunner>
 
 :::
@@ -107,6 +108,7 @@ This document is mainly used to describe some features and usage of the ShadcnAv
     <ShadcnAvatarGroup :items="items" size="small"/>
     <ShadcnAvatarGroup :items="items" size="large"/>
     <ShadcnAvatarGroup :items="items" square/>
+    <ShadcnAvatarGroup :items="items" max="2"/>
 </template>
 
 <script setup lang="ts">
@@ -141,7 +143,8 @@ const items = [
     :columns="[
         ['items', 'The items of the avatar group', 'array<{src: string, name: string}>', '-', '-'],
         ['size', 'The size of the avatar group', 'string', 'default', 'large | default | small'],
-        ['square', 'Whether the avatar group is square', 'boolean', 'false'],
+        ['square', 'Whether the avatar group is square', 'boolean', 'false', '-'],
+        ['max', 'The maximum number of avatars to display', 'number | stringgit', '-', '-'],
     ]">
 </ApiTable>
 
