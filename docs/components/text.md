@@ -68,6 +68,30 @@ This document is mainly used to describe some features and usage of the ShadcnTe
 
 :::
 
+## Strong
+
+::: raw
+
+<CodeRunner title="Strong">
+      <ShadcnText strong color="#18A058">#18A058</ShadcnText>
+      <ShadcnText strong color="#F59E0B">#F59E0B</ShadcnText>
+      <ShadcnText strong color="#EF4444">#EF4444</ShadcnText>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+      <ShadcnText strong color="#18A058">#18A058</ShadcnText>
+      <ShadcnText strong color="#F59E0B">#F59E0B</ShadcnText>
+      <ShadcnText strong color="#EF4444">#EF4444</ShadcnText>
+</template>
+```
+
+:::
+
 ## Text Props
 
 <ApiTable title="Text Props"
@@ -75,6 +99,7 @@ This document is mainly used to describe some features and usage of the ShadcnTe
     :columns="[
         ['colorType', 'The color type of the text', 'enum', 'default', 'default | primary | success | warning | error'],
         ['color', 'The color of the text, if set colorType will be ignored', 'string', 'default', '-'],
+        ['strong', 'Whether the text is strong', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
