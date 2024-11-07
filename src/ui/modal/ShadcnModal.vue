@@ -7,10 +7,11 @@
            @click="onClose"/>
 
       <!-- Dialog -->
-      <div :class="cn('relative bg-white z-50 flex flex-col animate-in fade-in-0 zoom-in-95',
-                      'w-full max-w-lg mx-auto rounded-sm',
-                      width && `min-w-[${width}%] w-[${width}%] max-w-[${width}%]`,
-                      height && `min-h-[${height}%] h-[${height}%] max-h-[${height}%]`)">
+      <div class="'relative bg-white z-50 flex flex-col animate-in fade-in-0 zoom-in-95 w-full max-w-lg mx-auto rounded-sm"
+           :style="[
+               { width: calcSize(width), minWidth: calcSize(width), maxWidth: calcSize(width) },
+               { height: calcSize(height), minHeight: calcSize(height), maxHeight: calcSize(height) }
+           ]">
         <!-- Header -->
         <div v-if="$slots.title || title"
              class="border-b p-2">
@@ -62,24 +63,18 @@
 </template>
 
 <script setup lang="ts">
-import { cn } from '@/lib/utils.ts'
-import { ModalProps } from '@/ui/modal/types.ts'
+import { ModalEmits, ModalProps } from '@/ui/modal/types.ts'
+import { calcSize } from '@/utils/common.ts'
 
-const validateWidthHeight = (value: number) => {
-  return value >= 10 && value <= 100 && value % 10 === 0
-}
+const emit = defineEmits<ModalEmits>()
 
-const emit = defineEmits(['on-close', 'update:modelValue'])
-
-const props = withDefaults(defineProps<ModalProps>(), {
+withDefaults(defineProps<ModalProps>(), {
   okText: 'OK',
   cancelText: 'Cancel',
-  closable: true
+  closable: true,
+  width: '30%',
+  height: '10%'
 })
-
-if ((props.width && !validateWidthHeight(props.width)) || (props.height && !validateWidthHeight(props.height))) {
-  console.error('Width or Height must be between 10 and 100 and multiples of 10.')
-}
 
 const onClose = () => {
   emit('on-close')

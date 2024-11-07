@@ -4,7 +4,6 @@ export const getTopPosition = (
     trigger: DOMRect,
     content: DOMRect,
     skip: number = 0,
-    fit: boolean = true
 ) => {
     const topPosition = trigger.top === 0
         ? trigger.top + trigger.height + skip
@@ -29,7 +28,6 @@ export const getBottomPosition = (
     trigger: DOMRect,
     content: DOMRect,
     skip: number = 0,
-    fit: boolean = true
 ) => {
     const bottomPosition = trigger.top + trigger.height + skip > window.innerHeight
         ? trigger.top - content.height - skip
@@ -54,7 +52,6 @@ export const getLeftPosition = (
     trigger: DOMRect,
     content: DOMRect,
     skip: number = 0,
-    fit: boolean = true,
     position: string = 'left'
 ) => {
     if (position === null || trigger.left === 0) {
@@ -85,7 +82,6 @@ export const getRightPosition = (
     trigger: DOMRect,
     content: DOMRect,
     skip: number = 0,
-    fit: boolean = true,
     position: string = 'right'
 ) => {
     const tolerance = 10

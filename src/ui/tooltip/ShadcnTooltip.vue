@@ -76,19 +76,19 @@ const hideTooltip = () => {
 
 const positionFunctions = {
   top: (trigger: DOMRect, content: DOMRect) => {
-    const pos = getTopPosition(trigger, content, 8, true)
+    const pos = getTopPosition(trigger, content, 8)
     return pos
   },
   bottom: (trigger: DOMRect, content: DOMRect) => {
-    const pos = getBottomPosition(trigger, content, 8, true)
+    const pos = getBottomPosition(trigger, content, 8)
     return pos
   },
   left: (trigger: DOMRect, content: DOMRect) => {
-    const pos = getLeftPosition(trigger, content, 8, true, props.position)
+    const pos = getLeftPosition(trigger, content, 8, props.position)
     return pos
   },
   right: (trigger: DOMRect, content: DOMRect) => {
-    const pos = getRightPosition(trigger, content, 8, true, props.position)
+    const pos = getRightPosition(trigger, content, 8, props.position)
     return pos
   }
 }
