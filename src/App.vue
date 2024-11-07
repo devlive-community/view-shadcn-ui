@@ -1,50 +1,23 @@
 <template>
-  <div class="p-4 space-y-2">
-    <ShadcnCard title="Checkbox">
-      Value: {{ checkValue }}
-      <ShadcnTree key="checkbox-tree"
-                  v-model="checkValue"
-                  multiple
-                  checkable
-                  show-line
-                  :data="data">
-        <template #expand>O</template>
+  <div class="p-32">
+    <ShadcnSpace>
+      <ShadcnAvatar src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png"/>
+    </ShadcnSpace>
 
-        <template #collapse>C</template>
-      </ShadcnTree>
-    </ShadcnCard>
+    <ShadcnAvatarGroup :items="items"/>
+    <ShadcnAvatarGroup :items="items" size="small"/>
+    <ShadcnAvatarGroup :items="items" size="large"/>
+    <ShadcnAvatarGroup :items="items" square/>
+    <ShadcnAvatarGroup :items="items" max="2"/>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
-
-const checkValue = ref(['1.2.1'])
-const data = reactive([
-  {
-    value: 1,
-    label: 'Parent Node 1',
-    children: [
-      { value: '1.1', label: 'Child Node 1.1' },
-      { value: '1.11', label: 'Child Node 1.11' },
-      { value: '1.12', label: 'Child Node 1.12' },
-      { value: '1.13', label: 'Child Node 1.13' },
-      {
-        value: '1.2',
-        label: 'Child Node 1.2',
-        children: [
-          { value: '1.2.1', label: 'Child Node 1.2.1' }
-        ]
-      }
-    ]
-  },
-  {
-    value: 2,
-    label: 'Parent Node 2',
-    disabled: true,
-    children: [
-      { value: '2.1', label: 'Child Node 2.1' }
-    ]
-  }
-])
+const items = [
+  { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 1' },
+  { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 2' },
+  { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 3' },
+  { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 4' },
+  { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 5' }
+]
 </script>

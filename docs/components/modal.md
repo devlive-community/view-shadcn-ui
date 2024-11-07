@@ -62,7 +62,7 @@ const modal = ref(false);
 
 :::
 
-## Custom Title
+## Title
 
 <CodeRunner title="Custom Title"
     description="Create a modal with custom title.">
@@ -93,7 +93,7 @@ const modal = ref(false);
 
 :::
 
-## Custom Footer
+## Footer
 
 <CodeRunner title="Custom Footer">
     <ShadcnButton @click="customFooterModal = true">Click</ShadcnButton>
@@ -123,7 +123,7 @@ const modal = ref(false);
 
 :::
 
-## Custom Content
+## Content
 
 <CodeRunner title="Custom Content">
     <ShadcnButton @click="customContentModal = true">Click</ShadcnButton>
@@ -151,11 +151,11 @@ const modal = ref(false);
 
 :::
 
-## Custom Width
+## Width
 
 <CodeRunner title="Custom Width">
     <ShadcnButton @click="customWidthModal = true">Click</ShadcnButton>
-    <ShadcnModal v-model="customWidthModal" title="Custom Width" :width="20">
+    <ShadcnModal v-model="customWidthModal" title="Custom Width" width="200">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnModal>
 </CodeRunner>
@@ -165,7 +165,7 @@ const modal = ref(false);
 ```vue
 <template>
     <ShadcnButton @click="modal = true">Click</ShadcnButton>
-    <ShadcnModal v-model="modal" title="Custom Width" :width="20">
+    <ShadcnModal v-model="modal" title="Custom Width" width="200">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnModal>
 </template>
@@ -179,11 +179,11 @@ const modal = ref(false);
 
 :::
 
-## Custom Height
+## Height
 
 <CodeRunner title="Custom Height">
     <ShadcnButton @click="customHeightModal = true">Click</ShadcnButton>
-    <ShadcnModal v-model="customHeightModal" title="Custom Height" :height="20">
+    <ShadcnModal v-model="customHeightModal" title="Custom Height" height="200">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnModal>
 </CodeRunner>
@@ -193,7 +193,7 @@ const modal = ref(false);
 ```vue
 <template>
     <ShadcnButton @click="modal = true">Click</ShadcnButton>
-    <ShadcnModal v-model="modal" title="Custom Height" :height="20">
+    <ShadcnModal v-model="modal" title="Custom Height" height="200">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnModal>
 </template>
@@ -213,11 +213,11 @@ const modal = ref(false);
 
 <CodeRunner title="Closeable and No Closeable">
     <ShadcnButton @click="closeableModal = true">Closeable</ShadcnButton>
-    <ShadcnModal v-model="closeableModal" title="Closeable" closeable>
+    <ShadcnModal v-model="closeableModal" title="Closeable" closable>
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnModal>
     <ShadcnButton @click="noClosableModal = true">No Closeable</ShadcnButton>
-    <ShadcnModal v-model="noClosableModal" title="Not Closeable" :closeable="false">
+    <ShadcnModal v-model="noClosableModal" title="Not Closeable" :closable="false">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnModal>
     <ShadcnButton @click="customClosableModal = true">Custom Closable</ShadcnButton>
@@ -234,11 +234,11 @@ const modal = ref(false);
 ```vue
 <template>
     <ShadcnButton @click="closeableModal = true">Closeable</ShadcnButton>
-    <ShadcnModal v-model="closeableModal" title="Closeable" closeable>
+    <ShadcnModal v-model="closeableModal" title="Closeable" closable>
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnModal>
     <ShadcnButton @click="noClosableModal = true">No Closeable</ShadcnButton>
-    <ShadcnModal v-model="noClosableModal" title="Not Closeable" :closeable="false">
+    <ShadcnModal v-model="noClosableModal" title="Not Closeable" :closable="false">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnModal>
     <ShadcnButton @click="customClosableModal = true">Custom Closable</ShadcnButton>
@@ -259,33 +259,66 @@ const customClosableModal = ref(false);
 
 :::
 
-## API Attributes
+## Mask Closable
+
+::: raw
+
+<CodeRunner title="Mask Closable">
+    <ShadcnButton @click="customClosableModal = true">Mask Closable</ShadcnButton>
+    <ShadcnModal v-model="customClosableModal" title="Mask Closable" :mask-closable="false">
+        <div class="flex items-center justify-center h-32">Content</div>
+    </ShadcnModal>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnButton @click="value = true">Mask Closable</ShadcnButton>
+    <ShadcnModal v-model="value" title="Mask Closable" :mask-closable="false">
+        <div class="flex items-center justify-center h-32">Content</div>
+    </ShadcnModal>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const value = ref(false);
+</script>
+```
+
+:::
+
+## Props
 
 <ApiTable title="Modal Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend']"
     :columns="[
-        ['modelValue', 'Whether the dialog box is displayed or not, v-model can be used to bind data in two directions.', 'Boolean', 'false', '-', '-'],
-        ['title', 'The title of the dialog box. If the page header is customized using slot, the title will be invalid.', 'String', '-', '-', '-'],
-        ['description', 'Modal description', 'String', '-', 'title', '-'],
-        ['width', 'Modal width', 'Number', '30', '-', '10, 20, 30, 40, 50, 60, 70, 80, 90, 100'],
-        ['height', 'Modal height', 'Number', '30', '-', '10, 20, 30, 40, 50, 60, 70, 80, 90, 100'],
-        ['okText', 'The text of the OK button', 'String', 'OK', '-', '-'],
-        ['cancelText', 'The text of the Cancel button', 'String', 'Cancel', '-', '-'],
-        ['closable', 'Whether the dialog box can be closed', 'Boolean', 'true', '-', '-'],
+        ['modelValue', 'Whether the dialog box is displayed or not, v-model can be used to bind data in two directions.', 'boolean', 'false', '-'],
+        ['title', 'The title of the dialog box. If the page header is customized using slot, the title will be invalid.', 'string', '-', '-'],
+        ['description', 'Modal description', 'string', '-', 'title'],
+        ['width', 'Modal width', 'number | string', '30%', '-'],
+        ['height', 'Modal height', 'number | string', '10%', '-'],
+        ['okText', 'The text of the OK button', 'string', 'OK', '-'],
+        ['cancelText', 'The text of the Cancel button', 'string', 'Cancel', '-'],
+        ['closable', 'Whether the dialog box can be closed', 'boolean', 'true', '-'],
+        ['maskClosable', 'Whether the mask can be closed', 'boolean', 'true', '-'],
     ]">
 </ApiTable>
 
-<br />
+## Events
 
 <ApiTable title="Modal Events"
     :headers="['Event', 'Description', 'Callback Parameters']"
     :columns="[
-        ['update:modelValue', 'Triggered when display status changes', 'true / false'],
+        ['update:modelValue', 'Triggered when display status changes', 'true | false'],
         ['on-close', 'Triggered when the dialog box is closed', '-'],
     ]">
 </ApiTable>
 
-<br />
+## Slots
 
 <ApiTable title="Modal Slots"
     :headers="['Slot', 'Description']"

@@ -181,10 +181,9 @@ This document is mainly used to describe some features and usage of the ShadcnTo
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List', 'Latest Version']"
     :columns="[
         ['content', 'The content of the tooltip', 'Object', '-', '-', '-', '-'],
-        ['delay', 'Delay time', 'Number', '0', '-', '-'],
+        ['delay', 'Delay time, in milliseconds', 'Number', '0', '-', '-'],
         ['position', 'The position of the tooltip', 'Enum', 'top', '-', 'top, bottom, left, right', '-'],
         ['arrow', 'Show arrow', 'Boolean', 'true', '-', '-', '-'],
-        ['width', 'The width of the tooltip', 'Number | String', '200', '-', '-', '2024.1.2'],
         ['maxWidth', 'The maximum width of the tooltip, if the width is auto', 'Number | String', '200', '-', '-', '2024.1.2'],
     ]">
 </ApiTable>
