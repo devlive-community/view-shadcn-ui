@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- Define gradients -->
+    <defs>
+        <linearGradient id="backgroundGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#e0f2fe;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#ede9fe;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#93c5fd;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#a5b4fc;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background rounded rectangle -->
+    <rect x="30" y="30" width="140" height="140" rx="20" fill="url(#backgroundGradient)" />
+
+    <!-- Gradient text -->
+    <text x="50%" y="58%" text-anchor="middle" fill="url(#textGradient)" font-size="48" font-family="Arial" font-weight="bold">
+        Text
+    </text>
+</svg>

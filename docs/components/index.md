@@ -141,10 +141,17 @@ features:
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/dropdown.svg" />
     title: <a href='dropdown.html'>Shadcn Dropdown <span class="VPBadge tip">2024.2.0</span></a>
     details: Dropdown component
+
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/number.svg" />
     title: <a href='number.html'>Shadcn Number <span class="VPBadge tip">2024.3.0</span></a>
     details: Number component
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/tree.svg" />
     title: <a href='tree.html'>Shadcn Tree <span class="VPBadge tip">2024.3.0</span></a>
     details: Tree component
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/text.svg" />
+    title: <a href='text.html'>Shadcn Text <span class="VPBadge tip">2024.3.0</span></a>
+    details: Text component
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/gradient-text.svg" />
+    title: <a href='gradient-text.html'>Shadcn Gradient Text <span class="VPBadge tip">2024.3.0</span></a>
+    details: Gradient Text component
 ---

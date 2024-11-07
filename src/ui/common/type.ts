@@ -16,6 +16,7 @@ export enum HoverTextType
 
 export enum TextType
 {
+    default = 'text-black',
     primary = 'text-blue-400',
     success = 'text-green-400',
     warning = 'text-yellow-400',
