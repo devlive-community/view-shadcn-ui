@@ -15,4 +15,5 @@ export interface GradientTextProps
     from?: string
     to?: string
     deg?: number
+    options?: string
 }

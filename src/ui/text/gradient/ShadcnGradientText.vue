@@ -1,7 +1,7 @@
 <template>
   <div :class="['bg-clip-text text-transparent inline-block ']"
        :style="{
-            backgroundImage: `linear-gradient(${deg}deg, ${from}, ${to})`
+            backgroundImage: options ? `linear-gradient(${options})` : `linear-gradient(${deg}deg, ${from}, ${to})`
        }">
     <slot/>
   </div>
