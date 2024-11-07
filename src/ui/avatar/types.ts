@@ -1,5 +1,11 @@
 import { SkeletonSize } from '@/ui/common/size.ts'
 
+interface AvatarOptions
+{
+    src?: string
+    name?: string
+}
+
 export interface AvatarProps
 {
     src?: string
@@ -8,7 +14,12 @@ export interface AvatarProps
     square?: boolean
 }
 
+export interface AvatarGroupProps
+{
+    items?: Array<AvatarOptions>
+}
+
 export type AvatarEmits = {
     (e: 'on-success'): void
-    (e: 'on-error'): void
+    (e: 'on-failed'): void
 }

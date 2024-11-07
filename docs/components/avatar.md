@@ -86,7 +86,37 @@ This document is mainly used to describe some features and usage of the ShadcnAv
 
 :::
 
-## API Attributes
+## Group
+
+::: raw
+
+<CodeRunner title="Group">
+    <ShadcnAvatarGroup :items="items" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnAvatarGroup :items="items" />
+</template>
+
+<script setup lang="ts">
+const items = [
+    { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 1' },
+    { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 2' },
+    { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 3' },
+    { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 4' },
+    { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 5' }
+]
+</script>
+```
+
+:::
+
+## Props
 
 <ApiTable title="Avatar Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
@@ -100,6 +130,15 @@ This document is mainly used to describe some features and usage of the ShadcnAv
 
 <br />
 
+<ApiTable title="Avatar Group Props"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :columns="[
+        ['items', 'The items of the avatar group', 'array<{src: string, name: string}>', '-'],
+    ]">
+</ApiTable>
+
+## Events
+
 <ApiTable title="Avatar Events"
     :headers="['Event', 'Description']"
     :columns="[
@@ -107,3 +146,13 @@ This document is mainly used to describe some features and usage of the ShadcnAv
         ['on-failed', 'Called when the image fails to load'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+const items = [
+  { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 1' },
+  { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 2' },
+  { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 3' },
+  { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 4' },
+  { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 5' }
+]
+</script>

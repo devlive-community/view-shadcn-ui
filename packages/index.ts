@@ -17,6 +17,7 @@ import ShadcnCol from '@/ui/col/ShadcnCol.vue'
 import ShadcnDivider from '@/ui/divider'
 import ShadcnEllipsis from '@/ui/ellipsis'
 import ShadcnAvatar from '@/ui/avatar'
+import ShadcnAvatarGroup from '@/ui/avatar/group'
 import ShadcnBadge from '@/ui/badge'
 import ShadcnAlert from '@/ui/alert'
 import ShadcnProgress from '@/ui/progress'
@@ -87,6 +88,7 @@ let components = [
     ShadcnDivider,
     ShadcnEllipsis,
     ShadcnAvatar,
+    ShadcnAvatarGroup,
     ShadcnBadge,
     ShadcnAlert,
     ShadcnProgress,
@@ -180,6 +182,7 @@ export { default as ShadcnCol } from '@/ui/col'
 export { default as ShadcnDivider } from '@/ui/divider'
 export { default as ShadcnEllipsis } from '@/ui/ellipsis'
 export { default as ShadcnAvatar } from '@/ui/avatar'
+export { default as ShadcnAvatarGroup } from '@/ui/avatar/group'
 export { default as ShadcnBadge } from '@/ui/badge'
 export { default as ShadcnAlert } from '@/ui/alert'
 export { default as ShadcnProgress } from '@/ui/progress'
