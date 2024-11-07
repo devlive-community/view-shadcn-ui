@@ -1,50 +1,83 @@
 <template>
-  <div class="p-4 space-y-2">
-    <ShadcnCard title="Checkbox">
-      Value: {{ checkValue }}
-      <ShadcnTree key="checkbox-tree"
-                  v-model="checkValue"
-                  multiple
-                  checkable
-                  show-line
-                  :data="data">
-        <template #expand>O</template>
+  <ShadcnButton @click="defaultValue = !defaultValue">Open</ShadcnButton>
+  <ShadcnDrawer v-model="defaultValue" title="Title">
+    <ShadcnTooltip content="Position" position="top">
+      <ShadcnButton>Top</ShadcnButton>
+    </ShadcnTooltip>
+    <ShadcnTooltip content="Position" position="bottom">
+      <ShadcnButton>Bottom</ShadcnButton>
+    </ShadcnTooltip>
+    <ShadcnTooltip content="Position" position="left">
+      <ShadcnButton>Left</ShadcnButton>
+    </ShadcnTooltip>
+    <ShadcnTooltip content="Position" class="mr-20" position="right">
+      <ShadcnButton>Right</ShadcnButton>
+    </ShadcnTooltip>
+    <template #footer>
+      <ShadcnButton @click="defaultValue = !defaultValue">Close</ShadcnButton>
+    </template>
+  </ShadcnDrawer>
+  <ShadcnTooltip :content="content" position="top">
+    <ShadcnButton>Top</ShadcnButton>
+  </ShadcnTooltip>
+  <div class="mt-12"/>
+  <ShadcnTooltip :content="content" position="left">
+    <ShadcnButton>Left</ShadcnButton>
+  </ShadcnTooltip>
 
-        <template #collapse>C</template>
-      </ShadcnTree>
-    </ShadcnCard>
+  <div class="flex h-screen bg-green-50">
+    <div class="mx-36 my-36">
+      <ShadcnSpace wrap>
+        <ShadcnTooltip arrow content="Position" position="top">
+          <ShadcnButton>Top</ShadcnButton>
+        </ShadcnTooltip>
+        <ShadcnTooltip arrow :content="content" position="top">
+          <ShadcnButton>Top</ShadcnButton>
+        </ShadcnTooltip>
+        <ShadcnTooltip arrow :content="content" position="bottom">
+          <ShadcnButton>Bottom</ShadcnButton>
+        </ShadcnTooltip>
+        <ShadcnTooltip arrow :content="content" position="left">
+          <ShadcnButton>Left</ShadcnButton>
+        </ShadcnTooltip>
+        <ShadcnTooltip arrow :content="content" position="right">
+          <ShadcnButton>Right</ShadcnButton>
+        </ShadcnTooltip>
+      </ShadcnSpace>
+    </div>
   </div>
+  <ShadcnButton @click="defaultValue = !defaultValue">Open</ShadcnButton>
+
+  <ShadcnDrawer v-model="defaultValue" title="Title">
+    <ShadcnTooltip arrow content="Position" position="top">
+      <ShadcnButton>Top</ShadcnButton>
+    </ShadcnTooltip>
+    <ShadcnTooltip arrow :content="content" position="top">
+      <ShadcnButton>Top</ShadcnButton>
+    </ShadcnTooltip>
+    <ShadcnTooltip arrow :content="content" position="bottom">
+      <ShadcnButton>Bottom</ShadcnButton>
+    </ShadcnTooltip>
+    <ShadcnTooltip arrow :content="content" position="left">
+      <ShadcnButton>Left</ShadcnButton>
+    </ShadcnTooltip>
+    <ShadcnTooltip arrow :content="content" position="right">
+      <ShadcnButton>Right</ShadcnButton>
+    </ShadcnTooltip>
+    <template #footer>
+      <ShadcnButton @click="defaultValue = !defaultValue">Close</ShadcnButton>
+    </template>
+  </ShadcnDrawer>
+  <div class="mt-12"></div>
+  <ShadcnTooltip :content="content" position="bottom">
+    <ShadcnButton>Bottom</ShadcnButton>
+  </ShadcnTooltip>
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
 
-const checkValue = ref(['1.2.1'])
-const data = reactive([
-  {
-    value: 1,
-    label: 'Parent Node 1',
-    children: [
-      { value: '1.1', label: 'Child Node 1.1' },
-      { value: '1.11', label: 'Child Node 1.11' },
-      { value: '1.12', label: 'Child Node 1.12' },
-      { value: '1.13', label: 'Child Node 1.13' },
-      {
-        value: '1.2',
-        label: 'Child Node 1.2',
-        children: [
-          { value: '1.2.1', label: 'Child Node 1.2.1' }
-        ]
-      }
-    ]
-  },
-  {
-    value: 2,
-    label: 'Parent Node 2',
-    disabled: true,
-    children: [
-      { value: '2.1', label: 'Child Node 2.1' }
-    ]
-  }
-])
+const defaultValue = ref(false)
+const content = ref(
+    'Steve Jobs (English: Steve Jobs) is an American entrepreneur, marketer and inventor. He is one of the co-founders of Apple and has served as chairman and CEO. He is also the founder and CEO of NeXT and the founder and former CEO of Pixar Animation. He was a member of the board of directors of the Walt Disney Company in 2006. The place where Apple\'s press conference was held in September 2017 was named Steve Jobs Theater after him.')
 </script>
