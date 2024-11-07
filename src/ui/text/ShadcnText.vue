@@ -1,7 +1,8 @@
 <template>
   <div :class="['inline-flex',
               !color && TextType[colorType],
-              strong && 'font-semibold'
+              strong && 'font-semibold',
+              italic && 'italic'
         ]"
        :style="[
               color && {color: color}
@@ -16,6 +17,7 @@ import { TextType } from '@/ui/common/type.ts'
 
 withDefaults(defineProps<TextProps>(), {
   colorType: 'default',
-  strong: false
+  strong: false,
+  italic: false
 })
 </script>

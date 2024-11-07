@@ -92,6 +92,30 @@ This document is mainly used to describe some features and usage of the ShadcnTe
 
 :::
 
+## Italic
+
+::: raw
+
+<CodeRunner title="Italic">
+      <ShadcnText italic color="#18A058">#18A058</ShadcnText>
+      <ShadcnText italic color="#F59E0B">#F59E0B</ShadcnText>
+      <ShadcnText italic color="#EF4444">#EF4444</ShadcnText>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+      <ShadcnText italic color="#18A058">#18A058</ShadcnText>
+      <ShadcnText italic color="#F59E0B">#F59E0B</ShadcnText>
+      <ShadcnText italic color="#EF4444">#EF4444</ShadcnText>
+</template>
+```
+
+:::
+
 ## Text Props
 
 <ApiTable title="Text Props"
@@ -100,6 +124,7 @@ This document is mainly used to describe some features and usage of the ShadcnTe
         ['colorType', 'The color type of the text', 'enum', 'default', 'default | primary | success | warning | error'],
         ['color', 'The color of the text, if set colorType will be ignored', 'string', 'default', '-'],
         ['strong', 'Whether the text is strong', 'boolean', 'false', '-'],
+        ['italic', 'Whether the text is italic', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
