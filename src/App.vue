@@ -1,23 +1,14 @@
 <template>
   <div class="p-32">
     <ShadcnSpace>
-      <ShadcnAvatar src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png"/>
+      <ShadcnText type="default">Default</ShadcnText>
+      <ShadcnText type="primary">Primary</ShadcnText>
+      <ShadcnText type="success">Success</ShadcnText>
+      <ShadcnText type="warning">Warning</ShadcnText>
+      <ShadcnText type="error">Error</ShadcnText>
     </ShadcnSpace>
-
-    <ShadcnAvatarGroup :items="items"/>
-    <ShadcnAvatarGroup :items="items" size="small"/>
-    <ShadcnAvatarGroup :items="items" size="large"/>
-    <ShadcnAvatarGroup :items="items" square/>
-    <ShadcnAvatarGroup :items="items" max="2"/>
   </div>
 </template>
 
 <script setup lang="ts">
-const items = [
-  { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 1' },
-  { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 2' },
-  { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 3' },
-  { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 4' },
-  { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 5' }
-]
 </script>

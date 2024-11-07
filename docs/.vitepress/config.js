@@ -99,6 +99,7 @@ export default {
                         {text: 'Copy <span class="VPBadge tip">2024.1.1</span>', link: 'copy'},
                         {text: 'Watermark <span class="VPBadge tip">2024.2.0</span>', link: 'watermark'},
                         {text: 'Highlight <span class="VPBadge tip">2024.2.0</span>', link: 'highlight'},
+                        {text: 'Text <span class="VPBadge tip">2024.3.0</span>', link: 'text'},
                     ]
                     return {
                         text: `Base [ ${items.length} ]`,
