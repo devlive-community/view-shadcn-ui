@@ -2,5 +2,6 @@ import { TextType } from '@/ui/common/type.ts'
 
 export interface TextProps
 {
-    type?: TextType | string
+    color?: string
+    colorType?: TextType | string
 }

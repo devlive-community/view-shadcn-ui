@@ -1,7 +1,10 @@
 <template>
   <div :class="['inline-flex',
-              TextType[type]
-        ]">
+              !color && TextType[colorType]
+        ]"
+       :style="[
+              color && {color: color}
+       ]">
     <slot/>
   </div>
 </template>
@@ -11,6 +14,6 @@ import { TextProps } from '@/ui/text/types.ts'
 import { TextType } from '@/ui/common/type.ts'
 
 withDefaults(defineProps<TextProps>(), {
-  type: 'default'
+  colorType: 'default'
 })
 </script>
