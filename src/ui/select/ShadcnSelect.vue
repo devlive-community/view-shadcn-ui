@@ -39,7 +39,7 @@
     </div>
 
     <div v-show="isExpanded"
-         class="absolute z-10 bg-white border border-gray-300 rounded-sm mt-1 w-full py-2 px-2 space-y-1">
+         class="absolute z-10 bg-white border border-gray-300 rounded-sm mt-1 w-full py-2 px-2 space-y-1 overflow-y-auto max-h-60">
       <slot name="options">
         <ShadcnSelectOption v-for="(option, index) in internalOptions"
                             :key="index"
