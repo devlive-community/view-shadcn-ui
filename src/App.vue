@@ -1,12 +1,10 @@
 <template>
-  <ShadcnButton @click="modal = true">Click</ShadcnButton>
-  <ShadcnModal v-model="modal" title="Custom Width" :mask-closable="false" width="200" height="300">
-    <div class="flex items-center justify-center h-32">Content</div>
-  </ShadcnModal>
+  <div class="p-32">
+    <ShadcnSpace>
+      <ShadcnAvatar  src="https://file.iviewui.com/images/image-demo-13.jpg"/>
+    </ShadcnSpace>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-
-const modal = ref(false);
 </script>

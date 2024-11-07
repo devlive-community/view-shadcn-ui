@@ -4,7 +4,7 @@
                   square ? 'rounded-sm' : 'rounded-full')">
     <img v-if="src"
          :src="String(src)"
-         :class="cn('aspect-square h-full w-full object-cover border-2 border-background cursor-pointer',
+         :class="cn('h-full w-full object-cover cursor-pointer',
                     size && SkeletonSize[size])"
          :alt="alt"
          @load="onImageLoaded"
@@ -20,15 +20,11 @@
 <script setup lang="ts">
 import { cn } from '@/lib/utils.ts'
 import { SkeletonSize } from '@/ui/common/size.ts'
+import { AvatarEmits, AvatarProps } from '@/ui/avatar/types.ts'
 
-const emit = defineEmits(['on-success', 'on-failed'])
+const emit = defineEmits<AvatarEmits>()
 
-withDefaults(defineProps<{
-  src?: string
-  alt?: string
-  size?: keyof typeof SkeletonSize
-  square?: boolean
-}>(), {
+withDefaults(defineProps<AvatarProps>(), {
   size: 'default'
 })
 
