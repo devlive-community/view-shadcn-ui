@@ -1,21 +1,20 @@
 <template>
   <div class="p-32">
-      <div class="space-x-2">
-        <ShadcnText type="code">Code</ShadcnText>
-        <ShadcnText type="pre">Pre</ShadcnText>
-        <ShadcnText type="p">P</ShadcnText>
-        <ShadcnText type="small">Small</ShadcnText>
-        <ShadcnText type="h1">H1</ShadcnText>
-        <ShadcnText type="h2">H2</ShadcnText>
-        <ShadcnText type="h3">H3</ShadcnText>
-        <ShadcnText type="h4">H4</ShadcnText>
-        <ShadcnText type="h5">H5</ShadcnText>
-        <ShadcnText type="h6">H6</ShadcnText>
-        <ShadcnText type="label">Label</ShadcnText>
-        <ShadcnText type="span">Span</ShadcnText>
-      </div>
+    <ShadcnSelect v-model="selected"
+                  type="warning"
+                  placeholder="Select options"
+                  multiple
+                  :options="options"/>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+
+const selected = ref([])
+const options = [
+  { value: 1, label: 'Option 1' },
+  { value: 2, label: 'Option 2' },
+  { value: 3, label: 'Option 3' }
+]
 </script>

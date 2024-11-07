@@ -9,13 +9,26 @@
                   }
          ]"
          @click="toggleDropdown">
-      <slot name="selected">
-        {{ selectedLabel || placeholder }}
-      </slot>
+      <div class="flex flex-wrap gap-1 flex-1">
+        <slot name="selected">
+          <template v-if="multiple && selectedLabels.length">
+            <span v-for="(label, _index) in selectedLabels"
+                  :key="_index"
+                  class="bg-gray-100 px-2 py-1 rounded-md text-sm flex items-center gap-1">
+              {{ label }}
+              <button class="hover:text-red-500" @click.stop="removeSelection(_index)">
+                ×
+              </button>
+            </span>
+          </template>
+          <template v-else>
+            {{ selectedLabels[0] || placeholder }}
+          </template>
+        </slot>
+      </div>
 
       <svg :class="['w-4 h-4 transition-transform duration-200 ml-1',
-                    { 'rotate-180': isExpanded }
-            ]"
+                    { 'rotate-180': isExpanded }]"
            fill="currentColor"
            viewBox="0 0 20 20"
            xmlns="http://www.w3.org/2000/svg">
@@ -25,13 +38,14 @@
       </svg>
     </div>
 
-    <div v-show="isExpanded" class="absolute z-10 bg-white border border-gray-300 rounded-sm mt-1 w-full py-2 px-2">
+    <div v-show="isExpanded"
+         class="absolute z-10 bg-white border border-gray-300 rounded-sm mt-1 w-full py-2 px-2 space-y-1">
       <slot name="options">
         <ShadcnSelectOption v-for="(option, index) in internalOptions"
                             :key="index"
                             :value="option.value"
                             :label="option.label"
-                            :selected="option.value === modelValue"
+                            :selected="isOptionSelected(option.value)"
                             :disabled="option.disabled"
                             :type="type"/>
       </slot>
@@ -53,11 +67,12 @@ const props = withDefaults(defineProps<SelectProps>(), {
   placeholder: 'Select an option',
   disabled: false,
   size: 'default',
-  type: 'primary'
+  type: 'primary',
+  multiple: false
 })
 
 const isExpanded = ref(false)
-const selectedLabel = ref('')
+const selectedLabels = ref<string[]>([])
 const slotOptions = ref<SelectOptionProps[]>([])
 const selectRef = ref<HTMLElement | null>(null)
 const parentName = `shadcn-select-${ generateRandomId() }`
@@ -74,11 +89,6 @@ const registerOption = (option: SelectOptionProps) => {
   else {
     slotOptions.value[existingIndex] = option
   }
-
-  // Check and update the label of the selected item
-  if (option.value === props.modelValue) {
-    selectedLabel.value = option.label
-  }
 }
 
 const unregisterOption = (value: any) => {
@@ -88,23 +98,37 @@ const unregisterOption = (value: any) => {
   }
 }
 
-const updateSelectedLabel = () => {
-  const option = slotOptions.value.find(opt => opt.value === props.modelValue)
-  if (option) {
-    selectedLabel.value = option.label
+// Check if the option is selected
+const isOptionSelected = (value: any) => {
+  if (props.multiple) {
+    return Array.isArray(props.modelValue) && props.modelValue.includes(value)
+  }
+  return props.modelValue === value
+}
+
+// Update the selected label
+const updateSelectedLabels = () => {
+  if (props.multiple && Array.isArray(props.modelValue)) {
+    selectedLabels.value = props.modelValue.map(value => {
+      const option = slotOptions.value.find(opt => opt.value === value)
+      return option ? option.label : value
+    })
+  }
+  else {
+    const option = slotOptions.value.find(opt => opt.value === props.modelValue)
+    selectedLabels.value = option ? [option.label] : []
   }
 }
 
-watch(() => props.modelValue, (newValue) => {
-  const option = slotOptions.value.find(opt => opt.value === newValue)
-  if (option) {
-    selectedLabel.value = option.label
+// Removes the selection
+const removeSelection = (index: number) => {
+  if (props.multiple && Array.isArray(props.modelValue)) {
+    const newValue = [...props.modelValue]
+    newValue.splice(index, 1)
+    emit('update:modelValue', newValue)
+    emit('on-change', newValue)
   }
-}, { immediate: true })
-
-watch(() => slotOptions.value, () => {
-  updateSelectedLabel()
-}, { deep: true })
+}
 
 const internalOptions = computed(() => {
   return props.options || slotOptions.value
@@ -113,16 +137,33 @@ const internalOptions = computed(() => {
 const toggleDropdown = () => {
   if (!props.disabled) {
     isExpanded.value = !isExpanded.value
-    // When the drop-down box appears, make sure that the options are loaded
     if (isExpanded.value) {
-      nextTick(updateSelectedLabel)
+      nextTick(updateSelectedLabels)
     }
   }
 }
 
+// Select an option
 const selectOption = (option: SelectOptionProps) => {
-  if (!props.disabled) {
-    selectedLabel.value = option.label
+  if (props.disabled || option.disabled) {
+    return
+  }
+
+  if (props.multiple) {
+    const newValue = Array.isArray(props.modelValue) ? [...props.modelValue] : []
+    const valueIndex = newValue.indexOf(option.value)
+
+    if (valueIndex === -1) {
+      newValue.push(option.value)
+    }
+    else {
+      newValue.splice(valueIndex, 1)
+    }
+
+    emit('update:modelValue', newValue)
+    emit('on-change', newValue)
+  }
+  else {
     emit('update:modelValue', option.value)
     emit('on-change', option)
     isExpanded.value = false
@@ -138,17 +179,25 @@ const onClickOutside = (event: MouseEvent) => {
   }
 }
 
+watch(() => props.modelValue, () => {
+  updateSelectedLabels()
+}, { immediate: true, deep: true })
+
+watch(() => slotOptions.value, () => {
+  updateSelectedLabels()
+}, { deep: true })
+
 provide('selectContext', {
   registerOption,
   unregisterOption,
   selectOption,
   modelValue: computed(() => props.modelValue),
+  multiple: props.multiple,
   parentName
 })
 
 onMounted(() => {
   document.addEventListener('click', onClickOutside)
-  // When initializing, a drop-down box is displayed to trigger the mount of the option
   isExpanded.value = true
   nextTick(() => {
     isExpanded.value = false

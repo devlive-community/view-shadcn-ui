@@ -227,16 +227,49 @@ const defaultSelect = ref('')
 
 :::
 
+## Multiple
+
+::: raw
+
+<CodeRunner title="Multiple">
+    <ShadcnSelect v-model="defaultSelect" multiple :options="defaultSelectOptions" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSelect v-model="defaultSelect" multiple :options="defaultSelectOptions" />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const defaultSelect = ref('')
+const defaultSelectOptions = [
+    { label: 'Vue', value: 'Vue' },
+    { label: 'Nuxt', value: 'Nuxt', disabled: true },
+    { label: 'Svelte', value: 'Svelte' }
+]
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Select Props"
     :headers="['Attribute', 'Description', 'Type', 'Default', 'List']"
     :columns="[
-        ['modelValue', 'The value of the select', 'Any', '-', '-'],
-        ['options', 'The options of the select, format is { label: string, value: any, disabled?: boolean, selected?: boolean }', 'Array', '-', '-'],
-        ['disabled', 'Whether the select is disabled', 'Boolean', 'false', 'true | false'],
-        ['size', 'The size of the select', 'Enum', 'default', 'small | default | large'],
-        ['type', 'The type of the select', 'Enum', 'default', 'primary | success | warning | error'],
+        ['modelValue', 'The value of the select', 'any | any\[\]', '-', '-'],
+        ['options', 'The options of the select, format is { label: string, value: any, disabled?: boolean, selected?: boolean }', 'array', '-', '-'],
+        ['disabled', 'Whether the select is disabled', 'boolean', 'false', 'true | false'],
+        ['size', 'The size of the select', 'enum', 'default', 'small | default | large'],
+        ['type', 'The type of the select', 'enum', 'default', 'primary | success | warning | error'],
+        ['placeholder', 'The placeholder of the select', 'string', '-', '-'],
+        ['multiple', 'Whether the select is multiple', 'boolean', 'false', 'true | false'],
     ]">
 </ApiTable>
 
