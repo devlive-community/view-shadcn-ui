@@ -9,3 +9,10 @@ export interface TextProps
     underline?: boolean
     deleted?: boolean
 }
+
+export interface GradientTextProps
+{
+    from?: string
+    to?: string
+    deg?: number
+}

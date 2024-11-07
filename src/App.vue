@@ -1,9 +1,8 @@
 <template>
   <div class="p-32">
-    <ShadcnSpace wrap>
-      <ShadcnText underline color="#18A058">Underline</ShadcnText>
-      <ShadcnText deleted color="#EF4444">Delete</ShadcnText>
-    </ShadcnSpace>
+    <ShadcnGradientText>This is a gradient text</ShadcnGradientText>
+    <br/>
+    <ShadcnGradientText from="red" to="blue" deg="200">This is a gradient text</ShadcnGradientText>
   </div>
 </template>
 

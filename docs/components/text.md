@@ -182,7 +182,7 @@ This document is mainly used to describe some features and usage of the ShadcnTe
 
 <ApiTable title="Text Slots"
     :headers="['Slot', 'Description']"
-    :columns="[
+    :columns="[ 
         ['default', 'Text content'],
     ]">
 </ApiTable>
