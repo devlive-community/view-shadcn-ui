@@ -1,5 +1,5 @@
 <template>
-  <div class="select-group">
+  <div class="select-group space-y-1">
     <div class="px-1.5 py-1.5 text-sm font-normal text-gray-300">
       {{ label }}
     </div>

@@ -1,21 +1,41 @@
 <template>
-  <div class="p-32">
-      <div class="space-x-2">
-        <ShadcnText type="code">Code</ShadcnText>
-        <ShadcnText type="pre">Pre</ShadcnText>
-        <ShadcnText type="p">P</ShadcnText>
-        <ShadcnText type="small">Small</ShadcnText>
-        <ShadcnText type="h1">H1</ShadcnText>
-        <ShadcnText type="h2">H2</ShadcnText>
-        <ShadcnText type="h3">H3</ShadcnText>
-        <ShadcnText type="h4">H4</ShadcnText>
-        <ShadcnText type="h5">H5</ShadcnText>
-        <ShadcnText type="h6">H6</ShadcnText>
-        <ShadcnText type="label">Label</ShadcnText>
-        <ShadcnText type="span">Span</ShadcnText>
-      </div>
+  <div class="p-32 space-y-2">
+    <ShadcnSelect v-model="selected"
+                  type="warning"
+                  placeholder="Select options"
+                  size="small"
+                  :options="options"/>
+    <ShadcnSelect v-model="selected"
+                  type="warning"
+                  placeholder="Select options"
+                  size="default"
+                  :options="options"/>
+    <ShadcnSelect v-model="selected"
+                  type="warning"
+                  placeholder="Select options"
+                  size="large"
+                  :options="options"/>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+
+const selected = ref([])
+
+const generateRandomOptions = (count) => {
+  const options = [] as any[]
+
+  for (let i = 1; i <= count; i++) {
+    options.push({
+      value: i,
+      label: `Option ${ i }`
+    })
+  }
+
+  return options
+}
+
+const options = generateRandomOptions(30)
+
 </script>
