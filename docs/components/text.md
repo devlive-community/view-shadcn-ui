@@ -164,6 +164,52 @@ This document is mainly used to describe some features and usage of the ShadcnTe
 
 :::
 
+## Type
+
+::: raw
+
+<CodeRunner title="Type">
+    <div class="space-x-2">
+        <ShadcnText type="code">Code</ShadcnText>
+        <ShadcnText type="pre">Pre</ShadcnText>
+        <ShadcnText type="p">P</ShadcnText>
+        <ShadcnText type="small">Small</ShadcnText>
+        <ShadcnText type="h1">H1</ShadcnText>
+        <ShadcnText type="h2">H2</ShadcnText>
+        <ShadcnText type="h3">H3</ShadcnText>
+        <ShadcnText type="h4">H4</ShadcnText>
+        <ShadcnText type="h5">H5</ShadcnText>
+        <ShadcnText type="h6">H6</ShadcnText>
+        <ShadcnText type="label">Label</ShadcnText>
+        <ShadcnText type="span">Span</ShadcnText>
+    </div>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <div class="space-x-2">
+        <ShadcnText type="code">Code</ShadcnText>
+        <ShadcnText type="pre">Pre</ShadcnText>
+        <ShadcnText type="p">P</ShadcnText>
+        <ShadcnText type="small">Small</ShadcnText> 
+        <ShadcnText type="h1">H1</ShadcnText>
+        <ShadcnText type="h2">H2</ShadcnText>
+        <ShadcnText type="h3">H3</ShadcnText>
+        <ShadcnText type="h4">H4</ShadcnText>
+        <ShadcnText type="h5">H5</ShadcnText>
+        <ShadcnText type="h6">H6</ShadcnText>
+        <ShadcnText type="label">Label</ShadcnText>
+        <ShadcnText type="span">Span</ShadcnText>
+    </div>
+</template>
+```
+
+:::
+
 ## Text Props
 
 <ApiTable title="Text Props"
@@ -175,6 +221,7 @@ This document is mainly used to describe some features and usage of the ShadcnTe
         ['italic', 'Whether the text is italic', 'boolean', 'false', '-'],
         ['underline', 'Whether the text is underlined', 'boolean', 'false', '-'],
         ['deleted', 'Whether the text is deleted', 'boolean', 'false', '-'],
+        ['type', 'The type of the text', 'enum', 'p', 'p | code | pre | small | h1 | h2 | h3 | h4 | h5 | h6 | label | span'],
     ]">
 </ApiTable>
 

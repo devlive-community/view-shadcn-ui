@@ -61,3 +61,12 @@ This document is mainly used to describe some features and usage of the ShadcnGr
         ['options', 'The options of the gradient text, eg: <code>45deg, red 0 50%, blue 50% 100%</code>', 'string', '-', '-'],
     ]">
 </ApiTable>
+
+## Text Slots
+
+<ApiTable title="Text Slots"
+    :headers="['Slot', 'Description']"
+    :columns="[
+        ['default', 'Text content'],
+    ]">
+</ApiTable>
