@@ -17,6 +17,7 @@ export interface AvatarProps
 export interface AvatarGroupProps
 {
     items?: Array<AvatarOptions>
+    size?: keyof typeof SkeletonSize
 }
 
 export type AvatarEmits = {

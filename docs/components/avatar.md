@@ -92,6 +92,8 @@ This document is mainly used to describe some features and usage of the ShadcnAv
 
 <CodeRunner title="Group">
     <ShadcnAvatarGroup :items="items" />
+    <ShadcnAvatarGroup :items="items" size="small"/>
+    <ShadcnAvatarGroup :items="items" size="large"/>
 </CodeRunner>
 
 :::
@@ -101,6 +103,8 @@ This document is mainly used to describe some features and usage of the ShadcnAv
 ```vue
 <template>
     <ShadcnAvatarGroup :items="items" />
+    <ShadcnAvatarGroup :items="items" size="small"/>
+    <ShadcnAvatarGroup :items="items" size="large"/>
 </template>
 
 <script setup lang="ts">

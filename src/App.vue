@@ -5,6 +5,8 @@
     </ShadcnSpace>
 
     <ShadcnAvatarGroup :items="items"/>
+    <ShadcnAvatarGroup :items="items" size="small"/>
+    <ShadcnAvatarGroup :items="items" size="large"/>
   </div>
 </template>
 
