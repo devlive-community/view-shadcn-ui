@@ -1,4 +1,4 @@
-import{s as a,l as e}from"./view-shadcn-ui.es.DhY-RyJk.js";import"./framework.-o8BnyWP.js";/**
+import{c as a,_ as e}from"./view-shadcn-ui.es.CUZ1D47n.js";import"./framework.-o8BnyWP.js";/**
  * @license lucide-vue-next v0.360.0 - ISC
  *
  * This source code is licensed under the ISC license.
