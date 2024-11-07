@@ -8,6 +8,7 @@ export interface ModalProps
     okText?: string
     cancelText?: string
     closable?: boolean
+    maskClosable?: boolean
 }
 
 export type ModalEmits = {

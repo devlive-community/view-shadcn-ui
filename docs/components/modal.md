@@ -259,6 +259,38 @@ const customClosableModal = ref(false);
 
 :::
 
+## Mask Closable
+
+::: raw
+
+<CodeRunner title="Mask Closable">
+    <ShadcnButton @click="customClosableModal = true">Mask Closable</ShadcnButton>
+    <ShadcnModal v-model="customClosableModal" title="Mask Closable" :mask-closable="false">
+        <div class="flex items-center justify-center h-32">Content</div>
+    </ShadcnModal>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnButton @click="value = true">Mask Closable</ShadcnButton>
+    <ShadcnModal v-model="value" title="Mask Closable" :mask-closable="false">
+        <div class="flex items-center justify-center h-32">Content</div>
+    </ShadcnModal>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const value = ref(false);
+</script>
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Modal Props"
@@ -272,6 +304,7 @@ const customClosableModal = ref(false);
         ['okText', 'The text of the OK button', 'string', 'OK', '-'],
         ['cancelText', 'The text of the Cancel button', 'string', 'Cancel', '-'],
         ['closable', 'Whether the dialog box can be closed', 'boolean', 'true', '-'],
+        ['maskClosable', 'Whether the mask can be closed', 'boolean', 'true', '-'],
     ]">
 </ApiTable>
 

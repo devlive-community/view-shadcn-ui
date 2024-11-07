@@ -4,7 +4,7 @@
          class="fixed inset-0 z-50 flex items-center justify-center">
       <!-- Backdrop -->
       <div class="fixed inset-0 bg-black/50 transition-opacity"
-           @click="onClose"/>
+           @click="onMaskClick"/>
 
       <!-- Dialog -->
       <div class="'relative bg-white z-50 flex flex-col animate-in fade-in-0 zoom-in-95 w-full max-w-lg mx-auto rounded-sm"
@@ -68,13 +68,20 @@ import { calcSize } from '@/utils/common.ts'
 
 const emit = defineEmits<ModalEmits>()
 
-withDefaults(defineProps<ModalProps>(), {
+const props = withDefaults(defineProps<ModalProps>(), {
   okText: 'OK',
   cancelText: 'Cancel',
   closable: true,
   width: '30%',
-  height: '10%'
+  height: '10%',
+  maskClosable: true
 })
+
+const onMaskClick = () => {
+  if (props.maskClosable) {
+    onClose()
+  }
+}
 
 const onClose = () => {
   emit('on-close')
