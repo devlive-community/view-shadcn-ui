@@ -2,7 +2,9 @@
   <div :class="['inline-flex',
               !color && TextType[colorType],
               strong && 'font-semibold',
-              italic && 'italic'
+              italic && 'italic',
+              underline && 'underline',
+              deleted && 'line-through'
         ]"
        :style="[
               color && {color: color}
@@ -18,6 +20,8 @@ import { TextType } from '@/ui/common/type.ts'
 withDefaults(defineProps<TextProps>(), {
   colorType: 'default',
   strong: false,
-  italic: false
+  italic: false,
+  underline: false,
+  deleted: false
 })
 </script>

@@ -6,4 +6,6 @@ export interface TextProps
     colorType?: TextType | string
     strong?: boolean
     italic?: boolean
+    underline?: boolean
+    deleted?: boolean
 }

@@ -116,6 +116,54 @@ This document is mainly used to describe some features and usage of the ShadcnTe
 
 :::
 
+## Underline
+
+::: raw
+
+<CodeRunner title="Underline">
+      <ShadcnText underline color="#18A058">#18A058</ShadcnText>
+      <ShadcnText underline color="#F59E0B">#F59E0B</ShadcnText>
+      <ShadcnText underline color="#EF4444">#EF4444</ShadcnText>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+      <ShadcnText underline color="#18A058">#18A058</ShadcnText>
+      <ShadcnText underline color="#F59E0B">#F59E0B</ShadcnText>
+      <ShadcnText underline color="#EF4444">#EF4444</ShadcnText>
+</template>
+```
+
+:::
+
+## Delete
+
+::: raw
+
+<CodeRunner title="Delete">
+      <ShadcnText deleted color="#18A058">#18A058</ShadcnText>
+      <ShadcnText deleted color="#F59E0B">#F59E0B</ShadcnText>
+      <ShadcnText deleted color="#EF4444">#EF4444</ShadcnText>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+      <ShadcnText deleted color="#18A058">#18A058</ShadcnText>
+      <ShadcnText deleted color="#F59E0B">#F59E0B</ShadcnText>
+      <ShadcnText deleted color="#EF4444">#EF4444</ShadcnText>
+</template>
+```
+
+:::
+
 ## Text Props
 
 <ApiTable title="Text Props"
@@ -125,6 +173,8 @@ This document is mainly used to describe some features and usage of the ShadcnTe
         ['color', 'The color of the text, if set colorType will be ignored', 'string', 'default', '-'],
         ['strong', 'Whether the text is strong', 'boolean', 'false', '-'],
         ['italic', 'Whether the text is italic', 'boolean', 'false', '-'],
+        ['underline', 'Whether the text is underlined', 'boolean', 'false', '-'],
+        ['deleted', 'Whether the text is deleted', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
