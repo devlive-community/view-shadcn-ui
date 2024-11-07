@@ -27,6 +27,11 @@
 
   <div class="flex h-screen bg-green-50">
     <div class="mx-36 my-36">
+
+      <ShadcnTooltip content="Position" position="top" delay="500">
+        <ShadcnButton>Top Delay</ShadcnButton>
+      </ShadcnTooltip>
+
       <ShadcnSpace wrap>
         <ShadcnTooltip arrow content="Position" position="top">
           <ShadcnButton>Top</ShadcnButton>
@@ -49,19 +54,16 @@
   <ShadcnButton @click="defaultValue = !defaultValue">Open</ShadcnButton>
 
   <ShadcnDrawer v-model="defaultValue" title="Title">
-    <ShadcnTooltip arrow content="Position" position="top">
+    <ShadcnTooltip content="Position" position="top">
       <ShadcnButton>Top</ShadcnButton>
     </ShadcnTooltip>
-    <ShadcnTooltip arrow :content="content" position="top">
-      <ShadcnButton>Top</ShadcnButton>
-    </ShadcnTooltip>
-    <ShadcnTooltip arrow :content="content" position="bottom">
+    <ShadcnTooltip content="Position" position="bottom">
       <ShadcnButton>Bottom</ShadcnButton>
     </ShadcnTooltip>
-    <ShadcnTooltip arrow :content="content" position="left">
+    <ShadcnTooltip content="Position" position="left">
       <ShadcnButton>Left</ShadcnButton>
     </ShadcnTooltip>
-    <ShadcnTooltip arrow :content="content" position="right">
+    <ShadcnTooltip content="Position" position="right">
       <ShadcnButton>Right</ShadcnButton>
     </ShadcnTooltip>
     <template #footer>

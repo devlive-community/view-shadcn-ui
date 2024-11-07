@@ -6,5 +6,6 @@ export interface TooltipProps
     width?: number
     position?: ArrangePosition | string
     arrow?: boolean
+    delay?: number
     maxWidth?: number | string
 }

@@ -33,7 +33,8 @@ import { calcSize } from '@/utils/common.ts'
 const props = withDefaults(defineProps<TooltipProps>(), {
   position: 'top',
   arrow: false,
-  maxWidth: '250px'
+  maxWidth: '250px',
+  delay: 0
 })
 
 const isVisible = ref(false)
@@ -63,8 +64,10 @@ const arrowPositionClass = computed(() => {
 })
 
 const showTooltip = () => {
-  isVisible.value = true
-  nextTick(updatePosition)
+  setTimeout(() => {
+    isVisible.value = true
+    nextTick(updatePosition)
+  }, props.delay)
 }
 
 const hideTooltip = () => {
