@@ -5,6 +5,20 @@ export enum Size
     large = 'h-10'
 }
 
+export enum MinSize
+{
+    default = 'min-h-8',
+    small = 'min-h-6',
+    large = 'min-h-10'
+}
+
+export enum PtPbSize
+{
+    default = '0.250rem',
+    small = '0.125rem',
+    large = '0.400rem'
+}
+
 export enum TabSize
 {
     default = 'h-10',
