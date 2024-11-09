@@ -1,61 +1,7 @@
-<!--<template>-->
-<!--  <div ref="selectRef" class="relative">-->
-<!--    <div :class="['flex items-center justify-between border rounded px-2 py-1',-->
-<!--                  Size[size],-->
-<!--                  {-->
-<!--                    'cursor-pointer': !disabled,-->
-<!--                    'cursor-not-allowed opacity-50 bg-gray-100': disabled,-->
-<!--                    [HoverType[type]]: true-->
-<!--                  }-->
-<!--         ]"-->
-<!--         @click="toggleDropdown">-->
-<!--      <div class="flex flex-wrap gap-1 flex-1">-->
-<!--        <slot name="selected">-->
-<!--          <template v-if="multiple && selectedLabels.length">-->
-<!--            <span v-for="(label, _index) in selectedLabels"-->
-<!--                  :key="_index"-->
-<!--                  class="bg-gray-100 px-2 py-1 rounded-md text-sm flex items-center gap-1">-->
-<!--              {{ label }}-->
-<!--              <button class="hover:text-red-500" @click.stop="removeSelection(_index)">-->
-<!--                ×-->
-<!--              </button>-->
-<!--            </span>-->
-<!--          </template>-->
-<!--          <template v-else>-->
-<!--            {{ selectedLabels[0] || placeholder }}-->
-<!--          </template>-->
-<!--        </slot>-->
-<!--      </div>-->
-
-<!--      <svg :class="['w-4 h-4 transition-transform duration-200 ml-1',-->
-<!--                    { 'rotate-180': isExpanded }]"-->
-<!--           fill="currentColor"-->
-<!--           viewBox="0 0 20 20"-->
-<!--           xmlns="http://www.w3.org/2000/svg">-->
-<!--        <path clip-rule="evenodd"-->
-<!--              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"-->
-<!--              fill-rule="evenodd"/>-->
-<!--      </svg>-->
-<!--    </div>-->
-
-<!--    <div v-show="isExpanded"-->
-<!--         class="absolute z-10 bg-white border border-gray-300 rounded-sm mt-1 w-full py-2 px-2 space-y-1 overflow-y-auto max-h-60">-->
-<!--      <slot name="options">-->
-<!--        <ShadcnSelectOption v-for="(option, index) in internalOptions"-->
-<!--                            :key="index"-->
-<!--                            :value="option.value"-->
-<!--                            :label="option.label"-->
-<!--                            :selected="isOptionSelected(option.value)"-->
-<!--                            :disabled="option.disabled"-->
-<!--                            :type="type"/>-->
-<!--      </slot>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</template>-->
-
 <template>
   <div ref="selectRef" class="relative">
-    <div :class="['flex border rounded px-2',
+    <div :class="['flex rounded px-2',
+                   border && 'border',
                   {
                     'cursor-pointer': !disabled,
                     'cursor-not-allowed opacity-50 bg-gray-100': disabled,
@@ -131,7 +77,8 @@ const props = withDefaults(defineProps<SelectProps>(), {
   disabled: false,
   size: 'default',
   type: 'primary',
-  multiple: false
+  multiple: false,
+  border: true
 })
 
 const isExpanded = ref(false)

@@ -250,7 +250,7 @@ const data = reactive<[]>([
   }
 ])
 
-const generateChildNodes = (parentValue: string, level: number = 1, maxLevel: number = 3): TreeNode[] => {
+const generateChildNodes = (parentValue: string, level: number = 1, maxLevel: number = 3): any[] => {
   if (level >= maxLevel) {
     return []
   }
@@ -266,14 +266,12 @@ const generateChildNodes = (parentValue: string, level: number = 1, maxLevel: nu
     }
   })
 }
-const loadNodeData = async (node: any): Promise<any[]> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const level = 0
-      const children = generateChildNodes(node.value, level)
-      resolve(children)
-    }, 1000)
-  })
+const loadNodeData = (item: any, callback: (children: any[]) => void) => {
+  setTimeout(() => {
+    const level = 0
+    const children = generateChildNodes(item.value, level)
+    callback(children)
+  }, 1000)
 }
 </script>
 ```
@@ -543,7 +541,7 @@ export default {
     ]
   }
 ])
-        const generateChildNodes = (parentValue: string, level: number = 1, maxLevel: number = 3): TreeNode[] => {
+        const generateChildNodes = (parentValue: string, level: number = 1, maxLevel: number = 3): any[] => {
           if (level >= maxLevel) {
             return []
           }
@@ -559,15 +557,12 @@ export default {
             }
           })
         }
-        const loadNodeData = async (node: TreeNode): Promise<TreeNode[]> => {
-          return new Promise((resolve) => {
+        const loadNodeData = (item: any, callback: (children: any[]) => void) => {
             setTimeout(() => {
               const level = 0
-              const children = generateChildNodes(node.value, level)
-              console.log('Generated children for node', node.value, ':', children)
-              resolve(children)
+              const children = generateChildNodes(item.value, level)
+              callback(children)
             }, 1000)
-          })
         }
 
         return {
