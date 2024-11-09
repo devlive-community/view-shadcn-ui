@@ -300,7 +300,7 @@ const value = ref(false);
         ['title', 'The title of the dialog box. If the page header is customized using slot, the title will be invalid.', 'string', '-', '-'],
         ['description', 'Modal description', 'string', '-', 'title'],
         ['width', 'Modal width', 'number | string', '30%', '-'],
-        ['height', 'Modal height', 'number | string', '10%', '-'],
+        ['height', 'Modal height', 'number | string', 'auto', '-'],
         ['okText', 'The text of the OK button', 'string', 'OK', '-'],
         ['cancelText', 'The text of the Cancel button', 'string', 'Cancel', '-'],
         ['closable', 'Whether the dialog box can be closed', 'boolean', 'true', '-'],

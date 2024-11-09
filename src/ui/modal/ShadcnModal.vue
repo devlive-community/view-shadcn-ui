@@ -73,7 +73,7 @@ const props = withDefaults(defineProps<ModalProps>(), {
   cancelText: 'Cancel',
   closable: true,
   width: '30%',
-  height: '10%',
+  height: 'auto',
   maskClosable: true
 })
 
