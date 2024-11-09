@@ -175,6 +175,43 @@ const defaultSelectOptions = [
 
 :::
 
+## Border
+
+::: raw
+
+<CodeRunner title="Border">
+    <div class="space-y-2">
+        <p>Select Value: {{ defaultSelect }}</p>
+        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" />
+        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" :border="false" />
+    </div>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <p>Select Value: {{ defaultSelect }}</p>
+    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" />
+    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" :border="false" />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const defaultSelect = ref('')
+const defaultSelectOptions = [
+    { label: 'Vue', value: 'Vue' },
+    { label: 'Nuxt', value: 'Nuxt', disabled: true },
+    { label: 'Svelte', value: 'Svelte' }
+]
+</script>
+```
+
+:::
+
 ## Group
 
 ::: raw
@@ -270,6 +307,7 @@ const defaultSelectOptions = [
         ['type', 'The type of the select', 'enum', 'default', 'primary | success | warning | error'],
         ['placeholder', 'The placeholder of the select', 'string', '-', '-'],
         ['multiple', 'Whether the select is multiple', 'boolean', 'false', 'true | false'],
+        ['border', 'Whether the select has border', 'boolean', 'true', 'true | false'],
     ]">
 </ApiTable>
 

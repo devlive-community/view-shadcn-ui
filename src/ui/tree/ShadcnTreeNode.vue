@@ -96,7 +96,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { TreeNode, TreeNodeEmits, TreeNodeProps } from './types'
 import ShadcnCheckbox from '@/ui/checkbox'
 
@@ -155,16 +155,21 @@ const onExpand = async (event: Event) => {
   if (!hasChildren.value && props.node.isLeaf === false && !isExpanded.value && props.loadData) {
     loading.value = true
     try {
-      // Get the child node data and update it
-      props.node.children = await props.loadData(props.node)
-      await nextTick()
+      // Use callbacks to load data
+      props.loadData(props.node, (children: TreeNode[]) => {
+        props.node.children = children
+        loading.value = false
+        isExpanded.value = true
+      })
     }
-    finally {
+    catch (error) {
+      console.error('Failed to load children:', error)
       loading.value = false
     }
   }
-
-  isExpanded.value = !isExpanded.value
+  else {
+    isExpanded.value = !isExpanded.value
+  }
   emit('on-expand', props.node)
 }
 

@@ -100,6 +100,37 @@ const getHoverClass = computed(() => {
   return hoverColorMap[props.type]
 })
 
+// New computed property for type styles including hover
+const getTypeStyles = computed(() => {
+  // If disabled or loading, don't include hover styles
+  if (props.disabled || props.loading) {
+    return props.type === 'default'
+        ? [
+          'bg-white',
+          'border-solid border border-gray-200',
+          'text-gray-500'
+        ]
+        : [
+          ButtonBackgroundType[props.type],
+          props.type === 'text' ? 'text-gray-500' : 'text-white'
+        ]
+  }
+
+  // Normal state with hover effects
+  return props.type === 'default'
+      ? [
+        'bg-white',
+        'border-solid border border-gray-200',
+        'text-gray-500',
+        'hover:border-gray-300'
+      ]
+      : [
+        ButtonBackgroundType[props.type],
+        ButtonHoverType[props.type],
+        props.type === 'text' ? 'text-gray-500' : 'text-white'
+      ]
+})
+
 const buttonGroupSize = inject<ComputedRef<keyof typeof ButtonSize> | undefined>(
     'buttonGroupSize',
     undefined
@@ -123,23 +154,16 @@ const buttonProps = computed(() => ({
     'inline-flex items-center justify-center whitespace-nowrap transition-colors',
     // Size
     !props.circle && ButtonSize[finalSize.value],
-    // Type style
-    props.ghost ? [
-      'bg-transparent',
-      'border-solid border',
-      getBorderColorClass.value,
-      getTextColorClass.value,
-      getHoverClass.value
-    ] : props.type === 'default' ? [
-      'bg-white',
-      'border-solid border border-gray-200',
-      'text-gray-500',
-      'hover:border-gray-300'
-    ] : [
-      ButtonBackgroundType[props.type],
-      ButtonHoverType[props.type],
-      props.type === 'text' ? 'text-gray-500' : 'text-white'
-    ],
+    // Type style with conditional hover
+    props.ghost
+        ? [
+          'bg-transparent',
+          'border-solid border',
+          getBorderColorClass.value,
+          getTextColorClass.value,
+          !props.disabled && !props.loading && getHoverClass.value
+        ]
+        : getTypeStyles.value,
     // Rounded corners
     { 'rounded-full': props.round || props.circle },
     { 'rounded-md': !props.round && !props.circle },

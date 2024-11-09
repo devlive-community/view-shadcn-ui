@@ -10,6 +10,7 @@ export interface SelectProps
     size?: keyof typeof Size
     type?: keyof typeof HoverType
     multiple?: boolean
+    border?: boolean
 }
 
 export interface SelectOptionProps
