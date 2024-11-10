@@ -170,7 +170,7 @@ const buttonProps = computed(() => ({
     // Rounded
     circleClass.value,
     // State
-    { 'opacity-70 cursor-not-allowed': props.loading || props.disabled }
+    { 'opacity-50 cursor-not-allowed': props.loading || props.disabled }
   ],
   disabled: props.loading || props.disabled,
   style: props.color ? { backgroundColor: props.color } : {}

@@ -1,18 +1,23 @@
 <template>
   <div :id="id"
-       :class="cn('flex flex-row w-full',
-                  align && `items-${Align[align]}`,
-                  justify && `justify-${justify}`,
-                  wrapEnabled && 'flex-wrap')"
-       :style="{ 'gap': `${gutter}px` }">
+       :class="cn('grid w-full',
+              align && `items-${Align[align]}`,
+              justify && `justify-${justify}`,
+              wrapEnabled && 'flex-wrap'
+       )"
+       :style="{
+           'grid-template-columns': `repeat(12, minmax(0, 1fr))`,
+           'gap': calcSize(gutter)
+       }">
     <slot/>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, onMounted, provide, ref } from 'vue'
-import { cn } from '@/lib/utils.ts'
+import { calcSize } from '@/utils/common.ts'
 import { Align } from '@/ui/enum/Align.ts'
+import { cn } from '@/lib/utils.ts'
 
 const props = withDefaults(defineProps<{
   gutter?: number
@@ -25,8 +30,6 @@ const props = withDefaults(defineProps<{
 
 const hasCol = ref(false)
 const totalSpan = ref(0)
-
-// Enable wrapping when total span exceeds 12
 const wrapEnabled = computed(() => props.wrap || totalSpan.value > 12)
 const id = computed(() => `ShadcnRow-${ Math.random().toString(36).slice(2) }`)
 
