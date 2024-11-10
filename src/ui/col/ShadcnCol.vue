@@ -1,13 +1,12 @@
 <template>
   <div :class="cn(order && `order-${order}`)"
-       :style="{ width: calcColWidth }">
+       :style="{ 'grid-column': `span ${span}` }">
     <slot/>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, inject, onMounted } from 'vue'
-import { toNumber } from 'lodash'
 import { cn } from '@/lib/utils.ts'
 
 interface RowContext
@@ -22,14 +21,13 @@ const props = withDefaults(defineProps<{
   span: 1
 })
 
-// Calculate column width to ensure column width does not exceed 12
-const calcColWidth = computed(() => {
-  const spanNumber = toNumber(props.span)
+// Calculate column span and validate
+const span = computed(() => {
+  const spanNumber = Number(props.span)
   if (spanNumber < 1 || spanNumber > 12) {
     throw new Error('ShadcnCol span must be between 1 and 12.')
   }
-  const span = Math.min(Math.max(spanNumber, 1), 12)
-  return `${ (span / 12) * 100 }%`
+  return Math.min(Math.max(spanNumber, 1), 12)
 })
 
 // Inject the context of ShadcnRow
@@ -41,7 +39,7 @@ onMounted(() => {
   }
   else {
     // Notify ShadcnRow of the existence of this column and its span
-    rowContext.registerCol(toNumber(props.span))
+    rowContext.registerCol(Number(props.span))
   }
 })
 </script>
