@@ -4,6 +4,64 @@ title: "Release Notes"
 
 # Changelog
 
+## 2024.3.0 (2024-11-10)
+
+### 🐛 Bug Fixes
+
+- **avatar:** fix square ([bf4f831](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/bf4f83107deb6a75851170a87ce413986a9bfc3d))
+- **button:** fixed disabled hover ([cd1ea49](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/cd1ea497eb8de4dee35bc3c6317097629d31b914))
+- **modal:** fix width and height ([456ecc1](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/456ecc1817b762028ad855ba61b998afb3d39072))
+- **modal:** replace width to auto ([dfe2a1c](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/dfe2a1c7dcfa8b07d4598fc41d679c33352c51a0))
+- **row col:** fix span ([beab688](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/beab6883b5183e36d551e4e3a9b1f1f957bc4941))
+- **select:** fix content overflow in multiple selections ([2d6c617](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/2d6c61795e5ea53cfce0b1e6e8c6f3a135737c15))
+- **tooltip:** fixed arrow ([cc40fb9](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/cc40fb92bee66bd32206afd23c328eebd5143b03))
+- **tooltip:** fixed delay ([9ba105d](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/9ba105d22270cf8cce05a91c3e1ee86c2b98e2c2))
+- **tooltip:** fixed position ([43e9024](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/43e9024bbfaed79288464be63e5f019fde596b66))
+
+### ✨ Features
+
+- **avatar:** support group ([d5347f0](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/d5347f08aeff4fbf58f3638cb37df460374b34fe))
+- **avatar:** support group max ([20426e5](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/20426e55d1a4232036ce63bbb3164285937522c7))
+- **avatar:** support group size ([86a1d69](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/86a1d698a9d1334904ab0c9ff78ed023987007d4))
+- **avatar:** support group square ([b33646f](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/b33646fffcd2eb650132b1894b8dff34df827b04))
+- **divider:** optimize the left and right layout ([c09ecbd](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/c09ecbd93f8f507d4dc0a1f6849755d5be7b1715))
+- **drawer:** remove default footer ([b7e89ce](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/b7e89ce92734ac4531c5a4027b157fb3b10a9d36))
+- **form:** support array checker ([242e16f](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/242e16ff11798d68336438fd1b54d38374735d71))
+- **gradient text:** support gradient text ([bfadd64](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/bfadd64c92609b1a497f0b0eb3842a63bd8ad4bb))
+- **gradient text:** support gradient text options ([4fabda7](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/4fabda7365a4fde1b37fc74e3bcc673e8b455ad4))
+- **modal:** add default content slot ([6fd610b](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/6fd610b6a17ff4911c2252ae42da31c05cd6a139))
+- **modal:** remove default footer ([074e7d6](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/074e7d6c1b7c3f5994f72b14caa537cc6cee4ff7))
+- **modal:** support closable ([264739c](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/264739cbfd7d66e3ae45a440d57bb46499936f3b))
+- **modal:** support maskClosable ([7e84e92](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/7e84e9266e46dd26909976747b07e20d90db03f5))
+- **number:** support clearable ([ce932c2](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/ce932c2b06048908e95b6241cc86a64243b05f2d))
+- **number:** support disabled ([d2f3be5](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/d2f3be506c39d4646b9f27868ff0bfe5079a4768))
+- **number:** support min and max ([ae9805a](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/ae9805a743caa1c5eac037d729754dd3304a2c20))
+- **number:** support number ([0e068bc](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/0e068bc00b8ed38c7ba4f1d5e0aa5b8b7f04df2a))
+- **number:** support onBlur event ([a1867d8](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/a1867d8ec6cecb7ca4c7b0466aa81c3d5b3cab6d))
+- **number:** support placeholder ([426753d](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/426753d2817baa80074a8c8732984cce732a39d9))
+- **number:** support show controller ([a643ec3](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/a643ec353f82aa8990cbbf67c43fa9ed037a9e22))
+- **number:** support size ([5b34615](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/5b3461523bbecf5d807252e0d64c8ff027070cac))
+- **number:** support type ([baf89da](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/baf89dae9b4d43a3345f63bec0554b2f5be44f60))
+- **select:** add max height ([3862140](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/3862140f9546ca712a6c460a718e0e5656182704))
+- **select:** support border ([1ce22f2](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/1ce22f25ab7a7acb1d1debe48346981262303fcc))
+- **select:** support multiple ([ac2a9c0](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/ac2a9c0a42dc8e31152ee676e0f1354375c93221))
+- **text:** support color ([af45193](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/af4519301bf19c46d5bbfba56e33072020ced86f))
+- **text:** support italic ([3f2549d](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/3f2549d985cd0c76f8a6c090c66d5738dc1e6521))
+- **text:** support strong ([6be18a1](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/6be18a15246a1c1a60af390b388cb14874cb9a4d))
+- **text:** support text ([ba06e76](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/ba06e76f9ce3a7a34fae11efd445c4b8152dec0b))
+- **text:** support type ([ce123fa](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/ce123fa772ded02bec03628ff6b14d2bf3cd5f30))
+- **text:** support underline and delete ([74ee6b3](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/74ee6b37c50b29fa91696f6eca70e13e3aec6437))
+- **tree:** support cascade ([441428b](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/441428b277a60c6e12a6731cd5dc81ae272cf385))
+- **tree:** support checkable ([d1cde73](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/d1cde733ebc889e1917631680f23d4ac91f56b8a))
+- **tree:** support expand & collapse slot ([5bb964e](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/5bb964e76c0be9ef9a4b1424143869180c789c6b))
+- **tree:** support label slot ([0a15652](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/0a15652fd52bc38e0c5e3cd788f09082c43395cd))
+- **tree:** support lazy loading of data ([954bc5c](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/954bc5c72e483d2da447d14d9386553f921bdb94))
+- **tree:** support multiple ([734bb29](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/734bb29a626eb1ead6439a8897addeadd4c46a7c))
+- **tree:** support node disabled ([1d3b866](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/1d3b866b45da1c80b1152e5f9061c8e1a9468d0f))
+- **tree:** support show line ([9d0294a](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/9d0294a36c5cfa82f4b417fdb66ea2cf6fa4ee1e))
+- **tree:** support tree ([fe0314a](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/fe0314a3e9e3c282f484d082a81e50af1266e565))
+- **tree:** support v-model ([a21d9cf](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/a21d9cff178e3b4306f2abaf8a5f40e79cb6571d))
+
 ## 2024.2.0 (2024-11-03)
 
 ### 📚 Documentation

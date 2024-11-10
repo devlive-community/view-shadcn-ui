@@ -2,11 +2,11 @@
 layout: home
 
 title: View Shadcn UI
-titleTemplate: A component library built on Shadcn UI and Tailwind CSS.
+titleTemplate: View Shadcn UI is a Vue3 component library built on Tailwind CSS.
 
 hero:
   name: View Shadcn UI
-  tagline: A component library built on Shadcn UI and Tailwind CSS.
+  tagline: View Shadcn UI is a Vue3 component library built on Tailwind CSS.
   image:
     alt: View Shadcn UI
     src: /logo.svg

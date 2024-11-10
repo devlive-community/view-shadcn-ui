@@ -1,6 +1,6 @@
 export default {
     title: 'View Shadcn UI',
-    description: 'A component library built on Shadcn UI and Tailwind CSS.',
+    description: 'View Shadcn UI is a Vue3 component library built on Tailwind CSS.',
 
     head: [
         ['link', {rel: 'icon', href: '/favicon.ico'}]
@@ -52,10 +52,10 @@ export default {
                 activeMatch: '/components'
             },
             {
-                text: '2024.3.0 <span class="VPBadge danger" style="margin-left: -18px; position: absolute; bottom: 38px;">Alpha</span>',
+                text: '2024.4.0 <span class="VPBadge danger" style="margin-left: -18px; position: absolute; bottom: 38px;">Alpha</span>',
                 items: [
                     {
-                        text: 'CHANGELOG <span class="VPBadge tip">2024.2.0</span>',
+                        text: 'CHANGELOG <span class="VPBadge tip">2024.3.0</span>',
                         link: '/changelog',
                         activeMatch: '/changelog'
                     },
