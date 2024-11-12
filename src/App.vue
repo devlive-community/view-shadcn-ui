@@ -5,28 +5,16 @@
         Right click in this area to show menu
       </div>
     </template>
-
-    <ShadcnContextMenuItem @click="onItemClick('edit')">Edit</ShadcnContextMenuItem>
-    <ShadcnContextMenuItem @click="onItemClick('delete')">Delete</ShadcnContextMenuItem>
-    <ShadcnContextMenuItem @click="onItemClick('copy')">Copy</ShadcnContextMenuItem>
-
+    <ShadcnContextMenuItem disabled @on-click="onItemClick('edit')">Edit</ShadcnContextMenuItem>
+    <ShadcnContextMenuItem @on-click="onItemClick('copy')">Copy</ShadcnContextMenuItem>
     <ShadcnContextMenuSub label="More actions">
-      <ShadcnContextMenuItem @click="onItemClick('move')">Move</ShadcnContextMenuItem>
-      <ShadcnContextMenuItem @click="onItemClick('copy')">Copy</ShadcnContextMenuItem>
-      <ShadcnContextMenuItem @click="onItemClick('print')">Print</ShadcnContextMenuItem>
-
-      <ShadcnContextMenuSub>
-        <template #title>
-          <ShadcnIcon icon="Save" class="mr-2"/>
-          More options
-        </template>
-
-        <ShadcnContextMenuItem @click="onItemClick('duplicate')">Duplicate</ShadcnContextMenuItem>
-        <ShadcnContextMenuItem @click="onItemClick('duplicate-with-images-and-text')">Duplicate with images and text</ShadcnContextMenuItem>
-      </ShadcnContextMenuSub>
+      <ShadcnContextMenuItem @on-click="onItemClick('move')">Move</ShadcnContextMenuItem>
     </ShadcnContextMenuSub>
-
-    <ShadcnContextMenuItem @click="onItemClick('print')">Print</ShadcnContextMenuItem>
+    <ShadcnContextMenuSub disabled label="Disabled">
+      <ShadcnContextMenuItem @on-click="onItemClick('duplicate')">Duplicate</ShadcnContextMenuItem>
+      <ShadcnContextMenuItem @on-click="onItemClick('duplicate-with-images-and-text')">Duplicate with images and text</ShadcnContextMenuItem>
+    </ShadcnContextMenuSub>
+    <ShadcnContextMenuItem @on-click="onItemClick('print')">Print</ShadcnContextMenuItem>
   </ShadcnContextMenu>
 </template>
 

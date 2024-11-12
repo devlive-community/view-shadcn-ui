@@ -1,7 +1,9 @@
 <template>
   <div class="relative" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
-    <div
-        class="relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-gray-100 focus:bg-gray-100 data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
+    <div :class="[
+              'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-gray-100 focus:bg-gray-100 data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+              { 'opacity-50 cursor-not-allowed': disabled }
+          ]">
       <slot name="title">
         {{ label }}
       </slot>
@@ -38,7 +40,9 @@ import { computed, CSSProperties, nextTick, onBeforeUnmount, onMounted, ref, wat
 import { ContextMenuItemProps } from './types'
 import { calcSize } from '@/utils/common.ts'
 
-withDefaults(defineProps<ContextMenuItemProps>(), {})
+const props = withDefaults(defineProps<ContextMenuItemProps>(), {
+  disabled: false
+})
 
 const isHovered = ref(false)
 const subMenuRef = ref<HTMLElement | null>(null)
@@ -92,12 +96,16 @@ const updatePosition = async () => {
 }
 
 const onMouseEnter = () => {
-  isHovered.value = true
-  updatePosition()
+  if (!props.disabled) {
+    isHovered.value = true
+    updatePosition()
+  }
 }
 
 const onMouseLeave = () => {
-  isHovered.value = false
+  if (!props.disabled) {
+    isHovered.value = false
+  }
 }
 
 // Listens for changes in the size of the monitoring window

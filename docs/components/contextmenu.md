@@ -8,6 +8,7 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 
 - ShadcnContextMenu
 - ShadcnContextMenuItem
+- ShadcnContextMenuSub
 
 ## Usage
 
@@ -140,6 +141,66 @@ const onItemClick = (action) => console.log(`Clicked: ${action}`)
 
 :::
 
+## Disabled
+
+::: raw
+
+<CodeRunner title="Disabled">
+  <ShadcnContextMenu v-model="disabledMenu">
+    <template #trigger>
+      <div class="w-full h-32 bg-gray-100 rounded-lg flex items-center justify-center">
+        Right click in this area to show menu
+      </div>
+    </template>
+    <ShadcnContextMenuItem disabled @on-click="onItemClick('edit')">Edit</ShadcnContextMenuItem>
+    <ShadcnContextMenuItem @on-click="onItemClick('copy')">Copy</ShadcnContextMenuItem>
+    <ShadcnContextMenuSub label="More actions">
+      <ShadcnContextMenuItem @on-click="onItemClick('move')">Move</ShadcnContextMenuItem>
+    </ShadcnContextMenuSub>
+    <ShadcnContextMenuSub disabled label="Disabled">
+      <ShadcnContextMenuItem @on-click="onItemClick('duplicate')">Duplicate</ShadcnContextMenuItem>
+      <ShadcnContextMenuItem @on-click="onItemClick('duplicate-with-images-and-text')">Duplicate with images and text</ShadcnContextMenuItem>
+    </ShadcnContextMenuSub>
+    <ShadcnContextMenuItem @on-click="onItemClick('print')">Print</ShadcnContextMenuItem>
+  </ShadcnContextMenu>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnContextMenu v-model="showMenu">
+    <template #trigger>
+      <div class="w-full h-32 bg-gray-100 rounded-lg flex items-center justify-center">
+        Right click in this area to show menu
+      </div>
+    </template>
+    <ShadcnContextMenuItem disabled @on-click="onItemClick('edit')">Edit</ShadcnContextMenuItem>
+    <ShadcnContextMenuItem @on-click="onItemClick('copy')">Copy</ShadcnContextMenuItem>
+    <ShadcnContextMenuSub label="More actions">
+      <ShadcnContextMenuItem @on-click="onItemClick('move')">Move</ShadcnContextMenuItem>
+    </ShadcnContextMenuSub>
+    <ShadcnContextMenuSub disabled label="Disabled">
+      <ShadcnContextMenuItem @on-click="onItemClick('duplicate')">Duplicate</ShadcnContextMenuItem>
+      <ShadcnContextMenuItem @on-click="onItemClick('duplicate-with-images-and-text')">Duplicate with images and text</ShadcnContextMenuItem>
+    </ShadcnContextMenuSub>
+    <ShadcnContextMenuItem @on-click="onItemClick('print')">Print</ShadcnContextMenuItem>
+  </ShadcnContextMenu>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const showMenu = ref(false)
+
+const onItemClick = (action) => console.log(`Clicked: ${action}`)
+</script>
+```
+
+:::
+
 ## Context Menu Props
 
 <ApiTable title="Context Menu Props"
@@ -151,10 +212,20 @@ const onItemClick = (action) => console.log(`Clicked: ${action}`)
 
 <br />
 
+<ApiTable title="Context Menu Item Props"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :columns="[
+        ['disabled', 'Whether the context menu item is disabled', 'boolean', 'false'],
+    ]">
+</ApiTable>
+
+<br />
+
 <ApiTable title="Context Menu Sub Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value']"
     :columns="[
         ['label', 'The label of the context menu sub item', 'string', '-'],
+        ['disabled', 'Whether the context menu sub item is disabled', 'boolean', 'false'],
     ]">
 </ApiTable>
 
@@ -192,6 +263,7 @@ import { ref } from 'vue'
 
 const showMenu = ref(false)
 const subMenu = ref(false)
+const disabledMenu = ref(false)
 
 const onItemClick = (action) => console.log(`Clicked: ${action}`)
 </script>

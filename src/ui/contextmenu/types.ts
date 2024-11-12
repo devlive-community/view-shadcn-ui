@@ -16,4 +16,5 @@ export interface ContextMenuProps
 export interface ContextMenuItemProps
 {
     label?: string
+    disabled?: boolean
 }
