@@ -12,3 +12,8 @@ export interface ContextMenuProps
 {
     modelValue: boolean
 }
+
+export interface ContextMenuItemProps
+{
+    label?: string
+}

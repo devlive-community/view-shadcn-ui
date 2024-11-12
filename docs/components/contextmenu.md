@@ -66,12 +66,95 @@ const onItemClick = (action) => console.log(`Clicked: ${action}`)
 
 :::
 
+## Sub menu
+
+::: raw
+
+<CodeRunner title="Sub menu">
+  <ShadcnContextMenu v-model="subMenu">
+    <template #trigger>
+      <div class="w-full h-32 bg-gray-100 rounded-lg flex items-center justify-center">
+        Right click in this area to show menu
+      </div>
+    </template>
+    <ShadcnContextMenuItem @click="onItemClick('edit')">Edit</ShadcnContextMenuItem>
+    <ShadcnContextMenuItem @click="onItemClick('delete')">Delete</ShadcnContextMenuItem>
+    <ShadcnContextMenuItem @click="onItemClick('copy')">Copy</ShadcnContextMenuItem>
+    <ShadcnContextMenuSub label="More actions">
+      <ShadcnContextMenuItem @click="onItemClick('move')">Move</ShadcnContextMenuItem>
+      <ShadcnContextMenuItem @click="onItemClick('copy')">Copy</ShadcnContextMenuItem>
+      <ShadcnContextMenuItem @click="onItemClick('print')">Print</ShadcnContextMenuItem>
+      <ShadcnContextMenuSub>
+        <template #title>
+          <ShadcnIcon icon="Save" class="mr-2"/>
+          More options
+        </template>
+        <ShadcnContextMenuItem @click="onItemClick('duplicate')">Duplicate</ShadcnContextMenuItem>
+        <ShadcnContextMenuItem @click="onItemClick('duplicate-with-images-and-text')">Duplicate with images and text</ShadcnContextMenuItem>
+      </ShadcnContextMenuSub>
+    </ShadcnContextMenuSub>
+    <ShadcnContextMenuItem @click="onItemClick('print')">Print</ShadcnContextMenuItem>
+  </ShadcnContextMenu>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnContextMenu v-model="showMenu">
+    <template #trigger>
+      <div class="w-full h-32 bg-gray-100 rounded-lg flex items-center justify-center">
+        Right click in this area to show menu
+      </div>
+    </template>
+    <ShadcnContextMenuItem @click="onItemClick('edit')">Edit</ShadcnContextMenuItem>
+    <ShadcnContextMenuItem @click="onItemClick('delete')">Delete</ShadcnContextMenuItem>
+    <ShadcnContextMenuItem @click="onItemClick('copy')">Copy</ShadcnContextMenuItem>
+    <ShadcnContextMenuSub label="More actions">
+      <ShadcnContextMenuItem @click="onItemClick('move')">Move</ShadcnContextMenuItem>
+      <ShadcnContextMenuItem @click="onItemClick('copy')">Copy</ShadcnContextMenuItem>
+      <ShadcnContextMenuItem @click="onItemClick('print')">Print</ShadcnContextMenuItem>
+      <ShadcnContextMenuSub>
+        <template #title>
+          <ShadcnIcon icon="Save" class="mr-2"/>
+          More options
+        </template>
+        <ShadcnContextMenuItem @click="onItemClick('duplicate')">Duplicate</ShadcnContextMenuItem>
+        <ShadcnContextMenuItem @click="onItemClick('duplicate-with-images-and-text')">Duplicate with images and text</ShadcnContextMenuItem>
+      </ShadcnContextMenuSub>
+    </ShadcnContextMenuSub>
+    <ShadcnContextMenuItem @click="onItemClick('print')">Print</ShadcnContextMenuItem>
+  </ShadcnContextMenu>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const showMenu = ref(false)
+
+const onItemClick = (action) => console.log(`Clicked: ${action}`)
+</script>
+```
+
+:::
+
 ## Context Menu Props
 
 <ApiTable title="Context Menu Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
     :columns="[
-        ['modelValue', 'The model value of the context menu', 'boolean', 'false', '-'],
+        ['modelValue', 'The model value of the context menu', 'boolean', 'false'],
+    ]">
+</ApiTable>
+
+<br />
+
+<ApiTable title="Context Menu Sub Props"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :columns="[
+        ['label', 'The label of the context menu sub item', 'string', '-'],
     ]">
 </ApiTable>
 
@@ -104,10 +187,11 @@ const onItemClick = (action) => console.log(`Clicked: ${action}`)
     ]">
 </ApiTable>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 
 const showMenu = ref(false)
+const subMenu = ref(false)
 
 const onItemClick = (action) => console.log(`Clicked: ${action}`)
 </script>
