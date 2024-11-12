@@ -154,4 +154,8 @@ features:
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/gradient-text.svg" />
     title: <a href='gradient-text.html'>Shadcn Gradient Text <span class="VPBadge tip">2024.3.0</span></a>
     details: Gradient Text component
+
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/contextmenu.svg" />
+    title: <a href='contextmenu.html'>Shadcn Context Menu <span class="VPBadge tip">2024.4.0</span></a>
+    details: Context Menu component
 ---

@@ -1,22 +1,27 @@
 <template>
-  <div class="p-32 space-y-2">
-    <div>Horizontal</div>
-    <ShadcnDivider type="horizontal"/>
-    <div class="flex space-x-2">
-      <div>Vertical</div>
-      <ShadcnDivider type="vertical"/>
-      <a href="#">Link</a>
-      <ShadcnDivider type="vertical"/>
-      <div>Vertical</div>
-    </div>
-
-    <ShadcnDivider orientation="left">Left</ShadcnDivider>
-    <ShadcnDivider orientation="center">Center</ShadcnDivider>
-    <ShadcnDivider orientation="right">Right</ShadcnDivider>
-
-    <ShadcnDivider dashed />
-  </div>
+  <ShadcnContextMenu v-model="showMenu">
+    <template #trigger>
+      <div class="w-full h-64 bg-gray-100 rounded-lg flex items-center justify-center">
+        Right click in this area to show menu
+      </div>
+    </template>
+    <ShadcnContextMenuItem disabled @on-click="onItemClick('edit')">Edit</ShadcnContextMenuItem>
+    <ShadcnContextMenuItem @on-click="onItemClick('copy')">Copy</ShadcnContextMenuItem>
+    <ShadcnContextMenuSub label="More actions">
+      <ShadcnContextMenuItem @on-click="onItemClick('move')">Move</ShadcnContextMenuItem>
+    </ShadcnContextMenuSub>
+    <ShadcnContextMenuSub disabled label="Disabled">
+      <ShadcnContextMenuItem @on-click="onItemClick('duplicate')">Duplicate</ShadcnContextMenuItem>
+      <ShadcnContextMenuItem @on-click="onItemClick('duplicate-with-images-and-text')">Duplicate with images and text</ShadcnContextMenuItem>
+    </ShadcnContextMenuSub>
+    <ShadcnContextMenuItem @on-click="onItemClick('print')">Print</ShadcnContextMenuItem>
+  </ShadcnContextMenu>
 </template>
 
-<script setup lang="ts">
+<script setup>
+import { ref } from 'vue'
+
+const showMenu = ref(false)
+
+const onItemClick = (action) => console.log(`Clicked: ${action}`)
 </script>
