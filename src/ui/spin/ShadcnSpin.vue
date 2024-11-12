@@ -3,18 +3,23 @@
        role="status"
        aria-label="loading"
        :class="['inline-flex items-center justify-center',
-                fixed ? 'absolute inset-0 bg-gray-50 z-20' : 'relative'
+                fixed ? 'absolute inset-0' : 'relative'
        ]">
-    <template v-if="$slots.default">
-      <slot/>
-    </template>
-    <div v-else
-         :class="['inline-block animate-spin rounded-full border-2',
-                 'shadow-lg p-2',
-                 fixed ? 'bg-transparent absolute' : 'bg-white',
-                 WrapperSize[size],
-                 BorderRightType[type]
-         ]"/>
+    <!-- Translucent background layer -->
+    <div v-if="fixed" class="absolute inset-0 bg-gray-50 opacity-65 z-10"/>
+
+    <!-- Loading layer -->
+    <div class="z-20">
+      <template v-if="$slots.default">
+        <slot/>
+      </template>
+      <div v-else :class="['inline-block animate-spin rounded-full border-2',
+                           'shadow-lg p-2',
+                           fixed ? 'bg-transparent' : 'bg-white',
+                           WrapperSize[size],
+                           BorderRightType[type]
+                   ]"/>
+    </div>
   </div>
 </template>
 
