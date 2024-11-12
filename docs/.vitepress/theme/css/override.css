@@ -62,7 +62,10 @@
     background-color: #bfdbfe;
 }
 
-.bg-blue-300
-{
+.bg-blue-300 {
     background-color: #93c5fd;
+}
+
+.bg-gray-100 {
+    background-color: #f3f4f6;
 }

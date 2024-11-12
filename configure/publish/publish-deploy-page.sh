@@ -6,7 +6,7 @@ yarn run docs:build
 
 cd docs/.vitepress/dist
 
-echo 'shadcn.vue.devlive.org' > CNAME
+echo 'view-shadcn-ui.devlive.org' > CNAME
 
 time=$(date "+%Y-%m-%d %H:%M:%S")
 

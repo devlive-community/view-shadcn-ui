@@ -74,6 +74,7 @@ import ShadcnNumber from '@/ui/number'
 import ShadcnTree from '@/ui/tree'
 import ShadcnText from '@/ui/text'
 import ShadcnGradientText from '@/ui/text/gradient'
+import { ShadcnContextMenu, ShadcnContextMenuItem } from '@/ui/contextmenu'
 
 let components = [
     ShadcnButton,
@@ -146,7 +147,9 @@ let components = [
     ShadcnNumber,
     ShadcnTree,
     ShadcnText,
-    ShadcnGradientText
+    ShadcnGradientText,
+    ShadcnContextMenu,
+    ShadcnContextMenuItem
 ]
 
 const install = (Vue: App) => {
@@ -243,6 +246,7 @@ export { default as ShadcnNumber } from '@/ui/number'
 export { default as ShadcnTree } from '@/ui/tree'
 export { default as ShadcnText } from '@/ui/text'
 export { default as ShadcnGradientText } from '@/ui/text/gradient'
+export { ShadcnContextMenu, ShadcnContextMenuItem } from '@/ui/contextmenu'
 
 // Support global import
 export default install
