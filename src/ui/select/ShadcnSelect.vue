@@ -48,7 +48,9 @@
     </div>
 
     <div v-show="isExpanded"
-         class="absolute z-10 bg-white border border-gray-300 rounded-sm mt-1 w-full py-2 px-2 space-y-1 overflow-y-auto max-h-60">
+         ref="dropdownRef"
+         class="absolute z-10 bg-white border border-gray-300 rounded-sm mt-1 w-full py-2 px-2 space-y-1 overflow-y-auto max-h-60"
+         @scroll="handleScroll">
       <slot name="options">
         <ShadcnSelectOption v-for="(option, index) in internalOptions"
                             :key="index"
@@ -58,6 +60,9 @@
                             :disabled="option.disabled"
                             :type="type"/>
       </slot>
+      <div v-if="isLoading" class="flex justify-center items-center py-2">
+        <div class="animate-spin rounded-full h-4 w-4 border-2 border-primary border-t-transparent"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -78,14 +83,51 @@ const props = withDefaults(defineProps<SelectProps>(), {
   size: 'default',
   type: 'primary',
   multiple: false,
-  border: true
+  border: true,
+  lazy: false
 })
 
 const isExpanded = ref(false)
 const selectedLabels = ref<string[]>([])
 const slotOptions = ref<SelectOptionProps[]>([])
 const selectRef = ref<HTMLElement | null>(null)
+const dropdownRef = ref<HTMLElement | null>(null)
 const parentName = `shadcn-select-${ generateRandomId() }`
+const isLoading = ref(false)
+
+// Handle scroll loading
+const handleScroll = () => {
+  if (!props.lazy || !props.loadData || isLoading.value) {
+    return
+  }
+
+  const dropdown = dropdownRef.value
+  if (!dropdown) {
+    return
+  }
+
+  const { scrollTop, scrollHeight, clientHeight } = dropdown
+  // Triggers loading when scrolling to 20px from the bottom
+  if (scrollHeight - scrollTop - clientHeight < 20) {
+    if (!isLoading.value) {
+      isLoading.value = true
+      props.loadData((children: SelectOptionProps[]) => {
+        // Process incoming new data directly
+        if (Array.isArray(children) && children.length > 0) {
+          if (props.options !== undefined) {
+            // Note the change here: use emit events to update the data of the parent component
+            emit('update:options', [...props.options, ...children])
+          }
+          else {
+            // If you're using the slot option
+            slotOptions.value = [...slotOptions.value, ...children]
+          }
+        }
+        isLoading.value = false
+      })
+    }
+  }
+}
 
 const registerOption = (option: SelectOptionProps) => {
   if (!option || option.parentName !== parentName) {
