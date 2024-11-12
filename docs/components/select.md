@@ -295,6 +295,124 @@ const defaultSelectOptions = [
 
 :::
 
+## Lazy data
+
+::: raw
+
+<CodeRunner title="Lazy data">
+  <ShadcnSelect v-model="lazySelect"
+                lazy
+                :options="options"
+                :load-data="loadMoreData"
+                @update:options="handleOptionsUpdate"/>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnSelect v-model="selectedValue"
+                lazy
+                :options="options"
+                :load-data="loadMoreData"
+                @update:options="handleOptionsUpdate"/>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const selectedValue = ref()
+const options = ref<any[]>([])
+let page = 1
+
+const generateChildNodes = () => {
+  return Array.from({ length: 10 }, (_, index) => ({
+    value: `value-${ page }-${ index }`,
+    label: `Option ${ page }-${ index }`,
+    disabled: false,
+    type: 'primary'
+  }))
+}
+
+const handleOptionsUpdate = (newOptions: SelectOptionProps[]) => {
+  options.value = newOptions
+}
+
+const loadMoreData = (callback: (children: any[]) => void) => {
+  setTimeout(() => {
+    console.log('Loading page:', page)
+    const children = generateChildNodes()
+    callback(children)
+    page++
+  }, 1000)
+}
+
+loadMoreData((children) => {
+  options.value = children
+})
+</script>
+```
+
+:::
+
+::: raw
+
+<CodeRunner title="Lazy data (v-model)">
+  <ShadcnSelect v-model="lazySelect"
+                v-model:options="options"
+                lazy
+                :options="options"
+                :load-data="loadMoreData"/>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnSelect v-model="selectedValue"
+                v-model:options="options"
+                lazy
+                :options="options"
+                :load-data="loadMoreData"/>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const selectedValue = ref()
+const options = ref<any[]>([])
+let page = 1
+
+const generateChildNodes = () => {
+  return Array.from({ length: 10 }, (_, index) => ({
+    value: `value-${ page }-${ index }`,
+    label: `Option ${ page }-${ index }`,
+    disabled: false,
+    type: 'primary'
+  }))
+}
+
+const loadMoreData = (callback: (children: any[]) => void) => {
+  setTimeout(() => {
+    console.log('Loading page:', page)
+    const children = generateChildNodes()
+    callback(children)
+    page++
+  }, 1000)
+}
+
+loadMoreData((children) => {
+  options.value = children
+})
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Select Props"
@@ -308,6 +426,8 @@ const defaultSelectOptions = [
         ['placeholder', 'The placeholder of the select', 'string', '-', '-'],
         ['multiple', 'Whether the select is multiple', 'boolean', 'false', 'true | false'],
         ['border', 'Whether the select has border', 'boolean', 'true', 'true | false'],
+        ['lazy', 'Whether the select is lazy', 'boolean', 'false', 'true | false'],
+        ['loadData', 'Load data when the select is lazy', 'function', '-', '-'],
     ]">
 </ApiTable>
 
@@ -361,4 +481,33 @@ const defaultSelectOptions = [
     { label: 'Svelte', value: 'Svelte' }
 ]
 const slotSelect = ref(null)
+
+const lazySelect = ref()
+const lazySelect2 = ref()
+const options = ref<any[]>([])
+let page = 1
+
+const generateChildNodes = () => {
+  return Array.from({ length: 10 }, (_, index) => ({
+    value: `value-${ page }-${ index }`,
+    label: `Option ${ page }-${ index }`,
+    disabled: false,
+    type: 'primary'
+  }))
+}
+
+const handleOptionsUpdate = (newOptions: any[]) => options.value = newOptions
+
+const loadMoreData = (callback: (children: any[]) => void) => {
+  setTimeout(() => {
+    console.log('Loading page:', page)
+    const children = generateChildNodes()
+    callback(children)
+    page++
+  }, 1000)
+}
+
+loadMoreData((children) => {
+  options.value = children
+})
 </script>

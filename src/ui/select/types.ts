@@ -11,6 +11,8 @@ export interface SelectProps
     type?: keyof typeof HoverType
     multiple?: boolean
     border?: boolean
+    lazy?: boolean
+    loadData?: (callback: (children: SelectOptionProps[]) => void) => void
 }
 
 export interface SelectOptionProps
@@ -30,6 +32,7 @@ export interface SelectGroupProps
 
 export type SelectEmits = {
     'update:modelValue': [value: any]
+    'update:options': [value: SelectOptionProps[]]
     'on-change': [value: any]
     'on-click-outside': [value: boolean]
 }
