@@ -16,18 +16,35 @@ const props = withDefaults(defineProps<{
   disabled: false
 })
 
+// Add emit for click event
+const emit = defineEmits(['on-click'])
+
 // Add slots to expose label slot content
 const slots = defineSlots<{
   label?: () => any
 }>()
 
 const activeTab = inject('activeTab') as { value: string }
-const registerTab = inject('registerTab') as (label: string, value: string, disabled?: boolean, icon?: string, labelSlot?: () => any) => void
+const registerTab = inject('registerTab') as (
+    label: string,
+    value: string,
+    disabled?: boolean,
+    icon?: string,
+    labelSlot?: () => any,
+    onClick?: (e: MouseEvent) => void
+) => void
 const unregisterTab = inject('unregisterTab') as (value: string) => void
 
+// Handle click event
+const onClick = (e: MouseEvent) => {
+  if (!props.disabled) {
+    emit('on-click', e)
+  }
+}
+
 onMounted(() => {
-  // Pass the label slot to registerTab if it exists
-  registerTab(props.label, props.value, props.disabled, props.icon, slots.label)
+  // Pass the label slot and click handler to registerTab
+  registerTab(props.label, props.value, props.disabled, props.icon, slots.label, onClick)
 
   // For consistency, if it is the first non-disabled tag and there is no currently activated tag, it is set to the activated state.
   if (activeTab.value === '' && !props.disabled) {

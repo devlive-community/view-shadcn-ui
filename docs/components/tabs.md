@@ -399,7 +399,7 @@ const addTab = () => {
 
 :::
 
-## API Attributes
+## Tabs Props
 
 <ApiTable title="Tab Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
@@ -426,7 +426,7 @@ const addTab = () => {
     ]">
 </ApiTable>
 
-<br />
+## Tabs Events
 
 <ApiTable title="Tab Events"
     :headers="['Event', 'Description', 'Callback Parameters']"
@@ -437,6 +437,15 @@ const addTab = () => {
 </ApiTable>
 
 <br />
+
+<ApiTable title="Tab Item Events"
+    :headers="['Event', 'Description', 'Callback Parameters']"
+    :columns="[
+        ['on-click', 'Emitted when the tab is clicked', 'String'],
+    ]">
+</ApiTable>
+
+## Tabs Slots
 
 <ApiTable title="Tab Slots"
     :headers="['Slot', 'Description']"
