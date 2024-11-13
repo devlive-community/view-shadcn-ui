@@ -6,7 +6,7 @@
                v-bind="isTextarea
                        ? { rows: props.rows, cols: props.cols }
                        : { type: currentType }"
-               :class="cn('w-full p-2 rounded',
+               :class="cn('w-full p-2 rounded outline-none border-none',
                         type !== 'textarea' && size && Size[size],
                         $slots.prefix && 'pl-6',
                         $slots.suffix && 'pr-6'

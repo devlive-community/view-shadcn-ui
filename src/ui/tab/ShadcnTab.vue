@@ -38,7 +38,7 @@
                     'border-l border-t border-b rounded-l items-center': card && direction === 'vertical'
                   }
              ]"
-             @click="!tab.disabled && setActiveTab(tab.value)">
+             @click="handleTabClick($event, tab)">
           <div :class="['flex items-center',
                         direction === 'vertical' ? 'space-y-1' : 'space-x-1',
                 ]"
@@ -49,7 +49,11 @@
                   alignItems: 'center',
                 }">
             <ShadcnIcon v-if="tab.icon" :icon="tab.icon"/>
-            <div class="whitespace-nowrap">{{ tab.label }}</div>
+            <!-- Render either the custom label slot or the default label text -->
+            <div class="whitespace-nowrap">
+              <component v-if="tab.labelSlot" :is="tab.labelSlot"/>
+              <template v-else>{{ tab.label }}</template>
+            </div>
             <ShadcnIcon v-if="closable && !tab.disabled"
                         icon="CircleX"
                         :class="{
@@ -92,6 +96,8 @@ interface Tab
   value: string
   disabled?: boolean
   icon?: string
+  labelSlot?: () => any
+  onClick?: (e: MouseEvent) => void // Add onClick handler to Tab interface
 }
 
 const emit = defineEmits(['update:modelValue', 'on-change', 'on-tab-remove'])
@@ -116,6 +122,16 @@ const props = withDefaults(defineProps<{
 const activeTab = ref('')
 const tabs = ref<Tab[]>([])
 
+// Handle tab click event
+const handleTabClick = (e: MouseEvent, tab: Tab) => {
+  if (!tab.disabled) {
+    // Call the tab's click handler if it exists
+    tab.onClick?.(e)
+    // Set the active tab
+    setActiveTab(tab.value)
+  }
+}
+
 const setActiveTab = (value: string) => {
   if (activeTab.value !== value) {
     activeTab.value = value
@@ -124,7 +140,14 @@ const setActiveTab = (value: string) => {
   }
 }
 
-const registerTab = (label: string, value: string, disabled: boolean = false, icon?: string) => {
+const registerTab = (
+    label: string,
+    value: string,
+    disabled: boolean = false,
+    icon?: string,
+    labelSlot?: () => any,
+    onClick?: (e: MouseEvent) => void
+) => {
   if (!value) {
     console.warn('Tab value must be a non-empty string')
     return
@@ -136,7 +159,7 @@ const registerTab = (label: string, value: string, disabled: boolean = false, ic
     return
   }
 
-  tabs.value.push({ label, value, disabled, icon })
+  tabs.value.push({ label, value, disabled, icon, labelSlot, onClick })
 }
 
 const unregisterTab = (value: string) => {

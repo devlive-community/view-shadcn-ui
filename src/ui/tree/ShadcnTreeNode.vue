@@ -1,5 +1,5 @@
 <template>
-  <div :class="['relative py-0.5']"
+  <div class="relative py-0.5"
        :style="level > 0 ? { paddingLeft: '1.5em' } : undefined">
 
     <div v-if="showLine">
@@ -8,7 +8,7 @@
       <div v-if="level > 0 && !hasChildren" class="absolute top-1/2 left-0 bg-gray-200" :style="{ left: '2.35em', width: '0.8em', height: '1px' }"/>
     </div>
 
-    <div :class="['flex items-center py-0.5 px-1.5 rounded-sm',
+    <div :class="['inline-flex items-center py-0.5 px-1.5 rounded-sm whitespace-nowrap',
               { 'bg-gray-200': isSelected && !showLine },
               { 'hover:bg-gray-100': !isSelected && !showLine },
               { 'cursor-not-allowed': node.disabled },
@@ -16,7 +16,7 @@
          ]"
          @click="onNodeClick">
       <button v-if="showExpandIcon"
-              class="w-4 h-4 flex items-center justify-center mr-2 text-gray-500 hover:text-gray-700"
+              class="inline-flex w-4 h-4 items-center justify-center mr-2 text-gray-500 hover:text-gray-700"
               @click.stop="onExpand">
         <!-- Loading spinner -->
         <svg v-if="loading"
@@ -43,11 +43,12 @@
         </div>
       </button>
 
-      <span v-else class="w-6"/>
+      <span v-else class="inline-block w-6"/>
 
       <ShadcnCheckbox v-if="checkable"
                       v-model="nodeChecked"
                       size="small"
+                      class="inline-block"
                       :value="node.value"
                       :disabled="node.disabled"
                       :indeterminate="cascade && isIndeterminate"/>
@@ -56,7 +57,7 @@
             :node="node"
             :level="level"
             :is-selected="isSelected">
-        <span :class="['text-sm',
+        <span :class="['inline-block text-sm whitespace-nowrap',
                       { 'hover:bg-gray-100 px-2 py-0.5 hover:rounded-sm': showLine && !node.disabled },
                       { 'text-gray-500 px-2': node.disabled && showLine },
                       { 'text-gray-500': node.disabled && !showLine },
@@ -67,7 +68,7 @@
       </slot>
     </div>
 
-    <div v-if="hasChildren && isExpanded" class="relative">
+    <div v-if="hasChildren && isExpanded" class="relative inline-block min-w-full">
       <ShadcnTreeNode v-for="child in node.children"
                       :key="child.value"
                       :node="child"

@@ -210,9 +210,13 @@ const input = ref('Hello View Shadcn UI')
 
 ## Textarea
 
+::: raw
+
 <CodeRunner title="Textarea">
     <ShadcnInput placeholder="Input" v-model="input" type="textarea" />
 </CodeRunner>
+
+:::
 
 ::: details Show code
 
