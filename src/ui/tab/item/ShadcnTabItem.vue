@@ -16,12 +16,18 @@ const props = withDefaults(defineProps<{
   disabled: false
 })
 
+// Add slots to expose label slot content
+const slots = defineSlots<{
+  label?: () => any
+}>()
+
 const activeTab = inject('activeTab') as { value: string }
-const registerTab = inject('registerTab') as (label: string, value: string, disabled?: boolean, icon?: string) => void
+const registerTab = inject('registerTab') as (label: string, value: string, disabled?: boolean, icon?: string, labelSlot?: () => any) => void
 const unregisterTab = inject('unregisterTab') as (value: string) => void
 
 onMounted(() => {
-  registerTab(props.label, props.value, props.disabled, props.icon)
+  // Pass the label slot to registerTab if it exists
+  registerTab(props.label, props.value, props.disabled, props.icon, slots.label)
 
   // For consistency, if it is the first non-disabled tag and there is no currently activated tag, it is set to the activated state.
   if (activeTab.value === '' && !props.disabled) {

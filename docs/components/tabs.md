@@ -445,6 +445,15 @@ const addTab = () => {
     ]">
 </ApiTable>
 
+<br />
+
+<ApiTable title="Tab Item Slots"
+    :headers="['Slot', 'Description']"
+    :columns="[
+        ['label', 'Label slot'],
+    ]">
+</ApiTable>
+
 <script setup lang="ts">
 import { ref } from 'vue' 
 
