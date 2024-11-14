@@ -2,7 +2,9 @@
   <div class="collapse-item border-b last:border-b-0 border-gray-200">
     <div :class="['flex justify-between items-center px-4 py-2 cursor-pointer hover:bg-gray-50 bg-gray-50']"
          @click="handleClick">
-      <h3 class="text-sm font-medium">{{ title }}</h3>
+      <slot name="title">
+        <h3 class="text-sm font-medium">{{ title }}</h3>
+      </slot>
       <ShadcnIcon icon="ChevronDown"
                   :class="['h-4 w-4 text-gray-500 transition-transform duration-200',
                       { 'transform rotate-180': isExpanded }
