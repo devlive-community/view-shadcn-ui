@@ -10,9 +10,9 @@
     "tailwind css"
   ],
   "author": "devlive-community",
-  "homepage": "https://github.com/devlive-community/view-shadcn-ui",
+  "homepage": "https://view-shadcn-ui.devlive.org",
   "private": false,
-  "version": "2024.4.0-alpha.1731471659",
+  "version": "2024.4.0-alpha.1731580933",
   "license": "MIT",
   "main": "./dist/view-shadcn.umd.ts",
   "module": "./dist/view-shadcn.es.ts",

@@ -1,3 +1,8 @@
+export interface ContextMenuPosition {
+    x: number;
+    y: number;
+}
+
 export type ContextMenuEmits = {
     (e: 'update:modelValue', payload: boolean): void
     (e: 'on-open', payload: boolean): void
@@ -11,6 +16,7 @@ export type ContextMenuItemEmits = {
 export interface ContextMenuProps
 {
     modelValue: boolean
+    position?: ContextMenuPosition;
 }
 
 export interface ContextMenuItemProps

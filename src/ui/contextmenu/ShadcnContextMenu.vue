@@ -1,4 +1,3 @@
-// ShadcnContextMenu.vue
 <template>
   <div ref="triggerRef" @contextmenu.prevent="onContextMenu">
     <slot name="trigger"/>
@@ -15,26 +14,36 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineEmits, onMounted, onUnmounted, provide, ref } from 'vue'
+import { computed, defineEmits, onMounted, onUnmounted, provide, ref, watch } from 'vue'
 import { ContextMenuEmits, ContextMenuProps } from './types'
 import { calcSize } from '@/utils/common.ts'
 
 const emit = defineEmits<ContextMenuEmits>()
 
 const props = withDefaults(defineProps<ContextMenuProps>(), {
-  modelValue: false
+  modelValue: false,
+  position: undefined
 })
 
 const menuPosition = ref({ x: 0, y: 0 })
 const menuRef = ref<HTMLElement | null>(null)
 const triggerRef = ref<HTMLElement | null>(null)
 
+// Watch for manual position changes
+watch(() => props.position, (newPos) => {
+  if (newPos) {
+    menuPosition.value = newPos
+  }
+}, { immediate: true })
+
 // Calculate the position of the menu, handle boundary cases
 const menuStyle = computed(() => {
+  const position = props.position || menuPosition.value
+
   if (!menuRef.value) {
     return {
-      left: calcSize(menuPosition.value.x),
-      top: calcSize(menuPosition.value.y)
+      left: calcSize(position.x),
+      top: calcSize(position.y)
     }
   }
 
@@ -47,8 +56,8 @@ const menuStyle = computed(() => {
   const viewportHeight = window.innerHeight
 
   // Calculate the final position
-  let x = menuPosition.value.x
-  let y = menuPosition.value.y
+  let x = position.x
+  let y = position.y
 
   // Handle the right boundary
   if (x + menuWidth > viewportWidth) {
@@ -73,16 +82,12 @@ const menuStyle = computed(() => {
   }
 })
 
-provide('menuPosition', menuPosition)
-
-const closeMenu = () => {
-  emit('update:modelValue', false)
-  emit('on-close', false)
-}
-provide('closeMenu', closeMenu)
-
 // Handle right-click events
 const onContextMenu = (event) => {
+  // If a manual location is provided, the default right-click event is not processed
+  if (props.position) {
+    return
+  }
   event.preventDefault()
   menuPosition.value = {
     x: event.clientX,
@@ -92,11 +97,16 @@ const onContextMenu = (event) => {
   emit('on-open', true)
 }
 
+const closeMenu = () => {
+  emit('update:modelValue', false)
+  emit('on-close', false)
+}
+provide('closeMenu', closeMenu)
+
 // Handle clicking on the external close menu
 const onClickOutside = (event) => {
   if (menuRef.value && !menuRef.value.contains(event.target)) {
-    emit('update:modelValue', false)
-    emit('on-close', false)
+    closeMenu()
   }
 }
 
