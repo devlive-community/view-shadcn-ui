@@ -207,6 +207,7 @@ const onItemClick = (action) => console.log(`Clicked: ${action}`)
     :headers="['Attribute', 'Description', 'Type', 'Default Value']"
     :columns="[
         ['modelValue', 'The model value of the context menu', 'boolean', 'false'],
+        ['position', 'The position of the context menu', '{x: number, y: number}', 'trigger position'],
     ]">
 </ApiTable>
 
