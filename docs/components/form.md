@@ -6,6 +6,9 @@ title: Shadcn Form
 
 This document is mainly used to describe some features and usage of the ShadcnForm component.
 
+- ShadcnForm
+- ShadcnFormItem
+
 ## Usage
 
 ::: raw
@@ -247,7 +250,80 @@ const resetForm = () => {
 
 :::
 
-## Props
+## Dynamic Form
+
+::: raw
+
+<CodeRunner title="Dynamic Form">
+    <ShadcnButton @click="onAdd">Add Column</ShadcnButton>
+    <ShadcnForm v-model="formState" class="mt-2" @on-submit="onSubmit2">
+      <ShadcnFormItem v-for="(item, index) in formState.columns"
+                      :name="`columns[${index}].name`"
+                      :key="`column-${index}`"
+                      :label="`Column ${index + 1}`"
+                      :rules="[{ required: true, message: 'Please input column name!' }]">
+        <ShadcnSpace class="items-center">
+          <ShadcnInput v-model="formState.columns[index].name" :name="`columns[${index}].name`"/>
+          <ShadcnIcon icon="MinusCircle" class="cursor-pointer" color="#f43f5e" @click="onRemove(index)"/>
+        </ShadcnSpace>
+      </ShadcnFormItem>
+      <ShadcnButton submit>Submit</ShadcnButton>
+    </ShadcnForm>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <div class="p-32">
+    <ShadcnButton @click="onAdd">Add Column</ShadcnButton>
+
+    <ShadcnForm v-model="formState" class="mt-2" @on-submit="onSubmit">
+      <ShadcnFormItem v-for="(item, index) in formState.columns"
+                      :name="`columns[${index}].name`"
+                      :key="`column-${index}`"
+                      :label="`Column ${index + 1}`"
+                      :rules="[{ required: true, message: 'Please input column name!' }]">
+        <ShadcnSpace class="items-center">
+          <ShadcnInput v-model="formState.columns[index].name" :name="`column-${index}`"/>
+          <ShadcnIcon icon="MinusCircle" class="cursor-pointer" color="#f43f5e" @click="onRemove(index)"/>
+        </ShadcnSpace>
+      </ShadcnFormItem>
+
+      <ShadcnButton submit>Submit</ShadcnButton>
+    </ShadcnForm>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { onMounted, ref } from 'vue'
+
+const formState = ref({
+  columns: [] as any[]
+})
+
+const onAdd = () => {
+  formState.value.columns.push({
+    name: `Column ${ formState.value.columns.length + 1 }`,
+    value: ''
+  })
+}
+
+const onRemove = (index: number) => {
+  formState.value.columns.splice(index, 1)
+}
+
+const onSubmit = () => console.log(formState.value)
+
+onMounted(() => onAdd())
+</script>
+```
+
+:::
+
+## Form Props
 
 <ApiTable title="Form Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
@@ -269,7 +345,7 @@ const resetForm = () => {
     ]">
 </ApiTable>
 
-## Events
+## Form Events
 
 <ApiTable title="Form Events"
     :headers="['Event', 'Description', 'Callback Parameters']"
@@ -280,7 +356,7 @@ const resetForm = () => {
 </ApiTable>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, getCurrentInstance } from 'vue'
 
 const formRef = ref()
 
@@ -333,4 +409,28 @@ const onError = (errors: any) => {
 const resetForm = () => {
   formRef.value.reset()
 }
+
+const formState = ref({
+  columns: [] as any[]
+})
+
+const onAdd = () => {
+  formState.value.columns.push({
+    name: undefined,
+    value: ''
+  })
+}
+
+const onRemove = (index: number) => {
+  formState.value.columns.splice(index, 1)
+}
+
+const { proxy } = getCurrentInstance()!
+
+const onSubmit2 = () => proxy?.$Message.success({
+    content: formState.value,
+    showIcon: true
+})
+
+onMounted(() => onAdd())
 </script>
