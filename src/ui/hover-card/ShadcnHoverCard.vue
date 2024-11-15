@@ -37,7 +37,7 @@
           <div v-if="arrow"
                :class="['absolute w-2.5 h-2.5 bg-white border-inherit',
                       arrowPositionClass
-             ]"
+               ]"
                :style="arrowStyle"/>
         </div>
       </Transition>
@@ -149,7 +149,6 @@ const handleTriggerLeave = () => {
   hideContext()
 }
 
-// 监听 isHoveringContent 的变化
 watch(isHoveringContent, (newValue) => {
   if (!newValue && !isVisible.value) {
     clearHideTimeout()
