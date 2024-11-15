@@ -1,16 +1,16 @@
 <template>
   <button :aria-checked="isSelected"
           :data-state="isSelected ? 'checked' : 'unchecked'"
-          :disabled="disabled"
+          :disabled="isDisabled"
           :class="[
               'inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
               'px-1 py-1',
               isSelected && 'bg-accent text-accent-foreground',
               {
-                'cursor-pointer': !disabled,
-                'cursor-not-allowed opacity-50': disabled
+                'cursor-pointer': !isDisabled,
+                'cursor-not-allowed opacity-50': isDisabled
               },
-              WrapperSize[size]
+              WrapperSize[finalSize]
           ]"
           @click="onToggle">
     <slot/>
@@ -18,8 +18,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { ToggleEmits, ToggleProps } from './types'
+import { computed, inject } from 'vue'
+import { ToggleEmits, ToggleGroupContext, ToggleProps } from './types'
 import { WrapperSize } from '@/ui/common/size.ts'
 
 const props = withDefaults(defineProps<ToggleProps>(), {
@@ -28,12 +28,30 @@ const props = withDefaults(defineProps<ToggleProps>(), {
 })
 const emit = defineEmits<ToggleEmits>()
 
-const isSelected = computed(() => props.modelValue === props.value)
+// Inject group context
+const group = inject<ToggleGroupContext | null>('toggleGroup', null)
+
+const finalSize = computed(() => group?.size.value ?? props.size)
+const isDisabled = computed(() => group?.disabled.value ?? props.disabled)
+
+const isSelected = computed(() => {
+  const modelValue = group?.modelValue.value ?? props.modelValue
+  return modelValue === props.value
+})
 
 const onToggle = () => {
-  if (!props.disabled) {
-    emit('update:modelValue', isSelected.value ? null : props.value)
-    emit('on-change', isSelected.value ? null : props.value)
+  if (isDisabled.value) {
+    return
+  }
+
+  const newValue = isSelected.value ? null : props.value
+
+  if (group) {
+    group.onChange(newValue)
+  }
+  else {
+    emit('update:modelValue', newValue)
+    emit('on-change', newValue)
   }
 }
 </script>

@@ -1,15 +1,23 @@
 <template>
-  <div class="p-32">
-    <ShadcnSpace>
-      <ShadcnToggle v-model="defaultValue" size="small" value="S">S</ShadcnToggle>
-      <ShadcnToggle v-model="defaultValue" size="default" value="D">D</ShadcnToggle>
-      <ShadcnToggle v-model="defaultValue" size="large" value="L">L</ShadcnToggle>
-    </ShadcnSpace>
+  <div class="p-32 space-y-2">
+    <p>Default Value: {{ selected }}</p>
+    <ShadcnToggleGroup v-model="selected" size="small">
+      <ShadcnToggle value="1">O1</ShadcnToggle>
+      <ShadcnToggle value="2">O2</ShadcnToggle>
+    </ShadcnToggleGroup>
+    <ShadcnToggleGroup v-model="selected" size="default">
+      <ShadcnToggle value="1">O1</ShadcnToggle>
+      <ShadcnToggle value="2">O2</ShadcnToggle>
+    </ShadcnToggleGroup>
+    <ShadcnToggleGroup v-model="selected" size="large">
+      <ShadcnToggle value="1">O1</ShadcnToggle>
+      <ShadcnToggle value="2">O2</ShadcnToggle>
+    </ShadcnToggleGroup>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const defaultValue = ref(null)
+const selected = ref(null)
 </script>

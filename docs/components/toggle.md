@@ -84,6 +84,54 @@ const defaultValue = ref(null)
 
 :::
 
+## Group
+
+::: raw
+
+<CodeRunner title="Group">
+  <div class="space-y-2">
+    <p>Default Value: {{ defaultValue }}</p>
+    <ShadcnToggleGroup v-model="defaultValue" size="small">
+      <ShadcnToggle value="1">O1</ShadcnToggle>
+      <ShadcnToggle value="2">O2</ShadcnToggle>
+    </ShadcnToggleGroup>
+    <ShadcnToggleGroup v-model="defaultValue" size="default">
+      <ShadcnToggle value="1">O1</ShadcnToggle>
+      <ShadcnToggle value="2">O2</ShadcnToggle>
+    </ShadcnToggleGroup>
+    <ShadcnToggleGroup v-model="defaultValue" size="large">
+      <ShadcnToggle value="1">O1</ShadcnToggle>
+      <ShadcnToggle value="2">O2</ShadcnToggle>
+    </ShadcnToggleGroup>
+  </div>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <div class="space-y-2">
+    <p>Default Value: {{ selected }}</p>
+    <ShadcnToggleGroup v-model="defaultValue" size="small">
+      <ShadcnToggle value="1">O1</ShadcnToggle>
+      <ShadcnToggle value="2">O2</ShadcnToggle>
+    </ShadcnToggleGroup>
+    <ShadcnToggleGroup v-model="defaultValue" size="default">
+      <ShadcnToggle value="1">O1</ShadcnToggle>
+      <ShadcnToggle value="2">O2</ShadcnToggle>
+    </ShadcnToggleGroup>
+    <ShadcnToggleGroup v-model="defaultValue" size="large">
+      <ShadcnToggle value="1">O1</ShadcnToggle>
+      <ShadcnToggle value="2">O2</ShadcnToggle>
+    </ShadcnToggleGroup>
+  </div>
+</template>
+```
+
+:::
+
 ## Toggle Props
 
 <ApiTable title="Props"
@@ -91,6 +139,17 @@ const defaultValue = ref(null)
     :columns="[
         ['modelValue', 'You can use v-model to bind data in both directions', 'any', '-', '-'],
         ['value', 'The value of the toggle', 'any', '-', '-'],
+        ['disabled', 'Whether the toggle is disabled', 'boolean', 'false', '-'],
+        ['size', 'The size of the toggle', 'string', 'default', 'small | default | large'],
+    ]">
+</ApiTable>
+
+<br />
+
+<ApiTable title="Group Props"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :columns="[
+        ['modelValue', 'You can use v-model to bind data in both directions', 'any', '-', '-'],
         ['disabled', 'Whether the toggle is disabled', 'boolean', 'false', '-'],
         ['size', 'The size of the toggle', 'string', 'default', 'small | default | large'],
     ]">

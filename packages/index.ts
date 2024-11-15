@@ -76,7 +76,7 @@ import ShadcnText from '@/ui/text'
 import ShadcnGradientText from '@/ui/text/gradient'
 import { ShadcnContextMenu, ShadcnContextMenuItem, ShadcnContextMenuSub } from '@/ui/contextmenu'
 import ShadcnHoverCard from '@/ui/hover-card'
-import { ShadcnToggle } from '@/ui/toggle'
+import { ShadcnToggle, ShadcnToggleGroup } from '@/ui/toggle'
 
 let components = [
     ShadcnButton,
@@ -154,7 +154,8 @@ let components = [
     ShadcnContextMenuItem,
     ShadcnContextMenuSub,
     ShadcnHoverCard,
-    ShadcnToggle
+    ShadcnToggle,
+    ShadcnToggleGroup
 ]
 
 const install = (Vue: App) => {
@@ -253,7 +254,7 @@ export { default as ShadcnText } from '@/ui/text'
 export { default as ShadcnGradientText } from '@/ui/text/gradient'
 export { ShadcnContextMenu, ShadcnContextMenuItem, ShadcnContextMenuSub } from '@/ui/contextmenu'
 export { default as ShadcnHoverCard } from '@/ui/hover-card'
-export { ShadcnToggle } from '@/ui/toggle'
+export { ShadcnToggle, ShadcnToggleGroup } from '@/ui/toggle'
 
 // Support global import
 export default install
