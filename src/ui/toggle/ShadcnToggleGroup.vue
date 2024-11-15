@@ -6,20 +6,23 @@
 
 <script setup lang="ts">
 import { computed, provide } from 'vue'
-import { ToggleGroupProps } from './types'
+import { ToggleEmits, ToggleGroupProps } from './types'
 
+const emit = defineEmits<ToggleEmits>()
 const props = withDefaults(defineProps<ToggleGroupProps>(), {
   disabled: false,
-  size: 'default'
+  size: 'default',
+  multiple: false
 })
 
-const emit = defineEmits(['update:modelValue'])
-
-// Provide group context to toggle children
 provide('toggleGroup', {
-  modelValue: computed(() => props.modelValue),
+  modelValue: computed(() => props.modelValue || []),
   disabled: computed(() => props.disabled),
   size: computed(() => props.size),
-  onChange: (value: any) => emit('update:modelValue', value)
+  multiple: computed(() => props.multiple),
+  onChange: (value: any) => {
+    emit('update:modelValue', value)
+    emit('on-change', value)
+  }
 })
 </script>

@@ -28,15 +28,16 @@ const props = withDefaults(defineProps<ToggleProps>(), {
 })
 const emit = defineEmits<ToggleEmits>()
 
-// Inject group context
 const group = inject<ToggleGroupContext | null>('toggleGroup', null)
 
 const finalSize = computed(() => group?.size.value ?? props.size)
 const isDisabled = computed(() => group?.disabled.value ?? props.disabled)
 
 const isSelected = computed(() => {
-  const modelValue = group?.modelValue.value ?? props.modelValue
-  return modelValue === props.value
+  if (group) {
+    return group.modelValue.value?.includes(props.value) ?? false
+  }
+  return props.modelValue === props.value
 })
 
 const onToggle = () => {
@@ -44,12 +45,26 @@ const onToggle = () => {
     return
   }
 
-  const newValue = isSelected.value ? null : props.value
-
   if (group) {
+    const currentValue = group.modelValue.value || []
+    let newValue
+
+    if (isSelected.value) {
+      newValue = currentValue.filter(v => v !== props.value)
+    }
+    else {
+      if (group.multiple.value) {
+        newValue = [...currentValue, props.value]
+      }
+      else {
+        newValue = [props.value]
+      }
+    }
+
     group.onChange(newValue)
   }
   else {
+    const newValue = isSelected.value ? null : props.value
     emit('update:modelValue', newValue)
     emit('on-change', newValue)
   }

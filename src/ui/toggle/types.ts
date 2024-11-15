@@ -11,16 +11,18 @@ export interface ToggleProps
 
 export interface ToggleGroupProps
 {
-    modelValue?: any
+    modelValue?: any[]
     disabled?: boolean
     size?: keyof typeof WrapperSize
+    multiple?: boolean
 }
 
 export interface ToggleGroupContext
 {
-    modelValue: ComputedRef<any>
+    modelValue: ComputedRef<any[]>
     disabled: ComputedRef<boolean>
     size: ComputedRef<keyof typeof WrapperSize>
+    multiple: ComputedRef<boolean>
     onChange: (value: any) => void
 }
 
