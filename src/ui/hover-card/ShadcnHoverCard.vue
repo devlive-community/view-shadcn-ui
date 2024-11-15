@@ -15,14 +15,23 @@
                   leave-to-class="transform scale-95 opacity-0">
         <div v-if="isVisible"
              ref="tooltipContent"
-             class="fixed z-[100] px-3 py-2 text-sm text-black rounded border border-gray-200 bg-white shadow-lg"
+             class="fixed z-[100] text-sm text-black rounded border border-gray-200 bg-white shadow-lg"
              :style="[tooltipStyle, { maxWidth: computedMaxWidth }]"
              @mouseenter="handleContentEnter"
              @mouseleave="handleContentLeave">
-          <div class="text-center break-words">
-            <slot name="content">
+
+          <div v-if="$slots.title" class="text-lg font-semibold leading-none tracking-tight border-b px-3 py-2">
+            <slot name="title"/>
+          </div>
+
+          <slot name="content">
+            <div class="text-center break-words px-3 py-2">
               {{ content }}
-            </slot>
+            </div>
+          </slot>
+
+          <div v-if="$slots.footer" class="border-t px-3 py-2">
+            <slot name="footer"/>
           </div>
 
           <div v-if="arrow"

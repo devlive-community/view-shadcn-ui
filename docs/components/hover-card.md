@@ -165,6 +165,37 @@ This document is mainly used to describe some features and usage of the ShadcnHo
 
 :::
 
+## Title and Footer
+
+::: raw
+
+<CodeRunner title="Title and Footer">
+    <ShadcnHoverCard content="This is a hover card">
+      <template #title>Title</template>
+      <template #footer>Footer</template>
+      <ShadcnButton>Hover</ShadcnButton>
+    </ShadcnHoverCard>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnHoverCard content="This is a hover card">
+      <template #title>Title</template>
+      <template #footer>Footer</template>
+      <ShadcnButton>Add Column</ShadcnButton>
+    </ShadcnHoverCard>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## Custom Content
 
 ::: raw
@@ -214,5 +245,7 @@ This document is mainly used to describe some features and usage of the ShadcnHo
     :columns="[
         ['default', 'Tooltip trigger'],
         ['content', 'Tooltip content'],
+        ['title', 'Tooltip title'],
+        ['footer', 'Tooltip footer'],
     ]">
 </ApiTable>
