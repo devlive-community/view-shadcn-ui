@@ -2,10 +2,12 @@
   <div class="p-32 space-y-2">
     <p>Default Value: {{ defaultValue }}</p>
     <ShadcnToggleGroup v-model="defaultValue" multiple>
-      <ShadcnToggle value="1">O1</ShadcnToggle>
-      <ShadcnToggle value="2">O2</ShadcnToggle>
-      <ShadcnToggle value="3">O3</ShadcnToggle>
-      <ShadcnToggle value="4">O4</ShadcnToggle>
+      <ShadcnToggle class="w-20 h-20 px-1 py-1" value="1">
+        <img src="https://www.vectorlogo.zone/logos/java/java-icon.svg">
+      </ShadcnToggle>
+      <ShadcnToggle class="w-20 h-20 px-1 py-1" value="2">
+        <img src="https://www.vectorlogo.zone/logos/python/python-icon.svg">
+      </ShadcnToggle>
     </ShadcnToggleGroup>
   </div>
 </template>

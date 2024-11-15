@@ -10,7 +10,7 @@
                 'cursor-pointer': !isDisabled,
                 'cursor-not-allowed opacity-50': isDisabled
               },
-              WrapperSize[finalSize]
+              ...($attrs.class ? [$attrs.class] : [WrapperSize[finalSize]]),
           ]"
           @click="onToggle">
     <slot/>

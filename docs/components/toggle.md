@@ -164,6 +164,40 @@ const defaultValue = ref(null)
 
 :::
 
+## Image
+
+::: raw
+
+<CodeRunner title="Image">
+    <ShadcnToggleGroup v-model="defaultValue" multiple>
+      <ShadcnToggle class="w-20 h-20 px-1 py-1" value="1">
+        <img src="https://www.vectorlogo.zone/logos/java/java-icon.svg">
+      </ShadcnToggle>
+      <ShadcnToggle class="w-20 h-20 px-1 py-1" value="2">
+        <img src="https://www.vectorlogo.zone/logos/python/python-icon.svg">
+      </ShadcnToggle>
+    </ShadcnToggleGroup>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnToggleGroup v-model="defaultValue" multiple>
+      <ShadcnToggle class="w-20 h-20 px-1 py-1" value="1">
+        <img src="https://www.vectorlogo.zone/logos/java/java-icon.svg">
+      </ShadcnToggle>
+      <ShadcnToggle class="w-20 h-20 px-1 py-1" value="2">
+        <img src="https://www.vectorlogo.zone/logos/python/python-icon.svg">
+      </ShadcnToggle>
+    </ShadcnToggleGroup>
+</template>
+```
+
+:::
+
 ## Toggle Props
 
 <ApiTable title="Props"
