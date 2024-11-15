@@ -91,7 +91,7 @@ const expandedItems = ref<string[]>([])
 
 :::
 
-## Props
+## Collapse Props
 
 <ApiTable title="Collapse Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
@@ -111,7 +111,16 @@ const expandedItems = ref<string[]>([])
     ]">
 </ApiTable>
 
-## Events
+## Collapse Slot
+
+<ApiTable title="Collapse Item Slot"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :columns="[
+        ['title', 'The title of the collapse item', 'string', '-', '-', '-'],
+    ]">
+</ApiTable>
+
+## Collapse Events
 
 <ApiTable title="Collapse Events"
     :headers="['Event', 'Description', 'Parameters']"

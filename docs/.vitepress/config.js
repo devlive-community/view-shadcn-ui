@@ -145,6 +145,7 @@ export default {
                         {text: 'Exception <span class="VPBadge tip">2024.2.0</span>', link: 'exception'},
                         {text: 'Tag <span class="VPBadge tip">2024.2.0</span>', link: 'tag'},
                         {text: 'Tree <span class="VPBadge tip">2024.3.0</span>', link: 'tree'},
+                        {text: 'Hover Card <span class="VPBadge tip">2024.4.0</span>', link: 'hover-card'},
                     ]
                     return {
                         text: `View [ ${items.length} ]`,
@@ -164,6 +165,7 @@ export default {
                         {text: 'Table <span class="VPBadge tip">2024.1.2</span>', link: 'table'},
                         {text: 'Form <span class="VPBadge tip">2024.2.0</span>', link: 'form'},
                         {text: 'Number <span class="VPBadge tip">2024.3.0</span>', link: 'number'},
+                        {text: 'Slider <span class="VPBadge tip">2024.2.0</span>', link: 'slider'},
                     ]
                     return {
                         text: `Form [ ${items.length} ]`,
@@ -179,7 +181,6 @@ export default {
                         {text: 'Menu <span class="VPBadge tip">2024.1.2</span>', link: 'menu'},
                         {text: 'Badge <span class="VPBadge tip">2024.1.2</span>', link: 'badge'},
                         {text: 'Breadcrumb <span class="VPBadge tip">2024.2.0</span>', link: 'breadcrumb'},
-                        {text: 'Slider <span class="VPBadge tip">2024.2.0</span>', link: 'slider'},
                         {text: 'Link <span class="VPBadge tip">2024.2.0</span>', link: 'link'},
                         {text: 'Dropdown <span class="VPBadge tip">2024.2.0</span>', link: 'dropdown'},
                         {text: 'Contextmenu <span class="VPBadge tip">2024.4.0</span>', link: 'contextmenu'},

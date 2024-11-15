@@ -40,13 +40,22 @@ const errorMessage = ref<string>('')
 
 const formContext = inject('formContext') as any
 
-// Validation rules
+// Check from nested object
+const getValue = (obj: any, path: string) => {
+  const parts = path.match(/^(\w+)\[(\d+)\]\.(\w+)$/)
+  if (parts) {
+    const [_, array, index, prop] = parts
+    return obj[array]?.[Number(index)]?.[prop]
+  }
+  return obj[path]
+}
+
 const validate = async (): Promise<{ isValid: boolean; errorMessage?: string }> => {
   if (!props.rules) {
     return { isValid: true }
   }
 
-  const value = formContext.model[props.name]
+  const value = getValue(formContext.model, props.name)
 
   for (const rule of props.rules) {
     // Required check
@@ -57,7 +66,7 @@ const validate = async (): Promise<{ isValid: boolean; errorMessage?: string }> 
       }
     }
 
-    let length = String(value).length
+    let length = String(value || '').length
     if (value instanceof Array) {
       length = value.length
     }
@@ -79,7 +88,7 @@ const validate = async (): Promise<{ isValid: boolean; errorMessage?: string }> 
     }
 
     // Pattern check
-    if (rule.pattern && !rule.pattern.test(String(value))) {
+    if (rule.pattern && !rule.pattern.test(String(value || ''))) {
       return {
         isValid: false,
         errorMessage: rule.message || 'Invalid format'
