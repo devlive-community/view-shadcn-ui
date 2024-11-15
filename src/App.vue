@@ -1,9 +1,9 @@
 <template>
   <div class="p-32">
-    <p>Default Value: {{ defaultValue }}</p>
     <ShadcnSpace>
-      <ShadcnToggle v-model="defaultValue" value="B">B</ShadcnToggle>
-      <ShadcnToggle v-model="defaultValue" disabled value="D">D</ShadcnToggle>
+      <ShadcnToggle v-model="defaultValue" size="small" value="S">S</ShadcnToggle>
+      <ShadcnToggle v-model="defaultValue" size="default" value="D">D</ShadcnToggle>
+      <ShadcnToggle v-model="defaultValue" size="large" value="L">L</ShadcnToggle>
     </ShadcnSpace>
   </div>
 </template>

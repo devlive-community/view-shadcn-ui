@@ -56,14 +56,53 @@ const defaultValue = ref(null)
 
 :::
 
+## Size
+
+::: raw
+
+<CodeRunner title="Size">
+    <ShadcnSpace>
+      <ShadcnToggle v-model="defaultValue" size="small" value="S">S</ShadcnToggle>
+      <ShadcnToggle v-model="defaultValue" size="default" value="D">D</ShadcnToggle>
+      <ShadcnToggle v-model="defaultValue" size="large" value="L">L</ShadcnToggle>
+    </ShadcnSpace>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSpace>
+      <ShadcnToggle v-model="defaultValue" size="small" value="S">S</ShadcnToggle>
+      <ShadcnToggle v-model="defaultValue" size="default" value="D">D</ShadcnToggle>
+      <ShadcnToggle v-model="defaultValue" size="large" value="L">L</ShadcnToggle>
+    </ShadcnSpace>
+</template>
+```
+
+:::
+
 ## Toggle Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
     :columns="[
-        ['modelValue', 'You can use v-model to bind data in both directions', 'any', '-'],
-        ['value', 'The value of the toggle', 'any', '-'],
-        ['disabled', 'Whether the toggle is disabled', 'boolean', 'false'],
+        ['modelValue', 'You can use v-model to bind data in both directions', 'any', '-', '-'],
+        ['value', 'The value of the toggle', 'any', '-', '-'],
+        ['disabled', 'Whether the toggle is disabled', 'boolean', 'false', '-'],
+        ['size', 'The size of the toggle', 'string', 'default', 'small | default | large'],
+    ]">
+</ApiTable>
+
+## Toggle Events
+
+<ApiTable title="Events"
+    :headers="['Attribute', 'Description', 'Type']"
+    :columns="[
+        ['update:modelValue', 'The value of the toggle', 'any'],
+        ['on-change', 'Triggered when the value of the toggle is changed', 'any'],
     ]">
 </ApiTable>
 

@@ -4,12 +4,13 @@
           :disabled="disabled"
           :class="[
               'inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
-              'h-10 w-10 px-1 py-1',
+              'px-1 py-1',
               isSelected && 'bg-accent text-accent-foreground',
               {
                 'cursor-pointer': !disabled,
                 'cursor-not-allowed opacity-50': disabled
-              }
+              },
+              WrapperSize[size]
           ]"
           @click="onToggle">
     <slot/>
@@ -19,9 +20,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { ToggleEmits, ToggleProps } from './types'
+import { WrapperSize } from '@/ui/common/size.ts'
 
 const props = withDefaults(defineProps<ToggleProps>(), {
-  disabled: false
+  disabled: false,
+  size: 'default'
 })
 const emit = defineEmits<ToggleEmits>()
 
