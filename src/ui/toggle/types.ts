@@ -2,6 +2,7 @@ export interface ToggleProps
 {
     modelValue?: any
     value?: any
+    disabled?: boolean
 }
 
 export type ToggleEmits = {
