@@ -13,22 +13,22 @@
                   Size[size]
                 ]">
 
-      <div v-if="$slots.close && modelValue" class="absolute left-0 pl-1.5 text-white text-xs z-10">
+      <div v-if="$slots.close && isActive" class="absolute left-0 pl-1.5 text-white text-xs z-10">
         <slot name="close"/>
       </div>
 
       <div :class="['absolute w-full h-full rounded-full transition-colors duration-300',
                     {
-                      'bg-blue-400': type === 'primary' && modelValue,
-                      'bg-green-400': type === 'success' && modelValue,
-                      'bg-yellow-400': type === 'warning' && modelValue,
-                      'bg-red-400': type === 'error' && modelValue,
-                      'bg-gray-300': !modelValue
+                      'bg-blue-400': type === 'primary' && isActive,
+                      'bg-green-400': type === 'success' && isActive,
+                      'bg-yellow-400': type === 'warning' && isActive,
+                      'bg-red-400': type === 'error' && isActive,
+                      'bg-gray-300': !isActive
                     }
                   ]">
       </div>
 
-      <div v-if="$slots.open && !modelValue" class="absolute right-0 pr-1.5 text-white text-xs">
+      <div v-if="$slots.open && !isActive" class="absolute right-0 pr-1.5 text-white text-xs">
         <slot name="open"/>
       </div>
 
@@ -36,8 +36,8 @@
       <div :class="['absolute h-full bg-white rounded-full transition-all duration-300',
                     ToggleSize[size],
                     {
-                      'left-0': !modelValue,
-                      'right-0': modelValue
+                      'left-0': !isActive,
+                      'right-0': isActive
                     }
                   ]">
       </div>
@@ -45,13 +45,15 @@
       <!-- Hidden checkbox for accessibility -->
       <input type="checkbox"
              class="sr-only"
-             :checked="modelValue"
+             :checked="isActive"
              @change="onChange"/>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+
 const emit = defineEmits(['update:modelValue', 'on-change'])
 
 enum Size
@@ -68,22 +70,29 @@ const ToggleSize = {
 }
 
 const props = withDefaults(defineProps<{
-  modelValue?: boolean
+  modelValue?: any
   type?: 'primary' | 'success' | 'warning' | 'error'
   size?: keyof typeof Size
   disabled?: boolean
+  trueValue?: any
+  falseValue?: any
 }>(), {
   modelValue: false,
   type: 'primary',
-  size: 'default'
+  size: 'default',
+  trueValue: true,
+  falseValue: false
 })
+
+const isActive = computed(() => props.modelValue === props.trueValue)
 
 const toggleSwitch = () => {
   if (props.disabled) {
     return
   }
-  emit('update:modelValue', !props.modelValue)
-  emit('on-change', !props.modelValue)
+  const newValue = isActive.value ? props.falseValue : props.trueValue
+  emit('update:modelValue', newValue)
+  emit('on-change', newValue)
 }
 
 const onChange = (event: Event) => {
@@ -91,7 +100,8 @@ const onChange = (event: Event) => {
     return
   }
   const target = event.target as HTMLInputElement
-  emit('update:modelValue', target.checked)
-  emit('on-change', target.checked)
+  const newValue = target.checked ? props.trueValue : props.falseValue
+  emit('update:modelValue', newValue)
+  emit('on-change', newValue)
 }
 </script>
