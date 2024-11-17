@@ -1,7 +1,10 @@
 #!/usr/bin/env sh
 set -e
+HOME=$(pwd)
 
 yarn run build
+mkdir -p "${HOME}/dist/docs/public/"
+cp -r "${HOME}/docs/public/logo.svg" "${HOME}/dist/docs/public/logo.svg"
 
 time=$(date "+%Y-%m-%d %H:%M:%S")
 

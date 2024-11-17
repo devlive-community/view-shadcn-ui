@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2024.4.0 (2024-11-17)
+
+### 🐛 Bug Fixes
+
+- **input:** fixed textarea border ([588b8dd](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/588b8dd889d8846068c262c984c1e8dc5608043c))
+- **tree:** fix the abnormal hover and selected styles in lazy
+  loading ([b6610f1](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/b6610f18ecbcc4b9f91581d04fc45064bfeac334))
+
+### ✨ Features
+
+- **contextmenu:** support contextmenu ([2f1620e](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/2f1620e2f7b5b6f150a8bbb3499dd76f8aa12408))
+- **contextmenu:** support custom position ([59a9b1c](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/59a9b1c992dffa52f3fa0a787713e90c7b3d52ef))
+- **contextmenu:** support item disabled ([13f0029](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/13f0029aaae67bdadc5fd41c2c1f1b084212e0b9))
+- **contextmenu:** support sub contextmenu ([5bc2533](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/5bc2533a9ecb35f99cb47885da1915d0e9e95abd))
+- **select:** support lazy options ([4bb4761](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/4bb4761e7996cbfe4207c41da55199905fa9f08d))
+- **spin**: optimize background layer
+- **tabs:** support label slot for tab item ([41d4279](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/41d4279fafd41169c6fe2c88672c98045363bff6))
+- **tabs:** support on-click event for tab item ([d191501](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/d191501a57ebfec892aa908c945d5574e085a3ff))
+- **collapse:** support title for item ([0f0e99d](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/0f0e99dc5aa2c2ec75d9d9502c450314198a6eee))
+- **form:** support dynamic form ([bfd3997](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/bfd39970e29357ae103dbd3cd693c12f9ae3adca))
+- **hover card:** fixed code ([d22408c](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/d22408c57b82907f8699619355fac1b18c485adf))
+- **hover card:** support hover card ([712549a](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/712549a37a34ea0c3913d86dcaeeb3e6aee9951a))
+- **hover card:** support title and footer slots ([66f5b35](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/66f5b35717255e0dec6d2e60390476828e184d15))
+- **toggle:** add image example ([65703a8](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/65703a8aea961ef9a347f6588a6e7f17ca60cc41))
+- **toggle:** support disabled ([b151771](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/b151771e3b8d76b693af1bbf285583101b659859))
+- **toggle:** support group ([5b7bda1](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/5b7bda14689bf808d8c9e605bc8fd761f9a98375))
+- **toggle:** support group multiple mode ([ae09b8c](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/ae09b8c560d474e7cd2b06de965a91b8f8e80750))
+- **toggle:** support size ([0efec03](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/0efec03439273445b928c22a3efdcf6e66890cc9))
+- **toggle:** support toggle ([f732b08](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/f732b08f27a183ff843f076988d5b2dac6bb0f65))
+
 ## 2024.3.0 (2024-11-10)
 
 ### 🐛 Bug Fixes
@@ -148,7 +178,8 @@ All notable changes to this project will be documented in this file. See [standa
 - **badge:** fix default value position not passed exception ([e41e160](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/e41e1607adf869db0ab905d3da5d76c6d90b5c9f))
 - **button:** fixed circle ([cad2403](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/cad240327d313b7f1c71900ea414733361331a9d))
 - **card:** fixed custom card title style not working ([b3b7c10](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/b3b7c10041d894bfb7e4dd6029eb8d9c4da4e120))
-- **dropdown:** fix the problem of exceeding the container causing stretching ([ad6d072](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/ad6d0723d2d1b25c82545efd73ad9fa2851443d0))
+- **dropdown:** fix the problem of exceeding the container causing
+  stretching ([ad6d072](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/ad6d0723d2d1b25c82545efd73ad9fa2851443d0))
 - **dropdown:** fix trigger is hover position ([e6de99a](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/e6de99ad12e91d14f12d6199b594604baa2a6bf1))
 - **exception:** fixed position ([9d15bf9](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/9d15bf9765b588cabebba340756f3a19e05540a2))
 - **exception:** fixed slot not working ([91619d4](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/91619d45d5c0a3b3af21337a2ffe6bbf146938f7))
@@ -158,10 +189,12 @@ All notable changes to this project will be documented in this file. See [standa
 - **input:** fixed null value ([3104ee5](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/3104ee53baced4b8e3d64ad8f2539b84fc653562))
 - **input:** fixed provide and inject type ([43b860b](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/43b860b820a2033b6f97734af7f0b02c168aa387))
 - **link:** fixed link style ([20f6da7](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/20f6da7d76c99b10732ce63284ec43adb631452f))
-- **select:** fixed the issue that custom options caused the default selection to be abnormal ([3b3ca92](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/3b3ca92074620955627a174e0fc2825f97a19659))
+- **select:** fixed the issue that custom options caused the default selection to be
+  abnormal ([3b3ca92](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/3b3ca92074620955627a174e0fc2825f97a19659))
 - **select:** fixed width ([5504971](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/550497131cedbca6f0c7990fef3de3728974bf5a))
 - **timeline:** fixed spacing ([bdbd20c](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/bdbd20c9b9693f75c06ab6de50c08e8e8f46468b))
 - **tooltip:** fixed auto width ([2111a8b](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/2111a8bbd69f1d36813c51bc7c872ffb1208bbc2))
 - **tooltip:** fixed code compile ([9e82ce4](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/9e82ce461269458a1709b2f613b73743cc7d91c2))
 - **tooltip:** fixed lenght ([f73a749](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/f73a749ac5473ef224b69d0eddc37ad2dc87ee6f))
-- **tooltip:** fixed the problem of automatic positioning beyond the screen ([b829fd1](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/b829fd1f0532ba1f4494a6d4489d772d801f8ed1))
+- **tooltip:** fixed the problem of automatic positioning beyond the
+  screen ([b829fd1](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/b829fd1f0532ba1f4494a6d4489d772d801f8ed1))
