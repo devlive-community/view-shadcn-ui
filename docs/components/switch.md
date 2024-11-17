@@ -132,15 +132,51 @@ const checked = ref(false)
 
 :::
 
+## True and False Value
+
+::: raw
+
+<CodeRunner title="True and False Value">
+    <div>Null Value: {{ checked2 }}</div>
+    <ShadcnSwitch v-model="checked2" true-value="ON" false-value="OFF">
+      <template #open>OFF</template>
+      <template #close>ON</template>
+    </ShadcnSwitch>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <div>Null Value: {{ checked2 }}</div>
+    <ShadcnSwitch v-model="checked2" true-value="ON" false-value="OFF">
+        <template #open>OFF</template>
+        <template #close>ON</template>
+    </ShadcnSwitch>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const checked2 = ref(null)
+</script>
+```
+
+:::
+
 ## API Attributes
 
 <ApiTable title="Switch Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
     :columns="[
-        ['modelValue', 'The value of the switch', 'Boolean', 'false', '-', '-'],
-        ['type', 'The type of the switch', 'String', '-', '-', 'success, warning, error, primary'],
-        ['size', 'The size of the switch', 'String', '-', '-', 'small, default, large'],
-        ['disabled', 'Whether the switch is disabled', 'Boolean', 'false', '-', '-'],
+        ['modelValue', 'The value of the switch', 'boolean', 'false', '-', '-'],
+        ['type', 'The type of the switch', 'string', '-', '-', 'success, warning, error, primary'],
+        ['size', 'The size of the switch', 'string', '-', '-', 'small, default, large'],
+        ['disabled', 'Whether the switch is disabled', 'boolean', 'false', '-', '-'],
+        ['trueValue', 'The value of the switch when it is checked', 'any', '-', '-', '-'],
+        ['falseValue', 'The value of the switch when it is not checked', 'any', '-', '-', '-'],
     ]">
 </ApiTable>
 
@@ -168,4 +204,5 @@ const checked = ref(false)
 import { ref } from 'vue';
 
 const checked = ref(false)
+const checked2 = ref(null)
 </script>

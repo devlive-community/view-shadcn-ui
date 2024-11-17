@@ -1,19 +1,22 @@
 <template>
   <div class="p-32 space-y-2">
-    <p>Default Value: {{ defaultValue }}</p>
-    <ShadcnToggleGroup v-model="defaultValue" multiple>
-      <ShadcnToggle class="w-20 h-20 px-1 py-1" value="1">
-        <img src="https://www.vectorlogo.zone/logos/java/java-icon.svg">
-      </ShadcnToggle>
-      <ShadcnToggle class="w-20 h-20 px-1 py-1" value="2">
-        <img src="https://www.vectorlogo.zone/logos/python/python-icon.svg">
-      </ShadcnToggle>
-    </ShadcnToggleGroup>
+    <div>Default Value: {{ checked }}</div>
+    <ShadcnSwitch v-model="checked">
+      <template #open>ON</template>
+      <template #close>OFF</template>
+    </ShadcnSwitch>
+
+    <div>Null Value: {{ checked2 }}</div>
+    <ShadcnSwitch v-model="checked2" true-value="ON" false-value="OFF">
+      <template #open>OFF</template>
+      <template #close>ON</template>
+    </ShadcnSwitch>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const defaultValue = ref(null)
+const checked = ref(false)
+const checked2 = ref(null)
 </script>
