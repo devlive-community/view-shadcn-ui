@@ -121,9 +121,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { calcSize } from '@/utils/common'
-import { BigScreenContentProps, BigScreenEditorEmits } from '@/ui/bigscreen/types'
+import { BigScreenContentProps, BigScreenEditorEmits, BigScreenPanelChildProps } from '@/ui/bigscreen/types'
 
 const emit = defineEmits<BigScreenEditorEmits>()
 const props = withDefaults(defineProps<BigScreenContentProps>(), {
@@ -135,9 +135,9 @@ const props = withDefaults(defineProps<BigScreenContentProps>(), {
 
 // 画布状态
 // Canvas state
-const containerRef = ref(null)
-const canvasRef = ref(null)
-const components = ref([])
+const containerRef = ref<HTMLDivElement | null>(null)
+const canvasRef = ref<HTMLDivElement | null>(null)
+const components = ref<BigScreenPanelChildProps[]>([])
 const scale = ref(1)
 const showGrid = ref(props.showGrid)
 const snapToGrid = ref(props.snapToGrid)
@@ -146,7 +146,7 @@ const canvasSize = ref({
   width: 1920,
   height: 1080
 })
-
+const gridSize = ref(props.gridSize)
 // 拖拽状态
 // Drag state
 const isDragging = ref(false)
@@ -161,11 +161,12 @@ const canvasStyle = computed(() => ({
   transformOrigin: '0 0'
 }))
 
+console.log(gridSize.value)
 // 计算网格样式
 // Calculate grid style
 const gridStyle = computed(() => ({
   display: showGrid.value ? 'block' : 'none',
-  backgroundSize: `${ calcSize(props.gridSize) } ${ calcSize(props.gridSize) }`,
+  backgroundSize: `${ gridSize.value }px ${ gridSize.value }px`,
   backgroundImage: 'linear-gradient(#f0f0f0 1px, transparent 1px), linear-gradient(90deg, #f0f0f0 1px, transparent 1px)',
   backgroundPosition: '0 0',
   left: showRuler.value ? '20px' : '0',
@@ -173,6 +174,22 @@ const gridStyle = computed(() => ({
   right: '0',
   bottom: '0'
 }))
+
+watch(() => props.gridSize, (newSize) => {
+  gridSize.value = newSize
+
+  if (snapToGrid.value && components.value.length > 0) {
+    const updatedComponents = components.value.map(component => ({
+      ...component,
+      x: Math.round(component.x / newSize) * newSize,
+      y: Math.round(component.y / newSize) * newSize,
+      width: newSize * 5,
+      height: newSize * 3
+    }))
+    components.value = updatedComponents
+    emit('update:components', updatedComponents)
+  }
+}, { immediate: true })
 
 // 获取组件样式
 // Get component style
@@ -217,22 +234,24 @@ const alignToGrid = (position) => {
   }
 
   return {
-    x: Math.round(position.x / props.gridSize) * props.gridSize,
-    y: Math.round(position.y / props.gridSize) * props.gridSize
+    x: Math.round(position.x / gridSize.value) * gridSize.value,
+    y: Math.round(position.y / gridSize.value) * gridSize.value
   }
 }
 
 // 获取相对于画布的位置
 // Get relative position
 const getRelativePosition = (e) => {
+  if (!canvasRef.value) {
+    return { x: 0, y: 0 }
+  }
+
   const canvasRect = canvasRef.value.getBoundingClientRect()
-  const rulerSize = showRuler.value ? props.gridSize : 0
+  const rulerSize = showRuler.value ? 20 : 0  // 固定标尺宽度为 20px
 
   const x = (e.clientX - canvasRect.left - rulerSize) / scale.value
   const y = (e.clientY - canvasRect.top - rulerSize) / scale.value
 
-  // 限制最小坐标为 0
-  // Limit minimum coordinates to 0
   return {
     x: Math.max(0, x),
     y: Math.max(0, y)
@@ -267,8 +286,8 @@ const handleComponentMouseMove = (e) => {
   }
 
   const pos = getRelativePosition(e)
-  const maxWidth = canvasSize.value.width - props.gridSize
-  const maxHeight = canvasSize.value.height - props.gridSize
+  const maxWidth = canvasSize.value.width - gridSize.value
+  const maxHeight = canvasSize.value.height - gridSize.value
 
   const newPosition = alignToGrid({
     x: Math.min(maxWidth, Math.max(0, pos.x - dragStartPos.value.x)),
@@ -309,8 +328,8 @@ const onDrop = (e) => {
   }
 
   const pos = getRelativePosition(e)
-  const maxWidth = canvasSize.value.width - props.gridSize
-  const maxHeight = canvasSize.value.height - props.gridSize
+  const maxWidth = canvasSize.value.width - gridSize.value
+  const maxHeight = canvasSize.value.height - gridSize.value
 
   const alignedPos = alignToGrid({
     x: Math.min(maxWidth, Math.max(0, pos.x)),
@@ -323,8 +342,8 @@ const onDrop = (e) => {
     label,
     x: alignedPos.x,
     y: alignedPos.y,
-    width: props.gridSize * 5,
-    height: props.gridSize * 3,
+    width: gridSize.value * 5,
+    height: gridSize.value * 3,
     zIndex: components.value.length + 1
   }]
 

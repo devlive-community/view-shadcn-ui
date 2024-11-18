@@ -3,12 +3,12 @@
     <div v-for="item in items" class="text-lg font-medium mb-4">
       <ShadcnCard class="rounded-none" :border="false" :title="item.group">
         <div class="space-y-2 px-5 py-2">
-          <div v-for="item in item.children"
+          <div v-for="value in item.children"
                class="p-3 bg-gray-50 border border-gray-200 rounded cursor-move text-center hover:bg-gray-100 transition-colors"
                draggable="true"
-               :key="item.type"
-               @dragstart="onDragStart($event, item)">
-            {{ item.label }}
+               :key="value.type"
+               @dragstart="onDragStart($event, value)">
+            {{ value.label }}
           </div>
         </div>
       </ShadcnCard>
@@ -22,7 +22,7 @@ import { calcSize } from '@/utils/common.ts'
 
 withDefaults(defineProps<BigScreenPanelProps>(), {
   width: 200,
-  items: () => Array<BigScreenPanelItemProps>
+  items: () => [] as BigScreenPanelItemProps[]
 })
 
 const onDragStart = (e, component) => {

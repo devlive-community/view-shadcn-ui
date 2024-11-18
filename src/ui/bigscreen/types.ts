@@ -1,19 +1,25 @@
 export interface BigScreenPanelProps
 {
     width?: number | string
-    items: () => Array<BigScreenPanelItemProps>
+    items: Array<BigScreenPanelItemProps>
 }
 
 export interface BigScreenPanelItemProps
 {
     group?: string
-    children?: BigScreenPanelChildProps[]
+    children?: Array<BigScreenPanelChildProps>
 }
 
 export interface BigScreenPanelChildProps
 {
-    type?: string
-    label?: string
+    id?: number | string
+    type?: any
+    label?: any
+    x?: any
+    y?: any
+    width?: number
+    height?: number
+    zIndex?: number
 }
 
 export interface BigScreenContentProps
