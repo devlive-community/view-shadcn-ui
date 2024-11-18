@@ -5,11 +5,11 @@
     </slot>
 
     <!-- 中间编辑区域 -->
-    <BigScreenEditor ref="editorRef"
-                     :grid-size="20"
-                     :selected-id="selectedId"
-                     @select="handleSelect"
-                     @update:components="handleComponentsUpdate"/>
+    <BigScreenContent ref="editorRef"
+                      :grid-size="20"
+                      :selected-id="selectedId"
+                      @select="handleSelect"
+                      @update:components="handleComponentsUpdate"/>
 
     <!-- 右侧配置面板 -->
     <BigScreenConfigure :selected-component="selectedComponent" @update="handleConfigUpdate"/>
@@ -19,8 +19,8 @@
 <script setup>
 import { computed, ref } from 'vue'
 import BigScreenPanel from "@/ui/bigscreen/BigScreenPanel.vue";
-import BigScreenEditor from "@/ui/bigscreen/BigScreenEditor.vue";
 import BigScreenConfigure from "@/ui/bigscreen/BigScreenConfigure.vue";
+import BigScreenContent from "@/ui/bigscreen/BigScreenContent.vue";
 
 const panels = ref([
   {

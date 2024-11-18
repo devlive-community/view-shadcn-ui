@@ -1,11 +1,11 @@
 <template>
-  <div class="w-64 bg-white border-r border-gray-200 p-4">
+  <div class="bg-white border-r border-gray-200" :style="{ width: calcSize(width) }">
     <div v-for="item in items" class="text-lg font-medium mb-4">
-      <ShadcnCard :title="item.group">
-        <div class="space-y-2 p-1">
+      <ShadcnCard class="rounded-none" :border="false" :title="item.group">
+        <div class="space-y-2 px-5 py-2">
           <div v-for="item in item.children"
-               draggable="true"
                class="p-3 bg-gray-50 border border-gray-200 rounded cursor-move text-center hover:bg-gray-100 transition-colors"
+               draggable="true"
                :key="item.type"
                @dragstart="onDragStart($event, item)">
             {{ item.label }}
@@ -18,8 +18,10 @@
 
 <script setup lang="ts">
 import { BigScreenPanelItemProps, BigScreenPanelProps } from '@/ui/bigscreen/types.ts'
+import { calcSize } from '@/utils/common.ts'
 
 withDefaults(defineProps<BigScreenPanelProps>(), {
+  width: 200,
   items: () => Array<BigScreenPanelItemProps>
 })
 
