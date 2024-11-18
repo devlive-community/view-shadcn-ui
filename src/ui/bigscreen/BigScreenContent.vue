@@ -69,31 +69,39 @@
 
         <!-- 标尺 -->
         <!-- Ruler -->
-        <div v-if="showRuler" class="absolute left-0 top-0 w-full flex">
+        <div v-if="showRuler" class="absolute left-0 top-0 w-full flex sticky">
           <!-- 左上角方块 -->
           <!-- Corner square -->
-          <div class="w-5 h-5 bg-white border-gray-200 z-10"/>
+          <div class="w-5 h-5 bg-transparent border-gray-200 z-10 sticky left-0 top-0"/>
           <!-- 水平标尺刻度 -->
           <!-- Horizontal ruler scale -->
-          <div class="h-5 bg-white border-b border-gray-200 flex-1 relative">
+          <div class="h-5 bg-white border-b border-gray-200 flex-1 relative sticky top-0">
             <div v-for="i in Math.ceil(canvasSize.width / 100)"
-                 class="absolute h-full flex items-end pb-0.5 text-xs text-gray-400"
+                 class="absolute h-full"
                  :key="i"
                  :style="{ left: `${(i-1) * 100}px` }">
-              <span class="ml-0.5">{{ (i - 1) * 100 }}</span>
-              <div class="absolute bottom-0 w-px h-2 bg-gray-300" style="left: 0"></div>
+              <div class="relative h-full">
+                <span class="absolute left-1/2 transform -translate-x-1/2 bottom-0.5 text-xs text-gray-400">
+                  {{ (i - 1) * 100 }}
+                </span>
+                <div class="absolute bottom-0 w-px h-2 bg-gray-300"></div>
+              </div>
             </div>
           </div>
         </div>
         <!-- 垂直标尺 -->
         <!-- Vertical ruler -->
-        <div v-if="showRuler" class="absolute left-0 top-5 h-full w-5 bg-white border-r border-gray-200">
+        <div v-if="showRuler" class="absolute left-0 top-5 h-full w-5 bg-white border-r border-gray-200 sticky left-0">
           <div v-for="i in Math.ceil(canvasSize.height / 100)"
-               class="absolute w-full flex items-center pl-0.5 text-xs text-gray-400"
+               class="absolute w-full"
                :key="i"
                :style="{ top: `${(i-1) * 100}px` }">
-            <span>{{ (i - 1) * 100 }}</span>
-            <div class="absolute right-0 h-px w-2 bg-gray-300" style="top: 0"></div>
+            <div class="relative w-full">
+              <div class="absolute text-xs text-gray-400 left-0.5 top-1/2 transform -translate-y-1/2">
+                <span style="writing-mode: vertical-rl; text-orientation: upright;">{{ (i - 1) * 100 }}</span>
+              </div>
+              <div class="absolute right-0 top-1/2 transform -translate-y-1/2 h-px w-2 bg-gray-300"></div>
+            </div>
           </div>
         </div>
 
@@ -157,7 +165,7 @@ const canvasStyle = computed(() => ({
 // Calculate grid style
 const gridStyle = computed(() => ({
   display: showGrid.value ? 'block' : 'none',
-  backgroundSize: `${calcSize(props.gridSize)} ${calcSize(props.gridSize)}`,
+  backgroundSize: `${ calcSize(props.gridSize) } ${ calcSize(props.gridSize) }`,
   backgroundImage: 'linear-gradient(#f0f0f0 1px, transparent 1px), linear-gradient(90deg, #f0f0f0 1px, transparent 1px)',
   backgroundPosition: '0 0',
   left: showRuler.value ? '20px' : '0',
@@ -171,8 +179,8 @@ const gridStyle = computed(() => ({
 const getComponentStyle = (component) => {
   const rulerOffset = showRuler.value ? 20 : 0
   return {
-    left: `${rulerOffset + component.x}px`,
-    top: `${rulerOffset + component.y}px`,
+    left: `${ rulerOffset + component.x }px`,
+    top: `${ rulerOffset + component.y }px`,
     width: calcSize(component.width),
     height: calcSize(component.height),
     zIndex: component.zIndex || 1
@@ -218,7 +226,7 @@ const alignToGrid = (position) => {
 // Get relative position
 const getRelativePosition = (e) => {
   const canvasRect = canvasRef.value.getBoundingClientRect()
-  const rulerSize = showRuler.value ? 20 : 0
+  const rulerSize = showRuler.value ? props.gridSize : 0
 
   const x = (e.clientX - canvasRect.left - rulerSize) / scale.value
   const y = (e.clientY - canvasRect.top - rulerSize) / scale.value
@@ -254,7 +262,9 @@ const onComponentMouseDown = (e, component) => {
 // 处理组件拖动
 // Handle component drag
 const handleComponentMouseMove = (e) => {
-  if (!isDragging.value) return
+  if (!isDragging.value) {
+    return
+  }
 
   const pos = getRelativePosition(e)
   const maxWidth = canvasSize.value.width - props.gridSize
@@ -294,7 +304,9 @@ const onDrop = (e) => {
   const type = e.dataTransfer.getData('componentType')
   const label = e.dataTransfer.getData('componentLabel')
 
-  if (!type) return
+  if (!type) {
+    return
+  }
 
   const pos = getRelativePosition(e)
   const maxWidth = canvasSize.value.width - props.gridSize
