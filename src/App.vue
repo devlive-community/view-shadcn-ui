@@ -1,22 +1,58 @@
 <template>
-  <div class="p-32 space-y-2">
-    <div>Default Value: {{ checked }}</div>
-    <ShadcnSwitch v-model="checked">
-      <template #open>ON</template>
-      <template #close>OFF</template>
-    </ShadcnSwitch>
+  <div class="flex h-screen bg-gray-100">
+    <slot name="panel">
+      <BigScreenPanel :items="panels"/>
+    </slot>
 
-    <div>Null Value: {{ checked2 }}</div>
-    <ShadcnSwitch v-model="checked2" true-value="ON" false-value="OFF">
-      <template #open>OFF</template>
-      <template #close>ON</template>
-    </ShadcnSwitch>
+    <!-- 中间编辑区域 -->
+    <BigScreenEditor ref="editorRef"
+                     :grid-size="20"
+                     :selected-id="selectedId"
+                     @select="handleSelect"
+                     @update:components="handleComponentsUpdate"/>
+
+    <!-- 右侧配置面板 -->
+    <BigScreenConfigure :selected-component="selectedComponent" @update="handleConfigUpdate"/>
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue'
+<script setup>
+import { computed, ref } from 'vue'
+import BigScreenPanel from "@/ui/bigscreen/BigScreenPanel.vue";
+import BigScreenEditor from "@/ui/bigscreen/BigScreenEditor.vue";
+import BigScreenConfigure from "@/ui/bigscreen/BigScreenConfigure.vue";
 
-const checked = ref(false)
-const checked2 = ref(null)
+const panels = ref([
+  {
+    group: 'Basic Components',
+    children: [
+      {type: 'text', label: '文本'},
+      {type: 'image', label: '图片'},
+      {type: 'chart', label: '图表'},
+    ]
+  }
+])
+const editorRef = ref(null)
+const components = ref([])
+const selectedId = ref(null)
+
+// 计算选中的组件
+const selectedComponent = computed(() =>
+    components.value.find(item => item.id === selectedId.value)
+)
+
+// 选择组件
+const handleSelect = (component) => {
+  selectedId.value = component.id
+}
+
+// 更新组件列表
+const handleComponentsUpdate = (newComponents) => {
+  components.value = newComponents
+}
+
+// 更新组件配置
+const handleConfigUpdate = (updatedComponent) => {
+  editorRef.value?.updateComponent(updatedComponent)
+}
 </script>
