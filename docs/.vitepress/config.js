@@ -193,6 +193,17 @@ export default {
                         items: items
                     };
                 })(),
+                (() => {
+                    const items = [
+                        {text: 'DataBuilder <span class="VPBadge tip">2024.5.0</span>', link: 'data-builder'},
+                    ]
+                    return {
+                        text: `Data [ ${items.length} ]`,
+                        base: '/components/',
+                        collapsed: false,
+                        items: items
+                    };
+                })(),
             ]
         }
     }

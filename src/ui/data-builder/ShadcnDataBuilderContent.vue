@@ -123,10 +123,10 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { calcSize } from '@/utils/common'
-import { BigScreenContentProps, BigScreenEditorEmits, BigScreenPanelChildProps } from '@/ui/bigscreen/types'
+import { ShadcnDataBuilderContentEmits, ShadcnDataBuilderContentProps, ShadcnDataBuilderPanelChildProps } from '@/ui/data-builder/types'
 
-const emit = defineEmits<BigScreenEditorEmits>()
-const props = withDefaults(defineProps<BigScreenContentProps>(), {
+const emit = defineEmits<ShadcnDataBuilderContentEmits>()
+const props = withDefaults(defineProps<ShadcnDataBuilderContentProps>(), {
   gridSize: 20,
   showGrid: true,
   snapToGrid: true,
@@ -137,11 +137,11 @@ const props = withDefaults(defineProps<BigScreenContentProps>(), {
 // Canvas state
 const containerRef = ref<HTMLDivElement | null>(null)
 const canvasRef = ref<HTMLDivElement | null>(null)
-const components = ref<BigScreenPanelChildProps[]>([])
+const components = ref<ShadcnDataBuilderPanelChildProps[]>([])
 const scale = ref(1)
 const showGrid = ref(props.showGrid)
 const snapToGrid = ref(props.snapToGrid)
-const showRuler = ref(true)
+const showRuler = ref(props.showRuler)
 const canvasSize = ref({
   width: 1920,
   height: 1080

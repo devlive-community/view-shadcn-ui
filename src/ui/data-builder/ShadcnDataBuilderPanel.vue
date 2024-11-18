@@ -17,12 +17,12 @@
 </template>
 
 <script setup lang="ts">
-import { BigScreenPanelItemProps, BigScreenPanelProps } from '@/ui/bigscreen/types.ts'
+import { ShadcnDataBuilderPanelItemProps, ShadcnDataBuilderPanelProps } from '@/ui/data-builder/types.ts'
 import { calcSize } from '@/utils/common.ts'
 
-withDefaults(defineProps<BigScreenPanelProps>(), {
+withDefaults(defineProps<ShadcnDataBuilderPanelProps>(), {
   width: 200,
-  items: () => [] as BigScreenPanelItemProps[]
+  items: () => [] as ShadcnDataBuilderPanelItemProps[]
 })
 
 const onDragStart = (e, component) => {
