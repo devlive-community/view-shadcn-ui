@@ -164,4 +164,8 @@ features:
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/toggle.svg" />
     title: <a href='toggle.html'>Shadcn Toggle <span class="VPBadge tip">2024.4.0</span></a>
     details: Toggle component
+
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/data-builder.svg" />
+    title: <a href='data-builder.html'>Shadcn Data Builder <span class="VPBadge tip">2024.5.0</span></a>
+    details: Data Builder component
 ---

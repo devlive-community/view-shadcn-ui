@@ -9,8 +9,7 @@ title: "Release Notes"
 ### 🐛 Bug Fixes
 
 - **input:** fixed textarea border ([588b8dd](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/588b8dd889d8846068c262c984c1e8dc5608043c))
-- **tree:** fix the abnormal hover and selected styles in lazy
-  loading ([b6610f1](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/b6610f18ecbcc4b9f91581d04fc45064bfeac334))
+- **tree:** fix the abnormal hover and selected styles in lazy loading ([b6610f1](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/b6610f18ecbcc4b9f91581d04fc45064bfeac334))
 
 ### ✨ Features
 
@@ -33,6 +32,7 @@ title: "Release Notes"
 - **toggle:** support group multiple mode ([ae09b8c](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/ae09b8c560d474e7cd2b06de965a91b8f8e80750))
 - **toggle:** support size ([0efec03](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/0efec03439273445b928c22a3efdcf6e66890cc9))
 - **toggle:** support toggle ([f732b08](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/f732b08f27a183ff843f076988d5b2dac6bb0f65))
+- **switch**: support true-value and false-value([036b7b3](https://github.com/devlive-community/view-shadcn-ui/commit/036b7b32a2186b87d5c53b9d458c86792a28109c))
 
 ## 2024.3.0 (2024-11-10)
 

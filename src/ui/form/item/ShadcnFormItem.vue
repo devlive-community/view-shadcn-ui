@@ -2,7 +2,7 @@
   <div class="space-y-2">
     <div class="flex items-center">
       <label v-if="label"
-             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+             class="text-sm text-gray-500 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
              :for="name">
         {{ label }}
       </label>
@@ -136,7 +136,7 @@ provide<FormItemContext>(`form-item-${ props.name }`, {
 })
 
 onMounted(() => {
-  formContext.registerFormItem({
+  formContext?.registerFormItem({
     name: props.name,
     validate,
     rules: props.rules
@@ -144,11 +144,11 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  formContext.unregisterFormItem(props.name)
+  formContext?.unregisterFormItem(props.name)
 })
 
 watch(
-    () => formContext.errors.get(props.name),
+    () => formContext?.errors?.get(props.name),
     (error) => errorMessage.value = error || ''
 )
 </script>

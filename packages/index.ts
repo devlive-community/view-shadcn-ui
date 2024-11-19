@@ -77,6 +77,7 @@ import ShadcnGradientText from '@/ui/text/gradient'
 import { ShadcnContextMenu, ShadcnContextMenuItem, ShadcnContextMenuSub } from '@/ui/contextmenu'
 import ShadcnHoverCard from '@/ui/hover-card'
 import { ShadcnToggle, ShadcnToggleGroup } from '@/ui/toggle'
+import { ShadcnDataBuilderConfigure, ShadcnDataBuilderCanvas, ShadcnDataBuilderPanel, ShadcnDataBuilderEditor } from '@/ui/data-builder'
 
 let components = [
     ShadcnButton,
@@ -150,12 +151,10 @@ let components = [
     ShadcnTree,
     ShadcnText,
     ShadcnGradientText,
-    ShadcnContextMenu,
-    ShadcnContextMenuItem,
-    ShadcnContextMenuSub,
+    ShadcnContextMenu, ShadcnContextMenuItem, ShadcnContextMenuSub,
     ShadcnHoverCard,
-    ShadcnToggle,
-    ShadcnToggleGroup
+    ShadcnToggle, ShadcnToggleGroup,
+    ShadcnDataBuilderPanel, ShadcnDataBuilderCanvas, ShadcnDataBuilderConfigure, ShadcnDataBuilderEditor
 ]
 
 const install = (Vue: App) => {
@@ -255,6 +254,7 @@ export { default as ShadcnGradientText } from '@/ui/text/gradient'
 export { ShadcnContextMenu, ShadcnContextMenuItem, ShadcnContextMenuSub } from '@/ui/contextmenu'
 export { default as ShadcnHoverCard } from '@/ui/hover-card'
 export { ShadcnToggle, ShadcnToggleGroup } from '@/ui/toggle'
+export { ShadcnDataBuilderPanel, ShadcnDataBuilderCanvas, ShadcnDataBuilderConfigure, ShadcnDataBuilderEditor } from '@/ui/data-builder'
 
 // Support global import
 export default install
