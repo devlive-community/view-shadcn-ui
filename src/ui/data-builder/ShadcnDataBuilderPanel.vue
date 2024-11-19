@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { ShadcnDataBuilderPanelItemProps, ShadcnDataBuilderPanelProps } from './types.ts'
+import { ShadcnDataBuilderPanelItemProps, ShadcnDataBuilderPanelProps } from './types'
 import { calcSize } from '@/utils/common.ts'
 
 withDefaults(defineProps<ShadcnDataBuilderPanelProps>(), {
@@ -28,5 +28,10 @@ withDefaults(defineProps<ShadcnDataBuilderPanelProps>(), {
 const onDragStart = (e, component) => {
   e.dataTransfer.setData('componentType', component.type)
   e.dataTransfer.setData('componentLabel', component.label)
+
+  // Transfer component configure
+  if (component.configure) {
+    e.dataTransfer.setData('componentConfigure', JSON.stringify(component.configure))
+  }
 }
 </script>

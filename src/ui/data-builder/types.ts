@@ -1,3 +1,20 @@
+export interface ItemConfigureProps
+{
+    id?: number | string
+    type?: string
+    label?: string
+    value?: any
+    defaultValue?: any
+    disabled?: boolean
+    options?: Array<any>
+}
+
+export interface ItemConfigureGroupProps
+{
+    group?: string
+    items?: Array<ItemConfigureProps>
+}
+
 export interface ShadcnDataBuilderPanelProps
 {
     width?: number | string
@@ -20,6 +37,7 @@ export interface ShadcnDataBuilderPanelChildProps
     width: number
     height: number
     zIndex: number
+    configure?: Array<ItemConfigureGroupProps>
 }
 
 export interface ShadcnDataBuilderBaseProps

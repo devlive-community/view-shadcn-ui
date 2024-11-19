@@ -61,7 +61,7 @@
 
         <!-- 标尺 -->
         <!-- Ruler -->
-        <div v-if="showRuler" class="absolute left-0 top-0 w-full flex sticky">
+        <div v-if="showRuler" class="absolute left-0 ml-0.5 top-0 w-full flex sticky">
           <!-- 左上角方块 -->
           <!-- Corner square -->
           <div class="w-5 h-5 bg-white border-gray-200 z-10 sticky left-0 top-0"/>
@@ -416,13 +416,13 @@ const onComponentMouseDown = (e, component) => {
     y: pos.y - component.y
   }
 
-  document.addEventListener('mousemove', handleComponentMouseMove)
-  document.addEventListener('mouseup', handleComponentMouseUp)
+  document.addEventListener('mousemove', onComponentMouseMove)
+  document.addEventListener('mouseup', onComponentMouseUp)
 }
 
 // 处理组件拖动
 // Handle component drag
-const handleComponentMouseMove = (e: MouseEvent) => {
+const onComponentMouseMove = (e: MouseEvent) => {
   if (!isDragging.value) {
     return
   }
@@ -480,12 +480,12 @@ const handleComponentMouseMove = (e: MouseEvent) => {
 
 // 处理组件拖动结束
 // Handle component drag end
-const handleComponentMouseUp = () => {
+const onComponentMouseUp = () => {
   isDragging.value = false
 
   dragTarget.value = null // 清除辅助线
-  document.removeEventListener('mousemove', handleComponentMouseMove)
-  document.removeEventListener('mouseup', handleComponentMouseUp)
+  document.removeEventListener('mousemove', onComponentMouseMove)
+  document.removeEventListener('mouseup', onComponentMouseUp)
 }
 
 // 处理新组件放置
@@ -493,6 +493,7 @@ const handleComponentMouseUp = () => {
 const onDrop = (e) => {
   const type = e.dataTransfer.getData('componentType')
   const label = e.dataTransfer.getData('componentLabel')
+  const configure = JSON.parse(e.dataTransfer.getData('componentConfigure') || '{}')
 
   if (!type) {
     return
@@ -523,7 +524,8 @@ const onDrop = (e) => {
     y: alignedPos.y,
     width: newComponentWidth,
     height: newComponentHeight,
-    zIndex: components.value.length + 1
+    zIndex: components.value.length + 1,
+    configure
   }]
 
   components.value = newComponents
@@ -703,8 +705,8 @@ onMounted(() => {
 // 清理事件监听
 // Cleanup event listeners
 onUnmounted(() => {
-  document.removeEventListener('mousemove', handleComponentMouseMove)
-  document.removeEventListener('mouseup', handleComponentMouseUp)
+  document.removeEventListener('mousemove', onComponentMouseMove)
+  document.removeEventListener('mouseup', onComponentMouseUp)
   document.removeEventListener('mousemove', onResize)
   document.removeEventListener('mouseup', stopResize)
 })

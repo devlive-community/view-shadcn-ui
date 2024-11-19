@@ -136,7 +136,7 @@ provide<FormItemContext>(`form-item-${ props.name }`, {
 })
 
 onMounted(() => {
-  formContext.registerFormItem({
+  formContext?.registerFormItem({
     name: props.name,
     validate,
     rules: props.rules
@@ -144,11 +144,11 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  formContext.unregisterFormItem(props.name)
+  formContext?.unregisterFormItem(props.name)
 })
 
 watch(
-    () => formContext.errors.get(props.name),
+    () => formContext?.errors?.get(props.name),
     (error) => errorMessage.value = error || ''
 )
 </script>
