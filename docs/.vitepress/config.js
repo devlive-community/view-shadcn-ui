@@ -88,6 +88,7 @@ export default {
                         {text: 'getContrastTextColor <span class="VPBadge tip">2024.2.0</span>', link: 'get-contrast-text-color'},
                         {text: 'getHoverColor <span class="VPBadge tip">2024.2.0</span>', link: 'get-hover-color'},
                         {text: 'generateColorShades <span class="VPBadge tip">2024.2.0</span>', link: 'generate-color-shades'},
+                        {text: 'Function <span class="VPBadge tip">2024.5.0</span>', link: 'function'},
                     ]
                 }
             ],
@@ -195,7 +196,7 @@ export default {
                 })(),
                 (() => {
                     const items = [
-                        {text: 'DataBuilder <span class="VPBadge tip">2024.5.0</span>', link: 'data-builder'},
+                        {text: 'Data Builder <span class="VPBadge tip">2024.5.0</span>', link: 'data-builder'},
                     ]
                     return {
                         text: `Data [ ${items.length} ]`,

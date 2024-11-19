@@ -1,91 +1,45 @@
 <template>
-  <div class="flex h-screen bg-gray-100 w-screen">
-    <ShadcnDataBuilderEditor :items="panels"
-                             :config-width="300"
-                             :canvas-style="{backgroundColor: '#ffffff'}"
-                             @update-config="console.log($event)">
-      <template #panel-label="{ item }">
-        {{ item.label }}
-      </template>
-
-      <template #text="{ configure, isSelected }">
-        <ShadcnText type="h1" :class="isSelected ? 'text-blue-600' : 'text-gray-900'">
-          {{ getConfigValue(configure, 'text', 'Text Component') }}
-        </ShadcnText>
-      </template>
-    </ShadcnDataBuilderEditor>
-  </div>
+  <ShadcnDataBuilderView :width="style.width"
+                         :height="style.height"
+                         :items="items"
+                         :canvas-style="style.canvasStyle">
+    <template #text="{ configure, isSelected }">
+      <ShadcnText type="h1" :class="isSelected ? 'text-blue-600' : 'text-gray-900'">
+        {{ getConfigValue(configure, 'text', 'Text Component') }}
+      </ShadcnText>
+    </template>
+  </ShadcnDataBuilderView>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import { fnToFunction } from '@/utils/formatter.ts'
 
-const panels = ref([
-  {
-    group: 'Basic Components',
-    children: [
-      {
-        type: 'text', label: 'Text', configure: [
-          {
-            group: 'Style Group',
-            key: 'style',
-            items: [
-              { type: 'text', label: 'Background Color', key: 'backgroundColor', description: 'Description', value: '#FFF333' },
-              { type: 'number', label: 'Border Radius', key: 'borderRadius', value: '12', min: 0, max: 100, formatter: (value) => `${ value }px` }
-            ]
-          },
-          {
-            group: 'Text Group',
-            key: 'text',
-            items: [
-              {
-                type: 'text',
-                label: 'Text Component',
-                description: 'This is a long description',
-                value: 'Hello, View Shadcn UI'
-              }
-            ]
-          }
-        ]
-      },
-      {
-        type: 'image', label: 'Image', configure: [
-          {
-            group: 'Text Group',
-            key: 'image-text-group',
-            items: [
-              { type: 'text', label: 'Text Component', description: 'Description', value: 'Hello, View Shadcn UI' },
-              { type: 'number', label: 'Number Component', value: 12, min: 0, max: 100 },
-              { type: 'textarea', label: 'Textarea Component', value: 'Hello, View Shadcn UI' },
-              { type: 'password', label: 'Password Component', value: '123456789' },
-              { type: 'switch', label: 'Switch Component', value: false, trueValue: 'On', falseValue: 'Off' },
-              { type: 'radio', label: 'Radio Component', value: 'Option 1', options: [{ label: 'Option 1', value: 'Option 1' }, { label: 'Option 2', value: 'Option 2' }] },
-              {
-                type: 'checkbox',
-                label: 'Checkbox Component',
-                value: ['Option 1', 'Option 2', 'Option 3'],
-                options: [{ label: 'Option 1', value: 'Option 1' }, { label: 'Option 2', value: 'Option 2' }]
-              },
-              { type: 'select', label: 'Select Component', value: 'Option 1', options: [{ label: 'Option 1', value: 'Option 1' }, { label: 'Option 2', value: 'Option 2' }] },
-              { type: 'slider', label: 'Slider Component', value: 50, min: 0, max: 100, showTip: true },
-              { type: 'rate', label: 'Rate Component', value: 3, max: 5 }
-            ]
-          },
-          {
-            group: 'Text Group 2',
-            key: 'image-text-group-2',
-            items: [
-              { type: 'text', label: 'Text', value: 'Hello, View Shadcn UI' },
-              { type: 'title', label: 'Title' },
-              { type: 'paragraph', label: 'Paragraph' }
-            ]
-          }
-        ]
-      },
-      { type: 'chart', label: 'Chart' }
-    ]
-  }
-])
+const style = ref({
+  'width': 1920,
+  'height': 1080,
+  'canvasStyle': { 'backgroundColor': '#ffffff' },
+  'items': [{
+    'id': 1732028258612,
+    'type': 'text',
+    'label': 'Text',
+    'x': 240,
+    'y': 120,
+    'width': 520,
+    'height': 300,
+    'zIndex': 1,
+    'configure': [{
+      'group': 'Style Group',
+      'key': 'style',
+      'items': [{ 'type': 'text', 'label': 'Background Color', 'key': 'backgroundColor', 'description': 'Description', 'value': '#FFF333' },
+        { 'type': 'number', 'label': 'Border Radius', 'key': 'borderRadius', 'value': '12', 'min': 0, 'max': 100, 'formatter': '(value) => `${value}px`' }]
+    }, {
+      'group': 'Text Group',
+      'key': 'text',
+      'items': [{ 'type': 'text', 'label': 'Text Component', 'description': 'This is a long description', 'value': 'Hello, View Shadcn UI' }]
+    }]
+  }]
+})
 
 const getConfigValue = (configure, groupName, label) => {
   if (!configure) {
@@ -98,4 +52,40 @@ const getConfigValue = (configure, groupName, label) => {
   const item = group.items?.find(item => item.label === label)
   return item?.value
 }
+
+const deepClone = (obj: any) => {
+  if (obj === null || typeof obj !== 'object') {
+    return obj
+  }
+
+  if (Array.isArray(obj)) {
+    return obj.map(deepClone)
+  }
+
+  const cloned = {}
+  for (const key in obj) {
+    if (typeof obj[key] === 'function') {
+      cloned[key] = obj[key]
+    }
+    else {
+      cloned[key] = deepClone(obj[key])
+    }
+  }
+  return cloned
+}
+
+const items = computed(() => {
+  return style.value.items?.map(item => ({
+    ...item,
+    configure: item.configure?.map(group => ({
+      ...group,
+      items: group.items?.map(configItem => ({
+        ...configItem,
+        formatter: typeof configItem.formatter === 'string'
+            ? (fnToFunction(configItem.formatter) ?? (() => undefined))()
+            : configItem.formatter
+      }))
+    }))
+  }))
+})
 </script>

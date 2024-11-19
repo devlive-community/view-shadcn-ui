@@ -4,11 +4,11 @@
     <ShadcnTab direction="vertical" position="right">
       <template v-if="selectedComponent">
         <ShadcnTabItem label="基本配置" value="basic_configure">
-          <ShadcnRow gutter="10">
+          <ShadcnRow :gutter="10">
             <!-- 位置配置 -->
             <!-- Position configuration -->
             <ShadcnCol span="6" class="my-2">
-              <ShadcnFormItem label="X 坐标">
+              <ShadcnFormItem label="X 坐标" name="x">
                 <ShadcnNumber v-model="componentConfig.x"
                               :min="0"
                               :max="maxX"
@@ -17,7 +17,7 @@
             </ShadcnCol>
 
             <ShadcnCol span="6" class="my-2">
-              <ShadcnFormItem label="Y 坐标">
+              <ShadcnFormItem label="Y 坐标" name="y">
                 <ShadcnNumber v-model="componentConfig.y"
                               :min="0"
                               :max="maxY"
@@ -28,7 +28,7 @@
             <!-- 大小配置 -->
             <!-- Size configuration -->
             <ShadcnCol span="6" class="my-2">
-              <ShadcnFormItem label="宽度">
+              <ShadcnFormItem label="宽度" name="width">
                 <ShadcnNumber v-model="componentConfig.width"
                               :min="minWidth"
                               :max="maxWidth"
@@ -37,7 +37,7 @@
             </ShadcnCol>
 
             <ShadcnCol span="6" class="my-2">
-              <ShadcnFormItem label="高度">
+              <ShadcnFormItem label="高度" name="height">
                 <ShadcnNumber v-model="componentConfig.height"
                               :min="minHeight"
                               :max="maxHeight"
@@ -159,11 +159,11 @@
         <ShadcnTabItem label="基本配置" value="basic_configure">
           <!-- 画布样式配置部分 -->
           <!-- Canvas style configuration section -->
-          <ShadcnRow gutter="10">
+          <ShadcnRow :gutter="10">
             <!-- 背景颜色 -->
             <!-- Background color -->
             <ShadcnCol span="12" class="my-2">
-              <ShadcnFormItem label="背景颜色">
+              <ShadcnFormItem label="背景颜色" name="backgroundColor">
                 <div class="flex items-center space-x-2">
                   <input type="color"
                          class="p-0 border border-gray-200 rounded cursor-pointer"
@@ -177,7 +177,7 @@
             <!-- 背景图片 -->
             <!-- Background image -->
             <ShadcnCol span="12" class="my-2">
-              <ShadcnFormItem label="背景图片 URL">
+              <ShadcnFormItem label="背景图片 URL" name="backgroundImage">
                 <ShadcnInput v-model="canvasConfig.backgroundImage" placeholder="输入图片URL" @on-change="onCanvasStyleUpdate"/>
               </ShadcnFormItem>
             </ShadcnCol>
@@ -185,7 +185,7 @@
             <!-- 透明度 -->
             <!-- Transparency -->
             <ShadcnCol span="12" class="my-2">
-              <ShadcnFormItem label="透明度">
+              <ShadcnFormItem label="透明度" name="opacity">
                 <div class="flex items-center space-x-2">
                   <ShadcnSlider v-model="canvasConfig.opacity"
                                 class="mr-1"
