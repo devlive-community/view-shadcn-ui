@@ -1,4 +1,4 @@
-import{v as a,h as e}from"./view-shadcn-ui.es.D47e_DZD.js";import"./framework.ButRrEcI.js";/**
+import{h as a,R as e}from"./view-shadcn-ui.es.CVg4JkNW.js";import"./framework.ButRrEcI.js";/**
  * @license lucide-vue-next v0.360.0 - ISC
  *
  * This source code is licensed under the ISC license.
