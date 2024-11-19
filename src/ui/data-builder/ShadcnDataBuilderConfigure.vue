@@ -4,51 +4,47 @@
     <ShadcnTab direction="vertical" position="right">
       <template v-if="selectedComponent">
         <ShadcnTabItem label="基本配置" value="basic_configure">
-          <div class="space-y-4">
+          <ShadcnRow gutter="10">
             <!-- 位置配置 -->
             <!-- Position configuration -->
-            <div class="space-y-2">
-              <div class="text-sm font-medium text-gray-600">位置</div>
-              <div class="grid grid-cols-2 gap-2">
-                <div>
-                  <div class="text-xs text-gray-500 mb-1">X 坐标</div>
-                  <ShadcnNumber v-model="componentConfig.x"
-                                :min="0"
-                                :max="maxX"
-                                @on-change="onPositionUpdate"/>
-                </div>
-                <div>
-                  <div class="text-xs text-gray-500 mb-1">Y 坐标</div>
-                  <ShadcnNumber v-model="componentConfig.y"
-                                :min="0"
-                                :max="maxY"
-                                @on-change="onPositionUpdate"/>
-                </div>
-              </div>
-            </div>
+            <ShadcnCol span="6" class="my-2">
+              <ShadcnFormItem label="X 坐标">
+                <ShadcnNumber v-model="componentConfig.x"
+                              :min="0"
+                              :max="maxX"
+                              @on-change="onPositionUpdate"/>
+              </ShadcnFormItem>
+            </ShadcnCol>
+
+            <ShadcnCol span="6" class="my-2">
+              <ShadcnFormItem label="Y 坐标">
+                <ShadcnNumber v-model="componentConfig.y"
+                              :min="0"
+                              :max="maxY"
+                              @on-change="onPositionUpdate"/>
+              </ShadcnFormItem>
+            </ShadcnCol>
 
             <!-- 大小配置 -->
             <!-- Size configuration -->
-            <div class="space-y-2">
-              <div class="text-sm font-medium text-gray-600">大小</div>
-              <div class="grid grid-cols-2 gap-2">
-                <div>
-                  <div class="text-xs text-gray-500 mb-1">宽度</div>
-                  <ShadcnNumber v-model="componentConfig.width"
-                                :min="minWidth"
-                                :max="maxWidth"
-                                @on-change="onSizeUpdate"/>
-                </div>
-                <div>
-                  <div class="text-xs text-gray-500 mb-1">高度</div>
-                  <ShadcnNumber v-model="componentConfig.height"
-                                :min="minHeight"
-                                :max="maxHeight"
-                                @on-change="onSizeUpdate"/>
-                </div>
-              </div>
-            </div>
-          </div>
+            <ShadcnCol span="6" class="my-2">
+              <ShadcnFormItem label="宽度">
+                <ShadcnNumber v-model="componentConfig.width"
+                              :min="minWidth"
+                              :max="maxWidth"
+                              @on-change="onSizeUpdate"/>
+              </ShadcnFormItem>
+            </ShadcnCol>
+
+            <ShadcnCol span="6" class="my-2">
+              <ShadcnFormItem label="高度">
+                <ShadcnNumber v-model="componentConfig.height"
+                              :min="minHeight"
+                              :max="maxHeight"
+                              @on-change="onSizeUpdate"/>
+              </ShadcnFormItem>
+            </ShadcnCol>
+          </ShadcnRow>
         </ShadcnTabItem>
 
         <ShadcnTabItem v-if="selectedComponent.configure"
@@ -163,47 +159,45 @@
         <ShadcnTabItem label="基本配置" value="basic_configure">
           <!-- 画布样式配置部分 -->
           <!-- Canvas style configuration section -->
-          <div class="space-y-4">
-            <div class="text-sm font-medium text-gray-600">画布样式</div>
-
+          <ShadcnRow gutter="10">
             <!-- 背景颜色 -->
             <!-- Background color -->
-            <div class="space-y-2">
-              <div class="text-xs text-gray-500">背景颜色</div>
-              <div class="flex items-center space-x-2">
-                <div>
+            <ShadcnCol span="12" class="my-2">
+              <ShadcnFormItem label="背景颜色">
+                <div class="flex items-center space-x-2">
                   <input type="color"
                          class="p-0 border border-gray-200 rounded cursor-pointer"
                          v-model="canvasConfig.backgroundColor"
-                         @change="onCanvasStyleUpdate">
-                </div>
-                <div class="flex-1 text-sm">
+                         @change="onCanvasStyleUpdate"/>
                   <ShadcnInput v-model="canvasConfig.backgroundColor" size="small" @on-change="onCanvasStyleUpdate"/>
                 </div>
-              </div>
-            </div>
+              </ShadcnFormItem>
+            </ShadcnCol>
 
             <!-- 背景图片 -->
             <!-- Background image -->
-            <div class="space-y-2">
-              <div class="text-xs text-gray-500">背景图片URL</div>
-              <ShadcnInput v-model="canvasConfig.backgroundImage" placeholder="输入图片URL" @on-change="onCanvasStyleUpdate"/>
-            </div>
+            <ShadcnCol span="12" class="my-2">
+              <ShadcnFormItem label="背景图片 URL">
+                <ShadcnInput v-model="canvasConfig.backgroundImage" placeholder="输入图片URL" @on-change="onCanvasStyleUpdate"/>
+              </ShadcnFormItem>
+            </ShadcnCol>
 
             <!-- 透明度 -->
             <!-- Transparency -->
-            <div class="space-y-2">
-              <div class="text-xs text-gray-500">透明度</div>
-              <div class="flex items-center space-x-2">
-                <ShadcnSlider v-model="canvasConfig.opacity"
-                              min="0"
-                              max="1"
-                              step="0.1"
-                              @on-change="onCanvasStyleUpdate"/>
-                <span class="text-xs text-right">{{ Math.round(canvasConfig.opacity * 100) }}%</span>
-              </div>
-            </div>
-          </div>
+            <ShadcnCol span="12" class="my-2">
+              <ShadcnFormItem label="透明度">
+                <div class="flex items-center space-x-2">
+                  <ShadcnSlider v-model="canvasConfig.opacity"
+                                class="mr-1"
+                                min="0"
+                                max="1"
+                                step="0.1"
+                                @on-change="onCanvasStyleUpdate"/>
+                  <div class="text-xs text-right">{{ Math.round(canvasConfig.opacity * 100) }}%</div>
+                </div>
+              </ShadcnFormItem>
+            </ShadcnCol>
+          </ShadcnRow>
         </ShadcnTabItem>
       </div>
     </ShadcnTab>

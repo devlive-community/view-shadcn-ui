@@ -216,7 +216,60 @@ const items = ref([
         </template>
         <template #text="{ configure, isSelected }">
             <ShadcnText type="h1" :class="isSelected ? 'text-blue-600' : 'text-gray-900'">
-              {{ getConfigValue(configure, 'Text Group', 'Text Component') }}
+              {{ getConfigValue(configure, 'text', 'Text Component') }}
+            </ShadcnText>
+        </template>
+    </ShadcnDataBuilderEditor>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnDataBuilderEditor :items="items" :config-width="300" @update-config="console.log($event)">
+    <template #panel-label="{ item }">
+      {{ item.label }} - {{ item.type }}
+    </template>
+
+    <template #text="{ configure, isSelected }">
+      <ShadcnText type="h1" :class="isSelected ? 'text-blue-600' : 'text-gray-900'">
+        {{ getConfigValue(configure, 'text', 'Text Component') }}
+      </ShadcnText>
+    </template>
+  </ShadcnDataBuilderEditor>
+</template>
+
+<script setup lang="ts">
+  const getConfigValue = (configure, groupKey, label) => {
+    if (!configure) {
+      return null
+    }
+    const group = configure.find(g => g.key === groupKey)
+    if (!group) {
+      return null
+    }
+    const item = group.items?.find(item => item.label === label)
+    return item?.value
+  }
+</script>
+```
+
+:::
+
+## Style
+
+::: raw
+
+<CodeRunner title="Usage">
+    <ShadcnDataBuilderEditor :items="stylePanels" :config-width="300" :height="300" :width="1080" @update-config="console.log($event)">
+        <template #panel-label="{ item }">
+          {{ item.label }} - {{ item.type }}
+        </template>
+        <template #text="{ configure, isSelected }">
+            <ShadcnText type="h1" :class="isSelected ? 'text-blue-600' : 'text-gray-900'">
+              {{ getConfigValue(configure, 'text', 'Text Component') }}
             </ShadcnText>
         </template>
     </ShadcnDataBuilderEditor>
@@ -235,16 +288,67 @@ const items = ref([
     
     <template #text="{ configure, isSelected }">
       <ShadcnText type="h1" :class="isSelected ? 'text-blue-600' : 'text-gray-900'">
-        {{ getConfigValue(configure, 'Text Group', 'Text Component') }}
+        {{ getConfigValue(configure, 'text', 'Text Component') }}
       </ShadcnText>
     </template>
   </ShadcnDataBuilderEditor>
 </template>
+
+<script setup lang="ts">
+  const getConfigValue = (configure, groupKey, label) => {
+    if (!configure) {
+      return null
+    }
+    const group = configure.find(g => g.key === groupKey)
+    if (!group) {
+      return null
+    }
+    const item = group.items?.find(item => item.label === label)
+    return item?.value
+  }
+</script>
 ```
 
 :::
 
 ## DataBuilder Props
+
+::: warning
+
+Let's start with an example:
+
+```json
+{
+    type: 'text', label: 'Text', configure: [
+      {
+        group: 'Style Group',
+        key: 'style',
+        items: [
+          { type: 'text', label: 'Background Color', key: 'backgroundColor', description: 'Description', value: '#FFF333' },
+          { type: 'number', label: 'Border Radius', key: 'borderRadius', value: '12', min: 0, max: 100, formatter: (value) => `${ value }px` }
+        ]
+      }
+    ]
+}
+```
+
+There is a special group `key=style` which is mainly used for style configuration, and it takes effect automatically by default.
+
+The items in items are configured as follows:
+
+- **type**: component type (refer to all currently supported form components)
+- **label**: The name of the component display
+- **description**: The description displayed by the component
+
+For other properties, see Supported Configurations for Components.
+
+If it's a style group, you must configure the following for it to take effect:
+
+- **key**: corresponds to the name of the CSS property
+- **value**: corresponds to the value of the CSS property
+- **formatter**: A function used to format the configuration
+
+::: 
 
 <ApiTable title="DataBuilder Editor Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
@@ -314,7 +418,7 @@ const items = ref([
     :headers="['Slot', 'Description']"
     :columns="[
         ['slots', 'Render the corresponding slot according to the component type, for example, if item.type=text, render the text slot, { component, configure, isSelected }'],
-        ['panel-label', 'Render the panel label'],
+        ['panel-label', 'Render the panel label, { item }'],
     ]">
 </ApiTable>
 
@@ -323,7 +427,7 @@ const items = ref([
 <ApiTable title="DataBuilder Panel Slots"
     :headers="['Slot', 'Description']"
     :columns="[
-        ['label' , 'Render the panel label'],
+        ['label' , 'Render the panel label, { item }'],
     ]">
 </ApiTable>
 
@@ -400,6 +504,7 @@ const panels2 = ref([
         type: 'text', label: 'Text', configure: [
           {
             group: 'Text Group',
+            key: 'text',
             items: [
               { type: 'text', label: 'Text Component', description: 'Description', value: 'Hello, View Shadcn UI' },
             ]
@@ -418,11 +523,44 @@ const panels2 = ref([
   }
 ])
 
+const stylePanels = ref([
+  {
+    group: 'Basic Components',
+    children: [
+      {
+        type: 'text', label: 'Text', configure: [
+          {
+            group: 'Style Group',
+            key: 'style',
+            items: [
+              { type: 'text', label: 'Background Color', key: 'backgroundColor', description: 'Description', value: '#FFF333' },
+              { type: 'number', label: 'Border Radius', key: 'borderRadius', value: '12', min: 0, max: 100, formatter: (value) => `${ value }px` }
+            ]
+          },
+          {
+            group: 'Text Group',
+            key: 'text',
+            items: [
+              {
+                type: 'text',
+                label: 'Text Component',
+                description: 'This is a long description',
+                value: 'Hello, View Shadcn UI'
+              }
+            ]
+          }
+        ]
+      },
+      { type: 'chart', label: 'Chart' }
+    ]
+  }
+])
+
 const getConfigValue = (configure, groupName, label) => {
   if (!configure) {
     return null
   }
-  const group = configure.find(g => g.group === groupName)
+  const group = configure.find(g => g.key === groupName)
   if (!group) {
     return null
   }

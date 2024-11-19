@@ -38,6 +38,7 @@ export interface ShadcnDataBuilderPanelChildProps
     height: number
     zIndex: number
     configure?: Array<ItemConfigureGroupProps>
+    style?: any
 }
 
 export interface ShadcnDataBuilderBaseProps

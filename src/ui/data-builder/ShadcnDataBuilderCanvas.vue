@@ -161,7 +161,6 @@
              ]"
              :style="getComponentStyle(item)"
              @mousedown="onComponentMouseDown($event, item)">
-
           <!-- 使用命名插槽进行自定义渲染 -->
           <!-- Use named slot for custom rendering -->
           <slot :name="item.type"
@@ -348,13 +347,51 @@ watch(() => props.gridSize, (newSize) => {
 // Get component style
 const getComponentStyle = (component) => {
   const rulerOffset = showRuler.value ? 20 : 0
-  return {
+  const baseStyle = {
     left: `${ rulerOffset + component.x }px`,
     top: `${ rulerOffset + component.y }px`,
     width: calcSize(component.width),
     height: calcSize(component.height),
     zIndex: component.zIndex || 1
   }
+
+  // 从 configure 中提取样式数据
+  // Extract style data from configure
+  if (component.configure) {
+    const styleGroup = component.configure.find(group => group.key === 'style')
+    if (styleGroup?.items) {
+      const extractedStyles = styleGroup.items.reduce((styles, item) => {
+        if (item.value !== undefined) {
+          // 使用 key 如果存在，否则转换 label
+          // Use key if it exists, otherwise convert label
+          const styleKey = item.key || item.label.replace(/(?:^\w|[A-Z]|\b\w)/g, (letter, index) =>
+              index === 0 ? letter.toLowerCase() : letter.toUpperCase()
+          ).replace(/\s+/g, '')
+
+          // 使用 formatter 函数
+          // Use formatter function
+          let value = item.value
+          if (item.formatter && typeof item.formatter === 'function') {
+            try {
+              value = item.formatter(item.value)
+            }
+            catch (e) {
+              console.error('Formatter function error:', e)
+            }
+          }
+          styles[styleKey] = value
+        }
+        return styles
+      }, {})
+
+      return {
+        ...baseStyle,
+        ...extractedStyles
+      }
+    }
+  }
+
+  return baseStyle
 }
 
 // 处理画布缩放
@@ -504,7 +541,32 @@ const onComponentMouseUp = () => {
 const onDrop = (e) => {
   const type = e.dataTransfer.getData('componentType')
   const label = e.dataTransfer.getData('componentLabel')
-  const configure = JSON.parse(e.dataTransfer.getData('componentConfigure') || '{}')
+  const transferId = e.dataTransfer.getData('transferId')
+  const configureData = JSON.parse(e.dataTransfer.getData('componentConfigure') || '{}')
+
+  // 使用transferId获取对应的函数引用
+  // Use transferId to get the corresponding function reference
+  const restoreFunctions = (configure) => {
+    if (!window.__componentFunctionsMap || !transferId) {
+      return configure
+    }
+
+    const storedFunctions = window.__componentFunctionsMap.get(transferId)
+    if (!storedFunctions) {
+      return configure
+    }
+
+    return configure.map((group, groupIndex) => ({
+      ...group,
+      items: group.items.map((item, itemIndex) => {
+        const tempItem = storedFunctions[groupIndex]?.items[itemIndex]
+        return {
+          ...item,
+          formatter: tempItem?.formatter
+        }
+      })
+    }))
+  }
 
   if (!type) {
     return
@@ -536,8 +598,14 @@ const onDrop = (e) => {
     width: newComponentWidth,
     height: newComponentHeight,
     zIndex: components.value.length + 1,
-    configure
+    configure: restoreFunctions(configureData)
   }]
+
+  // 清理临时存储
+  // Clear temporary storage
+  if (window.__componentFunctionsMap) {
+    window.__componentFunctionsMap.delete(transferId)
+  }
 
   components.value = newComponents
   emit('update:components', newComponents)
@@ -720,6 +788,10 @@ onUnmounted(() => {
   document.removeEventListener('mouseup', onComponentMouseUp)
   document.removeEventListener('mousemove', onResize)
   document.removeEventListener('mouseup', stopResize)
+
+  if (window.__componentFunctionsMap) {
+    window.__componentFunctionsMap.clear()
+  }
 })
 
 // 暴露方法给父组件

@@ -2,7 +2,7 @@
   <div class="space-y-2">
     <div class="flex items-center">
       <label v-if="label"
-             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+             class="text-sm text-gray-500 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
              :for="name">
         {{ label }}
       </label>

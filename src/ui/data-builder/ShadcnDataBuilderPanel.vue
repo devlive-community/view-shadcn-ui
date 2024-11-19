@@ -22,6 +22,14 @@
 import { ShadcnDataBuilderPanelItemProps, ShadcnDataBuilderPanelProps } from './types'
 import { calcSize } from '@/utils/common.ts'
 
+declare global
+{
+  interface Window
+  {
+    __componentFunctionsMap: Map<string, any>
+  }
+}
+
 withDefaults(defineProps<ShadcnDataBuilderPanelProps>(), {
   width: 200,
   items: () => [] as ShadcnDataBuilderPanelItemProps[]
@@ -31,9 +39,34 @@ const onDragStart = (e, component) => {
   e.dataTransfer.setData('componentType', component.type)
   e.dataTransfer.setData('componentLabel', component.label)
 
-  // Transfer component configure
+  const transferId = `transfer_${ Date.now() }_${ Math.random().toString(36).substr(2, 9) }`
+  e.dataTransfer.setData('transferId', transferId)
+
+  // 深拷贝 configure，但保留函数
+  // Deep copy configure, but keep functions
+  const processConfigureData = (data) => {
+    return data.map(group => ({
+      ...group,
+      items: group.items.map(item => ({
+        ...item,
+        // 如果有格式化函数，保存函数引用
+        // If there is a formatting function, save the function reference
+        formatter: item.formatter
+      }))
+    }))
+  }
+
   if (component.configure) {
+    const configureWithFunctions = processConfigureData(component.configure)
     e.dataTransfer.setData('componentConfigure', JSON.stringify(component.configure))
+
+    // 使用唯一ID存储函数引用
+    // Use unique IDs to store function references
+    if (!window.__componentFunctionsMap) {
+      window.__componentFunctionsMap = new Map()
+    }
+    // @ts-ignore
+    window.__componentFunctionsMap.set(transferId, configureWithFunctions)
   }
 }
 </script>

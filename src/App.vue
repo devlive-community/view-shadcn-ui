@@ -10,7 +10,7 @@
 
       <template #text="{ configure, isSelected }">
         <ShadcnText type="h1" :class="isSelected ? 'text-blue-600' : 'text-gray-900'">
-          {{ getConfigValue(configure, 'Text Group', 'Text Component') }}
+          {{ getConfigValue(configure, 'text', 'Text Component') }}
         </ShadcnText>
       </template>
     </ShadcnDataBuilderEditor>
@@ -27,7 +27,16 @@ const panels = ref([
       {
         type: 'text', label: 'Text', configure: [
           {
+            group: 'Style Group',
+            key: 'style',
+            items: [
+              { type: 'text', label: 'Background Color', key: 'backgroundColor', description: 'Description', value: '#FFF333' },
+              { type: 'number', label: 'Border Radius', key: 'borderRadius', value: '12', min: 0, max: 100, formatter: (value) => `${ value }px` }
+            ]
+          },
+          {
             group: 'Text Group',
+            key: 'text',
             items: [
               {
                 type: 'text',
@@ -43,6 +52,7 @@ const panels = ref([
         type: 'image', label: 'Image', configure: [
           {
             group: 'Text Group',
+            key: 'image-text-group',
             items: [
               { type: 'text', label: 'Text Component', description: 'Description', value: 'Hello, View Shadcn UI' },
               { type: 'number', label: 'Number Component', value: 12, min: 0, max: 100 },
@@ -63,6 +73,7 @@ const panels = ref([
           },
           {
             group: 'Text Group 2',
+            key: 'image-text-group-2',
             items: [
               { type: 'text', label: 'Text', value: 'Hello, View Shadcn UI' },
               { type: 'title', label: 'Title' },
@@ -80,7 +91,7 @@ const getConfigValue = (configure, groupName, label) => {
   if (!configure) {
     return null
   }
-  const group = configure.find(g => g.group === groupName)
+  const group = configure.find(g => g.key === groupName)
   if (!group) {
     return null
   }
