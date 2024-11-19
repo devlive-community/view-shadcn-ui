@@ -138,38 +138,46 @@
              @mousedown="onComponentMouseDown($event, item)">
           {{ item.label }}
 
+          <!-- Delete button - only show for selected component -->
+          <div v-if="selectedIdRef === item.id"
+               class="absolute -top-6 -right-4 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center cursor-pointer hover:bg-red-600 shadow-sm z-10"
+               @mousedown.stop
+               @click.stop="removeComponent(item)">
+            <ShadcnIcon icon="X" class="text-white" size="15"/>
+          </div>
+
           <!-- Resize handles - only show for selected component -->
           <template v-if="resize && selectedIdRef === item.id">
             <!-- Top left -->
-            <div class="absolute w-2 h-2 bg-white border-2 border-blue-500 rounded-sm cursor-nw-resize -top-1.5 -left-1.5"
+            <div class="absolute w-2 h-2 bg-white border-2 border-blue-500 rounded-sm cursor-nw-resize -top-1 -left-1"
                  @mousedown.stop="startResize($event, item, 'nw')"/>
 
             <!-- Top right -->
-            <div class="absolute w-2 h-2 bg-white border-2 border-blue-500 rounded-sm cursor-ne-resize -top-1.5 -right-1.5"
+            <div class="absolute w-2 h-2 bg-white border-2 border-blue-500 rounded-sm cursor-ne-resize -top-1 -right-1"
                  @mousedown.stop="startResize($event, item, 'ne')"/>
 
             <!-- Bottom left -->
-            <div class="absolute w-2 h-2 bg-white border-2 border-blue-500 rounded-sm cursor-sw-resize -bottom-1.5 -left-1.5"
+            <div class="absolute w-2 h-2 bg-white border-2 border-blue-500 rounded-sm cursor-sw-resize -bottom-1 -left-1"
                  @mousedown.stop="startResize($event, item, 'sw')"/>
 
             <!-- Bottom right -->
-            <div class="absolute w-2 h-2 bg-white border-2 border-blue-500 rounded-sm cursor-se-resize -bottom-1.5 -right-1.5"
+            <div class="absolute w-2 h-2 bg-white border-2 border-blue-500 rounded-sm cursor-se-resize -bottom-1 -right-1"
                  @mousedown.stop="startResize($event, item, 'se')"/>
 
             <!-- Top center -->
-            <div class="absolute w-2 h-2 bg-white border-2 border-blue-500 rounded-sm cursor-n-resize -top-1.5 left-1/2 -translate-x-1/2"
+            <div class="absolute w-2 h-2 bg-white border-2 border-blue-500 rounded-sm cursor-n-resize -top-1 left-1/2 -translate-x-1/2"
                  @mousedown.stop="startResize($event, item, 'n')"/>
 
             <!-- Bottom center -->
-            <div class="absolute w-2 h-2 bg-white border-2 border-blue-500 rounded-sm cursor-s-resize -bottom-1.5 left-1/2 -translate-x-1/2"
+            <div class="absolute w-2 h-2 bg-white border-2 border-blue-500 rounded-sm cursor-s-resize -bottom-1 left-1/2 -translate-x-1/2"
                  @mousedown.stop="startResize($event, item, 's')"/>
 
             <!-- Left center -->
-            <div class="absolute w-2 h-2 bg-white border-2 border-blue-500 rounded-sm cursor-w-resize -left-1.5 top-1/2 -translate-y-1/2"
+            <div class="absolute w-2 h-2 bg-white border-2 border-blue-500 rounded-sm cursor-w-resize -left-1 top-1/2 -translate-y-1/2"
                  @mousedown.stop="startResize($event, item, 'w')"/>
 
             <!-- Right center -->
-            <div class="absolute w-2 h-2 bg-white border-2 border-blue-500 rounded-sm cursor-e-resize -right-1.5 top-1/2 -translate-y-1/2"
+            <div class="absolute w-2 h-2 bg-white border-2 border-blue-500 rounded-sm cursor-e-resize -right-1 top-1/2 -translate-y-1/2"
                  @mousedown.stop="startResize($event, item, 'e')"/>
           </template>
         </div>
@@ -584,6 +592,21 @@ const stopResize = () => {
   isResizing.value = false
   document.removeEventListener('mousemove', onResize)
   document.removeEventListener('mouseup', stopResize)
+}
+
+const removeComponent = (component) => {
+  // Remove the component from the components array
+  const updatedComponents = components.value.filter(item => item.id !== component.id)
+  components.value = updatedComponents
+
+  // Clear selection if the deleted component was selected
+  if (selectedIdRef.value === component.id) {
+    selectedIdRef.value = undefined
+    emit('select', undefined)
+  }
+
+  // Emit the updated components array
+  emit('update:components', updatedComponents)
 }
 
 // 初始化画布位置
