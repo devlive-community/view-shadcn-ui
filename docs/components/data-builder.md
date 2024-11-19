@@ -127,6 +127,18 @@ const items = ref([
     ]">
 </ApiTable>
 
+<br />
+
+<ApiTable title="DataBuilder Configure Props"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :columns="[
+        ['selectedComponent', 'The selected component', 'any', '-', '-', '-'],
+        ['canvasWidth', 'The width of the canvas', 'number', '1920', '-', '-'],
+        ['canvasHeight', 'The height of the canvas', 'number', '1080', '-', '-'],
+        ['gridSize', 'The size of the grid', 'number', '20', '-', '-'],
+    ]">
+</ApiTable>
+
 ## DataBuilder Events
 
 <ApiTable title="DataBuilder Editor Events"

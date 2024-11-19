@@ -17,7 +17,11 @@
                              @select="onSelect"/>
 
     <!-- Right Configure -->
-    <ShadcnDataBuilderConfigure :selected-component="onSelectedComponent" @update="onConfigUpdate"/>
+    <ShadcnDataBuilderConfigure :selected-component="onSelectedComponent"
+                                :canvas-width="width"
+                                :canvas-height="height"
+                                :grid-size="gridSize"
+                                @update="onConfigUpdate"/>
   </div>
 </template>
 

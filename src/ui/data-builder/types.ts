@@ -46,6 +46,14 @@ export interface ShadcnDataBuilderEditorProps
     items?: Array<ShadcnDataBuilderPanelItemProps>
 }
 
+export interface ShadcnDataBuilderConfigureProps
+{
+    selectedComponent: any
+    canvasWidth: number
+    canvasHeight: number
+    gridSize: number
+}
+
 export type ShadcnDataBuilderCanvasEmits = {
     (e: 'update:components', data: any): void
     (e: 'select', data: any): void
