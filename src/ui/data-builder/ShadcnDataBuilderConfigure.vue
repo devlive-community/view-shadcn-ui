@@ -1,5 +1,5 @@
 <template>
-  <div class="w-64 bg-white border-l border-gray-200 p-4">
+  <div class="w-64 bg-white border-l border-gray-200 p-4 select-none">
     <div class="text-lg font-medium mb-4">配置面板</div>
     <template v-if="selectedComponent">
       <div class="space-y-4">

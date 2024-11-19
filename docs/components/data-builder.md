@@ -217,6 +217,7 @@ const items = ref([
     :columns="[
         ['update:components', 'Triggered when the components are updated', 'any\[\]'],
         ['select', 'Triggered when the component is selected', 'any\[\]'],
+        ['update:selectedId', 'Triggered when the component is selected', 'string | undefined'],
     ]">
 </ApiTable>
 

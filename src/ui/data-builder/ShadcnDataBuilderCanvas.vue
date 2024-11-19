@@ -1,7 +1,7 @@
 <template>
   <div class="flex-1 relative flex flex-col">
     <!-- 工具栏 -->
-    <div v-if="showToolbar" class="h-12 border-b border-gray-200 bg-white px-4 flex items-center justify-between shrink-0">
+    <div v-if="showToolbar" class="h-12 border-b border-gray-200 bg-white px-4 flex items-center justify-between shrink-0 select-none">
       <div class="flex items-center space-x-4">
         <!-- 画布尺寸调整 -->
         <!-- Canvas size adjustment -->
@@ -60,7 +60,8 @@
            :style="canvasStyle"
            :class="{'border border-gray-200': showGrid}"
            @dragover.prevent
-           @drop="onDrop">
+           @drop="onDrop"
+           @click="onCanvasClick">
         <!-- 网格背景 -->
         <!-- Grid background -->
         <div class="absolute inset-0" :style="gridStyle"/>
@@ -112,7 +113,8 @@
         <div v-for="item in components"
              class="absolute bg-white border-2 flex items-center justify-center cursor-move transition-all transform select-none"
              :key="item.id"
-             :class="[selectedId === item.id ? 'border-blue-500 shadow-lg' : 'border-gray-200 hover:border-gray-300']"
+             :data-component-id="item.id"
+             :class="[selectedIdRef === item.id ? 'border-blue-500 shadow-lg' : 'border-gray-200 hover:border-gray-300']"
              :style="getComponentStyle(item)"
              @mousedown="onComponentMouseDown($event, item)">
           {{ item.label }}
@@ -150,6 +152,13 @@ const snapToGrid = ref(props.snapToGrid)
 const showRuler = ref(props.showRuler)
 const canvasSize = ref({ width: props.width, height: props.height })
 const gridSize = ref(props.gridSize)
+
+const selectedIdRef = computed({
+  get: () => props.selectedId,
+  set: (value) => {
+    emit('update:selectedId', value)
+  }
+})
 
 // 拖拽状态
 // Drag state
@@ -299,7 +308,7 @@ const handleComponentMouseMove = (e) => {
 
   // 获取当前选中的组件
   // Get the currently selected component
-  const currentComponent = components.value.find(item => item.id === props.selectedId)
+  const currentComponent = components.value.find(item => item.id === selectedIdRef.value)
   if (!currentComponent) {
     return
   }
@@ -315,7 +324,7 @@ const handleComponentMouseMove = (e) => {
   })
 
   const updatedComponents = components.value.map(item => {
-    if (item.id === props.selectedId) {
+    if (item.id === selectedIdRef.value) {
       return {
         ...item,
         x: newPosition.x,
@@ -377,6 +386,26 @@ const onDrop = (e) => {
 
   components.value = newComponents
   emit('update:components', newComponents)
+}
+
+// 处理画布容器点击
+// Handle canvas container click
+const onCanvasClick = (e: MouseEvent) => {
+  // 检查点击的目标元素是否是组件
+  // Check if the clicked target is a component
+  const target = e.target as HTMLElement
+  const isComponent = components.value.some(component => {
+    const componentElement = target.closest(`[data-component-id="${ component.id }"]`)
+    return !!componentElement
+  })
+
+  // 如果不是点击组件，则取消选中
+  // If not clicking on a component, clear selection
+  if (!isComponent) {
+    selectedIdRef.value = undefined
+    emit('select', undefined)
+    emit('update:selectedId', undefined)
+  }
 }
 
 // 初始化画布位置

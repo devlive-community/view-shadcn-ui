@@ -37,7 +37,7 @@ export interface ShadcnDataBuilderBaseProps
 export interface ShadcnDataBuilderCanvasProps
     extends ShadcnDataBuilderBaseProps
 {
-    selectedId?: string
+    selectedId?: string | number
 }
 
 export interface ShadcnDataBuilderEditorProps
@@ -58,6 +58,7 @@ export interface ShadcnDataBuilderConfigureProps
 export type ShadcnDataBuilderCanvasEmits = {
     (e: 'update:components', data: any): void
     (e: 'select', data: any): void
+    (e: 'update:selectedId', id: any): void
 }
 
 export type ShadcnDataBuilderEditorEmits = {

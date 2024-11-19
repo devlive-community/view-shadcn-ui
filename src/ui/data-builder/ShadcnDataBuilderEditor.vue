@@ -15,7 +15,8 @@
                              :height="height"
                              :show-toolbar="showToolbar"
                              :is-center="isCenter"
-                             @select="onSelect"/>
+                             @select="onSelect"
+                             @update:selected-id="selectedId = $event"/>
 
     <!-- Right Configure -->
     <ShadcnDataBuilderConfigure :selected-component="onSelectedComponent"
@@ -48,7 +49,7 @@ withDefaults(defineProps<ShadcnDataBuilderEditorProps>(), {
 })
 
 const components = ref<ShadcnDataBuilderPanelChildProps[]>([])
-const selectedId = ref<string>('')
+const selectedId = ref<string | undefined>(undefined)
 const contentRef = ref()
 
 // 选中的组件
@@ -60,7 +61,9 @@ const onSelectedComponent = computed(() => {
 // 处理组件选择
 // Handle component selection
 const onSelect = (component: ShadcnDataBuilderPanelChildProps) => {
-  selectedId.value = component.id as string
+  if (component) {
+    selectedId.value = component.id as string
+  }
 }
 
 // 处理配置更新
