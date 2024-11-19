@@ -6,15 +6,9 @@
         <!-- 画布尺寸调整 -->
         <!-- Canvas size adjustment -->
         <div class="flex items-center space-x-2">
-          <input v-model="canvasSize.width"
-                 type="number"
-                 class="w-20 px-2 py-1 border border-gray-200 rounded text-sm"
-                 placeholder="宽度">
+          <ShadcnNumber v-model="canvasSize.width" class="w-32" placeholder="宽度"/>
           <span class="text-gray-400">x</span>
-          <input v-model="canvasSize.height"
-                 type="number"
-                 class="w-20 px-2 py-1 border border-gray-200 rounded text-sm"
-                 placeholder="高度">
+          <ShadcnNumber v-model="canvasSize.height" class="w-32" placeholder="高度"/>
         </div>
 
         <!-- 缩放控制 -->
@@ -33,33 +27,13 @@
       <div class="flex items-center space-x-4">
         <!-- 网格控制 -->
         <!-- Grid control -->
-        <label class="flex items-center space-x-2 text-sm">
-          <input v-model="showGrid"
-                 type="checkbox"
-                 class="rounded text-blue-500">
-          <span>显示网格</span>
-        </label>
-        <label class="flex items-center space-x-2 text-sm">
-          <input v-model="snapToGrid"
-                 type="checkbox"
-                 class="rounded text-blue-500">
-          <span>网格吸附</span>
-        </label>
+        <ShadcnCheckbox v-model="showGrid" :value="true">显示网格</ShadcnCheckbox>
+        <ShadcnCheckbox v-model="snapToGrid" :value="true">网格吸附</ShadcnCheckbox>
 
         <!-- 组件控制 -->
         <!-- Component control -->
-        <label class="flex items-center space-x-2 text-sm">
-          <input v-model="showRuler"
-                 type="checkbox"
-                 class="rounded text-blue-500">
-          <span>显示标尺</span>
-        </label>
-        <label class="flex items-center space-x-2 text-sm">
-          <input v-model="resize"
-                 type="checkbox"
-                 class="rounded text-blue-500">
-          <span>拖拽调整尺寸</span>
-        </label>
+        <ShadcnCheckbox v-model="showRuler" :value="true">显示标尺</ShadcnCheckbox>
+        <ShadcnCheckbox v-model="resize" :value="true">拖拽调整尺寸</ShadcnCheckbox>
       </div>
     </div>
 
@@ -72,7 +46,7 @@
       <!-- Canvas area -->
       <div ref="canvasRef"
            class="absolute bg-white shadow-md"
-           :style="canvasStyle"
+           :style="[canvasStyle, canvasBackgroundStyle]"
            :class="{'border border-gray-200': showGrid}"
            @dragover.prevent
            @drop="onDrop"
@@ -86,10 +60,10 @@
         <div v-if="showRuler" class="absolute left-0 top-0 w-full flex sticky">
           <!-- 左上角方块 -->
           <!-- Corner square -->
-          <div class="w-5 h-5 bg-transparent border-gray-200 z-10 sticky left-0 top-0"/>
+          <div class="w-5 h-5 bg-white border-gray-200 z-10 sticky left-0 top-0"/>
           <!-- 水平标尺刻度 -->
           <!-- Horizontal ruler scale -->
-          <div class="h-5 bg-white border-b border-gray-200 flex-1 relative sticky top-0">
+          <div class="h-5 bg-white border-b border-gray-200 flex-1 relative sticky top-0 z-10">
             <div v-for="i in Math.ceil(canvasSize.width / 100) + (canvasSize.width % 100 === 0 ? 1 : 0)"
                  class="absolute h-full"
                  :key="i"
@@ -99,7 +73,7 @@
                       :class="[i === Math.ceil(canvasSize.width / 100) + (canvasSize.width % 100 === 0 ? 1 : 0) ? 'right-1 translate-x-0' : 'left-1/2 -translate-x-1/2']">
                   {{ (i - 1) * 100 }}
                 </span>
-                <div class="absolute bottom-0 w-px h-2 bg-gray-300 right-0.5"></div>
+                <div class="absolute bottom-0 w-px h-2 bg-gray-300 right-0.5"/>
               </div>
             </div>
           </div>
@@ -118,7 +92,7 @@
                    :class="[i === Math.ceil(canvasSize.height / 100) + (canvasSize.height % 100 === 0 ? 1 : 0) ? 'bottom-0 translate-y-0' : 'top-1/2 -translate-y-1/2']">
                 <span style="writing-mode: vertical-rl; text-orientation: upright;">{{ (i - 1) * 100 }}</span>
               </div>
-              <div class="absolute right-0 top-1/2 transform -translate-y-1/2 h-px w-2 bg-gray-300"></div>
+              <div v-if="i !== 1" class="absolute right-0 top-1/2 transform -translate-y-1/2 h-px w-2 bg-gray-300"></div>
             </div>
           </div>
         </div>
@@ -189,7 +163,7 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { calcSize } from '@/utils/common'
-import { ShadcnDataBuilderCanvasEmits, ShadcnDataBuilderCanvasProps, ShadcnDataBuilderPanelChildProps } from '@/ui/data-builder/types'
+import { ShadcnDataBuilderCanvasEmits, ShadcnDataBuilderCanvasProps, ShadcnDataBuilderPanelChildProps } from './types'
 
 const emit = defineEmits<ShadcnDataBuilderCanvasEmits>()
 const props = withDefaults(defineProps<ShadcnDataBuilderCanvasProps>(), {
@@ -201,7 +175,12 @@ const props = withDefaults(defineProps<ShadcnDataBuilderCanvasProps>(), {
   height: 1080,
   showToolbar: true,
   isCenter: false,
-  resize: true
+  resize: true,
+  canvasStyle: () => ({
+    backgroundColor: '#ffffff',
+    backgroundImage: '',
+    opacity: 1
+  })
 })
 
 // 画布状态
@@ -245,6 +224,17 @@ const canvasStyle = computed(() => {
     transform: `scale(${ scale.value })`,
     transformOrigin: '0 0'
   }
+})
+
+// 计算画布背景样式
+// Calculate canvas background style
+const canvasBackgroundStyle = computed(() => {
+  const { backgroundColor, backgroundImage, opacity } = props.canvasStyle || {}
+  return {
+    backgroundColor: backgroundColor || '#ffffff',
+    backgroundImage: backgroundImage ? `url(${ backgroundImage })` : 'none',
+    opacity: opacity || 1
+  } as any
 })
 
 // 计算网格样式

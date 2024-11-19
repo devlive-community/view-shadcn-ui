@@ -1,6 +1,6 @@
 <template>
   <div class="flex h-screen bg-gray-100 w-screen">
-    <ShadcnDataBuilderEditor :items="panels" :resize="false"/>
+    <ShadcnDataBuilderEditor :items="panels" :resize="false" :canvas-style="{backgroundColor: '#ffffff'}"/>
   </div>
 </template>
 
@@ -11,9 +11,9 @@ const panels = ref([
   {
     group: 'Basic Components',
     children: [
-      {type: 'text', label: '文本'},
-      {type: 'image', label: '图片'},
-      {type: 'chart', label: '图表'},
+      { type: 'text', label: '文本' },
+      { type: 'image', label: '图片' },
+      { type: 'chart', label: '图表' }
     ]
   }
 ])

@@ -16,6 +16,7 @@
                              :show-toolbar="showToolbar"
                              :is-center="isCenter"
                              :resize="resize"
+                             :canvas-style="canvasStyle"
                              @select="onSelect"
                              @update:selected-id="selectedId = $event"/>
 
@@ -24,6 +25,8 @@
                                 :canvas-width="width"
                                 :canvas-height="height"
                                 :grid-size="gridSize"
+                                :canvas-style="canvasStyle"
+                                :width="configWidth"
                                 @update="onConfigUpdate"/>
   </div>
 </template>
@@ -33,11 +36,12 @@ import { computed, ref } from 'vue'
 import ShadcnDataBuilderPanel from './ShadcnDataBuilderPanel.vue'
 import ShadcnDataBuilderCanvas from './ShadcnDataBuilderCanvas.vue'
 import ShadcnDataBuilderConfigure from './ShadcnDataBuilderConfigure.vue'
-import type { ShadcnDataBuilderEditorEmits, ShadcnDataBuilderEditorProps, ShadcnDataBuilderPanelChildProps } from '@/ui/data-builder/types'
+import type { ShadcnDataBuilderCanvasState, ShadcnDataBuilderEditorEmits, ShadcnDataBuilderEditorProps, ShadcnDataBuilderPanelChildProps } from './types'
 
 const emit = defineEmits<ShadcnDataBuilderEditorEmits>()
-withDefaults(defineProps<ShadcnDataBuilderEditorProps>(), {
+const props = withDefaults(defineProps<ShadcnDataBuilderEditorProps>(), {
   panelWidth: 200,
+  configWidth: 200,
   items: () => [],
   showGrid: true,
   snapToGrid: true,
@@ -47,12 +51,14 @@ withDefaults(defineProps<ShadcnDataBuilderEditorProps>(), {
   height: 1080,
   showToolbar: true,
   isCenter: false,
-  resize: true
+  resize: true,
+  canvasStyle: () => ({})
 })
 
 const components = ref<ShadcnDataBuilderPanelChildProps[]>([])
 const selectedId = ref<string | undefined>(undefined)
 const contentRef = ref()
+const canvasStyle = ref(props.canvasStyle)
 
 // 选中的组件
 // Selected component
@@ -70,8 +76,13 @@ const onSelect = (component: ShadcnDataBuilderPanelChildProps) => {
 
 // 处理配置更新
 // Handle configuration update
-const onConfigUpdate = (updatedComponent: ShadcnDataBuilderPanelChildProps) => {
-  contentRef.value?.updateComponent(updatedComponent)
+const onConfigUpdate = (updatedComponent: ShadcnDataBuilderPanelChildProps | ShadcnDataBuilderCanvasState) => {
+  if ('data' in updatedComponent) {
+    canvasStyle.value = updatedComponent.data
+  }
+  else {
+    contentRef.value?.updateComponent(updatedComponent)
+  }
   emit('update-config', components.value)
 }
 </script>

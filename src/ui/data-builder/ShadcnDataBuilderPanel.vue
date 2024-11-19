@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { ShadcnDataBuilderPanelItemProps, ShadcnDataBuilderPanelProps } from '@/ui/data-builder/types.ts'
+import { ShadcnDataBuilderPanelItemProps, ShadcnDataBuilderPanelProps } from './types.ts'
 import { calcSize } from '@/utils/common.ts'
 
 withDefaults(defineProps<ShadcnDataBuilderPanelProps>(), {

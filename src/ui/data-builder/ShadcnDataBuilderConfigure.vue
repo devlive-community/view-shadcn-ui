@@ -1,5 +1,5 @@
 <template>
-  <div class="w-64 bg-white border-l border-gray-200 p-4 select-none">
+  <div class="bg-white border-l border-gray-200 p-4 select-none" :style="{ width: calcSize(width) }">
     <div class="text-lg font-medium mb-4">配置面板</div>
     <template v-if="selectedComponent">
       <div class="space-y-4">
@@ -10,21 +10,17 @@
           <div class="grid grid-cols-2 gap-2">
             <div>
               <div class="text-xs text-gray-500 mb-1">X 坐标</div>
-              <input type="number"
-                     class="w-full px-2 py-1 border border-gray-200 rounded text-sm focus:outline-none focus:border-blue-500"
-                     :min="0"
-                     :max="maxX"
-                     v-model="componentConfig.x"
-                     @input="handlePositionUpdate">
+              <ShadcnNumber v-model="componentConfig.x"
+                            :min="0"
+                            :max="maxX"
+                            @on-change="onPositionUpdate"/>
             </div>
             <div>
               <div class="text-xs text-gray-500 mb-1">Y 坐标</div>
-              <input type="number"
-                     class="w-full px-2 py-1 border border-gray-200 rounded text-sm focus:outline-none focus:border-blue-500"
-                     :min="0"
-                     :max="maxY"
-                     v-model="componentConfig.y"
-                     @input="handlePositionUpdate">
+              <ShadcnNumber v-model="componentConfig.y"
+                            :min="0"
+                            :max="maxY"
+                            @on-change="onPositionUpdate"/>
             </div>
           </div>
         </div>
@@ -36,40 +32,87 @@
           <div class="grid grid-cols-2 gap-2">
             <div>
               <div class="text-xs text-gray-500 mb-1">宽度</div>
-              <input type="number"
-                     class="w-full px-2 py-1 border border-gray-200 rounded text-sm focus:outline-none focus:border-blue-500"
-                     :min="minWidth"
-                     :max="maxWidth"
-                     v-model="componentConfig.width"
-                     @input="handleSizeUpdate">
+              <ShadcnNumber v-model="componentConfig.width"
+                            :min="minWidth"
+                            :max="maxWidth"
+                            @on-change="onSizeUpdate"/>
             </div>
             <div>
               <div class="text-xs text-gray-500 mb-1">高度</div>
-              <input type="number"
-                     class="w-full px-2 py-1 border border-gray-200 rounded text-sm focus:outline-none focus:border-blue-500"
-                     :min="minHeight"
-                     :max="maxHeight"
-                     v-model="componentConfig.height"
-                     @input="handleSizeUpdate">
+              <ShadcnNumber v-model="componentConfig.height"
+                            :min="minHeight"
+                            :max="maxHeight"
+                            @on-change="onSizeUpdate"/>
             </div>
           </div>
         </div>
       </div>
     </template>
-    <div v-else class="text-gray-400 text-center py-4">
-      请选择组件进行配置
+
+    <div v-else>
+      <!-- 画布样式配置部分 -->
+      <!-- Canvas style configuration section -->
+      <div class="space-y-4">
+        <div class="text-sm font-medium text-gray-600">画布样式</div>
+
+        <!-- 背景颜色 -->
+        <!-- Background color -->
+        <div class="space-y-2">
+          <div class="text-xs text-gray-500">背景颜色</div>
+          <div class="flex items-center space-x-2">
+            <div>
+              <input type="color"
+                     class="p-0 border border-gray-200 rounded cursor-pointer"
+                     v-model="canvasConfig.backgroundColor"
+                     @change="onCanvasStyleUpdate">
+            </div>
+            <div class="flex-1 text-sm">
+              <ShadcnInput v-model="canvasConfig.backgroundColor" size="small" @on-change="onCanvasStyleUpdate"/>
+            </div>
+          </div>
+        </div>
+
+        <!-- 背景图片 -->
+        <!-- Background image -->
+        <div class="space-y-2">
+          <div class="text-xs text-gray-500">背景图片URL</div>
+          <ShadcnInput v-model="canvasConfig.backgroundImage" placeholder="输入图片URL" @on-change="onCanvasStyleUpdate"/>
+        </div>
+
+        <!-- 透明度 -->
+        <!-- Transparency -->
+        <div class="space-y-2">
+          <div class="text-xs text-gray-500">透明度</div>
+          <div class="flex items-center space-x-2">
+            <ShadcnSlider v-model="canvasConfig.opacity"
+                          min="0"
+                          max="1"
+                          step="0.1"
+                          @on-change="onCanvasStyleUpdate"/>
+            <span class="text-xs text-right">{{ Math.round(canvasConfig.opacity * 100) }}%</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import { ShadcnDataBuilderConfigureProps } from '@/ui/data-builder/types.ts'
+import { ShadcnDataBuilderConfigureProps } from './types'
+import { calcSize } from '@/utils/common.ts'
 
 const props = withDefaults(defineProps<ShadcnDataBuilderConfigureProps>(), {
+  width: 200,
+  selectedComponent: undefined,
   canvasWidth: 1920,
   canvasHeight: 1080,
-  gridSize: 20
+  gridSize: 20,
+  canvasStyle: {
+    backgroundColor: '#ffffff',
+    backgroundImage: '',
+    opacity: 1
+  } as any
 })
 
 const emit = defineEmits(['update'])
@@ -87,12 +130,18 @@ const componentConfig = ref({
 // Calculate maximum and minimum boundaries
 const minWidth = computed(() => props.gridSize)
 const minHeight = computed(() => props.gridSize)
-
 const maxWidth = computed(() => props.canvasWidth)
 const maxHeight = computed(() => props.canvasHeight)
-
 const maxX = computed(() => props.canvasWidth - componentConfig.value.width)
 const maxY = computed(() => props.canvasHeight - componentConfig.value.height)
+
+// 画布配置
+// Canvas configuration
+const canvasConfig = ref({
+  backgroundColor: props.canvasStyle?.backgroundColor || '#ffffff',
+  backgroundImage: props.canvasStyle?.backgroundImage || '',
+  opacity: props.canvasStyle?.opacity ?? 1
+})
 
 // 监听选中组件变化
 // Watch selected component changes
@@ -121,7 +170,7 @@ const constrainSize = (value, min, max) => {
 
 // 更新位置
 // Update position
-const handlePositionUpdate = () => {
+const onPositionUpdate = () => {
   if (!props.selectedComponent) {
     return
   }
@@ -141,7 +190,7 @@ const handlePositionUpdate = () => {
 
 // 更新尺寸
 // Update size
-const handleSizeUpdate = () => {
+const onSizeUpdate = () => {
   if (!props.selectedComponent) {
     return
   }
@@ -165,6 +214,15 @@ const handleSizeUpdate = () => {
   emit('update', {
     ...props.selectedComponent,
     ...updatedConfig
+  })
+}
+
+// 处理画布样式
+// Handle canvas style
+const onCanvasStyleUpdate = () => {
+  emit('update', {
+    type: 'canvas-style',
+    data: { ...canvasConfig.value }
   })
 }
 </script>

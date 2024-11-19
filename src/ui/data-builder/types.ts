@@ -33,6 +33,7 @@ export interface ShadcnDataBuilderBaseProps
     showToolbar?: boolean
     isCenter?: boolean
     resize?: boolean
+    canvasStyle?: ShadcnDataBuilderCanvasStyle
 }
 
 export interface ShadcnDataBuilderCanvasProps
@@ -45,15 +46,33 @@ export interface ShadcnDataBuilderEditorProps
     extends ShadcnDataBuilderBaseProps
 {
     panelWidth?: number
+    configWidth?: number
     items?: Array<ShadcnDataBuilderPanelItemProps>
 }
 
 export interface ShadcnDataBuilderConfigureProps
 {
+    width?: number
     selectedComponent: any
     canvasWidth: number
     canvasHeight: number
+    canvasStyle: ShadcnDataBuilderCanvasStyle
     gridSize: number
+}
+
+// 画布样式
+// Canvas Style
+export interface ShadcnDataBuilderCanvasStyle
+{
+    backgroundColor?: string
+    backgroundImage?: string
+    opacity?: number
+}
+
+export interface ShadcnDataBuilderCanvasState
+{
+    type: string
+    data: ShadcnDataBuilderCanvasStyle
 }
 
 export type ShadcnDataBuilderCanvasEmits = {

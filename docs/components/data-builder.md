@@ -165,6 +165,26 @@ const items = ref([
 
 :::
 
+## Canvas Style
+
+::: raw
+
+<CodeRunner title="Usage">
+    <ShadcnDataBuilderEditor :items="panels" :canvas-style="{backgroundColor: '#e01a1a'}" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnDataBuilderEditor :items="items":canvas-style="{backgroundColor: '#e01a1a'}" />
+</template>
+```
+
+:::
+
 ## DataBuilder Props
 
 <ApiTable title="DataBuilder Editor Props"
@@ -172,6 +192,7 @@ const items = ref([
     :columns="[
         ['items', 'The data of the data builder', '\[\]', '-', '-', '-'],
         ['panelWidth', 'The width of the panel', 'number', '200', '-', '-'],
+        ['configWidth', 'The width of the config', 'number', '200', '-', '-'],
         ['showGrid', 'Whether to show the grid', 'boolean', 'true', '-', '-'],
         ['snapToGrid', 'Whether to snap to the grid', 'boolean', 'true', '-', '-'],
         ['gridSize', 'The size of the grid', 'number', '20', '-', '-'],
@@ -181,6 +202,7 @@ const items = ref([
         ['showToolbar', 'Whether to show the toolbar', 'boolean', 'true', '-', '-'],
         ['isCenter', 'Whether to center the canvas', 'boolean', 'false', '-', '-'],
         ['resize', 'Whether to enable resize', 'boolean', 'true', '-', '-'],
+        ['canvasStyle', 'The style of the canvas', 'object', '-', '-', '-'],
     ]">
 </ApiTable>
 
@@ -208,6 +230,7 @@ const items = ref([
         ['showToolbar', 'Whether to show the toolbar', 'boolean', 'true', '-', '-'],
         ['isCenter', 'Whether to center the canvas', 'boolean', 'false', '-', '-'],
         ['resize', 'Whether to enable resize', 'boolean', 'true', '-', '-'],
+        ['canvasStyle', 'The style of the canvas', 'object', '-', '-', '-'],
     ]">
 </ApiTable>
 
@@ -216,6 +239,7 @@ const items = ref([
 <ApiTable title="DataBuilder Configure Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
     :columns="[
+        ['width', 'The width of the content', 'number', '200', '-', '-'],
         ['selectedComponent', 'The selected component', 'any', '-', '-', '-'],
         ['canvasWidth', 'The width of the canvas', 'number', '1920', '-', '-'],
         ['canvasHeight', 'The height of the canvas', 'number', '1080', '-', '-'],

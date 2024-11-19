@@ -37,10 +37,10 @@
     </div>
 
     <!-- Label Slot -->
-    <div v-if="$slots.label" class="ml-2 text-sm">
+    <div v-if="$slots.label" class="ml-2 text-sm text-nowrap">
       <slot name="label"/>
     </div>
-    <div v-else class="ml-2 text-sm">
+    <div v-else class="ml-2 text-sm text-nowrap">
       <slot/>
     </div>
   </div>
