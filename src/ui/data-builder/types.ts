@@ -31,6 +31,7 @@ export interface ShadcnDataBuilderBaseProps
     width?: number
     height?: number
     showToolbar?: boolean
+    isCenter?: boolean
 }
 
 export interface ShadcnDataBuilderCanvasProps

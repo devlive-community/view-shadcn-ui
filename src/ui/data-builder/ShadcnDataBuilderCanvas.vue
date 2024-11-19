@@ -135,7 +135,8 @@ const props = withDefaults(defineProps<ShadcnDataBuilderCanvasProps>(), {
   showRuler: true,
   width: 1920,
   height: 1080,
-  showToolbar: true
+  showToolbar: true,
+  isCenter: false
 })
 
 // 画布状态
@@ -385,9 +386,15 @@ onMounted(() => {
     // 将画布居中显示
     // Center the canvas
     const container = containerRef.value
-    const canvas = canvasRef.value
-    container.scrollLeft = (canvas.offsetWidth * scale.value - container.offsetWidth) / 2
-    container.scrollTop = (canvas.offsetHeight * scale.value - container.offsetHeight) / 2
+    if (props.isCenter) {
+      const canvas = canvasRef.value
+      container.scrollLeft = (canvas.offsetWidth * scale.value - container.offsetWidth) / 2
+      container.scrollTop = (canvas.offsetHeight * scale.value - container.offsetHeight) / 2
+    }
+    else {
+      container.scrollLeft = 0
+      container.scrollTop = 0
+    }
   }
 })
 

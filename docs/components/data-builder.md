@@ -85,6 +85,66 @@ const items = ref([
 
 :::
 
+## Show Grid
+
+::: raw
+
+<CodeRunner title="Usage">
+    <ShadcnDataBuilderEditor :items="panels" :show-grid="false" :width="800" :height="600" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnDataBuilderEditor :items="items" :show-grid="false" :width="800" :height="600" />
+</template>
+```
+
+:::
+
+## Snap to Grid
+
+::: raw
+
+<CodeRunner title="Usage">
+    <ShadcnDataBuilderEditor :items="panels" :snap-to-grid="false" :width="800" :height="600" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnDataBuilderEditor :items="items" :snap-to-grid="false" :width="800" :height="600" />
+</template>
+```
+
+:::
+
+## Canvas Center
+
+::: raw
+
+<CodeRunner title="Usage">
+    <ShadcnDataBuilderEditor :items="panels" is-center />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnDataBuilderEditor :items="items" is-center />
+</template>
+```
+
+:::
+
 ## DataBuilder Props
 
 <ApiTable title="DataBuilder Editor Props"
@@ -99,6 +159,7 @@ const items = ref([
         ['width', 'The width of the content', 'number', '1920', '-', '-'],
         ['height', 'The height of the content', 'number', '1080', '-', '-'],
         ['showToolbar', 'Whether to show the toolbar', 'boolean', 'true', '-', '-'],
+        ['isCenter', 'Whether to center the canvas', 'boolean', 'false', '-', '-'],
     ]">
 </ApiTable>
 
@@ -124,6 +185,7 @@ const items = ref([
         ['width', 'The width of the content', 'number', '1920', '-', '-'],
         ['height', 'The height of the content', 'number', '1080', '-', '-'],
         ['showToolbar', 'Whether to show the toolbar', 'boolean', 'true', '-', '-'],
+        ['isCenter', 'Whether to center the canvas', 'boolean', 'false', '-', '-'],
     ]">
 </ApiTable>
 
