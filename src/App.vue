@@ -4,6 +4,10 @@
                              :config-width="300"
                              :canvas-style="{backgroundColor: '#ffffff'}"
                              @update-config="console.log($event)">
+      <template #panel-label="{ item }">
+        {{ item.label }}
+      </template>
+
       <template #text="{ configure, isSelected }">
         <ShadcnText type="h1" :class="isSelected ? 'text-blue-600' : 'text-gray-900'">
           {{ getConfigValue(configure, 'Text Group', 'Text Component') }}

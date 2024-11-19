@@ -211,11 +211,14 @@ const items = ref([
 
 <CodeRunner title="Usage">
     <ShadcnDataBuilderEditor :items="panels2" :config-width="300" :height="300" :width="1080" @update-config="console.log($event)">
-      <template #text="{ configure, isSelected }">
-        <ShadcnText type="h1" :class="isSelected ? 'text-blue-600' : 'text-gray-900'">
-          {{ getConfigValue(configure, 'Text Group', 'Text Component') }}
-        </ShadcnText>
-      </template>
+        <template #panel-label="{ item }">
+          {{ item.label }} - {{ item.type }}
+        </template>
+        <template #text="{ configure, isSelected }">
+            <ShadcnText type="h1" :class="isSelected ? 'text-blue-600' : 'text-gray-900'">
+              {{ getConfigValue(configure, 'Text Group', 'Text Component') }}
+            </ShadcnText>
+        </template>
     </ShadcnDataBuilderEditor>
 </CodeRunner>
 
@@ -226,6 +229,10 @@ const items = ref([
 ```vue
 <template>
   <ShadcnDataBuilderEditor :items="items" :config-width="300" @update-config="console.log($event)">
+    <template #panel-label="{ item }">
+      {{ item.label }} - {{ item.type }}
+    </template>
+    
     <template #text="{ configure, isSelected }">
       <ShadcnText type="h1" :class="isSelected ? 'text-blue-600' : 'text-gray-900'">
         {{ getConfigValue(configure, 'Text Group', 'Text Component') }}
@@ -307,6 +314,16 @@ const items = ref([
     :headers="['Slot', 'Description']"
     :columns="[
         ['slots', 'Render the corresponding slot according to the component type, for example, if item.type=text, render the text slot, { component, configure, isSelected }'],
+        ['panel-label', 'Render the panel label'],
+    ]">
+</ApiTable>
+
+<br />
+
+<ApiTable title="DataBuilder Panel Slots"
+    :headers="['Slot', 'Description']"
+    :columns="[
+        ['label' , 'Render the panel label'],
     ]">
 </ApiTable>
 

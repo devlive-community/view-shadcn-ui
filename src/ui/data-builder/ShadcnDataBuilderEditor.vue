@@ -1,7 +1,11 @@
 <template>
   <div class="flex w-full h-full">
     <!-- Left Panel -->
-    <ShadcnDataBuilderPanel :width="panelWidth" :items="items"/>
+    <ShadcnDataBuilderPanel :width="panelWidth" :items="items">
+      <template #label="slotData">
+        <slot name="panel-label" v-bind="slotData"/>
+      </template>
+    </ShadcnDataBuilderPanel>
 
     <!-- Middle Content -->
     <ShadcnDataBuilderCanvas v-model:components="components"

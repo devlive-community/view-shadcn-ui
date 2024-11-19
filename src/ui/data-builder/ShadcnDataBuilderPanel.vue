@@ -8,7 +8,9 @@
                draggable="true"
                :key="value.type"
                @dragstart="onDragStart($event, value)">
-            {{ value.label }}
+            <slot name="label" :item="value">
+              {{ value.label }}
+            </slot>
           </div>
         </div>
       </ShadcnCard>
