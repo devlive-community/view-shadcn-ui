@@ -81,6 +81,14 @@ export interface ShadcnDataBuilderConfigureProps
     snapToGrid?: boolean
 }
 
+export interface ShadcnDataBuilderViewProps
+{
+    width?: number
+    height?: number
+    canvasStyle: ShadcnDataBuilderCanvasStyle
+    items: Array<ShadcnDataBuilderPanelChildProps>
+}
+
 // 画布样式
 // Canvas Style
 export interface ShadcnDataBuilderCanvasStyle

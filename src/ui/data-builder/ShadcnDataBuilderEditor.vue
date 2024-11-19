@@ -23,7 +23,8 @@
                              :canvas-style="canvasStyle"
                              :show-guidelines="showGuidelines"
                              @select="onSelect"
-                             @update:selected-id="selectedId = $event">
+                             @update:selected-id="selectedId = $event"
+                             @update:components="onComponentsUpdate">
       <!-- Pass the custom renderer slot to Canvas -->
       <template v-for="(_, name) in $slots" :key="name" #[name]="slotData">
         <slot :name="name" v-bind="slotData"/>
@@ -43,7 +44,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import ShadcnDataBuilderPanel from './ShadcnDataBuilderPanel.vue'
 import ShadcnDataBuilderCanvas from './ShadcnDataBuilderCanvas.vue'
 import ShadcnDataBuilderConfigure from './ShadcnDataBuilderConfigure.vue'
@@ -89,12 +90,38 @@ const onSelect = (component: ShadcnDataBuilderPanelChildProps) => {
 // 处理配置更新
 // Handle configuration update
 const onConfigUpdate = (updatedComponent: ShadcnDataBuilderPanelChildProps | ShadcnDataBuilderCanvasState) => {
+  const configure = {
+    items: components.value,
+    canvasStyle: {}
+  }
   if ('data' in updatedComponent) {
     canvasStyle.value = updatedComponent.data
+    configure.canvasStyle = updatedComponent.data
   }
   else {
     contentRef.value?.updateComponent(updatedComponent)
   }
-  emit('update-config', components.value)
+  emit('update-config', configure)
 }
+
+const onComponentsUpdate = () => emitUpdateConfig()
+
+const emitUpdateConfig = () => {
+  emit('update-config', {
+    width: props.width,
+    height: props.height,
+    items: components.value,
+    canvasStyle: canvasStyle.value
+  })
+}
+
+// Watch for canvasStyle changes
+watch(canvasStyle, () => {
+  emitUpdateConfig()
+}, { deep: true })
+
+// Watch for initial components
+watch(components, () => {
+  emitUpdateConfig()
+}, { immediate: true })
 </script>
