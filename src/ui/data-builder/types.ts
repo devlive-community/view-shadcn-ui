@@ -12,36 +12,40 @@ export interface ShadcnDataBuilderPanelItemProps
 
 export interface ShadcnDataBuilderPanelChildProps
 {
-    id?: number | string
-    type?: any
-    label?: any
-    x?: any
-    y?: any
-    width?: number
-    height?: number
-    zIndex?: number
+    id: number | string
+    type: any
+    label: any
+    x: any
+    y: any
+    width: number
+    height: number
+    zIndex: number
 }
 
-export interface ShadcnDataBuilderContentProps
+export interface ShadcnDataBuilderBaseProps
 {
     showGrid?: boolean
     snapToGrid?: boolean
     gridSize?: number
-    selectedId?: string
     showRuler?: boolean
+    width?: number
+    height?: number
+}
+
+export interface ShadcnDataBuilderCanvasProps
+    extends ShadcnDataBuilderBaseProps
+{
+    selectedId?: string
 }
 
 export interface ShadcnDataBuilderEditorProps
+    extends ShadcnDataBuilderBaseProps
 {
     panelWidth?: number
     items?: Array<ShadcnDataBuilderPanelItemProps>
-    showGrid?: boolean
-    snapToGrid?: boolean
-    gridSize?: number
-    showRuler?: boolean
 }
 
-export type ShadcnDataBuilderContentEmits = {
+export type ShadcnDataBuilderCanvasEmits = {
     (e: 'update:components', data: any): void
     (e: 'select', data: any): void
 }

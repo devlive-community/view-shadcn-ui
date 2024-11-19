@@ -63,9 +63,7 @@
            @drop="onDrop">
         <!-- 网格背景 -->
         <!-- Grid background -->
-        <div class="absolute inset-0"
-             :style="gridStyle">
-        </div>
+        <div class="absolute inset-0" :style="gridStyle"/>
 
         <!-- 标尺 -->
         <!-- Ruler -->
@@ -76,28 +74,32 @@
           <!-- 水平标尺刻度 -->
           <!-- Horizontal ruler scale -->
           <div class="h-5 bg-white border-b border-gray-200 flex-1 relative sticky top-0">
-            <div v-for="i in Math.ceil(canvasSize.width / 100)"
+            <div v-for="i in Math.ceil(canvasSize.width / 100) + (canvasSize.width % 100 === 0 ? 1 : 0)"
                  class="absolute h-full"
                  :key="i"
                  :style="{ left: `${(i-1) * 100}px` }">
               <div class="relative h-full">
-                <span class="absolute left-1/2 transform -translate-x-1/2 bottom-0.5 text-xs text-gray-400">
+                <span class="absolute text-xs text-gray-400 bottom-0.5"
+                      :class="[i === Math.ceil(canvasSize.width / 100) + (canvasSize.width % 100 === 0 ? 1 : 0) ? 'right-1 translate-x-0' : 'left-1/2 -translate-x-1/2']">
                   {{ (i - 1) * 100 }}
                 </span>
-                <div class="absolute bottom-0 w-px h-2 bg-gray-300"></div>
+                <div class="absolute bottom-0 w-px h-2 bg-gray-300 right-0.5"></div>
               </div>
             </div>
           </div>
         </div>
         <!-- 垂直标尺 -->
         <!-- Vertical ruler -->
-        <div v-if="showRuler" class="absolute left-0 top-5 h-full w-5 bg-white border-r border-gray-200 sticky left-0">
-          <div v-for="i in Math.ceil(canvasSize.height / 100)"
+        <div v-if="showRuler"
+             class="absolute left-0 top-5 w-5 bg-white border-r border-gray-200 sticky"
+             :style="{ height: calcSize(canvasSize.height) }">
+          <div v-for="i in Math.ceil(canvasSize.height / 100) + (canvasSize.height % 100 === 0 ? 1 : 0)"
                class="absolute w-full"
                :key="i"
                :style="{ top: `${(i-1) * 100}px` }">
             <div class="relative w-full">
-              <div class="absolute text-xs text-gray-400 left-0.5 top-1/2 transform -translate-y-1/2">
+              <div class="absolute text-xs text-gray-400 left-0.5 transform"
+                   :class="[i === Math.ceil(canvasSize.height / 100) + (canvasSize.height % 100 === 0 ? 1 : 0) ? 'bottom-0 translate-y-0' : 'top-1/2 -translate-y-1/2']">
                 <span style="writing-mode: vertical-rl; text-orientation: upright;">{{ (i - 1) * 100 }}</span>
               </div>
               <div class="absolute right-0 top-1/2 transform -translate-y-1/2 h-px w-2 bg-gray-300"></div>
@@ -108,7 +110,7 @@
         <!-- 组件 -->
         <!-- Components -->
         <div v-for="item in components"
-             class="absolute bg-white border-2 flex items-center justify-center cursor-move transition-all transform"
+             class="absolute bg-white border-2 flex items-center justify-center cursor-move transition-all transform select-none"
              :key="item.id"
              :class="[selectedId === item.id ? 'border-blue-500 shadow-lg' : 'border-gray-200 hover:border-gray-300']"
              :style="getComponentStyle(item)"
@@ -123,14 +125,16 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { calcSize } from '@/utils/common'
-import { ShadcnDataBuilderContentEmits, ShadcnDataBuilderContentProps, ShadcnDataBuilderPanelChildProps } from '@/ui/data-builder/types'
+import { ShadcnDataBuilderCanvasEmits, ShadcnDataBuilderCanvasProps, ShadcnDataBuilderPanelChildProps } from '@/ui/data-builder/types'
 
-const emit = defineEmits<ShadcnDataBuilderContentEmits>()
-const props = withDefaults(defineProps<ShadcnDataBuilderContentProps>(), {
+const emit = defineEmits<ShadcnDataBuilderCanvasEmits>()
+const props = withDefaults(defineProps<ShadcnDataBuilderCanvasProps>(), {
   gridSize: 20,
   showGrid: true,
   snapToGrid: true,
-  showRuler: true
+  showRuler: true,
+  width: 1920,
+  height: 1080
 })
 
 // 画布状态
@@ -142,11 +146,9 @@ const scale = ref(1)
 const showGrid = ref(props.showGrid)
 const snapToGrid = ref(props.snapToGrid)
 const showRuler = ref(props.showRuler)
-const canvasSize = ref({
-  width: 1920,
-  height: 1080
-})
+const canvasSize = ref({ width: props.width, height: props.height })
 const gridSize = ref(props.gridSize)
+
 // 拖拽状态
 // Drag state
 const isDragging = ref(false)
@@ -154,26 +156,32 @@ const dragStartPos = ref({ x: 0, y: 0 })
 
 // 计算画布样式
 // Calculate canvas style
-const canvasStyle = computed(() => ({
-  width: calcSize(canvasSize.value.width),
-  height: calcSize(canvasSize.value.height),
-  transform: `scale(${ scale.value })`,
-  transformOrigin: '0 0'
-}))
+const canvasStyle = computed(() => {
+  const rulerOffset = showRuler.value ? 20 : 0
+  return {
+    width: `${ canvasSize.value.width + rulerOffset }px`,  // Add ruler width
+    height: `${ canvasSize.value.height + rulerOffset }px`, // Add a ruler height
+    transform: `scale(${ scale.value })`,
+    transformOrigin: '0 0'
+  }
+})
 
-console.log(gridSize.value)
 // 计算网格样式
 // Calculate grid style
-const gridStyle = computed(() => ({
-  display: showGrid.value ? 'block' : 'none',
-  backgroundSize: `${ gridSize.value }px ${ gridSize.value }px`,
-  backgroundImage: 'linear-gradient(#f0f0f0 1px, transparent 1px), linear-gradient(90deg, #f0f0f0 1px, transparent 1px)',
-  backgroundPosition: '0 0',
-  left: showRuler.value ? '20px' : '0',
-  top: showRuler.value ? '20px' : '0',
-  right: '0',
-  bottom: '0'
-}))
+const gridStyle = computed(() => {
+  const rulerOffset = showRuler.value ? 20 : 0
+  return {
+    display: showGrid.value ? 'block' : 'none',
+    backgroundSize: `${ gridSize.value }px ${ gridSize.value }px`,
+    backgroundImage: 'linear-gradient(#f0f0f0 1px, transparent 1px), linear-gradient(90deg, #f0f0f0 1px, transparent 1px)',
+    backgroundPosition: '0 0',
+    left: `${ rulerOffset }px`,
+    top: `${ rulerOffset }px`,
+    width: `${ canvasSize.value.width }px`,
+    height: `${ canvasSize.value.height }px`,
+    position: 'absolute' as const
+  }
+})
 
 watch(() => props.gridSize, (newSize) => {
   gridSize.value = newSize
@@ -247,14 +255,14 @@ const getRelativePosition = (e) => {
   }
 
   const canvasRect = canvasRef.value.getBoundingClientRect()
-  const rulerSize = showRuler.value ? 20 : 0  // 固定标尺宽度为 20px
+  const rulerOffset = showRuler.value ? 20 : 0
 
-  const x = (e.clientX - canvasRect.left - rulerSize) / scale.value
-  const y = (e.clientY - canvasRect.top - rulerSize) / scale.value
+  const x = (e.clientX - canvasRect.left - rulerOffset) / scale.value
+  const y = (e.clientY - canvasRect.top - rulerOffset) / scale.value
 
   return {
-    x: Math.max(0, x),
-    y: Math.max(0, y)
+    x: Math.max(0, Math.min(x, canvasSize.value.width)),
+    y: Math.max(0, Math.min(y, canvasSize.value.height))
   }
 }
 
@@ -286,12 +294,22 @@ const handleComponentMouseMove = (e) => {
   }
 
   const pos = getRelativePosition(e)
-  const maxWidth = canvasSize.value.width - gridSize.value
-  const maxHeight = canvasSize.value.height - gridSize.value
+
+  // 获取当前选中的组件
+  // Get the currently selected component
+  const currentComponent = components.value.find(item => item.id === props.selectedId)
+  if (!currentComponent) {
+    return
+  }
+
+  // 考虑组件尺寸的最大边界
+  // Consider the maximum size of the component
+  const maxX = canvasSize.value.width - currentComponent.width
+  const maxY = canvasSize.value.height - currentComponent.height
 
   const newPosition = alignToGrid({
-    x: Math.min(maxWidth, Math.max(0, pos.x - dragStartPos.value.x)),
-    y: Math.min(maxHeight, Math.max(0, pos.y - dragStartPos.value.y))
+    x: Math.min(maxX, Math.max(0, pos.x - dragStartPos.value.x)),
+    y: Math.min(maxY, Math.max(0, pos.y - dragStartPos.value.y))
   })
 
   const updatedComponents = components.value.map(item => {
@@ -328,12 +346,20 @@ const onDrop = (e) => {
   }
 
   const pos = getRelativePosition(e)
-  const maxWidth = canvasSize.value.width - gridSize.value
-  const maxHeight = canvasSize.value.height - gridSize.value
+
+  // 计算新组件的尺寸
+  // Calculate the size of the new component
+  const newComponentWidth = gridSize.value * 5
+  const newComponentHeight = gridSize.value * 3
+
+  // 考虑组件尺寸的最大边界
+  // Consider the maximum size of the component
+  const maxX = canvasSize.value.width - newComponentWidth
+  const maxY = canvasSize.value.height - newComponentHeight
 
   const alignedPos = alignToGrid({
-    x: Math.min(maxWidth, Math.max(0, pos.x)),
-    y: Math.min(maxHeight, Math.max(0, pos.y))
+    x: Math.min(maxX, Math.max(0, pos.x)),
+    y: Math.min(maxY, Math.max(0, pos.y))
   })
 
   const newComponents = [...components.value, {
@@ -342,8 +368,8 @@ const onDrop = (e) => {
     label,
     x: alignedPos.x,
     y: alignedPos.y,
-    width: gridSize.value * 5,
-    height: gridSize.value * 3,
+    width: newComponentWidth,
+    height: newComponentHeight,
     zIndex: components.value.length + 1
   }]
 

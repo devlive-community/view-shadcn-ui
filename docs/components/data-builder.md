@@ -9,7 +9,7 @@ This document is mainly used to describe some features and usage of the ShadcnDa
 - ShadcnDataBuilderPanel
 - ShadcnDataBuilderEditor
 - ShadcnDataBuilderConfigure
-- ShadcnDataBuilderContent
+- ShadcnDataBuilderCanvas
 
 ## Usage
 
@@ -45,6 +45,26 @@ const items = ref([
 
 :::
 
+## Width and Height
+
+::: raw
+
+<CodeRunner title="Usage">
+    <ShadcnDataBuilderEditor :items="panels" :width="800" :height="600"/>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnDataBuilderEditor :items="items" :width="800" :height="600"/>
+</template>
+```
+
+:::
+
 ## DataBuilder Props
 
 <ApiTable title="DataBuilder Editor Props"
@@ -56,6 +76,8 @@ const items = ref([
         ['snapToGrid', 'Whether to snap to the grid', 'boolean', 'true', '-', '-'],
         ['gridSize', 'The size of the grid', 'number', '20', '-', '-'],
         ['showRuler', 'Whether to show the ruler', 'boolean', 'true', '-', '-'],
+        ['width', 'The width of the content', 'number', '1920', '-', '-'],
+        ['height', 'The height of the content', 'number', '1080', '-', '-'],
     ]">
 </ApiTable>
 
@@ -71,13 +93,15 @@ const items = ref([
 
 <br />
 
-<ApiTable title="DataBuilder Content Props"
+<ApiTable title="DataBuilder Canvas Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
     :columns="[
         ['showGrid', 'Whether to show the grid', 'boolean', 'true', '-', '-'],
         ['snapToGrid', 'Whether to snap to the grid', 'boolean', 'true', '-', '-'],
         ['gridSize', 'The size of the grid', 'number', '20', '-', '-'],
         ['showRuler', 'Whether to show the ruler', 'boolean', 'true', '-', '-'],
+        ['width', 'The width of the content', 'number', '1920', '-', '-'],
+        ['height', 'The height of the content', 'number', '1080', '-', '-'],
     ]">
 </ApiTable>
 
@@ -87,6 +111,16 @@ const items = ref([
     :headers="['Event', 'Description', 'Callback Parameters']"
     :columns="[
         ['update-config', 'Triggered when the configuration is updated', 'any\[\]'],
+    ]">
+</ApiTable>
+
+<br />
+
+<ApiTable title="DataBuilder Canvas Events"
+    :headers="['Event', 'Description', 'Callback Parameters']"
+    :columns="[
+        ['update:components', 'Triggered when the components are updated', 'any\[\]'],
+        ['select', 'Triggered when the component is selected', 'any\[\]'],
     ]">
 </ApiTable>
 

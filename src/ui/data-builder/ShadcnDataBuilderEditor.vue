@@ -4,13 +4,16 @@
     <ShadcnDataBuilderPanel :width="panelWidth" :items="items"/>
 
     <!-- Middle Content -->
-    <ShadcnDataBuilderContent v-model:components="components"
-                              :selected-id="selectedId"
-                              :show-grid="showGrid"
-                              :snap-to-grid="snapToGrid"
-                              :grid-size="gridSize"
-                              :show-ruler="showRuler"
-                              @select="onSelect"/>
+    <ShadcnDataBuilderCanvas v-model:components="components"
+                             ref="contentRef"
+                             :selected-id="selectedId"
+                             :show-grid="showGrid"
+                             :snap-to-grid="snapToGrid"
+                             :grid-size="gridSize"
+                             :show-ruler="showRuler"
+                             :width="width"
+                             :height="height"
+                             @select="onSelect"/>
 
     <!-- Right Configure -->
     <ShadcnDataBuilderConfigure :selected-component="onSelectedComponent" @update="onConfigUpdate"/>
@@ -20,7 +23,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import ShadcnDataBuilderPanel from './ShadcnDataBuilderPanel.vue'
-import ShadcnDataBuilderContent from './ShadcnDataBuilderContent.vue'
+import ShadcnDataBuilderCanvas from './ShadcnDataBuilderCanvas.vue'
 import ShadcnDataBuilderConfigure from './ShadcnDataBuilderConfigure.vue'
 import type { ShadcnDataBuilderEditorEmits, ShadcnDataBuilderEditorProps, ShadcnDataBuilderPanelChildProps } from '@/ui/data-builder/types'
 
@@ -31,7 +34,9 @@ withDefaults(defineProps<ShadcnDataBuilderEditorProps>(), {
   showGrid: true,
   snapToGrid: true,
   gridSize: 20,
-  showRuler: true
+  showRuler: true,
+  width: 1920,
+  height: 1080
 })
 
 const components = ref<ShadcnDataBuilderPanelChildProps[]>([])
