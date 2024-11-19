@@ -13,6 +13,7 @@
                              :show-ruler="showRuler"
                              :width="width"
                              :height="height"
+                             :show-toolbar="showToolbar"
                              @select="onSelect"/>
 
     <!-- Right Configure -->
@@ -36,7 +37,8 @@ withDefaults(defineProps<ShadcnDataBuilderEditorProps>(), {
   gridSize: 20,
   showRuler: true,
   width: 1920,
-  height: 1080
+  height: 1080,
+  showToolbar: true
 })
 
 const components = ref<ShadcnDataBuilderPanelChildProps[]>([])

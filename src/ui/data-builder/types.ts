@@ -30,6 +30,7 @@ export interface ShadcnDataBuilderBaseProps
     showRuler?: boolean
     width?: number
     height?: number
+    showToolbar?: boolean
 }
 
 export interface ShadcnDataBuilderCanvasProps

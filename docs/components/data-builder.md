@@ -65,6 +65,26 @@ const items = ref([
 
 :::
 
+## Toolbar
+
+::: raw
+
+<CodeRunner title="Usage">
+    <ShadcnDataBuilderEditor :items="panels" :show-toolbar="false" :width="800" :height="600" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnDataBuilderEditor :items="items" :show-toolbar="false" :width="800" :height="600" />
+</template>
+```
+
+:::
+
 ## DataBuilder Props
 
 <ApiTable title="DataBuilder Editor Props"
@@ -78,6 +98,7 @@ const items = ref([
         ['showRuler', 'Whether to show the ruler', 'boolean', 'true', '-', '-'],
         ['width', 'The width of the content', 'number', '1920', '-', '-'],
         ['height', 'The height of the content', 'number', '1080', '-', '-'],
+        ['showToolbar', 'Whether to show the toolbar', 'boolean', 'true', '-', '-'],
     ]">
 </ApiTable>
 
@@ -102,6 +123,7 @@ const items = ref([
         ['showRuler', 'Whether to show the ruler', 'boolean', 'true', '-', '-'],
         ['width', 'The width of the content', 'number', '1920', '-', '-'],
         ['height', 'The height of the content', 'number', '1080', '-', '-'],
+        ['showToolbar', 'Whether to show the toolbar', 'boolean', 'true', '-', '-'],
     ]">
 </ApiTable>
 

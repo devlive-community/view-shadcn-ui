@@ -1,6 +1,6 @@
 <template>
   <div class="flex h-screen bg-gray-100 w-screen">
-    <ShadcnDataBuilderEditor :items="panels" :width="500" :height="500"/>
+    <ShadcnDataBuilderEditor :items="panels" :show-toolbar="false" :width="500" :height="500"/>
   </div>
 </template>
 

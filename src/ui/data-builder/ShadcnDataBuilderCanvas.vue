@@ -1,7 +1,7 @@
 <template>
   <div class="flex-1 relative flex flex-col">
     <!-- 工具栏 -->
-    <div class="h-12 border-b border-gray-200 bg-white px-4 flex items-center justify-between shrink-0">
+    <div v-if="showToolbar" class="h-12 border-b border-gray-200 bg-white px-4 flex items-center justify-between shrink-0">
       <div class="flex items-center space-x-4">
         <!-- 画布尺寸调整 -->
         <!-- Canvas size adjustment -->
@@ -134,7 +134,8 @@ const props = withDefaults(defineProps<ShadcnDataBuilderCanvasProps>(), {
   snapToGrid: true,
   showRuler: true,
   width: 1920,
-  height: 1080
+  height: 1080,
+  showToolbar: true
 })
 
 // 画布状态
