@@ -161,7 +161,17 @@
              ]"
              :style="getComponentStyle(item)"
              @mousedown="onComponentMouseDown($event, item)">
-          {{ item.label }}
+
+          <!-- 使用命名插槽进行自定义渲染 -->
+          <!-- Use named slot for custom rendering -->
+          <slot :name="item.type"
+                :component="item"
+                :configure="item.configure"
+                :is-selected="selectedIdRef === item.id">
+            <!-- 默认渲染 -->
+            <!-- Default rendering -->
+            <ShadcnDataBuilderRenderer :type="item.type" :configure="item.configure"/>
+          </slot>
 
           <!-- Delete button - only show for selected component -->
           <div v-if="selectedIdRef === item.id"
@@ -215,6 +225,7 @@
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { calcSize } from '@/utils/common'
 import { ShadcnDataBuilderCanvasEmits, ShadcnDataBuilderCanvasProps, ShadcnDataBuilderPanelChildProps } from './types'
+import ShadcnDataBuilderRenderer from './ShadcnDataBuilderRenderer.vue'
 
 const emit = defineEmits<ShadcnDataBuilderCanvasEmits>()
 const props = withDefaults(defineProps<ShadcnDataBuilderCanvasProps>(), {

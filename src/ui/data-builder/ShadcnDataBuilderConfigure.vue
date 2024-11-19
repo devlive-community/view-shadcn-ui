@@ -264,8 +264,7 @@ watch(() => props.selectedComponent, (newVal) => {
       x: newVal.x,
       y: newVal.y,
       width: newVal.width,
-      height: newVal.height,
-      configure: newVal.configure
+      height: newVal.height
     }
   }
 }, { deep: true })

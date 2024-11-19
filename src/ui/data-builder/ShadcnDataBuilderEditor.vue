@@ -19,7 +19,12 @@
                              :canvas-style="canvasStyle"
                              :show-guidelines="showGuidelines"
                              @select="onSelect"
-                             @update:selected-id="selectedId = $event"/>
+                             @update:selected-id="selectedId = $event">
+      <!-- Pass the custom renderer slot to Canvas -->
+      <template v-for="(_, name) in $slots" :key="name" #[name]="slotData">
+        <slot :name="name" v-bind="slotData"/>
+      </template>
+    </ShadcnDataBuilderCanvas>
 
     <!-- Right Configure -->
     <ShadcnDataBuilderConfigure :selected-component="onSelectedComponent"

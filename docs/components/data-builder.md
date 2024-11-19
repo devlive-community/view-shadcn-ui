@@ -205,6 +205,38 @@ const items = ref([
 
 :::
 
+## Slot
+
+::: raw
+
+<CodeRunner title="Usage">
+    <ShadcnDataBuilderEditor :items="panels2" :config-width="300" :height="300" :width="1080" @update-config="console.log($event)">
+      <template #text="{ configure, isSelected }">
+        <ShadcnText type="h1" :class="isSelected ? 'text-blue-600' : 'text-gray-900'">
+          {{ getConfigValue(configure, 'Text Group', 'Text Component') }}
+        </ShadcnText>
+      </template>
+    </ShadcnDataBuilderEditor>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnDataBuilderEditor :items="items" :config-width="300" @update-config="console.log($event)">
+    <template #text="{ configure, isSelected }">
+      <ShadcnText type="h1" :class="isSelected ? 'text-blue-600' : 'text-gray-900'">
+        {{ getConfigValue(configure, 'Text Group', 'Text Component') }}
+      </ShadcnText>
+    </template>
+  </ShadcnDataBuilderEditor>
+</template>
+```
+
+:::
+
 ## DataBuilder Props
 
 <ApiTable title="DataBuilder Editor Props"
@@ -266,6 +298,15 @@ const items = ref([
         ['canvasWidth', 'The width of the canvas', 'number', '1920', '-', '-'],
         ['canvasHeight', 'The height of the canvas', 'number', '1080', '-', '-'],
         ['gridSize', 'The size of the grid', 'number', '20', '-', '-'],
+    ]">
+</ApiTable>
+
+## DataBuilder Slots
+
+<ApiTable title="DataBuilder Editor Slots"
+    :headers="['Slot', 'Description']"
+    :columns="[
+        ['slots', 'Render the corresponding slot according to the component type, for example, if item.type=text, render the text slot, { component, configure, isSelected }'],
     ]">
 </ApiTable>
 
@@ -333,4 +374,42 @@ const panels = ref([
     ]
   }
 ])
+
+const panels2 = ref([
+  {
+    group: 'Basic Components',
+    children: [
+      {
+        type: 'text', label: 'Text', configure: [
+          {
+            group: 'Text Group',
+            items: [
+              { type: 'text', label: 'Text Component', description: 'Description', value: 'Hello, View Shadcn UI' },
+            ]
+          },
+          {
+            group: 'Text Group 2',
+            items: [
+              { type: 'text', label: 'Text', value: 'Hello, View Shadcn UI' },
+              { type: 'title', label: 'Title' },
+              { type: 'paragraph', label: 'Paragraph' }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+])
+
+const getConfigValue = (configure, groupName, label) => {
+  if (!configure) {
+    return null
+  }
+  const group = configure.find(g => g.group === groupName)
+  if (!group) {
+    return null
+  }
+  const item = group.items?.find(item => item.label === label)
+  return item?.value
+}
 </script>

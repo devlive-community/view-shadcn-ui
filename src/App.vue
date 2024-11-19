@@ -1,10 +1,15 @@
 <template>
   <div class="flex h-screen bg-gray-100 w-screen">
     <ShadcnDataBuilderEditor :items="panels"
-                             :resize="false"
                              :config-width="300"
                              :canvas-style="{backgroundColor: '#ffffff'}"
-                             @update-config="console.log($event)"/>
+                             @update-config="console.log($event)">
+      <template #text="{ configure, isSelected }">
+        <ShadcnText type="h1" :class="isSelected ? 'text-blue-600' : 'text-gray-900'">
+          {{ getConfigValue(configure, 'Text Group', 'Text Component') }}
+        </ShadcnText>
+      </template>
+    </ShadcnDataBuilderEditor>
   </div>
 </template>
 
@@ -66,4 +71,16 @@ const panels = ref([
     ]
   }
 ])
+
+const getConfigValue = (configure, groupName, label) => {
+  if (!configure) {
+    return null
+  }
+  const group = configure.find(g => g.group === groupName)
+  if (!group) {
+    return null
+  }
+  const item = group.items?.find(item => item.label === label)
+  return item?.value
+}
 </script>
