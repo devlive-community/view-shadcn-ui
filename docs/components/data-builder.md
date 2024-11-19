@@ -145,6 +145,26 @@ const items = ref([
 
 :::
 
+## Resize
+
+::: raw
+
+<CodeRunner title="Usage">
+    <ShadcnDataBuilderEditor :items="panels" :resize="false" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnDataBuilderEditor :items="items" :resize="false" />
+</template>
+```
+
+:::
+
 ## DataBuilder Props
 
 <ApiTable title="DataBuilder Editor Props"
@@ -160,6 +180,7 @@ const items = ref([
         ['height', 'The height of the content', 'number', '1080', '-', '-'],
         ['showToolbar', 'Whether to show the toolbar', 'boolean', 'true', '-', '-'],
         ['isCenter', 'Whether to center the canvas', 'boolean', 'false', '-', '-'],
+        ['resize', 'Whether to enable resize', 'boolean', 'true', '-', '-'],
     ]">
 </ApiTable>
 
@@ -186,6 +207,7 @@ const items = ref([
         ['height', 'The height of the content', 'number', '1080', '-', '-'],
         ['showToolbar', 'Whether to show the toolbar', 'boolean', 'true', '-', '-'],
         ['isCenter', 'Whether to center the canvas', 'boolean', 'false', '-', '-'],
+        ['resize', 'Whether to enable resize', 'boolean', 'true', '-', '-'],
     ]">
 </ApiTable>
 

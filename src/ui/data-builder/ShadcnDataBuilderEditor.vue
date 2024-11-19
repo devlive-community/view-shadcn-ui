@@ -15,6 +15,7 @@
                              :height="height"
                              :show-toolbar="showToolbar"
                              :is-center="isCenter"
+                             :resize="resize"
                              @select="onSelect"
                              @update:selected-id="selectedId = $event"/>
 
@@ -45,7 +46,8 @@ withDefaults(defineProps<ShadcnDataBuilderEditorProps>(), {
   width: 1920,
   height: 1080,
   showToolbar: true,
-  isCenter: false
+  isCenter: false,
+  resize: true
 })
 
 const components = ref<ShadcnDataBuilderPanelChildProps[]>([])

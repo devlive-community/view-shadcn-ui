@@ -30,9 +30,9 @@
         </div>
       </div>
 
-      <!-- 网格控制 -->
-      <!-- Grid control -->
       <div class="flex items-center space-x-4">
+        <!-- 网格控制 -->
+        <!-- Grid control -->
         <label class="flex items-center space-x-2 text-sm">
           <input v-model="showGrid"
                  type="checkbox"
@@ -44,6 +44,21 @@
                  type="checkbox"
                  class="rounded text-blue-500">
           <span>网格吸附</span>
+        </label>
+
+        <!-- 组件控制 -->
+        <!-- Component control -->
+        <label class="flex items-center space-x-2 text-sm">
+          <input v-model="showRuler"
+                 type="checkbox"
+                 class="rounded text-blue-500">
+          <span>显示标尺</span>
+        </label>
+        <label class="flex items-center space-x-2 text-sm">
+          <input v-model="resize"
+                 type="checkbox"
+                 class="rounded text-blue-500">
+          <span>拖拽调整尺寸</span>
         </label>
       </div>
     </div>
@@ -110,14 +125,53 @@
 
         <!-- 组件 -->
         <!-- Components -->
+        <!-- Components with resize handles -->
         <div v-for="item in components"
-             class="absolute bg-white border-2 flex items-center justify-center cursor-move transition-all transform select-none"
+             class="absolute bg-white border-2 flex items-center justify-center select-none group"
              :key="item.id"
              :data-component-id="item.id"
-             :class="[selectedIdRef === item.id ? 'border-blue-500 shadow-lg' : 'border-gray-200 hover:border-gray-300']"
+             :class="[
+                 selectedIdRef === item.id ? 'border-blue-500 shadow-lg' : 'border-gray-200 hover:border-gray-300',
+                 isDragging ? 'cursor-move' : 'cursor-default'
+             ]"
              :style="getComponentStyle(item)"
              @mousedown="onComponentMouseDown($event, item)">
           {{ item.label }}
+
+          <!-- Resize handles - only show for selected component -->
+          <template v-if="resize && selectedIdRef === item.id">
+            <!-- Top left -->
+            <div class="absolute w-2 h-2 bg-white border-2 border-blue-500 rounded-sm cursor-nw-resize -top-1.5 -left-1.5"
+                 @mousedown.stop="startResize($event, item, 'nw')"/>
+
+            <!-- Top right -->
+            <div class="absolute w-2 h-2 bg-white border-2 border-blue-500 rounded-sm cursor-ne-resize -top-1.5 -right-1.5"
+                 @mousedown.stop="startResize($event, item, 'ne')"/>
+
+            <!-- Bottom left -->
+            <div class="absolute w-2 h-2 bg-white border-2 border-blue-500 rounded-sm cursor-sw-resize -bottom-1.5 -left-1.5"
+                 @mousedown.stop="startResize($event, item, 'sw')"/>
+
+            <!-- Bottom right -->
+            <div class="absolute w-2 h-2 bg-white border-2 border-blue-500 rounded-sm cursor-se-resize -bottom-1.5 -right-1.5"
+                 @mousedown.stop="startResize($event, item, 'se')"/>
+
+            <!-- Top center -->
+            <div class="absolute w-2 h-2 bg-white border-2 border-blue-500 rounded-sm cursor-n-resize -top-1.5 left-1/2 -translate-x-1/2"
+                 @mousedown.stop="startResize($event, item, 'n')"/>
+
+            <!-- Bottom center -->
+            <div class="absolute w-2 h-2 bg-white border-2 border-blue-500 rounded-sm cursor-s-resize -bottom-1.5 left-1/2 -translate-x-1/2"
+                 @mousedown.stop="startResize($event, item, 's')"/>
+
+            <!-- Left center -->
+            <div class="absolute w-2 h-2 bg-white border-2 border-blue-500 rounded-sm cursor-w-resize -left-1.5 top-1/2 -translate-y-1/2"
+                 @mousedown.stop="startResize($event, item, 'w')"/>
+
+            <!-- Right center -->
+            <div class="absolute w-2 h-2 bg-white border-2 border-blue-500 rounded-sm cursor-e-resize -right-1.5 top-1/2 -translate-y-1/2"
+                 @mousedown.stop="startResize($event, item, 'e')"/>
+          </template>
         </div>
       </div>
     </div>
@@ -138,7 +192,8 @@ const props = withDefaults(defineProps<ShadcnDataBuilderCanvasProps>(), {
   width: 1920,
   height: 1080,
   showToolbar: true,
-  isCenter: false
+  isCenter: false,
+  resize: true
 })
 
 // 画布状态
@@ -150,6 +205,7 @@ const scale = ref(1)
 const showGrid = ref(props.showGrid)
 const snapToGrid = ref(props.snapToGrid)
 const showRuler = ref(props.showRuler)
+const resize = ref(props.resize)
 const canvasSize = ref({ width: props.width, height: props.height })
 const gridSize = ref(props.gridSize)
 
@@ -164,6 +220,12 @@ const selectedIdRef = computed({
 // Drag state
 const isDragging = ref(false)
 const dragStartPos = ref({ x: 0, y: 0 })
+
+// Add new resize state
+const isResizing = ref(false)
+const resizeDirection = ref<string>('')
+const resizeStartPos = ref({ x: 0, y: 0 })
+const resizeStartDimensions = ref({ width: 0, height: 0, x: 0, y: 0 })
 
 // 计算画布样式
 // Calculate canvas style
@@ -408,6 +470,122 @@ const onCanvasClick = (e: MouseEvent) => {
   }
 }
 
+// Start resize handler
+const startResize = (e: MouseEvent, component: any, direction: string) => {
+  e.preventDefault()
+  isResizing.value = true
+  resizeDirection.value = direction
+
+  const pos = getRelativePosition(e)
+  resizeStartPos.value = { x: pos.x, y: pos.y }
+  resizeStartDimensions.value = {
+    width: component.width,
+    height: component.height,
+    x: component.x,
+    y: component.y
+  }
+
+  document.addEventListener('mousemove', onResize)
+  document.addEventListener('mouseup', stopResize)
+}
+
+// Handle resize
+const onResize = (e: MouseEvent) => {
+  if (!isResizing.value) {
+    return
+  }
+
+  const pos = getRelativePosition(e)
+  const deltaX = pos.x - resizeStartPos.value.x
+  const deltaY = pos.y - resizeStartPos.value.y
+
+  const currentComponent = components.value.find(item => item.id === selectedIdRef.value)
+  if (!currentComponent) {
+    return
+  }
+
+  let newWidth = resizeStartDimensions.value.width
+  let newHeight = resizeStartDimensions.value.height
+  let newX = resizeStartDimensions.value.x
+  let newY = resizeStartDimensions.value.y
+
+  // Handle different resize directions
+  switch (resizeDirection.value) {
+    case 'e':
+      newWidth = Math.max(gridSize.value, resizeStartDimensions.value.width + deltaX)
+      break
+    case 'w':
+      newWidth = Math.max(gridSize.value, resizeStartDimensions.value.width - deltaX)
+      newX = resizeStartDimensions.value.x + deltaX
+      break
+    case 's':
+      newHeight = Math.max(gridSize.value, resizeStartDimensions.value.height + deltaY)
+      break
+    case 'n':
+      newHeight = Math.max(gridSize.value, resizeStartDimensions.value.height - deltaY)
+      newY = resizeStartDimensions.value.y + deltaY
+      break
+    case 'se':
+      newWidth = Math.max(gridSize.value, resizeStartDimensions.value.width + deltaX)
+      newHeight = Math.max(gridSize.value, resizeStartDimensions.value.height + deltaY)
+      break
+    case 'sw':
+      newWidth = Math.max(gridSize.value, resizeStartDimensions.value.width - deltaX)
+      newHeight = Math.max(gridSize.value, resizeStartDimensions.value.height + deltaY)
+      newX = resizeStartDimensions.value.x + deltaX
+      break
+    case 'ne':
+      newWidth = Math.max(gridSize.value, resizeStartDimensions.value.width + deltaX)
+      newHeight = Math.max(gridSize.value, resizeStartDimensions.value.height - deltaY)
+      newY = resizeStartDimensions.value.y + deltaY
+      break
+    case 'nw':
+      newWidth = Math.max(gridSize.value, resizeStartDimensions.value.width - deltaX)
+      newHeight = Math.max(gridSize.value, resizeStartDimensions.value.height - deltaY)
+      newX = resizeStartDimensions.value.x + deltaX
+      newY = resizeStartDimensions.value.y + deltaY
+      break
+  }
+
+  // Apply grid snapping if enabled
+  if (snapToGrid.value) {
+    newWidth = Math.round(newWidth / gridSize.value) * gridSize.value
+    newHeight = Math.round(newHeight / gridSize.value) * gridSize.value
+    newX = Math.round(newX / gridSize.value) * gridSize.value
+    newY = Math.round(newY / gridSize.value) * gridSize.value
+  }
+
+  // Ensure component stays within canvas bounds
+  newWidth = Math.min(newWidth, canvasSize.value.width - newX)
+  newHeight = Math.min(newHeight, canvasSize.value.height - newY)
+  newX = Math.max(0, Math.min(newX, canvasSize.value.width - newWidth))
+  newY = Math.max(0, Math.min(newY, canvasSize.value.height - newHeight))
+
+  // Update component dimensions
+  const updatedComponents = components.value.map(item => {
+    if (item.id === selectedIdRef.value) {
+      return {
+        ...item,
+        width: newWidth,
+        height: newHeight,
+        x: newX,
+        y: newY
+      }
+    }
+    return item
+  })
+
+  components.value = updatedComponents
+  emit('update:components', updatedComponents)
+}
+
+// Stop resize
+const stopResize = () => {
+  isResizing.value = false
+  document.removeEventListener('mousemove', onResize)
+  document.removeEventListener('mouseup', stopResize)
+}
+
 // 初始化画布位置
 // Initialize canvas position
 onMounted(() => {
@@ -432,6 +610,8 @@ onMounted(() => {
 onUnmounted(() => {
   document.removeEventListener('mousemove', handleComponentMouseMove)
   document.removeEventListener('mouseup', handleComponentMouseUp)
+  document.removeEventListener('mousemove', onResize)
+  document.removeEventListener('mouseup', stopResize)
 })
 
 // 暴露方法给父组件

@@ -1,6 +1,6 @@
 <template>
   <div class="flex h-screen bg-gray-100 w-screen">
-    <ShadcnDataBuilderEditor :items="panels" is-center/>
+    <ShadcnDataBuilderEditor :items="panels" :resize="false"/>
   </div>
 </template>
 
