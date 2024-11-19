@@ -185,6 +185,26 @@ const items = ref([
 
 :::
 
+## Guidelines
+
+::: raw
+
+<CodeRunner title="Usage">
+    <ShadcnDataBuilderEditor :items="panels" show-guidelines />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnDataBuilderEditor :items="items" show-guidelines />
+</template>
+```
+
+:::
+
 ## DataBuilder Props
 
 <ApiTable title="DataBuilder Editor Props"
@@ -203,6 +223,7 @@ const items = ref([
         ['isCenter', 'Whether to center the canvas', 'boolean', 'false', '-', '-'],
         ['resize', 'Whether to enable resize', 'boolean', 'true', '-', '-'],
         ['canvasStyle', 'The style of the canvas', 'object', '-', '-', '-'],
+        ['showGuidelines', 'Whether to show the guidelines', 'boolean', 'false', '-', '-'],
     ]">
 </ApiTable>
 
@@ -231,6 +252,7 @@ const items = ref([
         ['isCenter', 'Whether to center the canvas', 'boolean', 'false', '-', '-'],
         ['resize', 'Whether to enable resize', 'boolean', 'true', '-', '-'],
         ['canvasStyle', 'The style of the canvas', 'object', '-', '-', '-'],
+        ['showGuidelines', 'Whether to show the guidelines', 'boolean', 'false', '-', '-'],
     ]">
 </ApiTable>
 

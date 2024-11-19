@@ -17,6 +17,7 @@
                              :is-center="isCenter"
                              :resize="resize"
                              :canvas-style="canvasStyle"
+                             :show-guidelines="showGuidelines"
                              @select="onSelect"
                              @update:selected-id="selectedId = $event"/>
 
@@ -27,6 +28,7 @@
                                 :grid-size="gridSize"
                                 :canvas-style="canvasStyle"
                                 :width="configWidth"
+                                :snap-to-grid="snapToGrid"
                                 @update="onConfigUpdate"/>
   </div>
 </template>
@@ -52,7 +54,8 @@ const props = withDefaults(defineProps<ShadcnDataBuilderEditorProps>(), {
   showToolbar: true,
   isCenter: false,
   resize: true,
-  canvasStyle: () => ({})
+  canvasStyle: () => ({}),
+  showGuidelines: false
 })
 
 const components = ref<ShadcnDataBuilderPanelChildProps[]>([])

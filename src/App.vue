@@ -1,6 +1,6 @@
 <template>
   <div class="flex h-screen bg-gray-100 w-screen">
-    <ShadcnDataBuilderEditor :items="panels" :resize="false" :canvas-style="{backgroundColor: '#ffffff'}"/>
+    <ShadcnDataBuilderEditor :items="panels" :resize="false" :config-width="300" :canvas-style="{backgroundColor: '#ffffff'}"/>
   </div>
 </template>
 

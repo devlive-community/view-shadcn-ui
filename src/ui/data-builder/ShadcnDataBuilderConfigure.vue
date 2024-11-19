@@ -102,20 +102,20 @@ import { computed, ref, watch } from 'vue'
 import { ShadcnDataBuilderConfigureProps } from './types'
 import { calcSize } from '@/utils/common.ts'
 
+const emit = defineEmits(['update'])
 const props = withDefaults(defineProps<ShadcnDataBuilderConfigureProps>(), {
   width: 200,
   selectedComponent: undefined,
   canvasWidth: 1920,
   canvasHeight: 1080,
   gridSize: 20,
+  snapToGrid: true,
   canvasStyle: {
     backgroundColor: '#ffffff',
     backgroundImage: '',
     opacity: 1
   } as any
 })
-
-const emit = defineEmits(['update'])
 
 // 组件配置
 // Component configuration

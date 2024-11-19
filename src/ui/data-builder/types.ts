@@ -34,6 +34,7 @@ export interface ShadcnDataBuilderBaseProps
     isCenter?: boolean
     resize?: boolean
     canvasStyle?: ShadcnDataBuilderCanvasStyle
+    showGuidelines?: boolean
 }
 
 export interface ShadcnDataBuilderCanvasProps
@@ -58,6 +59,7 @@ export interface ShadcnDataBuilderConfigureProps
     canvasHeight: number
     canvasStyle: ShadcnDataBuilderCanvasStyle
     gridSize: number
+    snapToGrid?: boolean
 }
 
 // 画布样式

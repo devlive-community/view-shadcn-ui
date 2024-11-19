@@ -34,6 +34,10 @@
         <!-- Component control -->
         <ShadcnCheckbox v-model="showRuler" :value="true">显示标尺</ShadcnCheckbox>
         <ShadcnCheckbox v-model="resize" :value="true">拖拽调整尺寸</ShadcnCheckbox>
+
+        <!-- 辅助线控制 -->
+        <!-- Helper line control -->
+        <ShadcnCheckbox v-model="showGuidelines" :value="true">显示辅助线</ShadcnCheckbox>
       </div>
     </div>
 
@@ -97,8 +101,55 @@
           </div>
         </div>
 
+        <!-- 对齐辅助线 -->
+        <!-- Alignment guides -->
+        <template v-if="isDragging && showGuidelines">
+          <!-- 垂直辅助线 -->
+          <!-- Vertical reference line -->
+          <div v-if="dragTarget"
+               class="absolute top-0 w-px bg-blue-500 pointer-events-none"
+               :style="{
+                 left: `${dragTarget.x}px`,
+                 height: `${props.height}px`,
+                 opacity: 0.5,
+                 zIndex: 1000
+               }"/>
+
+          <!-- 垂直辅助线（右侧） -->
+          <!-- Vertical reference line (right) -->
+          <div v-if="dragTarget && selectedComponent"
+               class="absolute top-0 w-px bg-blue-500 pointer-events-none"
+               :style="{
+                 left: `${dragTarget.x + selectedComponent.width}px`,
+                 height: `${props.height}px`,
+                 opacity: 0.5,
+                 zIndex: 1000
+               }"/>
+
+          <!-- 水平辅助线 -->
+          <!-- Horizontal reference line -->
+          <div v-if="dragTarget"
+               class="absolute left-0 h-px bg-blue-500 pointer-events-none"
+               :style="{
+                 top: `${dragTarget.y}px`,
+                 width: '100%',
+                 opacity: 0.5,
+                 zIndex: 1000
+               }"/>
+
+          <!-- 水平辅助线（底部） -->
+          <!-- Horizontal reference line (bottom) -->
+          <div v-if="dragTarget && selectedComponent"
+               class="absolute left-0 h-px bg-blue-500 pointer-events-none"
+               :style="{
+                 top: `${dragTarget.y + selectedComponent.height}px`,
+                 width: '100%',
+                 opacity: 0.5,
+                 zIndex: 1000
+               }"/>
+        </template>
+
         <!-- 组件 -->
-        <!-- Components -->
         <!-- Components with resize handles -->
         <div v-for="item in components"
              class="absolute bg-white border-2 flex items-center justify-center select-none group"
@@ -180,7 +231,8 @@ const props = withDefaults(defineProps<ShadcnDataBuilderCanvasProps>(), {
     backgroundColor: '#ffffff',
     backgroundImage: '',
     opacity: 1
-  })
+  }),
+  showGuidelines: false
 })
 
 // 画布状态
@@ -208,11 +260,22 @@ const selectedIdRef = computed({
 const isDragging = ref(false)
 const dragStartPos = ref({ x: 0, y: 0 })
 
-// Add new resize state
+// Resize state
 const isResizing = ref(false)
 const resizeDirection = ref<string>('')
 const resizeStartPos = ref({ x: 0, y: 0 })
 const resizeStartDimensions = ref({ width: 0, height: 0, x: 0, y: 0 })
+
+// 存储当前拖拽的组件位置
+// Store the current dragged component position
+const dragTarget = ref<{ x: number; y: number } | null>(null)
+const showGuidelines = ref(props.showGuidelines)
+
+// 选中组件的计算属性
+// Computed property for selected component
+const selectedComponent = computed(() => {
+  return components.value.find(item => item.id === selectedIdRef.value)
+})
 
 // 计算画布样式
 // Calculate canvas style
@@ -359,36 +422,53 @@ const onComponentMouseDown = (e, component) => {
 
 // 处理组件拖动
 // Handle component drag
-const handleComponentMouseMove = (e) => {
+const handleComponentMouseMove = (e: MouseEvent) => {
   if (!isDragging.value) {
     return
   }
 
   const pos = getRelativePosition(e)
-
-  // 获取当前选中的组件
-  // Get the currently selected component
   const currentComponent = components.value.find(item => item.id === selectedIdRef.value)
   if (!currentComponent) {
     return
   }
 
-  // 考虑组件尺寸的最大边界
-  // Consider the maximum size of the component
+  // 计算新位置，考虑网格对齐
+  // Calculate new position
+  let newX = pos.x - (dragStartPos.value?.x || 0)
+  let newY = pos.y - (dragStartPos.value?.y || 0)
+
+  // 如果启用网格对齐，先对齐到网格
+  // If grid alignment is enabled, first align to grid
+  if (snapToGrid.value) {
+    const alignedPos = alignToGrid({ x: newX, y: newY })
+    newX = alignedPos.x
+    newY = alignedPos.y
+  }
+
+  // 边界检查
+  // Boundary check
   const maxX = canvasSize.value.width - currentComponent.width
   const maxY = canvasSize.value.height - currentComponent.height
+  newX = Math.max(0, Math.min(maxX, newX))
+  newY = Math.max(0, Math.min(maxY, newY))
 
-  const newPosition = alignToGrid({
-    x: Math.min(maxX, Math.max(0, pos.x - dragStartPos.value.x)),
-    y: Math.min(maxY, Math.max(0, pos.y - dragStartPos.value.y))
-  })
+  // 更新辅助线位置，考虑标尺偏移
+  // Update reference line position
+  const rulerOffset = showRuler.value ? 20 : 0
+  dragTarget.value = {
+    x: newX + rulerOffset,
+    y: newY + rulerOffset
+  }
 
+  // 更新组件位置
+  // Update component position
   const updatedComponents = components.value.map(item => {
     if (item.id === selectedIdRef.value) {
       return {
         ...item,
-        x: newPosition.x,
-        y: newPosition.y
+        x: newX,
+        y: newY
       }
     }
     return item
@@ -402,6 +482,8 @@ const handleComponentMouseMove = (e) => {
 // Handle component drag end
 const handleComponentMouseUp = () => {
   isDragging.value = false
+
+  dragTarget.value = null // 清除辅助线
   document.removeEventListener('mousemove', handleComponentMouseMove)
   document.removeEventListener('mouseup', handleComponentMouseUp)
 }
