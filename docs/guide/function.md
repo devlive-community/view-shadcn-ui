@@ -16,7 +16,7 @@ use `fnToString` function to convert function to string.
 
 <CodeRunner title="fnToString">
     <ShadcnText>Convert response:</ShadcnText>
-    <ShadcnText type="code">{{ fnToStringValue }}</ShadcnText>
+    <ShadcnText type="code">{ "formatter": "(value) => `${value}px`" }</ShadcnText>
 </CodeRunner>
 
 :::
@@ -50,9 +50,9 @@ use `fnToFunction` function to convert string to function.
 ::: raw
 
 <CodeRunner title="fnToFunction" 
-            warning="这里实际转换的的效果为 {formatter: (value) => `${ value }px` } 但是在 JSON 序列化的时候会忽略函数所以结果成为了 {} 不会影响该函数的调用，在调用的时候需要在末尾添加 ()，例如 (fnToFunction(configItem.formatter) ?? (() => undefined))()">
+            warning="The effect of the actual conversion here is { formatter: (value) => '${ value }px' } But the function will be ignored during JSON serialization, so the result becomes {} It will not affect the call of the function, and you need to add () at the end of the call, for example, (fnToFunction(configItem.formatter) ?? (() => undefined)) ()">
     <ShadcnText>Convert response:</ShadcnText>
-    <ShadcnText type="code">{{ fnToFunctionValue }}</ShadcnText>
+    <ShadcnText type="code">{ formatter: (value) => `${ value }px` }</ShadcnText>
 </CodeRunner>
 
 :::
@@ -76,14 +76,3 @@ use `fnToFunction` function to convert string to function.
 ```
 
 :::
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import { fnToString, fnToFunction } from 'view-shadcn-ui' 
-
-const fn = { formatter: (value) => `${ value }px` }
-const fnStr = { "formatter": "(value) => `${value}px`" }
-
-const fnToStringValue = ref({ formatter: fnToString(fn.formatter) })
-const fnToFunctionValue = ref({ formatter: fnToFunction(fnStr.formatter) })
-</script>

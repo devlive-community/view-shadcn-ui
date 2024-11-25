@@ -559,7 +559,6 @@ If it's a style group, you must configure the following for it to take effect:
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { fnToFunction } from 'view-shadcn-ui' 
 
 const panels = ref([
   {
@@ -673,6 +672,19 @@ const getConfigValue = (configure, groupName, label) => {
   }
   const item = group.items?.find(item => item.label === label)
   return item?.value
+}
+
+const fnToFunction = (formatterStr: string): Function | undefined => {
+    if (!formatterStr) {
+        return undefined
+    }
+    try {
+        return new Function('value', `return ${ formatterStr }`)
+    }
+    catch (e) {
+        console.error('Failed to parse formatter:', e)
+        return undefined
+    }
 }
 
 const style = ref({
