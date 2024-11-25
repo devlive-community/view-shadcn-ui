@@ -1,16 +1,19 @@
 <template>
   <component :is="to ? ShadcnLink : 'button'"
              v-bind="buttonProps">
-    <!-- Loading State -->
-    <div v-if="loading" class="inline-flex items-center justify-center">
-      <Loader2 class="animate-spin" :class="{'mr-1.5': $slots.loading}"/>
-      <slot v-if="$slots.loading" name="loading"/>
-    </div>
+    <div class="inline-flex items-center justify-center gap-1.5">
+      <!-- Loading State -->
+      <div v-if="loading" class="mr-1.5">
+        <slot name="loading">
+          <Loader2 class="animate-spin"/>
+        </slot>
+      </div>
 
-    <!-- Normal State -->
-    <div v-else class="inline-flex items-center justify-center gap-1.5">
-      <slot v-if="$slots.icon" name="icon"/>
-      <span v-if="text" :class="{'ml-0': !$slots.icon}">{{ text }}</span>
+      <!-- Icon -->
+      <slot v-if="!loading && $slots.icon" name="icon"/>
+
+      <!-- Text Content -->
+      <span v-if="text" :class="{'ml-0': !$slots.icon && !loading}">{{ text }}</span>
       <slot v-else/>
     </div>
   </component>
