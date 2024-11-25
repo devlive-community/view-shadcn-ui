@@ -40,7 +40,10 @@ const isSelected = computed(() => {
   return props.modelValue === props.value
 })
 
-const onToggle = () => {
+const onToggle = (e: MouseEvent) => {
+  e.preventDefault()
+  e.stopPropagation()
+
   if (isDisabled.value) {
     return
   }
