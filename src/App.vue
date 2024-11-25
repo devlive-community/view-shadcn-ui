@@ -13,6 +13,10 @@
     <ShadcnButton size="small" loading>Small</ShadcnButton>
     <ShadcnButton size="default" loading>Default</ShadcnButton>
     <ShadcnButton size="large" loading>Large</ShadcnButton>
+
+    <ShadcnButton circle size="small">
+      <ShadcnIcon icon="Cog" size="18"/>
+    </ShadcnButton>
   </ShadcnSpace>
 </template>
 

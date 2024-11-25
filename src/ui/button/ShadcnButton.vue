@@ -6,21 +6,28 @@
       <div v-if="loading" :class="{'mr-1.5': !circle && (text || $slots.default)}">
         <slot name="loading">
           <Loader2 :class="['animate-spin',
-                              {
-                                'w-3 h-3': finalSize === 'small',
-                                'w-4 h-4': finalSize === 'default',
-                                'w-5 h-5': finalSize === 'large',
-                              }
-                           ]"/>
+                          {
+                            'w-3 h-3': finalSize === 'small',
+                            'w-4 h-4': finalSize === 'default',
+                            'w-5 h-5': finalSize === 'large',
+                          }
+                       ]"/>
         </slot>
       </div>
 
       <!-- Icon -->
-      <slot v-if="!loading && $slots.icon" name="icon"/>
+      <template v-if="!loading">
+        <slot v-if="circle" name="default">
+          <slot name="icon"/>
+        </slot>
+        <slot v-else name="icon"/>
+      </template>
 
       <!-- Text Content -->
-      <span v-if="text && !circle" :class="{'ml-0': !$slots.icon && !loading}">{{ text }}</span>
-      <slot v-if="!circle"/>
+      <template v-if="!circle">
+        <span v-if="text" :class="{'ml-0': !$slots.icon && !loading}">{{ text }}</span>
+        <slot/>
+      </template>
     </div>
   </component>
 </template>
