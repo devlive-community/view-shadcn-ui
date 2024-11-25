@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <div :class="['flex items-center justify-between border rounded p-3',
+    <div :class="['flex items-center justify-between border rounded p-3 pr-1.5',
               Size[size],
               HoverType[type],
               {
@@ -22,13 +22,14 @@
              @blur="onBlur"/>
 
       <!-- Clear -->
-      <div v-if="clearable && localValue && hovered" @click="onClear">
+      <div v-if="clearable && localValue && hovered"
+           class="flex items-center"
+           @click="onClear">
         <slot name="clear">
           <svg viewBox="0 0 24 24"
                fill="none"
                xmlns="http://www.w3.org/2000/svg"
-               class="w-4 h-4 p-1 rounded-full bg-gray-200 text-gray-400 hover:bg-gray-300 hover:text-muted-foreground">
-            <!-- Close icon -->
+               class="w-3 h-3 p-0.5 rounded-full bg-gray-200 text-gray-400 hover:bg-gray-300 hover:text-muted-foreground">
             <path d="M5 19L19 5M5 5l14 14"
                   stroke="currentColor"
                   stroke-width="2"
@@ -38,54 +39,52 @@
         </slot>
       </div>
 
-      <!-- Control -->
-      <div v-if="showControl" class="ml-1">
-        <div class="flex items-center space-x-1">
-          <div :class="[
-                    {
-                      'cursor-pointer rounded-full hover:bg-gray-200': !disabled && validValue,
-                      'cursor-not-allowed opacity-50': !validValue
-                    }
-                ]"
-               @click="onAdd">
-            <slot name="add">
-              <svg viewBox="0 0 24 24"
-                   fill="none"
-                   xmlns="http://www.w3.org/2000/svg"
-                   class="w-6 h-6 p-1 text-gray-400 hover:text-muted-foreground">
-                <path d="M19 12H5"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"/>
-                <path d="M12 5v14"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"/>
-              </svg>
-            </slot>
-          </div>
-          <div :class="[
-                    {
-                      'cursor-pointer rounded-full hover:bg-gray-200': !disabled && validValue,
-                      'cursor-not-allowed opacity-50': !validValue
-                    }
-               ]"
-               @click="onMinus">
-            <slot name="minus">
-              <svg viewBox="0 0 24 24"
-                   fill="none"
-                   xmlns="http://www.w3.org/2000/svg"
-                   class="w-6 h-6 p-1 text-gray-400 hover:text-muted-foreground">
-                <path d="M19 12H5"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"/>
-              </svg>
-            </slot>
-          </div>
+      <!-- Control - Modified to vertical layout with adjusted icons -->
+      <div v-if="showControl"
+           class="ml-1 flex flex-col -my-1">
+        <!-- Add Button -->
+        <div :class="[
+                  'h-3 flex items-center justify-center', // Reduced height
+                  {
+                    'cursor-pointer rounded': !disabled && validValue,
+                    'cursor-not-allowed opacity-50': !validValue
+                  }
+              ]"
+             @click="onAdd">
+          <slot name="add">
+            <svg viewBox="0 0 16 16"
+                 fill="none"
+                 xmlns="http://www.w3.org/2000/svg"
+                 class="w-2.5 h-2.5 text-gray-400 hover:text-muted-foreground mt-1">
+              <path d="M13 8H3M8 3v10"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"/>
+            </svg>
+          </slot>
+        </div>
+        <!-- Minus Button -->
+        <div :class="[
+                  'h-3 flex items-center justify-center',
+                  {
+                    'cursor-pointer rounded': !disabled && validValue,
+                    'cursor-not-allowed opacity-50': !validValue
+                  }
+             ]"
+             @click="onMinus">
+          <slot name="minus">
+            <svg viewBox="0 0 16 16"
+                 fill="none"
+                 xmlns="http://www.w3.org/2000/svg"
+                 class="w-2.5 h-2.5 text-gray-400 hover:text-muted-foreground">
+              <path d="M13 8H3"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"/>
+            </svg>
+          </slot>
         </div>
       </div>
     </div>
