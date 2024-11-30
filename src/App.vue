@@ -1,6 +1,6 @@
 <template>
   <div class="p-32">
-    <ShadcnUpload  action="//jsonplaceholder.typicode.com/posts/" />
+    <ShadcnUpload  action="//jsonplaceholder.typicode.com/posts/" @on-change="handleFileChange" />
   </div>
 </template>
 
