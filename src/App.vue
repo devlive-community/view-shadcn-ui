@@ -1,11 +1,15 @@
 <template>
   <div class="p-32">
-    <ShadcnNumber v-model="value" size="small" />
+    <ShadcnUpload  action="//jsonplaceholder.typicode.com/posts/" />
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue';
+<script setup>
+import { ref } from 'vue'
 
-const value = ref(0)
+const files = ref([])
+
+const handleFileChange = (newFiles) => {
+  console.log('Files changed:', newFiles)
+}
 </script>
