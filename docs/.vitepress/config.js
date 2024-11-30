@@ -168,6 +168,7 @@ export default {
                         {text: 'Number <span class="VPBadge tip">2024.3.0</span>', link: 'number'},
                         {text: 'Slider <span class="VPBadge tip">2024.2.0</span>', link: 'slider'},
                         {text: 'Toggle <span class="VPBadge tip">2024.4.0</span>', link: 'toggle'},
+                        {text: 'Upload <span class="VPBadge tip">2024.5.0</span>', link: 'upload'},
                     ]
                     return {
                         text: `Form [ ${items.length} ]`,

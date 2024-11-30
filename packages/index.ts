@@ -78,6 +78,7 @@ import { ShadcnContextMenu, ShadcnContextMenuItem, ShadcnContextMenuSub } from '
 import ShadcnHoverCard from '@/ui/hover-card'
 import { ShadcnToggle, ShadcnToggleGroup } from '@/ui/toggle'
 import { ShadcnDataBuilderCanvas, ShadcnDataBuilderConfigure, ShadcnDataBuilderEditor, ShadcnDataBuilderPanel, ShadcnDataBuilderView } from '@/ui/data-builder'
+import { ShadcnUpload } from '@/ui/upload'
 
 let components = [
     ShadcnButton,
@@ -154,7 +155,8 @@ let components = [
     ShadcnContextMenu, ShadcnContextMenuItem, ShadcnContextMenuSub,
     ShadcnHoverCard,
     ShadcnToggle, ShadcnToggleGroup,
-    ShadcnDataBuilderPanel, ShadcnDataBuilderCanvas, ShadcnDataBuilderConfigure, ShadcnDataBuilderEditor, ShadcnDataBuilderView
+    ShadcnDataBuilderPanel, ShadcnDataBuilderCanvas, ShadcnDataBuilderConfigure, ShadcnDataBuilderEditor, ShadcnDataBuilderView,
+    ShadcnUpload
 ]
 
 const install = (Vue: App) => {
@@ -255,6 +257,7 @@ export { ShadcnContextMenu, ShadcnContextMenuItem, ShadcnContextMenuSub } from '
 export { default as ShadcnHoverCard } from '@/ui/hover-card'
 export { ShadcnToggle, ShadcnToggleGroup } from '@/ui/toggle'
 export { ShadcnDataBuilderPanel, ShadcnDataBuilderCanvas, ShadcnDataBuilderConfigure, ShadcnDataBuilderEditor, ShadcnDataBuilderView } from '@/ui/data-builder'
+export { ShadcnUpload } from '@/ui/upload'
 
 // Export functions
 export { fnToString, fnToFunction } from '@/utils/formatter'

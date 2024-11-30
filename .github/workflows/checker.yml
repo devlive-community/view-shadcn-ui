@@ -18,4 +18,4 @@ jobs:
         with:
           node-version: 18.x
 
-      - run: npm install && npm run build
+      - run: npm -g install pnpm && pnpm install && pnpm run build
