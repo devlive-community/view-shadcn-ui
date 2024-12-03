@@ -41,11 +41,9 @@
       <!-- Upload Text -->
       <!-- 上传文本 -->
       <div class="text-center">
-        <p class="text-sm font-medium text-gray-600">
-          <span class="text-blue-600">点击上传</span> 或拖拽文件到这里
-        </p>
+        <p class="text-sm font-medium text-gray-600" v-html="t('upload.text.placeholder')"/>
         <p class="mt-1 text-xs text-gray-500">
-          {{ description || 'Support for a single or bulk upload.' }}
+          {{ description || t('upload.text.description') }}
         </p>
       </div>
     </div>
@@ -93,10 +91,10 @@
 
             <!-- Status Messages -->
             <p v-if="file.status === 'error'" class="text-xs text-red-500 mt-1">
-              {{ file.error || '上传失败' }}
+              {{ file.error || t('upload.text.error') }}
             </p>
             <p v-if="file.status === 'success'" class="text-xs text-green-500 mt-1">
-              上传成功
+              {{ t('upload.text.success') }}
             </p>
           </div>
         </div>
@@ -123,6 +121,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import axios from 'axios'
+import { t } from '@/utils/locale'
 import { UploadEmits, UploadFile, UploadProps } from '@/ui/upload/types'
 
 // Props

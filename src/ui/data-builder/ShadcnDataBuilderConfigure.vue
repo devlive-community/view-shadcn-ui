@@ -1,14 +1,14 @@
 <template>
   <div class="bg-white border-l border-gray-200 py-4 pl-4 select-none" :style="{ width: calcSize(width) }">
-    <div class="text-sm font-medium mb-2">配置中心</div>
+    <div class="text-sm font-medium mb-2">{{ t('dataBuilder.text.configureCenter') }}</div>
     <ShadcnTab direction="vertical" position="right">
       <template v-if="selectedComponent">
-        <ShadcnTabItem label="基本配置" value="basic_configure">
+        <ShadcnTabItem :label="t('dataBuilder.text.basicConfigure')" value="basic_configure">
           <ShadcnRow :gutter="10">
             <!-- 位置配置 -->
             <!-- Position configuration -->
             <ShadcnCol span="6" class="my-2">
-              <ShadcnFormItem label="X 坐标" name="x">
+              <ShadcnFormItem :label="t('dataBuilder.text.xCoordinate')" name="x">
                 <ShadcnNumber v-model="componentConfig.x"
                               :min="0"
                               :max="maxX"
@@ -17,7 +17,7 @@
             </ShadcnCol>
 
             <ShadcnCol span="6" class="my-2">
-              <ShadcnFormItem label="Y 坐标" name="y">
+              <ShadcnFormItem :label="t('dataBuilder.text.yCoordinate')" name="y">
                 <ShadcnNumber v-model="componentConfig.y"
                               :min="0"
                               :max="maxY"
@@ -28,7 +28,7 @@
             <!-- 大小配置 -->
             <!-- Size configuration -->
             <ShadcnCol span="6" class="my-2">
-              <ShadcnFormItem label="宽度" name="width">
+              <ShadcnFormItem :label="t('dataBuilder.text.width')" name="width">
                 <ShadcnNumber v-model="componentConfig.width"
                               :min="minWidth"
                               :max="maxWidth"
@@ -37,7 +37,7 @@
             </ShadcnCol>
 
             <ShadcnCol span="6" class="my-2">
-              <ShadcnFormItem label="高度" name="height">
+              <ShadcnFormItem :label="t('dataBuilder.text.height')" name="height">
                 <ShadcnNumber v-model="componentConfig.height"
                               :min="minHeight"
                               :max="maxHeight"
@@ -156,14 +156,14 @@
       </template>
 
       <div v-else>
-        <ShadcnTabItem label="基本配置" value="basic_configure">
+        <ShadcnTabItem :label="t('dataBuilder.text.basicConfigure')" value="basic_configure">
           <!-- 画布样式配置部分 -->
           <!-- Canvas style configuration section -->
           <ShadcnRow :gutter="10">
             <!-- 背景颜色 -->
             <!-- Background color -->
             <ShadcnCol span="12" class="my-2">
-              <ShadcnFormItem label="背景颜色" name="backgroundColor">
+              <ShadcnFormItem :label="t('dataBuilder.text.backgroundColor')" name="backgroundColor">
                 <div class="flex items-center space-x-2">
                   <input type="color"
                          class="p-0 border border-gray-200 rounded cursor-pointer"
@@ -177,15 +177,15 @@
             <!-- 背景图片 -->
             <!-- Background image -->
             <ShadcnCol span="12" class="my-2">
-              <ShadcnFormItem label="背景图片 URL" name="backgroundImage">
-                <ShadcnInput v-model="canvasConfig.backgroundImage" placeholder="输入图片URL" @on-change="onCanvasStyleUpdate"/>
+              <ShadcnFormItem :label="t('dataBuilder.text.backgroundImage')" name="backgroundImage">
+                <ShadcnInput v-model="canvasConfig.backgroundImage" :placeholder="t('dataBuilder.placeholder.backgroundImage')" @on-change="onCanvasStyleUpdate"/>
               </ShadcnFormItem>
             </ShadcnCol>
 
             <!-- 透明度 -->
             <!-- Transparency -->
             <ShadcnCol span="12" class="my-2">
-              <ShadcnFormItem label="透明度" name="opacity">
+              <ShadcnFormItem :label="t('dataBuilder.text.opacity')" name="opacity">
                 <div class="flex items-center space-x-2">
                   <ShadcnSlider v-model="canvasConfig.opacity"
                                 class="mr-1"
@@ -206,6 +206,7 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
+import { t } from '@/utils/locale'
 import { ShadcnDataBuilderConfigureProps } from './types'
 import { calcSize } from '@/utils/common.ts'
 

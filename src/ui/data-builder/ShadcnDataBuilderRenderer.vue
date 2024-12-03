@@ -2,6 +2,7 @@
   <!-- 每个组件的渲染容器 -->
   <div class="w-full h-full flex items-center justify-center">
     <!-- 根据组件类型渲染不同内容 -->
+    <!-- Render different content based on component type -->
     <template v-if="type === 'text'">
       <div class="text-base">{{ getConfigValue('Text Group', 'Text Component') }}</div>
     </template>
@@ -77,6 +78,7 @@ const props = defineProps<{
 }>()
 
 // 获取指定分组和标签的配置值
+// Get the configuration value for the specified group and label
 const getConfigValue = (groupName: string, label: string) => {
   if (!props.configure) {
     return null
@@ -92,6 +94,7 @@ const getConfigValue = (groupName: string, label: string) => {
 }
 
 // 密码掩码处理
+// Password mask processing
 const maskPassword = (password: string) => {
   if (!password) {
     return ''
@@ -99,4 +102,3 @@ const maskPassword = (password: string) => {
   return '•'.repeat(password.length)
 }
 </script>
-
