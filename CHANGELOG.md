@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2024.5.0 (2024-12-03)
+
+### 🐛 Bug Fixes
+
+* **button:** fix slot ([d7f795c](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/d7f795c2b34c57becc3463f64cf9f593040b60a3))
+* **core:** fix ci ([5daea84](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/5daea84a47bb3c7ce891cc22b3097d475727717c))
+* **button:** fix the missing content in loading status ([ba29ece](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/ba29ecede2d744178f72123405da3370429ed7dd))
+* **button:** fixed the icon abnormality caused by setting the size in the loading state ([6d4bd4f](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/6d4bd4f5035444c318e3a6f08e6043809548a7e7))
+* **toggle:** fixed click events not being blocked correctly ([fa13012](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/fa13012f0899cc0c3e0899583650eaee2f629fef))
+
+### ✨ Features
+
+* **data builder:** fit all field ([e25d9e9](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/e25d9e9feb455fa3e686fa42a2e5ea045780a5c0))
+* **data builder:** support bigscreen ([17acd5f](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/17acd5f517a8cdbc99538e9c0f3f14f804697475))
+* **data builder:** support editor ([3d17865](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/3d1786513f259d7e7e51dc2fbaf4f8bff69c9042))
+* **data builder:** support ruler ([ab5218d](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/ab5218d72cc865a60897da136dbe90b6fd793b4a))
+* **data builder:** supports starting position 0 ([2842f2b](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/2842f2b7fe947c216a85f6d7ed225cae84b4ad81))
+* **data builder:** adapter basic configure component ([96dccfc](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/96dccfc9920a8343171b6c066fa0e1ad679dda38))
+* **data builder:** adapter component configuration ([d9a2ebb](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/d9a2ebb14a569aa066d60fe35ae7765d55dbd9b8))
+* **data builder:** fixed component being able to go outside the canvas ([927d099](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/927d09903c156d204b0183953d3d13f847eed663))
+* **data builder:** support canvas center ([d4fdd35](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/d4fdd358f0fe8f66ded7ee5aaf5636627fa4e451))
+* **data builder:** support canvas style ([8069f57](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/8069f57149ecebcd6b579901598c5181992e63eb))
+* **data builder:** support clicking on the canvas to deselect components ([e4e561f](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/e4e561f1efb69ed354f32c7df7ae605e5bf7ea56))
+* **data builder:** support component remove ([9e5f4c9](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/9e5f4c971067a86917cfe2d62c6d6c62e9c3f5c6))
+* **data builder:** support component resize ([1370271](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/1370271652c198c8e7669b87aefa2f48351f5042))
+* **data builder:** support component slot ([c8789d2](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/c8789d22efd1679b71c08b8fb710338a2e1861fa))
+* **data builder:** support editor ([61930df](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/61930df55ce2fe574dbac1ab3fbcb01fbaf2d8cc))
+* **data builder:** support guideline ([6c03c63](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/6c03c630afbc5133d077097885a55873a5622dce))
+* **data builder:** support panel label slot ([63d0644](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/63d0644a3f83532f8d771778972541d4a8a12833))
+* **data builder:** support show toolbar ([bc27bc2](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/bc27bc2c6b157db046e6da6559ca40b69252e3c7))
+* **data builder:** support view ([307ec7e](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/307ec7e4b2280603f05aaf838cc80a9f0c38c7bc))
+* **data builder:** support width and height ([627d582](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/627d58209d90f58bdce1b2d068c568cae3315bb2))
+* **upload:** support upload ([65720c2](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/65720c2ba9a15cdaf4d355406723ef8001327e94))
+* **core:** replace `npm` to `pnpm` ([e8ba631](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/e8ba63157968c445cd1ac0b41340aa1323c867c1))
+* **core:** support i18n ([371932c](https://github.com/devlive-community/view-shadcn-ui/commit/371932c3a6755071b41445c5c4ff32033618e43c))
+
 ## 2024.4.0 (2024-11-17)
 
 ### 🐛 Bug Fixes
