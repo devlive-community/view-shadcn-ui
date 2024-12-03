@@ -6,9 +6,9 @@
         <!-- 画布尺寸调整 -->
         <!-- Canvas size adjustment -->
         <div class="flex items-center space-x-2">
-          <ShadcnNumber v-model="canvasSize.width" class="w-32" placeholder="宽度"/>
+          <ShadcnNumber v-model="canvasSize.width" class="w-32" :placeholder="t('dataBuilder.placeholder.width')"/>
           <span class="text-gray-400">x</span>
-          <ShadcnNumber v-model="canvasSize.height" class="w-32" placeholder="高度"/>
+          <ShadcnNumber v-model="canvasSize.height" class="w-32" :placeholder="t('dataBuilder.placeholder.height')"/>
         </div>
 
         <!-- 缩放控制 -->
@@ -27,17 +27,17 @@
       <div class="flex items-center space-x-4">
         <!-- 网格控制 -->
         <!-- Grid control -->
-        <ShadcnCheckbox v-model="showGrid" :value="true">显示网格</ShadcnCheckbox>
-        <ShadcnCheckbox v-model="snapToGrid" :value="true">网格吸附</ShadcnCheckbox>
+        <ShadcnCheckbox v-model="showGrid" :value="true">{{ t('dataBuilder.text.showGrid') }}</ShadcnCheckbox>
+        <ShadcnCheckbox v-model="snapToGrid" :value="true">{{ t('dataBuilder.text.snapToGrid') }}</ShadcnCheckbox>
 
         <!-- 组件控制 -->
         <!-- Component control -->
-        <ShadcnCheckbox v-model="showRuler" :value="true">显示标尺</ShadcnCheckbox>
-        <ShadcnCheckbox v-model="resize" :value="true">拖拽调整尺寸</ShadcnCheckbox>
+        <ShadcnCheckbox v-model="showRuler" :value="true">{{ t('dataBuilder.text.showRuler') }}</ShadcnCheckbox>
+        <ShadcnCheckbox v-model="resize" :value="true">{{ t('dataBuilder.text.dragResize') }}</ShadcnCheckbox>
 
         <!-- 辅助线控制 -->
         <!-- Helper line control -->
-        <ShadcnCheckbox v-model="showGuidelines" :value="true">显示辅助线</ShadcnCheckbox>
+        <ShadcnCheckbox v-model="showGuidelines" :value="true">{{ t('dataBuilder.text.showGuidelines') }}</ShadcnCheckbox>
       </div>
     </div>
 
@@ -222,6 +222,7 @@
 
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import { t } from '@/utils/locale'
 import { calcSize } from '@/utils/common'
 import { ShadcnDataBuilderCanvasEmits, ShadcnDataBuilderCanvasProps, ShadcnDataBuilderPanelChildProps } from './types'
 import ShadcnDataBuilderRenderer from './ShadcnDataBuilderRenderer.vue'

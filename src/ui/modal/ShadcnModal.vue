@@ -63,14 +63,15 @@
 </template>
 
 <script setup lang="ts">
+import { t } from '@/utils/locale'
 import { ModalEmits, ModalProps } from '@/ui/modal/types.ts'
 import { calcSize } from '@/utils/common.ts'
 
 const emit = defineEmits<ModalEmits>()
 
 const props = withDefaults(defineProps<ModalProps>(), {
-  okText: 'OK',
-  cancelText: 'Cancel',
+  okText: String(t('modal.text.ok')),
+  cancelText: String(t('modal.text.cancel')),
   closable: true,
   width: '30%',
   height: 'auto',

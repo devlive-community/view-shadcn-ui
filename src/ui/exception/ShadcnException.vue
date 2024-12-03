@@ -40,7 +40,7 @@
 
       <div class="flex gap-4">
         <slot name="actions">
-          <ShadcnButton type="primary">Back Home</ShadcnButton>
+          <ShadcnButton type="primary">{{ t('exception.action.backHome') }}</ShadcnButton>
         </slot>
       </div>
     </div>
@@ -49,6 +49,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { t } from '@/utils/locale'
 import ShadcnButton from '@/ui/button'
 
 type ExceptionKey = '401' | '403' | '404' | '500'
@@ -63,23 +64,23 @@ interface ExceptionInfo
 const exceptionMap: Record<ExceptionKey, ExceptionInfo> = {
   '401': {
     type: 'UNAUTHORIZED',
-    title: 'Not logged in',
-    description: 'Sorry, you need to login first to access this page.'
+    title: String(t('exception.text.401.title')),
+    description: String(t('exception.text.401.description'))
   },
   '403': {
     type: 'FORBIDDEN',
-    title: 'No permission to access this page',
-    description: 'Sorry, you do not have permission to access this page.'
+    title: String(t('exception.text.403.title')),
+    description: String(t('exception.text.403.description'))
   },
   '404': {
     type: 'NOT_FOUND',
-    title: 'The visited page does not exist',
-    description: 'The page you are looking for does not exist.'
+    title: String(t('exception.text.404.title')),
+    description: String(t('exception.text.404.description'))
   },
   '500': {
     type: 'INTERNAL_SERVER_ERROR',
-    title: 'There was an error on the server',
-    description: 'Sorry, there was an error on the server.'
+    title: String(t('exception.text.500.title')),
+    description: String(t('exception.text.500.description'))
   }
 }
 

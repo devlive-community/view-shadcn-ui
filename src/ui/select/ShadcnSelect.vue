@@ -69,6 +69,7 @@
 
 <script setup lang="ts">
 import { computed, defineEmits, defineProps, nextTick, onMounted, onUnmounted, provide, ref, watch, withDefaults } from 'vue'
+import { t } from '@/utils/locale'
 import ShadcnSelectOption from './option/ShadcnSelectOption.vue'
 import { MinSize, PtPbSize } from '@/ui/common/size.ts'
 import { HoverType } from '@/ui/common/type.ts'
@@ -78,7 +79,7 @@ import { generateRandomId } from '@/utils/common.ts'
 const emit = defineEmits<SelectEmits>()
 
 const props = withDefaults(defineProps<SelectProps>(), {
-  placeholder: 'Select an option',
+  placeholder: String(t('select.text.placeholder')),
   disabled: false,
   size: 'default',
   type: 'primary',

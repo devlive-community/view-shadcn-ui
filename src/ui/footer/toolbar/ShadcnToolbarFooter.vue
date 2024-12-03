@@ -17,11 +17,11 @@
         <slot name="right">
           <ShadcnButton type="danger"
                         @click="onCancel">
-            Cancel
+            {{ t('toolbar.text.cancel') }}
           </ShadcnButton>
           <ShadcnButton type="primary"
                         @click="onOk">
-            Ok
+            {{ t('toolbar.text.ok') }}
           </ShadcnButton>
         </slot>
       </div>
@@ -31,6 +31,7 @@
 
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { t } from '@/utils/locale'
 import ShadcnButton from '@/ui/button'
 
 interface Props

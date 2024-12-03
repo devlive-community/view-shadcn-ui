@@ -1,4 +1,3 @@
-// types.ts
 export interface UploadProps
 {
     accept?: string

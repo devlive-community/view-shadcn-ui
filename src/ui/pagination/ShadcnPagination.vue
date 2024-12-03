@@ -2,7 +2,7 @@
   <div class="flex items-center justify-center space-x-2">
     <div v-if="showTotal || $slots.showTotal" class="text-sm text-gray-600">
       <slot name="showTotal">
-        Total {{ total }} items
+        {{ t('pagination.text.total', { total }) }}
       </slot>
     </div>
 
@@ -46,7 +46,7 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import { toNumber } from 'lodash'
+import { t } from '@/utils/locale'
 import ShadcnSelect from '@/ui/select'
 
 interface ShadcnOption
@@ -71,20 +71,20 @@ const props = withDefaults(defineProps<{
   total: 100,
   pageSize: 10,
   maxShowPage: 5,
-  prevText: 'Prev Page',
-  nextText: 'Next Page',
+  prevText: String(t('pagination.text.previous')),
+  nextText: String(t('pagination.text.next')),
   showTotal: false,
   showSizer: false,
   sizerOptions: () => [10, 20, 50, 100]
 })
 
-const currentPage = ref(toNumber(props.modelValue))
-const pageSize = ref(toNumber(props.pageSize))
+const currentPage = ref(Number(props.modelValue))
+const pageSize = ref(Number(props.pageSize))
 
-const totalPages = computed(() => Math.ceil(toNumber(props.total) / pageSize.value))
+const totalPages = computed(() => Math.ceil(Number(props.total) / pageSize.value))
 
 const displayPages = computed(() => {
-  const maxShow = toNumber(props.maxShowPage)
+  const maxShow = Number(props.maxShowPage)
   const total = totalPages.value
   const current = currentPage.value
 
@@ -119,7 +119,7 @@ const sizerOptions = computed(() => {
   const options = Array<ShadcnOption>()
   props.sizerOptions.forEach((item) => {
     options.push({
-      label: `${ item } items`,
+      label: String(t('pagination.text.item', { item })),
       value: item
     })
   })
@@ -127,11 +127,11 @@ const sizerOptions = computed(() => {
 })
 
 watch(() => props.modelValue, (newValue) => {
-  currentPage.value = toNumber(newValue)
+  currentPage.value = Number(newValue)
 })
 
 watch(() => props.pageSize, (newValue) => {
-  pageSize.value = toNumber(newValue)
+  pageSize.value = Number(newValue)
   currentPage.value = 1
   emit('update:modelValue', currentPage.value)
   emit('on-change', currentPage.value)

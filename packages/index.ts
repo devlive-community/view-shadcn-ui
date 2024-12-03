@@ -3,6 +3,8 @@ import { App } from 'vue'
 import Message from './setup/message.ts'
 import Spin from './setup/spin.ts'
 
+import { Language, setLocale } from '@/utils/locale.ts'
+
 import ShadcnButton from '@/ui/button'
 import ShadcnButtonGroup from '@/ui/button/group'
 import ShadcnCard from '@/ui/card'
@@ -159,7 +161,18 @@ let components = [
     ShadcnUpload
 ]
 
-const install = (Vue: App) => {
+interface InstallOptions
+{
+    locale?: Language
+}
+
+const install = (Vue: App, options: InstallOptions = {}) => {
+    // 设置语言
+    // Set language
+    if (options.locale) {
+        setLocale(options.locale)
+    }
+
     components.map((component: any) => {
         Vue.component(component.__name as string, component)
     })
@@ -167,6 +180,7 @@ const install = (Vue: App) => {
     // Support global import
     Vue.config.globalProperties.$Message = Message
     Vue.config.globalProperties.$Spin = Spin
+    Vue.config.globalProperties.$setLocale = setLocale
 }
 
 let windowObj = window as any
@@ -261,6 +275,9 @@ export { ShadcnUpload } from '@/ui/upload'
 
 // Export functions
 export { fnToString, fnToFunction } from '@/utils/formatter'
+
+// Export locale
+export { setLocale }
 
 // Support global import
 export default install
