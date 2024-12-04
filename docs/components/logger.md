@@ -77,6 +77,15 @@ This document is mainly used to describe some features and usage of the ShadcnLo
     ]">
 </ApiTable>
 
+## Logger Slots
+
+<ApiTable title="Slots"
+    :headers="['Slot', 'Description', 'Props']"
+    :columns="[
+        ['content', 'The content of each item of the logger', 'item']
+    ]">
+</ApiTable>
+
 <script setup lang="ts">
 const generateMockLogs = (count: number = 100): string[] => {
   const generateTimestamp = (i: number) => {

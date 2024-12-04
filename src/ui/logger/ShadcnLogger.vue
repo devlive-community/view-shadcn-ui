@@ -4,12 +4,14 @@
       <div class="min-w-full inline-block">
         <div v-for="(content, index) in items" class="whitespace-pre py-1 hover:bg-gray-100 w-full block" :key="index">
           <div class="inline-block min-w-full px-4">
-            <span class="mr-1.5">{{ content.timestamp }}</span>
-            <span class="mr-1.5" :style="{ color: highlightConfig[content.level] }">{{ content.level }}</span>
-            <span class="text-gray-500 mr-1.5">[{{ content.thread }}]</span>
-            <span class="text-gray-700 mr-1.5">{{ content.logger }}</span>
-            <span class="text-gray-500 mr-1.5">[{{ content.file }}]</span>
-            <span>{{ content.message }}</span>
+            <slot name="content" :item="content">
+              <span class="mr-1.5">{{ content.timestamp }}</span>
+              <span class="mr-1.5" :style="{ color: highlightConfig[content.level] }">{{ content.level }}</span>
+              <span class="text-gray-500 mr-1.5">[{{ content.thread }}]</span>
+              <span class="text-gray-700 mr-1.5">{{ content.logger }}</span>
+              <span class="text-gray-500 mr-1.5">[{{ content.file }}]</span>
+              <span>{{ content.message }}</span>
+            </slot>
           </div>
         </div>
       </div>
