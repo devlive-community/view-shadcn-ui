@@ -8,8 +8,8 @@ title: "Release Notes"
 
 ### 🐛 Bug Fixes
 
-* **button:** fix slot ([d7f795c](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/d7f795c2b34c57becc3463f64cf9f593040b60a3))
 * **core:** fix ci ([5daea84](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/5daea84a47bb3c7ce891cc22b3097d475727717c))
+* **button:** fix slot ([d7f795c](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/d7f795c2b34c57becc3463f64cf9f593040b60a3))
 * **button:** fix the missing content in loading status ([ba29ece](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/ba29ecede2d744178f72123405da3370429ed7dd))
 * **button:** fixed the icon abnormality caused by setting the size in the loading state ([6d4bd4f](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/6d4bd4f5035444c318e3a6f08e6043809548a7e7))
 * **toggle:** fixed click events not being blocked correctly ([fa13012](https://github.com/devlive-community/shadcn-ui-vue-admin/commit/fa13012f0899cc0c3e0899583650eaee2f629fef))

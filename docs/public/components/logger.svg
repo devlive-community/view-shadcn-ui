@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- Define gradient -->
+    <defs>
+        <linearGradient id="loggerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#93c5fd;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#a5b4fc;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="80" fill="url(#loggerGradient)" />
+
+    <!-- Log file -->
+    <rect x="60" y="75" width="80" height="50" rx="8" fill="white" />
+    <rect x="60" y="75" width="80" height="10" rx="5" fill="#60a5fa" />
+
+    <!-- Log lines -->
+    <rect x="70" y="90" width="60" height="6" rx="3" fill="#e5e7eb" />
+    <rect x="70" y="100" width="50" height="6" rx="3" fill="#e5e7eb" />
+    <rect x="70" y="110" width="45" height="6" rx="3" fill="#e5e7eb" />
+
+    <!-- Pen -->
+    <path d="M120 125 L130 135 L140 125 L130 115 Z" fill="none" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M130 135 L140 145" fill="none" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

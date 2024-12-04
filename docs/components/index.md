@@ -171,4 +171,8 @@ features:
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/upload.svg" />
     title: <a href='upload.html'>Shadcn Upload <span class="VPBadge tip">2024.5.0</span></a>
     details: Upload component
+
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/logger.svg" />
+    title: <a href='logger.html'>Shadcn Logger <span class="VPBadge tip">2024.5.1</span></a>
+    details: Logger component
 ---

@@ -1,8 +1,60 @@
+---
+title: Shadcn Logger
+---
+
+# Introduction
+
+This document is mainly used to describe some features and usage of the ShadcnLogger component.
+
+## Usage
+
+::: raw
+
+<CodeRunner title="Usage">
+    <ShadcnLogger :items="generateMockLogs(10)"/>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
 <template>
-  <div class="p-32">
-    <ShadcnLogger :items="items" :highlight-config="{ INFO: 'green', WARN: 'yellow', ERROR: 'red', DEBUG: 'blue', TRACE: 'cyan', FATAL: 'red' }"/>
-  </div>
+    <ShadcnLogger :items="items"/>
 </template>
+```
+
+:::
+
+## Highlight
+
+::: raw
+
+<CodeRunner title="Usage">
+    <ShadcnLogger :items="generateMockLogs(10)" :highlight-config="{ INFO: 'green', WARN: 'yellow', ERROR: 'red', DEBUG: 'blue', TRACE: 'cyan', FATAL: 'red' }"/>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnLogger :items="items" :highlight-config="{ INFO: 'green', WARN: 'yellow', ERROR: 'red', DEBUG: 'blue', TRACE: 'cyan', FATAL: 'red' }"/>
+</template>
+```
+
+:::
+
+## Logger Props
+
+<ApiTable title="Props"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :columns="[
+        ['items', 'The items of the logger', 'array<string>', '\[\]'],
+        ['highlightConfig', 'The highlight config of the logger', 'object', '{ WARN: \'rgb(234 179 8)\', ERROR: \'rgb(239 68 68)\', DEBUG: \'rgb(107 114 128)\', TRACE: \'rgb(156 163 175)\'}'],
+    ]">
+</ApiTable>
 
 <script setup lang="ts">
 const generateMockLogs = (count: number = 100): string[] => {
@@ -66,6 +118,4 @@ const generateMockLogs = (count: number = 100): string[] => {
     return `${ generateTimestamp(i) } ${ generateLevel() } [${ generateThread() }] ${ generateLogger() } [${ generateFile() }] ${ generateMessage() }`
   })
 }
-
-const items = generateMockLogs(20)
 </script>
