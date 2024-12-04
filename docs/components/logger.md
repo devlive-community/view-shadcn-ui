@@ -30,7 +30,7 @@ This document is mainly used to describe some features and usage of the ShadcnLo
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="Highlight">
     <ShadcnLogger :items="generateMockLogs(10)" :highlight-config="{ INFO: 'green', WARN: 'yellow', ERROR: 'red', DEBUG: 'blue', TRACE: 'cyan', FATAL: 'red' }"/>
 </CodeRunner>
 
@@ -46,6 +46,26 @@ This document is mainly used to describe some features and usage of the ShadcnLo
 
 :::
 
+## Height
+
+::: raw
+
+<CodeRunner title="Height">
+    <ShadcnLogger :items="generateMockLogs(10)" :height="300"/>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnLogger :items="items" :height="200"/>
+</template>
+```
+
+:::
+
 ## Logger Props
 
 <ApiTable title="Props"
@@ -53,6 +73,7 @@ This document is mainly used to describe some features and usage of the ShadcnLo
     :columns="[
         ['items', 'The items of the logger', 'array<string>', '\[\]'],
         ['highlightConfig', 'The highlight config of the logger', 'object', '{ WARN: \'rgb(234 179 8)\', ERROR: \'rgb(239 68 68)\', DEBUG: \'rgb(107 114 128)\', TRACE: \'rgb(156 163 175)\'}'],
+        ['height', 'The height of the logger', 'string | number', '200']
     ]">
 </ApiTable>
 
