@@ -77,5 +77,10 @@ export default {
             width: 'Width',
             height: 'Height'
         }
+    },
+    logger: {
+        text: {
+            allLevel: 'All level'
+        }
     }
 }

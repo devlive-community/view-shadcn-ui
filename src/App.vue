@@ -2,7 +2,8 @@
   <div class="p-32">
     <ShadcnLogger :items="items"
                   :highlight-config="{ INFO: 'green', WARN: 'yellow', ERROR: 'red', DEBUG: 'blue', TRACE: 'cyan', FATAL: 'red' }"
-                  :height="500"/>
+                  :height="500"
+                  toolbar/>
   </div>
 </template>
 
