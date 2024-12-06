@@ -85,5 +85,13 @@ export default {
         text: {
             allLevel: '所有级别'
         }
+    },
+    countDown: {
+        text: {
+            day: '天',
+            hour: '时',
+            minute: '分',
+            second: '秒'
+        }
     }
 }

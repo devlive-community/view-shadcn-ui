@@ -83,6 +83,7 @@ import { ShadcnDataBuilderCanvas, ShadcnDataBuilderConfigure, ShadcnDataBuilderE
 import { ShadcnUpload } from '@/ui/upload'
 import { ShadcnLogger } from '@/ui/logger'
 import { ShadcnScrollbar } from '@/ui/scrollbar'
+import { ShadcnCountDown } from '@/ui/count-down'
 
 let components = [
     ShadcnButton,
@@ -162,7 +163,8 @@ let components = [
     ShadcnDataBuilderPanel, ShadcnDataBuilderCanvas, ShadcnDataBuilderConfigure, ShadcnDataBuilderEditor, ShadcnDataBuilderView,
     ShadcnUpload,
     ShadcnLogger,
-    ShadcnScrollbar
+    ShadcnScrollbar,
+    ShadcnCountDown
 ]
 
 interface InstallOptions
@@ -278,6 +280,7 @@ export { ShadcnDataBuilderPanel, ShadcnDataBuilderCanvas, ShadcnDataBuilderConfi
 export { ShadcnUpload } from '@/ui/upload'
 export { ShadcnLogger } from '@/ui/logger'
 export { ShadcnScrollbar } from '@/ui/scrollbar'
+export { ShadcnCountDown } from '@/ui/count-down'
 
 // Export functions
 export { fnToString, fnToFunction } from '@/utils/formatter'

@@ -85,5 +85,13 @@ export default {
         text: {
             allLevel: 'All level'
         }
+    },
+    countDown: {
+        text: {
+            day: 'Day',
+            hour: 'Hour',
+            minute: 'Minute',
+            second: 'Second'
+        }
     }
 }
