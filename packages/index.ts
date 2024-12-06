@@ -85,6 +85,7 @@ import { ShadcnLogger } from '@/ui/logger'
 import { ShadcnScrollbar } from '@/ui/scrollbar'
 import { ShadcnCountDown } from '@/ui/count-down'
 import { ShadcnEmpty } from '@/ui/empty'
+import { ShadcnBackTop } from '@/ui/back-top'
 
 let components = [
     ShadcnButton,
@@ -166,7 +167,8 @@ let components = [
     ShadcnLogger,
     ShadcnScrollbar,
     ShadcnCountDown,
-    ShadcnEmpty
+    ShadcnEmpty,
+    ShadcnBackTop
 ]
 
 interface InstallOptions
@@ -284,6 +286,7 @@ export { ShadcnLogger } from '@/ui/logger'
 export { ShadcnScrollbar } from '@/ui/scrollbar'
 export { ShadcnCountDown } from '@/ui/count-down'
 export { ShadcnEmpty } from '@/ui/empty'
+export { ShadcnBackTop } from '@/ui/back-top'
 
 // Export functions
 export { fnToString, fnToFunction } from '@/utils/formatter'

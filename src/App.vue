@@ -1,24 +1,10 @@
 <template>
-  <ShadcnEmpty>
-    <template #image>
-      <ShadcnIcon icon="User" size="80"/>
-    </template>
-
-    <template #title>
-      <h3 class="text-lg font-semibold">Custom Title</h3>
-    </template>
-
-    <template #description>
-      <p>Custom Description</p>
-    </template>
-
-    <template #actions>
-      <div class="flex gap-2">
-        <ShadcnButton>Button 1</ShadcnButton>
-        <ShadcnButton>Button 2</ShadcnButton>
-      </div>
-    </template>
-  </ShadcnEmpty>
+  <div v-for="n in 20" :key="n" class="p-4">
+    <h2 class="text-xl font-bold mb-2">Section {{ n }}</h2>
+    <p>This is test content。</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+  </div>
+  <ShadcnBackTop target="#scrollContainer"/>
 </template>
 
 <script setup lang="ts">
