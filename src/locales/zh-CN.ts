@@ -77,5 +77,13 @@ export default {
             width: '宽度',
             height: '高度'
         }
+    },
+    logger: {
+        placeholder: {
+          search: '搜索 ...'
+        },
+        text: {
+            allLevel: '所有级别'
+        }
     }
 }

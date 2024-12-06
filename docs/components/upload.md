@@ -2,6 +2,8 @@
 title: Shadcn Upload
 ---
 
+# Introduction
+
 This document is mainly used to describe some features and usage of the ShadcnUpload component.
 
 ## Usage

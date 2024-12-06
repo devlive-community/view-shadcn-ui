@@ -1,10 +1,10 @@
 ---
-title: Function Utils
+title: Function Utility
 ---
 
 # Introduction
 
-This document is mainly used to describe some features and usage of the function utils.
+This document is mainly used to describe some features and usage of the function utility.
 
 ## fnToString
 

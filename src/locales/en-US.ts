@@ -77,5 +77,13 @@ export default {
             width: 'Width',
             height: 'Height'
         }
+    },
+    logger: {
+        placeholder: {
+          search: 'Search ...'
+        },
+        text: {
+            allLevel: 'All level'
+        }
     }
 }

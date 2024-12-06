@@ -81,6 +81,7 @@ import ShadcnHoverCard from '@/ui/hover-card'
 import { ShadcnToggle, ShadcnToggleGroup } from '@/ui/toggle'
 import { ShadcnDataBuilderCanvas, ShadcnDataBuilderConfigure, ShadcnDataBuilderEditor, ShadcnDataBuilderPanel, ShadcnDataBuilderView } from '@/ui/data-builder'
 import { ShadcnUpload } from '@/ui/upload'
+import { ShadcnLogger } from '@/ui/logger'
 
 let components = [
     ShadcnButton,
@@ -158,7 +159,8 @@ let components = [
     ShadcnHoverCard,
     ShadcnToggle, ShadcnToggleGroup,
     ShadcnDataBuilderPanel, ShadcnDataBuilderCanvas, ShadcnDataBuilderConfigure, ShadcnDataBuilderEditor, ShadcnDataBuilderView,
-    ShadcnUpload
+    ShadcnUpload,
+    ShadcnLogger
 ]
 
 interface InstallOptions
@@ -272,9 +274,11 @@ export { default as ShadcnHoverCard } from '@/ui/hover-card'
 export { ShadcnToggle, ShadcnToggleGroup } from '@/ui/toggle'
 export { ShadcnDataBuilderPanel, ShadcnDataBuilderCanvas, ShadcnDataBuilderConfigure, ShadcnDataBuilderEditor, ShadcnDataBuilderView } from '@/ui/data-builder'
 export { ShadcnUpload } from '@/ui/upload'
+export { ShadcnLogger } from '@/ui/logger'
 
 // Export functions
 export { fnToString, fnToFunction } from '@/utils/formatter'
+export { formatLogger, formatFromExample, formatMultipleLines, formatLoggerFromStream } from '@/utils/logger'
 
 // Export locale
 export { setLocale }

@@ -52,7 +52,7 @@ export default {
                 activeMatch: '/components'
             },
             {
-                text: '2024.5.0 <span class="VPBadge danger" style="margin-left: -18px; position: absolute; bottom: 38px;">Latest</span>',
+                text: '2024.5.1 <span class="VPBadge danger" style="margin-left: -18px; position: absolute; bottom: 38px;">Alpha</span>',
                 items: [
                     {
                         text: 'CHANGELOG <span class="VPBadge tip">2024.5.0</span>',
@@ -79,7 +79,7 @@ export default {
                     ]
                 },
                 {
-                    text: "Utils",
+                    text: "Utility",
                     collapsed: false,
                     base: "/guide/",
                     items: [
@@ -89,6 +89,7 @@ export default {
                         {text: 'getHoverColor <span class="VPBadge tip">2024.2.0</span>', link: 'get-hover-color'},
                         {text: 'generateColorShades <span class="VPBadge tip">2024.2.0</span>', link: 'generate-color-shades'},
                         {text: 'Function <span class="VPBadge tip">2024.5.0</span>', link: 'function'},
+                        {text: 'Logger <span class="VPBadge tip">2024.5.1</span>', link: 'logger'},
                     ]
                 }
             ],
@@ -147,6 +148,7 @@ export default {
                         {text: 'Tag <span class="VPBadge tip">2024.2.0</span>', link: 'tag'},
                         {text: 'Tree <span class="VPBadge tip">2024.3.0</span>', link: 'tree'},
                         {text: 'Hover Card <span class="VPBadge tip">2024.4.0</span>', link: 'hover-card'},
+                        {text: 'Logger <span class="VPBadge tip">2024.5.1</span>', link: 'logger'},
                     ]
                     return {
                         text: `View [ ${items.length} ]`,
