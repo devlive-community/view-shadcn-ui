@@ -80,7 +80,7 @@ export default {
     },
     logger: {
         placeholder: {
-          search: 'Search ...'
+            search: 'Search ...'
         },
         text: {
             allLevel: 'All level'
@@ -94,7 +94,11 @@ export default {
             second: 'Second',
             pause: 'Pause',
             resume: 'Resume',
-            reset: 'Reset'
+            reset: 'Reset',
+            paused: 'Paused',
+            completed: 'Completed',
+            timeUp: 'Time up',
+            running: 'Running'
         }
     }
 }

@@ -106,16 +106,38 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 
 :::
 
+## Show Progress
+
+::: raw
+
+<CodeRunner title="Show Progress">
+    <ShadcnCountDown :time="new Date(Date.now() + 20 * 1000)" show-progress />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnCountDown :time="new Date(Date.now() + 20 * 1000)" show-progress />
+</template>
+```
+
+:::
+
 ## Count Down Props
 
 <ApiTable title="Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value']"
     :columns="[
+        ['progress', 'The progress of the count down, support <code>v-model:progress</code>', 'number', ''],
         ['time', 'The time of the count down', 'date', ''],
         ['simple', 'Whether to display the simple version', 'boolean', 'false'],
         ['title', 'The title of the count down, only valid when <code>simple</code> is false', 'string', ''],
         ['toolbar', 'Whether to display the toolbar', 'boolean', 'false'],
         ['warningThreshold', 'The warning threshold of the count down, only valid when <code>simple</code> is false', 'number', '5'],
+        ['showProgress', 'Whether to display the progress bar', 'boolean', 'false'],
     ]">
 </ApiTable>
 

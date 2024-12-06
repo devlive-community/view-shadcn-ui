@@ -80,7 +80,7 @@ export default {
     },
     logger: {
         placeholder: {
-          search: '搜索 ...'
+            search: '搜索 ...'
         },
         text: {
             allLevel: '所有级别'
@@ -94,7 +94,11 @@ export default {
             second: '秒',
             pause: '暂停',
             resume: '继续',
-            reset: '重置'
+            reset: '重置',
+            paused: '已暂停',
+            completed: '已完成',
+            timeUp: '即将到期',
+            running: '进行中'
         }
     }
 }
