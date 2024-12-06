@@ -91,7 +91,10 @@ export default {
             day: '天',
             hour: '时',
             minute: '分',
-            second: '秒'
+            second: '秒',
+            pause: '暂停',
+            resume: '继续',
+            reset: '重置'
         }
     }
 }

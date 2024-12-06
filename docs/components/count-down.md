@@ -46,6 +46,46 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 
 :::
 
+## Title
+
+::: raw
+
+<CodeRunner title="Title">
+    <ShadcnCountDown :time="new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)" title="Count Down" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnCountDown :time="new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)" title="Count Down" />
+</template>
+```
+
+:::
+
+## Toolbar
+
+::: raw
+
+<CodeRunner title="Toolbar">
+    <ShadcnCountDown title="Count Down" toolbar :time="new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)"/>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnCountDown title="Count Down" toolbar :time="new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)"/>
+</template>
+```
+
+:::
+
 ## Count Down Props
 
 <ApiTable title="Props"
@@ -53,6 +93,17 @@ This document is mainly used to describe some features and usage of the ShadcnCo
     :columns="[
         ['time', 'The time of the count down', 'date', ''],
         ['simple', 'Whether to display the simple version', 'boolean', 'false'],
+        ['title', 'The title of the count down, only valid when <code>simple</code> is false', 'string', ''],
+        ['toolbar', 'Whether to display the toolbar', 'boolean', 'false'],
+    ]">
+</ApiTable>
+
+## Count Down Slots
+
+<ApiTable title="Slots"
+    :headers="['Slot', 'Description']"
+    :columns="[
+        ['title', 'Count down content'],
     ]">
 </ApiTable>
 

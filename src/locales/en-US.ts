@@ -91,7 +91,10 @@ export default {
             day: 'Day',
             hour: 'Hour',
             minute: 'Minute',
-            second: 'Second'
+            second: 'Second',
+            pause: 'Pause',
+            resume: 'Resume',
+            reset: 'Reset'
         }
     }
 }
