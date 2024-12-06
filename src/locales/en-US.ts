@@ -80,10 +80,25 @@ export default {
     },
     logger: {
         placeholder: {
-          search: 'Search ...'
+            search: 'Search ...'
         },
         text: {
             allLevel: 'All level'
+        }
+    },
+    countDown: {
+        text: {
+            day: 'Day',
+            hour: 'Hour',
+            minute: 'Minute',
+            second: 'Second',
+            pause: 'Pause',
+            resume: 'Resume',
+            reset: 'Reset',
+            paused: 'Paused',
+            completed: 'Completed',
+            timeUp: 'Time up',
+            running: 'Running'
         }
     }
 }
