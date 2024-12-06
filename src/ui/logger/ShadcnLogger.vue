@@ -17,22 +17,22 @@
           <div class="inline-block min-w-full px-4">
             <slot name="content" :item="content">
               <span class="mr-1.5">
-                <ShadcnHighlight :text="content.timestamp" :highlight="searchText"/>
+                <ShadcnHighlight :case-sensitive="caseSensitive" :text="content.timestamp" :highlight="searchText"/>
               </span>
               <span class="mr-1.5" :style="{ color: highlightConfig[content.level] }">
-                <ShadcnHighlight :text="content.level" :highlight="searchText"/>
+                <ShadcnHighlight :case-sensitive="caseSensitive" :text="content.level" :highlight="searchText"/>
               </span>
               <span class="text-gray-500 mr-1.5">
-                [<ShadcnHighlight :text="content.thread" :highlight="searchText"/>]
+                [<ShadcnHighlight :case-sensitive="caseSensitive" :text="content.thread" :highlight="searchText"/>]
               </span>
               <span class="text-gray-700 mr-1.5">
-                <ShadcnHighlight :text="content.logger" :highlight="searchText"/>
+                <ShadcnHighlight :case-sensitive="caseSensitive" :text="content.logger" :highlight="searchText"/>
               </span>
               <span class="text-gray-500 mr-1.5">
-                [<ShadcnHighlight :text="content.file" :highlight="searchText"/>]
+                [<ShadcnHighlight :case-sensitive="caseSensitive" :text="content.file" :highlight="searchText"/>]
               </span>
               <span>
-                <ShadcnHighlight :text="content.message" :highlight="searchText"/>
+                <ShadcnHighlight :case-sensitive="caseSensitive" :text="content.message" :highlight="searchText"/>
               </span>
             </slot>
           </div>
@@ -60,7 +60,8 @@ const props = withDefaults(defineProps<LoggerProps>(), {
     TRACE: 'rgb(156 163 175)'
   }),
   height: 200,
-  toolbar: false
+  toolbar: false,
+  caseSensitive: false
 })
 
 const filterLevel = ref('')
@@ -72,8 +73,9 @@ const filteredItems = computed(() => {
   return formattedItems.value.filter(item => {
     const matchLevel = !filterLevel.value || item.level === filterLevel.value
     const matchSearch = !searchText.value ||
-        Object.values(item).some(val =>
-            String(val).toLowerCase().includes(searchText.value.toLowerCase())
+        (
+            !props.caseSensitive ? Object.values(item).some(val => String(val).includes(searchText.value))
+                : Object.values(item).some(val => String(val).toLowerCase().includes(searchText.value.toLowerCase()))
         )
     return matchLevel && matchSearch
   })

@@ -4,4 +4,5 @@ export interface LoggerProps
     highlightConfig?: { [key: string]: string },
     height?: string | number,
     toolbar?: boolean
+    caseSensitive?: boolean
 }

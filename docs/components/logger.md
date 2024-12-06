@@ -86,6 +86,26 @@ This document is mainly used to describe some features and usage of the ShadcnLo
 
 :::
 
+## Case Sensitive
+
+::: raw
+
+<CodeRunner title="Case Sensitive">
+    <ShadcnLogger :items="generateMockLogs(10)" toolbar case-sensitive />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnLogger :items="items" toolbar case-sensitive/>
+</template>
+```
+
+:::
+
 ## Logger Props
 
 <ApiTable title="Props"
@@ -95,6 +115,7 @@ This document is mainly used to describe some features and usage of the ShadcnLo
         ['highlightConfig', 'The highlight config of the logger', 'object', '{ WARN: \'rgb(234 179 8)\', ERROR: \'rgb(239 68 68)\', DEBUG: \'rgb(107 114 128)\', TRACE: \'rgb(156 163 175)\'}'],
         ['height', 'The height of the logger', 'string | number', '200'],
         ['toolbar', 'Whether to show the toolbar of the logger', 'boolean', 'false'],
+        ['caseSensitive', 'Whether to case sensitive of the logger', 'boolean', 'false']
     ]">
 </ApiTable>
 
