@@ -1,6 +1,11 @@
 <template>
   <ShadcnCard :border="false">
-    <div class="grid grid-cols-4 gap-4 text-center">
+    <div v-if="simple">
+      <div class="text-2xl font-bold">
+        {{ `${ timeLeft.days } : ${ timeLeft.hours } : ${ timeLeft.minutes } : ${ timeLeft.seconds }` }}
+      </div>
+    </div>
+    <div v-else class="grid grid-cols-4 gap-4 text-center">
       <!-- Days -->
       <div class="flex flex-col">
         <div class="text-4xl font-bold bg-slate-100 rounded-lg p-4">
@@ -42,7 +47,9 @@ import { t } from '@/utils/locale'
 import ShadcnCard from '@/ui/card'
 import { CountDownProps } from '@/ui/count-down/types'
 
-const props = withDefaults(defineProps<CountDownProps>(), {})
+const props = withDefaults(defineProps<CountDownProps>(), {
+  simple: false
+})
 
 const timeLeft = ref({
   days: 0,

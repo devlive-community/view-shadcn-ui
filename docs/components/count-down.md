@@ -19,7 +19,29 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 ::: details Show code
 
 ```vue
-<ShadcnCountDown :time="new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)" />
+<template>
+  <ShadcnCountDown :time="new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)" />
+</template>
+```
+
+:::
+
+## Simple
+
+::: raw
+
+<CodeRunner title="Simple">
+    <ShadcnCountDown :time="new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)" simple />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnCountDown :time="new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)" simple />
+</template>
 ```
 
 :::
@@ -29,6 +51,7 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 <ApiTable title="Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value']"
     :columns="[
-        ['time', 'The time of the count down', 'Date', ''],
+        ['time', 'The time of the count down', 'date', ''],
+        ['simple', 'Whether to display the simple version', 'boolean', 'false'],
     ]">
 </ApiTable>
