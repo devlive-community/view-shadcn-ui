@@ -138,7 +138,7 @@ This document is mainly used to describe some features and usage of the ShadcnSc
 
 :::
 
-## Props
+## Scrollbar Props
 
 <ApiTable title="Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value']"

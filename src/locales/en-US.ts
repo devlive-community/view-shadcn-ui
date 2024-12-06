@@ -100,5 +100,12 @@ export default {
             timeUp: 'Time up',
             running: 'Running'
         }
+    },
+    empty: {
+        text: {
+            retry: 'Retry',
+            noData: 'No data',
+            noDataDescription: 'No data was found'
+        }
     }
 }

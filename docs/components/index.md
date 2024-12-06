@@ -95,7 +95,6 @@ features:
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/badge.svg" />
     title: <a href='badge.html'>Shadcn Badge <span class="VPBadge tip">2024.1.2</span></a>
     details: Badge component
-
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/breadcrumb.svg" />
     title: <a href='breadcrumb.html'>Shadcn Breadcrumb <span class="VPBadge tip">2024.2.0</span></a>
     details: Breadcrumb component
@@ -141,7 +140,6 @@ features:
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/dropdown.svg" />
     title: <a href='dropdown.html'>Shadcn Dropdown <span class="VPBadge tip">2024.2.0</span></a>
     details: Dropdown component
-
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/number.svg" />
     title: <a href='number.html'>Shadcn Number <span class="VPBadge tip">2024.3.0</span></a>
     details: Number component
@@ -154,7 +152,6 @@ features:
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/gradient-text.svg" />
     title: <a href='gradient-text.html'>Shadcn Gradient Text <span class="VPBadge tip">2024.3.0</span></a>
     details: Gradient Text component
-
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/contextmenu.svg" />
     title: <a href='contextmenu.html'>Shadcn Context Menu <span class="VPBadge tip">2024.4.0</span></a>
     details: Context Menu component
@@ -164,14 +161,12 @@ features:
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/toggle.svg" />
     title: <a href='toggle.html'>Shadcn Toggle <span class="VPBadge tip">2024.4.0</span></a>
     details: Toggle component
-
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/data-builder.svg" />
     title: <a href='data-builder.html'>Shadcn Data Builder <span class="VPBadge tip">2024.5.0</span></a>
     details: Data Builder component
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/upload.svg" />
     title: <a href='upload.html'>Shadcn Upload <span class="VPBadge tip">2024.5.0</span></a>
     details: Upload component
-
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/logger.svg" />
     title: <a href='logger.html'>Shadcn Logger <span class="VPBadge tip">2024.5.1</span></a>
     details: Logger component
@@ -181,4 +176,7 @@ features:
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/count-down.svg" />
     title: <a href='count-down.html'>Shadcn Count Down <span class="VPBadge tip">2024.5.1</span></a>
     details: Count Down component
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/empty.svg" />
+    title: <a href='empty.html'>Shadcn Empty <span class="VPBadge tip">2024.5.1</span></a>
+    details: Empty component
 ---
