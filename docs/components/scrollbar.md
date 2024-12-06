@@ -90,6 +90,54 @@ This document is mainly used to describe some features and usage of the ShadcnSc
 
 :::
 
+## Custom Scrollbar
+
+::: raw
+
+<CodeRunner title="Custom Scrollbar">
+    <ShadcnScrollbar class="custom-scrollbar">
+      <div class="space-y-4">
+        <p v-for="i in 100">This is a scrollbar component example index {{ i }}</p>
+      </div>
+    </ShadcnScrollbar>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnScrollbar class="custom-scrollbar">
+    <div class="space-y-4">
+      <p v-for="i in 100">This is a scrollbar component example index {{ i }}</p>
+    </div>
+  </ShadcnScrollbar>
+</template>
+
+<style>
+  .custom-scrollbar ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .custom-scrollbar ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  .custom-scrollbar ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+
+  .custom-scrollbar ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+</style>
+```
+
+:::
+
 ## Props
 
 <ApiTable title="Props"
@@ -99,3 +147,23 @@ This document is mainly used to describe some features and usage of the ShadcnSc
         ['position', 'The position of the scrollbar', 'left | right', 'right'],
     ]">
 </ApiTable>
+
+<style>
+.custom-scrollbar ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar ::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.custom-scrollbar ::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.custom-scrollbar ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+</style>
