@@ -149,6 +149,7 @@ export default {
                         {text: 'Tree <span class="VPBadge tip">2024.3.0</span>', link: 'tree'},
                         {text: 'Hover Card <span class="VPBadge tip">2024.4.0</span>', link: 'hover-card'},
                         {text: 'Logger <span class="VPBadge tip">2024.5.1</span>', link: 'logger'},
+                        {text: 'Scrollbar <span class="VPBadge tip">2024.5.1</span>', link: 'scrollbar'},
                     ]
                     return {
                         text: `View [ ${items.length} ]`,

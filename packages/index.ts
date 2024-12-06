@@ -82,6 +82,7 @@ import { ShadcnToggle, ShadcnToggleGroup } from '@/ui/toggle'
 import { ShadcnDataBuilderCanvas, ShadcnDataBuilderConfigure, ShadcnDataBuilderEditor, ShadcnDataBuilderPanel, ShadcnDataBuilderView } from '@/ui/data-builder'
 import { ShadcnUpload } from '@/ui/upload'
 import { ShadcnLogger } from '@/ui/logger'
+import { ShadcnScrollbar } from '@/ui/scrollbar'
 
 let components = [
     ShadcnButton,
@@ -160,7 +161,8 @@ let components = [
     ShadcnToggle, ShadcnToggleGroup,
     ShadcnDataBuilderPanel, ShadcnDataBuilderCanvas, ShadcnDataBuilderConfigure, ShadcnDataBuilderEditor, ShadcnDataBuilderView,
     ShadcnUpload,
-    ShadcnLogger
+    ShadcnLogger,
+    ShadcnScrollbar
 ]
 
 interface InstallOptions
@@ -275,6 +277,7 @@ export { ShadcnToggle, ShadcnToggleGroup } from '@/ui/toggle'
 export { ShadcnDataBuilderPanel, ShadcnDataBuilderCanvas, ShadcnDataBuilderConfigure, ShadcnDataBuilderEditor, ShadcnDataBuilderView } from '@/ui/data-builder'
 export { ShadcnUpload } from '@/ui/upload'
 export { ShadcnLogger } from '@/ui/logger'
+export { ShadcnScrollbar } from '@/ui/scrollbar'
 
 // Export functions
 export { fnToString, fnToFunction } from '@/utils/formatter'
