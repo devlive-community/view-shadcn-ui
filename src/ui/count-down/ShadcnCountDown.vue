@@ -26,72 +26,109 @@
       </div>
     </template>
 
-    <div class="grid grid-cols-4 gap-4 text-center">
-      <!-- Days -->
-      <div class="relative flex flex-col">
-        <div :class="['text-4xl font-bold rounded-lg p-4 transition-all duration-300',
-                    {
-                      'bg-slate-100': !isWarning && !isCompleted,
-                      'bg-red-50': isWarning && !isCompleted,
-                      'bg-green-50': isCompleted,
-                      'animate-pulse': isWarning && !isPaused && !isCompleted
-                    }
-              ]">
-          {{ padNumber(timeLeft.days) }}
-          <span v-if="isWarning && !isCompleted"
-                class="absolute -top-1 -right-1 flex h-3 w-3">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-          </span>
-        </div>
-        <span class="text-sm mt-2">{{ t('countDown.text.day') }}</span>
-      </div>
+    <slot name="blocks"
+          :time-left="timeLeft"
+          :is-warning="isWarning"
+          :is-completed="isCompleted"
+          :is-paused="isPaused">
+      <div class="grid grid-cols-4 gap-4 text-center">
+        <!-- Days -->
+        <slot name="days"
+              :value="timeLeft.days"
+              :is-warning="isWarning"
+              :is-completed="isCompleted"
+              :is-paused="isPaused">
+          <div class="relative flex flex-col">
+            <div :class="['text-4xl font-bold rounded-lg p-4 transition-all duration-300',
+                        {
+                          'bg-slate-100': !isWarning && !isCompleted,
+                          'bg-red-50': isWarning && !isCompleted,
+                          'bg-green-50': isCompleted,
+                          'animate-pulse': isWarning && !isPaused && !isCompleted
+                        }
+                 ]">
+              {{ padNumber(timeLeft.days) }}
+              <span v-if="isWarning && !isCompleted" class="absolute -top-1 -right-1 flex h-3 w-3">
+                <span class="absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75 animate-ping"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+              </span>
+            </div>
+            <slot name="days-label">
+              <span class="text-sm mt-2">{{ t('countDown.text.day') }}</span>
+            </slot>
+          </div>
+        </slot>
 
-      <!-- Hours -->
-      <div class="flex flex-col">
-        <div :class="['text-4xl font-bold rounded-lg p-4 transition-all duration-300',
-                    {
-                      'bg-slate-100': !isWarning && !isCompleted,
-                      'bg-red-50': isWarning && !isCompleted,
-                      'bg-green-50': isCompleted,
-                      'animate-pulse': isWarning && !isPaused && !isCompleted
-                    }
-             ]">
-          {{ padNumber(timeLeft.hours) }}
-        </div>
-        <span class="text-sm mt-2">{{ t('countDown.text.hour') }}</span>
-      </div>
+        <!-- Hours -->
+        <slot name="hours"
+              :value="timeLeft.hours"
+              :is-warning="isWarning"
+              :is-completed="isCompleted"
+              :is-paused="isPaused">
+          <div class="flex flex-col">
+            <div :class="['text-4xl font-bold rounded-lg p-4 transition-all duration-300',
+                        {
+                          'bg-slate-100': !isWarning && !isCompleted,
+                          'bg-red-50': isWarning && !isCompleted,
+                          'bg-green-50': isCompleted,
+                          'animate-pulse': isWarning && !isPaused && !isCompleted
+                        }
+                 ]">
+              {{ padNumber(timeLeft.hours) }}
+            </div>
+            <slot name="hours-label">
+              <span class="text-sm mt-2">{{ t('countDown.text.hour') }}</span>
+            </slot>
+          </div>
+        </slot>
 
-      <!-- Minutes -->
-      <div class="flex flex-col">
-        <div :class="['text-4xl font-bold rounded-lg p-4 transition-all duration-300',
-                    {
-                      'bg-slate-100': !isWarning && !isCompleted,
-                      'bg-red-50': isWarning && !isCompleted,
-                      'bg-green-50': isCompleted,
-                      'animate-pulse': isWarning && !isPaused && !isCompleted
-                    }
-            ]">
-          {{ padNumber(timeLeft.minutes) }}
-        </div>
-        <span class="text-sm mt-2">{{ t('countDown.text.minute') }}</span>
-      </div>
+        <!-- Minutes -->
+        <slot name="minutes"
+              :value="timeLeft.minutes"
+              :is-warning="isWarning"
+              :is-completed="isCompleted"
+              :is-paused="isPaused">
+          <div class="flex flex-col">
+            <div :class="['text-4xl font-bold rounded-lg p-4 transition-all duration-300',
+                        {
+                          'bg-slate-100': !isWarning && !isCompleted,
+                          'bg-red-50': isWarning && !isCompleted,
+                          'bg-green-50': isCompleted,
+                          'animate-pulse': isWarning && !isPaused && !isCompleted
+                        }
+                 ]">
+              {{ padNumber(timeLeft.minutes) }}
+            </div>
+            <slot name="minutes-label">
+              <span class="text-sm mt-2">{{ t('countDown.text.minute') }}</span>
+            </slot>
+          </div>
+        </slot>
 
-      <!-- Seconds -->
-      <div class="flex flex-col">
-        <div :class="['text-4xl font-bold rounded-lg p-4 transition-all duration-300',
-                    {
-                      'bg-slate-100': !isWarning && !isCompleted,
-                      'bg-red-50': isWarning && !isCompleted,
-                      'bg-green-50': isCompleted,
-                      'animate-pulse': isWarning && !isPaused && !isCompleted
-                    }
-            ]">
-          {{ padNumber(timeLeft.seconds) }}
-        </div>
-        <span class="text-sm mt-2">{{ t('countDown.text.second') }}</span>
+        <!-- Seconds -->
+        <slot name="seconds"
+              :value="timeLeft.seconds"
+              :is-warning="isWarning"
+              :is-completed="isCompleted"
+              :is-paused="isPaused">
+          <div class="flex flex-col">
+            <div :class="['text-4xl font-bold rounded-lg p-4 transition-all duration-300',
+                      {
+                        'bg-slate-100': !isWarning && !isCompleted,
+                        'bg-red-50': isWarning && !isCompleted,
+                        'bg-green-50': isCompleted,
+                        'animate-pulse': isWarning && !isPaused && !isCompleted
+                      }
+                 ]">
+              {{ padNumber(timeLeft.seconds) }}
+            </div>
+            <slot name="seconds-label">
+              <span class="text-sm mt-2">{{ t('countDown.text.second') }}</span>
+            </slot>
+          </div>
+        </slot>
       </div>
-    </div>
+    </slot>
 
     <!-- Progress bar -->
     <div v-if="showProgress" class="mt-4 h-2 bg-gray-200 rounded-full overflow-hidden">
@@ -103,8 +140,7 @@
                     'animate-pulse': isWarning && !isPaused && !isCompleted
                   }
            ]"
-           :style="{ width: `${progress}%` }"
-      ></div>
+           :style="{ width: `${progress}%` }"/>
     </div>
 
     <!-- Status display -->
