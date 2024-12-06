@@ -28,16 +28,24 @@
 
     <div class="grid grid-cols-4 gap-4 text-center">
       <!-- Days -->
-      <div class="flex flex-col">
-        <div class="text-4xl font-bold bg-slate-100 rounded-lg p-4">
+      <div class="relative flex flex-col">
+        <div :class="['text-4xl font-bold bg-slate-100 rounded-lg p-4',
+                    { 'animate-pulse': timeLeft.days <= warningThreshold && !isPaused }
+              ]">
           {{ padNumber(timeLeft.days) }}
+          <span class="absolute -top-1 -right-1 flex h-3 w-3" v-if="timeLeft.days <= warningThreshold">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+          </span>
         </div>
         <span class="text-sm mt-2">{{ t('countDown.text.day') }}</span>
       </div>
 
       <!-- Hours -->
       <div class="flex flex-col">
-        <div class="text-4xl font-bold bg-slate-100 rounded-lg p-4">
+        <div :class="['text-4xl font-bold bg-slate-100 rounded-lg p-4',
+                    { 'animate-pulse': timeLeft.days <= warningThreshold && !isPaused }
+              ]">
           {{ padNumber(timeLeft.hours) }}
         </div>
         <span class="text-sm mt-2">{{ t('countDown.text.hour') }}</span>
@@ -45,7 +53,9 @@
 
       <!-- Minutes -->
       <div class="flex flex-col">
-        <div class="text-4xl font-bold bg-slate-100 rounded-lg p-4">
+        <div :class="['text-4xl font-bold bg-slate-100 rounded-lg p-4',
+                    { 'animate-pulse': timeLeft.days <= warningThreshold && !isPaused }
+              ]">
           {{ padNumber(timeLeft.minutes) }}
         </div>
         <span class="text-sm mt-2">{{ t('countDown.text.minute') }}</span>
@@ -53,7 +63,9 @@
 
       <!-- Seconds -->
       <div class="flex flex-col">
-        <div class="text-4xl font-bold bg-slate-100 rounded-lg p-4">
+        <div :class="['text-4xl font-bold bg-slate-100 rounded-lg p-4',
+                    { 'animate-pulse': timeLeft.days <= warningThreshold && !isPaused }
+              ]">
           {{ padNumber(timeLeft.seconds) }}
         </div>
         <span class="text-sm mt-2">{{ t('countDown.text.second') }}</span>
@@ -71,7 +83,8 @@ import { CountDownEmits, CountDownProps } from '@/ui/count-down/types'
 const emit = defineEmits<CountDownEmits>()
 const props = withDefaults(defineProps<CountDownProps>(), {
   simple: false,
-  toolbar: false
+  toolbar: false,
+  warningThreshold: 5
 })
 
 const timeLeft = ref({

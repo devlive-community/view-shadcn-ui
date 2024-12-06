@@ -4,6 +4,7 @@ export interface CountDownProps
     simple?: boolean
     title?: string
     toolbar?: boolean
+    warningThreshold?: number
 }
 
 export type CountDownEmits = {

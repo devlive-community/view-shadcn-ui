@@ -11,7 +11,7 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 ::: raw
 
 <CodeRunner title="Usage">
-    <ShadcnCountDown :time="new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)" />
+    <ShadcnCountDown :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)" />
 </CodeRunner>
 
 :::
@@ -20,7 +20,7 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 
 ```vue
 <template>
-  <ShadcnCountDown :time="new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)" />
+  <ShadcnCountDown :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)" />
 </template>
 ```
 
@@ -31,7 +31,7 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 ::: raw
 
 <CodeRunner title="Simple">
-    <ShadcnCountDown :time="new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)" simple />
+    <ShadcnCountDown :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)" simple />
 </CodeRunner>
 
 :::
@@ -40,7 +40,7 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 
 ```vue
 <template>
-  <ShadcnCountDown :time="new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)" simple />
+  <ShadcnCountDown :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)" simple />
 </template>
 ```
 
@@ -51,7 +51,7 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 ::: raw
 
 <CodeRunner title="Title">
-    <ShadcnCountDown :time="new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)" title="Count Down" />
+    <ShadcnCountDown :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)" title="Count Down" />
 </CodeRunner>
 
 :::
@@ -60,7 +60,7 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 
 ```vue
 <template>
-  <ShadcnCountDown :time="new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)" title="Count Down" />
+  <ShadcnCountDown :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)" title="Count Down" />
 </template>
 ```
 
@@ -71,7 +71,7 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 ::: raw
 
 <CodeRunner title="Toolbar">
-    <ShadcnCountDown title="Count Down" toolbar :time="new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)"/>
+    <ShadcnCountDown title="Count Down" toolbar :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)"/>
 </CodeRunner>
 
 :::
@@ -80,7 +80,27 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 
 ```vue
 <template>
-  <ShadcnCountDown title="Count Down" toolbar :time="new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)"/>
+  <ShadcnCountDown title="Count Down" toolbar :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)"/>
+</template>
+```
+
+:::
+
+## Warning Threshold
+
+::: raw
+
+<CodeRunner title="Warning Threshold">
+    <ShadcnCountDown :time="new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)" warning-threshold="2" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnCountDown :time="new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)" warning-threshold="2" />
 </template>
 ```
 
@@ -95,6 +115,7 @@ This document is mainly used to describe some features and usage of the ShadcnCo
         ['simple', 'Whether to display the simple version', 'boolean', 'false'],
         ['title', 'The title of the count down, only valid when <code>simple</code> is false', 'string', ''],
         ['toolbar', 'Whether to display the toolbar', 'boolean', 'false'],
+        ['warningThreshold', 'The warning threshold of the count down, only valid when <code>simple</code> is false', 'number', '5'],
     ]">
 </ApiTable>
 
