@@ -5,6 +5,7 @@
         {{ `${ timeLeft.days } : ${ timeLeft.hours } : ${ timeLeft.minutes } : ${ timeLeft.seconds }` }}
       </div>
     </div>
+
     <div v-else class="grid grid-cols-4 gap-4 text-center">
       <!-- Days -->
       <div class="flex flex-col">
@@ -45,8 +46,9 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 import { t } from '@/utils/locale'
 import ShadcnCard from '@/ui/card'
-import { CountDownProps } from '@/ui/count-down/types'
+import { CountDownEmits, CountDownProps } from '@/ui/count-down/types'
 
+const emit = defineEmits<CountDownEmits>()
 const props = withDefaults(defineProps<CountDownProps>(), {
   simple: false
 })
@@ -70,6 +72,7 @@ const calculateTimeLeft = () => {
     if (timer) {
       clearInterval(timer)
     }
+    emit('on-complete')
     return
   }
 

@@ -55,3 +55,12 @@ This document is mainly used to describe some features and usage of the ShadcnCo
         ['simple', 'Whether to display the simple version', 'boolean', 'false'],
     ]">
 </ApiTable>
+
+## Count Down Events
+
+<ApiTable title="Events"
+    :headers="['Event', 'Description', 'Callback Parameters']"
+    :columns="[
+        ['on-complete', 'Triggered when the count down is finished', 'void'],
+    ]">
+</ApiTable>
