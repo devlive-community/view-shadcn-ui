@@ -79,6 +79,9 @@ export default {
         }
     },
     logger: {
+        placeholder: {
+          search: 'Search ...'
+        },
         text: {
             allLevel: 'All level'
         }

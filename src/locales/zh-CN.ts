@@ -79,6 +79,9 @@ export default {
         }
     },
     logger: {
+        placeholder: {
+          search: '搜索 ...'
+        },
         text: {
             allLevel: '所有级别'
         }
