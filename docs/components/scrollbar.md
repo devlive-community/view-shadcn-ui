@@ -1,0 +1,101 @@
+---
+title: Shadcn Scrollbar
+---
+
+# Introduction
+
+This document is mainly used to describe some features and usage of the ShadcnScrollbar component.
+
+## Usage
+
+::: raw
+
+<CodeRunner title="Usage">
+    <ShadcnScrollbar>
+      <div class="space-y-4">
+        <p v-for="i in 100">This is a scrollbar component example index {{ i }}</p>
+      </div>
+    </ShadcnScrollbar>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnScrollbar>
+    <div class="space-y-4">
+      <p v-for="i in 100">This is a scrollbar component example index {{ i }}</p>
+    </div>
+  </ShadcnScrollbar>
+</template>
+```
+
+:::
+
+## Height
+
+::: raw
+
+<CodeRunner title="Height">
+    <ShadcnScrollbar height="100">
+      <div class="space-y-4">
+        <p v-for="i in 100">This is a scrollbar component example index {{ i }}</p>
+      </div>
+    </ShadcnScrollbar>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnScrollbar height="100">
+    <div class="space-y-4">
+      <p v-for="i in 100">This is a scrollbar component example index {{ i }}</p>
+    </div>
+  </ShadcnScrollbar>
+</template>
+```
+
+:::
+
+## Position
+
+::: raw
+
+<CodeRunner title="Position">
+    <ShadcnScrollbar position="left">
+      <div class="space-y-4">
+        <p v-for="i in 100">This is a scrollbar component example index {{ i }}</p>
+      </div>
+    </ShadcnScrollbar>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnScrollbar position="left">
+    <div class="space-y-4">
+      <p v-for="i in 100">This is a scrollbar component example index {{ i }}</p>
+    </div>
+  </ShadcnScrollbar>
+</template>
+```
+
+:::
+
+## Props
+
+<ApiTable title="Props"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :columns="[
+        ['height', 'The height of the scrollbar', 'string | number', '300'],
+        ['position', 'The position of the scrollbar', 'left | right', 'right'],
+    ]">
+</ApiTable>

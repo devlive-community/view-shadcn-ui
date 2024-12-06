@@ -175,4 +175,7 @@ features:
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/logger.svg" />
     title: <a href='logger.html'>Shadcn Logger <span class="VPBadge tip">2024.5.1</span></a>
     details: Logger component
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/scrollbar.svg" />
+    title: <a href='scrollbar.html'>Shadcn Scrollbar <span class="VPBadge tip">2024.5.1</span></a>
+    details: Scrollbar component
 ---
