@@ -149,13 +149,29 @@ const handleConnectionStart = (event: MouseEvent, port: WorkflowPort, node: Work
       const portType = portElement.getAttribute('data-port-type')
       const targetNode = props.nodes.find(n => portId?.startsWith(n.id))
 
+      // 检查是否已经存在连接
+      // Check if there is already a connection
+      const isPortAlreadyConnected = props.connections.some(conn => {
+        if (port.type === WorkflowPortType.output) {
+          // 如果是输出端口，检查是否已经连接到目标输入端口
+          // Check if it is already connected to the target input port
+          return conn.source === port.id && conn.target === portId
+        }
+        else {
+          // 如果是输入端口，检查是否已经连接到目标输出端口
+          // Check if it is already connected to the target output port
+          return conn.target === port.id && conn.source === portId
+        }
+      })
+
       // 判断连接是否有效的条件
       // Check if the connection is valid
       activeConnection.value.isValid = Boolean(
           targetNode &&
           targetNode.id !== node.id && // 不是同一个节点 | Not the same node
           portType !== port.type && // 端口类型不同（比如输入连接到输出） | Port type is different (e.g., input to output)
-          portId // 确保有端口 ID | Ensure there is a port ID
+          portId && // 确保有端口 ID | Ensure there is a port ID
+          !isPortAlreadyConnected
       )
     }
     else {
@@ -196,6 +212,22 @@ const handleConnectionEnd = (event: MouseEvent, targetPort: WorkflowPort, target
   // 防止自连接
   // Prevent self-connection
   if (sourceNode.id === targetNode.id) {
+    activeConnection.value = null
+    isConnecting.value = false
+    return
+  }
+
+  // 检查是否已存在连接
+  // Check if there is already a connection
+  const isConnectionExists = props.connections.some(conn => {
+    if (sourcePort.type === WorkflowPortType.output) {
+      return conn.source === sourcePort.id && conn.target === targetPort.id
+    }
+    else {
+      return conn.source === targetPort.id && conn.target === sourcePort.id
+    }
+  })
+  if (isConnectionExists) {
     activeConnection.value = null
     isConnecting.value = false
     return
