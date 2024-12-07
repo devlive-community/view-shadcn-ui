@@ -1,9 +1,6 @@
 <template>
   <div class="flex h-screen">
-    <ShadcnWorkflowPanel class="w-64 border-r"
-                         :category="categories"
-                         :nodes="defaultNodes"
-                         @on-node-drag-start="handleNodeDragStart"/>
+    <ShadcnWorkflowPanel class="w-64 border-r" :category="categories" :nodes="defaultNodes"/>
 
     <ShadcnWorkflowCanvas class="flex-1"
                           :nodes="nodes"
@@ -30,10 +27,6 @@ const connections = ref<WorkflowConnection[]>([])
 const selectedNode = ref<WorkflowNode>()
 
 const categories = ['输入节点', '处理节点', '输出节点']
-
-const handleNodeDragStart = (node: WorkflowNode) => {
-  console.log(node)
-}
 
 const handleNodeMoved = (node: WorkflowNode) => {
   const index = nodes.value.findIndex(n => n.id === node.id)

@@ -18,7 +18,8 @@
          @click="selectNode(node)"
          @mousedown="startDragging(node, $event)">
       <div class="p-2">
-        <div class="text-xs text-gray-500">{{ node.category }}</div>
+        <div class="text-xs text-gray-500 py-1.5 mb-2 border-b">{{ node.category }}</div>
+
         <ShadcnWorkflowNodePorts :node="node"
                                  :disabled="isNodeDragging"
                                  @on-connection-start="(event, port) => handleConnectionStart(event, port, node)"
@@ -37,7 +38,9 @@
         <!-- 活动连接线 -->
         <!-- Active connection line -->
         <path v-if="activeConnection"
-              class="stroke-blue-400"
+              :class="['animate-pulse',
+                        activeConnection.isValid ? 'stroke-blue-500' : 'stroke-red-500'
+              ]"
               fill="none"
               stroke-dasharray="4"
               stroke-width="2"
@@ -76,6 +79,7 @@ const activeConnection = ref<{
   sourceNode: WorkflowNode
   sourcePortPosition: { x: number; y: number }
   mousePosition: { x: number; y: number }
+  isValid: boolean
 } | null>(null)
 
 // 获取端口的实际位置
@@ -111,10 +115,9 @@ const getControlPoints = (start: { x: number; y: number }, end: { x: number; y: 
 // 处理连接开始
 // Handle connection start
 const handleConnectionStart = (event: MouseEvent, port: WorkflowPort, node: WorkflowNode) => {
-  // 设置连接状态，阻止节点拖拽
-  // Set connection state, prevent node dragging
   isConnecting.value = true
   const portPosition = getPortPosition(node, port.id)
+
   activeConnection.value = {
     sourcePort: port,
     sourceNode: node,
@@ -122,8 +125,55 @@ const handleConnectionStart = (event: MouseEvent, port: WorkflowPort, node: Work
     mousePosition: {
       x: event.clientX - (canvasRef.value?.getBoundingClientRect().left || 0),
       y: event.clientY - (canvasRef.value?.getBoundingClientRect().top || 0)
+    },
+    isValid: false
+  }
+
+  const mouseMoveHandler = (e: MouseEvent) => {
+    if (!isConnecting.value || !activeConnection.value) {
+      return
+    }
+
+    // 更新鼠标位置
+    // Update mouse position
+    activeConnection.value.mousePosition = {
+      x: e.clientX - (canvasRef.value?.getBoundingClientRect().left || 0),
+      y: e.clientY - (canvasRef.value?.getBoundingClientRect().top || 0)
+    }
+
+    const elements = document.elementsFromPoint(e.clientX, e.clientY)
+    const portElement = elements.find(el => el.hasAttribute('data-port-id'))
+
+    if (portElement) {
+      const portId = portElement.getAttribute('data-port-id')
+      const portType = portElement.getAttribute('data-port-type')
+      const targetNode = props.nodes.find(n => portId?.startsWith(n.id))
+
+      // 判断连接是否有效的条件
+      // Check if the connection is valid
+      activeConnection.value.isValid = Boolean(
+          targetNode &&
+          targetNode.id !== node.id && // 不是同一个节点 | Not the same node
+          portType !== port.type && // 端口类型不同（比如输入连接到输出） | Port type is different (e.g., input to output)
+          portId // 确保有端口 ID | Ensure there is a port ID
+      )
+    }
+    else {
+      // 当鼠标不在任何端口上时，设置为 false
+      // When the mouse is not on any port, set it to false
+      activeConnection.value.isValid = false
     }
   }
+
+  const mouseUpHandler = () => {
+    isConnecting.value = false
+    activeConnection.value = null
+    document.removeEventListener('mousemove', mouseMoveHandler)
+    document.removeEventListener('mouseup', mouseUpHandler)
+  }
+
+  document.addEventListener('mousemove', mouseMoveHandler)
+  document.addEventListener('mouseup', mouseUpHandler)
 }
 
 // 处理连接结束
@@ -133,11 +183,19 @@ const handleConnectionEnd = (event: MouseEvent, targetPort: WorkflowPort, target
     return
   }
 
-  const { sourcePort } = activeConnection.value
+  const { sourcePort, sourceNode } = activeConnection.value
 
   // 验证连接是否有效
   // Validate connection
   if (sourcePort.type === targetPort.type) {
+    activeConnection.value = null
+    isConnecting.value = false
+    return
+  }
+
+  // 防止自连接
+  // Prevent self-connection
+  if (sourceNode.id === targetNode.id) {
     activeConnection.value = null
     isConnecting.value = false
     return
@@ -208,9 +266,21 @@ const getConnectionPath = (connection: WorkflowConnection) => {
       connection.target
   )
 
-  const controls = getControlPoints(sourcePosition, targetPosition)
+  // 计算水平偏移量
+  // Calculate horizontal offset
+  const horizontalOffset = 8
 
-  return `M ${ sourcePosition.x } ${ sourcePosition.y } C ${ controls.c1.x } ${ controls.c1.y } ${ controls.c2.x } ${ controls.c2.y } ${ targetPosition.x } ${ targetPosition.y }`
+  // 根据起点和终点的相对位置决定偏移方向
+  // Determine the offset direction based on the relative position of the start and end points
+  const startX = sourcePosition.x + horizontalOffset  // 输出端口向右偏移 | Output port to the right
+  const endX = targetPosition.x - horizontalOffset    // 输入端口向左偏移 | Input port to the left
+
+  const controls = getControlPoints(
+      { x: startX, y: sourcePosition.y },    // 使用新的起点 | Use new start
+      { x: endX, y: targetPosition.y }       // 使用新的终点 | Use new end
+  )
+
+  return `M ${ startX } ${ sourcePosition.y } C ${ controls.c1.x } ${ controls.c1.y } ${ controls.c2.x } ${ controls.c2.y } ${ endX } ${ targetPosition.y }`
 }
 
 // 开始拖拽节点
