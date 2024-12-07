@@ -30,7 +30,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { t } from '@/utils/locale'
-import type { WorkflowNode } from './types'
+import type { WorkflowNode } from '../types'
 import ShadcnInput from '@/ui/input'
 
 const props = defineProps<{

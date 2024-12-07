@@ -1,73 +1,104 @@
 <template>
-  <div ref="canvasRef"
-       class="relative w-full h-full overflow-hidden bg-gray-50"
-       @mousemove="handleMouseMove"
-       @mouseup="handleMouseUp"
-       @dragover.prevent="handleDragOver"
-       @drop.prevent="handleDrop">
-    <div v-for="node in nodes"
-         class="absolute bg-white rounded-lg shadow-md border"
-         :key="node.id"
-         :class="{
+  <div class="w-full h-full overflow-auto">
+    <div ref="canvasRef"
+         class="relative bg-gray-50"
+         :style="{
+               width: calcSize(canvas.width),
+               height: calcSize(canvas.height),
+         }"
+         @mousemove="handleMouseMove"
+         @mouseup="handleMouseUp"
+         @dragover.prevent="handleDragOver"
+         @drop.prevent="handleDrop">
+      <!-- Background Grid Pattern -->
+      <div v-if="canvas.showGrid"
+           class="absolute inset-0"
+           :style="{
+                   backgroundImage: `
+                     linear-gradient(to right, ${canvas.gridColor} 1px, transparent 1px),
+                     linear-gradient(to bottom, ${canvas.gridColor} 1px, transparent 1px)
+                   `,
+                   backgroundSize: `${calcSize(canvas.gridSize)} ${calcSize(canvas.gridSize)}`,
+                   opacity: canvas.gridOpacity
+           }">
+      </div>
+
+      <div v-for="node in nodes"
+           class="absolute bg-white rounded-lg shadow-md border"
+           :key="node.id"
+           :data-node-id="node.id"
+           :class="{
               'ring-2 ring-blue-500': selectedNodeId === node.id,
               'cursor-move': !isConnecting
          }"
-         :style="{
+           :style="{
               transform: `translate(${calcSize(node.position?.x)}, ${calcSize(node.position?.y)})`
          }"
-         @click="selectNode(node)"
-         @mousedown="startDragging(node, $event)">
-      <div class="p-2">
-        <div class="text-xs text-gray-500 py-1.5 mb-2 border-b">{{ node.category }}</div>
+           @click="selectNode(node)"
+           @mousedown="startDragging(node, $event)">
+        <div class="p-2">
+          <div class="text-xs text-gray-500 py-1.5 mb-2 border-b">{{ node.category }}</div>
 
-        <ShadcnWorkflowNodePorts :node="node"
-                                 :disabled="isNodeDragging"
-                                 @on-connection-start="(event, port) => handleConnectionStart(event, port, node)"
-                                 @on-connection-end="(event, port) => handleConnectionEnd(event, port, node)"/>
+          <ShadcnWorkflowNodePorts :node="node"
+                                   :disabled="isNodeDragging"
+                                   @on-connection-start="(event, port) => handleConnectionStart(event, port, node)"
+                                   @on-connection-end="(event, port) => handleConnectionEnd(event, port, node)"/>
+        </div>
       </div>
-    </div>
 
-    <svg class="absolute inset-0"
-         :style="{
+      <svg class="absolute inset-0"
+           :style="{
               width: '100%',
               height: '100%',
               overflow: 'visible',
               pointerEvents: 'none'
         }">
-      <g>
-        <!-- 活动连接线 -->
-        <!-- Active connection line -->
-        <path v-if="activeConnection"
-              :class="['animate-pulse',
+        <g>
+          <!-- 活动连接线 -->
+          <!-- Active connection line -->
+          <path v-if="activeConnection"
+                :class="['animate-pulse',
                         activeConnection.isValid ? 'stroke-blue-500' : 'stroke-red-500'
               ]"
-              fill="none"
-              stroke-dasharray="4"
-              stroke-width="2"
-              :d="getActiveConnectionPath()"/>
+                fill="none"
+                stroke-dasharray="4"
+                stroke-width="2"
+                :d="getActiveConnectionPath()"/>
 
-        <!-- 已建立的连接线 -->
-        <!-- Existing connections -->
-        <path v-for="connection in connections"
-              class="stroke-gray-400"
-              fill="none"
-              stroke-width="2"
-              :key="connection.id"
-              :d="getConnectionPath(connection)"/>
-      </g>
-    </svg>
+          <!-- 已建立的连接线 -->
+          <!-- Existing connections -->
+          <path v-for="connection in connections"
+                class="stroke-gray-400"
+                fill="none"
+                stroke-width="2"
+                :key="connection.id"
+                :d="getConnectionPath(connection)"/>
+        </g>
+      </svg>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { WorkflowCanvasEmits, WorkflowCanvasProps, WorkflowConnection, WorkflowNode, WorkflowPort, WorkflowPortType } from './types'
+import { nextTick, ref } from 'vue'
+import { WorkflowCanvasEmits, WorkflowCanvasProps, WorkflowConnection, WorkflowNode, WorkflowPort, WorkflowPortType } from '../types'
 import ShadcnWorkflowNodePorts from './ShadcnWorkflowNodePorts.vue'
 import { calcSize } from '@/utils/common.ts'
 import { randomUUID } from '@/utils/uuid.ts'
 
 const emit = defineEmits<WorkflowCanvasEmits>()
-const props = defineProps<WorkflowCanvasProps>()
+const props = withDefaults(defineProps<WorkflowCanvasProps>(), {
+  canvas: () => ({
+    color: '#f3f4f6',
+    showGrid: true,
+    gridColor: 'rgba(0, 0, 0, 0.1)',
+    gridSize: 20,
+    gridOpacity: 0.5,
+    pattern: 'grid',
+    width: 1920,
+    height: 1080
+  })
+})
 
 const canvasRef = ref<HTMLElement | null>(null)
 const isConnecting = ref(false)
@@ -84,6 +115,7 @@ const activeConnection = ref<{
 
 // 获取端口的实际位置
 // Get the actual position of the port
+// @ts-ignore
 const getPortPosition = (node: WorkflowNode, portId: string): { x: number; y: number } => {
   const portElement = document.querySelector(`[data-port-id="${ portId }"]`) as HTMLElement
   if (!portElement) {
@@ -194,6 +226,7 @@ const handleConnectionStart = (event: MouseEvent, port: WorkflowPort, node: Work
 
 // 处理连接结束
 // Handle connection end
+// @ts-ignore
 const handleConnectionEnd = (event: MouseEvent, targetPort: WorkflowPort, targetNode: WorkflowNode) => {
   if (!activeConnection.value) {
     return
@@ -246,16 +279,44 @@ const handleConnectionEnd = (event: MouseEvent, targetPort: WorkflowPort, target
   isConnecting.value = false
 }
 
+const getNodeSize = (nodeId: string) => {
+  const nodeElement = document.querySelector(`[data-node-id="${ nodeId }"]`) as HTMLElement
+  if (!nodeElement) {
+    return { width: 0, height: 0 }
+  }
+
+  return {
+    width: nodeElement.offsetWidth + 2,
+    height: nodeElement.offsetHeight + 2
+  }
+}
+
+// 处理节点拖拽时的位置限制
+// Handle position constraints during node dragging
+const constrainPosition = (position: { x: number; y: number }, nodeId: string) => {
+  const canvasWidth = props.canvas.width
+  const canvasHeight = props.canvas.height
+
+  const { width: nodeWidth, height: nodeHeight } = getNodeSize(nodeId)
+
+  return {
+    x: Math.max(2, Math.min(position.x, canvasWidth - nodeWidth)),
+    y: Math.max(2, Math.min(position.y, canvasHeight - nodeHeight))
+  }
+}
+
 // 处理鼠标移动
 // Handle mouse move
 const handleMouseMove = (event: MouseEvent) => {
   // 处理节点拖拽
   // Handle node dragging
   if (draggingNode.value && !isConnecting.value) {
-    const newPosition = {
+    let newPosition = {
       x: event.clientX - dragOffset.value.x,
       y: event.clientY - dragOffset.value.y
     }
+
+    newPosition = constrainPosition(newPosition, draggingNode.value.id)
 
     emit('on-node-moved', {
       ...draggingNode.value,
@@ -353,7 +414,7 @@ const handleDragOver = (event: DragEvent) => {
 
 // 处理节点放置
 // Handle node drop
-const handleDrop = (event: DragEvent) => {
+const handleDrop = async (event: DragEvent) => {
   const data = event.dataTransfer!.getData('application/node')
   if (!data) {
     return
@@ -361,26 +422,35 @@ const handleDrop = (event: DragEvent) => {
 
   try {
     const nodeData = JSON.parse(data)
-    const rect = canvasRef.value?.getBoundingClientRect()
-    if (!rect) {
+    const containerRect = canvasRef.value?.parentElement?.getBoundingClientRect()
+    if (!containerRect) {
       return
     }
 
-    // 计算放置位置
-    // Calculate drop position
-    const dropPosition = {
-      x: event.clientX - rect.left - 60,  // 60 是节点宽度的一半 | 60 is the half width of the node
-      y: event.clientY - rect.top - 30    // 30 是节点高度的一半 | 30 is the half height of the node
+    const scrollLeft = canvasRef.value?.parentElement?.scrollLeft || 0
+    const scrollTop = canvasRef.value?.parentElement?.scrollTop || 0
+
+    let dropPosition = {
+      x: event.clientX - containerRect.left + scrollLeft,
+      y: event.clientY - containerRect.top + scrollTop
     }
 
-    // 创建新节点
-    // Create new node
-    const newNode: Node = {
+    const newNode: WorkflowNode = {
       ...nodeData,
       position: dropPosition
     }
 
     emit('on-node-added', newNode)
+
+    await nextTick()
+
+    const adjustedPosition = constrainPosition(dropPosition, newNode.id)
+    if (adjustedPosition.x !== dropPosition.x || adjustedPosition.y !== dropPosition.y) {
+      emit('on-node-moved', {
+        ...newNode,
+        position: adjustedPosition
+      })
+    }
   }
   catch (e) {
     console.error('Error parsing drop data:', e)

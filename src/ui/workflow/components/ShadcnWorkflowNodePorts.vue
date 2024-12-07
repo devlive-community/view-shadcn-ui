@@ -47,7 +47,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { WorkflowNodePortEmits, WorkflowNodePortProps, WorkflowPort, WorkflowPortType } from './types'
+import { WorkflowNodePortEmits, WorkflowNodePortProps, WorkflowPort, WorkflowPortType } from '../types'
 import ShadcnTooltip from '@/ui/tooltip'
 
 const props = withDefaults(defineProps<WorkflowNodePortProps>(), {

@@ -27,8 +27,20 @@ export interface WorkflowNode
 export interface WorkflowConnection
 {
     id: string
-    source: string      // 源节点的端口ID
-    target: string      // 目标节点的端口ID
+    source: string
+    target: string
+}
+
+export interface WorkflowCanvasConfigure
+{
+    width: number
+    height: number
+    color?: string
+    showGrid?: boolean
+    gridColor?: string
+    gridSize?: number
+    gridOpacity?: number
+    pattern?: 'dots' | 'grid' | 'none'
 }
 
 export interface WorkflowNodePortProps
@@ -58,7 +70,8 @@ export interface WorkflowCanvasProps
 {
     nodes: WorkflowNode[]
     connections: WorkflowConnection[]
-    selectedNodeId?: string
+    selectedNodeId?: string,
+    canvas?: WorkflowCanvasConfigure
 }
 
 export type WorkflowCanvasEmits = {

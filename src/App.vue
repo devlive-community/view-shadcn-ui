@@ -3,12 +3,9 @@
 </template>
 
 <script setup lang="ts">
-import ShadcnWorkflowEditor from '@/ui/workflow/ShadcnWorkflowEditor.vue'
-import { WorkflowNode } from '@/ui/workflow/types.ts'
-
 const categories = ['Input Node', 'Transform Node', 'Output Node']
 
-const nodes: WorkflowNode[] = [
+const nodes: [] = [
   {
     id: 'start',
     category: 'Input Node',

@@ -1,1 +1,1 @@
-export { default as ShadcnWorkflow } from './ShadcnWorkflowEditor.vue'
+export { default as ShadcnWorkflowEditor } from './ShadcnWorkflowEditor.vue'

@@ -46,7 +46,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { t } from '@/utils/locale'
-import { WorkflowNode, WorkflowPanelEmits, WorkflowPanelProps, WorkflowPortType } from './types'
+import { WorkflowNode, WorkflowPanelEmits, WorkflowPanelProps, WorkflowPortType } from '../types'
 import ShadcnInput from '@/ui/input'
 import { randomUUID } from '@/utils/uuid.ts'
 

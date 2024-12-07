@@ -19,9 +19,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { WorkflowConnection, WorkflowNode, WorkflowProps } from './types'
-import ShadcnWorkflowPanel from './ShadcnWorkflowPanel.vue'
-import ShadcnWorkflowCanvas from './ShadcnWorkflowCanvas.vue'
-import ShadcnWorkflowConfigure from './ShadcnWorkflowConfigure.vue'
+import ShadcnWorkflowPanel from './components/ShadcnWorkflowPanel.vue'
+import ShadcnWorkflowCanvas from './components/ShadcnWorkflowCanvas.vue'
+import ShadcnWorkflowConfigure from './components/ShadcnWorkflowConfigure.vue'
 
 const props = withDefaults(defineProps<WorkflowProps>(), {
   nodes: () => [],
