@@ -151,6 +151,8 @@ export default {
                         {text: 'Logger <span class="VPBadge tip">2024.5.1</span>', link: 'logger'},
                         {text: 'Scrollbar <span class="VPBadge tip">2024.5.1</span>', link: 'scrollbar'},
                         {text: 'Count Down <span class="VPBadge tip">2024.5.1</span>', link: 'count-down'},
+                        {text: 'Empty <span class="VPBadge tip">2024.5.1</span>', link: 'empty'},
+                        {text: 'Back Top <span class="VPBadge tip">2024.5.1</span>', link: 'back-top'},
                     ]
                     return {
                         text: `View [ ${items.length} ]`,

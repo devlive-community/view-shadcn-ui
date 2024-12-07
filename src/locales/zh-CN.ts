@@ -100,5 +100,12 @@ export default {
             timeUp: '即将到期',
             running: '进行中'
         }
+    },
+    empty: {
+        text: {
+            retry: '重试',
+            noData: '暂无数据',
+            noDataDescription: '没有找到相关数据'
+        }
     }
 }
