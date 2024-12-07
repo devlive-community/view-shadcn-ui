@@ -58,11 +58,21 @@ const props = withDefaults(defineProps<WorkflowNodePortProps>(), {
 const emit = defineEmits<WorkflowNodePortEmits>()
 
 const inputPorts = computed(() => {
-  return props.node.ports.filter(port => port.type === WorkflowPortType.input)
+  return props.node.ports
+              .filter(port => port.type === WorkflowPortType.input)
+              .map(port => ({
+                ...port,
+                id: `${ props.node.id }-${ port.id }`
+              }))
 })
 
 const outputPorts = computed(() => {
-  return props.node.ports.filter(port => port.type === WorkflowPortType.output)
+  return props.node.ports
+              .filter(port => port.type === WorkflowPortType.output)
+              .map(port => ({
+                ...port,
+                id: `${ props.node.id }-${ port.id }`
+              }))
 })
 
 const handlePortMouseDown = (event: MouseEvent, port: WorkflowPort) => {
