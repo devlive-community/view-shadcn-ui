@@ -1,70 +1,113 @@
-// types.ts
-export type Position = {
-    x: number
-    y: number
+export enum WorkflowPortType
+{
+    input = 'input',
+    output = 'output'
 }
 
-export type Port = {
+export interface WorkflowPort
+{
     id: string
-    type: 'input' | 'output'
+    type: WorkflowPortType | string
     label: string
 }
 
-export type Node = {
+export interface WorkflowNode
+{
     id: string
-    type: string
-    category?: string
-    position: Position
-    data: Record<string, any>
-    ports: Port[]
+    category: string
+    ports: WorkflowPort[]
+    position?: {
+        x: number
+        y: number
+    }
+    data?: Record<string, any>
     description?: string
 }
 
-export type Edge = {
+export interface WorkflowConnection
+{
     id: string
-    source: string
-    sourcePort: string
-    target: string
-    targetPort: string
+    source: string      // 源节点的端口ID
+    target: string      // 目标节点的端口ID
 }
 
-export type WorkflowEmits = {
-    (e: 'update:nodes', nodes: Node[]): void
-    (e: 'update:edges', edges: Edge[]): void
-    (e: 'node-select', node: Node): void
-    (e: 'edge-select', edge: Edge): void
+export interface WorkflowNodePortProps
+{
+    node: WorkflowNode
+    disabled?: boolean
+    selected?: boolean
 }
 
-export type WorkflowProps = {
-    nodes?: Node[]
-    edges?: Edge[]
-    readonly?: boolean
+export type WorkflowNodePortEmits = {
+    (e: 'on-connection-start', event: MouseEvent, port: WorkflowPort): void
+    (e: 'on-connection-end', event: MouseEvent, port: WorkflowPort): void
+    (e: 'on-connection-drag', event: MouseEvent, port: WorkflowPort): void
 }
 
-export type WorkflowNodePortsEmits = {
-    (e: 'connect', port: Port): void
+export interface WorkflowPanelProps
+{
+    nodes: WorkflowNode[]
+    category: string[]
 }
 
-export type WorkflowNodePortsProps = {
-    node: Node
+export type WorkflowPanelEmits = {
+    (e: 'on-node-drag-start', node: WorkflowNode): void
 }
 
-export type WorkflowCanvasProps = {
-    scale?: number
-    position?: Position
+export interface WorkflowCanvasProps
+{
+    nodes: WorkflowNode[]
+    connections: WorkflowConnection[]
+    selectedNodeId?: string
 }
 
 export type WorkflowCanvasEmits = {
-    (e: 'update:scale', scale: number): void
-    (e: 'update:position', position: Position): void
+    (e: 'on-node-moved', node: WorkflowNode): void
+    (e: 'on-connection-created', connection: WorkflowConnection): void
+    (e: 'on-connection-removed', connectionId: string): void
+    (e: 'on-node-added', node: WorkflowNode): void
+    (e: 'on-node-selected', nodeId: string): void
 }
 
-export type WorkflowConfigureProps = {
-    selectedNode?: Node
-    selectedEdge?: Edge
+export interface WorkflowConnection
+{
+    id: string
+    source: string
+    target: string
 }
 
-export type WorkflowPanelProps = {
-    nodes: Node[]
-    category?: string[]
-}
+export const defaultNodes: WorkflowNode[] = [
+    {
+        id: 'start',
+        category: '输入节点',
+        position: { x: 0, y: 0 },
+        data: {},
+        description: '工作流的起始节点',
+        ports: [
+            { id: 'out1', type: 'output', label: '输出' }
+        ]
+    },
+    {
+        id: 'end',
+        category: '输出节点',
+        description: '工作流的结束节点',
+        position: { x: 0, y: 0 },
+        data: {},
+        ports: [
+            { id: 'in1', type: 'input', label: '输入' }
+        ]
+    },
+    {
+        id: 'process',
+        category: '处理节点',
+        description: '处理数据节点',
+        position: { x: 0, y: 0 },
+        data: {},
+        ports: [
+            { id: 'in12', type: 'input', label: '输入1' },
+            { id: 'in2', type: 'input', label: '输入2' },
+            { id: 'out1', type: 'output', label: '输出1' },
+            { id: 'out2', type: 'output', label: '输出2' }
+        ]
+    }
+]

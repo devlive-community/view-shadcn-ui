@@ -1,102 +1,81 @@
 <template>
-  <div class="relative"
-       :style="{
-         minWidth: '200px',
-         minHeight: `${calculateContainerHeight()}px`
-       }"
-       @mousedown.stop>
-    <!-- 输入端口 -->
-    <div v-for="port in inputPorts" :key="port.id"
-         class="absolute left-0 group cursor-crosshair"
-         :style="{
-           top: `${getPortPosition(port, inputPorts.length)}px`
-         }"
-         @mousedown.stop="(e) => handlePortMouseDown(port, e)"
-         @mouseup.stop="(e) => handlePortMouseUp(port, e)"
-         @dragstart.prevent>
-      <div class="absolute w-3 h-3 bg-blue-500 rounded-full
-                  group-hover:w-4 group-hover:h-4
-                  group-hover:bg-blue-600
-                  transition-all duration-200
-                  -translate-x-1/2 -translate-y-1/2"/>
-      <span class="absolute left-4 top-1/2 -translate-y-1/2 text-xs text-gray-600 whitespace-nowrap">
-        {{ port.label }}
-      </span>
+  <div class="flex items-center gap-3 min-w-[120px]">
+    <!-- 输入端口组 -->
+    <!-- Input Ports -->
+    <div class="flex flex-col gap-3">
+      <div v-for="port in inputPorts"
+           class="flex items-center gap-1.5 justify-start select-none"
+           :key="port.id">
+        <ShadcnTooltip :content="port.label">
+          <div class="w-3 h-3 rounded-full bg-blue-500 cursor-pointer transition-colors hover:bg-blue-600 hover:animate-pulse hover:h-3.5 hover:w-3.5"
+               :data-port-id="port.id"
+               :data-port-type="port.type"
+               @mousedown="handlePortMouseDown($event, port)"
+               @mouseup="handlePortMouseUp($event, port)"/>
+        </ShadcnTooltip>
+        <span class="text-xs text-gray-600">{{ port.label }}</span>
+      </div>
     </div>
 
-    <!-- 输出端口 -->
-    <div v-for="port in outputPorts" :key="port.id"
-         class="absolute right-0 group cursor-crosshair"
-         :style="{
-           top: `${getPortPosition(port, outputPorts.length)}px`
-         }"
-         @mousedown.stop="(e) => handlePortMouseDown(port, e)"
-         @mouseup.stop="(e) => handlePortMouseUp(port, e)"
-         @dragstart.prevent>
-      <div class="absolute w-3 h-3 bg-green-500 rounded-full
-                  group-hover:w-4 group-hover:h-4
-                  group-hover:bg-green-600
-                  transition-all duration-200
-                  -translate-x-1/2 -translate-y-1/2"/>
-      <span class="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-gray-600 whitespace-nowrap">
-        {{ port.label }}
-      </span>
+    <!-- 节点内容插槽 -->
+    <!-- Node content slot -->
+    <slot>
+      <div class="px-2 py-1 flex flex-col items-center select-none">
+        <div class="font-medium text-sm">{{ node.category }}</div>
+        <div class="text-xs text-gray-500">{{ node.description }}</div>
+      </div>
+    </slot>
+
+    <!-- 输出端口组 -->
+    <!-- Output Ports -->
+    <div class="flex flex-col gap-3">
+      <div v-for="port in outputPorts"
+           class="flex items-center gap-1.5 justify-end select-none"
+           :key="port.id">
+        <span class="text-xs text-gray-600">{{ port.label }}</span>
+        <ShadcnTooltip :content="port.label">
+          <div class="w-3 h-3 rounded-full bg-green-500 cursor-pointer transition-colors hover:bg-green-600 hover:animate-pulse hover:h-3.5 hover:w-3.5"
+               :data-port-id="port.id"
+               :data-port-type="port.type"
+               @mousedown="handlePortMouseDown($event, port)"
+               @mouseup="handlePortMouseUp($event, port)"/>
+        </ShadcnTooltip>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { Port, WorkflowNodePortsProps } from './types'
+import { WorkflowNodePortEmits, WorkflowNodePortProps, WorkflowPort, WorkflowPortType } from './types'
+import ShadcnTooltip from '@/ui/tooltip'
 
-const props = defineProps<WorkflowNodePortsProps>()
-const emit = defineEmits(['port-mouse-down', 'port-mouse-up'])
+const props = withDefaults(defineProps<WorkflowNodePortProps>(), {
+  disabled: false,
+  selected: false
+})
 
-const inputPorts = computed(() =>
-    props.node.ports.filter(port => port.type === 'input')
-)
+const emit = defineEmits<WorkflowNodePortEmits>()
 
-const outputPorts = computed(() =>
-    props.node.ports.filter(port => port.type === 'output')
-)
+const inputPorts = computed(() => {
+  return props.node.ports.filter(port => port.type === WorkflowPortType.input)
+})
 
-const portSpacing = 40 // 端口之间的间距
-const minHeight = 40 // 最小容器高度
-const paddingY = 20 // 上下内边距
+const outputPorts = computed(() => {
+  return props.node.ports.filter(port => port.type === WorkflowPortType.output)
+})
 
-// 计算端口位置，根据端口ID区分不同的垂直位置
-const getPortPosition = (port: Port, totalPorts: number) => {
-  const startY = paddingY
-  // 从端口ID提取索引，例如 'out1' -> 1, 'out2' -> 2
-  const portIndex = parseInt(port.id.match(/\d+/)?.[0] || '1') - 1
-  return startY + (portIndex * portSpacing)
-}
-
-// 计算容器所需的总高度
-const calculateContainerHeight = () => {
-  const maxPorts = Math.max(inputPorts.value.length, outputPorts.value.length)
-  if (maxPorts <= 1) return minHeight
-  return Math.max((paddingY * 2) + ((maxPorts - 1) * portSpacing), minHeight)
-}
-
-const handlePortMouseDown = (port: Port, event: MouseEvent) => {
-  // 获取端口的实际位置
-  const portPosition = getPortPosition(port, port.type === 'input' ? inputPorts.value.length : outputPorts.value.length)
-  // 将端口位置信息添加到事件中
-  const enrichedEvent = {
-    ...event,
-    portPosition
+const handlePortMouseDown = (event: MouseEvent, port: WorkflowPort) => {
+  if (props.disabled) {
+    return
   }
-  emit('port-mouse-down', props.node, port, enrichedEvent)
+  emit('on-connection-start', event, port)
 }
 
-const handlePortMouseUp = (port: Port, event: MouseEvent) => {
-  // 同样传递端口位置信息
-  const portPosition = getPortPosition(port, port.type === 'input' ? inputPorts.value.length : outputPorts.value.length)
-  const enrichedEvent = {
-    ...event,
-    portPosition
+const handlePortMouseUp = (event: MouseEvent, port: WorkflowPort) => {
+  if (props.disabled) {
+    return
   }
-  emit('port-mouse-up', props.node, port, enrichedEvent)
+  emit('on-connection-end', event, port)
 }
 </script>
