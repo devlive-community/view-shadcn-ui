@@ -3,22 +3,22 @@
     <!-- 搜索框 -->
     <!-- Search box -->
     <div class="p-4 border-b border-gray-200">
-      <ShadcnInput v-model="searchText" placeholder="搜索节点..."/>
+      <ShadcnInput v-model="searchText" :placeholder="String(t('workflow.placeholder.search'))"/>
     </div>
 
     <!-- 分类列表 -->
     <!-- Category list -->
     <div class="flex-1 overflow-y-auto">
-      <div v-for="cat in category" :key="cat" class="mb-4">
-        <div class="px-4 py-2 font-medium text-gray-600 bg-gray-50">{{ cat }}</div>
+      <div v-for="catagory in categories" :key="catagory" class="mb-4">
+        <div class="px-4 py-2 font-medium text-gray-600 bg-gray-50">{{ catagory }}</div>
 
         <!-- 节点列表 -->
         <!-- Node list -->
         <div class="p-2">
-          <div v-for="node in filteredNodes(cat)"
-               :key="node.id"
+          <div v-for="node in filteredNodes(catagory)"
                class="p-3 mb-2 border border-gray-200 rounded-lg shadow-sm cursor-move hover:border-blue-500"
                draggable="true"
+               :key="node.id"
                @dragstart="handleDragStart(node, $event)">
             <div class="font-medium text-sm">{{ node.category }}</div>
 
@@ -29,11 +29,11 @@
             <!-- 端口预览 -->
             <!-- Port preview -->
             <div class="mt-2 flex justify-between text-xs text-gray-400">
-              <div v-if="node.ports.some(p => p.type === 'input')">
-                输入: {{ node.ports.filter(p => p.type === 'input').length }}
+              <div v-if="node.ports.some(p => p.type === WorkflowPortType.input)">
+                {{ t('workflow.text.input') }}: {{ node.ports.filter(p => p.type === WorkflowPortType.input).length }}
               </div>
-              <div v-if="node.ports.some(p => p.type === 'output')">
-                输出: {{ node.ports.filter(p => p.type === 'output').length }}
+              <div v-if="node.ports.some(p => p.type === WorkflowPortType.output)">
+                {{ t('workflow.text.output') }}: {{ node.ports.filter(p => p.type === WorkflowPortType.output).length }}
               </div>
             </div>
           </div>
@@ -45,7 +45,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import type { WorkflowNode, WorkflowPanelEmits, WorkflowPanelProps } from './types'
+import { t } from '@/utils/locale'
+import { WorkflowNode, WorkflowPanelEmits, WorkflowPanelProps, WorkflowPortType } from './types'
 import ShadcnInput from '@/ui/input'
 import { randomUUID } from '@/utils/uuid.ts'
 

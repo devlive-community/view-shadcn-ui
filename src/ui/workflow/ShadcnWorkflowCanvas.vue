@@ -335,7 +335,7 @@ const startDragging = (node: WorkflowNode, event: MouseEvent) => {
 // 选择节点
 // Select the node
 const selectNode = (node: WorkflowNode) => {
-  emit('on-node-selected', node.id)
+  emit('on-node-selected', node)
 }
 
 // 处理鼠标释放

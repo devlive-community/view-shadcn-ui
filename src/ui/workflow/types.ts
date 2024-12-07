@@ -47,7 +47,7 @@ export type WorkflowNodePortEmits = {
 export interface WorkflowPanelProps
 {
     nodes: WorkflowNode[]
-    category: string[]
+    categories: string[]
 }
 
 export type WorkflowPanelEmits = {
@@ -66,7 +66,7 @@ export type WorkflowCanvasEmits = {
     (e: 'on-connection-created', connection: WorkflowConnection): void
     (e: 'on-connection-removed', connectionId: string): void
     (e: 'on-node-added', node: WorkflowNode): void
-    (e: 'on-node-selected', nodeId: string): void
+    (e: 'on-node-selected', node: WorkflowNode): void
 }
 
 export interface WorkflowConnection
@@ -76,38 +76,9 @@ export interface WorkflowConnection
     target: string
 }
 
-export const defaultNodes: WorkflowNode[] = [
-    {
-        id: 'start',
-        category: '输入节点',
-        position: { x: 0, y: 0 },
-        data: {},
-        description: '工作流的起始节点',
-        ports: [
-            { id: 'out1', type: 'output', label: '输出' }
-        ]
-    },
-    {
-        id: 'end',
-        category: '输出节点',
-        description: '工作流的结束节点',
-        position: { x: 0, y: 0 },
-        data: {},
-        ports: [
-            { id: 'in1', type: 'input', label: '输入' }
-        ]
-    },
-    {
-        id: 'process',
-        category: '处理节点',
-        description: '处理数据节点',
-        position: { x: 0, y: 0 },
-        data: {},
-        ports: [
-            { id: 'in12', type: 'input', label: '输入1' },
-            { id: 'in2', type: 'input', label: '输入2' },
-            { id: 'out1', type: 'output', label: '输出1' },
-            { id: 'out2', type: 'output', label: '输出2' }
-        ]
-    }
-]
+export interface WorkflowProps
+{
+    nodes: WorkflowNode[]
+    connections: WorkflowConnection[]
+    categories: string[]
+}

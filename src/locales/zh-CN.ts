@@ -107,5 +107,17 @@ export default {
             noData: '暂无数据',
             noDataDescription: '没有找到相关数据'
         }
+    },
+    workflow: {
+        placeholder: {
+            search: '搜索 ...',
+            selectNode: '请选择一个节点进行配置'
+        },
+        text: {
+            input: '输入',
+            output: '输出',
+            nodeConfigure: '节点配置',
+            nodeId: '节点 ID',
+        }
     }
 }

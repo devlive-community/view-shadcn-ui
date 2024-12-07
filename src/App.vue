@@ -1,7 +1,46 @@
 <template>
-  <ShadcnWorkflowEditor  />
+  <ShadcnWorkflowEditor :categories="categories" :nodes="nodes" :connections="[]"/>
 </template>
 
 <script setup lang="ts">
 import ShadcnWorkflowEditor from '@/ui/workflow/ShadcnWorkflowEditor.vue'
+import { WorkflowNode } from '@/ui/workflow/types.ts'
+
+const categories = ['Input Node', 'Transform Node', 'Output Node']
+
+const nodes: WorkflowNode[] = [
+  {
+    id: 'start',
+    category: 'Input Node',
+    position: { x: 0, y: 0 },
+    data: {},
+    description: 'Job start node',
+    ports: [
+      { id: 'out1', type: 'output', label: 'Input' }
+    ]
+  },
+  {
+    id: 'end',
+    category: 'Output Node',
+    description: 'Job end node',
+    position: { x: 0, y: 0 },
+    data: {},
+    ports: [
+      { id: 'in1', type: 'input', label: 'Output' }
+    ]
+  },
+  {
+    id: 'process',
+    category: 'Transform Node',
+    description: 'Job transform node',
+    position: { x: 0, y: 0 },
+    data: {},
+    ports: [
+      { id: 'in12', type: 'input', label: 'Input 1' },
+      { id: 'in22', type: 'input', label: 'Input 2' },
+      { id: 'out1', type: 'output', label: 'Output 1' },
+      { id: 'out2', type: 'output', label: 'Output 2' }
+    ]
+  }
+]
 </script>

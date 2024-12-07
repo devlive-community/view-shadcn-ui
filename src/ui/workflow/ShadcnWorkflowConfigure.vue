@@ -1,24 +1,16 @@
-<!-- ShadcnWorkflowConfigure.vue -->
 <template>
   <div class="p-4">
     <div v-if="selectedNode" class="space-y-4">
-      <h3 class="text-lg font-medium">节点配置</h3>
+      <h3 class="text-lg font-medium">{{ t('workflow.text.nodeConfigure') }}</h3>
 
       <div class="space-y-2">
-        <label class="block text-sm font-medium text-gray-700">
-          节点类型
-        </label>
-        <input
-            :value="selectedNode.type"
-            class="w-full px-3 py-2 border rounded-md bg-gray-50"
-            disabled
-            type="text"
-        >
+        <label class="block text-sm font-medium text-gray-700">{{ t('workflow.text.nodeId') }}</label>
+        <ShadcnInput v-model="selectedNode.id" disabled/>
       </div>
 
       <div class="space-y-2">
         <label class="block text-sm font-medium text-gray-700">
-          节点数据
+          Node Data
         </label>
         <textarea
             v-model="nodeData"
@@ -30,14 +22,16 @@
     </div>
 
     <div v-else class="text-center text-gray-500">
-      请选择一个节点进行配置
+      {{ t('workflow.placeholder.selectNode') }}
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
+import { t } from '@/utils/locale'
 import type { WorkflowNode } from './types'
+import ShadcnInput from '@/ui/input'
 
 const props = defineProps<{
   selectedNode?: WorkflowNode

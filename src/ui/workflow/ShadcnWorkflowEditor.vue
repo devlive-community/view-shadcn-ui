@@ -1,6 +1,6 @@
 <template>
   <div class="flex h-screen">
-    <ShadcnWorkflowPanel class="w-64 border-r" :category="categories" :nodes="defaultNodes"/>
+    <ShadcnWorkflowPanel class="w-64 border-r" :categories="props.categories" :nodes="props.nodes"/>
 
     <ShadcnWorkflowCanvas class="flex-1"
                           :nodes="nodes"
@@ -8,6 +8,7 @@
                           :selected-node-id="selectedNode?.id"
                           @on-node-moved="handleNodeMoved"
                           @on-node-added="handleNodeAdded"
+                          @on-node-selected="handleNodeSelected"
                           @on-connection-created="handleConnectionCreated"
                           @on-connection-removed="handleConnectionRemoved"/>
 
@@ -17,16 +18,20 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { defaultNodes, WorkflowConnection, WorkflowNode } from './types'
+import { WorkflowConnection, WorkflowNode, WorkflowProps } from './types'
 import ShadcnWorkflowPanel from './ShadcnWorkflowPanel.vue'
 import ShadcnWorkflowCanvas from './ShadcnWorkflowCanvas.vue'
 import ShadcnWorkflowConfigure from './ShadcnWorkflowConfigure.vue'
 
-const nodes = ref<WorkflowNode[]>([])
-const connections = ref<WorkflowConnection[]>([])
-const selectedNode = ref<WorkflowNode>()
+const props = withDefaults(defineProps<WorkflowProps>(), {
+  nodes: () => [],
+  connections: () => [],
+  categories: () => []
+})
 
-const categories = ['输入节点', '处理节点', '输出节点']
+const nodes = ref<WorkflowNode[]>([])
+const connections = ref<WorkflowConnection[]>(props.connections)
+const selectedNode = ref<WorkflowNode>()
 
 const handleNodeMoved = (node: WorkflowNode) => {
   const index = nodes.value.findIndex(n => n.id === node.id)
@@ -53,5 +58,9 @@ const handleNodeUpdated = (node: WorkflowNode) => {
   if (index !== -1) {
     nodes.value[index] = node
   }
+}
+
+const handleNodeSelected = (node: WorkflowNode) => {
+  selectedNode.value = node
 }
 </script>
