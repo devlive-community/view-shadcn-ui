@@ -1,9 +1,18 @@
 <template>
-  <ShadcnWorkflowEditor :categories="categories" :nodes="nodes" :connections="[]"/>
+  Current Workflow: {{ workflowState }}
+
+  <ShadcnWorkflowEditor v-model="workflowState" :categories="categories" :nodes="nodes" :connections="[]"/>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+
 const categories = ['Input Node', 'Transform Node', 'Output Node']
+
+const workflowState = ref({
+  nodes: [],
+  connections: []
+})
 
 const nodes: [] = [
   {

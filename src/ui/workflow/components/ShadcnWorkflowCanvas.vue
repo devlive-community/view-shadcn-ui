@@ -8,6 +8,7 @@
          }"
          @mousemove="handleMouseMove"
          @mouseup="handleMouseUp"
+         @mouseleave="handleMouseLeave"
          @dragover.prevent="handleDragOver"
          @drop.prevent="handleDrop">
       <!-- Background Grid Pattern -->
@@ -404,6 +405,14 @@ const selectNode = (node: WorkflowNode) => {
 const handleMouseUp = () => {
   draggingNode.value = null
   isNodeDragging.value = false
+}
+
+// 鼠标离开画布的处理函数
+// Mouse leave handler
+const handleMouseLeave = () => {
+  if (draggingNode.value || isConnecting.value) {
+    handleMouseUp()
+  }
 }
 
 // 处理拖拽悬停

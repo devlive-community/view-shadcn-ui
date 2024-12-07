@@ -91,7 +91,21 @@ export interface WorkflowConnection
 
 export interface WorkflowProps
 {
+    modelValue?: {
+        nodes: WorkflowNode[]
+        connections: WorkflowConnection[]
+    }
     nodes: WorkflowNode[]
     connections: WorkflowConnection[]
     categories: string[]
 }
+
+export type WorkflowEmits = {
+    (e: 'update:modelValue', value: { nodes: WorkflowNode[], connections: WorkflowConnection[] }): void
+    (e: 'on-node-moved', node: WorkflowNode): void
+    (e: 'on-node-added', node: WorkflowNode): void
+    (e: 'on-node-selected', node: WorkflowNode): void
+    (e: 'on-connection-created', connection: WorkflowConnection): void
+    (e: 'on-connection-removed', connectionId: string): void
+}
+

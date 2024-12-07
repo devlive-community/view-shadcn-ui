@@ -3,8 +3,8 @@
     <ShadcnWorkflowPanel class="w-64 border-r" :categories="props.categories" :nodes="props.nodes"/>
 
     <ShadcnWorkflowCanvas class="flex-1"
-                          :nodes="nodes"
-                          :connections="connections"
+                          :nodes="localNodes"
+                          :connections="localConnections"
                           :selected-node-id="selectedNode?.id"
                           @on-node-moved="handleNodeMoved"
                           @on-node-added="handleNodeAdded"
@@ -17,8 +17,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { WorkflowConnection, WorkflowNode, WorkflowProps } from './types'
+import { ref, watch } from 'vue'
+import { WorkflowConnection, WorkflowEmits, WorkflowNode, WorkflowProps } from './types'
 import ShadcnWorkflowPanel from './components/ShadcnWorkflowPanel.vue'
 import ShadcnWorkflowCanvas from './components/ShadcnWorkflowCanvas.vue'
 import ShadcnWorkflowConfigure from './components/ShadcnWorkflowConfigure.vue'
@@ -26,41 +26,62 @@ import ShadcnWorkflowConfigure from './components/ShadcnWorkflowConfigure.vue'
 const props = withDefaults(defineProps<WorkflowProps>(), {
   nodes: () => [],
   connections: () => [],
-  categories: () => []
+  categories: () => [],
+  modelValue: () => ({ nodes: [], connections: [] })
 })
 
-const nodes = ref<WorkflowNode[]>([])
-const connections = ref<WorkflowConnection[]>(props.connections)
+const emit = defineEmits<WorkflowEmits>()
+
+const localNodes = ref<WorkflowNode[]>([])
+const localConnections = ref<WorkflowConnection[]>([])
 const selectedNode = ref<WorkflowNode>()
 
-const handleNodeMoved = (node: WorkflowNode) => {
-  const index = nodes.value.findIndex(n => n.id === node.id)
-  if (index !== -1) {
-    nodes.value[index] = node
+// Watch for external changes
+watch(() => props.modelValue, (newValue) => {
+  if (newValue) {
+    localNodes.value = newValue.nodes
+    localConnections.value = newValue.connections
   }
+}, { deep: true })
+
+// Watch for internal changes and emit updates
+watch([localNodes, localConnections], ([nodes, connections]) => {
+  emit('update:modelValue', { nodes, connections })
+}, { deep: true })
+
+const handleNodeMoved = (node: WorkflowNode) => {
+  const index = localNodes.value.findIndex(n => n.id === node.id)
+  if (index !== -1) {
+    localNodes.value[index] = node
+  }
+  emit('on-node-moved', node)
 }
 
 const handleNodeAdded = (node: WorkflowNode) => {
-  nodes.value.push(node)
+  localNodes.value.push(node)
   selectedNode.value = node
+  emit('on-node-added', node)
 }
 
 const handleConnectionCreated = (connection: WorkflowConnection) => {
-  connections.value.push(connection)
+  localConnections.value.push(connection)
+  emit('on-connection-created', connection)
 }
 
 const handleConnectionRemoved = (connectionId: string) => {
-  connections.value = connections.value.filter(conn => conn.id !== connectionId)
+  localConnections.value = localConnections.value.filter(conn => conn.id !== connectionId)
+  emit('on-connection-removed', connectionId)
 }
 
 const handleNodeUpdated = (node: WorkflowNode) => {
-  const index = nodes.value.findIndex(n => n.id === node.id)
+  const index = localNodes.value.findIndex(n => n.id === node.id)
   if (index !== -1) {
-    nodes.value[index] = node
+    localNodes.value[index] = node
   }
 }
 
 const handleNodeSelected = (node: WorkflowNode) => {
   selectedNode.value = node
+  emit('on-node-selected', node)
 }
 </script>
