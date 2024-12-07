@@ -1,11 +1,25 @@
 <template>
-  <div v-for="n in 20" :key="n" class="p-4">
-    <h2 class="text-xl font-bold mb-2">Section {{ n }}</h2>
-    <p>This is test content。</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  </div>
-  <ShadcnBackTop target="#scrollContainer"/>
+  <ShadcnWorkflowEditor
+      v-model:nodes="nodes"
+      v-model:edges="edges"
+      @node-select="handleNodeSelect"
+      @edge-select="handleEdgeSelect"
+  />
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+import { Edge } from '@/ui/workflow/types.ts'
+import ShadcnWorkflowEditor from '@/ui/workflow/ShadcnWorkflowEditor.vue'
+
+const nodes = ref<Node[]>([])
+const edges = ref<Edge[]>([])
+
+const handleNodeSelect = (node: Node) => {
+  console.log('Selected node:', node)
+}
+
+const handleEdgeSelect = (edge: Edge) => {
+  console.log('Selected edge:', edge)
+}
 </script>
