@@ -53,18 +53,18 @@
 
       <svg class="absolute inset-0"
            :style="{
-              width: '100%',
-              height: '100%',
-              overflow: 'visible',
-              pointerEvents: 'none'
-        }">
+                width: '100%',
+                height: '100%',
+                overflow: 'visible',
+                pointerEvents: 'none'
+           }">
         <g>
           <!-- 活动连接线 -->
           <!-- Active connection line -->
           <path v-if="activeConnection"
                 :class="['animate-pulse',
                         activeConnection.isValid ? 'stroke-blue-500' : 'stroke-red-500'
-              ]"
+                ]"
                 fill="none"
                 stroke-dasharray="4"
                 stroke-width="2"
@@ -72,12 +72,24 @@
 
           <!-- 已建立的连接线 -->
           <!-- Existing connections -->
-          <path v-for="connection in connections"
-                class="stroke-gray-400"
-                fill="none"
-                stroke-width="2"
-                :key="connection.id"
-                :d="getConnectionPath(connection)"/>
+          <g v-for="connection in connections" :key="connection.id">
+            <!-- 连接线的点击区域 -->
+            <!-- Connection line click area -->
+            <path stroke="transparent"
+                  class="cursor-pointer hover:stroke-blue-200"
+                  style="pointer-events: all"
+                  stroke-width="4"
+                  fill="none"
+                  :d="getConnectionPath(connection)"
+                  @click.stop="selectConnection(connection)"/>
+
+            <!-- 实际显示的连接线 -->
+            <!-- Actual connection line -->
+            <path fill="none"
+                  stroke-width="2"
+                  :d="getConnectionPath(connection)"
+                  :class="selectedConnectionId === connection.id ? 'stroke-blue-500' : 'stroke-gray-400'"/>
+          </g>
         </g>
       </svg>
     </div>
@@ -117,6 +129,7 @@ const activeConnection = ref<{
   mousePosition: { x: number; y: number }
   isValid: boolean
 } | null>(null)
+const selectedConnectionId = ref<string | null>(null)
 
 // 获取端口的实际位置
 // Get the actual position of the port
@@ -390,6 +403,7 @@ const startDragging = (node: WorkflowNode, event: MouseEvent) => {
     return
   }
 
+  selectedConnectionId.value = null
   isNodeDragging.value = true
   draggingNode.value = node
   dragOffset.value = {
@@ -401,6 +415,7 @@ const startDragging = (node: WorkflowNode, event: MouseEvent) => {
 // 选择节点
 // Select the node
 const selectNode = (node: WorkflowNode) => {
+  selectedConnectionId.value = null
   emit('on-node-selected', node)
 }
 
@@ -470,11 +485,29 @@ const handleDrop = async (event: DragEvent) => {
   }
 }
 
+const selectConnection = (connection: WorkflowConnection) => {
+  selectedConnectionId.value = connection.id
+  // @ts-ignore
+  emit('on-node-selected', null)
+}
+
 // 处理键盘事件
 // Handle keyboard events
 const handleKeyDown = (event: KeyboardEvent) => {
-  if ((event.key === 'Delete' || event.key === 'Backspace') && props.selectedNodeId) {
-    deleteSelectedNode()
+  if ((event.key === 'Delete' || event.key === 'Backspace')) {
+    // 删除选中的节点
+    // Delete the selected node
+    if (props.selectedNodeId) {
+      deleteSelectedNode()
+      return
+    }
+
+    // 删除选中的连接线
+    // Delete the selected connection
+    if (selectedConnectionId.value) {
+      emit('on-connection-removed', selectedConnectionId.value)
+      selectedConnectionId.value = null
+    }
   }
 }
 
@@ -495,8 +528,8 @@ const deleteSelectedNode = () => {
   // 找到与该节点相关的所有连接
   // Find all connections related to the node
   const relatedConnections = props.connections.filter(connection => {
-    const nodePortIds = nodeToDelete.ports.map(port => port.id)
-    return nodePortIds.includes(connection.source) || nodePortIds.includes(connection.target)
+    return connection.source.startsWith(nodeToDelete.id) ||
+        connection.target.startsWith(nodeToDelete.id)
   })
 
   // 删除相关连接

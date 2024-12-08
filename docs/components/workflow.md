@@ -1,13 +1,24 @@
-<template>
-  Current Workflow: {{ workflowState }}
+---
+title: Shadcn Workflow
+---
 
+# Introduction
+
+This document is mainly used to describe some features and usage of the ShadcnWorkflow component.
+
+## Usage
+
+::: raw
+
+<CodeRunner title="Usage">
   <ShadcnWorkflowEditor v-model="workflowState"
                         :categories="categories"
                         :nodes="nodes"
-                        :connections="[]"
-                        :search-text="searchText">
-  </ShadcnWorkflowEditor>
-</template>
+                        :connections="[]"/>
+</CodeRunner>
+
+:::
+
 
 <script setup lang="ts">
 import { ref } from 'vue'

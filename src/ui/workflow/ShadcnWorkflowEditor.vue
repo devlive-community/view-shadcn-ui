@@ -1,9 +1,10 @@
 <template>
-  <div class="flex h-screen">
-    <ShadcnWorkflowPanel :categories="props.categories"
+  <div class="flex w-full h-screen">
+    <ShadcnWorkflowPanel class="border-r"
+                         :categories="props.categories"
                          :nodes="props.nodes"
                          :search-text="props.searchText"
-                         class="w-64 border-r"
+                         :style="{ width: calcSize(panelWidth) }"
                          @update:search-text="(text: string) => emit('update:searchText', text)">
       <template #search>
         <slot name="panel-search"/>
@@ -37,7 +38,10 @@
       </template>
     </ShadcnWorkflowCanvas>
 
-    <ShadcnWorkflowConfigure class="w-80 border-l" :selected-node="selectedNode" @update:node="handleNodeUpdated"/>
+    <ShadcnWorkflowConfigure class="border-l"
+                             :selected-node="selectedNode"
+                             :style="{ width: calcSize(configureWidth) }"
+                             @update:node="handleNodeUpdated"/>
   </div>
 </template>
 
@@ -47,13 +51,16 @@ import { WorkflowConnection, WorkflowEmits, WorkflowNode, WorkflowProps } from '
 import ShadcnWorkflowPanel from './components/ShadcnWorkflowPanel.vue'
 import ShadcnWorkflowCanvas from './components/ShadcnWorkflowCanvas.vue'
 import ShadcnWorkflowConfigure from './components/ShadcnWorkflowConfigure.vue'
+import { calcSize } from '@/utils/common.ts'
 
 const props = withDefaults(defineProps<WorkflowProps>(), {
   nodes: () => [],
   connections: () => [],
   categories: () => [],
   modelValue: () => ({ nodes: [], connections: [] }),
-  searchText: ''
+  searchText: '',
+  panelWidth: 250,
+  configureWidth: 300
 })
 
 const emit = defineEmits<WorkflowEmits>()

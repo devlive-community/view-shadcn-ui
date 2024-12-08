@@ -204,6 +204,7 @@ export default {
                 (() => {
                     const items = [
                         {text: 'Data Builder <span class="VPBadge tip">2024.5.0</span>', link: 'data-builder'},
+                        {text: 'Workflow <span class="VPBadge tip">2024.5.1</span>', link: 'workflow'},
                     ]
                     return {
                         text: `Data [ ${items.length} ]`,

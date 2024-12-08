@@ -31,6 +31,12 @@ export interface WorkflowConnection
     target: string
 }
 
+export interface WorkflowCategory
+{
+    label: string
+    value: string
+}
+
 export interface WorkflowCanvasConfigure
 {
     width: number
@@ -59,7 +65,7 @@ export type WorkflowNodePortEmits = {
 export interface WorkflowPanelProps
 {
     nodes: WorkflowNode[]
-    categories: string[]
+    categories: WorkflowCategory[]
     searchText: string
 }
 
@@ -100,8 +106,10 @@ export interface WorkflowProps
     }
     nodes: WorkflowNode[]
     connections: WorkflowConnection[]
-    categories: string[],
+    categories: WorkflowCategory[],
     searchText?: string
+    panelWidth?: number | string
+    configureWidth?: number | string
 }
 
 export type WorkflowEmits = {

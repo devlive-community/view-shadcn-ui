@@ -11,18 +11,17 @@
     <!-- 分类列表 -->
     <!-- Category list -->
     <div class="flex-1 overflow-y-auto">
-      <div v-for="category in categories" :key="category" class="mb-4">
+      <div v-for="category in categories" :key="category.value" class="mb-4">
         <!-- 分类标题 slot -->
         <!-- Category title slot -->
         <slot :category="category" name="category-header">
-          <div class="px-4 py-2 font-medium text-gray-600 bg-gray-50">{{ category }}</div>
+          <div class="px-4 py-2 font-medium text-gray-600 bg-gray-50">{{ category.label }}</div>
         </slot>
 
         <!-- 节点列表 -->
         <!-- Node list -->
         <div class="p-2">
-          <div v-for="node in filteredNodes(category)"
-               :key="node.id">
+          <div v-for="node in filteredNodes(category.value)" :key="node.id">
             <!-- 节点内容 slot -->
             <!-- Node content slot -->
             <slot :node="node" :onDragStart="handleDragStart" name="node">
