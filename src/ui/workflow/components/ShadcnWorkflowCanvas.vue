@@ -29,8 +29,9 @@
            :key="node.id"
            :data-node-id="node.id"
            :class="{
-              'ring-2 ring-blue-500': selectedNodeId === node.id,
-              'cursor-move': !isConnecting
+                  'ring-2 ring-blue-500': selectedNodeId === node.id,
+                  'cursor-move': !isConnecting,
+                  'ring-2 ring-red-500 animate-pulse': node?.ports.some(port => port?.validated?.valid === false)
            }"
            :style="{
                 transform: `translate(${calcSize(node.position?.x)}, ${calcSize(node.position?.y)})`
@@ -48,7 +49,8 @@
                                    :disabled="isNodeDragging"
                                    :connections="connections"
                                    @on-connection-start="(event, port) => handleConnectionStart(event, port, node)"
-                                   @on-connection-end="(event, port) => handleConnectionEnd(event, port, node)"/>
+                                   @on-connection-end="(event, port) => handleConnectionEnd(event, port, node)"
+                                   @on-validation-change="handleNodeValidationChange"/>
         </div>
       </div>
 
@@ -99,6 +101,7 @@
 
 <script setup lang="ts">
 import { nextTick, ref } from 'vue'
+import { t } from '@/utils/locale'
 import { WorkflowCanvasEmits, WorkflowCanvasProps, WorkflowConnection, WorkflowNode, WorkflowPort, WorkflowPortType } from '../types'
 import ShadcnWorkflowNodePorts from './ShadcnWorkflowNodePorts.vue'
 import { calcSize } from '@/utils/common.ts'
@@ -469,7 +472,27 @@ const handleDrop = async (event: DragEvent) => {
       position: dropPosition
     }
 
-    emit('on-node-added', newNode)
+    const validatedPorts = newNode.ports.map(port => {
+      if (!port.required) {
+        return port
+      }
+
+      return {
+        ...port,
+        validated: {
+          valid: false,
+          message: t('workflow.validated.required')
+        }
+      }
+    })
+
+    const validatedNode = {
+      ...newNode,
+      ports: validatedPorts
+    }
+
+    // @ts-ignore
+    emit('on-node-added', validatedNode)
 
     await nextTick()
 
@@ -547,5 +570,41 @@ const deleteSelectedNode = () => {
   // Clear selection
   // @ts-ignore
   emit('on-node-selected', null)
+}
+
+const handleNodeValidationChange = (validatedNode: WorkflowNode) => {
+  // 首先检查节点是否真的需要更新
+  // First, check if the node really needs to be updated
+  const currentNode = props.nodes.find(n => n.id === validatedNode.id)
+  if (!currentNode) {
+    return
+  }
+
+  // 检查端口状态是否真的发生了变化
+  // Check if the port status really changed
+  const hasPortChanges = validatedNode.ports.some((newPort, index) => {
+    const oldPort = currentNode.ports[index]
+    if (!oldPort) {
+      return true
+    }
+
+    // 只比较验证状态
+    // Only compare validation status
+    return JSON.stringify(newPort.validated) !== JSON.stringify(oldPort.validated)
+  })
+
+  // 只有在真正需要更新时才发出事件
+  // Only emit the event if the node really needs to be updated
+  if (hasPortChanges) {
+    emit('on-node-updated', {
+      ...currentNode,
+      ports: validatedNode.ports.map(port => ({
+        ...port,
+        // 保持原有的 ID，不要重新生成
+        // Preserve the original ID
+        id: port.id.split('-').pop()!
+      }))
+    })
+  }
 }
 </script>

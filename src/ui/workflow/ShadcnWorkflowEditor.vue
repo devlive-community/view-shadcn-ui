@@ -32,7 +32,8 @@
                           @on-node-selected="handleNodeSelected"
                           @on-connection-created="handleConnectionCreated"
                           @on-connection-removed="handleConnectionRemoved"
-                          @on-node-deleted="handleNodeDeleted">
+                          @on-node-deleted="handleNodeDeleted"
+                          @on-node-updated="handleNodeUpdated">
       <template #node="{ node }">
         <slot name="canvas-node" :node="node"/>
       </template>

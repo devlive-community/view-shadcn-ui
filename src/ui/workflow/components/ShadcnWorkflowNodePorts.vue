@@ -54,24 +54,25 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 import { t } from '@/utils/locale'
 import { WorkflowNodePortEmits, WorkflowNodePortProps, WorkflowPort, WorkflowPortType, WorkflowPortValidatedStatus } from '../types'
 import ShadcnTooltip from '@/ui/tooltip'
 
+const emit = defineEmits<WorkflowNodePortEmits>()
 const props = withDefaults(defineProps<WorkflowNodePortProps>(), {
   disabled: false,
   selected: false,
   connections: () => []
 })
 
-const emit = defineEmits<WorkflowNodePortEmits>()
-
 const inputPorts = computed(() => {
   return props.node.ports
               .filter(port => port.type === WorkflowPortType.input)
               .map(port => {
-                const portId = `${ props.node.id }-${ port.id }`
+                const portId = port.id.startsWith(`${props.node.id}-`)
+                    ? port.id
+                    : `${props.node.id}-${port.id}`
                 const isConnected = props.connections?.some(conn =>
                     conn.target === portId || conn.source === portId
                 ) ?? false
@@ -94,7 +95,9 @@ const outputPorts = computed(() => {
   return props.node.ports
               .filter(port => port.type === WorkflowPortType.output)
               .map(port => {
-                const portId = `${ props.node.id }-${ port.id }`
+                const portId = port.id.startsWith(`${props.node.id}-`)
+                    ? port.id
+                    : `${props.node.id}-${port.id}`
                 const isConnected = props.connections?.some(conn =>
                     conn.target === portId || conn.source === portId
                 ) ?? false
@@ -112,6 +115,20 @@ const outputPorts = computed(() => {
                 return portData
               })
 })
+
+const validatedNode = computed(() => {
+  const validatedPorts = [...inputPorts.value, ...outputPorts.value]
+  return {
+    ...props.node,
+    ports: validatedPorts
+  }
+})
+
+watch(
+    validatedNode,
+    (newNode) => emit('on-validation-change', newNode),
+    { deep: true }
+)
 
 const handlePortMouseDown = (event: MouseEvent, port: WorkflowPort) => {
   if (props.disabled) {

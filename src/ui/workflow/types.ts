@@ -70,6 +70,7 @@ export type WorkflowNodePortEmits = {
     (e: 'on-connection-start', event: MouseEvent, port: WorkflowPort): void
     (e: 'on-connection-end', event: MouseEvent, port: WorkflowPort): void
     (e: 'on-connection-drag', event: MouseEvent, port: WorkflowPort): void
+    (e: 'on-validation-change', node: WorkflowNode): void
 }
 
 export interface WorkflowPanelProps
@@ -99,6 +100,7 @@ export type WorkflowCanvasEmits = {
     (e: 'on-node-added', node: WorkflowNode): void
     (e: 'on-node-selected', node: WorkflowNode): void
     (e: 'on-node-deleted', node: WorkflowNode): void
+    (e: 'on-node-updated', node: WorkflowNode): void
 }
 
 export interface WorkflowConnection
