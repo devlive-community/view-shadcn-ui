@@ -37,6 +37,7 @@ export interface WorkflowPort
 export interface WorkflowNode
 {
     id: string
+    tid: string
     label: string
     category: string
     ports: WorkflowPort[]
@@ -54,6 +55,7 @@ export interface WorkflowConnection
     id: string
     source: string
     target: string
+    line?: string
 }
 
 export interface WorkflowCategory
@@ -158,4 +160,17 @@ export interface WorkflowConfigureProps
 
 export type WorkflowConfigureEmits = {
     (e: 'update:node', node: WorkflowNode): void
+}
+
+export interface WorkflowData
+{
+    nodes: WorkflowNode[]
+    connections: WorkflowConnection[]
+}
+
+export interface WorkflowViewProps
+{
+    nodes: WorkflowNode[]
+    data: WorkflowData
+    canvas?: WorkflowCanvasConfigure
 }

@@ -82,6 +82,8 @@ watch(() => props.modelValue, (newValue) => {
 watch([localNodes, localConnections], ([nodes, connections]) => {
   const simplifiedNodes = nodes.map(node => ({
     id: node.id,
+    tid: node.tid,
+    category: node.category,
     position: node.position,
     data: node.data && node.data.length > 0 ? node.data.reduce((acc, curr) => ({ ...acc, ...curr }), {}) : {}
   }))

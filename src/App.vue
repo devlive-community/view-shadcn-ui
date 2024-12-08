@@ -1,16 +1,20 @@
 <template>
-  Current Workflow: {{ workflowState }}
-
+  {{ workflowState }}
   <ShadcnWorkflowEditor v-model="workflowState"
                         :categories="categories"
                         :nodes="nodes"
                         :connections="[]"
                         :search-text="searchText">
   </ShadcnWorkflowEditor>
+
+  <ShadcnWorkflowView :nodes="nodes" :data="data">
+  </ShadcnWorkflowView>
+
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import ShadcnWorkflowView from '@/ui/workflow/ShadcnWorkflowView.vue'
 
 const categories = [
   {
@@ -27,10 +31,39 @@ const categories = [
   }
 ]
 const searchText = ref('')
-const workflowState = ref({
-  nodes: [],
-  connections: []
-})
+const workflowState = ref({})
+
+const data = ref({
+  'nodes': [
+    {
+      'id': '646de380-ec15-411c-a830-3bf4c5515451',
+      'tid': 'start',
+      'category': 'input',
+      'position': {
+        'x': 160,
+        'y': 121
+      },
+      'data': {}
+    },
+    {
+      'id': '109ed659-2909-41bd-9530-12010a539e3f',
+      'tid': 'end',
+      'category': 'output',
+      'position': {
+        'x': 396,
+        'y': 340
+      },
+      'data': {}
+    }
+  ],
+  'connections': [
+    {
+      'id': '7f4fe994-c2ef-4978-b1c8-f3c94dae79ef',
+      'source': '646de380-ec15-411c-a830-3bf4c5515451-out1',
+      'target': '109ed659-2909-41bd-9530-12010a539e3f-in1'
+    }
+  ]
+} as any)
 
 const nodes: any[] = [
   {

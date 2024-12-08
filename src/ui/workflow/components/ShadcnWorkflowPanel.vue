@@ -93,6 +93,7 @@ const handleDragStart = (node: WorkflowNode, event: DragEvent) => {
     const newNode = {
       ...node,
       id: randomUUID(),
+      tid: node.id,
       position: { x: 0, y: 0 }
     }
 
