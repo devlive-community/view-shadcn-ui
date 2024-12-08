@@ -30,7 +30,12 @@
                           @on-node-added="handleNodeAdded"
                           @on-node-selected="handleNodeSelected"
                           @on-connection-created="handleConnectionCreated"
-                          @on-connection-removed="handleConnectionRemoved"/>
+                          @on-connection-removed="handleConnectionRemoved"
+                          @on-node-deleted="handleNodeDeleted">
+      <template #node="{ node }">
+        <slot name="canvas-node" :node="node"/>
+      </template>
+    </ShadcnWorkflowCanvas>
 
     <ShadcnWorkflowConfigure class="w-80 border-l" :selected-node="selectedNode" @update:node="handleNodeUpdated"/>
   </div>
@@ -104,5 +109,10 @@ const handleNodeUpdated = (node: WorkflowNode) => {
 const handleNodeSelected = (node: WorkflowNode) => {
   selectedNode.value = node
   emit('on-node-selected', node)
+}
+
+const handleNodeDeleted = (node: WorkflowNode) => {
+  localNodes.value = localNodes.value.filter(n => n.id !== node.id)
+  emit('on-node-deleted', node)
 }
 </script>

@@ -6,11 +6,6 @@
                         :nodes="nodes"
                         :connections="[]"
                         :search-text="searchText">
-    <template #panel-search>
-      <div class="p-4 border-b border-gray-200">
-        <ShadcnInput v-model="searchText" placeholder="Search"/>
-      </div>
-    </template>
   </ShadcnWorkflowEditor>
 </template>
 

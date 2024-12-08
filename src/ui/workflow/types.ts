@@ -82,6 +82,7 @@ export type WorkflowCanvasEmits = {
     (e: 'on-connection-removed', connectionId: string): void
     (e: 'on-node-added', node: WorkflowNode): void
     (e: 'on-node-selected', node: WorkflowNode): void
+    (e: 'on-node-deleted', node: WorkflowNode): void
 }
 
 export interface WorkflowConnection
@@ -109,6 +110,7 @@ export type WorkflowEmits = {
     (e: 'on-node-moved', node: WorkflowNode): void
     (e: 'on-node-added', node: WorkflowNode): void
     (e: 'on-node-selected', node: WorkflowNode): void
+    (e: 'on-node-deleted', node: WorkflowNode): void
     (e: 'on-connection-created', connection: WorkflowConnection): void
     (e: 'on-connection-removed', connectionId: string): void
 }

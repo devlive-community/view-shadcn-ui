@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full overflow-auto">
+  <div class="w-full h-full overflow-auto outline-none" tabindex="0" @keydown="handleKeyDown">
     <div ref="canvasRef"
          class="relative bg-gray-50"
          :style="{
@@ -31,14 +31,18 @@
            :class="{
               'ring-2 ring-blue-500': selectedNodeId === node.id,
               'cursor-move': !isConnecting
-         }"
+           }"
            :style="{
-              transform: `translate(${calcSize(node.position?.x)}, ${calcSize(node.position?.y)})`
-         }"
+                transform: `translate(${calcSize(node.position?.x)}, ${calcSize(node.position?.y)})`
+           }"
            @click="selectNode(node)"
            @mousedown="startDragging(node, $event)">
         <div class="p-2">
-          <div class="text-xs text-gray-500 py-1.5 mb-2 border-b">{{ node.category }}</div>
+          <slot name="node" :node="node">
+            <div class="p-2">
+              <div class="text-xs text-gray-500 py-1.5 mb-2 border-b">{{ node.category }}</div>
+            </div>
+          </slot>
 
           <ShadcnWorkflowNodePorts :node="node"
                                    :disabled="isNodeDragging"
@@ -464,5 +468,50 @@ const handleDrop = async (event: DragEvent) => {
   catch (e) {
     console.error('Error parsing drop data:', e)
   }
+}
+
+// 处理键盘事件
+// Handle keyboard events
+const handleKeyDown = (event: KeyboardEvent) => {
+  if ((event.key === 'Delete' || event.key === 'Backspace') && props.selectedNodeId) {
+    deleteSelectedNode()
+  }
+}
+
+// 删除选中的节点
+// Delete the selected node
+const deleteSelectedNode = () => {
+  if (!props.selectedNodeId) {
+    return
+  }
+
+  // 找到要删除的节点
+  // Find the node to be deleted
+  const nodeToDelete = props.nodes.find(node => node.id === props.selectedNodeId)
+  if (!nodeToDelete) {
+    return
+  }
+
+  // 找到与该节点相关的所有连接
+  // Find all connections related to the node
+  const relatedConnections = props.connections.filter(connection => {
+    const nodePortIds = nodeToDelete.ports.map(port => port.id)
+    return nodePortIds.includes(connection.source) || nodePortIds.includes(connection.target)
+  })
+
+  // 删除相关连接
+  // Delete related connections
+  relatedConnections.forEach(connection => {
+    emit('on-connection-removed', connection.id)
+  })
+
+  // 删除节点
+  // Delete the node
+  emit('on-node-deleted', nodeToDelete)
+
+  // 清除选中状态
+  // Clear selection
+  // @ts-ignore
+  emit('on-node-selected', null)
 }
 </script>
