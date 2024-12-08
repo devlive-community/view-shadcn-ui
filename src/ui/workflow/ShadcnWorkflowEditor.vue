@@ -80,7 +80,14 @@ watch(() => props.modelValue, (newValue) => {
 
 // Watch for internal changes and emit updates
 watch([localNodes, localConnections], ([nodes, connections]) => {
-  emit('update:modelValue', { nodes, connections })
+  const simplifiedNodes = nodes.map(node => ({
+    id: node.id,
+    position: node.position,
+    data: node.data && node.data.length > 0 ? node.data.reduce((acc, curr) => ({ ...acc, ...curr }), {}) : {}
+  }))
+  const data = { nodes: simplifiedNodes, connections: connections }
+
+  emit('update:modelValue', { nodes, connections, data })
 }, { deep: true })
 
 const handleNodeMoved = (node: WorkflowNode) => {

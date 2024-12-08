@@ -38,7 +38,14 @@ const nodes: any[] = [
     label: 'Start',
     category: 'input',
     position: { x: 0, y: 0 },
-    data: {},
+    configure: [
+      {
+        field: 'name',
+        label: 'Name',
+        type: 'input',
+        required: true
+      }
+    ],
     description: 'Job start node',
     ports: [
       { id: 'out1', type: 'output', label: 'Output', required: true, message: 'Input is required' }
@@ -50,7 +57,6 @@ const nodes: any[] = [
     category: 'output',
     description: 'Job end node',
     position: { x: 0, y: 0 },
-    data: {},
     ports: [
       { id: 'in1', type: 'input', label: 'Input', required: true }
     ]
@@ -61,7 +67,6 @@ const nodes: any[] = [
     category: 'transform',
     description: 'Job transform node',
     position: { x: 0, y: 0 },
-    data: {},
     ports: [
       { id: 'in12', type: 'input', label: 'Input 1' },
       { id: 'in22', type: 'input', label: 'Input 2' },

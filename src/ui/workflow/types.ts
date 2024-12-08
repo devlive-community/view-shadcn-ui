@@ -4,6 +4,21 @@ export enum WorkflowPortType
     output = 'output'
 }
 
+export enum WorkflowNodeType
+{
+    input = 'input',
+    switch = 'switch',
+    radio = 'radio',
+    checkbox = 'checkbox',
+    select = 'select',
+    textarea = 'textarea',
+    text = 'text',
+    number = 'number',
+    slider = 'slider',
+    toggle = 'toggle',
+    upload = 'upload'
+}
+
 export interface WorkflowPortValidatedStatus
 {
     valid: boolean
@@ -29,7 +44,8 @@ export interface WorkflowNode
         x: number
         y: number
     }
-    data?: Record<string, any>
+    configure?: Array<any>
+    data?: Array<Record<string, any>>
     description?: string
 }
 
@@ -125,7 +141,7 @@ export interface WorkflowProps
 }
 
 export type WorkflowEmits = {
-    (e: 'update:modelValue', value: { nodes: WorkflowNode[], connections: WorkflowConnection[] }): void
+    (e: 'update:modelValue', value: { nodes: WorkflowNode[], connections: WorkflowConnection[], data?: any }): void
     (e: 'update:searchText', value: string): void
     (e: 'on-node-moved', node: WorkflowNode): void
     (e: 'on-node-added', node: WorkflowNode): void
@@ -135,3 +151,11 @@ export type WorkflowEmits = {
     (e: 'on-connection-removed', connectionId: string): void
 }
 
+export interface WorkflowConfigureProps
+{
+    selectedNode?: WorkflowNode
+}
+
+export type WorkflowConfigureEmits = {
+    (e: 'update:node', node: WorkflowNode): void
+}

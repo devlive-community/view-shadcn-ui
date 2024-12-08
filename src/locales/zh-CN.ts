@@ -117,6 +117,7 @@ export default {
             input: '输入',
             output: '输出',
             nodeConfigure: '节点配置',
+            dataConfigure: '数据配置',
             nodeId: '节点 ID',
         },
         validated: {

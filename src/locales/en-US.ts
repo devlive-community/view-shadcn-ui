@@ -117,6 +117,7 @@ export default {
             input: 'Input',
             output: 'Output',
             nodeConfigure: 'Node configure',
+            dataConfigure: 'Data configure',
             nodeId: 'Node ID',
         },
         validated: {

@@ -31,7 +31,7 @@
            :class="{
                   'ring-2 ring-blue-500': selectedNodeId === node.id,
                   'cursor-move': !isConnecting,
-                  'ring-2 ring-red-500 animate-pulse': node?.ports.some(port => port?.validated?.valid === false)
+                  'before:absolute before:inset-[0px] before:rounded-lg before:ring-2 before:ring-red-500 before:animate-pulse': node?.ports.some(port => port?.validated?.valid === false)
            }"
            :style="{
                 transform: `translate(${calcSize(node.position?.x)}, ${calcSize(node.position?.y)})`
