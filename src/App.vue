@@ -1,20 +1,30 @@
 <template>
   Current Workflow: {{ workflowState }}
 
-  <ShadcnWorkflowEditor v-model="workflowState" :categories="categories" :nodes="nodes" :connections="[]"/>
+  <ShadcnWorkflowEditor v-model="workflowState"
+                        :categories="categories"
+                        :nodes="nodes"
+                        :connections="[]"
+                        :search-text="searchText">
+    <template #panel-search>
+      <div class="p-4 border-b border-gray-200">
+        <ShadcnInput v-model="searchText" placeholder="Search"/>
+      </div>
+    </template>
+  </ShadcnWorkflowEditor>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 
 const categories = ['Input Node', 'Transform Node', 'Output Node']
-
+const searchText = ref('')
 const workflowState = ref({
   nodes: [],
   connections: []
 })
 
-const nodes: [] = [
+const nodes: any[] = [
   {
     id: 'start',
     category: 'Input Node',

@@ -60,9 +60,11 @@ export interface WorkflowPanelProps
 {
     nodes: WorkflowNode[]
     categories: string[]
+    searchText: string
 }
 
 export type WorkflowPanelEmits = {
+    (e: 'update:searchText', value: string): void
     (e: 'on-node-drag-start', node: WorkflowNode): void
 }
 
@@ -97,11 +99,13 @@ export interface WorkflowProps
     }
     nodes: WorkflowNode[]
     connections: WorkflowConnection[]
-    categories: string[]
+    categories: string[],
+    searchText?: string
 }
 
 export type WorkflowEmits = {
     (e: 'update:modelValue', value: { nodes: WorkflowNode[], connections: WorkflowConnection[] }): void
+    (e: 'update:searchText', value: string): void
     (e: 'on-node-moved', node: WorkflowNode): void
     (e: 'on-node-added', node: WorkflowNode): void
     (e: 'on-node-selected', node: WorkflowNode): void

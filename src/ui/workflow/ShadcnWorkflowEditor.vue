@@ -1,6 +1,26 @@
 <template>
   <div class="flex h-screen">
-    <ShadcnWorkflowPanel class="w-64 border-r" :categories="props.categories" :nodes="props.nodes"/>
+    <ShadcnWorkflowPanel :categories="props.categories"
+                         :nodes="props.nodes"
+                         :search-text="props.searchText"
+                         class="w-64 border-r"
+                         @update:search-text="(text: string) => emit('update:searchText', text)">
+      <template #search>
+        <slot name="panel-search"/>
+      </template>
+
+      <template #category-header="{ category }">
+        <slot :category="category" name="panel-category-header"/>
+      </template>
+
+      <template #node="{ node, onDragStart }">
+        <slot :node="node" :onDragStart="onDragStart" name="panel-node"/>
+      </template>
+
+      <template #bottom>
+        <slot name="panel-bottom"/>
+      </template>
+    </ShadcnWorkflowPanel>
 
     <ShadcnWorkflowCanvas class="flex-1"
                           :nodes="localNodes"
@@ -27,7 +47,8 @@ const props = withDefaults(defineProps<WorkflowProps>(), {
   nodes: () => [],
   connections: () => [],
   categories: () => [],
-  modelValue: () => ({ nodes: [], connections: [] })
+  modelValue: () => ({ nodes: [], connections: [] }),
+  searchText: ''
 })
 
 const emit = defineEmits<WorkflowEmits>()
