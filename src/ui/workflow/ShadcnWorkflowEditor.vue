@@ -47,13 +47,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { WorkflowConnection, WorkflowEmits, WorkflowNode, WorkflowProps } from './types'
 import ShadcnWorkflowPanel from './components/ShadcnWorkflowPanel.vue'
 import ShadcnWorkflowCanvas from './components/ShadcnWorkflowCanvas.vue'
 import ShadcnWorkflowConfigure from './components/ShadcnWorkflowConfigure.vue'
 import { calcSize } from '@/utils/common.ts'
 
+const emit = defineEmits<WorkflowEmits>()
 const props = withDefaults(defineProps<WorkflowProps>(), {
   nodes: () => [],
   connections: () => [],
@@ -63,8 +64,6 @@ const props = withDefaults(defineProps<WorkflowProps>(), {
   panelWidth: 250,
   configureWidth: 300
 })
-
-const emit = defineEmits<WorkflowEmits>()
 
 const localNodes = ref<WorkflowNode[]>([])
 const localConnections = ref<WorkflowConnection[]>([])
@@ -173,4 +172,55 @@ const transformWorkflowValidation = (nodes: any) => {
 
   return validatedArr
 }
+
+const mergeNodes = (propsNodes: WorkflowNode[], modelNodes: any[]) => {
+  return modelNodes.map(modelNode => {
+    const propsNode = propsNodes.find(node => node.id === modelNode.tid) as any
+
+    let mergedConfigure = modelNode.configure || []
+    if (propsNode?.configure) {
+      mergedConfigure = propsNode?.configure.map(config => ({
+        ...config,
+        value: modelNode.data && modelNode.data[config.field] !== undefined
+            ? modelNode.data[config.field]
+            : config.value
+      }))
+    }
+
+    if (propsNode) {
+      return {
+        ...propsNode,
+        id: modelNode.id,
+        position: modelNode.position,
+        data: modelNode.data || {},
+        category: modelNode.category,
+        ports: propsNode.ports,
+        configure: mergedConfigure,
+        validation: propsNode.validation
+      }
+    }
+
+    return modelNode
+  })
+}
+
+onMounted(() => {
+  if (props.modelValue) {
+    localNodes.value = mergeNodes(props.nodes, props.modelValue.nodes)
+    localConnections.value = props.modelValue.connections
+  }
+})
+
+watch(() => props.modelValue?.nodes, (newNodes, oldNodes) => {
+  if (!newNodes || JSON.stringify(newNodes) === JSON.stringify(oldNodes)) {
+    return
+  }
+  localNodes.value = mergeNodes(props.nodes, newNodes)
+})
+
+watch(() => props.modelValue?.connections, (newConnections) => {
+  if (newConnections) {
+    localConnections.value = newConnections
+  }
+})
 </script>

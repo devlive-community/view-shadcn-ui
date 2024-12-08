@@ -149,8 +149,6 @@ const getConnectionPath = (connection: WorkflowConnection) => {
       connection.target
   )
 
-  console.log(sourcePosition, targetPosition)
-
   // 计算水平偏移量
   // Calculate horizontal offset
   const horizontalOffset = 8

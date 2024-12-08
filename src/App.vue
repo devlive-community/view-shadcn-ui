@@ -1,37 +1,9 @@
 <template>
-  {{ workflowState }}
-  <ShadcnWorkflowEditor v-model="workflowState"
-                        :categories="categories"
-                        :nodes="nodes"
-                        :connections="[]"
-                        :search-text="searchText">
-  </ShadcnWorkflowEditor>
-
-  <ShadcnWorkflowView :nodes="nodes" :data="data">
-  </ShadcnWorkflowView>
-
+  <ShadcnWorkflowView :nodes="nodes" :data="data"/>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import ShadcnWorkflowView from '@/ui/workflow/ShadcnWorkflowView.vue'
-
-const categories = [
-  {
-    label: 'Input Node',
-    value: 'input'
-  },
-  {
-    label: 'Output Node',
-    value: 'output'
-  },
-  {
-    label: 'Transform Node',
-    value: 'transform'
-  }
-]
-const searchText = ref('')
-const workflowState = ref({})
 
 const data = ref({
   'nodes': [
@@ -43,7 +15,10 @@ const data = ref({
         'x': 160,
         'y': 121
       },
-      'data': {}
+      'data': {
+        'name': 'test',
+        'name1': 'test'
+      }
     },
     {
       'id': '109ed659-2909-41bd-9530-12010a539e3f',
@@ -64,7 +39,6 @@ const data = ref({
     }
   ]
 } as any)
-
 const nodes: any[] = [
   {
     id: 'start',

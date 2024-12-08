@@ -86,7 +86,7 @@ import { ShadcnScrollbar } from '@/ui/scrollbar'
 import { ShadcnCountDown } from '@/ui/count-down'
 import { ShadcnEmpty } from '@/ui/empty'
 import { ShadcnBackTop } from '@/ui/back-top'
-import { ShadcnWorkflowEditor } from '@/ui/workflow'
+import { ShadcnWorkflowEditor, ShadcnWorkflowView } from '@/ui/workflow'
 
 let components = [
     ShadcnButton,
@@ -170,7 +170,8 @@ let components = [
     ShadcnCountDown,
     ShadcnEmpty,
     ShadcnBackTop,
-    ShadcnWorkflowEditor
+    ShadcnWorkflowEditor,
+    ShadcnWorkflowView
 ]
 
 interface InstallOptions
@@ -289,7 +290,7 @@ export { ShadcnScrollbar } from '@/ui/scrollbar'
 export { ShadcnCountDown } from '@/ui/count-down'
 export { ShadcnEmpty } from '@/ui/empty'
 export { ShadcnBackTop } from '@/ui/back-top'
-export { ShadcnWorkflowEditor } from '@/ui/workflow'
+export { ShadcnWorkflowEditor, ShadcnWorkflowView } from '@/ui/workflow'
 
 // Export functions
 export { fnToString, fnToFunction } from '@/utils/formatter'
