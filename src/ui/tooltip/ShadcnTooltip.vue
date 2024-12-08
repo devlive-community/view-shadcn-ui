@@ -11,7 +11,7 @@
            :style="[tooltipStyle, { maxWidth: computedMaxWidth }]">
         <div class="text-center break-words">
           <slot v-if="$slots.content" name="content"/>
-          <div v-else>{{ content }}</div>
+          <div v-else v-html="content" />
         </div>
 
         <div v-if="arrow"

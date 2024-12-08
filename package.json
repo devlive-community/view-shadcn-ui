@@ -101,6 +101,7 @@
     "lucide-vue-next": "^0.360.0",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
+    "uuid": "^11.0.3",
     "vue": "^3.4.21"
   },
   "devDependencies": {

@@ -107,5 +107,21 @@ export default {
             noData: 'No data',
             noDataDescription: 'No data was found'
         }
+    },
+    workflow: {
+        placeholder: {
+            search: 'Search ...',
+            selectNode: 'Please select a node to configure'
+        },
+        text: {
+            input: 'Input',
+            output: 'Output',
+            nodeConfigure: 'Node configure',
+            dataConfigure: 'Data configure',
+            nodeId: 'Node ID',
+        },
+        validated: {
+            required: 'This is required',
+        }
     }
 }

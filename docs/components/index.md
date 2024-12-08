@@ -182,4 +182,7 @@ features:
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/back-top.svg" />
     title: <a href='back-top.html'>Shadcn BackTop <span class="VPBadge tip">2024.5.1</span></a>
     details: BackTop component
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/workflow.svg" />
+    title: <a href='workflow.html'>Shadcn Workflow <span class="VPBadge tip">2024.5.1</span></a>
+    details: Workflow component
 ---
