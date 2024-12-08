@@ -118,6 +118,9 @@ export default {
             output: 'Output',
             nodeConfigure: 'Node configure',
             nodeId: 'Node ID',
+        },
+        validated: {
+            required: 'This is required',
         }
     }
 }

@@ -28,7 +28,7 @@
               <div class="p-3 mb-2 border border-gray-200 rounded-lg shadow-sm cursor-move hover:border-blue-500"
                    draggable="true"
                    @dragstart="handleDragStart(node, $event)">
-                <div class="font-medium text-sm">{{ node.category }}</div>
+                <div class="font-medium text-sm">{{ node.label }}</div>
 
                 <div class="text-xs text-gray-500 mt-1">
                   {{ node.description || '暂无描述' }}

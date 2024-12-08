@@ -118,6 +118,9 @@ export default {
             output: '输出',
             nodeConfigure: '节点配置',
             nodeId: '节点 ID',
+        },
+        validated: {
+            required: '此项为必填项',
         }
     }
 }

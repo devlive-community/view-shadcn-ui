@@ -4,16 +4,25 @@ export enum WorkflowPortType
     output = 'output'
 }
 
+export interface WorkflowPortValidatedStatus
+{
+    valid: boolean
+    message: string
+}
+
 export interface WorkflowPort
 {
     id: string
     type: WorkflowPortType | string
     label: string
+    required?: boolean
+    validated?: WorkflowPortValidatedStatus
 }
 
 export interface WorkflowNode
 {
     id: string
+    label: string
     category: string
     ports: WorkflowPort[]
     position?: {
@@ -54,6 +63,7 @@ export interface WorkflowNodePortProps
     node: WorkflowNode
     disabled?: boolean
     selected?: boolean
+    connections?: WorkflowConnection[]
 }
 
 export type WorkflowNodePortEmits = {

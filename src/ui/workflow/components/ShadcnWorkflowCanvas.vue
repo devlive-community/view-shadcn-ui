@@ -40,12 +40,13 @@
         <div class="p-2">
           <slot name="node" :node="node">
             <div class="p-2">
-              <div class="text-xs text-gray-500 py-1.5 mb-2 border-b">{{ node.category }}</div>
+              <div class="text-xs text-gray-500 py-1.5 mb-2 border-b">{{ node.label }}</div>
             </div>
           </slot>
 
           <ShadcnWorkflowNodePorts :node="node"
                                    :disabled="isNodeDragging"
+                                   :connections="connections"
                                    @on-connection-start="(event, port) => handleConnectionStart(event, port, node)"
                                    @on-connection-end="(event, port) => handleConnectionEnd(event, port, node)"/>
         </div>

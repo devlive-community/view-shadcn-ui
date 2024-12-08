@@ -35,26 +35,29 @@ const workflowState = ref({
 const nodes: any[] = [
   {
     id: 'start',
+    label: 'Start',
     category: 'input',
     position: { x: 0, y: 0 },
     data: {},
     description: 'Job start node',
     ports: [
-      { id: 'out1', type: 'output', label: 'Input' }
+      { id: 'out1', type: 'output', label: 'Output', required: true, message: 'Input is required' }
     ]
   },
   {
     id: 'end',
+    label: 'End',
     category: 'output',
     description: 'Job end node',
     position: { x: 0, y: 0 },
     data: {},
     ports: [
-      { id: 'in1', type: 'input', label: 'Output' }
+      { id: 'in1', type: 'input', label: 'Input', required: true }
     ]
   },
   {
     id: 'process',
+    label: 'Process',
     category: 'transform',
     description: 'Job transform node',
     position: { x: 0, y: 0 },
