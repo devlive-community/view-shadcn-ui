@@ -43,6 +43,16 @@ const nodes: any[] = [
         field: 'name',
         label: 'Name',
         type: 'input',
+        description: 'This is a long description, this is a long description, this is a long description, this is a long description',
+        required: true
+      },
+      {
+        field: 'name1',
+        label: 'Password',
+        type: 'password',
+        rules: [
+          { required: true, message: 'Please input password!' }
+        ],
         required: true
       }
     ],
@@ -68,8 +78,8 @@ const nodes: any[] = [
     description: 'Job transform node',
     position: { x: 0, y: 0 },
     ports: [
-      { id: 'in12', type: 'input', label: 'Input 1' },
-      { id: 'in22', type: 'input', label: 'Input 2' },
+      { id: 'in12', type: 'input', label: 'Input 1', required: true },
+      { id: 'in22', type: 'input', label: 'Input 2', required: true },
       { id: 'out1', type: 'output', label: 'Output 1' },
       { id: 'out2', type: 'output', label: 'Output 2' }
     ]

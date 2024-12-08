@@ -30,13 +30,18 @@
         </ShadcnTabItem>
 
         <template v-if="hasConfiguration">
-          <ShadcnTabItem :label="String(t('workflow.text.dataConfigure'))" value="configure">
-            <ShadcnFormItem v-for="item in selectedNode.configure"
-                            :key="item.label"
-                            :description="item.description"
-                            :label="item.label"
-                            :name="item.label"
-                            class="my-4">
+          <ShadcnTabItem class="space-y-3" :label="String(t('workflow.text.dataConfigure'))" value="configure">
+            <div class="space-y-1.5" v-for="item in selectedNode.configure" :key="item.label">
+              <div class="flex items-center justify-between">
+                <span>{{ item.label }}</span>
+
+                <span v-if="item.description" class="cursor-pointer">
+                  <ShadcnTooltip :content="item.description">
+                    <ShadcnIcon icon="CircleHelp" size="18"/>
+                  </ShadcnTooltip>
+                </span>
+              </div>
+
               <ShadcnNumber v-if="item.type === 'number'"
                             v-model="item.value"
                             :clearable="item.clearable"
@@ -45,7 +50,11 @@
                             :min="item.min"
                             :name="item.label"
                             :placeholder="item.placeholder"
-                            @on-change="onPositionUpdate"/>
+                            @on-change="() => {
+                              validateField(item)
+                              onPositionUpdate()
+                           }"
+                            :class="{ 'border-red-500': !validationState[item.field]?.valid }"/>
 
               <ShadcnInput v-else-if="item.type === 'textarea'"
                            v-model="item.value"
@@ -55,7 +64,11 @@
                            :placeholder="item.placeholder"
                            :word-count="item.wordCount"
                            type="textarea"
-                           @on-change="onPositionUpdate"/>
+                           @on-change="() => {
+                              validateField(item)
+                              onPositionUpdate()
+                           }"
+                           :class="{ 'border-red-500': !validationState[item.field]?.valid }"/>
 
               <ShadcnInput v-else-if="item.type === 'password'"
                            v-model="item.value"
@@ -63,7 +76,11 @@
                            :name="item.label"
                            :placeholder="item.placeholder"
                            type="password"
-                           @on-change="onPositionUpdate"/>
+                           @on-change="() => {
+                              validateField(item)
+                              onPositionUpdate()
+                           }"
+                           :class="{ 'border-red-500': !validationState[item.field]?.valid }"/>
 
               <ShadcnSwitch v-else-if="item.type === 'switch'"
                             v-model="item.value"
@@ -71,9 +88,19 @@
                             :false-value="item.falseValue"
                             :name="item.label"
                             :true-value="item.trueValue"
-                            @on-change="onPositionUpdate"/>
+                            @on-change="() => {
+                              validateField(item)
+                              onPositionUpdate()
+                           }"
+                            :class="{ 'border-red-500': !validationState[item.field]?.valid }"/>
 
-              <ShadcnRadioGroup v-else-if="item.type === 'radio'" v-model="item.value" @on-change="onPositionUpdate">
+              <ShadcnRadioGroup v-else-if="item.type === 'radio'"
+                                v-model="item.value"
+                                @on-change="() => {
+                                    validateField(item)
+                                    onPositionUpdate()
+                                }"
+                                :class="{ 'border-red-500': !validationState[item.field]?.valid }">
                 <ShadcnRadio v-for="option in item.options"
                              :key="option"
                              :disabled="option.disabled"
@@ -82,7 +109,13 @@
                 </ShadcnRadio>
               </ShadcnRadioGroup>
 
-              <ShadcnCheckboxGroup v-else-if="item.type === 'checkbox'" v-model="item.value" @on-change="onPositionUpdate">
+              <ShadcnCheckboxGroup v-else-if="item.type === 'checkbox'"
+                                   v-model="item.value"
+                                   @on-change="() => {
+                                      validateField(item)
+                                      onPositionUpdate()
+                                   }"
+                                   :class="{ 'border-red-500': !validationState[item.field]?.valid }">
                 <ShadcnCheckbox v-for="option in item.options"
                                 :key="option"
                                 :disabled="option.disabled"
@@ -95,7 +128,11 @@
                             :disabled="item.disabled"
                             :name="item.label"
                             :placeholder="item.placeholder"
-                            @on-change="onPositionUpdate">
+                            @on-change="() => {
+                                validateField(item)
+                                onPositionUpdate()
+                           }"
+                            :class="{ 'border-red-500': !validationState[item.field]?.valid }">
                 <template #options>
                   <ShadcnSelectOption v-for="option in item.options"
                                       :key="option.value"
@@ -113,7 +150,11 @@
                             :show-step="item.showStep"
                             :show-tip="item.showTip"
                             :step="item.step"
-                            @on-change="onPositionUpdate"/>
+                            @on-change="() => {
+                              validateField(item)
+                              onPositionUpdate()
+                           }"
+                            :class="{ 'border-red-500': !validationState[item.field]?.valid }"/>
 
               <ShadcnRate v-else-if="item.type === 'rate'"
                           v-model="item.value"
@@ -122,15 +163,27 @@
                           :max="item.max"
                           :min="item.min"
                           :show-text="item.showText"
-                          @on-change="onPositionUpdate"/>
+                          @on-change="() => {
+                              validateField(item)
+                              onPositionUpdate()
+                           }"
+                          :class="{ 'border-red-500': !validationState[item.field]?.valid }"/>
 
               <ShadcnInput v-else
                            v-model="item.value"
                            :disabled="item.disabled"
                            :name="item.label"
                            :placeholder="item.placeholder"
-                           @on-change="onPositionUpdate"/>
-            </ShadcnFormItem>
+                           @on-change="() => {
+                              validateField(item)
+                              onPositionUpdate()
+                           }"
+                           :class="{ 'border-red-500': !validationState[item.field]?.valid }"/>
+
+              <span v-if="!validationState[item.field]?.valid" class="text-red-400 text-xs">
+                {{ validationState[item.field].message }}
+              </span>
+            </div>
           </ShadcnTabItem>
         </template>
       </ShadcnTab>
@@ -161,6 +214,45 @@ const componentConfig = ref({
 const hasConfiguration = computed(() => {
   return Boolean(props.selectedNode?.configure?.length)
 })
+
+const validationState = ref<Record<string, { valid: boolean; message: string }>>({})
+const validateField = (item: any) => {
+  const rules = [
+    // 如果已经在 rules 中配置了 required 规则，就不需要添加默认的
+    // If the required rule is already configured in the rules, do not add the default
+    ...(item.required && !item.rules?.some(rule => rule.required)
+        ? [{ required: true, message: t('workflow.validated.required') }]
+        : []),
+    ...(item.rules || [])
+  ]
+
+  let valid = true
+  let message = ''
+
+  // 检查所有规则
+  // Check all rules
+  for (const rule of rules) {
+    if (rule.required && !item.value) {
+      valid = false
+      message = rule.message
+      break
+    }
+  }
+
+  // 更新验证状态
+  // Update validation state
+  validationState.value[item.field] = { valid, message }
+
+  item.validated = { valid, message }
+}
+
+watch(() => props.selectedNode?.configure, (configure) => {
+  if (configure) {
+    configure.forEach(item => {
+      validateField(item)
+    })
+  }
+}, { immediate: true })
 
 watch(() => props.selectedNode, (node) => {
   if (node) {

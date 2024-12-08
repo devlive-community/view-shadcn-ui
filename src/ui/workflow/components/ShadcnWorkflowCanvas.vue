@@ -38,10 +38,17 @@
            }"
            @click="selectNode(node)"
            @mousedown="startDragging(node, $event)">
-        <div class="p-2">
+        <div class="px-2 pt-1.5 pb-1.5">
           <slot name="node" :node="node">
-            <div class="p-2">
-              <div class="text-xs text-gray-500 py-1.5 mb-2 border-b">{{ node.label }}</div>
+            <div class="w-full flex items-center justify-between border-b">
+              <div class="w-full text-xs text-gray-500 py-1.5">{{ node.label }}</div>
+              <div v-if="node.configure?.some(c => c?.validated?.valid === false)" class="text-red-400 animate-bounce">
+                <ShadcnTooltip :content="node.configure?.filter(c => c?.validated.valid === false)
+                                                        .map(c => `${c.label}: ${c.validated.message}`)
+                                                        .join('<br />')">
+                  <ShadcnIcon icon="CircleAlert"/>
+                </ShadcnTooltip>
+              </div>
             </div>
           </slot>
 

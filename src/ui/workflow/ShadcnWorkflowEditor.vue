@@ -86,8 +86,9 @@ watch([localNodes, localConnections], ([nodes, connections]) => {
     data: node.data && node.data.length > 0 ? node.data.reduce((acc, curr) => ({ ...acc, ...curr }), {}) : {}
   }))
   const data = { nodes: simplifiedNodes, connections: connections }
+  const validation = transformWorkflowValidation(nodes)
 
-  emit('update:modelValue', { nodes, connections, data })
+  emit('update:modelValue', { nodes, connections, data, validation })
 }, { deep: true })
 
 const handleNodeMoved = (node: WorkflowNode) => {
@@ -129,5 +130,45 @@ const handleNodeSelected = (node: WorkflowNode) => {
 const handleNodeDeleted = (node: WorkflowNode) => {
   localNodes.value = localNodes.value.filter(n => n.id !== node.id)
   emit('on-node-deleted', node)
+}
+
+const transformWorkflowValidation = (nodes: any) => {
+  const validatedArr: Array<{
+    type: string;
+    scope?: string;
+    message: string;
+  }> = []
+
+  nodes.forEach((node: any) => {
+    // 处理 configure 字段中的验证信息
+    // Handle validation information in the configure field
+    if (node.configure) {
+      node.configure.forEach((config: any) => {
+        if (config.validated && !config.validated.valid) {
+          validatedArr.push({
+            type: 'configure',
+            scope: config.field,
+            message: config.validated.message
+          })
+        }
+      })
+    }
+
+    // 处理 ports 字段中的验证信息
+    // Handle validation information in the ports field
+    if (node.ports) {
+      node.ports.forEach((port: any) => {
+        if (port.validated && !port.validated.valid) {
+          validatedArr.push({
+            type: 'port',
+            scope: port.id,
+            message: port.validated.message
+          })
+        }
+      })
+    }
+  })
+
+  return validatedArr
 }
 </script>

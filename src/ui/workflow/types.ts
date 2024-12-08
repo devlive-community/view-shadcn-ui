@@ -141,7 +141,7 @@ export interface WorkflowProps
 }
 
 export type WorkflowEmits = {
-    (e: 'update:modelValue', value: { nodes: WorkflowNode[], connections: WorkflowConnection[], data?: any }): void
+    (e: 'update:modelValue', value: { nodes: WorkflowNode[], connections: WorkflowConnection[], data?: any, validation?: any }): void
     (e: 'update:searchText', value: string): void
     (e: 'on-node-moved', node: WorkflowNode): void
     (e: 'on-node-added', node: WorkflowNode): void
