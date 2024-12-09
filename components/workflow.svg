@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400">
+    <!-- 背景 -->
+    <rect width="800" height="400" fill="#f4f4f4" />
+
+    <!-- 阶段 1: Idea -->
+    <rect x="50" y="150" width="120" height="60" rx="10" ry="10" fill="#6c5ce7" />
+    <text x="110" y="185" font-size="16" font-family="Arial" fill="#fff" text-anchor="middle">
+        Idea
+    </text>
+
+    <!-- 箭头 1 -->
+    <line x1="170" y1="180" x2="240" y2="180" stroke="#2d3436" stroke-width="2" />
+    <polygon points="240,175 240,185 250,180" fill="#2d3436" />
+
+    <!-- 阶段 2: Design -->
+    <rect x="250" y="150" width="120" height="60" rx="10" ry="10" fill="#00cec9" />
+    <text x="310" y="185" font-size="16" font-family="Arial" fill="#fff" text-anchor="middle">
+        Design
+    </text>
+
+    <!-- 箭头 2 -->
+    <line x1="370" y1="180" x2="440" y2="180" stroke="#2d3436" stroke-width="2" />
+    <polygon points="440,175 440,185 450,180" fill="#2d3436" />
+
+    <!-- 阶段 3: Development -->
+    <rect x="450" y="150" width="120" height="60" rx="10" ry="10" fill="#fdcb6e" />
+    <text x="510" y="185" font-size="16" font-family="Arial" fill="#fff" text-anchor="middle">
+        Development
+    </text>
+
+    <!-- 箭头 3 -->
+    <line x1="570" y1="180" x2="640" y2="180" stroke="#2d3436" stroke-width="2" />
+    <polygon points="640,175 640,185 650,180" fill="#2d3436" />
+
+    <!-- 阶段 4: Release -->
+    <rect x="650" y="150" width="120" height="60" rx="10" ry="10" fill="#e17055" />
+    <text x="710" y="185" font-size="16" font-family="Arial" fill="#fff" text-anchor="middle">
+        Release
+    </text>
+</svg>
