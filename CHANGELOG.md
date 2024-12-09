@@ -2,6 +2,45 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2024.5.1 (2024-12-09)
+
+### ✨ Features
+
+* **logger:** support case sensitive ([c736d50](https://github.com/devlive-community/view-shadcn-ui/commit/c736d50c563c72f69f786dfffa1749653d33ad9e))
+* **logger:** support height ([1fa5af1](https://github.com/devlive-community/view-shadcn-ui/commit/1fa5af10163fdf083201e4ddbac23cfaff44a607))
+* **logger:** support logger ([0f241ba](https://github.com/devlive-community/view-shadcn-ui/commit/0f241baf101689aae88a0236ea6bc3530c68166c))
+* **logger:** support slot ([0e641a1](https://github.com/devlive-community/view-shadcn-ui/commit/0e641a1725dcf8af917e826deeef0f89fbd8a5ba))
+* **logger:** support toolbar ([0846055](https://github.com/devlive-community/view-shadcn-ui/commit/0846055d0319fea49fd539b9267d5aac50bb57a5))
+* **logger:** support toolbar for search ([9d0170b](https://github.com/devlive-community/view-shadcn-ui/commit/9d0170bde9d534eeb63887a0d7eaf7909a53e69c))
+* **scrollbar:** support custom scrollbar ([d844516](https://github.com/devlive-community/view-shadcn-ui/commit/d8445167d889d400b61266d3d5a45f98d74344f3))
+* **scrollbar:** support scrollbar ([aef72d4](https://github.com/devlive-community/view-shadcn-ui/commit/aef72d4169a748a43b3c4d16812c0eacaec0c615))
+* **count-down:** add `on-complete` event ([d829d77](https://github.com/devlive-community/view-shadcn-ui/commit/d829d774ea4b27a4f3c5654c78916ca5b2531472))
+* **count-down:** add some slots ([6cd514c](https://github.com/devlive-community/view-shadcn-ui/commit/6cd514c1c3c6ddfd190b7400e3b85f86a1aece22))
+* **count-down:** support count-down ([cc2157a](https://github.com/devlive-community/view-shadcn-ui/commit/cc2157ae1714e621adc8a765ff65595eb2b57de8))
+* **count-down:** support progress ([d0b3920](https://github.com/devlive-community/view-shadcn-ui/commit/d0b39202d747e35580d603c189b46c37f6e13a36))
+* **count-down:** support simple mode ([da3e85f](https://github.com/devlive-community/view-shadcn-ui/commit/da3e85f7b727e6b8d0b9766af8f10ba0862e25f5))
+* **count-down:** support title and toolbar ([88bb8d9](https://github.com/devlive-community/view-shadcn-ui/commit/88bb8d97dfa5a20f2426875c00de75633c690c26))
+* **count-down:** support warningThreshold ([ef86ffc](https://github.com/devlive-community/view-shadcn-ui/commit/ef86ffc6970526806c3874994c43c2f5e68f63fb))
+* **empty:** support empty ([11876af](https://github.com/devlive-community/view-shadcn-ui/commit/11876afeab7fc32e7c15a0c184d53e468ea73f79))
+* **backtop:** support backtop ([81c96e5](https://github.com/devlive-community/view-shadcn-ui/commit/81c96e5d83b242aecf56b97eb36923359b4fa95e))
+* **workflow:** add connection line verification ([7c28082](https://github.com/devlive-community/view-shadcn-ui/commit/7c28082c7599b3f665d3c33055bcf3f54a34b53b))
+* **workflow:** add i18n ([769c4f8](https://github.com/devlive-community/view-shadcn-ui/commit/769c4f86ce77b9556bfb274434e718772425a38c))
+* **workflow:** add simple data report ([fe31043](https://github.com/devlive-community/view-shadcn-ui/commit/fe3104357105c2f0bfc997d04b816eddfaa2478e))
+* **workflow:** add uniq id to node ([1875479](https://github.com/devlive-community/view-shadcn-ui/commit/1875479d5bb2930a89395a566a4f5195bc2ccdf7))
+* **workflow:** add validation report for data ([c2c064d](https://github.com/devlive-community/view-shadcn-ui/commit/c2c064d10a533e3badbc6584c25ab2f86c59f58c))
+* **workflow:** adding validation visuals ([03a1477](https://github.com/devlive-community/view-shadcn-ui/commit/03a1477c85ccba468f576c1b7722a6fecfb788e4))
+* **workflow:** split components ([86ccb65](https://github.com/devlive-community/view-shadcn-ui/commit/86ccb659eedd8b63076d1b49532e7d25b920132d))
+* **workflow:** support background grid ([00d62ee](https://github.com/devlive-community/view-shadcn-ui/commit/00d62ee22ec654a2f52f1ddc78646a4401bd72a2))
+* **workflow:** support basic workflow ([a03f9b4](https://github.com/devlive-community/view-shadcn-ui/commit/a03f9b453099a54ce830be1616ea06d52c05dcdc))
+* **workflow:** support node validated ([09629eb](https://github.com/devlive-community/view-shadcn-ui/commit/09629eb0a83575a62705f9d8098a932900d6555b))
+* **workflow:** support panel slots ([126bc03](https://github.com/devlive-community/view-shadcn-ui/commit/126bc0318ec07df0b70772b134ee51d1d773c57f))
+* **workflow:** support remove connection ([a8c1091](https://github.com/devlive-community/view-shadcn-ui/commit/a8c10913fbb91cccc878678c78804ba7873cd138))
+* **workflow:** support remove node ([7f48af6](https://github.com/devlive-community/view-shadcn-ui/commit/7f48af6f6e1b88da887d7dfaf992de539890dd4a))
+* **workflow:** support v-model ([5b6c70f](https://github.com/devlive-community/view-shadcn-ui/commit/5b6c70fc723d7d676d56fd5e9b95b02644393804))
+* **workflow:** support workflow edit ([86f1c4c](https://github.com/devlive-community/view-shadcn-ui/commit/86f1c4c56d246fb36034a423a01f30e4eac2dabf))
+* **workflow:** support workflow view ([647661b](https://github.com/devlive-community/view-shadcn-ui/commit/647661b320b03c157e9326923ad8406d8481cea9))
+* **workflow:** update connection line status ([c5d4886](https://github.com/devlive-community/view-shadcn-ui/commit/c5d48862dfb6462275b8e1aed567691caa6998f4))
+
 ## 2024.5.0 (2024-12-03)
 
 ### 🐛 Bug Fixes
