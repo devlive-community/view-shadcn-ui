@@ -1,3 +1,4 @@
+import {ref, watch} from 'vue'
 import zhCN from '@/locales/zh-CN'
 import en from '@/locales/en-US'
 
@@ -8,11 +9,11 @@ export const messages = {
     'zh-CN': zhCN
 }
 
-let currentLocale: Language = 'en'
+const currentLocale = ref<Language>('en')
 
 export const t = (key: string, params?: Record<string, any>) => {
     const keys = key.split('.')
-    let result = messages[currentLocale]
+    let result = messages[currentLocale.value]
 
     for (const k of keys) {
         if (!result || result[k] === undefined) {
@@ -24,8 +25,6 @@ export const t = (key: string, params?: Record<string, any>) => {
 
     const text = String(result)
 
-    // 如果有参数需要替换
-    // If there are parameters to be replaced
     if (params) {
         return text.replace(/\{\{\s*(\w+)\s*\}\}/g, (match: string, key: string) => {
             return params[key] !== undefined ? params[key] : match
@@ -36,7 +35,15 @@ export const t = (key: string, params?: Record<string, any>) => {
 }
 
 export const setLocale = (locale: Language) => {
-    currentLocale = locale
+    currentLocale.value = locale
 }
 
-export const getLocale = () => currentLocale
+export const getLocale = () => currentLocale.value
+
+// 添加监听器在语言改变时触发回调
+// Add listener when language changes
+export const onLocaleChange = (callback: (locale: Language) => void) => {
+    watch(currentLocale, (newLocale) => {
+        callback(newLocale)
+    })
+}
