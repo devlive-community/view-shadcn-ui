@@ -52,7 +52,7 @@ export default {
                 activeMatch: '/components'
             },
             {
-                text: '2024.5.1 <span class="VPBadge danger" style="margin-left: -18px; position: absolute; bottom: 38px;">Latest</span>',
+                text: '2024.5.2 <span class="VPBadge danger" style="margin-left: -18px; position: absolute; bottom: 38px;">Alpha</span>',
                 items: [
                     {
                         text: 'CHANGELOG <span class="VPBadge tip">2024.5.1</span>',
@@ -96,6 +96,18 @@ export default {
             '/components/': [
                 (() => {
                     const items = [
+                        {text: 'Language <span class="VPBadge tip">2024.5.2</span>', link: 'utility/language'}
+                    ]
+
+                    return {
+                        text: `Utility [ ${items.length} ]`,
+                        base: '/components/',
+                        collapsed: false,
+                        items: items
+                    }
+                })(),
+                (() => {
+                    const items = [
                         {text: 'Button <span class="VPBadge tip">2024.1.1</span>', link: 'button'},
                         {text: 'Icon <span class="VPBadge tip">2024.1.1</span>', link: 'icon'},
                         {text: 'Copy <span class="VPBadge tip">2024.1.1</span>', link: 'copy'},
@@ -104,6 +116,7 @@ export default {
                         {text: 'Text <span class="VPBadge tip">2024.3.0</span>', link: 'text'},
                         {text: 'Gradient Text <span class="VPBadge tip">2024.3.0</span>', link: 'gradient-text'},
                     ]
+
                     return {
                         text: `Base [ ${items.length} ]`,
                         base: '/components/',

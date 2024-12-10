@@ -22,7 +22,7 @@ Functions Overview and Limitations:
 
 <CodeRunner title="formatLogger">
     <ShadcnText>Convert response:</ShadcnText>
-    <div>{{ formatLoggerValue }}</div>
+    <div>{ "timestamp": "2024-12-04 23:14:27,765", "level": "INFO", "thread": "main", "logger": "io.edurt.datacap.service.initializer.InitializerConfigure", "file": "InitializerConfigure.java:100", "message": "Datacap registration enable: true" }</div>
 </CodeRunner>
 
 :::
@@ -55,7 +55,7 @@ Functions Overview and Limitations:
 
 <CodeRunner title="formatMultipleLines">
     <ShadcnText>Convert response:</ShadcnText>
-    <div>{{ formatMultipleLinesValue }}</div>
+    <div>[ { "timestamp": "2024-12-04 23:14:27,765", "level": "INFO", "thread": "main", "logger": "io.edurt.datacap.service.initializer.InitializerConfigure", "file": "InitializerConfigure.java:100", "message": "Datacap registration enable: true" }, { "timestamp": "2024-12-04 23:14:28,225", "level": "WARN", "thread": "main", "logger": "io.edurt.datacap.plugin.utils.PluginPathUtils", "file": "PluginPathUtils.java:136", "message": "Could not find project root, using fallback: /Users/shicheng/Desktop/tests/datacap-2024.4.0-SNAPSHOT" } ]</div>
 </CodeRunner>
 
 :::
@@ -91,7 +91,7 @@ Functions Overview and Limitations:
 
 <CodeRunner title="formatFromExample">
     <ShadcnText>Convert response:</ShadcnText>
-    <div>{{ formatFromExampleValue }}</div>
+    <div>{ "timestamp": "12-01 23:59", "level": "ERROR", "thread": "main", "logger": "MyApp", "file": "", "message": ": Hello" }</div>
 </CodeRunner>
 
 :::
@@ -130,7 +130,7 @@ Functions Overview and Limitations:
 
 <CodeRunner title="formatLoggerFromStream">
     <ShadcnText>Convert response:</ShadcnText>
-    <div>{{ formatLoggerFromStreamValue }}</div>
+    <div>[ { "timestamp": "2024-12-04 23:14:27,765", "level": "INFO", "thread": "main", "logger": "io.edurt.datacap.service.initializer.InitializerConfigure", "file": "InitializerConfigure.java:100", "message": "Datacap registration enable: true" }, { "timestamp": "2024-12-04 23:14:28,225", "level": "WARN", "thread": "main", "logger": "io.edurt.datacap.plugin.utils.PluginPathUtils", "file": "PluginPathUtils.java:136", "message": "Could not find project root, using fallback: /Users/shicheng/Desktop/tests/datacap-2024.4.0-SNAPSHOT" } ]</div>
 </CodeRunner>
 
 :::
@@ -157,27 +157,3 @@ const formatLoggerFromStreamValue = [...formatLoggerFromStream(rows)]
 - Special format learning → `formatFromExample`
 - Large logs/Memory sensitive → `formatLoggerFromStream`
 - Medium log volume/Quick processing → `formatMultipleLines`
-
-<script setup lang="ts">
-import { formatLogger, formatMultipleLines, formatFromExample, formatLoggerFromStream } from 'view-shadcn-ui'
-
-const items = [
-  "2024-12-04 23:14:27,765 INFO [main] io.edurt.datacap.service.initializer.InitializerConfigure [InitializerConfigure.java:100] Datacap registration enable: true",
-  "2024-12-04 23:14:28,225 WARN [main] io.edurt.datacap.plugin.utils.PluginPathUtils [PluginPathUtils.java:136] Could not find project root, using fallback: /Users/shicheng/Desktop/tests/datacap-2024.4.0-SNAPSHOT",
-]
-
-const formatLoggerValue = formatLogger(items[0])
-const formatMultipleLinesValue = formatMultipleLines(items)
-
-const formatFromExampleValue = formatFromExample(
-  '12-01 23:59 ERROR MyApp: Hello',
-  '01-01 12:00 INFO MyApp: Example',
-  {
-    timestamp: '01-01 12:00',
-    level: 'INFO',
-    logger: 'MyApp'
-  }
-)
-
-const formatLoggerFromStreamValue = [...formatLoggerFromStream(items)]
-</script>
