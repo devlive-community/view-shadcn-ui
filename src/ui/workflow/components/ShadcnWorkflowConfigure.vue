@@ -31,8 +31,8 @@
 
         <template v-if="hasConfiguration">
           <ShadcnTabItem class="space-y-3" :label="String(t('workflow.text.dataConfigure'))" value="configure">
-            <div class="overflow-y-auto max-h-[calc(100vh-100px)]">
-              <div class="space-y-6 flex flex-col">
+            <div class="overflow-y-auto max-h-[calc(100vh-80px)]">
+              <div class="space-y-3 flex flex-col">
                 <div v-for="item in selectedNode.configure" :key="item.label">
                   <div class="flex items-center justify-between">
                     <span>{{ item.label }}</span>

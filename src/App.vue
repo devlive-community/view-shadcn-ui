@@ -1,5 +1,4 @@
 <template>
-  Current Workflow: {{ workflowState.data }}
   <ShadcnWorkflowEditor v-model="workflowState"
                         :categories="categories"
                         :nodes="nodes"

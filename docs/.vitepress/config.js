@@ -90,6 +90,7 @@ export default {
                         {text: 'generateColorShades <span class="VPBadge tip">2024.2.0</span>', link: 'generate-color-shades'},
                         {text: 'Function <span class="VPBadge tip">2024.5.0</span>', link: 'function'},
                         {text: 'Logger <span class="VPBadge tip">2024.5.1</span>', link: 'logger'},
+                        {text: 'UUID <span class="VPBadge tip">2024.5.1</span>', link: 'uuid'},
                     ]
                 }
             ],

@@ -31,7 +31,7 @@
                 <div class="font-medium text-sm">{{ node.label }}</div>
 
                 <div class="text-xs text-gray-500 mt-1">
-                  {{ node.description || '暂无描述' }}
+                  {{ node.description }}
                 </div>
 
                 <!-- 端口预览 -->
@@ -53,7 +53,7 @@
 
     <!-- 底部 slot -->
     <!-- Bottom slot -->
-    <slot name="bottom"></slot>
+    <slot name="bottom"/>
   </div>
 </template>
 
