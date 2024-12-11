@@ -90,7 +90,7 @@ export default {
                         {text: 'generateColorShades <span class="VPBadge tip">2024.2.0</span>', link: 'generate-color-shades'},
                         {text: 'Function <span class="VPBadge tip">2024.5.0</span>', link: 'function'},
                         {text: 'Logger <span class="VPBadge tip">2024.5.1</span>', link: 'logger'},
-                        {text: 'UUID <span class="VPBadge tip">2024.5.1</span>', link: 'uuid'},
+                        {text: 'UUID <span class="VPBadge tip">2024.5.2</span>', link: 'uuid'},
                     ]
                 }
             ],
@@ -189,7 +189,7 @@ export default {
                         {text: 'Slider <span class="VPBadge tip">2024.2.0</span>', link: 'slider'},
                         {text: 'Toggle <span class="VPBadge tip">2024.4.0</span>', link: 'toggle'},
                         {text: 'Upload <span class="VPBadge tip">2024.5.0</span>', link: 'upload'},
-                        {text: 'Input Tag <span class="VPBadge tip">2024.5.1</span>', link: 'form/input-tag'},
+                        {text: 'Input Tag <span class="VPBadge tip">2024.5.2</span>', link: 'form/input-tag'},
                     ]
                     return {
                         text: `Form [ ${items.length} ]`,

@@ -118,15 +118,24 @@ export default {
             output: 'Output',
             nodeConfigure: 'Node configure',
             dataConfigure: 'Data configure',
-            nodeId: 'Node ID',
+            nodeId: 'Node ID'
         },
         validated: {
-            required: 'This is required',
+            required: 'This is required'
         }
     },
     inputTag: {
         text: {
             placeholder: 'Please enter a tag'
+        }
+    },
+    map: {
+        placeholder: {
+            key: 'Key',
+            value: 'Value'
+        },
+        validated: {
+            duplicate: 'Duplicate keys are not allowed'
         }
     }
 }
