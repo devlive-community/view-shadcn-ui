@@ -90,6 +90,7 @@ export default {
                         {text: 'generateColorShades <span class="VPBadge tip">2024.2.0</span>', link: 'generate-color-shades'},
                         {text: 'Function <span class="VPBadge tip">2024.5.0</span>', link: 'function'},
                         {text: 'Logger <span class="VPBadge tip">2024.5.1</span>', link: 'logger'},
+                        {text: 'UUID <span class="VPBadge tip">2024.5.1</span>', link: 'uuid'},
                     ]
                 }
             ],
@@ -154,6 +155,7 @@ export default {
                         {text: 'Progress <span class="VPBadge tip">2024.1.2</span>', link: 'progress'},
                         {text: 'Drawer <span class="VPBadge tip">2024.1.2</span>', link: 'drawer'},
                         {text: 'Message <span class="VPBadge tip">2024.1.2</span>', link: 'message'},
+                        {text: 'Table <span class="VPBadge tip">2024.1.2</span>', link: 'table'},
                         {text: 'Spin <span class="VPBadge tip">2024.2.0</span>', link: 'spin'},
                         {text: 'Timeline <span class="VPBadge tip">2024.2.0</span>', link: 'timeline'},
                         {text: 'Trend <span class="VPBadge tip">2024.2.0</span>', link: 'trend'},
@@ -182,12 +184,12 @@ export default {
                         {text: 'Checkbox <span class="VPBadge tip">2024.1.2</span>', link: 'checkbox'},
                         {text: 'Select <span class="VPBadge tip">2024.1.2</span>', link: 'select'},
                         {text: 'Rate <span class="VPBadge tip">2024.1.2</span>', link: 'rate'},
-                        {text: 'Table <span class="VPBadge tip">2024.1.2</span>', link: 'table'},
                         {text: 'Form <span class="VPBadge tip">2024.2.0</span>', link: 'form'},
                         {text: 'Number <span class="VPBadge tip">2024.3.0</span>', link: 'number'},
                         {text: 'Slider <span class="VPBadge tip">2024.2.0</span>', link: 'slider'},
                         {text: 'Toggle <span class="VPBadge tip">2024.4.0</span>', link: 'toggle'},
                         {text: 'Upload <span class="VPBadge tip">2024.5.0</span>', link: 'upload'},
+                        {text: 'Input Tag <span class="VPBadge tip">2024.5.1</span>', link: 'form/input-tag'},
                     ]
                     return {
                         text: `Form [ ${items.length} ]`,

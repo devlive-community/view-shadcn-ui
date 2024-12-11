@@ -123,5 +123,10 @@ export default {
         validated: {
             required: '此项为必填项',
         }
+    },
+    inputTag: {
+        text: {
+            placeholder: '请输入标签'
+        }
     }
 }

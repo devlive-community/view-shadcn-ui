@@ -31,158 +31,162 @@
 
         <template v-if="hasConfiguration">
           <ShadcnTabItem class="space-y-3" :label="String(t('workflow.text.dataConfigure'))" value="configure">
-            <div class="space-y-1.5" v-for="item in selectedNode.configure" :key="item.label">
-              <div class="flex items-center justify-between">
-                <span>{{ item.label }}</span>
+            <div class="overflow-y-auto max-h-[calc(100vh-80px)]">
+              <div class="space-y-3 flex flex-col">
+                <div v-for="item in selectedNode.configure" :key="item.label">
+                  <div class="flex items-center justify-between">
+                    <span>{{ item.label }}</span>
 
-                <span v-if="item.description" class="cursor-pointer">
+                    <span v-if="item.description" class="cursor-pointer">
                   <ShadcnTooltip :content="item.description">
                     <ShadcnIcon icon="CircleHelp" size="18"/>
                   </ShadcnTooltip>
                 </span>
-              </div>
+                  </div>
 
-              <ShadcnNumber v-if="item.type === 'number'"
-                            v-model="item.value"
-                            :clearable="item.clearable"
-                            :disabled="item.disabled"
-                            :max="item.max"
-                            :min="item.min"
-                            :name="item.label"
-                            :placeholder="item.placeholder"
-                            @on-change="() => {
-                              validateField(item)
-                              onPositionUpdate()
-                           }"
-                            :class="{ 'border-red-500': !validationState[item.field]?.valid }"/>
-
-              <ShadcnInput v-else-if="item.type === 'textarea'"
-                           v-model="item.value"
-                           :disabled="item.disabled"
-                           :max-count="item.maxCount"
-                           :name="item.label"
-                           :placeholder="item.placeholder"
-                           :word-count="item.wordCount"
-                           type="textarea"
-                           @on-change="() => {
-                              validateField(item)
-                              onPositionUpdate()
-                           }"
-                           :class="{ 'border-red-500': !validationState[item.field]?.valid }"/>
-
-              <ShadcnInput v-else-if="item.type === 'password'"
-                           v-model="item.value"
-                           :disabled="item.disabled"
-                           :name="item.label"
-                           :placeholder="item.placeholder"
-                           type="password"
-                           @on-change="() => {
-                              validateField(item)
-                              onPositionUpdate()
-                           }"
-                           :class="{ 'border-red-500': !validationState[item.field]?.valid }"/>
-
-              <ShadcnSwitch v-else-if="item.type === 'switch'"
-                            v-model="item.value"
-                            :disabled="item.disabled"
-                            :false-value="item.falseValue"
-                            :name="item.label"
-                            :true-value="item.trueValue"
-                            @on-change="() => {
-                              validateField(item)
-                              onPositionUpdate()
-                           }"
-                            :class="{ 'border-red-500': !validationState[item.field]?.valid }"/>
-
-              <ShadcnRadioGroup v-else-if="item.type === 'radio'"
+                  <ShadcnNumber v-if="item.type === 'number'"
                                 v-model="item.value"
+                                :clearable="item.clearable"
+                                :disabled="item.disabled"
+                                :max="item.max"
+                                :min="item.min"
+                                :name="item.label"
+                                :placeholder="item.placeholder"
                                 @on-change="() => {
+                              validateField(item)
+                              onPositionUpdate()
+                           }"
+                                :class="{ 'border-red-500': !validationState[item.field]?.valid }"/>
+
+                  <ShadcnInput v-else-if="item.type === 'textarea'"
+                               v-model="item.value"
+                               :disabled="item.disabled"
+                               :max-count="item.maxCount"
+                               :name="item.label"
+                               :placeholder="item.placeholder"
+                               :word-count="item.wordCount"
+                               type="textarea"
+                               @on-change="() => {
+                              validateField(item)
+                              onPositionUpdate()
+                           }"
+                               :class="{ 'border-red-500': !validationState[item.field]?.valid }"/>
+
+                  <ShadcnInput v-else-if="item.type === 'password'"
+                               v-model="item.value"
+                               :disabled="item.disabled"
+                               :name="item.label"
+                               :placeholder="item.placeholder"
+                               type="password"
+                               @on-change="() => {
+                              validateField(item)
+                              onPositionUpdate()
+                           }"
+                               :class="{ 'border-red-500': !validationState[item.field]?.valid }"/>
+
+                  <ShadcnSwitch v-else-if="item.type === 'switch'"
+                                v-model="item.value"
+                                :disabled="item.disabled"
+                                :false-value="item.falseValue"
+                                :name="item.label"
+                                :true-value="item.trueValue"
+                                @on-change="() => {
+                              validateField(item)
+                              onPositionUpdate()
+                           }"
+                                :class="{ 'border-red-500': !validationState[item.field]?.valid }"/>
+
+                  <ShadcnRadioGroup v-else-if="item.type === 'radio'"
+                                    v-model="item.value"
+                                    @on-change="() => {
                                     validateField(item)
                                     onPositionUpdate()
                                 }"
-                                :class="{ 'border-red-500': !validationState[item.field]?.valid }">
-                <ShadcnRadio v-for="option in item.options"
-                             :key="option"
-                             :disabled="option.disabled"
-                             :value="option.value">
-                  {{ option.label }}
-                </ShadcnRadio>
-              </ShadcnRadioGroup>
+                                    :class="{ 'border-red-500': !validationState[item.field]?.valid }">
+                    <ShadcnRadio v-for="option in item.options"
+                                 :key="option"
+                                 :disabled="option.disabled"
+                                 :value="option.value">
+                      {{ option.label }}
+                    </ShadcnRadio>
+                  </ShadcnRadioGroup>
 
-              <ShadcnCheckboxGroup v-else-if="item.type === 'checkbox'"
-                                   v-model="item.value"
-                                   @on-change="() => {
+                  <ShadcnCheckboxGroup v-else-if="item.type === 'checkbox'"
+                                       v-model="item.value"
+                                       @on-change="() => {
                                       validateField(item)
                                       onPositionUpdate()
                                    }"
-                                   :class="{ 'border-red-500': !validationState[item.field]?.valid }">
-                <ShadcnCheckbox v-for="option in item.options"
-                                :key="option"
-                                :disabled="option.disabled"
-                                :value="option.value">
-                  {{ option.label }}
-                </ShadcnCheckbox>
-              </ShadcnCheckboxGroup>
+                                       :class="{ 'border-red-500': !validationState[item.field]?.valid }">
+                    <ShadcnCheckbox v-for="option in item.options"
+                                    :key="option"
+                                    :disabled="option.disabled"
+                                    :value="option.value">
+                      {{ option.label }}
+                    </ShadcnCheckbox>
+                  </ShadcnCheckboxGroup>
 
-              <ShadcnSelect v-else-if="item.type === 'select'" v-model="item.value"
-                            :disabled="item.disabled"
-                            :name="item.label"
-                            :placeholder="item.placeholder"
-                            @on-change="() => {
+                  <ShadcnSelect v-else-if="item.type === 'select'" v-model="item.value"
+                                :disabled="item.disabled"
+                                :name="item.label"
+                                :placeholder="item.placeholder"
+                                @on-change="() => {
                                 validateField(item)
                                 onPositionUpdate()
                            }"
-                            :class="{ 'border-red-500': !validationState[item.field]?.valid }">
-                <template #options>
-                  <ShadcnSelectOption v-for="option in item.options"
-                                      :key="option.value"
-                                      :disabled="option.disabled"
-                                      :label="option.label"
-                                      :value="option.value"/>
-                </template>
-              </ShadcnSelect>
+                                :class="{ 'border-red-500': !validationState[item.field]?.valid }">
+                    <template #options>
+                      <ShadcnSelectOption v-for="option in item.options"
+                                          :key="option.value"
+                                          :disabled="option.disabled"
+                                          :label="option.label"
+                                          :value="option.value"/>
+                    </template>
+                  </ShadcnSelect>
 
-              <ShadcnSlider v-else-if="item.type === 'slider'"
-                            v-model="item.value"
-                            :disabled="item.disabled"
-                            :max="item.max"
-                            :min="item.min"
-                            :show-step="item.showStep"
-                            :show-tip="item.showTip"
-                            :step="item.step"
-                            @on-change="() => {
+                  <ShadcnSlider v-else-if="item.type === 'slider'"
+                                v-model="item.value"
+                                :disabled="item.disabled"
+                                :max="item.max"
+                                :min="item.min"
+                                :show-step="item.showStep"
+                                :show-tip="item.showTip"
+                                :step="item.step"
+                                @on-change="() => {
                               validateField(item)
                               onPositionUpdate()
                            }"
-                            :class="{ 'border-red-500': !validationState[item.field]?.valid }"/>
+                                :class="{ 'border-red-500': !validationState[item.field]?.valid }"/>
 
-              <ShadcnRate v-else-if="item.type === 'rate'"
-                          v-model="item.value"
-                          :allow-half="item.allowHalf"
-                          :disabled="item.disabled"
-                          :max="item.max"
-                          :min="item.min"
-                          :show-text="item.showText"
-                          @on-change="() => {
+                  <ShadcnRate v-else-if="item.type === 'rate'"
+                              v-model="item.value"
+                              :allow-half="item.allowHalf"
+                              :disabled="item.disabled"
+                              :max="item.max"
+                              :min="item.min"
+                              :show-text="item.showText"
+                              @on-change="() => {
                               validateField(item)
                               onPositionUpdate()
                            }"
-                          :class="{ 'border-red-500': !validationState[item.field]?.valid }"/>
+                              :class="{ 'border-red-500': !validationState[item.field]?.valid }"/>
 
-              <ShadcnInput v-else
-                           v-model="item.value"
-                           :disabled="item.disabled"
-                           :name="item.label"
-                           :placeholder="item.placeholder"
-                           @on-change="() => {
+                  <ShadcnInput v-else
+                               v-model="item.value"
+                               :disabled="item.disabled"
+                               :name="item.label"
+                               :placeholder="item.placeholder"
+                               @on-change="() => {
                               validateField(item)
                               onPositionUpdate()
                            }"
-                           :class="{ 'border-red-500': !validationState[item.field]?.valid }"/>
+                               :class="{ 'border-red-500': !validationState[item.field]?.valid }"/>
 
-              <span v-if="!validationState[item.field]?.valid" class="text-red-400 text-xs">
+                  <span v-if="!validationState[item.field]?.valid" class="text-red-400 text-xs">
                 {{ validationState[item.field].message }}
               </span>
+                </div>
+              </div>
             </div>
           </ShadcnTabItem>
         </template>
