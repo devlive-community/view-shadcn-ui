@@ -76,12 +76,15 @@ watch(() => props.searchText, (value) => {
   emit('update:searchText', value)
 })
 
-// 根据分类过滤节点
-// Filter nodes by category
+// 根据分类和标签过滤节点
+// Filter nodes by category and label
 const filteredNodes = (currentCategory: string) => {
   return props.nodes.filter(node => {
-    const matchesSearch = node.category.toLowerCase().includes(searchText.value.toLowerCase())
+    const searchLower = searchText.value.toLowerCase()
     const matchesCategory = node.category === currentCategory
+    const matchesSearch =
+        node.category.toLowerCase().includes(searchLower) ||
+        node.label.toLowerCase().includes(searchLower)
     return matchesSearch && matchesCategory
   })
 }
