@@ -7,11 +7,23 @@
     <div class="flex gap-2 w-full overflow-x-auto py-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
          ref="containerRef">
       <div v-for="tag in modelValue"
-           class="flex items-center gap-1 px-1 py-0.5 text-sm bg-primary/10 text-primary rounded-md whitespace-nowrap"
+           :class="[
+             'flex items-center gap-1 px-1 py-0.5 text-sm rounded-md whitespace-nowrap transition-colors duration-300',
+             {
+               'bg-primary/10 text-primary': !isHighlighted(tag),
+               'bg-red-100 text-red-600 animate-pulse': isHighlighted(tag)
+             }
+           ]"
            :key="tag">
         <span>{{ tag }}</span>
         <button type="button"
-                class="text-primary hover:text-primary/80 focus:outline-none"
+                :class="[
+                  'hover:text-primary/80 focus:outline-none',
+                  {
+                    'text-primary': !isHighlighted(tag),
+                    'text-red-600': isHighlighted(tag)
+                  }
+                ]"
                 :disabled="disabled"
                 @click="onRemoveTag(tag)">
           <svg xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +47,8 @@
              type="text"
              :placeholder="modelValue.length === 0 ? placeholder : ''"
              :disabled="disabled || modelValue.length >= max"
-             @keydown="handleKeydown">
+             @keydown="handleKeydown"
+             @keypress.enter.prevent>
     </div>
   </div>
 </template>
@@ -60,17 +73,42 @@ const finalSize = computed(() => props.size)
 const containerRef = ref<HTMLElement | null>(null)
 const inputRef = ref<HTMLElement | null>(null)
 const inputValue = ref('')
+const highlightedTag = ref<string | null>(null)
+
+// 判断标签是否需要高亮显示
+// Check if the tag needs to be highlighted
+const isHighlighted = (tag: string) => tag === highlightedTag.value
+
+// 处理重复标签的高亮显示
+// Handle duplicate tag highlighting
+const handleDuplicateTag = (tag: string) => {
+  highlightedTag.value = tag
+  // 1秒后取消高亮
+  // Cancel highlighting after 1 second
+  setTimeout(() => {
+    if (highlightedTag.value === tag) {
+      highlightedTag.value = null
+    }
+  }, 1000)
+}
 
 const canAddTag = computed(() => {
   return !props.disabled &&
       inputValue.value.trim() !== '' &&
-      !props.modelValue.includes(inputValue.value.trim()) &&
-      props.modelValue.length < props.maxTags
+      props.modelValue.length < props.max
 })
 
 const onAddTag = () => {
   if (canAddTag.value) {
     const newTag = inputValue.value.trim()
+
+    // 检查是否重复
+    // Check for duplicates
+    if (props.modelValue.includes(newTag)) {
+      handleDuplicateTag(newTag)
+      return
+    }
+
     const newTags = [...props.modelValue, newTag]
     emit('update:modelValue', newTags)
     emit('on-add', newTag)
@@ -89,6 +127,12 @@ const onRemoveTag = (tag: string) => {
   const newTags = props.modelValue.filter(t => t !== tag)
   emit('update:modelValue', newTags)
   emit('on-remove', tag)
+
+  // 如果删除的是当前高亮的标签，取消高亮
+  // If the deleted tag is currently highlighted, cancel highlighting
+  if (tag === highlightedTag.value) {
+    highlightedTag.value = null
+  }
 }
 
 const handleKeydown = (e: KeyboardEvent) => {
