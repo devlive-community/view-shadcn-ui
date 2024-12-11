@@ -123,5 +123,10 @@ export default {
         validated: {
             required: 'This is required',
         }
+    },
+    inputTag: {
+        text: {
+            placeholder: 'Please enter a tag'
+        }
     }
 }

@@ -8,11 +8,13 @@
     <ShadcnInputTag v-model="value" type="error"/>
     <ShadcnInputTag v-model="value" type="warning"/>
     <ShadcnInputTag v-model="value" type="success"/>
+
+    <ShadcnInputTag v-model="value" :max="3" disabled/>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const value = ref('')
+const value = ref([])
 </script>

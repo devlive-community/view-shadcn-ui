@@ -4,6 +4,7 @@ import { HoverType } from '@/ui/common/type.ts'
 export type InputTagProps = {
     modelValue?: string[]
     placeholder?: string
+    name?: string
     disabled?: boolean
     size?: keyof typeof Size
     type?: keyof typeof HoverType

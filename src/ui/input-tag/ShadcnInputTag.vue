@@ -2,7 +2,8 @@
   <div class="flex px-2 border rounded-md"
        :class="[
            Size[finalSize],
-           [HoverType[type]]
+           [HoverType[type]],
+           { 'cursor-not-allowed opacity-50 bg-gray-100': disabled }
        ]">
     <div class="flex gap-2 w-full overflow-x-auto py-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
          ref="containerRef">
@@ -44,25 +45,31 @@
       <input v-model="inputValue"
              ref="inputRef"
              class="flex-1 min-w-[120px] bg-transparent border-none focus:outline-none text-sm"
+             :class="{ 'cursor-not-allowed opacity-50 bg-gray-100': disabled }"
              type="text"
              :placeholder="modelValue.length === 0 ? placeholder : ''"
              :disabled="disabled || modelValue.length >= max"
+             :name="name"
              @keydown="handleKeydown"
+             @blur="handleBlur"
              @keypress.enter.prevent>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, ref } from 'vue'
+import { computed, inject, nextTick, ref } from 'vue'
+import { t } from '@/utils/locale'
 import { InputTagEmits, InputTagProps } from './types'
 import { Size } from '@/ui/common/size.ts'
 import { HoverType } from '@/ui/common/type.ts'
+import { FormItemContext } from '@/ui/form/context.ts'
 
 const emit = defineEmits<InputTagEmits>()
 const props = withDefaults(defineProps<InputTagProps>(), {
   modelValue: () => [],
-  placeholder: 'Add tag...',
+  placeholder: t('inputTag.text.placeholder'),
+  name: undefined,
   disabled: false,
   size: 'default',
   type: 'primary',
@@ -74,6 +81,8 @@ const containerRef = ref<HTMLElement | null>(null)
 const inputRef = ref<HTMLElement | null>(null)
 const inputValue = ref('')
 const highlightedTag = ref<string | null>(null)
+
+const formItemContext = props.name ? inject<FormItemContext | null>(`form-item-${ props.name }`) : null
 
 // 判断标签是否需要高亮显示
 // Check if the tag needs to be highlighted
@@ -114,6 +123,10 @@ const onAddTag = () => {
     emit('on-add', newTag)
     inputValue.value = ''
 
+    if (formItemContext) {
+      formItemContext.onBlur()
+    }
+
     nextTick(() => {
       if (containerRef.value) {
         const container = containerRef.value
@@ -132,6 +145,16 @@ const onRemoveTag = (tag: string) => {
   // If the deleted tag is currently highlighted, cancel highlighting
   if (tag === highlightedTag.value) {
     highlightedTag.value = null
+  }
+
+  if (formItemContext) {
+    formItemContext.onBlur()
+  }
+}
+
+const handleBlur = () => {
+  if (formItemContext) {
+    formItemContext.onBlur()
   }
 }
 
