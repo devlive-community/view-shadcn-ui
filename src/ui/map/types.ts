@@ -13,6 +13,7 @@ export interface MapProps
     size?: keyof typeof Size
     type?: keyof typeof HoverType
     disabled?: boolean
+    max?: number
 }
 
 export type MapEmits = {

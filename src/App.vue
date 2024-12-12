@@ -1,7 +1,7 @@
 <template>
   <div class="p-32 space-y-2">
     <ShadcnText>Value: {{ value }}</ShadcnText>
-    <ShadcnMap v-model="value" disabled/>
+    <ShadcnMap v-model="value" :max="3"/>
   </div>
 </template>
 

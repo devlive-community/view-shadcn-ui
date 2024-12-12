@@ -120,6 +120,32 @@ const value = ref([])
 
 :::
 
+## Max
+
+::: raw
+
+<CodeRunner title="Max">
+    <ShadcnMap v-model="value" max="2"/>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnMap v-model="value" max="2"/>
+</template>
+
+<script setup lang="ts">
+import {ref} from "vue"
+
+const value = ref([])
+</script>
+```
+
+:::
+
 ## Map Props
 
 <ApiTable title="Map Props"
@@ -129,6 +155,7 @@ const value = ref([])
         ['size', 'The size of the map', 'enum', 'default', '', 'small | default | large'],
         ['type', 'The type of the map', 'enum', 'primary', '', 'primary | success | warning | error'],
         ['disabled', 'Disable the map', 'boolean', 'false', '', ''],
+        ['max', 'The maximum number of items', 'number', 'Infinity', '', ''],
     ]">
 </ApiTable>
 

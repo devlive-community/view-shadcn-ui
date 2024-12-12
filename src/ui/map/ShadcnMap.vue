@@ -27,11 +27,11 @@
           </div>
         </div>
 
-        <ShadcnIcon icon="CircleX"
+        <ShadcnIcon v-if="!disabled"
+                    icon="CircleX"
                     class="text-gray-400 transition-opacity duration-200"
                     :class="[Size[finalSize],
-                          { 'cursor-pointer hover:text-red-500 opacity-0 group-hover:opacity-100': !disabled },
-                          { 'cursor-not-allowed opacity-50': disabled }
+                        'cursor-pointer hover:text-red-500 opacity-0 group-hover:opacity-100'
                     ]"
                     @click="onRemoveItem(index)"/>
       </div>
@@ -45,7 +45,8 @@
       {{ t('map.validated.duplicate') }}
     </div>
 
-    <ShadcnIcon icon="CirclePlus"
+    <ShadcnIcon v-if="!disabled && !isMaxReached"
+                icon="CirclePlus"
                 :class="['text-blue-600 hover:text-blue-700 focus:outline-none',
                     { 'cursor-pointer ': !Object.values(duplicateKeys).some(v => v) && !Object.values(emptyKeys).some(v => v) && !disabled },
                     { 'cursor-not-allowed opacity-50 text-gray-100': Object.values(duplicateKeys).some(v => v) || Object.values(emptyKeys).some(v => v) || disabled }
@@ -66,12 +67,17 @@ const props = withDefaults(defineProps<MapProps>(), {
   modelValue: () => [],
   size: 'default',
   type: 'primary',
-  disabled: false
+  disabled: false,
+  max: Infinity
 })
 
 const finalSize = computed(() => props.size)
 const duplicateKeys = ref<Record<number, boolean>>({})
 const emptyKeys = ref<Record<number, boolean>>({})
+
+const isMaxReached = computed(() => {
+  return props.max !== undefined && props.modelValue.length >= props.max
+})
 
 const validateDuplicate = (index: number) => {
   console.debug('Validate duplicate index', index)
@@ -95,9 +101,10 @@ const validateDuplicate = (index: number) => {
 }
 
 const onAddItem = () => {
-  if (props.disabled) {
+  if (props.disabled || isMaxReached.value) {
     return
   }
+
   const addItem = { key: undefined, value: undefined }
   const newValue = [...props.modelValue, addItem]
 
