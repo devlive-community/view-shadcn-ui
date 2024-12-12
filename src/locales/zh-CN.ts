@@ -118,15 +118,25 @@ export default {
             output: '输出',
             nodeConfigure: '节点配置',
             dataConfigure: '数据配置',
-            nodeId: '节点 ID',
+            nodeId: '节点 ID'
         },
         validated: {
-            required: '此项为必填项',
+            required: '此项为必填项'
         }
     },
     inputTag: {
         text: {
             placeholder: '请输入标签'
+        }
+    },
+    map: {
+        placeholder: {
+            key: '键',
+            value: '值'
+        },
+        validated: {
+            duplicate: '不允许使用重复的键',
+            required: '键为必填项'
         }
     }
 }

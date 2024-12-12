@@ -103,7 +103,6 @@ const tags = ref([])
 
 :::
 
-
 ## Max
 
 ::: raw
@@ -119,6 +118,40 @@ const tags = ref([])
 ```vue
 <template>
     <ShadcnInputTag v-model="tags" max="3" />
+</template>
+```
+
+:::
+
+## Form
+
+::: raw
+
+<CodeRunner title="Form">
+    <ShadcnForm ref="formRef" v-model="formState">
+      <ShadcnFormItem name="tags"
+                      label="Tags"
+                      :rules="[ { required: true, message: 'Please input tags!' } ]">
+        <ShadcnInputTag v-model="formState.tags" name="tags"/>
+      </ShadcnFormItem>
+      <ShadcnButton submit>Submit</ShadcnButton>
+    </ShadcnForm>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnForm ref="formRef" v-model="formState">
+      <ShadcnFormItem name="tags"
+                      label="Tags"
+                      :rules="[ { required: true, message: 'Please input tags!' } ]">
+        <ShadcnInputTag v-model="formState.tags" name="tags"/>
+      </ShadcnFormItem>
+      <ShadcnButton submit>Submit</ShadcnButton>
+    </ShadcnForm>
 </template>
 ```
 
@@ -153,4 +186,8 @@ const tags = ref([])
 import { ref } from 'vue'
 
 const tags = ref([])
+
+const formState = ref({
+    tags: []
+})
 </script>

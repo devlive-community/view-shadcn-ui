@@ -186,6 +186,9 @@ features:
     title: <a href='workflow.html'>Shadcn Workflow <span class="VPBadge tip">2024.5.1</span></a>
     details: Workflow component
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/form/input-tag.svg" />
-    title: <a href='form/input-tag.html'>Shadcn InputTag <span class="VPBadge tip">2024.5.1</span></a>
+    title: <a href='form/input-tag.html'>Shadcn InputTag <span class="VPBadge tip">2024.5.2</span></a>
     details: InputTag component
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/form/map.svg" />
+    title: <a href='form/map.html'>Shadcn Map <span class="VPBadge tip">2024.5.2</span></a>
+    details: Map component
 ---

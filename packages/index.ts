@@ -88,6 +88,7 @@ import { ShadcnEmpty } from '@/ui/empty'
 import { ShadcnBackTop } from '@/ui/back-top'
 import { ShadcnWorkflowEditor, ShadcnWorkflowView } from '@/ui/workflow'
 import { ShadcnInputTag } from '@/ui/input-tag'
+import { ShadcnMap } from '@/ui/map'
 
 let components = [
     ShadcnButton,
@@ -172,7 +173,8 @@ let components = [
     ShadcnEmpty,
     ShadcnBackTop,
     ShadcnWorkflowEditor, ShadcnWorkflowView,
-    ShadcnInputTag
+    ShadcnInputTag,
+    ShadcnMap
 ]
 
 interface InstallOptions
@@ -293,6 +295,7 @@ export { ShadcnEmpty } from '@/ui/empty'
 export { ShadcnBackTop } from '@/ui/back-top'
 export { ShadcnWorkflowEditor, ShadcnWorkflowView } from '@/ui/workflow'
 export { ShadcnInputTag } from '@/ui/input-tag'
+export { ShadcnMap } from '@/ui/map'
 
 // Export functions
 export { fnToString, fnToFunction } from '@/utils/formatter'
