@@ -42,11 +42,28 @@ const formContext = inject('formContext') as any
 
 // Check from nested object
 const getValue = (obj: any, path: string) => {
-  const parts = path.match(/^(\w+)\[(\d+)\]\.(\w+)$/)
-  if (parts) {
-    const [_, array, index, prop] = parts
+  if (!path || !obj) {
+    return undefined
+  }
+
+  // 首先检查 obj.value 是否是数组并且存在
+  // First check if obj.value is an array
+  if (Array.isArray(obj.value)) {
+    return obj.value
+  }
+
+  // 如果不是上面的情况，再按照常规路径处理
+  // Check for array prop
+  const arrayPropMatch = path.match(/^(\w+)\[(\d+)\]\.(\w+)$/)
+  if (arrayPropMatch) {
+    const [_, array, index, prop] = arrayPropMatch
     return obj[array]?.[Number(index)]?.[prop]
   }
+
+  if (path.includes('.')) {
+    return path.split('.').reduce((value, key) => value?.[key], obj)
+  }
+
   return obj[path]
 }
 

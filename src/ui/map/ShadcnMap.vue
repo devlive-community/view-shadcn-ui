@@ -11,6 +11,7 @@
                    :class="{ 'cursor-not-allowed opacity-50 bg-gray-100': disabled }"
                    :placeholder="t('map.placeholder.key')"
                    :disabled="disabled"
+                   :name="name"
                    @input="updateValue(index, 'key', $event)"
                    @blur="validateDuplicate(index)">
           </div>
@@ -56,11 +57,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, inject, ref, watch } from 'vue'
 import { t } from '@/utils/locale'
 import { Size } from '@/ui/common/size.ts'
 import { HoverType } from '@/ui/common/type.ts'
 import { MapEmits, MapProps } from '@/ui/map/types.ts'
+import { FormItemContext } from '@/ui/form/context.ts'
 
 const emit = defineEmits<MapEmits>()
 const props = withDefaults(defineProps<MapProps>(), {
@@ -68,19 +70,21 @@ const props = withDefaults(defineProps<MapProps>(), {
   size: 'default',
   type: 'primary',
   disabled: false,
-  max: Infinity
+  max: Infinity,
+  name: undefined
 })
 
 const finalSize = computed(() => props.size)
 const duplicateKeys = ref<Record<number, boolean>>({})
 const emptyKeys = ref<Record<number, boolean>>({})
 
+const formItemContext = inject<FormItemContext | null>(`form-item-${ props.name }`, null)
+
 const isMaxReached = computed(() => {
   return props.max !== undefined && props.modelValue.length >= props.max
 })
 
-const validateDuplicate = (index: number) => {
-  console.debug('Validate duplicate index', index)
+const validateDuplicate = (_: number) => {
   const keys = props.modelValue.map(item => item.key)
   duplicateKeys.value = {}
   emptyKeys.value = {}
@@ -98,6 +102,10 @@ const validateDuplicate = (index: number) => {
       duplicateKeys.value[keys.indexOf(key)] = true
     }
   })
+
+  if (formItemContext) {
+    formItemContext.onBlur()
+  }
 }
 
 const onAddItem = () => {
@@ -110,6 +118,10 @@ const onAddItem = () => {
 
   emit('update:modelValue', newValue)
   emit('on-add', addItem)
+
+  if (formItemContext) {
+    formItemContext.onBlur()
+  }
 }
 
 const onRemoveItem = (index: number) => {
@@ -122,6 +134,10 @@ const onRemoveItem = (index: number) => {
   emit('update:modelValue', newValue)
   emit('on-remove', removedItem)
   validateDuplicate(index)
+
+  if (formItemContext) {
+    formItemContext.onBlur()
+  }
 }
 
 const updateValue = (index: number, field: 'key' | 'value', event: Event) => {
@@ -139,7 +155,17 @@ const updateValue = (index: number, field: 'key' | 'value', event: Event) => {
   if (field === 'key') {
     validateDuplicate(index)
   }
+
+  if (formItemContext) {
+    formItemContext.onBlur()
+  }
 }
+
+watch(() => props.modelValue.length, (newLength) => {
+  if (formItemContext && newLength === 0) {
+    formItemContext.onBlur()
+  }
+})
 
 watch(() => props.modelValue, () => {
   props.modelValue.forEach((_, index) => {

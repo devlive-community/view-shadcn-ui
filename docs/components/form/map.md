@@ -146,16 +146,69 @@ const value = ref([])
 
 :::
 
+## Form
+
+::: raw
+
+<CodeRunner title="Form">
+    <ShadcnForm ref="formRef" v-model="formState" @on-submit="console.log($event)">
+      <ShadcnFormItem name="map"
+                      label="Map"
+                      :rules="[ { required: true, message: 'Please add map!' } ]">
+        <ShadcnMap v-model="formState.value" :max="3" name="map"/>
+      </ShadcnFormItem>
+      <ShadcnButton submit>Submit</ShadcnButton>
+    </ShadcnForm>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnForm ref="formRef" v-model="formState" @on-submit="console.log($event)">
+      <ShadcnFormItem name="map"
+                      label="Map"
+                      :rules="[ { required: true, message: 'Please add map!' } ]">
+        <ShadcnMap v-model="formState.value" :max="3" name="map"/>
+      </ShadcnFormItem>
+      <ShadcnButton submit>Submit</ShadcnButton>
+    </ShadcnForm>
+</template>
+
+<script setup lang="ts">
+import {ref} from "vue"
+
+const formState = ref({
+  value: []
+})
+</script>
+```
+
+:::
+
 ## Map Props
 
 <ApiTable title="Map Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value','List']"
     :columns="[
-        ['modelValue', 'The value of the map', 'array', '\[\]', '', ''],
-        ['size', 'The size of the map', 'enum', 'default', '', 'small | default | large'],
-        ['type', 'The type of the map', 'enum', 'primary', '', 'primary | success | warning | error'],
-        ['disabled', 'Disable the map', 'boolean', 'false', '', ''],
-        ['max', 'The maximum number of items', 'number', 'Infinity', '', ''],
+        ['modelValue', 'The value of the map', 'array', '\[\]', '-'],
+        ['size', 'The size of the map', 'enum', 'default', 'small | default | large'],
+        ['type', 'The type of the map', 'enum', 'primary', 'primary | success | warning | error'],
+        ['disabled', 'Disable the map', 'boolean', 'false', '-'],
+        ['max', 'The maximum number of items', 'number', 'Infinity', '-'],
+        ['name', 'The name of the key input, support on form', 'string', '-', '-'],
+    ]">
+</ApiTable>
+
+## Map Events
+
+<ApiTable title="Events"
+    :headers="['Event', 'Description', 'Callback Parameters']"
+    :columns="[
+        ['on-add', 'Triggered when the map is added', 'object'],
+        ['on-remove', 'Triggered when the map is removed', 'object'],
     ]">
 </ApiTable>
 
@@ -163,4 +216,7 @@ const value = ref([])
 import {ref} from "vue"; 
 
 const value = ref([{key: 'key', value: 'value'}])
+const formState = ref({
+  value: []
+})
 </script>

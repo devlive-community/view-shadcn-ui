@@ -1,15 +1,20 @@
 <template>
   <div class="p-32 space-y-2">
-    <ShadcnText>Value: {{ value }}</ShadcnText>
-    <ShadcnMap v-model="value" :max="3"/>
+    <ShadcnForm ref="formRef" v-model="formState" @on-submit="console.log($event)">
+      <ShadcnFormItem name="map"
+                      label="Map"
+                      :rules="[ { required: true, message: 'Please add map!' } ]">
+        <ShadcnMap v-model="formState.value" :max="3" name="map"/>
+      </ShadcnFormItem>
+      <ShadcnButton submit>Submit</ShadcnButton>
+    </ShadcnForm>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const value = ref([
-  { key: 'name', value: 'John' },
-  { key: 'age', value: '30' }
-])
+const formState = ref({
+  value: []
+})
 </script>

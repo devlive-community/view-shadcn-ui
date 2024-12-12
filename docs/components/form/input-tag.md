@@ -140,6 +140,23 @@ const tags = ref([])
 
 :::
 
+::: details Show code
+
+```vue
+<template>
+    <ShadcnForm ref="formRef" v-model="formState">
+      <ShadcnFormItem name="tags"
+                      label="Tags"
+                      :rules="[ { required: true, message: 'Please input tags!' } ]">
+        <ShadcnInputTag v-model="formState.tags" name="tags"/>
+      </ShadcnFormItem>
+      <ShadcnButton submit>Submit</ShadcnButton>
+    </ShadcnForm>
+</template>
+```
+
+:::
+
 ## InputTag Props
 
 <ApiTable title="Props"
