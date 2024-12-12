@@ -179,6 +179,7 @@ const tags = ref([])
         :columns="[
             ['on-add', 'Triggered when the tag is added', 'string'],
             ['on-remove', 'Triggered when the tag is removed', 'string'],
+            ['on-change', 'Triggered when the input value is changed', 'string[]'],
         ]">
 </ApiTable>
 

@@ -15,4 +15,5 @@ export type InputTagEmits = {
     (e: 'update:modelValue', value: string[]): void
     (e: 'on-add', value: string): void
     (e: 'on-remove', value: string): void
+    (e: 'on-change', value: string[]): void
 }

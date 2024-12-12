@@ -44,7 +44,7 @@
 
       <input v-model="inputValue"
              ref="inputRef"
-             class="flex-1 min-w-[120px] bg-transparent border-none focus:outline-none text-sm"
+             class="flex-1 min-w-[100px] bg-transparent border-none focus:outline-none text-sm"
              :class="{ 'cursor-not-allowed opacity-50 bg-gray-100': disabled }"
              type="text"
              :placeholder="modelValue.length === 0 ? placeholder : ''"
@@ -121,6 +121,7 @@ const onAddTag = () => {
     const newTags = [...props.modelValue, newTag]
     emit('update:modelValue', newTags)
     emit('on-add', newTag)
+    emit('on-change', newTags)
     inputValue.value = ''
 
     if (formItemContext) {
@@ -140,6 +141,7 @@ const onRemoveTag = (tag: string) => {
   const newTags = props.modelValue.filter(t => t !== tag)
   emit('update:modelValue', newTags)
   emit('on-remove', tag)
+  emit('on-change', newTags)
 
   // 如果删除的是当前高亮的标签，取消高亮
   // If the deleted tag is currently highlighted, cancel highlighting

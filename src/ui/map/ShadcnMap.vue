@@ -118,6 +118,7 @@ const onAddItem = () => {
 
   emit('update:modelValue', newValue)
   emit('on-add', addItem)
+  emit('on-change', newValue)
 
   if (formItemContext) {
     formItemContext.onBlur()
@@ -133,6 +134,7 @@ const onRemoveItem = (index: number) => {
 
   emit('update:modelValue', newValue)
   emit('on-remove', removedItem)
+  emit('on-change', newValue)
   validateDuplicate(index)
 
   if (formItemContext) {
@@ -151,6 +153,7 @@ const updateValue = (index: number, field: 'key' | 'value', event: Event) => {
     [field]: target.value
   }
   emit('update:modelValue', newValue)
+  emit('on-change', newValue)
 
   if (field === 'key') {
     validateDuplicate(index)
