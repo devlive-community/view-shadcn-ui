@@ -43,7 +43,11 @@
                              :selected-node="selectedNode"
                              :width="configureWidth"
                              :style="{ width: calcSize(configureWidth) }"
-                             @update:node="handleNodeUpdated"/>
+                             @update:node="handleNodeUpdated">
+      <template v-for="(_, name) in $slots" :key="name" #[name]="slotProps">
+        <slot :name="name" v-bind="slotProps"/>
+      </template>
+    </ShadcnWorkflowConfigure>
   </div>
 </template>
 

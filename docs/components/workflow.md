@@ -217,6 +217,20 @@ This document is mainly used to describe some features and usage of the ShadcnWo
     ]">
 </ApiTable>
 
+## Workflow Slots
+
+<ApiTable title="Slots"
+    :headers="['Slot', 'Description', 'Parameters']"
+    :columns="[
+        ['panel-search', 'The search panel of the workflow', '-'],
+        ['panel-category-header', 'The category header of the workflow', '{ <br />category: { <br />label: string <br />value: string <br />} <br />}'],
+        ['panel-node', 'The node panel of the workflow', 'node, onDragStart'],
+        ['panel-bottom', 'The bottom panel of the workflow', '-'],
+        ['canvas-node', 'The node of the workflow', 'node'],
+        ['configure-\[node.type\]', 'The configure panel of the workflow', 'node, validation, onChange'],
+    ]">
+</ApiTable>
+
 ## Workflow Events
 
 <ApiTable title="Events"

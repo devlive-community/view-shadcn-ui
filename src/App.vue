@@ -1,10 +1,12 @@
 <template>
-  Current Workflow: {{ workflowState.data }}
   <ShadcnWorkflowEditor v-model="workflowState"
                         :categories="categories"
                         :nodes="nodes"
                         :connections="[]"
                         :search-text="searchText">
+    <template #configure-input="{ item, onChange }">
+      <ShadcnInput v-model="item.value" type="textarea" @on-change="onChange"/>
+    </template>
   </ShadcnWorkflowEditor>
 </template>
 
@@ -14,11 +16,11 @@ import { ref } from 'vue'
 const categories = [
   {
     label: 'Input Node',
-    value: 'input'
+    value: 'source'
   },
   {
     label: 'Output Node',
-    value: 'output'
+    value: 'sink'
   },
   {
     label: 'Transform Node',
@@ -33,193 +35,112 @@ const workflowState = ref({
 
 const nodes: any[] = [
   {
-    id: 'start',
-    label: 'Start',
-    category: 'input',
-    position: { x: 0, y: 0 },
-    configure: [
-      {
-        field: 'name',
-        label: 'Name',
-        type: 'input',
-        description: 'This is a long description, this is a long description, this is a long description, this is a long description',
-        required: true
-      },
-      {
-        field: 'name1',
-        label: 'Password',
-        type: 'password',
-        rules: [
-          { required: true, message: 'Please input password!' }
-        ],
-        required: true
-      }
-    ],
-    description: 'Job start node',
-    ports: [
-      { id: 'out1', type: 'output', label: 'Output', required: true, message: 'Input is required' }
-    ]
-  },
-  {
-    id: 'end',
-    label: 'End',
-    category: 'output',
-    description: 'Job end node',
-    position: { x: 0, y: 0 },
-    ports: [
-      { id: 'in1', type: 'input', label: 'Input', required: true }
-    ]
-  },
-  {
-    id: 'process',
-    label: 'Process',
-    category: 'transform',
-    description: 'Job transform node',
-    position: { x: 0, y: 0 },
-    ports: [
-      { id: 'in12', type: 'input', label: 'Input 1', required: true },
-      { id: 'in22', type: 'input', label: 'Input 2', required: true },
-      { id: 'out1', type: 'output', label: 'Output 1' },
-      { id: 'out2', type: 'output', label: 'Output 2' }
-    ]
-  },
-  {
-    'id': 'jdbc-source',
-    'label': 'Jdbc',
-    'description': 'JDBC source connector',
-    'category': 'input',
+    'id': 'clickhouse-sink',
+    'label': 'Clickhouse',
+    'category': 'sink',
+    'position': null,
     'configure': [
       {
-        'field': 'url',
-        'label': 'Url',
+        'field': 'host',
+        'label': 'Host',
         'type': 'input',
-        'placeholder': 'jdbc:driver://host:port/database',
+        'description': 'ClickHouse cluster address, the format is host:port , allowing multiple hosts to be specified. Such as "host1:8123,host2:8123" .',
         'required': true,
-        'message': 'Url is required'
+        'placeholder': 'ClickHouse address, the format is host:port.'
       },
       {
-        'field': 'driver',
-        'label': 'Driver',
-        'type': 'select',
+        'field': 'database',
+        'label': 'Database',
+        'type': 'input',
+        'description': 'The ClickHouse database.',
         'required': true,
-        'placeholder': 'Please select a driver',
-        'message': 'Driver is required',
-        'options': [
-          {
-            'label': 'MySQL',
-            'value': 'com.mysql.jdbc.Driver'
-          },
-          {
-            'label': 'PostgreSQL',
-            'value': 'org.postgresql.Driver'
-          },
-          {
-            'label': 'DM',
-            'value': 'dm.jdbc.driver.DmDriver'
-          },
-          {
-            'label': 'Phoenix',
-            'value': 'org.apache.phoenix.queryserver.client.Driver'
-          },
-          {
-            'label': 'SqlServer',
-            'value': 'com.microsoft.sqlserver.jdbc.SQLServerDriver'
-          },
-          {
-            'label': 'Oracle',
-            'value': 'oracle.jdbc.OracleDriver'
-          },
-          {
-            'label': 'Sqlite',
-            'value': 'org.sqlite.JDBC'
-          },
-          {
-            'label': 'Gbase8a',
-            'value': 'com.gbase.jdbc.Driver'
-          },
-          {
-            'label': 'StarRocks',
-            'value': 'com.mysql.cj.jdbc.Driver'
-          },
-          {
-            'label': 'DB2',
-            'value': 'com.ibm.db2.jcc.DB2Driver'
-          },
-          {
-            'label': 'TableStore',
-            'value': 'com.alicloud.openservices.tablestore.jdbc.OTSDriver'
-          },
-          {
-            'label': 'Saphana',
-            'value': 'com.sap.db.jdbc.Driver'
-          },
-          {
-            'label': 'Doris',
-            'value': 'com.mysql.cj.jdbc.Driver'
-          },
-          {
-            'label': 'Teradata',
-            'value': 'com.teradata.jdbc.TeraDriver'
-          },
-          {
-            'label': 'Snowflake',
-            'value': 'net.snowflake.client.jdbc.SnowflakeDriver'
-          },
-          {
-            'label': 'Redshift',
-            'value': 'com.amazon.redshift.jdbc42.Driver'
-          },
-          {
-            'label': 'Vertica',
-            'value': 'com.vertica.jdbc.Driver'
-          },
-          {
-            'label': 'Kingbase',
-            'value': 'com.kingbase8.Driver'
-          },
-          {
-            'label': 'OceanBase',
-            'value': 'com.oceanbase.jdbc.Driver'
-          },
-          {
-            'label': 'Hive',
-            'value': 'org.apache.hive.jdbc.HiveDriver'
-          }
-        ]
+        'placeholder': 'The ClickHouse database.'
+      },
+      {
+        'field': 'table',
+        'label': 'Table',
+        'type': 'input',
+        'description': 'The table name.',
+        'required': true,
+        'placeholder': 'The table name.'
       },
       {
         'field': 'username',
         'label': 'Username',
-        'type': 'input'
-      },
-      {
-        'field': 'query',
-        'label': 'Query',
-        'type': 'textarea',
-        'placeholder': 'Please input query'
-      },
-      {
-        'field': 'array',
-        'label': 'Array',
-        'type': 'array',
+        'type': 'input',
+        'description': 'ClickHouse user username.',
         'required': true,
-        'placeholder': 'Please input compatible mode'
+        'placeholder': 'ClickHouse user username.'
       },
       {
-        'field': 'map',
-        'label': 'Map',
-        'type': 'map',
+        'field': 'password',
+        'label': 'Password',
+        'type': 'password',
+        'description': 'ClickHouse user password.',
         'required': true,
-        'placeholder': 'Please input connection check timeout'
+        'placeholder': 'ClickHouse user password.'
+      },
+      {
+        'field': 'bulk_size',
+        'label': 'Bulk size',
+        'type': 'number',
+        'description': 'The number of rows written through Clickhouse-jdbc each time, the default is 20000.',
+        'required': false,
+        'placeholder': 'Bulk size, the default is 20000.',
+        'value': 20000
+      },
+      {
+        'field': 'split_mode',
+        'label': 'Split mode',
+        'type': 'switch',
+        'description': 'This mode only support clickhouse table which engine is \'Distributed\'.And internal_replication option-should be true.They will split distributed table data in seatunnel and perform write directly on each shard. The shard weight define is clickhouse will counted.',
+        'required': false,
+        'placeholder': 'Split mode.',
+        'value': false
+      },
+      {
+        'field': 'sharding_key',
+        'label': 'Sharding key',
+        'type': 'input',
+        'description': 'When use split_mode, which node to send data to is a problem, the default is random selection, but the \'sharding_key\' parameter can be used to specify the field for the sharding algorithm. This option only worked when \'split_mode\' is true.',
+        'required': false,
+        'placeholder': 'Sharding key.'
+      },
+      {
+        'field': 'primary_key',
+        'label': 'Primary key',
+        'type': 'input',
+        'description': 'Mark the primary key column from clickhouse table, and based on primary key execute INSERT/UPDATE/DELETE to clickhouse table.',
+        'required': false,
+        'placeholder': 'Primary key.'
+      },
+      {
+        'field': 'support_upsert',
+        'label': 'Support upsert',
+        'type': 'switch',
+        'description': 'Support upsert, the default is true.',
+        'required': false,
+        'placeholder': 'Support upsert.',
+        'value': false
+      },
+      {
+        'field': 'allow_experimental_lightweight_delete',
+        'label': 'Allow experimental lightweight delete',
+        'type': 'switch',
+        'description': 'Allow experimental lightweight delete based on *MergeTree table engine.',
+        'required': false,
+        'placeholder': 'Allow experimental lightweight delete.',
+        'value': false
       }
     ],
+    'description': 'Clickhouse sink connector',
     'ports': [
       {
-        'id': 'output',
-        'label': 'Output',
-        'type': 'output',
+        'id': 'input',
+        'type': 'input',
+        'label': 'Input',
         'required': true,
-        'message': 'Output is required'
+        'message': 'Input is required'
       }
     ]
   }
