@@ -190,6 +190,7 @@ export default {
                         {text: 'Toggle <span class="VPBadge tip">2024.4.0</span>', link: 'toggle'},
                         {text: 'Upload <span class="VPBadge tip">2024.5.0</span>', link: 'upload'},
                         {text: 'Input Tag <span class="VPBadge tip">2024.5.2</span>', link: 'form/input-tag'},
+                        {text: 'Map <span class="VPBadge tip">2024.5.2</span>', link: 'form/map'},
                     ]
                     return {
                         text: `Form [ ${items.length} ]`,

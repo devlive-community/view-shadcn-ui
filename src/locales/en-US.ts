@@ -135,7 +135,8 @@ export default {
             value: 'Value'
         },
         validated: {
-            duplicate: 'Duplicate keys are not allowed'
+            duplicate: 'Duplicate keys are not allowed',
+            required: 'The key is required'
         }
     }
 }

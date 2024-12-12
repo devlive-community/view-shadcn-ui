@@ -135,7 +135,8 @@ export default {
             value: '值'
         },
         validated: {
-            duplicate: '不允许使用重复的键'
+            duplicate: '不允许使用重复的键',
+            required: '键为必填项'
         }
     }
 }

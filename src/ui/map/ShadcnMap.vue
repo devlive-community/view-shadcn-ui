@@ -4,11 +4,13 @@
       <div v-for="(item, index) in modelValue" class="flex gap-2 items-start group" :key="index">
         <div class="flex-1 flex gap-2">
           <div class="flex-1 border rounded-md transition-colors duration-300"
-               :class="[Size[finalSize], HoverType[type], { 'border-red-500 animate-pulse': duplicateKeys[index] }]">
+               :class="[Size[finalSize], HoverType[type], { 'border-red-500 animate-pulse': duplicateKeys[index] || emptyKeys[index] }]">
             <input v-model="item.key"
                    type="text"
-                   :placeholder="t('map.placeholder.key')"
                    class="w-full h-full bg-transparent border-none focus:outline-none px-2"
+                   :class="{ 'cursor-not-allowed opacity-50 bg-gray-100': disabled }"
+                   :placeholder="t('map.placeholder.key')"
+                   :disabled="disabled"
                    @input="updateValue(index, 'key', $event)"
                    @blur="validateDuplicate(index)">
           </div>
@@ -17,17 +19,26 @@
                :class="[Size[finalSize], HoverType[type]]">
             <input v-model="item.value"
                    type="text"
-                   :placeholder="t('map.placeholder.value')"
                    class="w-full h-full bg-transparent border-none focus:outline-none px-2"
+                   :class="{ 'cursor-not-allowed opacity-50 bg-gray-100': disabled }"
+                   :disabled="disabled"
+                   :placeholder="t('map.placeholder.value')"
                    @input="updateValue(index, 'value', $event)">
           </div>
         </div>
 
         <ShadcnIcon icon="CircleX"
-                    class="text-gray-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity duration-200 cursor-pointer"
-                    :class="[Size[finalSize]]"
+                    class="text-gray-400 transition-opacity duration-200"
+                    :class="[Size[finalSize],
+                          { 'cursor-pointer hover:text-red-500 opacity-0 group-hover:opacity-100': !disabled },
+                          { 'cursor-not-allowed opacity-50': disabled }
+                    ]"
                     @click="onRemoveItem(index)"/>
       </div>
+    </div>
+
+    <div v-if="Object.values(emptyKeys).some(v => v)" class="text-red-500 text-sm">
+      {{ t('map.validated.required') }}
     </div>
 
     <div v-if="Object.values(duplicateKeys).some(v => v)" class="text-red-500 text-sm">
@@ -35,13 +46,11 @@
     </div>
 
     <ShadcnIcon icon="CirclePlus"
-                :class="[
-                    Size[finalSize],
-                    'text-blue-600 hover:text-blue-700 focus:outline-none',
-                    { 'cursor-pointer ': !Object.values(duplicateKeys).some(v => v) },
-                    { 'cursor-not-allowed opacity-50 text-gray-100': Object.values(duplicateKeys).some(v => v) }
+                :class="['text-blue-600 hover:text-blue-700 focus:outline-none',
+                    { 'cursor-pointer ': !Object.values(duplicateKeys).some(v => v) && !Object.values(emptyKeys).some(v => v) && !disabled },
+                    { 'cursor-not-allowed opacity-50 text-gray-100': Object.values(duplicateKeys).some(v => v) || Object.values(emptyKeys).some(v => v) || disabled }
                 ]"
-                @click="!Object.values(duplicateKeys).some(v => v) && onAddItem()"/>
+                @click="(!Object.values(duplicateKeys).some(v => v) && !Object.values(emptyKeys).some(v => v)) && onAddItem()"/>
   </div>
 </template>
 
@@ -62,13 +71,22 @@ const props = withDefaults(defineProps<MapProps>(), {
 
 const finalSize = computed(() => props.size)
 const duplicateKeys = ref<Record<number, boolean>>({})
+const emptyKeys = ref<Record<number, boolean>>({})
 
 const validateDuplicate = (index: number) => {
   console.debug('Validate duplicate index', index)
   const keys = props.modelValue.map(item => item.key)
   duplicateKeys.value = {}
+  emptyKeys.value = {}
 
   keys.forEach((key, index) => {
+    // 检查空值
+    // Check empty
+    if (key === undefined || key === '') {
+      emptyKeys.value[index] = true
+    }
+    // 检查重复（只针对非空值）
+    // Check duplicate
     if (key && keys.indexOf(key) !== index) {
       duplicateKeys.value[index] = true
       duplicateKeys.value[keys.indexOf(key)] = true
@@ -80,7 +98,7 @@ const onAddItem = () => {
   if (props.disabled) {
     return
   }
-  const addItem = { key: '', value: '' }
+  const addItem = { key: undefined, value: undefined }
   const newValue = [...props.modelValue, addItem]
 
   emit('update:modelValue', newValue)

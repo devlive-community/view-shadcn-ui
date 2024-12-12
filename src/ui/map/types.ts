@@ -3,8 +3,8 @@ import { HoverType } from '@/ui/common/type.ts'
 
 export interface KeyValuePair
 {
-    key: string
-    value: string
+    key?: string
+    value?: string
 }
 
 export interface MapProps
