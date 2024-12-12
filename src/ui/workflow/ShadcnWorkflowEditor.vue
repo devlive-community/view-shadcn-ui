@@ -41,6 +41,7 @@
 
     <ShadcnWorkflowConfigure class="border-l"
                              :selected-node="selectedNode"
+                             :width="configureWidth"
                              :style="{ width: calcSize(configureWidth) }"
                              @update:node="handleNodeUpdated"/>
   </div>

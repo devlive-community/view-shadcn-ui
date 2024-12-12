@@ -32,7 +32,7 @@
         <template v-if="hasConfiguration">
           <ShadcnTabItem class="space-y-3" :label="String(t('workflow.text.dataConfigure'))" value="configure">
             <div class="overflow-y-auto max-h-[calc(100vh-80px)]">
-              <div class="space-y-3 flex flex-col">
+              <div class="space-y-3 flex flex-col min-w-0">
                 <div v-for="item in selectedNode.configure" :key="item.label">
                   <div class="flex items-center justify-between">
                     <span>{{ item.label }}</span>
@@ -166,10 +166,33 @@
                               :min="item.min"
                               :show-text="item.showText"
                               @on-change="() => {
-                              validateField(item)
-                              onPositionUpdate()
-                           }"
+                                  validateField(item)
+                                  onPositionUpdate()
+                              }"
                               :class="{ 'border-red-500': !validationState[item.field]?.valid }"/>
+
+                  <ShadcnInputTag v-else-if="item.type === 'array'"
+                                  :style="{ width: `${calcSize(Number(width) - 60)}` }"
+                                  v-model="item.value"
+                                  :disabled="item.disabled"
+                                  :name="item.label"
+                                  :placeholder="item.placeholder"
+                                  @on-change="() => {
+                                      validateField(item)
+                                      onPositionUpdate()
+                                  }"
+                                  :class="{ 'border-red-500': !validationState[item.field]?.valid }"/>
+
+                  <ShadcnMap v-else-if="item.type === 'map'"
+                             v-model="item.value"
+                             :disabled="item.disabled"
+                             :name="item.label"
+                             :placeholder="item.placeholder"
+                             @on-change="() => {
+                                 validateField(item)
+                                 onPositionUpdate()
+                             }"
+                             :class="{ 'border-red-500': !validationState[item.field]?.valid }"/>
 
                   <ShadcnInput v-else
                                v-model="item.value"
@@ -203,9 +226,13 @@
 import { computed, ref, watch } from 'vue'
 import { t } from '@/utils/locale'
 import { WorkflowConfigureEmits, WorkflowConfigureProps } from '../types'
+import { calcSize } from '@/utils/common.ts'
+import { ShadcnMap } from '@/ui/map'
 
 const emit = defineEmits<WorkflowConfigureEmits>()
-const props = defineProps<WorkflowConfigureProps>()
+const props = withDefaults(defineProps<WorkflowConfigureProps>(), {
+  width: 300
+})
 
 const nodeData = ref('')
 const activeTab = ref('basic')
@@ -236,10 +263,21 @@ const validateField = (item: any) => {
   // 检查所有规则
   // Check all rules
   for (const rule of rules) {
-    if (rule.required && !item.value) {
-      valid = false
-      message = rule.message
-      break
+    if (rule.required) {
+      if (item.type === 'array') {
+        if (!Array.isArray(item.value) || item.value.length === 0) {
+          valid = false
+          message = rule.message
+          break
+        }
+      }
+      else {
+        if (!item.value) {
+          valid = false
+          message = rule.message
+          break
+        }
+      }
     }
   }
 

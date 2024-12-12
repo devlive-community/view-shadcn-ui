@@ -156,6 +156,7 @@ export type WorkflowEmits = {
 export interface WorkflowConfigureProps
 {
     selectedNode?: WorkflowNode
+    width?: number | string
 }
 
 export type WorkflowConfigureEmits = {

@@ -209,6 +209,7 @@ const formState = ref({
     :columns="[
         ['on-add', 'Triggered when the map is added', 'object'],
         ['on-remove', 'Triggered when the map is removed', 'object'],
+        ['on-change', 'Triggered when the map is changed', 'object[]'],
     ]">
 </ApiTable>
 

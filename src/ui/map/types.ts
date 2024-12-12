@@ -21,4 +21,5 @@ export type MapEmits = {
     (e: 'update:modelValue', value: KeyValuePair[]): void
     (e: 'on-add', value: KeyValuePair): void
     (e: 'on-remove', value: KeyValuePair): void
+    (e: 'on-change', value: KeyValuePair[]): void
 }
