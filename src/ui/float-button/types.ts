@@ -6,4 +6,9 @@ export interface FloatButtonProps
     right?: number | string
     bottom?: number | string
     left?: number | string
+    trigger?: 'click' | 'hover'
+}
+
+export type FloatButtonEmits = {
+    (e: 'on-menu-visible', visible: boolean): void
 }
