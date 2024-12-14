@@ -16,16 +16,74 @@ This document is mainly used to describe some features and usage of the ShadcnLo
 
 :::
 
+::: details Show code
+
+```vue
+<template>
+    <ShadcnLoadingBar v-model="progress"/>
+</template>
+
+<script setup lang="ts">
+import {ref} from "vue"
+
+const progress = ref(50)
+</script>
+```
+
+:::
+
+## Status
+
+::: raw
+
+<CodeRunner title="Status">
+    Default
+    <ShadcnLoadingBar v-model="progress" :duration="500"/>
+    Error
+    <ShadcnLoadingBar v-model="progress" :duration="500" status="error"/>
+    Success
+    <ShadcnLoadingBar v-model="progress" :duration="500" status="success"/>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnLoadingBar v-model="progress" :duration="500" status="error"/>
+    <ShadcnLoadingBar v-model="progress" :duration="500" status="success"/>
+</template>
+
+<script setup lang="ts">
+import {ref} from "vue"
+
+const progress = ref(50)
+</script>
+```
+
+:::
+
 ## LoadingBar Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
     :columns="[
-        ['progress', 'The value of the loading bar.', 'number', '0'],
-        ['height', 'The height of the loading bar.', 'number | string', '2'],
-        ['color', 'The color of the loading bar.', 'string', '#2563eb'],
-        ['duration', 'The duration of the loading bar.', 'number | string', '300'],
-        ['animate', 'Whether to animate the loading bar.', 'Boolean', 'true'],
+        ['progress', 'The value of the loading bar.', 'number', '0', '-'],
+        ['height', 'The height of the loading bar.', 'number | string', '2', '-'],
+        ['color', 'The color of the loading bar.', 'string', '#2563eb', '-'],
+        ['duration', 'The duration of the loading bar.', 'number | string', '300', '-'],
+        ['animate', 'Whether to animate the loading bar.', 'Boolean', 'true', '-'],
+        ['status', 'The status of the loading bar.', 'string', 'default', 'default | error | success'],
+    ]">
+</ApiTable>
+
+## LoadingBar Events
+
+<ApiTable title="Events"
+    :headers="['Event', 'Description', 'Callback Parameters']"
+    :columns="[
+        ['on-complete', 'Triggered when the loading bar completes.', 'void'],
     ]">
 </ApiTable>
 

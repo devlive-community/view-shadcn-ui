@@ -1,7 +1,11 @@
 <template>
   <div class="p-32">
-    Value: {{ progress }}
+    Default
     <ShadcnLoadingBar v-model="progress" :duration="500"/>
+    Error
+    <ShadcnLoadingBar v-model="progress" :duration="500" status="error"/>
+    Success
+    <ShadcnLoadingBar v-model="progress" :duration="500" status="success"/>
   </div>
 </template>
 

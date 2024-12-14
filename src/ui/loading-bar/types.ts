@@ -1,3 +1,5 @@
+export type LoadingBarStatus = 'default' | 'success' | 'error'
+
 export interface LoadingBarProps
 {
     modelValue?: number
@@ -5,6 +7,7 @@ export interface LoadingBarProps
     color?: string
     duration?: number | string
     animate?: boolean
+    status?: LoadingBarStatus
 }
 
 export type LoadingBarEmits = {
