@@ -1,20 +1,12 @@
 <template>
-  <div class="p-32">
-    Default
-    <ShadcnLoadingBar v-model="progress" :duration="500"/>
-    Error
-    <ShadcnLoadingBar v-model="progress" :duration="500" status="error"/>
-    Success
-    <ShadcnLoadingBar v-model="progress" :duration="500" status="success"/>
+  <div class="p-32 space-x-4">
+    <ShadcnButton @click="LoadingBar.start">Start</ShadcnButton>
+    <ShadcnButton @click="LoadingBar.done">Done</ShadcnButton>
+    <ShadcnButton type="success" @click="LoadingBar.success()">Success</ShadcnButton>
+    <ShadcnButton type="error" @click="LoadingBar.error()">Error</ShadcnButton>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
-const progress = ref(50)
-
-setInterval(() => {
-  progress.value = Math.floor(Math.random() * 100)
-}, 1000)
+import { LoadingBar } from '@/ui/loading-bar/service.ts'
 </script>

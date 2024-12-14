@@ -304,6 +304,7 @@ export { ShadcnLoadingBar } from '@/ui/loading-bar'
 export { fnToString, fnToFunction } from '@/utils/formatter'
 export { formatLogger, formatFromExample, formatMultipleLines, formatLoggerFromStream } from '@/utils/logger'
 export { randomUUID, validateUUID } from '@/utils/uuid.ts'
+export { LoadingBar } from '@/ui/loading-bar/service'
 
 // Export locale
 export { setLocale }

@@ -13,7 +13,7 @@
 <script setup lang="ts">
 import { computed, watch } from 'vue'
 import { LoadingBarEmits, LoadingBarProps } from './types'
-import { calcSize } from '@/utils/common.ts'
+import { calcSize } from '@/utils/common'
 
 const emits = defineEmits<LoadingBarEmits>()
 const props = withDefaults(defineProps<LoadingBarProps>(), {
