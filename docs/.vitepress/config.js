@@ -168,6 +168,7 @@ export default {
                         {text: 'Count Down <span class="VPBadge tip">2024.5.1</span>', link: 'count-down'},
                         {text: 'Empty <span class="VPBadge tip">2024.5.1</span>', link: 'empty'},
                         {text: 'Back Top <span class="VPBadge tip">2024.5.1</span>', link: 'back-top'},
+                        {text: 'Loading Bar <span class="VPBadge tip">2024.5.2</span>', link: 'view/loading-bar'},
                     ]
                     return {
                         text: `View [ ${items.length} ]`,
