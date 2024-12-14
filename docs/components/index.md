@@ -191,4 +191,7 @@ features:
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/form/map.svg" />
     title: <a href='form/map.html'>Shadcn Map <span class="VPBadge tip">2024.5.2</span></a>
     details: Map component
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/view/loading-bar.svg" />
+    title: <a href='view/loading-bar.html'>Shadcn Loading Bar <span class="VPBadge tip">2024.5.2</span></a>
+    details: Loading Bar component
 ---

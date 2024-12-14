@@ -65,6 +65,18 @@ export default {
                         link: 'https://github.com/devlive-community/view-shadcn-ui/blob/dev/CONTRIBUTING.md',
                     }
                 ]
+            },
+            {
+                text: '<img alt="NPM Downloads" src="https://img.shields.io/npm/d18m/view-shadcn-ui?style=flat&label=D">',
+                link: 'https://www.npmjs.com/package/view-shadcn-ui'
+            },
+            {
+                text: '<img alt="GitHub stars" src="https://img.shields.io/github/stars/devlive-community/view-shadcn-ui?style=flat">',
+                link: 'https://github.com/devlive-community/view-shadcn-ui'
+            },
+            {
+                text: '<img alt="Gitee stars" src="https://gitee.com/devlive-community/view-shadcn-ui/badge/star.svg?theme=white"/>',
+                link: 'https://gitee.com/devlive-community/view-shadcn-ui'
             }
         ],
         sidebar: {
@@ -168,6 +180,7 @@ export default {
                         {text: 'Count Down <span class="VPBadge tip">2024.5.1</span>', link: 'count-down'},
                         {text: 'Empty <span class="VPBadge tip">2024.5.1</span>', link: 'empty'},
                         {text: 'Back Top <span class="VPBadge tip">2024.5.1</span>', link: 'back-top'},
+                        {text: 'Loading Bar <span class="VPBadge tip">2024.5.2</span>', link: 'view/loading-bar'},
                     ]
                     return {
                         text: `View [ ${items.length} ]`,
