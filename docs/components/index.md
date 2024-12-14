@@ -194,4 +194,7 @@ features:
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/view/loading-bar.svg" />
     title: <a href='view/loading-bar.html'>Shadcn Loading Bar <span class="VPBadge tip">2024.5.2</span></a>
     details: Loading Bar component
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/view/float-button.svg" />
+    title: <a href='view/float-button.html'>Shadcn Float Button <span class="VPBadge tip">2024.5.2</span></a>
+    details: Float Button component
 ---

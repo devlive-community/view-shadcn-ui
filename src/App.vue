@@ -1,24 +1,11 @@
 <template>
   <div class="p-32 space-x-4">
-    <ShadcnButton @click="LoadingBar.start">Start</ShadcnButton>
-    <ShadcnButton @click="LoadingBar.done">Done</ShadcnButton>
-    <ShadcnButton type="success" @click="LoadingBar.success()">Success</ShadcnButton>
-    <ShadcnButton type="error" @click="LoadingBar.error()">Error</ShadcnButton>
+    <ShadcnFloatButton position="bottom-right">Bottom Right</ShadcnFloatButton>
+    <ShadcnFloatButton position="bottom-left">Bottom Left</ShadcnFloatButton>
+    <ShadcnFloatButton position="top-right">Top Right</ShadcnFloatButton>
+    <ShadcnFloatButton position="top-left">Top Left</ShadcnFloatButton>
   </div>
 </template>
 
 <script setup lang="ts">
-import { LoadingBar } from '@/ui/loading-bar/service.ts'
-import axios from 'axios'
-
-LoadingBar.enabledNetwork()
-
-axios.get('https://mcs.snssdk.com/list')
-
-LoadingBar.configure({
-  height: 3,
-  color: '#10b981',
-  duration: 400,
-  animate: true
-})
 </script>
