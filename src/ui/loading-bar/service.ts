@@ -1,9 +1,20 @@
 import { createApp, h, ref } from 'vue'
 import LoadingBarComponent from './ShadcnLoadingBar.vue'
+import type { LoadingBarProps, LoadingBarStatus } from './types'
 
 const progress = ref(0)
 const visible = ref(false)
-const status = ref<'default' | 'success' | 'error'>('default')
+const status = ref<LoadingBarStatus>('default')
+
+// 配置选项
+// Configuration options
+const config = ref<Partial<LoadingBarProps>>({
+    height: 2,
+    color: '#2563eb',
+    duration: 300,
+    animate: true
+})
+
 let timer: NodeJS.Timeout | null = null
 
 // 创建一个包装器 div 来挂载 LoadingBar
@@ -24,7 +35,11 @@ const loadingBarApp = createApp({
     render: () => visible.value ? h(LoadingBarComponent, {
         modelValue: progress.value,
         class: 'w-full',
-        status: status.value
+        status: status.value,
+        height: config.value.height,
+        color: config.value.color,
+        duration: config.value.duration,
+        animate: config.value.animate
     }) : null
 })
 loadingBarApp.mount(loadingBarWrapper)
@@ -32,6 +47,10 @@ loadingBarApp.mount(loadingBarWrapper)
 // 导出服务
 // Export the service
 export const LoadingBar = {
+    configure: function (options: Partial<LoadingBarProps>) {
+        Object.assign(config.value, options)
+    },
+
     start: function () {
         visible.value = true
         progress.value = 0
@@ -50,7 +69,7 @@ export const LoadingBar = {
         }, 200)
     },
 
-    done: function (type: 'success' | 'error' = 'success') {
+    done: function (type: LoadingBarStatus = 'success') {
         if (timer) {
             clearInterval(timer)
             timer = null

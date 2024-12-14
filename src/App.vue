@@ -9,4 +9,11 @@
 
 <script setup lang="ts">
 import { LoadingBar } from '@/ui/loading-bar/service.ts'
+
+LoadingBar.configure({
+  height: 3,
+  color: '#10b981',
+  duration: 400,
+  animate: true
+})
 </script>

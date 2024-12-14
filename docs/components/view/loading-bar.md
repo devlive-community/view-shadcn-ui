@@ -79,6 +79,25 @@ const progress = ref(50)
 
 :::
 
+::: details Show code
+
+```vue
+<template>
+  <div class="space-x-4">
+    <ShadcnButton @click="LoadingBar.start">Start</ShadcnButton>
+    <ShadcnButton @click="LoadingBar.done">Done</ShadcnButton>
+    <ShadcnButton type="success" @click="LoadingBar.success()">Success</ShadcnButton>
+    <ShadcnButton type="error" @click="LoadingBar.error()">Error</ShadcnButton>
+  </div>
+</template>
+
+<script setup lang="ts">
+  import { LoadingBar } from 'view-shadcn-ui'
+</script>
+```
+
+:::
+
 ## LoadingBar Props
 
 <ApiTable title="Props"
