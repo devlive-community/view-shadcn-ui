@@ -13,7 +13,7 @@ import axios from 'axios'
 
 LoadingBar.enabledNetwork()
 
-const response = axios.get('https://mcs.snssdk.com/list')
+axios.get('https://mcs.snssdk.com/list')
 
 LoadingBar.configure({
   height: 3,

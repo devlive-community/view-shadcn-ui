@@ -121,6 +121,19 @@ const progress = ref(50)
     ]">
 </ApiTable>
 
+## LoadingBar Service
+
+<ApiTable title="Service"
+    :headers="['Method', 'Description', 'Parameters']"
+    :columns="[
+        ['start', 'Start the loading bar', '-'],
+        ['done', 'Complete the loading bar', 'success | error | default'],
+        ['success', 'Complete the loading bar with success status'],
+        ['error', 'Complete the loading bar with error status'],
+        ['enabledNetwork', 'Enable network status monitoring', 'boolean'],
+    ]">
+</ApiTable>
+
 <script setup lang="ts">
 import {ref} from "vue"
 import { LoadingBar } from 'view-shadcn-ui' 
