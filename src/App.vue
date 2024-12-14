@@ -9,6 +9,11 @@
 
 <script setup lang="ts">
 import { LoadingBar } from '@/ui/loading-bar/service.ts'
+import axios from 'axios'
+
+LoadingBar.enabledNetwork()
+
+const response = axios.get('https://mcs.snssdk.com/list')
 
 LoadingBar.configure({
   height: 3,
