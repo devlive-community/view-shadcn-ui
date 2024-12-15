@@ -7,9 +7,9 @@ export interface DataFilterProps
 
 export interface FilterCondition
 {
-    field: string
-    operator: string
-    value: any
+    field: string | null
+    operator: string | null
+    value?: any
 }
 
 export interface Field
@@ -23,11 +23,12 @@ export interface Operator
 {
     label: string
     value: string
+    scope: string[]
 }
 
 export type DataFilterEmits = {
     (e: 'update:modelValue', conditions: FilterCondition[]): void
     (e: 'on-change', conditions: FilterCondition[]): void
     (e: 'on-add-condition', condition: FilterCondition): void
-    (e: 'on-remove-condition', index: number): void
+    (e: 'on-remove-condition', condition: FilterCondition): void
 }
