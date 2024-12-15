@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- Define gradient -->
+    <defs>
+        <linearGradient id="filterGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#4ade80;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#22d3ee;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="80" fill="url(#filterGradient)" opacity="0.2" />
+
+    <!-- Funnel shape -->
+    <path d="M60 70 L140 70 L110 110 V140 H90 V110 L60 70 Z" fill="url(#filterGradient)" />
+
+    <!-- Lines to indicate filtering -->
+    <line x1="75" y1="55" x2="125" y2="55" stroke="white" stroke-width="8" stroke-linecap="round" />
+    <line x1="85" y1="40" x2="115" y2="40" stroke="white" stroke-width="8" stroke-linecap="round" />
+</svg>

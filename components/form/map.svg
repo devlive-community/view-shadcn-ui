@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- Define gradient -->
+    <defs>
+        <linearGradient id="mapGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#93c5fd;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#a5b4fc;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="80" fill="url(#mapGradient)" />
+
+    <!-- Key rectangle -->
+    <rect x="50" y="70" width="40" height="20" rx="5" fill="white" stroke="#60a5fa" stroke-width="3" />
+    <text x="70" y="84" font-size="12" text-anchor="middle" fill="#60a5fa" font-family="Arial, sans-serif">Key</text>
+
+    <!-- Arrow connecting key and value -->
+    <path d="M90 80 H110" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" />
+
+    <!-- Value rectangle -->
+    <rect x="110" y="70" width="40" height="20" rx="5" fill="white" stroke="#a5b4fc" stroke-width="3" />
+    <text x="130" y="84" font-size="12" text-anchor="middle" fill="#a5b4fc" font-family="Arial, sans-serif">Value</text>
+
+    <!-- Additional pair -->
+    <rect x="50" y="110" width="40" height="20" rx="5" fill="white" stroke="#60a5fa" stroke-width="3" />
+    <text x="70" y="124" font-size="12" text-anchor="middle" fill="#60a5fa" font-family="Arial, sans-serif">Key</text>
+    <path d="M90 120 H110" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" />
+    <rect x="110" y="110" width="40" height="20" rx="5" fill="white" stroke="#a5b4fc" stroke-width="3" />
+    <text x="130" y="124" font-size="12" text-anchor="middle" fill="#a5b4fc" font-family="Arial, sans-serif">Value</text>
+</svg>

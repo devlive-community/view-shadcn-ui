@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- Define gradient -->
+    <defs>
+        <linearGradient id="inputTagGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#93c5fd;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#a5b4fc;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="80" fill="url(#inputTagGradient)" />
+
+    <!-- Input box -->
+    <rect x="50" y="80" width="100" height="40" rx="8" fill="white" stroke="#60a5fa" stroke-width="5" />
+
+    <!-- Tag -->
+    <rect x="55" y="85" width="40" height="20" rx="5" fill="#a5b4fc" />
+    <text x="75" y="100" font-size="12" text-anchor="middle" fill="white" font-family="Arial, sans-serif">Tag</text>
+
+    <!-- Placeholder -->
+    <text x="95" y="105" font-size="14" fill="#60a5fa" font-family="Arial, sans-serif">Input...</text>
+</svg>
