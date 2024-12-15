@@ -88,7 +88,7 @@ const props = withDefaults(defineProps<HierarchicalDataFilterProps>(), {
 const filterGroups = ref<FilterGroup[]>([
   {
     operator: 'and',
-    items: []
+    items: [] as FilterItem[]
   }
 ])
 
@@ -120,7 +120,7 @@ const addConditionToGroup = (groupIndex: number) => {
     isValid: false
   }
 
-  filterGroups.value[groupIndex].items.push(newCondition)
+  filterGroups.value[groupIndex].items.push(newCondition as any)
 
   updateModelValue()
 }
@@ -141,7 +141,7 @@ const addNestedGroup = (groupIndex: number) => {
     isValid: false
   }
 
-  filterGroups.value[groupIndex].items.push(newNestedGroup)
+  filterGroups.value[groupIndex].items.push(newNestedGroup as any)
 
   updateModelValue()
 }
