@@ -11,7 +11,9 @@
           </template>
         </ShadcnSelect>
 
-        <ShadcnSelect v-model="condition.operator" class="min-w-48" @change="onChange">
+        <ShadcnSelect v-model="condition.operator"
+                      class="min-w-48"
+                      @change="onChange">
           <template #options>
             <ShadcnSelectOption v-for="op in getOperatorsByField(condition.field)"
                                 :key="op.value"
@@ -21,40 +23,57 @@
         </ShadcnSelect>
 
         <div v-if="shouldShowValueInput(condition.operator)" class="condition-value">
-          <template v-if="getFieldType(condition.field) === 'number' && !['in', 'notIn', 'between', 'notBetween'].includes(condition.operator)">
-            <ShadcnNumber v-model="condition.value" :placeholder="t('dataFilter.placeholder.value')" @on-change="onChange"/>
+          <template v-if="getFieldType(condition.field) === 'number' && !['in', 'notIn', 'between', 'notBetween'].includes(condition.operator ?? '')">
+            <ShadcnNumber v-model="condition.value"
+                          :class="{'border border-red-500 rounded animate-pulse  transition-colors duration-300': hasError(index, 'value')}"
+                          :placeholder="t('dataFilter.placeholder.value')"
+                          @on-change="onChange"/>
           </template>
           <template v-else-if="getFieldType(condition.field) === 'boolean'">
             <div class="h-10 flex items-center">
-              <ShadcnSwitch v-model="condition.value" @on-change="onChange"/>
+              <ShadcnSwitch v-model="condition.value"
+                            :class="{'border border-red-500 rounded animate-pulse  transition-colors duration-300': hasError(index, 'value')}"
+                            @on-change="onChange"/>
             </div>
           </template>
-          <template v-else-if="['string', 'number', 'date'].includes(getFieldType(condition.field)) && ['in', 'notIn'].includes(condition.operator)">
-            <ShadcnInputTag v-model="condition.value" :placeholder="t('dataFilter.placeholder.values')" @on-change="onChange"/>
+          <template v-else-if="['string', 'number', 'date'].includes(getFieldType(condition.field) ?? '') && ['in', 'notIn'].includes(condition.operator ?? '')">
+            <ShadcnInputTag v-model="condition.value"
+                            :placeholder="t('dataFilter.placeholder.values')"
+                            :class="{'border border-red-500 rounded animate-pulse  transition-colors duration-300': hasError(index, 'value')}"
+                            @on-change="onChange"/>
           </template>
-          <template v-else-if="getFieldType(condition.field) === 'number' && ['between', 'notBetween'].includes(condition.operator)">
+          <template v-else-if="getFieldType(condition.field) === 'number' && ['between', 'notBetween'].includes(condition.operator ?? '')">
             <div class="flex items-center gap-2">
-              <ShadcnNumber v-model="condition.value[0]" :placeholder="t('dataFilter.placeholder.minNumber')" @on-change="onBetweenChange(condition, 0)"/>
+              <ShadcnNumber v-model="condition.value[0]"
+                            :placeholder="t('dataFilter.placeholder.minNumber')"
+                            :class="{'border border-red-500 rounded animate-pulse  transition-colors duration-300': hasError(index, 'value')}"
+                            @on-change="onBetweenChange(condition, 0)"/>
               <span>...</span>
-              <ShadcnNumber v-model="condition.value[1]" :placeholder="t('dataFilter.placeholder.maxNumber')" @on-change="onBetweenChange(condition, 1)"/>
+              <ShadcnNumber v-model="condition.value[1]"
+                            :placeholder="t('dataFilter.placeholder.maxNumber')"
+                            :class="{'border border-red-500 rounded animate-pulse  transition-colors duration-300': hasError(index, 'value')}"
+                            @on-change="onBetweenChange(condition, 1)"/>
             </div>
           </template>
-          <template v-else-if="getFieldType(condition.field) === 'date' && ['between', 'notBetween'].includes(condition.operator)">
+          <template v-else-if="getFieldType(condition.field) === 'date' && ['between', 'notBetween'].includes(condition.operator ?? '')">
             <div class="flex items-center gap-2">
               <ShadcnInput v-model="condition.value[0]"
                            type="date"
                            :placeholder="t('dataFilter.placeholder.startDate')"
+                           :class="{'border border-red-500 rounded animate-pulse  transition-colors duration-300': hasError(index, 'value')}"
                            @on-change="onBetweenChange(condition, 0)"/>
               <span>...</span>
               <ShadcnInput v-model="condition.value[1]"
                            type="date"
                            :placeholder="t('dataFilter.placeholder.endDate')"
+                           :class="{'border border-red-500 rounded animate-pulse  transition-colors duration-300': hasError(index, 'value')}"
                            @on-change="onBetweenChange(condition, 1)"/>
             </div>
           </template>
           <template v-else>
             <ShadcnInput v-model="condition.value"
                          :placeholder="t('dataFilter.placeholder.value')"
+                         :class="{'border border-red-500 rounded animate-pulse  transition-colors duration-300': hasError(index, 'value')}"
                          :type="getFieldType(condition.field) === 'date' ? 'date' : 'text'"
                          @on-change="onChange"/>
           </template>
@@ -80,7 +99,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
 import { t } from '@/utils/locale'
-import { DataFilterEmits, DataFilterProps, FilterCondition, Operator } from './types'
+import { DataFilterEmits, DataFilterProps, FilterCondition, Operator, ValidationResult } from './types'
 
 const emit = defineEmits<DataFilterEmits>()
 const props = withDefaults(defineProps<DataFilterProps>(), {
@@ -88,6 +107,13 @@ const props = withDefaults(defineProps<DataFilterProps>(), {
   operators: () => [],
   fields: () => []
 })
+
+const validationErrors = ref<ValidationError[]>([])
+const isValid = computed(() => validationErrors.value.length === 0)
+
+const hasError = (conditionIndex: number, fieldName: string) => {
+  return validationErrors.value.some(error => error.field === `${ conditionIndex }.${ fieldName }`)
+}
 
 const defaultOperators = computed<Operator[]>(() => {
   if (props.operators.length > 0) {
@@ -153,8 +179,9 @@ const newCondition = () => {
   }
 
   // 只在非 noValueOperators 情况下添加 value 属性
-  if (!noValueOperators.includes(operator)) {
-    condition.value = ['between', 'notBetween'].includes(operator) ?
+  // Only add value attribute if not in noValueOperators
+  if (!noValueOperators.includes(operator ?? '')) {
+    condition.value = ['between', 'notBetween'].includes(operator ?? '') ?
         [undefined, undefined] :
         undefined
   }
@@ -164,7 +191,7 @@ const newCondition = () => {
 
 const localConditions = ref<FilterCondition[]>([...props.conditions])
 
-const onBetweenChange = (condition: FilterCondition, index: number) => {
+const onBetweenChange = (condition: FilterCondition, _index: number) => {
   if (!Array.isArray(condition.value)) {
     condition.value = [undefined, undefined]
   }
@@ -194,10 +221,10 @@ watch(
             condition.operator = operators[0]?.value
           }
 
-          if (noValueOperators.includes(condition.operator)) {
+          if (noValueOperators.includes(condition.operator ?? '')) {
             delete condition.value
           }
-          else if (['between', 'notBetween'].includes(condition.operator)) {
+          else if (['between', 'notBetween'].includes(condition.operator ?? '')) {
             condition.value = [undefined, undefined]
           }
           else {
@@ -227,8 +254,127 @@ const onRemoveCondition = (index: number) => {
   onChange()
 }
 
+const validateCondition = (condition: FilterCondition, index: number): ValidationError[] => {
+  const errors: ValidationError[] = []
+  const field = props.fields.find(f => f.value === condition.field)
+
+  if (!field) {
+    errors.push({
+      field: `${ index }.field`,
+      message: t('dataFilter.validated.invalid')
+    })
+    return errors
+  }
+
+  if (!condition.field) {
+    errors.push({
+      field: `${ index }.field`,
+      message: t('dataFilter.validated.required')
+    })
+  }
+
+  if (!condition.operator) {
+    errors.push({
+      field: `${ index }.operator`,
+      message: t('dataFilter.validated.operatorRequired')
+    })
+  }
+
+  if (!shouldShowValueInput(condition.operator)) {
+    return errors
+  }
+
+  if (condition.value === undefined || condition.value === '') {
+    errors.push({
+      field: `${ index }.value`,
+      message: t('dataFilter.validated.valueRequired')
+    })
+  }
+
+  if (field && condition.value !== undefined && condition.value !== '') {
+    switch (field.type) {
+      case 'number':
+        if (['between', 'notBetween'].includes(condition.operator ?? '')) {
+          const [min, max] = condition.value as [number?, number?]
+          if (min === undefined || max === undefined) {
+            errors.push({
+              field: `${ index }.value`,
+              message: t('dataFilter.validated.rangeRequired')
+            })
+          }
+          else if (min > max) {
+            errors.push({
+              field: `${ index }.value`,
+              message: t('dataFilter.validated.invalidRange')
+            })
+          }
+        }
+        break
+      case 'date':
+        if (['between', 'notBetween'].includes(condition.operator ?? '')) {
+          const [startDate, endDate] = condition.value as [string?, string?]
+          if (startDate && endDate && new Date(startDate) > new Date(endDate)) {
+            errors.push({
+              field: `${ index }.value`,
+              message: t('dataFilter.validated.invalidDateRange')
+            })
+          }
+        }
+        break
+      case 'string':
+        if (condition.operator === 'regex') {
+          try {
+            new RegExp(condition.value as string)
+          }
+          catch {
+            errors.push({
+              field: `${ index }.value`,
+              message: t('dataFilter.validated.invalidRegex')
+            })
+          }
+        }
+        break
+    }
+  }
+
+  return errors
+}
+
+const validateAllConditions = (): ValidationResult => {
+  const allErrors: ValidationError[] = []
+
+  localConditions.value.forEach((condition, index) => {
+    const conditionErrors = validateCondition(condition, index)
+    allErrors.push(...conditionErrors)
+  })
+
+  return {
+    isValid: allErrors.length === 0,
+    errors: allErrors
+  }
+}
+
 const onChange = () => {
+  const validationResult = validateAllConditions()
+  validationErrors.value = validationResult.errors
+
   emit('update:modelValue', localConditions.value)
   emit('on-change', localConditions.value)
+  emit('on-validation-change', {
+    isValid: validationResult.isValid,
+    errors: validationResult.errors
+  })
 }
+
+const validate = (): ValidationResult => {
+  const result = validateAllConditions()
+  validationErrors.value = result.errors
+  return result
+}
+
+defineExpose({
+  validate,
+  isValid,
+  validationErrors
+})
 </script>

@@ -168,6 +168,16 @@ export default {
             isTrue: 'Is True',
             isFalse: 'Is False',
             addCondition: 'Add condition'
+        },
+        validated: {
+            invalid: 'Invalid field',
+            required: 'The field is required',
+            operatorRequired: 'The operator is required',
+            valueRequired: 'The value is required',
+            rangeRequired: 'The range is required',
+            invalidRange: 'The range is invalid',
+            invalidDateRange: 'The date range is invalid',
+            invalidRegex: 'The regex is invalid'
         }
     }
 }
