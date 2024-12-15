@@ -9,7 +9,7 @@
                   }
          ]"
          @click="toggleDropdown">
-      <div class="flex-1 flex items-center">
+      <div class="flex-1 flex items-center overflow-hidden">
         <div :class="['flex flex-wrap gap-1 w-full py-0.5',
                     MinSize[size]
               ]">
@@ -26,7 +26,7 @@
               </span>
             </template>
             <template v-else>
-              <span :class="[ 'flex items-center']">
+              <span class="flex items-center min-w-0 truncate select-none">
                 {{ selectedLabels[0] || placeholder }}
               </span>
             </template>
@@ -34,7 +34,7 @@
         </div>
       </div>
 
-      <div :class="['flex items-center ml-1']">
+      <div :class="['flex items-center ml-1 flex-shrink-0']">
         <svg class="w-4 h-4 transition-transform duration-200"
              :class="{ 'rotate-180': isExpanded }"
              fill="currentColor"

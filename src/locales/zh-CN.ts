@@ -138,5 +138,46 @@ export default {
             duplicate: '不允许使用重复的键',
             required: '键为必填项'
         }
+    },
+    dataFilter: {
+        placeholder: {
+            value: '请输入值',
+            values: '请输入多个值',
+            number: '请输入数字',
+            numbers: '请输入多个数字',
+            minNumber: '最小值',
+            maxNumber: '最大值'
+        },
+        text: {
+            eq: '等于',
+            neq: '不等于',
+            gt: '大于',
+            gte: '大于等于',
+            lt: '小于',
+            lte: '小于等于',
+            in: '在 ... 中',
+            notIn: '不在 ... 中',
+            between: '在 ... 之间',
+            notBetween: '不在 ... 之间',
+            isNull: '为空',
+            isNotNull: '不为空',
+            like: '包含',
+            notLike: '不包含',
+            regex: '匹配',
+            notRegex: '不匹配',
+            isTrue: '为 True',
+            isFalse: '为 False',
+            addCondition: '添加条件'
+        },
+        validated: {
+            invalid: '无效的字段',
+            required: '请选择字段',
+            operatorRequired: '请选择操作符',
+            valueRequired: '请输入值',
+            rangeRequired: '请输入范围',
+            invalidRange: '范围值无效',
+            invalidDateRange: '日期范围无效',
+            invalidRegex: '正则表达式无效'
+        }
     }
 }

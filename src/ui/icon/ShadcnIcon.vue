@@ -1,14 +1,17 @@
 <template>
-  <component v-if="icon"
-             :is="iconComponent"
-             :size="size"
-             :style="color ? { color: color } : ''"
-             @click="onClick"/>
-  <slot v-else name="icon"/>
+  <div class="inline-flex shrink-0" :style="containerStyle">
+    <component v-if="icon"
+               :is="iconComponent"
+               :size="size"
+               :style="color ? { color: color } : ''"
+               class="shrink-0"
+               @click="onClick"/>
+    <slot v-else name="icon"/>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 
 const emit = defineEmits(['on-click'])
 
@@ -21,6 +24,11 @@ const props = withDefaults(defineProps<{
 })
 
 const iconComponent = ref<any>(null)
+
+const containerStyle = computed(() => ({
+  width: typeof props.size === 'number' ? `${ props.size }px` : props.size,
+  height: typeof props.size === 'number' ? `${ props.size }px` : props.size
+}))
 
 const loadIconComponent = async (iconName: string) => {
   if (iconName) {

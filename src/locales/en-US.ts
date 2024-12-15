@@ -138,5 +138,46 @@ export default {
             duplicate: 'Duplicate keys are not allowed',
             required: 'The key is required'
         }
+    },
+    dataFilter: {
+        placeholder: {
+            value: 'Enter a value',
+            values: 'Enter values',
+            number: 'Enter a number',
+            numbers: 'Enter numbers',
+            minNumber: 'Min number',
+            maxNumber: 'Max number'
+        },
+        text: {
+            eq: 'Equal to',
+            neq: 'Not equal to',
+            gt: 'Greater than',
+            gte: 'Greater than or equal to',
+            lt: 'Less than',
+            lte: 'Less than or equal to',
+            in: 'In ...',
+            notIn: 'Not in ...',
+            between: 'Between ... and ...',
+            notBetween: 'Not between ... and ...',
+            isNull: 'Is null',
+            isNotNull: 'Is not null',
+            like: 'Contains',
+            notLike: 'Does not contain',
+            regex: 'Matches',
+            notRegex: 'Does not match',
+            isTrue: 'Is True',
+            isFalse: 'Is False',
+            addCondition: 'Add condition'
+        },
+        validated: {
+            invalid: 'Invalid field',
+            required: 'The field is required',
+            operatorRequired: 'The operator is required',
+            valueRequired: 'The value is required',
+            rangeRequired: 'The range is required',
+            invalidRange: 'The range is invalid',
+            invalidDateRange: 'The date range is invalid',
+            invalidRegex: 'The regex is invalid'
+        }
     }
 }
