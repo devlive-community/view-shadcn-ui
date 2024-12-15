@@ -197,4 +197,7 @@ features:
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/view/float-button.svg" />
     title: <a href='view/float-button.html'>Shadcn Float Button <span class="VPBadge tip">2024.5.2</span></a>
     details: Float Button component
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/data/data-filter.svg" />
+    title: <a href='data/data-filter.html'>Shadcn Data Filter <span class="VPBadge tip">2024.5.2</span></a>
+    details: Data Filter component
 ---
