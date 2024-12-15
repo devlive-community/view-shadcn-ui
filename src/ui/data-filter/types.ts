@@ -1,6 +1,6 @@
 export interface DataFilterProps
 {
-    conditions: FilterCondition[]
+    modelValue: FilterCondition[]
     operators: Operator[]
     fields: Field[]
 }
@@ -28,6 +28,7 @@ export interface Operator
 
 export interface ValidationError
 {
+    fieldIndex: number
     field: string
     message: string
 }

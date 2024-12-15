@@ -9,9 +9,10 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { ValidationResult } from '@/ui/data-filter/types.ts'
 
 const dataFilterRef = ref()
-const conditions = ref([])
+const conditions = ref([{ 'field': 'name', 'operator': 'eq' }, { 'field': 'name', 'operator': 'eq', 'value': 'John' }, { 'field': 'name', 'operator': 'eq' }])
 const fields = [
   { label: 'Name', value: 'name', type: 'string' },
   { label: 'Age', value: 'age', type: 'number' },

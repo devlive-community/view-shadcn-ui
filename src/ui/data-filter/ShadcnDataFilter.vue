@@ -1,89 +1,113 @@
 <template>
   <div class="w-full space-y-1">
     <div class="flex flex-col gap-2">
-      <div v-for="(condition, index) in localConditions" :key="index" class="flex items-center gap-2 group">
-        <ShadcnSelect v-model="condition.field" class="min-w-48">
-          <template #options>
-            <ShadcnSelectOption v-for="field in fields"
-                                :key="field.value"
-                                :value="field.value"
-                                :label="field.label"/>
-          </template>
-        </ShadcnSelect>
+      <div v-for="(condition, index) in localConditions" :key="index" class="flex items-start gap-2 group">
+        <div class="flex-shrink-0">
+          <ShadcnSelect v-model="condition.field"
+                        class="min-w-48"
+                        :class="{'border border-red-500 rounded': hasError(index, 'field')}">
+            <template #options>
+              <ShadcnSelectOption v-for="field in fields"
+                                  :key="field.value"
+                                  :value="field.value"
+                                  :label="field.label"/>
+            </template>
+          </ShadcnSelect>
 
-        <ShadcnSelect v-model="condition.operator"
-                      class="min-w-48"
-                      @change="onChange">
-          <template #options>
-            <ShadcnSelectOption v-for="op in getOperatorsByField(condition.field)"
-                                :key="op.value"
-                                :value="op.value"
-                                :label="op.label"/>
-          </template>
-        </ShadcnSelect>
-
-        <div v-if="shouldShowValueInput(condition.operator)" class="condition-value">
-          <template v-if="getFieldType(condition.field) === 'number' && !['in', 'notIn', 'between', 'notBetween'].includes(condition.operator ?? '')">
-            <ShadcnNumber v-model="condition.value"
-                          :class="{'border border-red-500 rounded animate-pulse  transition-colors duration-300': hasError(index, 'value')}"
-                          :placeholder="t('dataFilter.placeholder.value')"
-                          @on-change="onChange"/>
-          </template>
-          <template v-else-if="getFieldType(condition.field) === 'boolean'">
-            <div class="h-10 flex items-center">
-              <ShadcnSwitch v-model="condition.value"
-                            :class="{'border border-red-500 rounded animate-pulse  transition-colors duration-300': hasError(index, 'value')}"
-                            @on-change="onChange"/>
-            </div>
-          </template>
-          <template v-else-if="['string', 'number', 'date'].includes(getFieldType(condition.field) ?? '') && ['in', 'notIn'].includes(condition.operator ?? '')">
-            <ShadcnInputTag v-model="condition.value"
-                            :placeholder="t('dataFilter.placeholder.values')"
-                            :class="{'border border-red-500 rounded animate-pulse  transition-colors duration-300': hasError(index, 'value')}"
-                            @on-change="onChange"/>
-          </template>
-          <template v-else-if="getFieldType(condition.field) === 'number' && ['between', 'notBetween'].includes(condition.operator ?? '')">
-            <div class="flex items-center gap-2">
-              <ShadcnNumber v-model="condition.value[0]"
-                            :placeholder="t('dataFilter.placeholder.minNumber')"
-                            :class="{'border border-red-500 rounded animate-pulse  transition-colors duration-300': hasError(index, 'value')}"
-                            @on-change="onBetweenChange(condition, 0)"/>
-              <span>...</span>
-              <ShadcnNumber v-model="condition.value[1]"
-                            :placeholder="t('dataFilter.placeholder.maxNumber')"
-                            :class="{'border border-red-500 rounded animate-pulse  transition-colors duration-300': hasError(index, 'value')}"
-                            @on-change="onBetweenChange(condition, 1)"/>
-            </div>
-          </template>
-          <template v-else-if="getFieldType(condition.field) === 'date' && ['between', 'notBetween'].includes(condition.operator ?? '')">
-            <div class="flex items-center gap-2">
-              <ShadcnInput v-model="condition.value[0]"
-                           type="date"
-                           :placeholder="t('dataFilter.placeholder.startDate')"
-                           :class="{'border border-red-500 rounded animate-pulse  transition-colors duration-300': hasError(index, 'value')}"
-                           @on-change="onBetweenChange(condition, 0)"/>
-              <span>...</span>
-              <ShadcnInput v-model="condition.value[1]"
-                           type="date"
-                           :placeholder="t('dataFilter.placeholder.endDate')"
-                           :class="{'border border-red-500 rounded animate-pulse  transition-colors duration-300': hasError(index, 'value')}"
-                           @on-change="onBetweenChange(condition, 1)"/>
-            </div>
-          </template>
-          <template v-else>
-            <ShadcnInput v-model="condition.value"
-                         :placeholder="t('dataFilter.placeholder.value')"
-                         :class="{'border border-red-500 rounded animate-pulse  transition-colors duration-300': hasError(index, 'value')}"
-                         :type="getFieldType(condition.field) === 'date' ? 'date' : 'text'"
-                         @on-change="onChange"/>
-          </template>
+          <div v-if="hasError(index, 'field')" class="text-red-500 text-sm mt-1">
+            {{ validationErrors[index]?.message }}
+          </div>
         </div>
 
-        <ShadcnIcon class="cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity"
-                    icon="Trash"
-                    color="#ef4444"
-                    size="18"
-                    @click="onRemoveCondition(index)"/>
+        <div class="flex-shrink-0">
+          <ShadcnSelect v-model="condition.operator"
+                        class="min-w-48"
+                        :class="{'border border-red-500 rounded': hasError(index, 'operator')}"
+                        :disabled="!condition.field"
+                        @change="onChange">
+            <template #options>
+              <ShadcnSelectOption v-for="op in getOperatorsByField(condition.field)"
+                                  :key="op.value"
+                                  :value="op.value"
+                                  :label="op.label"/>
+            </template>
+          </ShadcnSelect>
+
+          <div v-if="hasError(index, 'operator')" class="text-red-500 text-sm mt-1">
+            {{ validationErrors[index]?.message }}
+          </div>
+        </div>
+
+        <div v-if="shouldShowValueInput(condition.operator)" class="flex flex-col">
+          <div class="condition-value">
+            <template v-if="getFieldType(condition.field) === 'number' && !['in', 'notIn', 'between', 'notBetween'].includes(condition.operator ?? '')">
+              <ShadcnNumber v-model="condition.value"
+                            :class="{'border border-red-500 rounded.validated': hasError(index, 'value')}"
+                            :placeholder="t('dataFilter.placeholder.value')"
+                            @on-change="onChange"/>
+            </template>
+            <template v-else-if="getFieldType(condition.field) === 'boolean'">
+              <div class="h-10 flex items-center">
+                <ShadcnSwitch v-model="condition.value"
+                              :class="{'border border-red-500 rounded.validated': hasError(index, 'value')}"
+                              @on-change="onChange"/>
+              </div>
+            </template>
+            <template v-else-if="['string', 'number', 'date'].includes(getFieldType(condition.field) ?? '') && ['in', 'notIn'].includes(condition.operator ?? '')">
+              <ShadcnInputTag v-model="condition.value"
+                              :placeholder="t('dataFilter.placeholder.values')"
+                              :class="{'border border-red-500 rounded.validated': hasError(index, 'value')}"
+                              @on-change="onChange"/>
+            </template>
+            <template v-else-if="getFieldType(condition.field) === 'number' && ['between', 'notBetween'].includes(condition.operator ?? '')">
+              <div class="flex items-center gap-2">
+                <ShadcnNumber v-model="condition.value[0]"
+                              :placeholder="t('dataFilter.placeholder.minNumber')"
+                              :class="{'border border-red-500 rounded.validated': hasError(index, 'value')}"
+                              @on-change="onBetweenChange(condition, 0)"/>
+                <span>...</span>
+                <ShadcnNumber v-model="condition.value[1]"
+                              :placeholder="t('dataFilter.placeholder.maxNumber')"
+                              :class="{'border border-red-500 rounded.validated': hasError(index, 'value')}"
+                              @on-change="onBetweenChange(condition, 1)"/>
+              </div>
+            </template>
+            <template v-else-if="getFieldType(condition.field) === 'date' && ['between', 'notBetween'].includes(condition.operator ?? '')">
+              <div class="flex items-center gap-2">
+                <ShadcnInput v-model="condition.value[0]"
+                             type="date"
+                             :placeholder="t('dataFilter.placeholder.startDate')"
+                             :class="{'border border-red-500 rounded.validated': hasError(index, 'value')}"
+                             @on-change="onBetweenChange(condition, 0)"/>
+                <span>...</span>
+                <ShadcnInput v-model="condition.value[1]"
+                             type="date"
+                             :placeholder="t('dataFilter.placeholder.endDate')"
+                             :class="{'border border-red-500 rounded.validated': hasError(index, 'value')}"
+                             @on-change="onBetweenChange(condition, 1)"/>
+              </div>
+            </template>
+            <template v-else>
+              <ShadcnInput v-model="condition.value"
+                           :placeholder="t('dataFilter.placeholder.value')"
+                           :class="{'border border-red-500 rounded.validated': hasError(index, 'value')}"
+                           :type="getFieldType(condition.field) === 'date' ? 'date' : 'text'"
+                           @on-change="onChange"/>
+            </template>
+          </div>
+
+          <div v-if="hasError(index, 'value')" class="text-red-500 text-sm mt-1">
+            {{ getErrorMessage(index, 'value') }}
+          </div>
+        </div>
+
+        <div class="flex-shrink-0 pt-2">
+          <ShadcnIcon class="cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity"
+                      icon="Trash"
+                      color="#ef4444"
+                      size="18"
+                      @click="onRemoveCondition(index)"/>
+        </div>
       </div>
     </div>
 
@@ -99,11 +123,10 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
 import { t } from '@/utils/locale'
-import { DataFilterEmits, DataFilterProps, FilterCondition, Operator, ValidationResult } from './types'
+import { DataFilterEmits, DataFilterProps, FilterCondition, Operator, ValidationError, ValidationResult } from './types'
 
 const emit = defineEmits<DataFilterEmits>()
 const props = withDefaults(defineProps<DataFilterProps>(), {
-  conditions: () => [],
   operators: () => [],
   fields: () => []
 })
@@ -112,7 +135,15 @@ const validationErrors = ref<ValidationError[]>([])
 const isValid = computed(() => validationErrors.value.length === 0)
 
 const hasError = (conditionIndex: number, fieldName: string) => {
-  return validationErrors.value.some(error => error.field === `${ conditionIndex }.${ fieldName }`)
+  return validationErrors.value.some(error =>
+      error.fieldIndex === conditionIndex && error.field === fieldName
+  )
+}
+
+const getErrorMessage = (conditionIndex: number, fieldName: string) => {
+  return validationErrors.value.find(
+      error => error.fieldIndex === conditionIndex && error.field === fieldName
+  )?.message
 }
 
 const defaultOperators = computed<Operator[]>(() => {
@@ -189,8 +220,6 @@ const newCondition = () => {
   return condition
 }
 
-const localConditions = ref<FilterCondition[]>([...props.conditions])
-
 const onBetweenChange = (condition: FilterCondition, _index: number) => {
   if (!Array.isArray(condition.value)) {
     condition.value = [undefined, undefined]
@@ -198,13 +227,17 @@ const onBetweenChange = (condition: FilterCondition, _index: number) => {
   onChange()
 }
 
+const localConditions = ref<FilterCondition[]>([...props.modelValue])
+
 onMounted(() => {
   if (localConditions.value.length === 0) {
     onAddCondition()
   }
+
+  onChange()
 })
 
-watch(() => props.conditions, (newVal) => {
+watch(() => props.modelValue, (newVal) => {
   localConditions.value = [...newVal]
 }, { deep: true })
 
@@ -260,7 +293,8 @@ const validateCondition = (condition: FilterCondition, index: number): Validatio
 
   if (!field) {
     errors.push({
-      field: `${ index }.field`,
+      fieldIndex: index,
+      field: 'field',
       message: t('dataFilter.validated.invalid')
     })
     return errors
@@ -268,14 +302,16 @@ const validateCondition = (condition: FilterCondition, index: number): Validatio
 
   if (!condition.field) {
     errors.push({
-      field: `${ index }.field`,
+      fieldIndex: index,
+      field: 'field',
       message: t('dataFilter.validated.required')
     })
   }
 
   if (!condition.operator) {
     errors.push({
-      field: `${ index }.operator`,
+      fieldIndex: index,
+      field: 'operator',
       message: t('dataFilter.validated.operatorRequired')
     })
   }
@@ -286,7 +322,8 @@ const validateCondition = (condition: FilterCondition, index: number): Validatio
 
   if (condition.value === undefined || condition.value === '') {
     errors.push({
-      field: `${ index }.value`,
+      fieldIndex: index,
+      field: 'value',
       message: t('dataFilter.validated.valueRequired')
     })
   }
@@ -298,13 +335,15 @@ const validateCondition = (condition: FilterCondition, index: number): Validatio
           const [min, max] = condition.value as [number?, number?]
           if (min === undefined || max === undefined) {
             errors.push({
-              field: `${ index }.value`,
+              fieldIndex: index,
+              field: 'value',
               message: t('dataFilter.validated.rangeRequired')
             })
           }
           else if (min > max) {
             errors.push({
-              field: `${ index }.value`,
+              fieldIndex: index,
+              field: 'value',
               message: t('dataFilter.validated.invalidRange')
             })
           }
@@ -315,7 +354,8 @@ const validateCondition = (condition: FilterCondition, index: number): Validatio
           const [startDate, endDate] = condition.value as [string?, string?]
           if (startDate && endDate && new Date(startDate) > new Date(endDate)) {
             errors.push({
-              field: `${ index }.value`,
+              fieldIndex: index,
+              field: 'value',
               message: t('dataFilter.validated.invalidDateRange')
             })
           }
@@ -328,7 +368,8 @@ const validateCondition = (condition: FilterCondition, index: number): Validatio
           }
           catch {
             errors.push({
-              field: `${ index }.value`,
+              fieldIndex: index,
+              field: 'value',
               message: t('dataFilter.validated.invalidRegex')
             })
           }

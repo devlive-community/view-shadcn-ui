@@ -140,6 +140,14 @@ export default {
         }
     },
     dataFilter: {
+        placeholder: {
+            value: '请输入值',
+            values: '请输入多个值',
+            number: '请输入数字',
+            numbers: '请输入多个数字',
+            minNumber: '最小值',
+            maxNumber: '最大值'
+        },
         text: {
             eq: '等于',
             neq: '不等于',
@@ -160,6 +168,16 @@ export default {
             isTrue: '为 True',
             isFalse: '为 False',
             addCondition: '添加条件'
+        },
+        validated: {
+            invalid: '无效的字段',
+            required: '请选择字段',
+            operatorRequired: '请选择操作符',
+            valueRequired: '请输入值',
+            rangeRequired: '请输入范围',
+            invalidRange: '范围值无效',
+            invalidDateRange: '日期范围无效',
+            invalidRegex: '正则表达式无效'
         }
     }
 }
