@@ -1,6 +1,7 @@
 <template>
   <div class="p-32">
-    <ShadcnDataFilter v-model="conditions" :fields="fields" :operators="operators"/>
+    {{ conditions }}
+    <ShadcnDataFilter v-model="conditions" :fields="fields"/>
   </div>
 </template>
 
@@ -13,5 +14,4 @@ const fields = [
   { label: 'Age', value: 'age', type: 'number' },
   { label: 'Created At', value: 'created_at', type: 'date' }
 ]
-const operators = ['=', '!=', '>', '<', 'LIKE']
 </script>

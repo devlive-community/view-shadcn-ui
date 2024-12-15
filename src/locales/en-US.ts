@@ -138,5 +138,28 @@ export default {
             duplicate: 'Duplicate keys are not allowed',
             required: 'The key is required'
         }
+    },
+    dataFilter: {
+        text: {
+            eq: 'Equal to',
+            neq: 'Not equal to',
+            gt: 'Greater than',
+            gte: 'Greater than or equal to',
+            lt: 'Less than',
+            lte: 'Less than or equal to',
+            in: 'In ...',
+            notIn: 'Not in ...',
+            between: 'Between ... and ...',
+            notBetween: 'Not between ... and ...',
+            isNull: 'Is null',
+            isNotNull: 'Is not null',
+            like: 'Contains',
+            notLike: 'Does not contain',
+            regex: 'Matches',
+            notRegex: 'Does not match',
+            isTrue: 'Is True',
+            isFalse: 'Is False',
+            addCondition: 'Add condition'
+        }
     }
 }

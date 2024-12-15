@@ -138,5 +138,28 @@ export default {
             duplicate: '不允许使用重复的键',
             required: '键为必填项'
         }
+    },
+    dataFilter: {
+        text: {
+            eq: '等于',
+            neq: '不等于',
+            gt: '大于',
+            gte: '大于等于',
+            lt: '小于',
+            lte: '小于等于',
+            in: '在 ... 中',
+            notIn: '不在 ... 中',
+            between: '在 ... 之间',
+            notBetween: '不在 ... 之间',
+            isNull: '为空',
+            isNotNull: '不为空',
+            like: '包含',
+            notLike: '不包含',
+            regex: '匹配',
+            notRegex: '不匹配',
+            isTrue: '为 True',
+            isFalse: '为 False',
+            addCondition: '添加条件'
+        }
     }
 }
