@@ -1,7 +1,7 @@
 export interface DataFilterProps
 {
     conditions: FilterCondition[]
-    operators?: Operator[]
+    operators: Operator[]
     fields: Field[]
 }
 

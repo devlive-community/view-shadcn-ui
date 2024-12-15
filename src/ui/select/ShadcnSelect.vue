@@ -26,7 +26,7 @@
               </span>
             </template>
             <template v-else>
-              <span class="flex items-center min-w-0 truncate">
+              <span class="flex items-center min-w-0 truncate select-none">
                 {{ selectedLabels[0] || placeholder }}
               </span>
             </template>

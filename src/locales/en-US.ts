@@ -140,6 +140,14 @@ export default {
         }
     },
     dataFilter: {
+        placeholder: {
+            value: 'Enter a value',
+            values: 'Enter values',
+            number: 'Enter a number',
+            numbers: 'Enter numbers',
+            minNumber: 'Min number',
+            maxNumber: 'Max number'
+        },
         text: {
             eq: 'Equal to',
             neq: 'Not equal to',

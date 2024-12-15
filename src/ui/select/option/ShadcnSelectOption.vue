@@ -10,7 +10,7 @@
        ]"
        :data-parent="parentName"
        @click="onSelect">
-    <div :class="['flex items-center gap-2']">
+    <div :class="['flex items-center gap-2 select-none']">
       <div v-if="context.multiple"
            class="w-4 h-4 border rounded flex items-center justify-center">
         <svg v-if="isSelected"

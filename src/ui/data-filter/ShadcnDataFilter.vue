@@ -1,11 +1,8 @@
 <template>
-  <div class="w-full space-y-4">
-    <div class="flex flex-col gap-4">
-      <div v-for="(condition, index) in localConditions"
-           class="flex items-center gap-2 group"
-           :key="index">
-
-        <ShadcnSelect v-model="condition.field" class="min-w-48 w-fit">
+  <div class="w-full space-y-1">
+    <div class="flex flex-col gap-2">
+      <div v-for="(condition, index) in localConditions" :key="index" class="flex items-center gap-2 group">
+        <ShadcnSelect v-model="condition.field" class="min-w-48">
           <template #options>
             <ShadcnSelectOption v-for="field in fields"
                                 :key="field.value"
@@ -14,7 +11,7 @@
           </template>
         </ShadcnSelect>
 
-        <ShadcnSelect v-model="condition.operator" class="min-w-48 w-fit" @change="onChange">
+        <ShadcnSelect v-model="condition.operator" class="min-w-48" @change="onChange">
           <template #options>
             <ShadcnSelectOption v-for="op in getOperatorsByField(condition.field)"
                                 :key="op.value"
@@ -23,9 +20,45 @@
           </template>
         </ShadcnSelect>
 
-        <ShadcnInput v-model="condition.value"
-                     placeholder="Enter value"
-                     @input="onChange"/>
+        <div v-if="shouldShowValueInput(condition.operator)" class="condition-value">
+          <template v-if="getFieldType(condition.field) === 'number' && !['in', 'notIn', 'between', 'notBetween'].includes(condition.operator)">
+            <ShadcnNumber v-model="condition.value" :placeholder="t('dataFilter.placeholder.value')" @on-change="onChange"/>
+          </template>
+          <template v-else-if="getFieldType(condition.field) === 'boolean'">
+            <div class="h-10 flex items-center">
+              <ShadcnSwitch v-model="condition.value" @on-change="onChange"/>
+            </div>
+          </template>
+          <template v-else-if="['string', 'number', 'date'].includes(getFieldType(condition.field)) && ['in', 'notIn'].includes(condition.operator)">
+            <ShadcnInputTag v-model="condition.value" :placeholder="t('dataFilter.placeholder.values')" @on-change="onChange"/>
+          </template>
+          <template v-else-if="getFieldType(condition.field) === 'number' && ['between', 'notBetween'].includes(condition.operator)">
+            <div class="flex items-center gap-2">
+              <ShadcnNumber v-model="condition.value[0]" :placeholder="t('dataFilter.placeholder.minNumber')" @on-change="onBetweenChange(condition, 0)"/>
+              <span>...</span>
+              <ShadcnNumber v-model="condition.value[1]" :placeholder="t('dataFilter.placeholder.maxNumber')" @on-change="onBetweenChange(condition, 1)"/>
+            </div>
+          </template>
+          <template v-else-if="getFieldType(condition.field) === 'date' && ['between', 'notBetween'].includes(condition.operator)">
+            <div class="flex items-center gap-2">
+              <ShadcnInput v-model="condition.value[0]"
+                           type="date"
+                           :placeholder="t('dataFilter.placeholder.startDate')"
+                           @on-change="onBetweenChange(condition, 0)"/>
+              <span>...</span>
+              <ShadcnInput v-model="condition.value[1]"
+                           type="date"
+                           :placeholder="t('dataFilter.placeholder.endDate')"
+                           @on-change="onBetweenChange(condition, 1)"/>
+            </div>
+          </template>
+          <template v-else>
+            <ShadcnInput v-model="condition.value"
+                         :placeholder="t('dataFilter.placeholder.value')"
+                         :type="getFieldType(condition.field) === 'date' ? 'date' : 'text'"
+                         @on-change="onChange"/>
+          </template>
+        </div>
 
         <ShadcnIcon class="cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity"
                     icon="Trash"
@@ -36,7 +69,7 @@
     </div>
 
     <ShadcnButton type="text" @click="onAddCondition">
-      <div class="flex items-center gap-2 text-blue-500">
+      <div class="flex items-center gap-2 text-blue-500 -ml-4">
         <ShadcnIcon icon="Plus" size="16"/>
         <span>{{ t('dataFilter.text.addCondition') }}</span>
       </div>
@@ -83,9 +116,11 @@ const defaultOperators = computed<Operator[]>(() => {
   ]
 })
 
+const noValueOperators = ['isNull', 'isNotNull', 'isTrue', 'isFalse']
+
 const getFieldType = (fieldValue: string | null) => {
   const field = props.fields.find(f => f.value === fieldValue)
-  return field?.type
+  return field?.type as 'string' | 'number' | 'date' | 'boolean' | undefined
 }
 
 const getOperatorsByField = (fieldValue: string | null) => {
@@ -97,6 +132,13 @@ const getOperatorsByField = (fieldValue: string | null) => {
   return defaultOperators.value.filter(op => op.scope.includes(fieldType))
 }
 
+const shouldShowValueInput = (operator?: string | null) => {
+  if (!operator) {
+    return true
+  }
+  return !noValueOperators.includes(operator)
+}
+
 const getDefaultOperatorForField = (fieldValue: string) => {
   const operators = getOperatorsByField(fieldValue)
   return operators[0]?.value
@@ -104,14 +146,30 @@ const getDefaultOperatorForField = (fieldValue: string) => {
 
 const newCondition = () => {
   const field = props.fields[0]?.value || null
-  return {
+  const operator = field ? getDefaultOperatorForField(field) : null
+  const condition: FilterCondition = {
     field,
-    operator: field ? getDefaultOperatorForField(field) : null,
-    value: undefined
+    operator
   }
+
+  // 只在非 noValueOperators 情况下添加 value 属性
+  if (!noValueOperators.includes(operator)) {
+    condition.value = ['between', 'notBetween'].includes(operator) ?
+        [undefined, undefined] :
+        undefined
+  }
+
+  return condition
 }
 
 const localConditions = ref<FilterCondition[]>([...props.conditions])
+
+const onBetweenChange = (condition: FilterCondition, index: number) => {
+  if (!Array.isArray(condition.value)) {
+    condition.value = [undefined, undefined]
+  }
+  onChange()
+}
 
 onMounted(() => {
   if (localConditions.value.length === 0) {
@@ -124,19 +182,33 @@ watch(() => props.conditions, (newVal) => {
 }, { deep: true })
 
 watch(
-    () => localConditions.value.map(c => c.field),
-    (newFields, oldFields) => {
+    () => localConditions.value.map(c => ({ field: c.field, operator: c.operator })),
+    (newVals, oldVals) => {
       localConditions.value.forEach((condition, index) => {
-        if (newFields[index] !== oldFields?.[index]) {
+        const newVal = newVals[index]
+        const oldVal = oldVals?.[index]
+
+        if (newVal.field !== oldVal?.field || newVal.operator !== oldVal?.operator) {
           const operators = getOperatorsByField(condition.field)
           if (!operators.find(op => op.value === condition.operator)) {
             condition.operator = operators[0]?.value
-            condition.value = undefined
-            onChange()
           }
+
+          if (noValueOperators.includes(condition.operator)) {
+            delete condition.value
+          }
+          else if (['between', 'notBetween'].includes(condition.operator)) {
+            condition.value = [undefined, undefined]
+          }
+          else {
+            condition.value = undefined
+          }
+
+          onChange()
         }
       })
-    }
+    },
+    { deep: true }
 )
 
 const onAddCondition = () => {
