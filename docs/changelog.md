@@ -4,6 +4,20 @@ title: "Release Notes"
 
 # Changelog
 
+## 2024.5.2 (2024-12-15)
+
+### ✨ Features
+
+- **i18n:** support responsive language switching
+- **i18n:** support for dynamic languages
+- **utility:** add uuid utility
+- **workflow:** support workflow
+- **input-tag:** support input tag
+- **map** support map
+- **loading-bar** support loading bar
+- **float-button** support float button
+- **data-filter** support data filter
+
 ## 2024.5.1 (2024-12-09)
 
 ### ✨ Features
