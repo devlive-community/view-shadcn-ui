@@ -167,7 +167,10 @@ export default {
             notRegex: 'Does not match',
             isTrue: 'Is True',
             isFalse: 'Is False',
-            addCondition: 'Add condition'
+            addCondition: 'Add condition',
+            addGroup: 'Add group',
+            and: 'And',
+            or: 'Or',
         },
         validated: {
             invalid: 'Invalid field',

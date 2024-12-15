@@ -167,7 +167,10 @@ export default {
             notRegex: '不匹配',
             isTrue: '为 True',
             isFalse: '为 False',
-            addCondition: '添加条件'
+            addCondition: '添加条件',
+            addGroup: '添加分组',
+            and: '且',
+            or: '或',
         },
         validated: {
             invalid: '无效的字段',

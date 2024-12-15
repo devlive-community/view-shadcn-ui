@@ -46,3 +46,28 @@ export type DataFilterEmits = {
     (e: 'on-remove-condition', condition: FilterCondition): void
     (e: 'on-validation-change', result: ValidationResult): void
 }
+
+export interface FilterItem
+{
+    type: 'condition' | 'group'
+    value: any
+    operator?: 'and' | 'or'
+    isValid?: boolean
+}
+
+export interface FilterGroup
+{
+    operator: 'and' | 'or'
+    items: FilterItem[]
+}
+
+export interface HierarchicalDataFilterProps
+{
+    modelValue: FilterGroup[]
+    fields: Field[]
+}
+
+export type HierarchicalDataFilterEmits = {
+    (e: 'update:modelValue', value: FilterGroup[]): void
+    (e: 'on-validation-change', validation: ValidationResult): void
+}

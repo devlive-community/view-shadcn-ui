@@ -1,5 +1,9 @@
 <template>
-  <div class="flex items-center gap-2" role="group">
+  <div :class="[
+          'flex gap-2',
+          orientation === 'vertical' ? 'flex-col items-start' : 'flex-row items-center'
+       ]"
+       role="group">
     <slot :disabled="disabled" :size="size"/>
   </div>
 </template>
@@ -12,7 +16,8 @@ const emit = defineEmits<ToggleEmits>()
 const props = withDefaults(defineProps<ToggleGroupProps>(), {
   disabled: false,
   size: 'default',
-  multiple: false
+  multiple: false,
+  orientation: 'horizontal'
 })
 
 provide('toggleGroup', {
@@ -20,6 +25,7 @@ provide('toggleGroup', {
   disabled: computed(() => props.disabled),
   size: computed(() => props.size),
   multiple: computed(() => props.multiple),
+  orientation: computed(() => props.orientation),
   onChange: (value: any) => {
     emit('update:modelValue', value)
     emit('on-change', value)

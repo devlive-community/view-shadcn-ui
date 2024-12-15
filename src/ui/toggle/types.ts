@@ -15,6 +15,7 @@ export interface ToggleGroupProps
     disabled?: boolean
     size?: keyof typeof WrapperSize
     multiple?: boolean
+    orientation?: 'horizontal' | 'vertical'
 }
 
 export interface ToggleGroupContext
@@ -23,6 +24,7 @@ export interface ToggleGroupContext
     disabled: ComputedRef<boolean>
     size: ComputedRef<keyof typeof WrapperSize>
     multiple: ComputedRef<boolean>
+    orientation: ComputedRef<'horizontal' | 'vertical'>
     onChange: (value: any) => void
 }
 

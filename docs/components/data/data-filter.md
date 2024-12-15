@@ -38,6 +38,37 @@ This document is mainly used to describe some features and usage of the ShadcnDa
 
 :::
 
+## Hierarchical Data Filter
+
+::: raw
+
+<CodeRunner title="Hierarchical Data Filter">
+    <ShadcnHierarchicalDataFilter v-model="hValue" :fields="fields" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnHierarchicalDataFilter v-model="value" :fields="fields" />
+</template>
+
+<script setup lang="ts">
+  import { ref } from 'vue'
+
+  const value = ref([])
+  const fields = [
+    { label: 'Name', value: 'name', type: 'string' },
+    { label: 'Age', value: 'age', type: 'number' },
+    { label: 'Created At', value: 'created_at', type: 'date' }
+  ]
+</script>
+```
+
+:::
+
 ## Data Filter Structure
 
 <ApiTable title="FilterCondition"
@@ -116,10 +147,53 @@ This document is mainly used to describe some features and usage of the ShadcnDa
     ]">
 </ApiTable>
 
+## Hierarchical Data Filter Structure
+
+<ApiTable title="FilterItem"
+    :headers="['Attribute', 'Description', 'Required', 'List']"
+    :columns="[
+        ['type', 'The type of the filter item', 'true', 'condition | group | sub'],
+        ['value', 'The value of the filter item', 'false', '-'],
+        ['operator', 'The operator of the filter item', 'false', 'and | or'],
+        ['isValid', 'Whether the filter item is valid', 'false', 'true | false'],
+    ]">
+</ApiTable>
+
+<br />
+
+<ApiTable title="FilterGroup"
+    :headers="['Attribute', 'Description', 'Required', 'List']"
+    :columns="[
+        ['operator', 'The operator of the filter group', 'true', 'and | or'],
+        ['items', 'The items of the filter group', 'true', 'FilterItem\[\]'],
+    ]">
+</ApiTable>
+
+## Hierarchical Data Filter Props
+
+<ApiTable title="Props"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :columns="[
+        ['modelValue', 'The value of the data filter', 'array', 'FilterGroup\[\]'],
+        ['fields', 'The fields of the data filter', 'array', 'Field\[\]'],
+    ]">
+</ApiTable>
+
+## Hierarchical Data Filter Events
+
+<ApiTable title="Events"
+    :headers="['Attribute', 'Description', 'Parameters']"
+    :columns="[
+        ['update:modelValue', 'The value of the data filter', 'FilterGroup\[\]'],
+        ['on-validation-change', 'Triggered when the validation of the data filter is changed', 'ValidationResult'],
+    ]">
+</ApiTable>
+
 <script setup lang="ts">
 import { ref } from 'vue'
 
 const value = ref([])
+const hValue = ref([])
 const fields = [
   { label: 'Name', value: 'name', type: 'string' },
   { label: 'Age', value: 'age', type: 'number' },

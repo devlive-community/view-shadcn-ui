@@ -219,6 +219,7 @@ const defaultValue = ref(null)
         ['disabled', 'Whether the toggle is disabled', 'boolean', 'false', '-'],
         ['size', 'The size of the toggle', 'string', 'default', 'small | default | large'],
         ['multiple', 'Whether to allow multiple selection', 'boolean', 'false', '-'],
+        ['orientation', 'The orientation of the toggle', 'string', 'horizontal', 'horizontal | vertical'],
     ]">
 </ApiTable>
 
