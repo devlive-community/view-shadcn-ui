@@ -168,7 +168,9 @@ export default {
             isTrue: 'Is True',
             isFalse: 'Is False',
             addCondition: 'Add condition',
-            addGroup: 'Add group'
+            addGroup: 'Add group',
+            and: 'And',
+            or: 'Or',
         },
         validated: {
             invalid: 'Invalid field',
