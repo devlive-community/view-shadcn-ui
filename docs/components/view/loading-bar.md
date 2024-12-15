@@ -70,10 +70,10 @@ const progress = ref(50)
 
 <CodeRunner title="Service">
   <div class="space-x-4">
-    <ShadcnButton @click="LoadingBar.start">Start</ShadcnButton>
-    <ShadcnButton @click="LoadingBar.done">Done</ShadcnButton>
-    <ShadcnButton type="success" @click="LoadingBar.success()">Success</ShadcnButton>
-    <ShadcnButton type="error" @click="LoadingBar.error()">Error</ShadcnButton>
+    <ShadcnButton @click="LoadingBar?.start">Start</ShadcnButton>
+    <ShadcnButton @click="LoadingBar?.done">Done</ShadcnButton>
+    <ShadcnButton type="success" @click="LoadingBar?.success()">Success</ShadcnButton>
+    <ShadcnButton type="error" @click="LoadingBar?.error()">Error</ShadcnButton>
   </div>
 </CodeRunner>
 
@@ -135,12 +135,24 @@ const progress = ref(50)
 </ApiTable>
 
 <script setup lang="ts">
-import {ref} from "vue"
-import { LoadingBar } from 'view-shadcn-ui' 
+import { ref, onMounted, onBeforeUnmount, shallowRef } from "vue"
 
 const progress = ref(50)
+let timer: NodeJS.Timer | null = null
+const LoadingBar = shallowRef()
 
-setInterval(() => {
-  progress.value = Math.floor(Math.random() * 100)
-}, 1000)
+onMounted(async () => {
+  const module = await import('view-shadcn-ui')
+  LoadingBar.value = module.LoadingBar
+
+  timer = setInterval(() => {
+    progress.value = Math.floor(Math.random() * 100)
+  }, 1000)
+})
+
+onBeforeUnmount(() => {
+  if (timer) {
+    clearInterval(timer)
+  }
+})
 </script>
