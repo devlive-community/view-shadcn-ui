@@ -91,7 +91,7 @@ import { ShadcnInputTag } from '@/ui/input-tag'
 import { ShadcnMap } from '@/ui/map'
 import { ShadcnLoadingBar } from '@/ui/loading-bar'
 import { ShadcnFloatButton } from '@/ui/float-button'
-import { ShadcnDataFilter } from '@/ui/data-filter'
+import { ShadcnDataFilter, ShadcnHierarchicalDataFilter } from '@/ui/data-filter'
 
 let components = [
     ShadcnButton,
@@ -180,7 +180,7 @@ let components = [
     ShadcnMap,
     ShadcnLoadingBar,
     ShadcnFloatButton,
-    ShadcnDataFilter
+    ShadcnDataFilter, ShadcnHierarchicalDataFilter
 ]
 
 interface InstallOptions
@@ -304,7 +304,7 @@ export { ShadcnInputTag } from '@/ui/input-tag'
 export { ShadcnMap } from '@/ui/map'
 export { ShadcnLoadingBar } from '@/ui/loading-bar'
 export { ShadcnFloatButton } from '@/ui/float-button'
-export { ShadcnDataFilter } from '@/ui/data-filter'
+export { ShadcnDataFilter, ShadcnHierarchicalDataFilter } from '@/ui/data-filter'
 
 // Export functions
 export { fnToString, fnToFunction } from '@/utils/formatter'

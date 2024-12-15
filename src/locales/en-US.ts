@@ -167,7 +167,8 @@ export default {
             notRegex: 'Does not match',
             isTrue: 'Is True',
             isFalse: 'Is False',
-            addCondition: 'Add condition'
+            addCondition: 'Add condition',
+            addGroup: 'Add group'
         },
         validated: {
             invalid: 'Invalid field',
