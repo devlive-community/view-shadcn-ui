@@ -1,7 +1,7 @@
 <template>
   <div class="inline-flex items-center justify-center">
     <div class="relative bg-white shadow-sm ring-1 ring-slate-900/10"
-         :class="{ 'rounded-sm' : rounded }"
+         :class="{ 'rounded-lg' : rounded }"
          :style="{
                 width: calcSize(containerSize),
                 height: calcSize(containerSize),
@@ -15,7 +15,7 @@
               class="w-full h-full"
               :height="props.size"
               :width="props.size"
-              :class="{ 'rounded-sm' : rounded }"/>
+              :class="{ 'rounded-lg' : rounded }"/>
     </div>
   </div>
 </template>

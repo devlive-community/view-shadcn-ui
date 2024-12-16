@@ -1,7 +1,7 @@
 import glob
 import os
-import re
 import random
+import re
 from typing import List, Dict, Tuple
 
 
@@ -129,10 +129,50 @@ def format_prop_name(prop: str) -> str:
     return spaced_prop.capitalize()
 
 
+def generate_random_color():
+    """
+    Generate a random 6-character hexadecimal color code, starting with '#'.
+    """
+    return f"#{''.join(random.choices('0123456789abcdef', k=6))}"
+
+
+def generate_random_with_default(prop_default):
+    """
+    Generate a random value based on the prop type.
+    - If the type is 'number', generate a random integer.
+    - If the type is 'string' and the default value is a color code, generate a random color.
+    """
+    if isinstance(prop_default, str) and prop_default.startswith('#'):
+        return generate_random_color()  # If it's a color code, generate a new random color
+    try:
+        max_value = int(prop_default)  # Convert default to integer for number type
+        if max_value == 0:  # If the default is 0, use 100 as the max value
+            max_value = 100
+        return random.randint(1, max_value)  # Generate a random number
+    except (ValueError, TypeError):
+        return prop_default  # Return the original default if it's not a valid number
+
+
+def is_enum_type(type_string):
+    """
+    判断一个字符串是否表示枚举类型的集合
+    假设字符串是类似于 "L | M | Q | H" 的格式。
+    """
+    # 使用 '|' 分割字符串，去除空格
+    enum_values = [value.strip() for value in type_string.split('|')]
+
+    # 判断枚举值集合的长度是否大于 1
+    if len(enum_values) > 1:
+        return True, enum_values  # 返回 True 和枚举值列表
+    return False, []
+
+
 def generate_random_default(prop):
     if prop["type"] == "number":
         value = int(prop["default"]) == 0 and 100 or int(prop["default"])
         return random.randint(1, value)
+    elif prop["type"] == "string" and prop["default"].startswith('#'):  # Color
+        return generate_random_with_default(prop["default"])
     return prop["default"]
 
 
@@ -179,13 +219,23 @@ This document describes the features and usage of the {component_name} component
 """
             else:
                 default = generate_random_default(prop)
+                is_enum, enum_values = is_enum_type(prop['type'])
                 markdown += f"""
 ## {format_prop_name(prop['name'])}
 
 ::: raw
 
-<CodeRunner title="{format_prop_name(prop['name'])}">
-    <{component_name}{has_model_value and ' v-model="value" ' or ' '}{prop['type'] == 'number' and ':' or ''}{prop['name']}="{default}" />
+<CodeRunner title="{format_prop_name(prop['name'])}">"""
+
+                if is_enum:
+                    for enum_value in enum_values:
+                        markdown += f"""
+    <{component_name}{has_model_value and ' v-model="value" ' or ' '}{prop['name']}="{enum_value.strip("'\"")}" />"""
+                else:
+                    markdown += f"""
+    <{component_name}{has_model_value and ' v-model="value" ' or ' '}{prop['type'] == 'number' and ':' or ''}{prop['name']}="{default}" />"""
+
+                markdown += """
 </CodeRunner>
 
 :::
@@ -193,8 +243,17 @@ This document describes the features and usage of the {component_name} component
 ::: details Show code
 
 ```vue
-<template>
-    <{component_name}{has_model_value and ' v-model="value" ' or ' '}{prop['name']}="{default}" />
+<template>"""
+
+                if is_enum:
+                    for enum_value in enum_values:
+                        markdown += f"""
+    <{component_name}{has_model_value and ' v-model="value" ' or ' '}{prop['name']}="{enum_value.strip("'\"")}" />"""
+                else:
+                    markdown += f"""
+    <{component_name}{has_model_value and ' v-model="value" ' or ' '}{prop['type'] == 'number' and ':' or ''}{prop['name']}="{default}" />"""
+
+                markdown += """
 </template>
 ```
 

@@ -31,7 +31,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 ::: raw
 
 <CodeRunner title="Size">
-    <ShadcnQrCode v-model="value" :size="25" />
+    <ShadcnQrCode v-model="value" :size="187" />
 </CodeRunner>
 
 :::
@@ -40,7 +40,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 
 ```vue
 <template>
-    <ShadcnQrCode v-model="value" size="25" />
+    <ShadcnQrCode v-model="value" :size="187" />
 </template>
 ```
 
@@ -51,7 +51,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 ::: raw
 
 <CodeRunner title="Padding">
-    <ShadcnQrCode v-model="value" :padding="10" />
+    <ShadcnQrCode v-model="value" :padding="40" />
 </CodeRunner>
 
 :::
@@ -60,7 +60,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 
 ```vue
 <template>
-    <ShadcnQrCode v-model="value" padding="10" />
+    <ShadcnQrCode v-model="value" :padding="40" />
 </template>
 ```
 
@@ -71,7 +71,10 @@ This document describes the features and usage of the ShadcnQrCode component.
 ::: raw
 
 <CodeRunner title="Level">
+    <ShadcnQrCode v-model="value" level="L" />
     <ShadcnQrCode v-model="value" level="M" />
+    <ShadcnQrCode v-model="value" level="Q" />
+    <ShadcnQrCode v-model="value" level="H" />
 </CodeRunner>
 
 :::
@@ -80,7 +83,10 @@ This document describes the features and usage of the ShadcnQrCode component.
 
 ```vue
 <template>
+    <ShadcnQrCode v-model="value" level="L" />
     <ShadcnQrCode v-model="value" level="M" />
+    <ShadcnQrCode v-model="value" level="Q" />
+    <ShadcnQrCode v-model="value" level="H" />
 </template>
 ```
 
@@ -91,7 +97,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 ::: raw
 
 <CodeRunner title="Background">
-    <ShadcnQrCode v-model="value" background="#ffffff" />
+    <ShadcnQrCode v-model="value" background="#a90c71" />
 </CodeRunner>
 
 :::
@@ -100,7 +106,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 
 ```vue
 <template>
-    <ShadcnQrCode v-model="value" background="#ffffff" />
+    <ShadcnQrCode v-model="value" background="#a90c71" />
 </template>
 ```
 
@@ -111,7 +117,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 ::: raw
 
 <CodeRunner title="Foreground">
-    <ShadcnQrCode v-model="value" foreground="#000000" />
+    <ShadcnQrCode v-model="value" foreground="#88aa70" />
 </CodeRunner>
 
 :::
@@ -120,7 +126,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 
 ```vue
 <template>
-    <ShadcnQrCode v-model="value" foreground="#000000" />
+    <ShadcnQrCode v-model="value" foreground="#88aa70" />
 </template>
 ```
 
