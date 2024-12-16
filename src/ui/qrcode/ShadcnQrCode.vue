@@ -1,15 +1,21 @@
 <template>
   <div class="inline-flex items-center justify-center">
-    <div class="relative rounded-lg bg-white p-4 shadow-sm ring-1 ring-slate-900/10"
-         :style="{ width: calcSize(containerSize), height: calcSize(containerSize) }">
+    <div class="relative bg-white shadow-sm ring-1 ring-slate-900/10"
+         :class="{ 'rounded-sm' : rounded }"
+         :style="{
+                width: calcSize(containerSize),
+                height: calcSize(containerSize),
+                padding: calcSize(padding)
+          }">
 
       <ShadcnSpin v-model="loading" fixed/>
 
       <canvas v-show="!loading"
               ref="qrCanvas"
+              class="w-full h-full"
               :height="props.size"
               :width="props.size"
-              class="w-full h-full"/>
+              :class="{ 'rounded-sm' : rounded }"/>
     </div>
   </div>
 </template>
@@ -23,16 +29,18 @@ import { calcSize } from '@/utils/common.ts'
 const emit = defineEmits<QrCodeEmits>()
 const props = withDefaults(defineProps<QrCodeProps>(), {
   size: 200,
+  padding: 0,
   level: 'M',
   background: '#ffffff',
-  foreground: '#000000'
+  foreground: '#000000',
+  rounded: false
 })
 
 const qrCanvas = ref<HTMLCanvasElement | null>(null)
 const loading = ref(false)
 
 const containerSize = computed(() => {
-  return props.size + 32
+  return props.size + (props.padding * 2)
 })
 
 const generateQR = () => {
