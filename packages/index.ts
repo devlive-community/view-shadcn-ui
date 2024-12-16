@@ -92,6 +92,7 @@ import { ShadcnMap } from '@/ui/map'
 import { ShadcnLoadingBar } from '@/ui/loading-bar'
 import { ShadcnFloatButton } from '@/ui/float-button'
 import { ShadcnDataFilter, ShadcnHierarchicalDataFilter } from '@/ui/data-filter'
+import ShadcnQrCode from '@/ui/qrcode/ShadcnQrCode.vue'
 
 let components = [
     ShadcnButton,
@@ -180,7 +181,8 @@ let components = [
     ShadcnMap,
     ShadcnLoadingBar,
     ShadcnFloatButton,
-    ShadcnDataFilter, ShadcnHierarchicalDataFilter
+    ShadcnDataFilter, ShadcnHierarchicalDataFilter,
+    ShadcnQrCode
 ]
 
 interface InstallOptions
@@ -305,6 +307,7 @@ export { ShadcnMap } from '@/ui/map'
 export { ShadcnLoadingBar } from '@/ui/loading-bar'
 export { ShadcnFloatButton } from '@/ui/float-button'
 export { ShadcnDataFilter, ShadcnHierarchicalDataFilter } from '@/ui/data-filter'
+export { ShadcnQrCode } from '@/ui/qrcode'
 
 // Export functions
 export { fnToString, fnToFunction } from '@/utils/formatter'

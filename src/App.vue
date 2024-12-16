@@ -1,18 +1,12 @@
 <template>
   <div class="p-32">
-    <ShadcnHierarchicalDataFilter v-model="filterConfig" :fields="fields"/>
+    <ShadcnInput v-model="value"/>
+    <ShadcnQrCode v-model="value" :size="150" level="H"/>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const filterConfig = ref([])
-
-const fields = [
-  { label: 'Name', value: 'name', type: 'string' },
-  { label: 'Age', value: 'age', type: 'number' },
-  { label: 'Created At', value: 'created_at', type: 'date' },
-  { label: 'Is Active', value: 'is_active', type: 'boolean' }
-]
+const value = ref('Hello View Shadcn UI')
 </script>
