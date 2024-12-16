@@ -10,5 +10,5 @@ export interface QrCodeProps
 }
 
 export type QrCodeEmits = {
-    (e: 'on-generate'): void
+    (e: 'on-complete'): void
 }

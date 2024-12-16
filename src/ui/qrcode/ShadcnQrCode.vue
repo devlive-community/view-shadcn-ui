@@ -20,7 +20,7 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import { computed, onMounted, ref, watchEffect } from 'vue'
 import QRCode from 'qrcode'
 import { type QrCodeEmits, type QrCodeProps } from './types'
@@ -59,7 +59,7 @@ const generateQR = () => {
       },
       errorCorrectionLevel: props.level
     })
-    emit('on-generate')
+    emit('on-complete')
   }
   catch (error) {
     console.error('Error generating QR code:', error)
