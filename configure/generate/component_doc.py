@@ -37,10 +37,16 @@ def parse_default_values(vue_file: str) -> Dict[str, str]:
     return defaults
 
 
-def parse_types_file(file_path: str) -> Tuple[List[Dict], List[Dict]]:
-    """Parse the types.ts file to extract props and emits information."""
+def parse_types_file(file_path: str) -> Tuple[List[Dict], List[Dict], List[Dict]]:
+    """
+    Parse the types.ts file to extract props, emits, and slots information.
+
+    Returns:
+        Tuple containing lists of dictionaries for props, emits, and slots
+    """
     props = []
     emits = []
+    slots = []
 
     with open(file_path, 'r', encoding='utf-8') as f:
         content = f.read()
@@ -94,7 +100,26 @@ def parse_types_file(file_path: str) -> Tuple[List[Dict], List[Dict]]:
                         'params': '-'
                     })
 
-    return props, emits
+    # Extract Slots interface content
+    slots_match = re.search(r'export\s+interface\s+(\w+Slots)\s*{([^}]+)}', content, re.DOTALL)
+    if slots_match:
+        slots_content = slots_match.group(2)
+        # Parse each slot line
+        for line in slots_content.split('\n'):
+            line = line.strip()
+            if line:
+                # Match slot name, optional marker, and return type
+                slot_match = re.match(r'(\w+)(\?)?:\s*\(\)\s*=>\s*([^/\n]+?)(?:\s*//\s*(.+))?$', line)
+                if slot_match:
+                    name, optional, return_type, description = slot_match.groups()
+                    slots.append({
+                        'name': name,
+                        'description': description.strip() if description else f'Slot for {name}',
+                        'type': return_type.strip(),
+                        'optional': bool(optional)
+                    })
+
+    return props, emits, slots
 
 
 def format_default_value(value: str) -> str:
@@ -176,7 +201,7 @@ def generate_random_default(prop):
     return prop["default"]
 
 
-def generate_markdown(component_name: str, props: List[Dict], emits: List[Dict]) -> str:
+def generate_markdown(component_name: str, props: List[Dict], emits: List[Dict], slots: List[Dict]) -> str:
     """Generate markdown documentation for the component."""
     # markdown = f"{component_name}\n\n"
     markdown = f"""---
@@ -288,6 +313,21 @@ This document describes the features and usage of the {component_name} component
             emit_rows.append(row)
 
         markdown += ",\n".join(emit_rows)
+        markdown += "\n    ]\">\n</ApiTable>\n\n"
+
+    # Generate Slots table
+    if slots:
+        markdown += f"## {component_name.replace('Shadcn', '')} Slots\n\n"
+        markdown += "<ApiTable title=\"Slots\"\n"
+        markdown += "    :headers=\"['Slot', 'Description']\"\n"
+        markdown += "    :columns=\"[\n"
+
+        slot_rows = []
+        for s in slots:
+            row = f"        ['{s['name']}', '{s['description']}']"
+            slot_rows.append(row)
+
+        markdown += ",\n".join(slot_rows)
         markdown += "\n    ]\">\n</ApiTable>\n"
 
     if has_model_value:
@@ -317,7 +357,7 @@ def main(src_dir: str, output_dir: str):
         return
 
     # Parse types.ts file
-    props, emits = parse_types_file(types_file)
+    props, emits, slots = parse_types_file(types_file)
 
     # Process each Vue component
     for vue_file in vue_files:
@@ -337,7 +377,7 @@ def main(src_dir: str, output_dir: str):
         output_path = os.path.join(output_dir, markdown_filename)
 
         # Generate markdown content
-        markdown_content = generate_markdown(component_name, props, emits)
+        markdown_content = generate_markdown(component_name, props, emits, slots)
 
         # Write markdown file
         with open(output_path, 'w', encoding='utf-8') as f:

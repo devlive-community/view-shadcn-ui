@@ -1,3 +1,5 @@
+import { VNode } from 'vue'
+
 export interface QrCodeProps
 {
     modelValue: string
@@ -12,4 +14,9 @@ export interface QrCodeProps
 
 export type QrCodeEmits = {
     (e: 'on-complete'): void
+}
+
+export interface QrCodeSlots
+{
+    img?: () => VNode[]
 }

@@ -31,7 +31,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 ::: raw
 
 <CodeRunner title="Size">
-    <ShadcnQrCode v-model="value" :size="46" />
+    <ShadcnQrCode v-model="value" :size="177" />
 </CodeRunner>
 
 :::
@@ -40,7 +40,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 
 ```vue
 <template>
-    <ShadcnQrCode v-model="value" :size="46" />
+    <ShadcnQrCode v-model="value" :size="177" />
 </template>
 ```
 
@@ -51,7 +51,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 ::: raw
 
 <CodeRunner title="Padding">
-    <ShadcnQrCode v-model="value" :padding="18" />
+    <ShadcnQrCode v-model="value" :padding="86" />
 </CodeRunner>
 
 :::
@@ -60,7 +60,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 
 ```vue
 <template>
-    <ShadcnQrCode v-model="value" :padding="18" />
+    <ShadcnQrCode v-model="value" :padding="86" />
 </template>
 ```
 
@@ -71,7 +71,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 ::: raw
 
 <CodeRunner title="Margin">
-    <ShadcnQrCode v-model="value" :margin="69" />
+    <ShadcnQrCode v-model="value" :margin="79" />
 </CodeRunner>
 
 :::
@@ -80,7 +80,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 
 ```vue
 <template>
-    <ShadcnQrCode v-model="value" :margin="69" />
+    <ShadcnQrCode v-model="value" :margin="79" />
 </template>
 ```
 
@@ -117,7 +117,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 ::: raw
 
 <CodeRunner title="Background">
-    <ShadcnQrCode v-model="value" background="#d72a40" />
+    <ShadcnQrCode v-model="value" background="#adaaff" />
 </CodeRunner>
 
 :::
@@ -126,7 +126,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 
 ```vue
 <template>
-    <ShadcnQrCode v-model="value" background="#d72a40" />
+    <ShadcnQrCode v-model="value" background="#adaaff" />
 </template>
 ```
 
@@ -137,7 +137,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 ::: raw
 
 <CodeRunner title="Foreground">
-    <ShadcnQrCode v-model="value" foreground="#cc1cf8" />
+    <ShadcnQrCode v-model="value" foreground="#450827" />
 </CodeRunner>
 
 :::
@@ -146,7 +146,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 
 ```vue
 <template>
-    <ShadcnQrCode v-model="value" foreground="#cc1cf8" />
+    <ShadcnQrCode v-model="value" foreground="#450827" />
 </template>
 ```
 
@@ -180,7 +180,7 @@ This document describes the features and usage of the ShadcnQrCode component.
         ['size', 'size value', 'number', '200', '-'],
         ['padding', 'padding value', 'number', '0', '-'],
         ['margin', 'margin value', 'number', '0', '-'],
-        ['level', 'level value', 'L | M | Q | H', 'M', 'L, M, Q, H'],
+        ['level', 'level value', 'L | M | Q | H', 'H', 'L, M, Q, H'],
         ['background', 'background value', 'string', '#ffffff', '-'],
         ['foreground', 'foreground value', 'string', '#000000', '-'],
         ['rounded', 'rounded value', 'boolean', 'false', '-']
@@ -193,6 +193,15 @@ This document describes the features and usage of the ShadcnQrCode component.
     :headers="['Event', 'Description', 'Callback Parameters']"
     :columns="[
         ['on-complete', 'Triggered when on complete', '-']
+    ]">
+</ApiTable>
+
+## QrCode Slots
+
+<ApiTable title="Slots"
+    :headers="['Slot', 'Description']"
+    :columns="[
+        ['img', 'Slot for img']
     ]">
 </ApiTable>
 
