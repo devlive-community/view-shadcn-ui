@@ -1,7 +1,7 @@
 <template>
   <div class="p-32 space-y-2">
     <ShadcnInput v-model="value" />
-    <ShadcnQrCode v-model="value" :size="150" level="H"/>
+    <ShadcnQrCode v-model="value" :size="150" level="H" :margin="12" />
   </div>
 </template>
 

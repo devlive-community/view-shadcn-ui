@@ -30,6 +30,7 @@ const emit = defineEmits<QrCodeEmits>()
 const props = withDefaults(defineProps<QrCodeProps>(), {
   size: 200,
   padding: 0,
+  margin: 0,
   level: 'M',
   background: '#ffffff',
   foreground: '#000000',
@@ -52,7 +53,7 @@ const generateQR = () => {
   try {
     QRCode.toCanvas(qrCanvas.value, props.modelValue, {
       width: props.size,
-      margin: 0,
+      margin: props.margin,
       color: {
         dark: props.foreground,
         light: props.background

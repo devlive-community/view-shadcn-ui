@@ -3,6 +3,7 @@ export interface QrCodeProps
     modelValue: string
     size?: number
     padding?: number
+    margin?: number
     level?: 'L' | 'M' | 'Q' | 'H'
     background?: string
     foreground?: string
