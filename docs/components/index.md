@@ -200,4 +200,7 @@ features:
   - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/data/data-filter.svg" />
     title: <a href='data/data-filter.html'>Shadcn Data Filter <span class="VPBadge tip">2024.5.2</span></a>
     details: Data Filter component
+  - icon: <img style="width:100%; height:100%; object-fit:contain;" src="/components/view/qrcode.svg" />
+    title: <a href='view/qr-code.html'>Shadcn QrCode <span class="VPBadge tip">2024.5.3</span></a>
+    details: QrCode component
 ---

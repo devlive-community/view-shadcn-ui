@@ -182,6 +182,7 @@ export default {
                         {text: 'Back Top <span class="VPBadge tip">2024.5.1</span>', link: 'back-top'},
                         {text: 'Loading Bar <span class="VPBadge tip">2024.5.2</span>', link: 'view/loading-bar'},
                         {text: 'Float Button <span class="VPBadge tip">2024.5.2</span>', link: 'view/float-button'},
+                        {text: 'QrCode <span class="VPBadge tip">2024.5.3</span>', link: 'view/qr-code'},
                     ]
                     return {
                         text: `View [ ${items.length} ]`,
