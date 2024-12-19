@@ -77,3 +77,35 @@
 .h-20 {
     height: 5rem;
 }
+
+.sidebar-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+.sidebar-item img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.sidebar-text-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.version-badge {
+    position: absolute;
+    right: -80px;
+    top: 6px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+}
+
+.sidebar-text-wrapper:hover .version-badge {
+    opacity: 1;
+}

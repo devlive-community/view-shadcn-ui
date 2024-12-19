@@ -89,7 +89,7 @@ watch([localNodes, localConnections], ([nodes, connections]) => {
     tid: node.tid,
     category: node.category,
     position: node.position,
-    data: node.data && node.data.length > 0 ? node.data.reduce((acc, curr) => ({ ...acc, ...curr }), {}) : {}
+    data: node.data
   }))
   const data = { nodes: simplifiedNodes, connections: connections }
   const validation = transformWorkflowValidation(nodes)
