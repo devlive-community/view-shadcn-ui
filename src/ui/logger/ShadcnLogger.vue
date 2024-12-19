@@ -14,24 +14,24 @@
     <div class="overflow-y-auto" :style="{ height: `${calcSize(height)}`, maxHeight: `${calcSize(height)}` }">
       <div class="min-w-full inline-block">
         <div v-for="(content, index) in filteredItems" class="whitespace-pre py-1 hover:bg-gray-100 w-full block" :key="index">
-          <div class="inline-block min-w-full px-4">
+          <div class="inline-block min-w-full px-4 space-x-2">
             <slot name="content" :item="content">
-              <span class="mr-1.5">
+              <span v-if="content.timestamp">
                 <ShadcnHighlight :case-sensitive="caseSensitive" :text="content.timestamp" :highlight="searchText"/>
               </span>
-              <span class="mr-1.5" :style="{ color: highlightConfig[content.level] }">
+              <span v-if="content.level" :style="{ color: highlightConfig[content.level] }">
                 <ShadcnHighlight :case-sensitive="caseSensitive" :text="content.level" :highlight="searchText"/>
               </span>
-              <span class="text-gray-500 mr-1.5">
+              <span v-if="content.thread" class="text-gray-500">
                 [<ShadcnHighlight :case-sensitive="caseSensitive" :text="content.thread" :highlight="searchText"/>]
               </span>
-              <span class="text-gray-700 mr-1.5">
+              <span v-if="content.logger" class="text-gray-700">
                 <ShadcnHighlight :case-sensitive="caseSensitive" :text="content.logger" :highlight="searchText"/>
               </span>
-              <span class="text-gray-500 mr-1.5">
+              <span v-if="content.file" class="text-gray-500">
                 [<ShadcnHighlight :case-sensitive="caseSensitive" :text="content.file" :highlight="searchText"/>]
               </span>
-              <span>
+              <span v-if="content.message">
                 <ShadcnHighlight :case-sensitive="caseSensitive" :text="content.message" :highlight="searchText"/>
               </span>
             </slot>
@@ -61,13 +61,14 @@ const props = withDefaults(defineProps<LoggerProps>(), {
   }),
   height: 200,
   toolbar: false,
-  caseSensitive: false
+  caseSensitive: false,
+  customPatterns: undefined
 })
 
 const filterLevel = ref('')
 const searchText = ref('')
 
-const formattedItems = computed(() => formatMultipleLines(props.items))
+const formattedItems = computed(() => formatMultipleLines(props.items, undefined, props.customPatterns ? props.customPatterns : undefined))
 
 const filteredItems = computed(() => {
   return formattedItems.value.filter(item => {

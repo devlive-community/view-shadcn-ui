@@ -12,7 +12,7 @@ interface LoggerContent
     timestamp: string;
     level: string;
     thread: string;
-    logger: string;
+    logger: string | null;
     file: string;
     message: string;
 }
@@ -143,17 +143,17 @@ class LoggerParser
         options?: LoggerParserOptions
     )
     {
-        this.patterns = {
+        this.patterns = customPatterns || {
             timestamp: [
                 /^(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2},\d{3})/,
-                ...DEFAULT_PATTERNS.timestamp || [],
-                ...(customPatterns?.timestamp || [])
+                ...DEFAULT_PATTERNS.timestamp || []
             ],
-            level: [...(DEFAULT_PATTERNS.level || []), ...(customPatterns?.level || [])],
-            thread: [...(DEFAULT_PATTERNS.thread || []), ...(customPatterns?.thread || [])],
-            logger: [...(DEFAULT_PATTERNS.logger || []), ...(customPatterns?.logger || [])],
-            file: [...(DEFAULT_PATTERNS.file || []), ...(customPatterns?.file || [])]
+            level: [...DEFAULT_PATTERNS.level || []],
+            thread: [...DEFAULT_PATTERNS.thread || []],
+            logger: [...DEFAULT_PATTERNS.logger || []],
+            file: [...DEFAULT_PATTERNS.file || []]
         }
+
         this.levelNormalization = { ...DEFAULT_LEVEL_MAP, ...customLevelMap }
         this.options = {
             timezone: 'UTC',
@@ -184,8 +184,11 @@ class LoggerParser
         return { value: '', remaining: text }
     }
 
-    private cleanText(text: string): string
+    private cleanText(text: string | null): string
     {
+        if (!text) {
+            return ''
+        }
         return text
             .replace(/[\[\](){}「」【】]/g, '')
             .replace(/\s+/g, ' ')
@@ -323,7 +326,7 @@ class LoggerParser
 
             if (!parsedProps.logger) {
                 const loggerResult = this.findMatch(this.patterns.logger, remainingText)
-                parsedProps.logger = loggerResult.value || 'default'
+                parsedProps.logger = loggerResult.value || null
                 remainingText = loggerResult.remaining
             }
 
@@ -356,7 +359,7 @@ class LoggerParser
             timestamp: parsedProps.timestamp || (this.options.autoFillTimestamp ? new Date().toISOString() : ''),
             level: (parsedProps.level || 'INFO').trim(),
             thread: this.cleanText(parsedProps.thread || 'main'),
-            logger: this.cleanText(parsedProps.logger || 'default'),
+            logger: this.cleanText(parsedProps.logger || null),
             file: this.cleanText(parsedProps.file || ''),
             message: this.cleanText(parsedProps.message || input)
         }
@@ -439,20 +442,22 @@ export function formatFromExample(
     line: string,
     example: string,
     parsed: Partial<LoggerContent>,
-    options?: LoggerParserOptions
+    options?: LoggerParserOptions,
+    customPatterns?: LoggerPattern
 ): LoggerContent
 {
-    const parser = new LoggerParser(undefined, undefined, options)
+    const parser = new LoggerParser(customPatterns, undefined, options)
     parser.learnFromExample(example, parsed)
     return parser.parse(line)
 }
 
 export function formatMultipleLines(
     lines: string[],
-    options?: LoggerParserOptions
+    options?: LoggerParserOptions,
+    customPatterns?: LoggerPattern
 ): LoggerContent[]
 {
-    const parser = new LoggerParser(undefined, undefined, { ...options, multiline: true })
+    const parser = new LoggerParser(customPatterns, undefined, { ...options, multiline: true })
     return parser.parseMultipleLines(lines)
 }
 
