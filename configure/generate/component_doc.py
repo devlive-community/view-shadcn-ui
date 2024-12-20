@@ -264,6 +264,10 @@ This document describes the features and usage of the {component_name} component
                     for enum_value in enum_values:
                         markdown += f"""
     <{component_name}{has_model_value and ' v-model="value" ' or ' '}{prop['name']}="{enum_value.strip("'\"")}" />"""
+                elif prop['type'] == 'boolean':
+                    markdown += f"""
+    <{component_name}{has_model_value and ' v-model="value" ' or ' '}{prop['name']} />
+    <{component_name}{has_model_value and ' v-model="value" ' or ' '}:{prop['name']}="false" />"""
                 else:
                     markdown += f"""
     <{component_name}{has_model_value and ' v-model="value" ' or ' '}{prop['type'] == 'number' and ':' or ''}{prop['name']}="{default}" />"""
@@ -282,6 +286,10 @@ This document describes the features and usage of the {component_name} component
                     for enum_value in enum_values:
                         markdown += f"""
     <{component_name}{has_model_value and ' v-model="value" ' or ' '}{prop['name']}="{enum_value.strip("'\"")}" />"""
+                elif prop['type'] == 'boolean':
+                    markdown += f"""
+    <{component_name}{has_model_value and ' v-model="value" ' or ' '}{prop['name']} />
+    <{component_name}{has_model_value and ' v-model="value" ' or ' '}:{prop['name']}="false" />"""
                 else:
                     markdown += f"""
     <{component_name}{has_model_value and ' v-model="value" ' or ' '}{prop['type'] == 'number' and ':' or ''}{prop['name']}="{default}" />"""

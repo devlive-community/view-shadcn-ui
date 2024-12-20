@@ -1,6 +1,6 @@
 <template>
   <div class="p-32 space-y-2">
-    <ShadcnTimePicker v-model="time" @change="handleTimeChange"/>
+    <ShadcnTimePicker v-model="time" :quick-times="['12:00', '13:00', '14:00']" @change="handleTimeChange"/>
   </div>
 </template>
 

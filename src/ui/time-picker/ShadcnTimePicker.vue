@@ -20,7 +20,7 @@
       </slot>
     </div>
 
-    <div v-if="isOpen" class="absolute mt-1 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 p-2">
+    <div v-if="isOpen" class="absolute mt-1 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 p-2 z-10 space-y-2">
       <div class="flex justify-between">
         <div class="flex space-x-2">
           <ShadcnNumber v-model="hoursNumber"
@@ -39,6 +39,15 @@
                         :parser="(value: string) => Number(value)"
                         @on-change="onTimeChange"/>
         </div>
+      </div>
+
+      <div v-if="quickTimes?.length" class="grid grid-cols-3 gap-2">
+        <button class="px-2 py-1 text-sm rounded-md hover:bg-gray-100"
+                v-for="time in quickTimes"
+                :key="time"
+                @click="selectQuickTime(time)">
+          {{ time }}
+        </button>
       </div>
     </div>
   </div>
@@ -101,6 +110,12 @@ const onClear = (event: Event) => {
   event.stopPropagation()
   emit('update:modelValue', '')
   emit('on-clear')
+}
+
+const selectQuickTime = (time: string) => {
+  emit('update:modelValue', time)
+  emit('on-change', time)
+  isOpen.value = false
 }
 
 onMounted(() => {
