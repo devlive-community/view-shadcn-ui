@@ -12,17 +12,17 @@
          @mouseleave="onLeave">
       <!-- Input field for direct number entry -->
       <input :class="['w-full outline-none text-sm',
-                  (!validValue && localValue) && 'line-through'
+                  (!validValue && displayValue) && 'line-through'
              ]"
              type="text"
-             :value="localValue"
+             :value="displayValue"
              :disabled="disabled"
              :placeholder="placeholder"
              @input="onInput"
              @blur="onBlur"/>
 
       <!-- Clear -->
-      <div v-if="clearable && localValue && hovered"
+      <div v-if="clearable && displayValue && hovered"
            class="flex items-center"
            @click="onClear">
         <slot name="clear">
@@ -39,12 +39,11 @@
         </slot>
       </div>
 
-      <!-- Control - Modified to vertical layout with adjusted icons -->
+      <!-- Control -->
       <div v-if="showControl"
            class="ml-1 flex flex-col -my-1">
-        <!-- Add Button -->
         <div :class="[
-                  'h-3 flex items-center justify-center', // Reduced height
+                  'h-3 flex items-center justify-center',
                   {
                     'cursor-pointer rounded': !disabled && validValue && Number(localValue) < Number(props.max),
                     'cursor-not-allowed opacity-50': !validValue || Number(localValue) >= Number(props.max)
@@ -64,7 +63,6 @@
             </svg>
           </slot>
         </div>
-        <!-- Minus Button -->
         <div :class="[
                   'h-3 flex items-center justify-center',
                   {
@@ -92,7 +90,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineEmits, defineProps, inject, ref, watch } from 'vue'
+import { computed, defineEmits, defineProps, inject, ref, watch } from 'vue'
 import { NumberEmits, NumberProps } from './types'
 import { isNumber } from '@/utils/number.ts'
 import { Size } from '@/ui/common/size.ts'
@@ -107,22 +105,27 @@ const props = withDefaults(defineProps<NumberProps>(), {
   min: -Infinity,
   max: Infinity,
   clearable: false,
-  showControl: true
+  showControl: true,
+  formatter: (value: number) => value.toString(),
+  parser: (value: string) => Number(value)
 })
 
-// Create a reactive reference for the modelValue
 const localValue = ref(props.modelValue)
 const validValue = ref(isNumber(props.modelValue))
 const hovered = ref(false)
 
-// Get inject context
+const displayValue = computed(() => {
+  if (!localValue.value || !validValue.value) {
+    return localValue.value
+  }
+  return props.formatter ? props.formatter(Number(localValue.value)) : localValue.value
+})
+
 const formItemContext = inject<FormItemContext | null>(`form-item-${ props.name }`, null)
 
-// Watch the incoming modelValue prop for changes
 watch(() => props.modelValue, (newValue) => {
   validValue.value = isNumber(newValue)
 
-  // Check if the value is within the min and max range
   if (isNumber(newValue)) {
     const numValue = Number(newValue)
     const min = Number(props.min ?? -Infinity)
@@ -137,6 +140,17 @@ watch(() => props.modelValue, (newValue) => {
 })
 
 const onChange = (value: any) => {
+  if (props.parser && typeof value === 'string') {
+    try {
+      value = props.parser(value)
+    }
+    catch (e) {
+      console.error('Failed to parse value:', e)
+      validValue.value = false
+      return
+    }
+  }
+
   emit('update:modelValue', value)
   emit('on-change', value)
 }
@@ -151,32 +165,30 @@ const onLeave = () => {
   hovered.value = false
 }
 
-// Function to handle input event and emit changes
 const onInput = (event: Event) => {
   const target = event.target as HTMLInputElement
-  onChange(target.value)
+  const value = target.value
+  localValue.value = value
+  onChange(value)
 }
 
-// Function to handle blur event and emit changes
 const onBlur = (event: FocusEvent) => {
-  const newValue = (event.target as HTMLInputElement).value
-  localValue.value = newValue
+  const value = (event.target as HTMLInputElement).value
+  localValue.value = value
 
-  onChange(newValue)
-  emit('on-blur', newValue)
+  onChange(value)
+  emit('on-blur', value)
 
   if (formItemContext) {
     formItemContext.onBlur()
   }
 }
 
-// Function to handle clear event and emit changes
 const onClear = () => {
   onChange(null)
   emit('on-clear', null)
 }
 
-// Function to handle add
 const onAdd = () => {
   if (validValue.value) {
     const newValue = Number(localValue.value) + 1
@@ -186,7 +198,6 @@ const onAdd = () => {
   }
 }
 
-// Function to handle minus
 const onMinus = () => {
   if (validValue.value) {
     const newValue = Number(localValue.value) - 1
