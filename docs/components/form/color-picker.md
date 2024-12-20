@@ -45,13 +45,59 @@ This document describes the features and usage of the ShadcnColorPicker componen
 ```
 
 :::
+
+## Disabled
+
+::: raw
+
+<CodeRunner title="Disabled">
+    <ShadcnColorPicker v-model="value" disabled />
+    <ShadcnColorPicker v-model="value" :disabled="false" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnColorPicker v-model="value" disabled />
+    <ShadcnColorPicker v-model="value" :disabled="false" />
+</template>
+```
+
+:::
+
+## Readonly
+
+::: raw
+
+<CodeRunner title="Readonly">
+    <ShadcnColorPicker v-model="value" readonly />
+    <ShadcnColorPicker v-model="value" :readonly="false" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnColorPicker v-model="value" readonly />
+    <ShadcnColorPicker v-model="value" :readonly="false" />
+</template>
+```
+
+:::
 ## ColorPicker Props
 
 <ApiTable title="Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
     :columns="[
         ['modelValue', 'modelValue value', 'string', '-', '-'],
-        ['color', 'color value', 'string', '-', '-']
+        ['color', 'color value', 'string', '-', '-'],
+        ['disabled', 'disabled value', 'boolean', 'false', '-'],
+        ['readonly', 'readonly value', 'boolean', 'false', '-']
     ]">
 </ApiTable>
 

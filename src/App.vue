@@ -3,6 +3,8 @@
     <div class="flex items-center gap-3">
       <span>Selected color: {{ selectedColor }}</span>
       <ShadcnColorPicker v-model="selectedColor" color="#000000" @change="onColorChange"/>
+      <ShadcnColorPicker v-model="selectedColor" disabled/>
+      <ShadcnColorPicker v-model="selectedColor" readonly/>
     </div>
   </div>
 </template>

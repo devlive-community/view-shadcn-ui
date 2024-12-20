@@ -1,6 +1,10 @@
 <template>
   <div class="inline-block relative shadcn-color-picker-container">
-    <div class="w-8 h-8 rounded-md border cursor-pointer"
+    <div class="w-8 h-8 rounded-md border"
+         :class="[
+             { 'cursor-pointer': !disabled && !readonly },
+             { 'cursor-not-allowed opacity-50': disabled }
+         ]"
          :style="{ backgroundColor: modelValue || color }"
          @click="togglePicker"/>
     <div v-if="isOpen" class="relative">
@@ -27,7 +31,10 @@
 import { defineEmits, defineProps, onMounted, onUnmounted, ref } from 'vue'
 import type { ColorPickerEmits, ColorPickerProps } from './types'
 
-defineProps<ColorPickerProps>()
+const props = withDefaults(defineProps<ColorPickerProps>(), {
+  disabled: false,
+  readonly: false
+})
 const emit = defineEmits<ColorPickerEmits>()
 
 const isOpen = ref(false)
@@ -38,6 +45,10 @@ const presetColors = [
 ]
 
 const togglePicker = () => {
+  if (props.disabled || props.readonly) {
+    return
+  }
+
   isOpen.value = !isOpen.value
 }
 

@@ -2,6 +2,8 @@ export interface ColorPickerProps
 {
     modelValue?: string
     color?: string
+    disabled?: boolean
+    readonly?: boolean
 }
 
 export type ColorPickerEmits = {
