@@ -223,6 +223,7 @@ export default {
                         {text: 'Input Tag', link: 'form/input-tag', icon: '/components/form/input-tag.svg', version: '2024.5.2'},
                         {text: 'Map', link: 'form/map', icon: '/components/form/map.svg', version: '2024.5.2'},
                         {text: 'Time Picker', link: 'form/time-picker', icon: '/components/form/time-picker.svg', version: '2024.5.3'},
+                        {text: 'Color Picker', link: 'form/color-picker', icon: '/components/form/color-picker.svg', version: '2024.5.3'}
                     ]
 
                     return {
