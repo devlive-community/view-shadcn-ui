@@ -275,6 +275,8 @@ const value = ref(0)
         ['min', 'Minimum value of the number', 'number | string', '-', '-'],
         ['max', 'Maximum value of the number', 'number | string', '-', '-'],
         ['clearable', 'Whether the number can be cleared', 'boolean', 'false', '-'],
+        ['formatter', 'Formatter of the number', 'function', '-', '-'],
+        ['parser', 'Parser of the number', 'function', '-', '-'],
     ]">
 </ApiTable>
 

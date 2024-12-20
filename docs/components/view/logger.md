@@ -115,7 +115,8 @@ This document is mainly used to describe some features and usage of the ShadcnLo
         ['highlightConfig', 'The highlight config of the logger', 'object', '{ WARN: \'rgb(234 179 8)\', ERROR: \'rgb(239 68 68)\', DEBUG: \'rgb(107 114 128)\', TRACE: \'rgb(156 163 175)\'}'],
         ['height', 'The height of the logger', 'string | number', '200'],
         ['toolbar', 'Whether to show the toolbar of the logger', 'boolean', 'false'],
-        ['caseSensitive', 'Whether to case sensitive of the logger', 'boolean', 'false']
+        ['caseSensitive', 'Whether to case sensitive of the logger', 'boolean', 'false'],
+        ['customPatterns', 'The custom patterns of the logger', 'object', '{  <br />timestamp: [/^(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2},\d{3})/], <br />level: [/\b(INFO|ERROR|WARN|DEBUG)\b/],  <br />thread: [/\[(pool-\d+-thread-\d+)\]/],  <br />file: [/\[([^[\]]+\.java:\d+)\]/] <br />}']
     ]">
 </ApiTable>
 

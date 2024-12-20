@@ -38,6 +38,7 @@ export interface WorkflowNode
 {
     id: string
     tid: string
+    key: string
     label: string
     category: string
     ports: WorkflowPort[]

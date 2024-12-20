@@ -12,7 +12,9 @@ export interface NumberProps
     min?: number | string
     max?: number | string
     clearable?: boolean,
-    showControl?: boolean
+    showControl?: boolean,
+    formatter?: (value: number) => string
+    parser?: (value: string) => number
 }
 
 export type NumberEmits = {

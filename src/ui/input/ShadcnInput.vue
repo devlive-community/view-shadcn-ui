@@ -16,6 +16,7 @@
                :placeholder="placeholder"
                :maxlength="maxCount"
                :disabled="disabled"
+               :readonly="readonly"
                @input="onInput"
                @blur="onBlur"
                @update:modelValue="onModelValueUpdate"/>
@@ -68,6 +69,7 @@ const props = withDefaults(defineProps<{
   rows?: number | string
   cols?: number | string
   name?: string
+  readonly?: boolean
 }>(), {
   modelValue: '',
   placeholder: '',
