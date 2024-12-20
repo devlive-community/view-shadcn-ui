@@ -1,11 +1,20 @@
 <template>
   <div class="relative w-full shadcn-time-picker-container">
-    <ShadcnInput :model-value="modelValue"
-                 readonly
+    <ShadcnInput readonly
+                 :model-value="modelValue"
                  :placeholder="placeholder"
+                 :disabled="disabled"
                  @click="togglePopover"/>
 
-    <div class="absolute right-2 top-0 h-full flex items-center justify-center text-gray-400">
+    <div class="absolute right-2 top-0 h-full flex items-center gap-2 text-gray-400">
+      <div v-if="clearable && modelValue"
+           class="flex items-center cursor-pointer hover:text-muted-foreground"
+           @click="onClear">
+        <slot name="clear">
+          <ShadcnIcon icon="CircleX" size="18"/>
+        </slot>
+      </div>
+
       <slot name="icon">
         <ShadcnIcon icon="Clock" size="18"/>
       </slot>
@@ -18,12 +27,16 @@
                         class="w-14"
                         :min="0"
                         :max="23"
+                        :formatter="zeroPadFormatter"
+                        :parser="(value: string) => Number(value)"
                         @on-change="onTimeChange"/>
           <span class="text-xl select-none">:</span>
           <ShadcnNumber v-model="minutesNumber"
                         class="w-14"
                         :min="0"
                         :max="59"
+                        :formatter="zeroPadFormatter"
+                        :parser="(value: string) => Number(value)"
                         @on-change="onTimeChange"/>
         </div>
       </div>
@@ -38,7 +51,9 @@ import { t } from '@/utils/locale'
 
 const props = withDefaults(defineProps<TimePickerProps>(), {
   modelValue: '',
-  placeholder: t('timePicker.placeholder.time')
+  placeholder: t('timePicker.placeholder.time'),
+  disabled: false,
+  clearable: true
 })
 
 const emit = defineEmits<TimePickerEmits>()
@@ -59,6 +74,10 @@ watch(() => props.modelValue, (newValue) => {
   }
 })
 
+const zeroPadFormatter = (num: number): string => {
+  return num.toString().padStart(2, '0')
+}
+
 const togglePopover = () => {
   isOpen.value = !isOpen.value
 }
@@ -76,6 +95,12 @@ const onClickOutside = (event: Event) => {
   if (!target.closest('.shadcn-time-picker-container')) {
     isOpen.value = false
   }
+}
+
+const onClear = (event: Event) => {
+  event.stopPropagation()
+  emit('update:modelValue', '')
+  emit('on-clear')
 }
 
 onMounted(() => {

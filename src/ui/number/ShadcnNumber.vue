@@ -115,9 +115,14 @@ const validValue = ref(isNumber(props.modelValue))
 const hovered = ref(false)
 
 const displayValue = computed(() => {
-  if (!localValue.value || !validValue.value) {
+  if (!validValue.value) {
     return localValue.value
   }
+
+  if (localValue.value === null || localValue.value === undefined) {
+    return localValue.value
+  }
+
   return props.formatter ? props.formatter(Number(localValue.value)) : localValue.value
 })
 
