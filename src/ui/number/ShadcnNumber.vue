@@ -46,8 +46,8 @@
         <div :class="[
                   'h-3 flex items-center justify-center', // Reduced height
                   {
-                    'cursor-pointer rounded': !disabled && validValue,
-                    'cursor-not-allowed opacity-50': !validValue
+                    'cursor-pointer rounded': !disabled && validValue && Number(localValue) < Number(props.max),
+                    'cursor-not-allowed opacity-50': !validValue || Number(localValue) >= Number(props.max)
                   }
               ]"
              @click="onAdd">
@@ -68,8 +68,8 @@
         <div :class="[
                   'h-3 flex items-center justify-center',
                   {
-                    'cursor-pointer rounded': !disabled && validValue,
-                    'cursor-not-allowed opacity-50': !validValue
+                    'cursor-pointer rounded': !disabled && validValue && Number(localValue) > Number(props.min),
+                    'cursor-not-allowed opacity-50': !validValue || Number(localValue) <= Number(props.min)
                   }
              ]"
              @click="onMinus">
@@ -179,14 +179,20 @@ const onClear = () => {
 // Function to handle add
 const onAdd = () => {
   if (validValue.value) {
-    onChange(Number(localValue.value) + 1)
+    const newValue = Number(localValue.value) + 1
+    if (newValue <= Number(props.max)) {
+      onChange(newValue)
+    }
   }
 }
 
 // Function to handle minus
 const onMinus = () => {
   if (validValue.value) {
-    onChange(Number(localValue.value) - 1)
+    const newValue = Number(localValue.value) - 1
+    if (newValue >= Number(props.min)) {
+      onChange(newValue)
+    }
   }
 }
 </script>
