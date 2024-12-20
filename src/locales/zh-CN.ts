@@ -184,6 +184,10 @@ export default {
         }
     },
     timePicker: {
+        text: {
+            am: '上午',
+            pm: '下午'
+        },
         placeholder: {
             time: '请选择时间'
         }

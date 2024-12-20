@@ -6,7 +6,8 @@ export interface TimePickerProps
     placeholder?: string
     disabled?: boolean
     clearable?: boolean
-    quickTimes?: string[] // format is 'HH:mm'
+    quickTimes?: string[] // see format
+    format?: 'HH:mm' | 'HH:mm:ss' | 'hh:mm A' | 'hh:mm:ss A'
 }
 
 export type TimePickerEmits = {

@@ -184,6 +184,10 @@ export default {
         }
     },
     timePicker: {
+        text: {
+            am: 'AM',
+            pm: 'PM'
+        },
         placeholder: {
             time: 'Please select a time'
         }

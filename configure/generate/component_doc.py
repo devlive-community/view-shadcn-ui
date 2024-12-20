@@ -310,8 +310,9 @@ This document describes the features and usage of the {component_name} component
 
         prop_rows = []
         for p in props:
-            default_value = "-" if p["default"].startswith("t(") and p["default"].endswith(")") else p["default"]
-            row = f"        ['{p['name']}', '{p['description']}', '{p['type']}', '{default_value}', '{p['list']}']"
+            default_value = "-" if p["default"].startswith("t(") and p["default"].endswith(")") or p["default"] == "undefined" else p["default"]
+            description = p['description'].replace("'", "`")
+            row = f"        ['{p['name']}', '{description}', '{p['type']}', '{default_value}', '{p['list']}']"
             prop_rows.append(row)
 
         markdown += ",\n".join(prop_rows)
@@ -326,7 +327,8 @@ This document describes the features and usage of the {component_name} component
 
         emit_rows = []
         for e in emits:
-            row = f"        ['{e['name']}', '{e['description']}', '{e['params']}']"
+            description = e['description'].replace("'", "`")
+            row = f"        ['{e['name']}', '{description}', '{e['params']}']"
             emit_rows.append(row)
 
         markdown += ",\n".join(emit_rows)
