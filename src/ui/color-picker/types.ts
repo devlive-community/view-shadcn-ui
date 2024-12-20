@@ -4,6 +4,7 @@ export interface ColorPickerProps
     color?: string
     disabled?: boolean
     readonly?: boolean
+    presetColors?: string[]
 }
 
 export type ColorPickerEmits = {

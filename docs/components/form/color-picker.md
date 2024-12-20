@@ -89,6 +89,26 @@ This document describes the features and usage of the ShadcnColorPicker componen
 ```
 
 :::
+
+## Preset colors
+
+::: raw
+
+<CodeRunner title="Preset colors">
+    <ShadcnColorPicker v-model="value" :presetColors="['#ef4444', '#c084fc', '#fb7185', '#34d399']" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnColorPicker v-model="value" :presetColors="['#ef4444', '#c084fc', '#fb7185', '#34d399']" />
+</template>
+```
+
+:::
 ## ColorPicker Props
 
 <ApiTable title="Props"
@@ -97,7 +117,8 @@ This document describes the features and usage of the ShadcnColorPicker componen
         ['modelValue', 'modelValue value', 'string', '-', '-'],
         ['color', 'color value', 'string', '-', '-'],
         ['disabled', 'disabled value', 'boolean', 'false', '-'],
-        ['readonly', 'readonly value', 'boolean', 'false', '-']
+        ['readonly', 'readonly value', 'boolean', 'false', '-'],
+        ['presetColors', 'presetColors value', 'string[]', '[#f87171, #fb923c, #fbbf24, #a3e635, #34d399, #2dd4bf, #38bdf8, #818cf8, #c084fc, #e879f9, #fb7185, #475569, #737373, #78716c, #ef4444]', '-']
     ]">
 </ApiTable>
 

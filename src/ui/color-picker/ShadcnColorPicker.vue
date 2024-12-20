@@ -10,7 +10,7 @@
     <div v-if="isOpen" class="relative">
       <div class="absolute min-w-44 z-10 mt-0.5 p-2 bg-white rounded-lg shadow-lg border">
         <div class="grid grid-cols-5 gap-2">
-          <div v-for="color in presetColors"
+          <div v-for="color in finalPresetColors"
                class="w-6 h-6 rounded-md cursor-pointer"
                :key="color"
                :style="{ backgroundColor: color }"
@@ -28,21 +28,22 @@
 </template>
 
 <script setup lang="ts">
-import { defineEmits, defineProps, onMounted, onUnmounted, ref } from 'vue'
+import { computed, defineEmits, defineProps, onMounted, onUnmounted, ref } from 'vue'
 import type { ColorPickerEmits, ColorPickerProps } from './types'
 
 const props = withDefaults(defineProps<ColorPickerProps>(), {
   disabled: false,
-  readonly: false
+  readonly: false,
+  presetColors: () => ([
+    '#f87171', '#fb923c', '#fbbf24', '#a3e635', '#34d399',
+    '#2dd4bf', '#38bdf8', '#818cf8', '#c084fc', '#e879f9',
+    '#fb7185', '#475569', '#737373', '#78716c', '#ef4444'
+  ])
 })
 const emit = defineEmits<ColorPickerEmits>()
 
 const isOpen = ref(false)
-const presetColors = [
-  '#f87171', '#fb923c', '#fbbf24', '#a3e635', '#34d399',
-  '#2dd4bf', '#38bdf8', '#818cf8', '#c084fc', '#e879f9',
-  '#fb7185', '#475569', '#737373', '#78716c', '#ef4444'
-]
+const finalPresetColors = computed(() => props.presetColors)
 
 const togglePicker = () => {
   if (props.disabled || props.readonly) {

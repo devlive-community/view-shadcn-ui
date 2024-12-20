@@ -5,6 +5,7 @@
       <ShadcnColorPicker v-model="selectedColor" color="#000000" @change="onColorChange"/>
       <ShadcnColorPicker v-model="selectedColor" disabled/>
       <ShadcnColorPicker v-model="selectedColor" readonly/>
+      <ShadcnColorPicker v-model="selectedColor" :preset-colors="['#ff0000', '#00ff00', '#0000ff']"/>
     </div>
   </div>
 </template>

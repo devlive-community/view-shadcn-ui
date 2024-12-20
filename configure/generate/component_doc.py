@@ -18,23 +18,61 @@ def parse_default_values(vue_file: str) -> Dict[str, str]:
         content = f.read()
 
     # Find withDefaults section
-    defaults_match = re.search(r'withDefaults\(defineProps<\w+>\(\),\s*({[^}]+})', content, re.DOTALL)
+    defaults_match = re.search(r'withDefaults\(defineProps<\w+>\(\),\s*({[\s\S]+?})\s*\)', content)
     if defaults_match:
         defaults_content = defaults_match.group(1)
-        # Parse each default value
-        for line in defaults_content.split('\n'):
-            line = line.strip()
-            if line and ':' in line:
-                # Remove trailing comma if exists
-                line = line.rstrip(',')
-                # Split by first colon
-                parts = line.split(':', 1)
-                if len(parts) == 2:
-                    prop_name = parts[0].strip()
-                    prop_value = parts[1].strip()
-                    defaults[prop_name] = prop_value
+
+        bracket_count = 0
+        current_prop = ""
+        current_value = ""
+        is_collecting_prop = True
+
+        for char in defaults_content:
+            if char == '{' and bracket_count == 0:
+                continue
+
+            if is_collecting_prop:
+                if char == ':':
+                    is_collecting_prop = False
+                    current_prop = current_prop.strip()
+                else:
+                    current_prop += char
+            else:
+                if char == '[' or char == '{':
+                    bracket_count += 1
+                elif char == ']' or char == '}':
+                    bracket_count -= 1
+
+                if char == ',' and bracket_count == 0:
+                    # Process the current value before adding to defaults
+                    processed_value = process_value(current_value.strip())
+                    defaults[current_prop] = processed_value
+                    current_prop = ""
+                    current_value = ""
+                    is_collecting_prop = True
+                else:
+                    current_value += char
+
+        # Add the last property if exists
+        if current_prop and current_value:
+            processed_value = process_value(current_value.strip())
+            defaults[current_prop] = processed_value
 
     return defaults
+
+
+def process_value(value: str) -> str:
+    """Process the value string to extract array content if needed."""
+    # Handle array with arrow function
+    array_match = re.search(r'\(\)\s*=>\s*\(\[(.*?)\]\)', value, re.DOTALL)
+    if array_match:
+        # Extract array content and clean it up
+        array_content = array_match.group(1)
+        # Remove quotes, newlines and extra spaces
+        array_items = [item.strip().strip("'").strip('"') for item in array_content.split(',')]
+        clean_array = [item for item in array_items if item]  # Remove empty items
+        return f'[{", ".join(clean_array)}]'
+    return value
 
 
 def parse_types_file(file_path: str) -> Tuple[List[Dict], List[Dict], List[Dict]]:
@@ -206,6 +244,13 @@ def generate_random_default(prop):
             return generate_random_with_default(prop["default"])
         elif prop["default"].startswith('t(') and prop["default"].endswith(')'):  # i18n format
             return "Enter string"
+    elif prop["type"] == "string[]":
+        default_value = prop["default"]
+        if default_value.startswith('[') and default_value.endswith(']'):
+            items = [item.strip() for item in default_value[1:-1].split(',')]
+            num_items = random.randint(1, len(items))
+            return random.sample(items, num_items)
+        return generate_random_with_default(default_value)
     return prop["default"]
 
 
@@ -270,7 +315,7 @@ This document describes the features and usage of the {component_name} component
     <{component_name}{has_model_value and ' v-model="value" ' or ' '}:{prop['name']}="false" />"""
                 else:
                     markdown += f"""
-    <{component_name}{has_model_value and ' v-model="value" ' or ' '}{prop['type'] == 'number' and ':' or ''}{prop['name']}="{default}" />"""
+    <{component_name}{has_model_value and ' v-model="value" ' or ' '}{(prop['type'] == 'number' or prop['default'].startswith('[')) and ':' or ''}{prop['name']}="{default}" />"""
 
                 markdown += """
 </CodeRunner>
@@ -292,7 +337,7 @@ This document describes the features and usage of the {component_name} component
     <{component_name}{has_model_value and ' v-model="value" ' or ' '}:{prop['name']}="false" />"""
                 else:
                     markdown += f"""
-    <{component_name}{has_model_value and ' v-model="value" ' or ' '}{prop['type'] == 'number' and ':' or ''}{prop['name']}="{default}" />"""
+    <{component_name}{has_model_value and ' v-model="value" ' or ' '}{(prop['type'] == 'number' or prop['default'].startswith('[')) and ':' or ''}{prop['name']}="{default}" />"""
 
                 markdown += """
 </template>
