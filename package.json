@@ -12,7 +12,7 @@
   "author": "devlive-community",
   "homepage": "https://view-shadcn-ui.devlive.org",
   "private": false,
-  "version": "2024.5.3-alpha.1734602198",
+  "version": "2024.5.3-alpha.1734608572",
   "license": "MIT",
   "main": "./dist/view-shadcn.umd.ts",
   "module": "./dist/view-shadcn.es.ts",

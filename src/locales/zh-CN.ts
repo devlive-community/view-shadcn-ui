@@ -182,5 +182,10 @@ export default {
             invalidDateRange: '日期范围无效',
             invalidRegex: '正则表达式无效'
         }
+    },
+    timePicker: {
+        placeholder: {
+            time: '请选择时间'
+        }
     }
 }

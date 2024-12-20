@@ -182,5 +182,10 @@ export default {
             invalidDateRange: 'The date range is invalid',
             invalidRegex: 'The regex is invalid'
         }
+    },
+    timePicker: {
+        placeholder: {
+            time: 'Please select a time'
+        }
     }
 }

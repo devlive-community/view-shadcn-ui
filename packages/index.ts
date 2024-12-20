@@ -93,6 +93,7 @@ import { ShadcnLoadingBar } from '@/ui/loading-bar'
 import { ShadcnFloatButton } from '@/ui/float-button'
 import { ShadcnDataFilter, ShadcnHierarchicalDataFilter } from '@/ui/data-filter'
 import ShadcnQrCode from '@/ui/qrcode/ShadcnQrCode.vue'
+import { ShadcnTimePicker } from '@/ui/time-picker'
 
 let components = [
     ShadcnButton,
@@ -182,7 +183,8 @@ let components = [
     ShadcnLoadingBar,
     ShadcnFloatButton,
     ShadcnDataFilter, ShadcnHierarchicalDataFilter,
-    ShadcnQrCode
+    ShadcnQrCode,
+    ShadcnTimePicker
 ]
 
 interface InstallOptions
@@ -308,6 +310,7 @@ export { ShadcnLoadingBar } from '@/ui/loading-bar'
 export { ShadcnFloatButton } from '@/ui/float-button'
 export { ShadcnDataFilter, ShadcnHierarchicalDataFilter } from '@/ui/data-filter'
 export { ShadcnQrCode } from '@/ui/qrcode'
+export { ShadcnTimePicker } from '@/ui/time-picker'
 
 // Export functions
 export { fnToString, fnToFunction } from '@/utils/formatter'

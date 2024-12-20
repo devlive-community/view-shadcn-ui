@@ -90,14 +90,19 @@ def parse_types_file(file_path: str) -> Tuple[List[Dict], List[Dict], List[Dict]
         for line in emits_content.split('\n'):
             line = line.strip()
             if line:
-                # Match event name
-                emit_match = re.match(r"\(e:\s*'([\w-]+)'\):\s*void", line)
+                emit_match = re.match(r"\(e:\s*'([\w:-]+)'(?:\s*,\s*(\w+):\s*(\w+))?\):\s*void", line)
                 if emit_match:
                     event_name = emit_match.group(1)
+                    params = '-'
+                    if emit_match.group(2) and emit_match.group(3):  # 如果有参数
+                        param_name = emit_match.group(2)
+                        param_type = emit_match.group(3)
+                        params = f'{param_name}: {param_type}'
+
                     emits.append({
                         'name': event_name,
                         'description': f'Triggered when {event_name.replace("-", " ")}',
-                        'params': '-'
+                        'params': params
                     })
 
     # Extract Slots interface content
@@ -196,8 +201,11 @@ def generate_random_default(prop):
     if prop["type"] == "number":
         value = int(prop["default"]) == 0 and 100 or int(prop["default"])
         return random.randint(1, value)
-    elif prop["type"] == "string" and prop["default"].startswith('#'):  # Color
-        return generate_random_with_default(prop["default"])
+    elif prop["type"] == "string":
+        if prop["default"].startswith('#'):  # Color
+            return generate_random_with_default(prop["default"])
+        elif prop["default"].startswith('t(') and prop["default"].endswith(')'):  # i18n format
+            return "Enter string"
     return prop["default"]
 
 
@@ -294,7 +302,8 @@ This document describes the features and usage of the {component_name} component
 
         prop_rows = []
         for p in props:
-            row = f"        ['{p['name']}', '{p['description']}', '{p['type']}', '{p['default']}', '{p['list']}']"
+            default_value = "-" if p["default"].startswith("t(") and p["default"].endswith(")") else p["default"]
+            row = f"        ['{p['name']}', '{p['description']}', '{p['type']}', '{default_value}', '{p['list']}']"
             prop_rows.append(row)
 
         markdown += ",\n".join(prop_rows)
@@ -336,7 +345,7 @@ This document describes the features and usage of the {component_name} component
 <script setup lang="ts">
 import {{ ref }} from 'vue';
 
-const value = ref('Hello View Shadcn UI')
+const value = ref('')
 </script>
 """
 
