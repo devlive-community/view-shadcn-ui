@@ -194,7 +194,8 @@ export default {
     },
     colorPicker: {
         text: {
-            transparency: 'Transparency'
+            transparency: 'Transparency',
+            format: 'Format'
         }
     }
 }

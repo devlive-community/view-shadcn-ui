@@ -1,11 +1,11 @@
 export interface ColorPickerProps
 {
-    modelValue?: string // Color values in HEX or RGBA format are supported
+    modelValue?: string // Color values in HEX/RGB/HSL format are supported
     color?: string
     disabled?: boolean
     readonly?: boolean
     presetColors?: string[]
-    format?: 'auto' | 'hex' | 'rgba'  // Output format, default is 'auto'
+    format?: 'auto' | 'hex' | 'rgb' | 'hsl'  // Output format, default is 'auto'
 }
 
 export type ColorPickerEmits = {

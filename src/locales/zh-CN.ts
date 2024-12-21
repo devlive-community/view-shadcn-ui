@@ -194,7 +194,8 @@ export default {
     },
     colorPicker: {
         text: {
-            transparency: '透明度'
+            transparency: '透明度',
+            format: '格式'
         }
     }
 }
