@@ -191,5 +191,10 @@ export default {
         placeholder: {
             time: '请选择时间'
         }
+    },
+    colorPicker: {
+        text: {
+            transparency: '透明度'
+        }
     }
 }

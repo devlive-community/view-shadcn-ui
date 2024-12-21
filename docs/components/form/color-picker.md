@@ -95,7 +95,7 @@ This document describes the features and usage of the ShadcnColorPicker componen
 ::: raw
 
 <CodeRunner title="Preset colors">
-    <ShadcnColorPicker v-model="value" :presetColors="['#ef4444', '#c084fc', '#fb7185', '#34d399']" />
+    <ShadcnColorPicker v-model="value" :presetColors="['#fb7185']" />
 </CodeRunner>
 
 :::
@@ -104,7 +104,31 @@ This document describes the features and usage of the ShadcnColorPicker componen
 
 ```vue
 <template>
-    <ShadcnColorPicker v-model="value" :presetColors="['#ef4444', '#c084fc', '#fb7185', '#34d399']" />
+    <ShadcnColorPicker v-model="value" :presetColors="['#fb7185']" />
+</template>
+```
+
+:::
+
+## Format
+
+::: raw
+
+<CodeRunner title="Format">
+    <ShadcnColorPicker v-model="value" format="auto" />
+    <ShadcnColorPicker v-model="value" format="hex" />
+    <ShadcnColorPicker v-model="value" format="rgba" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnColorPicker v-model="value" format="auto" />
+    <ShadcnColorPicker v-model="value" format="hex" />
+    <ShadcnColorPicker v-model="value" format="rgba" />
 </template>
 ```
 
@@ -114,11 +138,12 @@ This document describes the features and usage of the ShadcnColorPicker componen
 <ApiTable title="Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
     :columns="[
-        ['modelValue', 'modelValue value', 'string', '-', '-'],
+        ['modelValue', 'Color values in HEX or RGBA format are supported', 'string', '-', '-'],
         ['color', 'color value', 'string', '-', '-'],
         ['disabled', 'disabled value', 'boolean', 'false', '-'],
         ['readonly', 'readonly value', 'boolean', 'false', '-'],
-        ['presetColors', 'presetColors value', 'string[]', '[#f87171, #fb923c, #fbbf24, #a3e635, #34d399, #2dd4bf, #38bdf8, #818cf8, #c084fc, #e879f9, #fb7185, #475569, #737373, #78716c, #ef4444]', '-']
+        ['presetColors', 'presetColors value', 'string[]', '[#f87171, #fb923c, #fbbf24, #a3e635, #34d399, #2dd4bf, #38bdf8, #818cf8, #c084fc, #e879f9, #fb7185, #475569, #737373, #78716c, #ef4444]', '-'],
+        ['format', 'Output format, default is `auto`', 'auto | hex | rgba', 'auto', 'auto, hex, rgba']
     ]">
 </ApiTable>
 
