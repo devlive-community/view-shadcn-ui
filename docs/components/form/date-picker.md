@@ -95,8 +95,7 @@ This document describes the features and usage of the ShadcnDatePicker component
 ::: raw
 
 <CodeRunner title="Format">
-    <ShadcnDatePicker v-model="value" format="YYYY-MM-DD'
-}" />
+    <ShadcnDatePicker v-model="value" format="YYYY-MM-DD" />
 </CodeRunner>
 
 :::
@@ -105,8 +104,29 @@ This document describes the features and usage of the ShadcnDatePicker component
 
 ```vue
 <template>
-    <ShadcnDatePicker v-model="value" format="YYYY-MM-DD'
-}" />
+    <ShadcnDatePicker v-model="value" format="YYYY-MM-DD" />
+</template>
+```
+
+:::
+
+## Clearable
+
+::: raw
+
+<CodeRunner title="Clearable">
+    <ShadcnDatePicker v-model="value" clearable />
+    <ShadcnDatePicker v-model="value" :clearable="false" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnDatePicker v-model="value" clearable />
+    <ShadcnDatePicker v-model="value" :clearable="false" />
 </template>
 ```
 
@@ -120,7 +140,8 @@ This document describes the features and usage of the ShadcnDatePicker component
         ['placeholder', 'placeholder value', 'string', '-', '-'],
         ['disabled', 'disabled value', 'boolean', 'false', '-'],
         ['readonly', 'readonly value', 'boolean', 'false', '-'],
-        ['format', 'format value', 'string', 'YYYY-MM-DD', '-']
+        ['format', 'format value', 'string', 'YYYY-MM-DD', '-'],
+        ['clearable', 'clearable value', 'boolean', 'true', '-']
     ]">
 </ApiTable>
 

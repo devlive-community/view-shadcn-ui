@@ -199,6 +199,17 @@ export default {
         }
     },
     datePicker: {
+        text: {
+            sunday: '星期日',
+            monday: '星期一',
+            tuesday: '星期二',
+            wednesday: '星期三',
+            thursday: '星期四',
+            friday: '星期五',
+            saturday: '星期六',
+            year: '年',
+            month: '月',
+        },
         placeholder: {
             date: '请选择日期'
         }

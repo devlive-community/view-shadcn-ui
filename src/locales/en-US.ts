@@ -199,6 +199,17 @@ export default {
         }
     },
     datePicker: {
+        text: {
+            sunday: 'Sun',
+            monday: 'Mon',
+            tuesday: 'Tue',
+            wednesday: 'Wed',
+            thursday: 'Thu',
+            friday: 'Fri',
+            saturday: 'Sat',
+            year: 'Year',
+            month: 'Month',
+        },
         placeholder: {
             date: 'Please select a date'
         }
