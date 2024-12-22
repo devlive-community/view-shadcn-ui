@@ -1,10 +1,12 @@
 export interface DatePickerProps
 {
-    modelValue?: Date
+    modelValue?: Date | string
     placeholder?: string
+    disabled?: boolean
+    readonly?: boolean
 }
 
 export type DatePickerEmits = {
-    (e: 'update:modelValue', value: Date): void
-    (e: 'on-change', value: Date): void
+    (e: 'update:modelValue', value: string): void
+    (e: 'on-change', value: string): void
 }

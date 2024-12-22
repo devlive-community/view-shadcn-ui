@@ -45,13 +45,59 @@ This document describes the features and usage of the ShadcnDatePicker component
 ```
 
 :::
+
+## Disabled
+
+::: raw
+
+<CodeRunner title="Disabled">
+    <ShadcnDatePicker v-model="value" disabled />
+    <ShadcnDatePicker v-model="value" :disabled="false" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnDatePicker v-model="value" disabled />
+    <ShadcnDatePicker v-model="value" :disabled="false" />
+</template>
+```
+
+:::
+
+## Readonly
+
+::: raw
+
+<CodeRunner title="Readonly">
+    <ShadcnDatePicker v-model="value" readonly />
+    <ShadcnDatePicker v-model="value" :readonly="false" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnDatePicker v-model="value" readonly />
+    <ShadcnDatePicker v-model="value" :readonly="false" />
+</template>
+```
+
+:::
 ## DatePicker Props
 
 <ApiTable title="Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
     :columns="[
         ['modelValue', 'modelValue value', 'Date', '-', '-'],
-        ['placeholder', 'placeholder value', 'string', '-', '-']
+        ['placeholder', 'placeholder value', 'string', '-', '-'],
+        ['disabled', 'disabled value', 'boolean', 'false', '-'],
+        ['readonly', 'readonly value', 'boolean', 'false', '-']
     ]">
 </ApiTable>
 
