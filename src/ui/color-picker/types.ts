@@ -6,6 +6,10 @@ export interface ColorPickerProps
     readonly?: boolean
     presetColors?: string[]
     format?: 'auto' | 'hex' | 'rgb' | 'hsl'  // Output format, default is 'auto'
+    showPanel?: boolean
+    showDropper?: boolean
+    showTransparency?: boolean
+    showFormat?: boolean
 }
 
 export type ColorPickerEmits = {

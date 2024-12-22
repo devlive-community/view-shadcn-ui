@@ -17,60 +17,62 @@
                @click="selectColor(color)"/>
         </div>
         <div class="mt-2 space-y-2">
-          <div class="flex justify-between items-center">
-            <span class="text-sm text-gray-500">{{ t('colorPicker.text.format') }}</span>
-            <ShadcnSelect v-model="inputFormat">
-              <template #options>
-                <ShadcnSelectOption value="hex" label="HEX"/>
-                <ShadcnSelectOption value="rgb" label="RGB"/>
-                <ShadcnSelectOption value="hsl" label="HSL"/>
-              </template>
-            </ShadcnSelect>
+          <div v-if="showFormat" class="space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-gray-500">{{ t('colorPicker.text.format') }}</span>
+              <ShadcnSelect v-model="inputFormat">
+                <template #options>
+                  <ShadcnSelectOption value="hex" label="HEX"/>
+                  <ShadcnSelectOption value="rgb" label="RGB"/>
+                  <ShadcnSelectOption value="hsl" label="HSL"/>
+                </template>
+              </ShadcnSelect>
+            </div>
+
+            <template v-if="inputFormat === 'hex'">
+              <ShadcnInput v-model="hexValue" placeholder="#000000" @on-change="onHexInput"/>
+            </template>
+
+            <template v-if="inputFormat === 'rgb'">
+              <div class="grid grid-cols-3 gap-2">
+                <div v-for="(value, index) in rgbValues" :key="index">
+                  <ShadcnNumber :model-value="value"
+                                :min="0"
+                                :max="255"
+                                @on-change="onRgbInput(index, $event)"/>
+                </div>
+              </div>
+            </template>
+
+            <template v-if="inputFormat === 'hsl'">
+              <div class="grid grid-cols-3 gap-2">
+                <div>
+                  <ShadcnNumber placeholder="H" :model-value="hslValues[0]"
+                                :min="0"
+                                :max="360"
+                                @on-change="onHslInput(0, $event)"/>
+                </div>
+                <div>
+                  <ShadcnNumber placeholder="S" :model-value="hslValues[1]"
+                                :min="0"
+                                :max="100"
+                                @on-change="onHslInput(1, $event)"/>
+                </div>
+                <div>
+                  <ShadcnNumber placeholder="L" :model-value="hslValues[2]"
+                                :min="0"
+                                :max="100"
+                                @on-change="onHslInput(2, $event)"/>
+                </div>
+              </div>
+            </template>
           </div>
 
-          <template v-if="inputFormat === 'hex'">
-            <ShadcnInput v-model="hexValue" placeholder="#000000" @on-change="onHexInput"/>
-          </template>
-
-          <template v-if="inputFormat === 'rgb'">
-            <div class="grid grid-cols-3 gap-2">
-              <div v-for="(value, index) in rgbValues" :key="index">
-                <ShadcnNumber :model-value="value"
-                              :min="0"
-                              :max="255"
-                              @on-change="onRgbInput(index, $event)"/>
-              </div>
-            </div>
-          </template>
-
-          <template v-if="inputFormat === 'hsl'">
-            <div class="grid grid-cols-3 gap-2">
-              <div>
-                <ShadcnNumber placeholder="H" :model-value="hslValues[0]"
-                              :min="0"
-                              :max="360"
-                              @on-change="onHslInput(0, $event)"/>
-              </div>
-              <div>
-                <ShadcnNumber placeholder="S" :model-value="hslValues[1]"
-                              :min="0"
-                              :max="100"
-                              @on-change="onHslInput(1, $event)"/>
-              </div>
-              <div>
-                <ShadcnNumber placeholder="L" :model-value="hslValues[2]"
-                              :min="0"
-                              :max="100"
-                              @on-change="onHslInput(2, $event)"/>
-              </div>
-            </div>
-          </template>
-
-          <div class="mt-2">
-            <ShadcnColorPanel :model-value="modelValue as string" @on-change="onColorChange"/>
+          <div v-if="showPanel" class="mt-2">
+            <ShadcnColorPanel :model-value="modelValue as string" :show-dropper="showDropper" @on-change="onColorChange"/>
           </div>
 
-          <div class="flex items-center select-none">
+          <div v-if="showTransparency" class="flex items-center select-none">
             <span class="text-sm text-gray-500 mr-2">{{ t('colorPicker.text.transparency') }}</span>
             <ShadcnSlider v-model="alpha"
                           class="flex-1"
@@ -99,7 +101,11 @@ const props = withDefaults(defineProps<ColorPickerProps>(), {
     '#f87171', '#fb923c', '#fbbf24', '#a3e635', '#34d399',
     '#2dd4bf', '#38bdf8', '#818cf8', '#c084fc', '#e879f9',
     '#fb7185', '#475569', '#737373', '#78716c', '#ef4444'
-  ])
+  ]),
+  showPanel: true,
+  showDropper: true,
+  showTransparency: true,
+  showFormat: true
 })
 const emit = defineEmits<ColorPickerEmits>()
 
@@ -464,13 +470,6 @@ const onHslInput = (index: number, newValue: number) => {
   const rgb = hslToRgb(...hsl as [number, number, number])
   const hex = rgbToHex(...rgb)
   const outputColor = formatOutputColor(hex, alpha.value)
-  emit('update:modelValue', outputColor)
-  emit('on-change', outputColor)
-}
-
-const onColorInput = (e: Event) => {
-  const input = e.target as HTMLInputElement
-  const outputColor = formatOutputColor(input.value, alpha.value)
   emit('update:modelValue', outputColor)
   emit('on-change', outputColor)
 }

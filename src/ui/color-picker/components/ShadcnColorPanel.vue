@@ -1,5 +1,18 @@
 <template>
   <div class="flex flex-col gap-4 p-2">
+    <div v-if="showDropper" class="flex justify-between items-center select-none">
+      <div class="flex items-center">
+        <div class="w-6 h-6 rounded-md border shadow-sm mr-2"
+             :style="{ backgroundColor: currentColor }"/>
+        <span class="text-sm font-medium">{{ currentColorHex.toUpperCase() }}</span>
+      </div>
+      <button class="p-1 rounded-md items-center flex hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              @click="startEyeDropper"
+              title="Color Picker">
+        <ShadcnIcon icon="Pipette" class="w-4 h-4"/>
+      </button>
+    </div>
+
     <div ref="saturationPanel"
          class="w-full h-32 rounded-sm relative cursor-pointer"
          role="slider"
@@ -43,6 +56,7 @@ import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 
 const props = defineProps<{
   modelValue: string
+  showDropper?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -63,6 +77,26 @@ const hueSlider = ref<HTMLElement | null>(null)
 const isDraggingSaturation = ref(false)
 const isDraggingHue = ref(false)
 
+// EyeDropper functionality
+const startEyeDropper = async () => {
+  if (!('EyeDropper' in window)) {
+    alert('Your browser does not support the EyeDropper API')
+    return
+  }
+
+  try {
+    // @ts-ignore - EyeDropper API types not in all TypeScript versions
+    const dropper = new window.EyeDropper()
+    const result = await dropper.open()
+    const color = result.sRGBHex
+    initColor(color)
+    emitColor()
+  }
+  catch (e) {
+    console.error('EyeDropper error:', e)
+  }
+}
+
 // Convert hex to RGB
 const hexToRgb = (hex: string): [number, number, number] | null => {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
@@ -80,13 +114,23 @@ const rgbToHsv = (r: number, g: number, b: number): [number, number, number] => 
   const d = max - min
   let h = 0
 
-  if (d === 0) h = 0
-  else if (max === r) h = ((g - b) / d) % 6
-  else if (max === g) h = (b - r) / d + 2
-  else if (max === b) h = (r - g) / d + 4
+  if (d === 0) {
+    h = 0
+  }
+  else if (max === r) {
+    h = ((g - b) / d) % 6
+  }
+  else if (max === g) {
+    h = (b - r) / d + 2
+  }
+  else if (max === b) {
+    h = (r - g) / d + 4
+  }
 
   h = Math.round(h * 60)
-  if (h < 0) h += 360
+  if (h < 0) {
+    h += 360
+  }
 
   const s = max === 0 ? 0 : (d / max) * 100
   const v = max * 100
@@ -114,7 +158,7 @@ watch(() => props.modelValue, (newColor) => {
 
 // Computed color values
 const currentColor = computed(() => {
-  return `hsl(${hue.value}, ${saturation.value}%, ${value.value}%)`
+  return `hsl(${ hue.value }, ${ saturation.value }%, ${ value.value }%)`
 })
 
 const currentColorHex = computed(() => {
@@ -133,25 +177,33 @@ const hsvToRgb = (h: number, s: number, v: number): [number, number, number] => 
   const t = v * (1 - (1 - f) * s)
 
   switch (i % 6) {
-    case 0: return [v, t, p]
-    case 1: return [q, v, p]
-    case 2: return [p, v, t]
-    case 3: return [p, q, v]
-    case 4: return [t, p, v]
-    case 5: return [v, p, q]
-    default: return [0, 0, 0]
+    case 0:
+      return [v, t, p]
+    case 1:
+      return [q, v, p]
+    case 2:
+      return [p, v, t]
+    case 3:
+      return [p, q, v]
+    case 4:
+      return [t, p, v]
+    case 5:
+      return [v, p, q]
+    default:
+      return [0, 0, 0]
   }
 }
 
 // Convert RGB to Hex
 const rgbToHex = (r: number, g: number, b: number): string => {
   const toHex = (n: number) => Math.round(n * 255).toString(16).padStart(2, '0')
-  return `#${toHex(r)}${toHex(g)}${toHex(b)}`
+  return `#${ toHex(r) }${ toHex(g) }${ toHex(b) }`
 }
 
-// Update handlers
 const updateSaturationValue = (e: MouseEvent | TouchEvent) => {
-  if (!saturationPanel.value) return
+  if (!saturationPanel.value) {
+    return
+  }
 
   const rect = saturationPanel.value.getBoundingClientRect()
   const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX
@@ -170,7 +222,9 @@ const updateSaturationValue = (e: MouseEvent | TouchEvent) => {
 }
 
 const updateHue = (e: MouseEvent | TouchEvent) => {
-  if (!hueSlider.value) return
+  if (!hueSlider.value) {
+    return
+  }
 
   const rect = hueSlider.value.getBoundingClientRect()
   const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX
@@ -182,7 +236,6 @@ const updateHue = (e: MouseEvent | TouchEvent) => {
   emitColor()
 }
 
-// Mouse/Touch event handlers
 const startDraggingSaturation = (e: MouseEvent | TouchEvent) => {
   isDraggingSaturation.value = true
   updateSaturationValue(e)
@@ -204,7 +257,8 @@ const startDraggingHue = (e: MouseEvent | TouchEvent) => {
 const handleMouseMove = (e: MouseEvent | TouchEvent) => {
   if (isDraggingSaturation.value) {
     updateSaturationValue(e)
-  } else if (isDraggingHue.value) {
+  }
+  else if (isDraggingHue.value) {
     updateHue(e)
   }
 }
@@ -218,20 +272,17 @@ const stopDragging = () => {
   document.removeEventListener('touchend', stopDragging)
 }
 
-// Emit color changes
 const emitColor = () => {
   emit('update:modelValue', currentColorHex.value)
   emit('on-change', currentColorHex.value)
 }
 
-// Initialize component
 onMounted(() => {
   if (props.modelValue) {
     initColor(props.modelValue)
   }
 })
 
-// Cleanup
 onUnmounted(() => {
   stopDragging()
 })
