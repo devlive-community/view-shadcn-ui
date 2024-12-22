@@ -209,6 +209,12 @@ export default {
             saturday: 'Sat',
             year: 'Year',
             month: 'Month',
+            today: 'Today',
+            yesterday: 'Yesterday',
+            thisWeek: 'This week',
+            lastWeek: 'Last week',
+            thisMonth: 'This month',
+            lastMonth: 'Last month',
         },
         placeholder: {
             date: 'Please select a date'

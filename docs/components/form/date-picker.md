@@ -131,6 +131,28 @@ This document describes the features and usage of the ShadcnDatePicker component
 ```
 
 :::
+
+## Show shortcuts
+
+::: raw
+
+<CodeRunner title="Show shortcuts">
+    <ShadcnDatePicker v-model="value" showShortcuts />
+    <ShadcnDatePicker v-model="value" :showShortcuts="false" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnDatePicker v-model="value" showShortcuts />
+    <ShadcnDatePicker v-model="value" :showShortcuts="false" />
+</template>
+```
+
+:::
 ## DatePicker Props
 
 <ApiTable title="Props"
@@ -141,7 +163,8 @@ This document describes the features and usage of the ShadcnDatePicker component
         ['disabled', 'disabled value', 'boolean', 'false', '-'],
         ['readonly', 'readonly value', 'boolean', 'false', '-'],
         ['format', 'format value', 'string', 'YYYY-MM-DD', '-'],
-        ['clearable', 'clearable value', 'boolean', 'true', '-']
+        ['clearable', 'clearable value', 'boolean', 'true', '-'],
+        ['showShortcuts', 'showShortcuts value', 'boolean', 'true', '-']
     ]">
 </ApiTable>
 

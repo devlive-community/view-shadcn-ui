@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const selectDate = ref(new Date())
+const selectDate = ref('2023-01-02')
 
 const onChange = (value: string) => {
   console.log('Selected date:', value)

@@ -16,11 +16,12 @@
          class="absolute z-20 mt-1 bg-white rounded-lg shadow-lg border border-gray-200 p-4 w-72">
       <!-- Calendar Header -->
       <div class="flex justify-between items-center mb-4">
-        <button class="p-1 hover:bg-gray-100 rounded-full"
-                @click="previousMonth">
+        <button class="p-1 hover:bg-gray-100 rounded-full" @click="previousMonth">
           <ChevronLeft class="w-4 h-4"/>
         </button>
-        <span class="font-medium">{{ currentMonthYear }}</span>
+        <div class="flex items-center gap-2">
+          <span class="font-medium">{{ currentMonthYear }}</span>
+        </div>
         <button class="p-1 hover:bg-gray-100 rounded-full" @click="nextMonth">
           <ChevronRight class="w-4 h-4"/>
         </button>
@@ -49,6 +50,16 @@
           {{ date.day }}
         </button>
       </div>
+
+      <!-- Shortcuts -->
+      <div v-if="showShortcuts" class="grid grid-cols-3 mt-3 pt-2 border-t gap-1.5 border-gray-100">
+        <button v-for="shortcut in shortcuts"
+                class="text-xs px-2 py-1 rounded-md hover:bg-gray-100"
+                :key="shortcut.label"
+                @click="handleShortcutClick(shortcut.value)">
+          {{ shortcut.label }}
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -65,22 +76,39 @@ const props = withDefaults(defineProps<DatePickerProps>(), {
   disabled: false,
   readonly: false,
   format: 'YYYY-MM-DD',
-  clearable: true
+  clearable: true,
+  showShortcuts: true
 })
 
 const emit = defineEmits<DatePickerEmits>()
 
-// UI State
+// UI States
 // UI 状态
 const showCalendar = ref(false)
+const showRangeSelect = ref(false)
 const currentMonth = ref(new Date())
+
+// Shortcuts config
+// 快捷选项配置
+const shortcuts = [
+  { label: t('datePicker.text.today'), value: 'today' },
+  { label: t('datePicker.text.yesterday'), value: 'yesterday' },
+  { label: t('datePicker.text.thisWeek'), value: 'thisWeek' },
+  { label: t('datePicker.text.lastWeek'), value: 'lastWeek' },
+  { label: t('datePicker.text.thisMonth'), value: 'thisMonth' },
+  { label: t('datePicker.text.lastMonth'), value: 'lastMonth' }
+]
 
 // Week days array
 // 星期数组
 const weekDays = [
-  t('datePicker.text.sunday'), t('datePicker.text.monday'),
-  t('datePicker.text.tuesday'), t('datePicker.text.wednesday'),
-  t('datePicker.text.thursday'), t('datePicker.text.friday'), t('datePicker.text.saturday')
+  t('datePicker.text.sunday'),
+  t('datePicker.text.monday'),
+  t('datePicker.text.tuesday'),
+  t('datePicker.text.wednesday'),
+  t('datePicker.text.thursday'),
+  t('datePicker.text.friday'),
+  t('datePicker.text.saturday')
 ]
 
 // Compute current month and year display
@@ -216,12 +244,51 @@ const clearValue = () => {
   emit('on-change', '')
 }
 
-// Close calendar when clicking outside
-// 点击外部时关闭日历
+// Get date by type
+// 根据类型获取日期
+const getDateByType = (type: string): Date => {
+  const today = new Date()
+  switch (type) {
+    case 'today':
+      return today
+    case 'yesterday':
+      return new Date(today.setDate(today.getDate() - 1))
+    case 'thisWeek':
+      currentMonth.value = today
+      return today
+    case 'lastWeek':
+      const lastWeek = new Date(today.setDate(today.getDate() - 7))
+      currentMonth.value = lastWeek
+      return lastWeek
+    case 'thisMonth':
+      currentMonth.value = today
+      return today
+    case 'lastMonth':
+      const lastMonth = new Date(today.setMonth(today.getMonth() - 1))
+      currentMonth.value = lastMonth
+      return lastMonth
+    default:
+      return today
+  }
+}
+
+// Handle shortcut click
+// 处理快捷选项点击
+const handleShortcutClick = (type: string) => {
+  const date = getDateByType(type)
+  const formattedDate = formatDate(date, props.format)
+  emit('update:modelValue', formattedDate)
+  emit('on-change', formattedDate)
+  showCalendar.value = false
+}
+
+// Close dropdowns when clicking outside
+// 点击外部时关闭下拉框
 const handleClickOutside = (event: MouseEvent) => {
   const target = event.target as HTMLElement
   if (!target.closest('.relative')) {
     showCalendar.value = false
+    showRangeSelect.value = false
   }
 }
 
