@@ -1,18 +1,16 @@
 <template>
   <div class="space-y-4 p-12">
-    <div>Selected color: {{ selectedColor }}</div>
-    <ShadcnColorPicker v-model="selectedColor" color="#000000" @change="onColorChange"/>
-    <ShadcnColorPicker v-model="selectedColor" disabled/>
-    <ShadcnColorPicker v-model="selectedColor" readonly/>
-    <ShadcnColorPicker v-model="selectedColor" :preset-colors="['#ff0000', '#00ff00', '#0000ff']"/>
+    <div>Selected date: {{ selectDate }}</div>
+    <ShadcnDatePicker v-model="selectDate" @on-change="onChange"/>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const selectedColor = ref('#000000')
-const onColorChange = (color: string) => {
-  console.log('Selected color:', color)
+const selectDate = ref(null)
+
+const onChange = (value: string) => {
+  console.log('Selected date:', value)
 }
 </script>

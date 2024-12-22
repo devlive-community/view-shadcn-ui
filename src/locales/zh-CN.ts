@@ -197,5 +197,10 @@ export default {
             transparency: '透明度',
             format: '格式'
         }
+    },
+    datePicker: {
+        placeholder: {
+            date: '请选择日期'
+        }
     }
 }

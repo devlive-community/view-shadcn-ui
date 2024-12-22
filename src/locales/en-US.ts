@@ -197,5 +197,10 @@ export default {
             transparency: 'Transparency',
             format: 'Format'
         }
+    },
+    datePicker: {
+        placeholder: {
+            date: 'Please select a date'
+        }
     }
 }

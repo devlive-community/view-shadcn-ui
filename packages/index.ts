@@ -95,6 +95,7 @@ import { ShadcnDataFilter, ShadcnHierarchicalDataFilter } from '@/ui/data-filter
 import ShadcnQrCode from '@/ui/qrcode/ShadcnQrCode.vue'
 import { ShadcnTimePicker } from '@/ui/time-picker'
 import { ShadcnColorPicker } from '@/ui/color-picker'
+import { ShadcnDatePicker } from '@/ui/date-picker'
 
 let components = [
     ShadcnButton,
@@ -186,7 +187,8 @@ let components = [
     ShadcnDataFilter, ShadcnHierarchicalDataFilter,
     ShadcnQrCode,
     ShadcnTimePicker,
-    ShadcnColorPicker
+    ShadcnColorPicker,
+    ShadcnDatePicker
 ]
 
 interface InstallOptions
@@ -314,6 +316,7 @@ export { ShadcnDataFilter, ShadcnHierarchicalDataFilter } from '@/ui/data-filter
 export { ShadcnQrCode } from '@/ui/qrcode'
 export { ShadcnTimePicker } from '@/ui/time-picker'
 export { ShadcnColorPicker } from '@/ui/color-picker'
+export { ShadcnDatePicker } from '@/ui/date-picker'
 
 // Export functions
 export { fnToString, fnToFunction } from '@/utils/formatter'

@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file. See [standa
 #### Core
 
 - add component documentation generation script
+- add publish ci
 
 #### QrCode
 
@@ -32,6 +33,14 @@ All notable changes to this project will be documented in this file. See [standa
 - feat: support disabled and clearable
 - feat: support quick times
 - feat: support format
+
+#### Color Picker
+
+- support disabled and readonly
+- support presetColors
+- support transparency
+- support hsl
+- support showPanel, showDropper, showTransparency, showFormat
 
 ### 2024.5.2 (2024-12-15)
 
