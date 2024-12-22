@@ -49,15 +49,19 @@
           <!-- Calendar Days -->
           <div class="grid grid-cols-7 gap-1">
             <button v-for="date in calendarDays"
-                    class="w-6 h-6 text-xs text-center rounded-sm"
+                    class="w-6 h-6 text-xs text-center rounded-sm relative"
                     :key="date.date"
                     :class="{
                         'bg-blue-500 text-white hover:bg-blue-500': isSelected(date.date),
                         'text-gray-400': !date.currentMonth,
                         'hover:bg-gray-100': !isSelected(date.date),
-                        'bg-blue-500': type === 'range' && isInRange(date.date)
+                        'bg-blue-500': type === 'range' && isInRange(date.date),
+                        'bg-blue-100': type === 'range' && isInHoverRange(date.date) && !isSelected(date.date),
+                        'hover:bg-blue-200': type === 'range' && selectedStartDate && !selectedEndDate
                     }"
-                    @click="selectDate(date.date, 'start')">
+                    @click="selectDate(date.date, 'start')"
+                    @mouseenter="type === 'range' && (hoverDate = date.date)"
+                    @mouseleave="type === 'range' && (hoverDate = '')">
               <ShadcnBadge v-if="date.isToday" dot>
                 {{ date.day }}
               </ShadcnBadge>
@@ -95,18 +99,22 @@
             </span>
           </div>
 
-          <!-- Calendar Days -->
+          <!-- End Calendar Days -->
           <div class="grid grid-cols-7 gap-1">
             <button v-for="date in endCalendarDays"
-                    class="w-6 h-6 text-xs text-center rounded-sm"
+                    class="w-6 h-6 text-xs text-center rounded-sm relative"
                     :key="date.date"
                     :class="{
                         'bg-blue-500 text-white hover:bg-blue-500': isSelected(date.date),
                         'text-gray-400': !date.currentMonth,
                         'hover:bg-gray-100': !isSelected(date.date),
-                        'bg-blue-500': type === 'range' && isInRange(date.date)
+                        'bg-blue-500': type === 'range' && isInRange(date.date),
+                        'bg-blue-100': type === 'range' && isInHoverRange(date.date) && !isSelected(date.date),
+                        'hover:bg-blue-200': type === 'range' && selectedStartDate && !selectedEndDate
                     }"
-                    @click="selectDate(date.date, 'end')">
+                    @click="selectDate(date.date, 'end')"
+                    @mouseenter="type === 'range' && (hoverDate = date.date)"
+                    @mouseleave="type === 'range' && (hoverDate = '')">
               <ShadcnBadge v-if="date.isToday" dot>
                 {{ date.day }}
               </ShadcnBadge>
@@ -376,18 +384,42 @@ const toggleCalendar = () => {
 // 导航到上一个月
 const previousMonth = (type: 'start' | 'end') => {
   const target = type === 'start' ? currentMonth : endMonth
-  target.value = new Date(
+  const newDate = new Date(
       target.value.getFullYear(),
       target.value.getMonth() - 1
   )
+
+  if (type === 'end') {
+    target.value = newDate
+    const startDate = new Date(newDate)
+    startDate.setMonth(startDate.getMonth() - 1)
+    if (props.type === 'range' && newDate <= currentMonth.value) {
+      currentMonth.value = startDate
+    }
+  }
+  else {
+    target.value = newDate
+  }
 }
 
 const previousYear = (type: 'start' | 'end') => {
   const target = type === 'start' ? currentMonth : endMonth
-  target.value = new Date(
+  const newDate = new Date(
       target.value.getFullYear() - 1,
       target.value.getMonth()
   )
+
+  if (type === 'end') {
+    target.value = newDate
+    const startDate = new Date(newDate)
+    startDate.setMonth(startDate.getMonth() - 1)
+    if (props.type === 'range' && newDate <= currentMonth.value) {
+      currentMonth.value = startDate
+    }
+  }
+  else {
+    target.value = newDate
+  }
 }
 
 // Navigate to next month
@@ -434,6 +466,7 @@ const nextYear = (type: 'start' | 'end') => {
 
 // Select date
 // 选择日期
+// 修改 selectDate 函数
 const selectDate = (date: string, _type: 'start' | 'end' = 'start') => {
   const selectedDate = new Date(date)
 
@@ -442,7 +475,7 @@ const selectDate = (date: string, _type: 'start' | 'end' = 'start') => {
       selectedStartDate.value = date
       selectedEndDate.value = ''
 
-      // Ensure calendars maintain at least one month difference
+      /*
       const startMonth = new Date(selectedDate)
       startMonth.setDate(1)
       const nextMonth = new Date(startMonth)
@@ -451,6 +484,7 @@ const selectDate = (date: string, _type: 'start' | 'end' = 'start') => {
       if (endMonth.value <= nextMonth) {
         endMonth.value = nextMonth
       }
+      */
     }
     else {
       const startTime = new Date(selectedStartDate.value).getTime()
@@ -589,6 +623,30 @@ const handleClickOutside = (event: MouseEvent) => {
   if (!target.closest('.relative')) {
     showCalendar.value = false
     showRangeSelect.value = false
+  }
+}
+
+const hoverDate = ref('')
+const isInHoverRange = (date: string) => {
+  if (props.type !== 'range' || !hoverDate.value) {
+    return false
+  }
+
+  if (selectedStartDate.value && selectedEndDate.value) {
+    return false
+  }
+
+  const current = new Date(date).getTime()
+  const hover = new Date(hoverDate.value).getTime()
+
+  if (!selectedStartDate.value) {
+    return current === hover
+  }
+  else {
+    const start = new Date(selectedStartDate.value).getTime()
+    return hover >= start
+        ? current >= start && current <= hover
+        : current >= hover && current <= start
   }
 }
 
