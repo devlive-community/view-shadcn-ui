@@ -13,55 +13,112 @@
 
     <!-- Calendar Popup -->
     <div v-if="showCalendar"
-         class="absolute z-20 mt-1 bg-white rounded-lg shadow-lg border border-gray-200 p-4 w-80">
-      <!-- Calendar Header -->
-      <div class="flex justify-between items-center mb-4">
-        <button class="p-1 hover:bg-gray-100 rounded-full" @click="previousYear">
-          <ChevronsLeft class="w-4 h-4"/>
-        </button>
-        <button class="p-1 hover:bg-gray-100 rounded-full" @click="previousMonth">
-          <ChevronLeft class="w-4 h-4"/>
-        </button>
-        <div class="flex items-center gap-2">
-          <span class="font-medium">{{ currentMonthYear }}</span>
+         class="absolute z-20 mt-1 bg-white rounded-lg shadow-lg border border-gray-200 p-4"
+         :class="{'w-80': type === 'date', 'w-auto': type === 'range'}">
+      <div class="flex" :class="{'space-x-4': type === 'range'}">
+        <!-- Start/Single Calendar -->
+        <div class="w-80">
+          <!-- Calendar Header -->
+          <div class="flex justify-between items-center mb-4">
+            <button class="p-1 hover:bg-gray-100 rounded-full" @click="previousYear('start')">
+              <ChevronsLeft class="w-4 h-4"/>
+            </button>
+            <button class="p-1 hover:bg-gray-100 rounded-full" @click="previousMonth('start')">
+              <ChevronLeft class="w-4 h-4"/>
+            </button>
+            <div class="flex items-center gap-2">
+              <span class="font-medium">{{ currentMonthYear }}</span>
+            </div>
+            <button class="p-1 hover:bg-gray-100 rounded-full" @click="nextMonth('start')">
+              <ChevronRight class="w-4 h-4"/>
+            </button>
+            <button class="p-1 hover:bg-gray-100 rounded-full" @click="nextYear('start')">
+              <ChevronsRight class="w-4 h-4"/>
+            </button>
+          </div>
+
+          <!-- Week Days Header -->
+          <div class="grid grid-cols-7 gap-1 mb-2">
+            <span v-for="day in weekDays"
+                  :key="day"
+                  class="text-sm text-gray-500">
+              {{ day }}
+            </span>
+          </div>
+
+          <!-- Calendar Days -->
+          <div class="grid grid-cols-7 gap-1">
+            <button v-for="date in calendarDays"
+                    class="w-6 h-6 text-sm text-center rounded-sm"
+                    :key="date.date"
+                    :class="{
+                        'bg-primary text-white hover:bg-primary': isSelected(date.date),
+                        'text-gray-400': !date.currentMonth,
+                        'hover:bg-gray-100': !isSelected(date.date),
+                        'bg-gray-100': type === 'range' && isInRange(date.date)
+                    }"
+                    @click="selectDate(date.date, 'start')">
+              <ShadcnBadge v-if="date.isToday" dot>
+                {{ date.day }}
+              </ShadcnBadge>
+              <span v-else>{{ date.day }}</span>
+            </button>
+          </div>
         </div>
-        <button class="p-1 hover:bg-gray-100 rounded-full" @click="nextMonth">
-          <ChevronRight class="w-4 h-4"/>
-        </button>
-        <button class="p-1 hover:bg-gray-100 rounded-full" @click="nextYear">
-          <ChevronsRight class="w-4 h-4"/>
-        </button>
-      </div>
 
-      <!-- Week Days Header -->
-      <div class="grid grid-cols-7 gap-1 mb-2">
-        <span v-for="day in weekDays"
-              :key="day"
-              class="text-center text-sm text-gray-500">
-          {{ day }}
-        </span>
-      </div>
+        <!-- End Calendar (Only for range mode) -->
+        <div v-if="type === 'range'" class="w-80">
+          <div class="flex justify-between items-center mb-4">
+            <button class="p-1 hover:bg-gray-100 rounded-full" @click="previousYear('end')">
+              <ChevronsLeft class="w-4 h-4"/>
+            </button>
+            <button class="p-1 hover:bg-gray-100 rounded-full" @click="previousMonth('end')">
+              <ChevronLeft class="w-4 h-4"/>
+            </button>
+            <div class="flex items-center gap-2">
+              <span class="font-medium">{{ endMonthYear }}</span>
+            </div>
+            <button class="p-1 hover:bg-gray-100 rounded-full" @click="nextMonth('end')">
+              <ChevronRight class="w-4 h-4"/>
+            </button>
+            <button class="p-1 hover:bg-gray-100 rounded-full" @click="nextYear('end')">
+              <ChevronsRight class="w-4 h-4"/>
+            </button>
+          </div>
 
-      <!-- Calendar Days -->
-      <div class="grid grid-cols-7 gap-1">
-        <button v-for="date in calendarDays"
-                class="w-6 h-6 text-sm text-center rounded-sm"
-                :key="date.date"
-                :class="{
-                    'bg-primary text-white hover:bg-primary': isSelected(date.date),
-                    'text-gray-400': !date.currentMonth,
-                    'hover:bg-gray-100': !isSelected(date.date)
-                }"
-                @click="selectDate(date.date)">
-          <ShadcnBadge v-if="date.isToday" dot>
-            {{ date.day }}
-          </ShadcnBadge>
-          <span v-else>{{ date.day }}</span>
-        </button>
+          <!-- Week Days Header -->
+          <div class="grid grid-cols-7 gap-1 mb-2">
+            <span v-for="day in weekDays"
+                  :key="day"
+                  class="text-sm text-gray-500">
+              {{ day }}
+            </span>
+          </div>
+
+          <!-- Calendar Days -->
+          <div class="grid grid-cols-7 gap-1">
+            <button v-for="date in endCalendarDays"
+                    class="w-6 h-6 text-sm text-center rounded-sm"
+                    :key="date.date"
+                    :class="{
+                        'bg-primary text-white hover:bg-primary': isSelected(date.date),
+                        'text-gray-400': !date.currentMonth,
+                        'hover:bg-gray-100': !isSelected(date.date),
+                        'bg-gray-100': type === 'range' && isInRange(date.date)
+                    }"
+                    @click="selectDate(date.date, 'end')">
+              <ShadcnBadge v-if="date.isToday" dot>
+                {{ date.day }}
+              </ShadcnBadge>
+              <span v-else>{{ date.day }}</span>
+            </button>
+          </div>
+        </div>
       </div>
 
       <!-- Shortcuts -->
-      <div v-if="showShortcuts" class="grid grid-cols-3 mt-3 pt-2 border-t gap-1.5 border-gray-100">
+      <div v-if="showShortcuts" class="grid grid-cols-3 mt-3 pt-2 border-t gap-1.5 border-gray-100"
+           :class="{'grid-cols-6': type === 'range'}">
         <button v-for="shortcut in shortcuts"
                 class="text-xs px-2 py-1 rounded-md hover:bg-gray-100"
                 :key="shortcut.label"
@@ -86,7 +143,8 @@ const props = withDefaults(defineProps<DatePickerProps>(), {
   readonly: false,
   format: 'YYYY-MM-DD',
   clearable: true,
-  showShortcuts: true
+  showShortcuts: true,
+  type: 'date'
 })
 
 const emit = defineEmits<DatePickerEmits>()
@@ -96,6 +154,9 @@ const emit = defineEmits<DatePickerEmits>()
 const showCalendar = ref(false)
 const showRangeSelect = ref(false)
 const currentMonth = ref(new Date())
+const endMonth = ref(new Date())
+const selectedStartDate = ref('')
+const selectedEndDate = ref('')
 
 // Shortcuts config
 // 快捷选项配置
@@ -107,6 +168,12 @@ const shortcuts = [
   { label: t('datePicker.text.thisMonth'), value: 'thisMonth' },
   { label: t('datePicker.text.lastMonth'), value: 'lastMonth' }
 ]
+
+if (props.type === 'range') {
+  shortcuts.push(
+      { label: t('datePicker.text.last3Months'), value: 'last3Months' }
+  )
+}
 
 // Week days array
 // 星期数组
@@ -128,13 +195,22 @@ const currentMonthYear = computed(() => {
   return `${ year }${ t('datePicker.text.year') } ${ month }${ t('datePicker.text.month') }`
 })
 
+const endMonthYear = computed(() => {
+  const year = endMonth.value.getFullYear()
+  const month = endMonth.value.getMonth() + 1
+  return `${ year }${ t('datePicker.text.year') } ${ month }${ t('datePicker.text.month') }`
+})
+
 // Get calendar days for current month view
 // 获取当前月份视图的日历天数
-const calendarDays = computed(() => {
-  const year = currentMonth.value.getFullYear()
-  const month = currentMonth.value.getMonth()
-  const firstDay = new Date(year, month, 1)
-  const lastDay = new Date(year, month + 1, 0)
+const calendarDays = computed(() => getCalendarDays(currentMonth.value))
+const endCalendarDays = computed(() => getCalendarDays(endMonth.value))
+
+const getCalendarDays = (month: Date) => {
+  const year = month.getFullYear()
+  const monthNum = month.getMonth()
+  const firstDay = new Date(year, monthNum, 1)
+  const lastDay = new Date(year, monthNum + 1, 0)
   const today = new Date()
 
   const isSameDay = (date: Date) => {
@@ -148,7 +224,7 @@ const calendarDays = computed(() => {
   // Previous month days
   const firstDayOfWeek = firstDay.getDay()
   for (let i = firstDayOfWeek - 1; i >= 0; i--) {
-    const date = new Date(year, month, -i)
+    const date = new Date(year, monthNum, -i)
     days.push({
       date: formatDate(date),
       day: date.getDate(),
@@ -159,7 +235,7 @@ const calendarDays = computed(() => {
 
   // Current month days
   for (let i = 1; i <= lastDay.getDate(); i++) {
-    const date = new Date(year, month, i)
+    const date = new Date(year, monthNum, i)
     days.push({
       date: formatDate(date),
       day: i,
@@ -171,7 +247,7 @@ const calendarDays = computed(() => {
   // Next month days
   const remainingDays = 42 - days.length
   for (let i = 1; i <= remainingDays; i++) {
-    const date = new Date(year, month + 1, i)
+    const date = new Date(year, monthNum + 1, i)
     days.push({
       date: formatDate(date),
       day: date.getDate(),
@@ -181,13 +257,20 @@ const calendarDays = computed(() => {
   }
 
   return days
-})
+}
 
 // Format input value display
 // 格式化输入值显示
 const inputValue = computed(() => {
   if (!props.modelValue) {
     return ''
+  }
+  if (props.type === 'range' && Array.isArray(props.modelValue)) {
+    const [start, end] = props.modelValue
+    if (!start || !end) {
+      return ''
+    }
+    return `${ formatDate(start, props.format) } ~ ${ formatDate(end, props.format) }`
   }
   return formatDate(props.modelValue, props.format)
 })
@@ -196,7 +279,6 @@ const inputValue = computed(() => {
 // 将日期字符串转换为标准格式进行比较
 const standardizeDate = (date: string | Date): string => {
   if (typeof date === 'string') {
-    // Convert different format to standard format (YYYY-MM-DD)
     const d = new Date(date.replace(/\//g, '-'))
     return formatDate(d)
   }
@@ -206,24 +288,83 @@ const standardizeDate = (date: string | Date): string => {
 // Check if date is selected
 // 检查日期是否被选中
 const isSelected = (date: string) => {
+  if (props.type === 'range') {
+    if (props.modelValue && Array.isArray(props.modelValue)) {
+      const [start, end] = props.modelValue
+      const current = new Date(date).getTime()
+      const startTime = start ? new Date(start).getTime() : null
+      const endTime = end ? new Date(end).getTime() : null
+
+      return (startTime && current >= startTime) && (endTime && current <= endTime)
+    }
+    return false
+  }
   if (!props.modelValue) {
     return false
   }
-  const standardSelectedDate = standardizeDate(props.modelValue)
-  const standardCompareDate = standardizeDate(date)
-  return standardSelectedDate === standardCompareDate
+  return standardizeDate(props.modelValue as string) === standardizeDate(date)
 }
 
+// Check if date is in range
+// 检查日期是否在范围内
+const isInRange = (date: string) => {
+  if (!props.modelValue || !Array.isArray(props.modelValue)) {
+    return false
+  }
+  const [start, end] = props.modelValue
+  if (!start || !end) {
+    return false
+  }
+
+  const current = new Date(date).getTime()
+  const startTime = new Date(start).getTime()
+  const endTime = new Date(end).getTime()
+
+  return current >= startTime && current <= endTime
+}
+
+// Toggle calendar visibility
+// 切换日历显示
 // Toggle calendar visibility
 // 切换日历显示
 const toggleCalendar = () => {
   if (!props.disabled && !props.readonly) {
     showCalendar.value = !showCalendar.value
-    // Set current month to selected date if exists
-    if (props.modelValue) {
-      const selectedDate = new Date(standardizeDate(props.modelValue))
-      if (!isNaN(selectedDate.getTime())) {
-        currentMonth.value = selectedDate
+    if (showCalendar.value) {
+      if (props.modelValue) {
+        if (props.type === 'range' && Array.isArray(props.modelValue)) {
+          const [start, end] = props.modelValue
+          if (start) {
+            currentMonth.value = new Date(standardizeDate(start))
+            selectedStartDate.value = standardizeDate(start)
+
+            // 设置结束日历为开始日历的下一个月
+            // Setting end calendar to start calendar's next month
+            const nextMonth = new Date(currentMonth.value)
+            nextMonth.setMonth(nextMonth.getMonth() + 1)
+            endMonth.value = nextMonth
+          }
+          if (end) {
+            selectedEndDate.value = standardizeDate(end)
+          }
+        }
+        else {
+          const date = new Date(standardizeDate(props.modelValue as string))
+          if (!isNaN(date.getTime())) {
+            currentMonth.value = date
+            selectedStartDate.value = standardizeDate(props.modelValue as string)
+          }
+        }
+      }
+
+      // Initialize calendars with one month difference if needed
+      if (props.type === 'range') {
+        const nextMonth = new Date(currentMonth.value)
+        nextMonth.setMonth(nextMonth.getMonth() + 1)
+        // Only set if endMonth is same as or before currentMonth
+        if (endMonth.value <= currentMonth.value) {
+          endMonth.value = nextMonth
+        }
       }
     }
   }
@@ -231,75 +372,215 @@ const toggleCalendar = () => {
 
 // Navigate to previous month
 // 导航到上一个月
-const previousMonth = () => {
-  currentMonth.value = new Date(
-      currentMonth.value.getFullYear(),
-      currentMonth.value.getMonth() - 1
+const previousMonth = (type: 'start' | 'end') => {
+  const target = type === 'start' ? currentMonth : endMonth
+  const newDate = new Date(
+      target.value.getFullYear(),
+      target.value.getMonth() - 1
   )
+
+  if (type === 'end') {
+    // Ensure end calendar doesn't overlap with start calendar
+    const startDate = new Date(currentMonth.value)
+    if (newDate > startDate) {
+      target.value = newDate
+    }
+  }
+  else {
+    // Ensure start calendar stays at least one month before end calendar
+    const endDate = new Date(endMonth.value)
+    const minEndDate = new Date(newDate)
+    minEndDate.setMonth(minEndDate.getMonth() + 1)
+    if (endDate > minEndDate) {
+      target.value = newDate
+    }
+  }
 }
 
-const previousYear = () => {
-  currentMonth.value = new Date(
-      currentMonth.value.getFullYear() - 1,
-      currentMonth.value.getMonth()
+const previousYear = (type: 'start' | 'end') => {
+  const target = type === 'start' ? currentMonth : endMonth
+  const newDate = new Date(
+      target.value.getFullYear() - 1,
+      target.value.getMonth()
   )
+
+  if (type === 'end') {
+    // Ensure end calendar doesn't overlap with start calendar
+    const startDate = new Date(currentMonth.value)
+    if (newDate > startDate) {
+      target.value = newDate
+    }
+  }
+  else {
+    // Ensure start calendar stays at least one month before end calendar
+    const endDate = new Date(endMonth.value)
+    const minEndDate = new Date(newDate)
+    minEndDate.setMonth(minEndDate.getMonth() + 1)
+    if (endDate > minEndDate) {
+      target.value = newDate
+    }
+  }
 }
 
 // Navigate to next month
 // 导航到下一个月
-const nextMonth = () => {
-  currentMonth.value = new Date(
-      currentMonth.value.getFullYear(),
-      currentMonth.value.getMonth() + 1
+const nextMonth = (type: 'start' | 'end') => {
+  const target = type === 'start' ? currentMonth : endMonth
+  const newDate = new Date(
+      target.value.getFullYear(),
+      target.value.getMonth() + 1
   )
+
+  if (type === 'start') {
+    // Ensure start calendar doesn't overlap with end calendar
+    const endDate = new Date(endMonth.value)
+    const maxStartDate = new Date(endDate)
+    maxStartDate.setMonth(maxStartDate.getMonth() - 1)
+    if (newDate < maxStartDate) {
+      target.value = newDate
+    }
+  }
+  else {
+    target.value = newDate
+  }
 }
 
-const nextYear = () => {
-  currentMonth.value = new Date(
-      currentMonth.value.getFullYear() + 1,
-      currentMonth.value.getMonth()
+const nextYear = (type: 'start' | 'end') => {
+  const target = type === 'start' ? currentMonth : endMonth
+  const newDate = new Date(
+      target.value.getFullYear() + 1,
+      target.value.getMonth()
   )
+
+  if (type === 'start') {
+    // Ensure start calendar doesn't overlap with end calendar
+    const endDate = new Date(endMonth.value)
+    const maxStartDate = new Date(endDate)
+    maxStartDate.setMonth(maxStartDate.getMonth() - 1)
+    if (newDate < maxStartDate) {
+      target.value = newDate
+    }
+  }
+  else {
+    target.value = newDate
+  }
 }
 
 // Select date
 // 选择日期
-const selectDate = (date: string) => {
+// Select date
+// 选择日期
+const selectDate = (date: string, _type: 'start' | 'end' = 'start') => {
   const selectedDate = new Date(date)
-  emit('update:modelValue', formatDate(selectedDate, props.format))
-  emit('on-change', formatDate(selectedDate, props.format))
-  showCalendar.value = false
+
+  if (props.type === 'range') {
+    if (!selectedStartDate.value || (selectedStartDate.value && selectedEndDate.value)) {
+      selectedStartDate.value = date
+      selectedEndDate.value = ''
+
+      // Ensure calendars maintain at least one month difference
+      const startMonth = new Date(selectedDate)
+      startMonth.setDate(1)
+      const nextMonth = new Date(startMonth)
+      nextMonth.setMonth(nextMonth.getMonth() + 1)
+
+      if (endMonth.value <= nextMonth) {
+        endMonth.value = nextMonth
+      }
+    }
+    else {
+      const startTime = new Date(selectedStartDate.value).getTime()
+      const endTime = new Date(date).getTime()
+
+      if (endTime >= startTime) {
+        selectedEndDate.value = date
+      }
+      else {
+        selectedEndDate.value = selectedStartDate.value
+        selectedStartDate.value = date
+      }
+    }
+
+    if (selectedStartDate.value && selectedEndDate.value) {
+      const range = [
+        formatDate(new Date(selectedStartDate.value), props.format),
+        formatDate(new Date(selectedEndDate.value), props.format)
+      ]
+      emit('update:modelValue', range as any)
+      emit('on-change', range as any)
+      showCalendar.value = false
+    }
+  }
+  else {
+    emit('update:modelValue', formatDate(selectedDate, props.format))
+    emit('on-change', formatDate(selectedDate, props.format))
+    showCalendar.value = false
+  }
 }
 
 // Clear selected date
 // 清除选中的日期
 const clearValue = () => {
-  emit('update:modelValue', '')
-  emit('on-change', '')
+  selectedStartDate.value = ''
+  selectedEndDate.value = ''
+  if (props.type === 'range') {
+    emit('update:modelValue', ['', ''])
+    emit('on-change', ['', ''])
+  }
+  else {
+    emit('update:modelValue', '')
+    emit('on-change', '')
+  }
 }
 
 // Get date by type
 // 根据类型获取日期
-const getDateByType = (type: string): Date => {
+const getDateByType = (type: string): Date | [Date, Date] => {
   const today = new Date()
+  const thisYear = today.getFullYear()
+  const thisMonth = today.getMonth()
+
   switch (type) {
     case 'today':
       return today
-    case 'yesterday':
-      return new Date(today.setDate(today.getDate() - 1))
+    case 'yesterday': {
+      const yesterday = new Date(today)
+      yesterday.setDate(today.getDate() - 1)
+      return yesterday
+    }
     case 'thisWeek':
-      currentMonth.value = today
       return today
-    case 'lastWeek':
-      const lastWeek = new Date(today.setDate(today.getDate() - 7))
-      currentMonth.value = lastWeek
-      return lastWeek
-    case 'thisMonth':
-      currentMonth.value = today
-      return today
-    case 'lastMonth':
-      const lastMonth = new Date(today.setMonth(today.getMonth() - 1))
-      currentMonth.value = lastMonth
-      return lastMonth
+    case 'lastWeek': {
+      const end = new Date(today)
+      const start = new Date(today)
+      start.setDate(end.getDate() - 7)
+      return props.type === 'range' ? [start, end] : end
+    }
+    case 'thisMonth': {
+      const start = new Date(thisYear, thisMonth, 1)
+      const end = new Date(thisYear, thisMonth + 1, 0)
+      return props.type === 'range' ? [start, end] : end
+    }
+    case 'lastMonth': {
+      const start = new Date(thisYear, thisMonth - 1, 1)
+      const end = new Date(thisYear, thisMonth, 0)
+      return props.type === 'range' ? [start, end] : end
+    }
+    case 'last3Months': {
+      const end = new Date(today)
+      const start = new Date(thisYear, thisMonth - 3, 1)
+      return [start, end]
+    }
+    case 'thisYear': {
+      const start = new Date(thisYear, 0, 1)
+      const end = new Date(thisYear, 11, 31)
+      return [start, end]
+    }
+    case 'lastYear': {
+      const start = new Date(thisYear - 1, 0, 1)
+      const end = new Date(thisYear - 1, 11, 31)
+      return [start, end]
+    }
     default:
       return today
   }
@@ -308,10 +589,32 @@ const getDateByType = (type: string): Date => {
 // Handle shortcut click
 // 处理快捷选项点击
 const handleShortcutClick = (type: string) => {
-  const date = getDateByType(type)
-  const formattedDate = formatDate(date, props.format)
-  emit('update:modelValue', formattedDate)
-  emit('on-change', formattedDate)
+  const dateResult = getDateByType(type)
+
+  if (props.type === 'range' && Array.isArray(dateResult)) {
+    const [start, end] = dateResult
+    const formattedStart = formatDate(start, props.format)
+    const formattedEnd = formatDate(end, props.format)
+
+    selectedStartDate.value = standardizeDate(start)
+    selectedEndDate.value = standardizeDate(end)
+    currentMonth.value = start
+    endMonth.value = end
+
+    emit('update:modelValue', [formattedStart, formattedEnd])
+    emit('on-change', [formattedStart, formattedEnd])
+  }
+  else {
+    const date = dateResult as Date
+    const formattedDate = formatDate(date, props.format)
+
+    selectedStartDate.value = standardizeDate(date)
+    currentMonth.value = date
+
+    emit('update:modelValue', formattedDate)
+    emit('on-change', formattedDate)
+  }
+
   showCalendar.value = false
 }
 

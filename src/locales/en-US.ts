@@ -215,6 +215,9 @@ export default {
             lastWeek: 'Last week',
             thisMonth: 'This month',
             lastMonth: 'Last month',
+            last3Months: 'Last 3 months',
+            thisYear: 'This year',
+            lastYear: 'Last year',
         },
         placeholder: {
             date: 'Please select a date'

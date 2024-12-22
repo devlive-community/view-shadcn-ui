@@ -5,13 +5,14 @@
     <ShadcnDatePicker v-model="selectDate" disabled @on-change="onChange"/>
     <ShadcnDatePicker v-model="selectDate" readonly @on-change="onChange"/>
     <ShadcnDatePicker v-model="selectDate" format="YYYY/MM/DD" @on-change="onChange"/>
+    <ShadcnDatePicker v-model="selectDate" type="range" @on-change="onChange"/>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const selectDate = ref('2023-01-02')
+const selectDate = ref(null)
 
 const onChange = (value: string) => {
   console.log('Selected date:', value)

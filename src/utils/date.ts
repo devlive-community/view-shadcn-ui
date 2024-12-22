@@ -3,7 +3,8 @@ export const formatDate = (date: Date | string | undefined, format = 'YYYY-MM-DD
         return ''
     }
 
-    const d = typeof date === 'string' ? new Date(date) : date
+    const d = (date instanceof Date) ? date : new Date(date as string)
+
     if (isNaN(d.getTime())) {
         return ''
     }
