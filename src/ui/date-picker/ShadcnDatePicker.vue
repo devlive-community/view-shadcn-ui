@@ -53,7 +53,10 @@
                     'hover:bg-gray-100': !isSelected(date.date)
                 }"
                 @click="selectDate(date.date)">
-          {{ date.day }}
+          <ShadcnBadge v-if="date.isToday" dot>
+            {{ date.day }}
+          </ShadcnBadge>
+          <span v-else>{{ date.day }}</span>
         </button>
       </div>
 
@@ -132,6 +135,13 @@ const calendarDays = computed(() => {
   const month = currentMonth.value.getMonth()
   const firstDay = new Date(year, month, 1)
   const lastDay = new Date(year, month + 1, 0)
+  const today = new Date()
+
+  const isSameDay = (date: Date) => {
+    return date.getFullYear() === today.getFullYear() &&
+        date.getMonth() === today.getMonth() &&
+        date.getDate() === today.getDate()
+  }
 
   const days = [] as any
 
@@ -142,7 +152,8 @@ const calendarDays = computed(() => {
     days.push({
       date: formatDate(date),
       day: date.getDate(),
-      currentMonth: false
+      currentMonth: false,
+      isToday: isSameDay(date)
     })
   }
 
@@ -152,7 +163,8 @@ const calendarDays = computed(() => {
     days.push({
       date: formatDate(date),
       day: i,
-      currentMonth: true
+      currentMonth: true,
+      isToday: isSameDay(date)
     })
   }
 
@@ -163,7 +175,8 @@ const calendarDays = computed(() => {
     days.push({
       date: formatDate(date),
       day: date.getDate(),
-      currentMonth: false
+      currentMonth: false,
+      isToday: isSameDay(date)
     })
   }
 
