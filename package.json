@@ -25,7 +25,8 @@
     }
   },
   "files": [
-    "dist/*"
+    "dist/*",
+    "docs/public/logo.svg"
   ],
   "config": {
     "commitizen": {

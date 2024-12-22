@@ -191,5 +191,11 @@ export default {
         placeholder: {
             time: 'Please select a time'
         }
+    },
+    colorPicker: {
+        text: {
+            transparency: 'Transparency',
+            format: 'Format'
+        }
     }
 }

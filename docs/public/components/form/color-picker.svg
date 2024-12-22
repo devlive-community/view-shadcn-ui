@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- Define gradient -->
+    <defs>
+        <linearGradient id="colorPickerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#ff7c7c;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#6ee7b7;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="100" fill="url(#colorPickerGradient)" opacity="0.2" />
+
+    <!-- Color palette circle -->
+    <circle cx="100" cy="100" r="90" fill="white" stroke="url(#colorPickerGradient)" stroke-width="5" />
+
+    <!-- Color dots representing different colors -->
+    <circle cx="65" cy="75" r="8" fill="#ff0000" />
+    <circle cx="80" cy="50" r="8" fill="#ff9900" />
+    <circle cx="100" cy="40" r="8" fill="#ffff00" />
+    <circle cx="120" cy="50" r="8" fill="#33cc33" />
+    <circle cx="135" cy="75" r="8" fill="#3399ff" />
+    <circle cx="120" cy="100" r="8" fill="#9933cc" />
+    <circle cx="100" cy="120" r="8" fill="#ff33cc" />
+    <circle cx="80" cy="120" r="8" fill="#ff9900" />
+
+    <!-- Paint brush -->
+    <line x1="100" y1="150" x2="150" y2="150" stroke="#6b7280" stroke-width="8" stroke-linecap="round" />
+    <circle cx="150" cy="150" r="12" fill="url(#colorPickerGradient)" />
+    <line x1="150" y1="150" x2="150" y2="175" stroke="#6b7280" stroke-width="4" stroke-linecap="round" />
+</svg>
