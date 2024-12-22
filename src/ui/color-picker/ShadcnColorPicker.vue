@@ -67,13 +67,10 @@
           </template>
 
           <div class="mt-2">
-            <input type="color"
-                   class="w-full h-8 cursor-pointer"
-                   :value="hexColor"
-                   @input="onColorInput"/>
+            <ShadcnColorPanel :model-value="modelValue as string" @on-change="onColorChange"/>
           </div>
 
-          <div class="flex items-center">
+          <div class="flex items-center select-none">
             <span class="text-sm text-gray-500 mr-2">{{ t('colorPicker.text.transparency') }}</span>
             <ShadcnSlider v-model="alpha"
                           class="flex-1"
@@ -92,6 +89,7 @@
 import { computed, defineEmits, defineProps, onMounted, onUnmounted, ref } from 'vue'
 import { t } from '@/utils/locale'
 import type { ColorPickerEmits, ColorPickerProps } from './types'
+import ShadcnColorPanel from './components/ShadcnColorPanel.vue'
 
 const props = withDefaults(defineProps<ColorPickerProps>(), {
   disabled: false,
@@ -494,6 +492,12 @@ const onClickOutside = (event: MouseEvent) => {
   if (!target.closest('.shadcn-color-picker-container')) {
     isOpen.value = false
   }
+}
+
+const onColorChange = (color: string) => {
+  const outputColor = formatOutputColor(color, alpha.value)
+  emit('update:modelValue', outputColor)
+  emit('on-change', outputColor)
 }
 
 onMounted(() => {
