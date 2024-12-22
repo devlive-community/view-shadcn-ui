@@ -222,5 +222,30 @@ export default {
         placeholder: {
             date: 'Please select a date'
         }
+    },
+    cron: {
+        text: {
+            minute: 'Minute',
+            hour: 'Hour',
+            day: 'Day',
+            month: 'Month',
+            week: 'Week',
+            everyMinute: 'Every minute',
+            everyHour: 'Every hour',
+            everyDay: 'Every day',
+            everyWeek: 'Every week',
+            everyMonth: 'Every month',
+            intervalMinute: 'Interval minute',
+            intervalHour: 'Interval hour',
+            intervalDay: 'Interval day',
+            intervalWeek: 'Interval week',
+            intervalMonth: 'Interval month',
+            minuteUnit: 'Minute',
+            hourUnit: 'Hour',
+            dayUnit: 'Day',
+            monthUnit: 'Month',
+            weekUnit: 'Week',
+            nextExecutionTime: 'Next execution time'
+        }
     }
 }

@@ -222,5 +222,30 @@ export default {
         placeholder: {
             date: '请选择日期'
         }
+    },
+    cron: {
+        text: {
+            minute: '分',
+            hour: '时',
+            day: '日',
+            month: '月',
+            week: '周',
+            everyMinute: '每分钟',
+            everyHour: '每小时',
+            everyDay: '每天',
+            everyWeek: '每周',
+            everyMonth: '每月',
+            intervalMinute: '间隔分钟',
+            intervalHour: '间隔小时',
+            intervalDay: '间隔天',
+            intervalWeek: '间隔周',
+            intervalMonth: '间隔月',
+            minuteUnit: '分钟',
+            hourUnit: '小时',
+            dayUnit: '天',
+            monthUnit: '月',
+            weekUnit: '周',
+            nextExecutionTime: '下次执行时间'
+        }
     }
 }
