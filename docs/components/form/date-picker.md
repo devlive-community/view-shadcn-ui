@@ -89,15 +89,38 @@ This document describes the features and usage of the ShadcnDatePicker component
 ```
 
 :::
+
+## Format
+
+::: raw
+
+<CodeRunner title="Format">
+    <ShadcnDatePicker v-model="value" format="YYYY-MM-DD'
+}" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnDatePicker v-model="value" format="YYYY-MM-DD'
+}" />
+</template>
+```
+
+:::
 ## DatePicker Props
 
 <ApiTable title="Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
     :columns="[
-        ['modelValue', 'modelValue value', 'Date', '-', '-'],
+        ['modelValue', 'modelValue value', 'Date | string', '-', 'Date, string'],
         ['placeholder', 'placeholder value', 'string', '-', '-'],
         ['disabled', 'disabled value', 'boolean', 'false', '-'],
-        ['readonly', 'readonly value', 'boolean', 'false', '-']
+        ['readonly', 'readonly value', 'boolean', 'false', '-'],
+        ['format', 'format value', 'string', 'YYYY-MM-DD', '-']
     ]">
 </ApiTable>
 
@@ -106,8 +129,8 @@ This document describes the features and usage of the ShadcnDatePicker component
 <ApiTable title="Events"
     :headers="['Event', 'Description', 'Callback Parameters']"
     :columns="[
-        ['update:modelValue', 'Triggered when update:modelValue', 'value: Date'],
-        ['on-change', 'Triggered when on change', 'value: Date']
+        ['update:modelValue', 'Triggered when update:modelValue', 'value: string'],
+        ['on-change', 'Triggered when on change', 'value: string']
     ]">
 </ApiTable>
 

@@ -13,30 +13,25 @@
 import { computed } from 'vue'
 import { t } from '@/utils/locale'
 import type { DatePickerEmits, DatePickerProps } from './types'
+import { formatDate } from '@/utils/date.ts'
 
 const props = withDefaults(defineProps<DatePickerProps>(), {
   placeholder: t('datePicker.placeholder.date'),
   disabled: false,
-  readonly: false
+  readonly: false,
+  format: 'YYYY-MM-DD'
 })
 
 const emit = defineEmits<DatePickerEmits>()
 
-// Format date to YYYY-MM-DD
-// 格式化日期为 YYYY-MM-DD
-const formatDate = (date: Date | string | undefined) => {
-  if (!date) {
-    return ''
-  }
-  if (typeof date === 'string') {
-    return date
-  }
-  return date.toISOString().split('T')[0]
-}
-
 // Compute input value
 // 计算输入值
-const inputValue = computed(() => formatDate(props.modelValue))
+const inputValue = computed(() => {
+  if (!props.modelValue) {
+    return ''
+  }
+  return formatDate(props.modelValue, props.format)
+})
 
 // Handle date change event
 // 处理日期变更事件

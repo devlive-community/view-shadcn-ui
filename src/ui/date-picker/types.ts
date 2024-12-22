@@ -4,6 +4,7 @@ export interface DatePickerProps
     placeholder?: string
     disabled?: boolean
     readonly?: boolean
+    format?: string
 }
 
 export type DatePickerEmits = {

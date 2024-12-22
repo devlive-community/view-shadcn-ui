@@ -357,7 +357,7 @@ This document describes the features and usage of the {component_name} component
         for p in props:
             default_value = "-" if p["default"].startswith("t(") and p["default"].endswith(")") or p["default"] == "undefined" else p["default"]
             description = p['description'].replace("'", "`")
-            row = f"        ['{p['name']}', '{description}', '{p['type']}', '{default_value.replace('\n}', '')}', '{p['list']}']"
+            row = f"        ['{p['name']}', '{description}', '{p['type']}', '{default_value.replace('\n}', '').replace('\'', '')}', '{p['list']}']"
             prop_rows.append(row)
 
         markdown += ",\n".join(prop_rows)

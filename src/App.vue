@@ -4,6 +4,7 @@
     <ShadcnDatePicker v-model="selectDate" @on-change="onChange"/>
     <ShadcnDatePicker v-model="selectDate" disabled @on-change="onChange"/>
     <ShadcnDatePicker v-model="selectDate" readonly @on-change="onChange"/>
+    <ShadcnDatePicker v-model="selectDate" format="YYYY-MM-DD" @on-change="onChange"/>
   </div>
 </template>
 
