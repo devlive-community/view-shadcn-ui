@@ -14,12 +14,12 @@
     <!-- Calendar Popup -->
     <div v-if="showCalendar"
          class="absolute z-20 mt-1 bg-white rounded-lg shadow-lg border border-gray-200 p-4"
-         :class="{'w-80': type === 'date', 'w-auto': type === 'range'}">
+         :class="{'w-64': type === 'date', 'w-auto': type === 'range'}">
       <div class="flex" :class="{'space-x-4': type === 'range'}">
         <!-- Start/Single Calendar -->
-        <div class="w-80">
+        <div class="w-50">
           <!-- Calendar Header -->
-          <div class="flex justify-between items-center mb-4">
+          <div class="flex justify-between items-center mb-4 text-sm">
             <button class="p-1 hover:bg-gray-100 rounded-full" @click="previousYear('start')">
               <ChevronsLeft class="w-4 h-4"/>
             </button>
@@ -41,7 +41,7 @@
           <div class="grid grid-cols-7 gap-1 mb-2">
             <span v-for="day in weekDays"
                   :key="day"
-                  class="text-sm text-gray-500">
+                  class="text-xs text-gray-500">
               {{ day }}
             </span>
           </div>
@@ -49,13 +49,13 @@
           <!-- Calendar Days -->
           <div class="grid grid-cols-7 gap-1">
             <button v-for="date in calendarDays"
-                    class="w-6 h-6 text-sm text-center rounded-sm"
+                    class="w-6 h-6 text-xs text-center rounded-sm"
                     :key="date.date"
                     :class="{
-                        'bg-primary text-white hover:bg-primary': isSelected(date.date),
+                        'bg-blue-500 text-white hover:bg-blue-500': isSelected(date.date),
                         'text-gray-400': !date.currentMonth,
                         'hover:bg-gray-100': !isSelected(date.date),
-                        'bg-gray-100': type === 'range' && isInRange(date.date)
+                        'bg-blue-500': type === 'range' && isInRange(date.date)
                     }"
                     @click="selectDate(date.date, 'start')">
               <ShadcnBadge v-if="date.isToday" dot>
@@ -67,8 +67,8 @@
         </div>
 
         <!-- End Calendar (Only for range mode) -->
-        <div v-if="type === 'range'" class="w-80">
-          <div class="flex justify-between items-center mb-4">
+        <div v-if="type === 'range'" class="w-50">
+          <div class="flex justify-between items-center mb-4 text-sm">
             <button class="p-1 hover:bg-gray-100 rounded-full" @click="previousYear('end')">
               <ChevronsLeft class="w-4 h-4"/>
             </button>
@@ -90,7 +90,7 @@
           <div class="grid grid-cols-7 gap-1 mb-2">
             <span v-for="day in weekDays"
                   :key="day"
-                  class="text-sm text-gray-500">
+                  class="text-xs text-gray-500">
               {{ day }}
             </span>
           </div>
@@ -98,13 +98,13 @@
           <!-- Calendar Days -->
           <div class="grid grid-cols-7 gap-1">
             <button v-for="date in endCalendarDays"
-                    class="w-6 h-6 text-sm text-center rounded-sm"
+                    class="w-6 h-6 text-xs text-center rounded-sm"
                     :key="date.date"
                     :class="{
-                        'bg-primary text-white hover:bg-primary': isSelected(date.date),
+                        'bg-blue-500 text-white hover:bg-blue-500': isSelected(date.date),
                         'text-gray-400': !date.currentMonth,
                         'hover:bg-gray-100': !isSelected(date.date),
-                        'bg-gray-100': type === 'range' && isInRange(date.date)
+                        'bg-blue-500': type === 'range' && isInRange(date.date)
                     }"
                     @click="selectDate(date.date, 'end')">
               <ShadcnBadge v-if="date.isToday" dot>
@@ -117,10 +117,14 @@
       </div>
 
       <!-- Shortcuts -->
-      <div v-if="showShortcuts" class="grid grid-cols-3 mt-3 pt-2 border-t gap-1.5 border-gray-100"
-           :class="{'grid-cols-6': type === 'range'}">
+      <div v-if="showShortcuts"
+           class="mt-3 pt-2 border-t border-gray-100"
+           :class="{
+             'grid grid-cols-3 gap-1': type === 'date',
+             'grid grid-cols-5 gap-1 w-50': type === 'range'
+           }">
         <button v-for="shortcut in shortcuts"
-                class="text-xs px-2 py-1 rounded-md hover:bg-gray-100"
+                class="text-xs py-1 px-1 rounded-md hover:bg-gray-100"
                 :key="shortcut.label"
                 @click="handleShortcutClick(shortcut.value)">
           {{ shortcut.label }}
@@ -325,8 +329,6 @@ const isInRange = (date: string) => {
 
 // Toggle calendar visibility
 // 切换日历显示
-// Toggle calendar visibility
-// 切换日历显示
 const toggleCalendar = () => {
   if (!props.disabled && !props.readonly) {
     showCalendar.value = !showCalendar.value
@@ -374,52 +376,18 @@ const toggleCalendar = () => {
 // 导航到上一个月
 const previousMonth = (type: 'start' | 'end') => {
   const target = type === 'start' ? currentMonth : endMonth
-  const newDate = new Date(
+  target.value = new Date(
       target.value.getFullYear(),
       target.value.getMonth() - 1
   )
-
-  if (type === 'end') {
-    // Ensure end calendar doesn't overlap with start calendar
-    const startDate = new Date(currentMonth.value)
-    if (newDate > startDate) {
-      target.value = newDate
-    }
-  }
-  else {
-    // Ensure start calendar stays at least one month before end calendar
-    const endDate = new Date(endMonth.value)
-    const minEndDate = new Date(newDate)
-    minEndDate.setMonth(minEndDate.getMonth() + 1)
-    if (endDate > minEndDate) {
-      target.value = newDate
-    }
-  }
 }
 
 const previousYear = (type: 'start' | 'end') => {
   const target = type === 'start' ? currentMonth : endMonth
-  const newDate = new Date(
+  target.value = new Date(
       target.value.getFullYear() - 1,
       target.value.getMonth()
   )
-
-  if (type === 'end') {
-    // Ensure end calendar doesn't overlap with start calendar
-    const startDate = new Date(currentMonth.value)
-    if (newDate > startDate) {
-      target.value = newDate
-    }
-  }
-  else {
-    // Ensure start calendar stays at least one month before end calendar
-    const endDate = new Date(endMonth.value)
-    const minEndDate = new Date(newDate)
-    minEndDate.setMonth(minEndDate.getMonth() + 1)
-    if (endDate > minEndDate) {
-      target.value = newDate
-    }
-  }
 }
 
 // Navigate to next month
@@ -432,12 +400,11 @@ const nextMonth = (type: 'start' | 'end') => {
   )
 
   if (type === 'start') {
-    // Ensure start calendar doesn't overlap with end calendar
-    const endDate = new Date(endMonth.value)
-    const maxStartDate = new Date(endDate)
-    maxStartDate.setMonth(maxStartDate.getMonth() - 1)
-    if (newDate < maxStartDate) {
-      target.value = newDate
+    target.value = newDate
+    const nextMonth = new Date(newDate)
+    nextMonth.setMonth(nextMonth.getMonth() + 1)
+    if (props.type === 'range' && endMonth.value <= newDate) {
+      endMonth.value = nextMonth
     }
   }
   else {
@@ -453,12 +420,11 @@ const nextYear = (type: 'start' | 'end') => {
   )
 
   if (type === 'start') {
-    // Ensure start calendar doesn't overlap with end calendar
-    const endDate = new Date(endMonth.value)
-    const maxStartDate = new Date(endDate)
-    maxStartDate.setMonth(maxStartDate.getMonth() - 1)
-    if (newDate < maxStartDate) {
-      target.value = newDate
+    target.value = newDate
+    const nextMonth = new Date(newDate)
+    nextMonth.setMonth(nextMonth.getMonth() + 1)
+    if (props.type === 'range' && endMonth.value <= newDate) {
+      endMonth.value = nextMonth
     }
   }
   else {
@@ -466,8 +432,6 @@ const nextYear = (type: 'start' | 'end') => {
   }
 }
 
-// Select date
-// 选择日期
 // Select date
 // 选择日期
 const selectDate = (date: string, _type: 'start' | 'end' = 'start') => {
