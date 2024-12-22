@@ -128,13 +128,14 @@ def parse_types_file(file_path: str) -> Tuple[List[Dict], List[Dict], List[Dict]
         for line in emits_content.split('\n'):
             line = line.strip()
             if line:
-                emit_match = re.match(r"\(e:\s*'([\w:-]+)'(?:\s*,\s*(\w+):\s*(\w+))?\):\s*void", line)
+                # 修改正则表达式以支持联合类型
+                emit_match = re.match(r"\(e:\s*'([\w:-]+)'(?:\s*,\s*(\w+):\s*([\w\[\],\s|]+))?\):\s*void", line)
                 if emit_match:
                     event_name = emit_match.group(1)
                     params = '-'
                     if emit_match.group(2) and emit_match.group(3):  # 如果有参数
                         param_name = emit_match.group(2)
-                        param_type = emit_match.group(3)
+                        param_type = emit_match.group(3).strip()  # 去除可能的空格
                         params = f'{param_name}: {param_type}'
 
                     emits.append({
@@ -357,7 +358,7 @@ This document describes the features and usage of the {component_name} component
         for p in props:
             default_value = "-" if p["default"].startswith("t(") and p["default"].endswith(")") or p["default"] == "undefined" else p["default"]
             description = p['description'].replace("'", "`")
-            row = f"        ['{p['name']}', '{description}', '{p['type']}', '{default_value}', '{p['list']}']"
+            row = f"        ['{p['name']}', '{description}', '{p['type']}', '{default_value.replace('\n}', '').replace('\'', '')}', '{p['list']}']"
             prop_rows.append(row)
 
         markdown += ",\n".join(prop_rows)

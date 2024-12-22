@@ -170,7 +170,7 @@ export default {
             addCondition: '添加条件',
             addGroup: '添加分组',
             and: '且',
-            or: '或',
+            or: '或'
         },
         validated: {
             invalid: '无效的字段',
@@ -196,6 +196,31 @@ export default {
         text: {
             transparency: '透明度',
             format: '格式'
+        }
+    },
+    datePicker: {
+        text: {
+            sunday: '星期日',
+            monday: '星期一',
+            tuesday: '星期二',
+            wednesday: '星期三',
+            thursday: '星期四',
+            friday: '星期五',
+            saturday: '星期六',
+            year: '年',
+            month: '月',
+            today: '今天',
+            yesterday: '昨天',
+            thisWeek: '本周',
+            lastWeek: '上周',
+            thisMonth: '本月',
+            lastMonth: '上月',
+            last3Months: '过去 3 个月',
+            thisYear: '今年',
+            lastYear: '去年'
+        },
+        placeholder: {
+            date: '请选择日期'
         }
     }
 }

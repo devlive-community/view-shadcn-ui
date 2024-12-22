@@ -197,5 +197,30 @@ export default {
             transparency: 'Transparency',
             format: 'Format'
         }
+    },
+    datePicker: {
+        text: {
+            sunday: 'Sun',
+            monday: 'Mon',
+            tuesday: 'Tue',
+            wednesday: 'Wed',
+            thursday: 'Thu',
+            friday: 'Fri',
+            saturday: 'Sat',
+            year: 'Year',
+            month: 'Month',
+            today: 'Today',
+            yesterday: 'Yesterday',
+            thisWeek: 'This week',
+            lastWeek: 'Last week',
+            thisMonth: 'This month',
+            lastMonth: 'Last month',
+            last3Months: 'Last 3 months',
+            thisYear: 'This year',
+            lastYear: 'Last year',
+        },
+        placeholder: {
+            date: 'Please select a date'
+        }
     }
 }
