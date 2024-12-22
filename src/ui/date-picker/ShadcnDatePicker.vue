@@ -13,9 +13,12 @@
 
     <!-- Calendar Popup -->
     <div v-if="showCalendar"
-         class="absolute z-20 mt-1 bg-white rounded-lg shadow-lg border border-gray-200 p-4 w-72">
+         class="absolute z-20 mt-1 bg-white rounded-lg shadow-lg border border-gray-200 p-4 w-80">
       <!-- Calendar Header -->
       <div class="flex justify-between items-center mb-4">
+        <button class="p-1 hover:bg-gray-100 rounded-full" @click="previousYear">
+          <ChevronsLeft class="w-4 h-4"/>
+        </button>
         <button class="p-1 hover:bg-gray-100 rounded-full" @click="previousMonth">
           <ChevronLeft class="w-4 h-4"/>
         </button>
@@ -24,6 +27,9 @@
         </div>
         <button class="p-1 hover:bg-gray-100 rounded-full" @click="nextMonth">
           <ChevronRight class="w-4 h-4"/>
+        </button>
+        <button class="p-1 hover:bg-gray-100 rounded-full" @click="nextYear">
+          <ChevronsRight class="w-4 h-4"/>
         </button>
       </div>
 
@@ -67,7 +73,7 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { t } from '@/utils/locale'
-import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-vue-next'
 import type { DatePickerEmits, DatePickerProps } from './types'
 import { formatDate } from '@/utils/date.ts'
 
@@ -219,12 +225,26 @@ const previousMonth = () => {
   )
 }
 
+const previousYear = () => {
+  currentMonth.value = new Date(
+      currentMonth.value.getFullYear() - 1,
+      currentMonth.value.getMonth()
+  )
+}
+
 // Navigate to next month
 // 导航到下一个月
 const nextMonth = () => {
   currentMonth.value = new Date(
       currentMonth.value.getFullYear(),
       currentMonth.value.getMonth() + 1
+  )
+}
+
+const nextYear = () => {
+  currentMonth.value = new Date(
+      currentMonth.value.getFullYear() + 1,
+      currentMonth.value.getMonth()
   )
 }
 
