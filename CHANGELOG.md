@@ -51,7 +51,10 @@ All notable changes to this project will be documented in this file. See [standa
 - feat: support previous and next year
 - feat: support highlighting today
 - feat: support range
-- 
+
+#### Cron
+
+- feat: support cron
 
 ### 2024.5.2 (2024-12-15)
 

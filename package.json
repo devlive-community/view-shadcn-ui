@@ -96,10 +96,8 @@
     "release:patch": "standard-version --release-as patch --skip.bump=true --skip.tag=true --skip.commit=true"
   },
   "dependencies": {
-    "@breejs/later": "^4.2.0",
     "clsx": "^2.1.0",
     "cron-parser": "^4.9.0",
-    "cronstrue": "^2.52.0",
     "highlight.js": "^11.10.0",
     "lodash": "^4.17.21",
     "lucide-vue-next": "^0.360.0",

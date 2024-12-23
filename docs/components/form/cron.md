@@ -6,6 +6,8 @@ title: Shadcn Cron
 
 This document describes the features and usage of the ShadcnCron component.
 
+Modify by [vue3-vCrontab](https://github.com/dongchacha/vue3-vCrontab)
+
 ## Usage
 
 ::: raw
@@ -30,17 +32,7 @@ This document describes the features and usage of the ShadcnCron component.
 <ApiTable title="Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
     :columns="[
-        ['modelValue', 'modelValue value', 'string', '* * * * *', '-']
-    ]">
-</ApiTable>
-
-## Cron Events
-
-<ApiTable title="Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
-    :columns="[
-        ['update:modelValue', 'Triggered when update:modelValue', 'value: string'],
-        ['on-change', 'Triggered when on change', 'value: string']
+        ['modelValue', 'modelValue value', 'string', '* * * * * ?', '-']
     ]">
 </ApiTable>
 

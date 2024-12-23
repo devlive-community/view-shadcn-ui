@@ -2,7 +2,6 @@
   <div class="flex flex-col gap-2 relative">
     <div ref="inputRef" class="flex items-center space-x-2">
       <ShadcnInput v-model="localModelValue"
-                   placeholder="* * * * *"
                    readonly
                    class="text-sm text-gray-500"
                    @click="isOpen = !isOpen"/>
@@ -14,16 +13,38 @@
       <div class="flex space-x-2">
         <ShadcnTab v-model="activeTab" size="small">
           <ShadcnTabItem v-for="tab in tabs" :label="tab.label" :value="tab.value">
-            <ShadcnSecondPanel v-if="tab.value === 'seconds'" v-model="secondExpression"/>
-            <ShadcnMinutePanel v-if="tab.value === 'minutes'" v-model="minuteExpression"/>
-            <ShadcnHourPanel v-if="tab.value === 'hours'" v-model="hourExpression"/>
+            <ShadcnSecondPanel v-if="tab.value === 'seconds'" v-model="secondExpression" @update="handleUpdate"/>
+            <ShadcnMinutePanel v-if="tab.value === 'minutes'"
+                               v-model="minuteExpression"
+                               :cron="cronObject"
+                               @update="handleUpdate"/>
+            <ShadcnHourPanel v-if="tab.value === 'hours'"
+                             v-model="hourExpression"
+                             :cron="cronObject"
+                             @update="handleUpdate"/>
+            <ShadcnDayPanel v-if="tab.value === 'day'"
+                            v-model="dayExpression"
+                            :cron="cronObject"
+                            @update="handleUpdate"/>
+            <ShadcnMonthPanel v-if="tab.value === 'month'"
+                              v-model="monthExpression"
+                              :cron="cronObject"
+                              @update="handleUpdate"/>
+            <ShadcnWeekPanel v-if="tab.value === 'week'"
+                             v-model="weekExpression"
+                             :cron="cronObject"
+                             @update="handleUpdate"/>
+            <ShadcnYearPanel v-if="tab.value === 'year'"
+                             v-model="yearExpression as any"
+                             :cron="cronObject"
+                             @update="handleUpdate"/>
           </ShadcnTabItem>
         </ShadcnTab>
       </div>
 
-      <div v-if="nextExecutionTimes.length" class="text-xs text-gray-500 space-y-1 mt-4">
-        <div>{{ t('cron.text.nextExecutionTime') }}:</div>
-        <div v-for="(time, index) in nextExecutionTimes" :key="index">
+      <div v-if="nextExecutionTimes.length" class="text-gray-500 space-y-1 mt-4 border-t rounded-sm p-2">
+        <div class="items-center">{{ t('cron.text.nextExecutionTime') }}:</div>
+        <div v-for="(time, index) in nextExecutionTimes" :key="index" class="text-xs">
           {{ t('cron.text.nextExecutionTimeAtOnN', { n: index + 1, time }) }}
         </div>
       </div>
@@ -32,17 +53,21 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref, watch } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { t } from '@/utils/locale'
-import parser from 'cron-parser'
 import type { CronEmits, CronProps } from './types'
 import ShadcnSecondPanel from './components/ShadcnSecondPanel.vue'
-import ShadcnMinutePanel from '@/ui/cron/components/ShadcnMinutePanel.vue'
-import ShadcnHourPanel from '@/ui/cron/components/ShadcnHourPanel.vue'
+import ShadcnMinutePanel from './components/ShadcnMinutePanel.vue'
+import ShadcnHourPanel from './components/ShadcnHourPanel.vue'
+import ShadcnDayPanel from './components/ShadcnDayPanel.vue'
+import ShadcnMonthPanel from './components/ShadcnMonthPanel.vue'
+import ShadcnWeekPanel from './components/ShadcnWeekPanel.vue'
 import { getRecentTriggerTime } from '@/utils/cron.ts'
+import ShadcnYearPanel from '@/ui/cron/components/ShadcnYearPanel.vue'
 
-const props = withDefaults(defineProps<CronProps>(), {})
-
+const props = withDefaults(defineProps<CronProps>(), {
+  modelValue: '* * * * * ?'
+})
 const emit = defineEmits<CronEmits>()
 
 const localModelValue = ref(props.modelValue)
@@ -51,9 +76,37 @@ const isOpen = ref(false)
 const inputRef = ref<HTMLElement | null>(null)
 const panelRef = ref<HTMLElement | null>(null)
 const activeTab = ref('seconds')
-const secondExpression = ref('*')
-const minuteExpression = ref('*')
-const hourExpression = ref('*')
+
+const expressions = computed(() => {
+  const parts = (localModelValue.value || '* * * * * ?').trim().split(' ')
+  return {
+    second: parts[0] || '*',
+    minute: parts[1] || '*',
+    hour: parts[2] || '*',
+    day: parts[3] || '*',
+    month: parts[4] || '*',
+    week: parts[5] || '?',
+    year: parts[6] || undefined
+  }
+})
+
+const cronObject = computed(() => ({
+  second: secondExpression.value,
+  minute: minuteExpression.value,
+  hour: hourExpression.value,
+  day: dayExpression.value,
+  month: monthExpression.value,
+  week: weekExpression.value,
+  year: yearExpression.value
+}))
+
+const secondExpression = ref(expressions.value.second)
+const minuteExpression = ref(expressions.value.minute)
+const hourExpression = ref(expressions.value.hour)
+const dayExpression = ref(expressions.value.day)
+const monthExpression = ref(expressions.value.month)
+const weekExpression = ref(expressions.value.week)
+const yearExpression = ref(expressions.value.year)
 
 const tabs = [
   { label: t('cron.text.second'), value: 'seconds' },
@@ -65,11 +118,45 @@ const tabs = [
   { label: t('cron.text.year'), value: 'year' }
 ]
 
-// Calculate next execution time
-// 计算下次执行时间
-const calculateNextExecutionTime = (cronExpression: string) => {
-  nextExecutionTimes.value = []
-  nextExecutionTimes.value = getNextExecutionTimes(cronExpression, 5)
+const handleUpdate = (type: string, value: string) => {
+  switch (type) {
+    case 'second':
+      secondExpression.value = value
+      break
+    case 'minute':
+      minuteExpression.value = value
+      break
+    case 'hour':
+      hourExpression.value = value
+      break
+    case 'day':
+      dayExpression.value = value
+      if (value !== '?' && weekExpression.value !== '?') {
+        weekExpression.value = '?'
+      }
+      break
+    case 'month':
+      monthExpression.value = value
+      break
+    case 'week':
+      weekExpression.value = value
+      if (value !== '?' && dayExpression.value !== '?') {
+        dayExpression.value = '?'
+      }
+      break
+    case 'year':
+      yearExpression.value = value
+      break
+  }
+}
+
+const calculateNextExecutionTime = (cronExpression?: string) => {
+  if (cronExpression) {
+    nextExecutionTimes.value = getNextExecutionTimes(cronExpression, 5)
+  }
+  else {
+    nextExecutionTimes.value = []
+  }
 }
 
 function getNextExecutionTimes(cronExpression: string, count: number = 5): string[]
@@ -78,28 +165,14 @@ function getNextExecutionTimes(cronExpression: string, count: number = 5): strin
     return getRecentTriggerTime(cronExpression, count)
   }
   catch (err) {
-    console.error('Invalid cron expression:', err)
+    console.error(err)
     return []
   }
 }
 
-watch(localModelValue, (newValue) => {
-  try {
-    parser.parseExpression(newValue)
-    calculateNextExecutionTime(newValue)
-  }
-  catch (err) {
-    console.error('Invalid cron expression:', err)
-    nextExecutionTimes.value = []
-  }
-  finally {
-    emit('on-change', newValue)
-    emit('update:modelValue', newValue)
-  }
-})
-
 onMounted(() => {
-  calculateNextExecutionTime(props.modelValue)
+  const initialValue = localModelValue.value || '* * * * * ?'
+  calculateNextExecutionTime(initialValue)
 })
 
 const handleClickOutside = (event: Event) => {
@@ -121,15 +194,51 @@ onUnmounted(() => {
   document.removeEventListener('click', handleClickOutside)
 })
 
-watch(secondExpression, (newValue) => {
-  localModelValue.value = `${ newValue } * * * * *`
+watch([secondExpression, minuteExpression, hourExpression, dayExpression, monthExpression, weekExpression, yearExpression], () => {
+  const parts = [
+    secondExpression.value || '*',
+    minuteExpression.value || '*',
+    hourExpression.value || '*',
+    dayExpression.value || '*',
+    monthExpression.value || '*',
+    weekExpression.value || '?'
+  ]
+
+  if (yearExpression.value !== undefined) {
+    parts.push(yearExpression.value)
+  }
+
+  const newValue = parts.join(' ')
+  localModelValue.value = newValue
+  calculateNextExecutionTime(newValue)
+  emit('on-change', newValue)
+  emit('update:modelValue', newValue)
 })
 
-watch(minuteExpression, (newValue) => {
-  localModelValue.value = `* ${ newValue } * * * *`
+watch(activeTab, () => {
+  const currentValue = localModelValue.value || '* * * * * ?'
+  calculateNextExecutionTime(currentValue)
 })
 
-watch(hourExpression, (newValue) => {
-  localModelValue.value = `* * ${ newValue } * * *`
+watch(localModelValue, (newValue) => {
+  try {
+    const parts = (newValue || '* * * * * ?').trim().split(' ')
+    if (parts.length >= 6) {
+      secondExpression.value = parts[0] || '*'
+      minuteExpression.value = parts[1] || '*'
+      hourExpression.value = parts[2] || '*'
+      dayExpression.value = parts[3] || '*'
+      monthExpression.value = parts[4] || '*'
+      weekExpression.value = parts[5] || '?'
+      yearExpression.value = parts.length > 6 ? parts[6] : undefined
+      calculateNextExecutionTime(newValue)
+    }
+    else {
+      throw new Error('Invalid cron expression')
+    }
+  }
+  catch (err) {
+    nextExecutionTimes.value = []
+  }
 })
 </script>

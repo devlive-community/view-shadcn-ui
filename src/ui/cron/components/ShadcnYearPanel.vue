@@ -1,59 +1,65 @@
 <template>
   <div class="mt-4 space-y-4">
-    <!-- Every Hour -->
+    <!-- Not Specified -->
     <div class="flex items-center space-x-2">
-      <ShadcnRadio v-model="radioValue" :value="1" name="hour-type">
-        {{ t('cron.text.everyHour') }}
+      <ShadcnRadio v-model="radioValue" :value="1" name="year-type">
+        {{ t('cron.text.yearNotFilled') }}
+      </ShadcnRadio>
+    </div>
+
+    <!-- Every Year -->
+    <div class="flex items-center space-x-2">
+      <ShadcnRadio v-model="radioValue" :value="2" name="year-type">
+        {{ t('cron.text.everyYear') }}
       </ShadcnRadio>
     </div>
 
     <!-- Period -->
     <div class="flex items-center space-x-2 select-none">
-      <ShadcnRadio v-model="radioValue" :value="2" name="hour-type">
+      <ShadcnRadio v-model="radioValue" :value="3" name="year-type">
         {{ t('cron.text.periodFrom') }}
       </ShadcnRadio>
       <div class="flex items-center space-x-2">
         <ShadcnNumber v-model="cycle01"
-                      class="w-16"
-                      :min="0"
-                      :max="23"/>
+                      class="w-24"
+                      :min="fullYear"
+                      :max="fullYear + 100"/>
         <span>-</span>
         <ShadcnNumber v-model="cycle02"
-                      class="w-16"
-                      :min="0"
-                      :max="23"/>
-        <span class="text-sm">{{ t('cron.text.hour') }}</span>
+                      class="w-24"
+                      :min="fullYear"
+                      :max="fullYear + 100"/>
       </div>
     </div>
 
     <!-- Interval -->
     <div class="flex items-center space-x-2 select-none">
-      <ShadcnRadio v-model="radioValue" :value="3" name="hour-type">
+      <ShadcnRadio v-model="radioValue" :value="4" name="year-type">
         {{ t('cron.text.fromStart') }}
       </ShadcnRadio>
       <div class="flex items-center space-x-2">
         <ShadcnNumber v-model="average01"
-                      class="w-16"
-                      :min="0"
-                      :max="23"/>
-        <span class="text-sm">{{ t('cron.text.hourStart') }}，</span>
+                      class="w-24"
+                      :min="fullYear"
+                      :max="fullYear + 100"/>
+        <span class="text-sm">{{ t('cron.text.yearStart') }}，</span>
         <span class="text-sm">{{ t('cron.text.every') }}</span>
         <ShadcnNumber v-model="average02"
                       class="w-16"
                       :min="1"
-                      :max="23"/>
-        <span class="text-sm">{{ t('cron.text.hourExecute') }}</span>
+                      :max="10"/>
+        <span class="text-sm">{{ t('cron.text.yearExecute') }}</span>
       </div>
     </div>
 
     <!-- Specify -->
     <div class="flex items-center space-x-2">
-      <ShadcnRadio v-model="radioValue" :value="4" name="hour-type">
+      <ShadcnRadio v-model="radioValue" :value="5" name="year-type">
         {{ t('cron.text.specify') }}
       </ShadcnRadio>
       <ShadcnSelect v-model="checkboxList"
                     multiple
-                    :options="hourOptions"
+                    :options="yearOptions"
                     :placeholder="t('cron.placeholder.multiple')"/>
     </div>
   </div>
@@ -96,18 +102,21 @@ const emit = defineEmits<{
   (e: 'update', type: string, value: string, from?: string): void
 }>()
 
+const fullYear = ref(new Date().getFullYear())
 const radioValue = ref(1)
-const cycle01 = ref(0)
-const cycle02 = ref(1)
-const average01 = ref(0)
+const cycle01 = ref(fullYear.value)
+const cycle02 = ref(fullYear.value + 1)
+const average01 = ref(fullYear.value)
 const average02 = ref(1)
 const checkboxList = ref<number[]>([])
 
-// Create options for hours (0-23)
-const hourOptions = Array.from({ length: 24 }, (_, i) => ({
-  label: i.toString(),
-  value: i
-}))
+// Create options for years (current year + 9 years)
+const yearOptions = computed(() => {
+  return Array.from({ length: 9 }, (_, i) => ({
+    label: (fullYear.value + i).toString(),
+    value: fullYear.value + i
+  }))
+})
 
 const cycleObj = computed(() => ({
   cycle01: cycle01.value,
@@ -120,77 +129,86 @@ const averageObj = computed(() => ({
 }))
 
 const checkboxString = computed(() => {
-  const str = checkboxList.value.join()
-  return str === '' ? '*' : str
+  return checkboxList.value.join()
 })
 
 // Radio button change
 const handleRadioChange = () => {
-  if (radioValue.value === 1) {
-    emit('update', 'hour', '*', 'hour')
-    emit('update', 'day', '*', 'hour')
+  if (props.cron?.month === '*') {
+    emit('update', 'month', '0', 'year')
   }
-  else {
-    if (props.cron?.minute === '*') {
-      emit('update', 'min', '0', 'hour')
-    }
-    if (props.cron?.second === '*') {
-      emit('update', 'second', '0', 'hour')
-    }
+  if (props.cron?.day === '*') {
+    emit('update', 'day', '0', 'year')
+  }
+  if (props.cron?.hour === '*') {
+    emit('update', 'hour', '0', 'year')
+  }
+  if (props.cron?.minute === '*') {
+    emit('update', 'min', '0', 'year')
+  }
+  if (props.cron?.second === '*') {
+    emit('update', 'second', '0', 'year')
   }
 
   const expression = getCurrentExpression()
   emit('update:modelValue', expression)
-  emit('update', 'hour', expression)
+  emit('update', 'year', expression)
 }
 
 // Get current expression based on radio value
 const getCurrentExpression = () => {
   switch (radioValue.value) {
     case 1:
-      return '*'
+      return ''
     case 2:
-      return `${ cycle01.value }-${ cycle02.value }`
+      return '*'
     case 3:
-      return `${ average01.value }/${ average02.value }`
+      return `${ cycle01.value }-${ cycle02.value }`
     case 4:
+      return `${ average01.value }/${ average02.value }`
+    case 5:
       return checkboxString.value
     default:
-      return '*'
+      return ''
   }
 }
 
 // Handle cycle values change
 const handleCycleChange = () => {
-  if (radioValue.value === 2) {
-    cycle01.value = props.checkNumber(cycle01.value, 0, 23)
-    cycle02.value = props.checkNumber(cycle02.value, 0, 23)
+  if (radioValue.value === 3) {
+    cycle01.value = props.checkNumber(cycle01.value, fullYear.value, fullYear.value + 100)
+    cycle02.value = props.checkNumber(cycle02.value, fullYear.value + 1, fullYear.value + 101)
     const cycleTotal = `${ cycle01.value }-${ cycle02.value }`
-    emit('update', 'hour', cycleTotal)
+    emit('update', 'year', cycleTotal)
     emit('update:modelValue', cycleTotal)
   }
 }
 
 // Handle average values change
 const handleAverageChange = () => {
-  if (radioValue.value === 3) {
-    average01.value = props.checkNumber(average01.value, 0, 23)
-    average02.value = props.checkNumber(average02.value, 1, 23)
+  if (radioValue.value === 4) {
+    average01.value = props.checkNumber(average01.value, fullYear.value, fullYear.value + 100)
+    average02.value = props.checkNumber(average02.value, 1, 10)
     const averageTotal = `${ average01.value }/${ average02.value }`
-    emit('update', 'hour', averageTotal)
+    emit('update', 'year', averageTotal)
     emit('update:modelValue', averageTotal)
   }
 }
 
 // Parse cron expression
 const parseCronExpression = (expression: string) => {
-  if (!expression || expression === '*') {
+  if (!expression) {
     radioValue.value = 1
     return
   }
 
-  if (expression.includes('-')) {
+  if (expression === '*') {
     radioValue.value = 2
+    return
+  }
+
+  if (expression.includes('-')) {
+    radioValue.value = 3
     const [start, end] = expression.split('-').map(Number)
     cycle01.value = start
     cycle02.value = end
@@ -198,7 +216,7 @@ const parseCronExpression = (expression: string) => {
   }
 
   if (expression.includes('/')) {
-    radioValue.value = 3
+    radioValue.value = 4
     const [start, interval] = expression.split('/').map(Number)
     average01.value = start
     average02.value = interval
@@ -206,19 +224,19 @@ const parseCronExpression = (expression: string) => {
   }
 
   if (expression.includes(',')) {
-    radioValue.value = 4
+    radioValue.value = 5
     checkboxList.value = expression.split(',').map(Number)
     return
   }
 
   if (!isNaN(Number(expression))) {
-    radioValue.value = 4
+    radioValue.value = 5
     checkboxList.value = [Number(expression)]
   }
 }
 
 watch(() => props.modelValue, (newValue) => {
-  if (newValue) {
+  if (newValue !== undefined) {
     parseCronExpression(newValue)
   }
 })
@@ -227,8 +245,8 @@ watch(radioValue, handleRadioChange)
 watch(cycleObj, handleCycleChange)
 watch(averageObj, handleAverageChange)
 watch(checkboxString, (newValue) => {
-  if (radioValue.value === 4) {
-    emit('update', 'hour', newValue)
+  if (radioValue.value === 5) {
+    emit('update', 'year', newValue)
     emit('update:modelValue', newValue)
   }
 })
