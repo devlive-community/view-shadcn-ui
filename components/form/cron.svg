@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- Define gradient -->
+    <defs>
+        <linearGradient id="cronGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#93c5fd;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#a5b4fc;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="100" fill="url(#cronGradient)" opacity="0.2" />
+
+    <!-- Outer clock circle -->
+    <circle cx="100" cy="100" r="70" fill="white" stroke="#93c5fd" stroke-width="4" />
+
+    <!-- Clock hour hand -->
+    <line x1="100" y1="100" x2="100" y2="80" stroke="#60a5fa" stroke-width="4" stroke-linecap="round" />
+
+    <!-- Clock minute hand -->
+    <line x1="100" y1="100" x2="120" y2="100" stroke="#a5b4fc" stroke-width="3" stroke-linecap="round" />
+
+    <!-- Clock center point -->
+    <circle cx="100" cy="100" r="5" fill="#60a5fa" />
+
+    <!-- Cron gear (outer) -->
+    <circle cx="100" cy="145" r="12" fill="#a5b4fc" stroke="white" stroke-width="2" />
+    <path d="M100 133 L100 125 M100 157 L100 165 M112 145 L120 145 M88 145 L80 145"
+          stroke="white" stroke-width="2" stroke-linecap="round" />
+
+    <!-- Dotted path representing cron cycle -->
+    <path d="M100 50 A50 50 0 1 1 100 150" stroke="#93c5fd" stroke-dasharray="5,5" fill="none" stroke-width="2" />
+</svg>

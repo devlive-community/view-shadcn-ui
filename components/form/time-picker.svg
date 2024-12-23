@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- Define gradient -->
+    <defs>
+        <linearGradient id="timePickerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#4ade80;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#22d3ee;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="100" fill="url(#timePickerGradient)" opacity="0.2" />
+
+    <!-- Clock face -->
+    <circle cx="100" cy="100" r="80" fill="white" stroke="url(#timePickerGradient)" stroke-width="5" />
+
+    <!-- Clock hands -->
+    <!-- Hour hand -->
+    <line x1="100" y1="100" x2="100" y2="60" stroke="#4b5563" stroke-width="8" stroke-linecap="round" transform="rotate(45, 100, 100)" />
+    <!-- Minute hand -->
+    <line x1="100" y1="100" x2="100" y2="50" stroke="#374151" stroke-width="5" stroke-linecap="round" transform="rotate(120, 100, 100)" />
+    <!-- Second hand -->
+    <line x1="100" y1="100" x2="100" y2="40" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" transform="rotate(180, 100, 100)" />
+
+    <!-- Time ticks -->
+    <circle cx="100" cy="40" r="3" fill="#374151" />
+    <circle cx="160" cy="60" r="3" fill="#374151" />
+    <circle cx="170" cy="100" r="3" fill="#374151" />
+    <circle cx="160" cy="140" r="3" fill="#374151" />
+    <circle cx="100" cy="160" r="3" fill="#374151" />
+    <circle cx="40" cy="140" r="3" fill="#374151" />
+    <circle cx="30" cy="100" r="3" fill="#374151" />
+    <circle cx="40" cy="60" r="3" fill="#374151" />
+</svg>
