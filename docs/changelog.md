@@ -4,6 +4,60 @@ title: "Release Notes"
 
 # Changelog
 
+## 2024.5.3 (2024-12-23)
+
+#### Core
+
+- add component documentation generation script
+- add publish ci
+
+#### QrCode
+
+- feat: support padding and rounded
+- feat: support margin
+- feat: support img slot
+
+#### Workflow
+
+- fix: repair data does not return data
+
+#### Logger
+
+- feat: support custom patterns
+
+#### Number
+
+- fix: fix the maximum and minimum value out of bounds
+
+#### Time Picker
+
+- feat: support formatter and parser
+- feat: support disabled and clearable
+- feat: support quick times
+- feat: support format
+
+#### Color Picker
+
+- support disabled and readonly
+- support presetColors
+- support transparency
+- support hsl
+- support showPanel, showDropper, showTransparency, showFormat
+
+#### Date Picker
+
+- feat: support disabled and readonly
+- feat: support format
+- feat: support clearable
+- feat: support show shortcuts
+- feat: support previous and next year
+- feat: support highlighting today
+- feat: support range
+
+#### Cron
+
+- feat: support cron
+
 ## 2024.5.2 (2024-12-15)
 
 ### ✨ Features
