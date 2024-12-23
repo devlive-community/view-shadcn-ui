@@ -55,9 +55,14 @@ jobs:
           scope: '@devlive-community'
       - run: yarn install
       - run: yarn build
+
+      - name: Update package name
+        run: |
+          sed -i 's/"name": "view-shadcn-ui"/"name": "@devlive-community\/view-shadcn-ui"/' package.json
+
       - run: |
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_PACKAGE_TOKEN }}" >> .npmrc
           echo "@devlive-community:registry=https://npm.pkg.github.com" >> .npmrc
-          npm publish
+          yarn publish --non-interactive --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GH_PACKAGE_TOKEN }}
