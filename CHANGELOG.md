@@ -42,6 +42,20 @@ All notable changes to this project will be documented in this file. See [standa
 - support hsl
 - support showPanel, showDropper, showTransparency, showFormat
 
+#### Date Picker
+
+- feat: support disabled and readonly
+- feat: support format
+- feat: support clearable
+- feat: support show shortcuts
+- feat: support previous and next year
+- feat: support highlighting today
+- feat: support range
+
+#### Cron
+
+- feat: support cron
+
 ### 2024.5.2 (2024-12-15)
 
 ### ✨ Features

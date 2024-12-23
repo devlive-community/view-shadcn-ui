@@ -222,5 +222,54 @@ export default {
         placeholder: {
             date: 'Please select a date'
         }
+    },
+    cron: {
+        placeholder: {
+            multiple: 'You can select more than one'
+        },
+        text: {
+            second: 'Second',
+            minute: 'Minute',
+            hour: 'Hour',
+            day: 'Day',
+            month: 'Month',
+            week: 'Week',
+            year: 'Year',
+            everySecond: 'Every second',
+            everyMinute: 'Every minute',
+            everyHour: 'Every hour',
+            everyDay: 'Every day',
+            everyWeek: 'Every week',
+            everyMonth: 'Every month',
+            periodFrom: 'Period from',
+            fromStart: 'From start',
+            secondStart: 'Second start',
+            every: 'Every',
+            secondExecute: 'Second execute',
+            specify: 'Specify',
+            minuteStart: 'Minute start',
+            minuteExecute: 'Minute execute',
+            hourStart: 'Hour start',
+            hourExecute: 'Hour execute',
+            notSpecified: 'Not specified',
+            dayStart: 'Day start',
+            dayExecute: 'Day execute',
+            workday: 'Workday',
+            nearestWorkday: 'Nearest workday',
+            lastDayOfMonth: 'Last day of month',
+            monthStart: 'Month start',
+            monthExecute: 'Month execute',
+            weekPeriodFrom: 'Week period from',
+            specificWeek: 'Specific week',
+            the: 'The',
+            weekOf: 'Week of',
+            lastWeek: 'Last week',
+            yearNotFilled: 'Year not filled',
+            everyYear: 'Every year',
+            yearStart: 'Year start',
+            yearExecute: 'Year execute',
+            nextExecutionTime: 'Next execution time',
+            nextExecutionTimeAtOnN: '{{ n }}th execution time: {{ time }}',
+        }
     }
 }

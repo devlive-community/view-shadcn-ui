@@ -222,5 +222,54 @@ export default {
         placeholder: {
             date: '请选择日期'
         }
+    },
+    cron: {
+        placeholder: {
+            multiple: '可多选'
+        },
+        text: {
+            second: '秒',
+            minute: '分',
+            hour: '时',
+            day: '日',
+            month: '月',
+            week: '周',
+            year: '年',
+            everySecond: '每秒',
+            everyMinute: '每分钟',
+            everyHour: '每小时',
+            everyDay: '每天',
+            everyWeek: '每周',
+            everyMonth: '每月',
+            periodFrom: '周期从',
+            fromStart: '从开始',
+            secondStart: '秒开始',
+            every: '每',
+            secondExecute: '秒执行',
+            specify: '指定',
+            minuteStart: '分钟开始',
+            minuteExecute: '分钟执行',
+            hourStart: '小时开始',
+            hourExecute: '小时执行',
+            notSpecified: '未指定',
+            dayStart: '天开始',
+            dayExecute: '天执行',
+            workday: '工作日',
+            nearestWorkday: '号最近工作日',
+            lastDayOfMonth: '月最后一天',
+            monthStart: '月开始',
+            monthExecute: '月执行',
+            weekPeriodFrom: '周周期从',
+            specificWeek: '指定周',
+            the: '第',
+            weekOf: '周',
+            lastWeek: '上周',
+            yearNotFilled: '年份未填写',
+            everyYear: '每年',
+            yearStart: '年开始',
+            yearExecute: '年执行',
+            nextExecutionTime: '下次执行时间',
+            nextExecutionTimeAtOnN: '第 {{ n }} 次执行时间: {{ time }}'
+        }
     }
 }

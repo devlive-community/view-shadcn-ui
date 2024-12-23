@@ -96,6 +96,7 @@ import ShadcnQrCode from '@/ui/qrcode/ShadcnQrCode.vue'
 import { ShadcnTimePicker } from '@/ui/time-picker'
 import { ShadcnColorPicker } from '@/ui/color-picker'
 import { ShadcnDatePicker } from '@/ui/date-picker'
+import { ShadcnCron } from '@/ui/cron'
 
 let components = [
     ShadcnButton,
@@ -188,7 +189,8 @@ let components = [
     ShadcnQrCode,
     ShadcnTimePicker,
     ShadcnColorPicker,
-    ShadcnDatePicker
+    ShadcnDatePicker,
+    ShadcnCron
 ]
 
 interface InstallOptions
@@ -317,11 +319,13 @@ export { ShadcnQrCode } from '@/ui/qrcode'
 export { ShadcnTimePicker } from '@/ui/time-picker'
 export { ShadcnColorPicker } from '@/ui/color-picker'
 export { ShadcnDatePicker } from '@/ui/date-picker'
+export { ShadcnCron } from '@/ui/cron'
 
 // Export functions
 export { fnToString, fnToFunction } from '@/utils/formatter'
 export { formatLogger, formatFromExample, formatMultipleLines, formatLoggerFromStream } from '@/utils/logger'
-export { randomUUID, validateUUID } from '@/utils/uuid.ts'
+export { randomUUID, validateUUID } from '@/utils/uuid'
+export { getRecentTriggerTime } from '@/utils/cron'
 export { LoadingBar } from '@/ui/loading-bar/service'
 
 // Export locale

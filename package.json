@@ -97,6 +97,7 @@
   },
   "dependencies": {
     "clsx": "^2.1.0",
+    "cron-parser": "^4.9.0",
     "highlight.js": "^11.10.0",
     "lodash": "^4.17.21",
     "lucide-vue-next": "^0.360.0",
