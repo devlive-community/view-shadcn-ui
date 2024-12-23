@@ -8,9 +8,18 @@ importers:
 
   .:
     dependencies:
+      '@breejs/later':
+        specifier: ^4.2.0
+        version: 4.2.0
       clsx:
         specifier: ^2.1.0
         version: 2.1.1
+      cron-parser:
+        specifier: ^4.9.0
+        version: 4.9.0
+      cronstrue:
+        specifier: ^2.52.0
+        version: 2.52.0
       highlight.js:
         specifier: ^11.10.0
         version: 11.10.0
@@ -161,6 +170,10 @@ packages:
   '@babel/types@7.26.0':
     resolution: {integrity: sha512-Z/yiTPj+lDVnF7lWeKCIJzaIkI0vYO87dMpZ4bg4TDrFe4XXLFWL1TbXU27gBP3QccxV9mZICCrnjnYlJjXHOA==}
     engines: {node: '>=6.9.0'}
+
+  '@breejs/later@4.2.0':
+    resolution: {integrity: sha512-EVMD0SgJtOuFeg0lAVbCwa+qeTKILb87jqvLyUtQswGD9+ce2nB52Y5zbTF1Hc0MDFfbydcMcxb47jSdhikVHA==}
+    engines: {node: '>= 10'}
 
   '@docsearch/css@3.6.2':
     resolution: {integrity: sha512-vKNZepO2j7MrYBTZIGXvlUOIR+v9KRf70FApRgovWrj3GTs1EITz/Xb0AOlm1xsQBp16clVZj1SY/qaOJbQtZw==}
@@ -879,6 +892,14 @@ packages:
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
 
+  cron-parser@4.9.0:
+    resolution: {integrity: sha512-p0SaNjrHOnQeR8/VnfGbmg9te2kfyYSQ7Sc/j/6DtPL3JQvKxmjO9TSjNFpujqV3vEYYBvNNvXSxzyksBWAx1Q==}
+    engines: {node: '>=12.0.0'}
+
+  cronstrue@2.52.0:
+    resolution: {integrity: sha512-NKgHbWkSZXJUcaBHSsyzC8eegD6bBd4O0oCI6XMIJ+y4Bq3v4w7sY3wfWoKPuVlq9pQHRB6od0lmKpIqi8TlKA==}
+    hasBin: true
+
   cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
     engines: {node: '>= 8'}
@@ -1261,6 +1282,10 @@ packages:
     resolution: {integrity: sha512-Qh67oCvAASGVxzYVMLK7okW/ZUtbBxbfBvfuVY7yvaVvG22puZtT0FncaHKKU0e2FHgRmLFrkiKh1fjkyweVVA==}
     peerDependencies:
       vue: '>=3.0.1'
+
+  luxon@3.5.0:
+    resolution: {integrity: sha512-rh+Zjr6DNfUYR3bPwJEnuwDdqMbxZW7LOQfUN4B54+Cl+0o5zaU9RJ6bcidfDtC1cWCZXQ+nvX8bf6bAji37QQ==}
+    engines: {node: '>=12'}
 
   magic-string@0.30.12:
     resolution: {integrity: sha512-Ea8I3sQMVXr8JhN4z+H/d8zwo+tYDgHE9+5G4Wnrwhs0gaK9fXTKx0Tw5Xwsd/bCPTTZNRAdpyzvoeORe9LYpw==}
@@ -2133,6 +2158,8 @@ snapshots:
       '@babel/helper-string-parser': 7.25.9
       '@babel/helper-validator-identifier': 7.25.9
 
+  '@breejs/later@4.2.0': {}
+
   '@docsearch/css@3.6.2': {}
 
   '@docsearch/js@3.6.2(@algolia/client-search@4.24.0)(search-insights@2.17.2)':
@@ -2839,6 +2866,12 @@ snapshots:
 
   core-util-is@1.0.3: {}
 
+  cron-parser@4.9.0:
+    dependencies:
+      luxon: 3.5.0
+
+  cronstrue@2.52.0: {}
+
   cross-spawn@7.0.3:
     dependencies:
       path-key: 3.1.1
@@ -3200,6 +3233,8 @@ snapshots:
   lucide-vue-next@0.360.0(vue@3.5.12(typescript@5.6.3)):
     dependencies:
       vue: 3.5.12(typescript@5.6.3)
+
+  luxon@3.5.0: {}
 
   magic-string@0.30.12:
     dependencies:

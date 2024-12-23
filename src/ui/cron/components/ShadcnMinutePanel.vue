@@ -1,13 +1,13 @@
 <template>
   <div class="mt-4 space-y-4">
     <div class="flex items-center space-x-2">
-      <ShadcnRadio v-model="type" value="every" name="second-type">
-        {{ t('cron.text.everySecond') }}
+      <ShadcnRadio v-model="type" value="every" name="minute-type">
+        {{ t('cron.text.everyMinute') }}
       </ShadcnRadio>
     </div>
 
     <div class="flex items-center space-x-2 select-none">
-      <ShadcnRadio v-model="type" value="period" name="second-type">
+      <ShadcnRadio v-model="type" value="period" name="minute-type">
         {{ t('cron.text.periodFrom') }}
       </ShadcnRadio>
       <div class="flex items-center space-x-2">
@@ -20,12 +20,12 @@
                       class="w-16"
                       :min="1"
                       :max="59"/>
-        <span class="text-sm">{{ t('cron.text.second') }}</span>
+        <span class="text-sm">{{ t('cron.text.minute') }}</span>
       </div>
     </div>
 
     <div class="flex items-center space-x-2 select-none">
-      <ShadcnRadio v-model="type" value="start" name="second-type">
+      <ShadcnRadio v-model="type" value="start" name="minute-type">
         {{ t('cron.text.fromStart') }}
       </ShadcnRadio>
       <div class="flex items-center space-x-2">
@@ -33,18 +33,18 @@
                       class="w-16"
                       :min="0"
                       :max="59"/>
-        <span class="text-sm">{{ t('cron.text.secondStart') }}，</span>
+        <span class="text-sm">{{ t('cron.text.minuteStart') }}，</span>
         <span class="text-sm">{{ t('cron.text.every') }}</span>
         <ShadcnNumber v-model="interval"
                       class="w-16"
                       :min="1"
                       :max="59"/>
-        <span class="text-sm">{{ t('cron.text.secondExecute') }}</span>
+        <span class="text-sm">{{ t('cron.text.minuteExecute') }}</span>
       </div>
     </div>
 
     <div class="flex items-center space-x-2">
-      <ShadcnRadio v-model="type" value="specify" name="second-type">
+      <ShadcnRadio v-model="type" value="specify" name="minute-type">
         {{ t('cron.text.specify') }}
       </ShadcnRadio>
       <ShadcnSelect v-model="specify"

@@ -324,7 +324,8 @@ export { ShadcnCron } from '@/ui/cron'
 // Export functions
 export { fnToString, fnToFunction } from '@/utils/formatter'
 export { formatLogger, formatFromExample, formatMultipleLines, formatLoggerFromStream } from '@/utils/logger'
-export { randomUUID, validateUUID } from '@/utils/uuid.ts'
+export { randomUUID, validateUUID } from '@/utils/uuid'
+export { getRecentTriggerTime } from '@/utils/cron'
 export { LoadingBar } from '@/ui/loading-bar/service'
 
 // Export locale

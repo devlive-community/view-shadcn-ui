@@ -8,7 +8,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const value = ref(null)
+const value = ref('0 1-2 0-1 * * ?')
 
 const onChange = (value: string) => {
   console.log('Selected date:', value)

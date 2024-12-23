@@ -224,17 +224,34 @@ export default {
         }
     },
     cron: {
+        placeholder: {
+            multiple: '可多选'
+        },
         text: {
+            second: '秒',
             minute: '分',
             hour: '时',
             day: '日',
             month: '月',
             week: '周',
+            year: '年',
+            everySecond: '每秒',
             everyMinute: '每分钟',
             everyHour: '每小时',
             everyDay: '每天',
             everyWeek: '每周',
             everyMonth: '每月',
+            periodFrom: '周期从',
+            fromStart: '从开始',
+            secondStart: '秒开始',
+            every: '每',
+            secondExecute: '秒执行',
+            specify: '指定',
+            minuteStart: '分钟开始',
+            minuteExecute: '分钟执行',
+            hourStart: '小时开始',
+            hourExecute: '小时执行',
+
             intervalMinute: '间隔分钟',
             intervalHour: '间隔小时',
             intervalDay: '间隔天',
@@ -245,7 +262,8 @@ export default {
             dayUnit: '天',
             monthUnit: '月',
             weekUnit: '周',
-            nextExecutionTime: '下次执行时间'
+            nextExecutionTime: '下次执行时间',
+            nextExecutionTimeAtOnN: '第 {{ n }} 次执行时间: {{ time }}'
         }
     }
 }

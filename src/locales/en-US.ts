@@ -224,17 +224,34 @@ export default {
         }
     },
     cron: {
+        placeholder: {
+            multiple: 'You can select more than one'
+        },
         text: {
+            second: 'Second',
             minute: 'Minute',
             hour: 'Hour',
             day: 'Day',
             month: 'Month',
             week: 'Week',
+            year: 'Year',
+            everySecond: 'Every second',
             everyMinute: 'Every minute',
             everyHour: 'Every hour',
             everyDay: 'Every day',
             everyWeek: 'Every week',
             everyMonth: 'Every month',
+            periodFrom: 'Period from',
+            fromStart: 'From start',
+            secondStart: 'Second start',
+            every: 'Every',
+            secondExecute: 'Second execute',
+            specify: 'Specify',
+            minuteStart: 'Minute start',
+            minuteExecute: 'Minute execute',
+            hourStart: 'Hour start',
+            hourExecute: 'Hour execute',
+
             intervalMinute: 'Interval minute',
             intervalHour: 'Interval hour',
             intervalDay: 'Interval day',
@@ -245,7 +262,8 @@ export default {
             dayUnit: 'Day',
             monthUnit: 'Month',
             weekUnit: 'Week',
-            nextExecutionTime: 'Next execution time'
+            nextExecutionTime: 'Next execution time',
+            nextExecutionTimeAtOnN: '{{ n }}th execution time: {{ time }}',
         }
     }
 }

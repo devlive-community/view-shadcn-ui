@@ -1,31 +1,31 @@
 <template>
   <div class="mt-4 space-y-4">
     <div class="flex items-center space-x-2">
-      <ShadcnRadio v-model="type" value="every" name="minute-type">
-        {{ t('cron.text.everyMinute') }}
+      <ShadcnRadio v-model="type" value="every" name="hour-type">
+        {{ t('cron.text.everyHour') }}
       </ShadcnRadio>
     </div>
 
     <div class="flex items-center space-x-2 select-none">
-      <ShadcnRadio v-model="type" value="period" name="minute-type">
+      <ShadcnRadio v-model="type" value="period" name="hour-type">
         {{ t('cron.text.periodFrom') }}
       </ShadcnRadio>
       <div class="flex items-center space-x-2">
         <ShadcnNumber v-model="periodStart"
                       class="w-16"
                       :min="1"
-                      :max="59"/>
+                      :max="23"/>
         <span>-</span>
         <ShadcnNumber v-model="periodEnd"
                       class="w-16"
                       :min="1"
-                      :max="59"/>
-        <span class="text-sm">{{ t('cron.text.minute') }}</span>
+                      :max="23"/>
+        <span class="text-sm">{{ t('cron.text.hour') }}</span>
       </div>
     </div>
 
     <div class="flex items-center space-x-2 select-none">
-      <ShadcnRadio v-model="type" value="start" name="minute-type">
+      <ShadcnRadio v-model="type" value="start" name="hour-type">
         {{ t('cron.text.fromStart') }}
       </ShadcnRadio>
       <div class="flex items-center space-x-2">
@@ -33,18 +33,18 @@
                       class="w-16"
                       :min="0"
                       :max="59"/>
-        <span class="text-sm">{{ t('cron.text.minuteStart') }}，</span>
+        <span class="text-sm">{{ t('cron.text.hourStart') }}，</span>
         <span class="text-sm">{{ t('cron.text.every') }}</span>
         <ShadcnNumber v-model="interval"
                       class="w-16"
                       :min="1"
                       :max="59"/>
-        <span class="text-sm">{{ t('cron.text.secondExecute') }}</span>
+        <span class="text-sm">{{ t('cron.text.hourExecute') }}</span>
       </div>
     </div>
 
     <div class="flex items-center space-x-2">
-      <ShadcnRadio v-model="type" value="specify" name="minute-type">
+      <ShadcnRadio v-model="type" value="specify" name="hour-type">
         {{ t('cron.text.specify') }}
       </ShadcnRadio>
       <ShadcnSelect v-model="specify"
@@ -76,7 +76,7 @@ const start = ref(0)
 const interval = ref(1)
 const specify = ref<number[]>([])
 
-const options = Array.from({ length: 60 }, (_, i) => ({
+const options = Array.from({ length: 24 }, (_, i) => ({
   label: i.toString(),
   value: i
 }))
