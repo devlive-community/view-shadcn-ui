@@ -207,6 +207,18 @@ export default {
             thursday: 'Thu',
             friday: 'Fri',
             saturday: 'Sat',
+            january: 'Jan',
+            february: 'Feb',
+            march: 'Mar',
+            april: 'Apr',
+            may: 'May',
+            june: 'Jun',
+            july: 'Jul',
+            august: 'Aug',
+            september: 'Sep',
+            october: 'Oct',
+            november: 'Nov',
+            december: 'Dec',
             year: 'Year',
             month: 'Month',
             today: 'Today',
@@ -270,6 +282,13 @@ export default {
             yearExecute: 'Year execute',
             nextExecutionTime: 'Next execution time',
             nextExecutionTimeAtOnN: '{{ n }}th execution time: {{ time }}',
+        }
+    },
+    contribution: {
+        text: {
+            less: 'Less',
+            more: 'More',
+            contribution: 'Contribution'
         }
     }
 }

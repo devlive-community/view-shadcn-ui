@@ -66,10 +66,10 @@ export default {
                 activeMatch: '/components'
             },
             {
-                text: '2024.5.3 <span class="VPBadge danger" style="margin-left: -18px; position: absolute; bottom: 38px;">Latest</span>',
+                text: '2024.5.4 <span class="VPBadge danger" style="margin-left: -18px; position: absolute; bottom: 38px;">Latest</span>',
                 items: [
                     {
-                        text: 'CHANGELOG <span class="VPBadge tip">2024.5.3</span>',
+                        text: 'CHANGELOG <span class="VPBadge tip">2024.5.4</span>',
                         link: '/changelog',
                         activeMatch: '/changelog'
                     },
@@ -197,7 +197,8 @@ export default {
                         {text: 'Back Top', link: 'view/back-top', icon: '/components/view/back-top.svg', version: '2024.5.1'},
                         {text: 'Loading Bar', link: 'view/loading-bar', icon: '/components/view/loading-bar.svg', version: '2024.5.2'},
                         {text: 'Float Button', link: 'view/float-button', icon: '/components/view/float-button.svg', version: '2024.5.2'},
-                        {text: 'QrCode', link: 'view/qr-code', icon: '/components/view/qrcode.svg', version: '2024.5.3'}
+                        {text: 'QrCode', link: 'view/qr-code', icon: '/components/view/qrcode.svg', version: '2024.5.3'},
+                        {text: 'Contributor', link: 'view/contribution', icon: '/components/view/contribution.svg', version: '2024.5.4'},
                     ]
 
                     return {

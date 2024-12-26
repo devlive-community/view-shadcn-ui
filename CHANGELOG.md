@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2024.5.4
+
+#### Core
+
+- fix: fix ci scope causing publishing failure
+
+#### Contribution
+
+- feat: support tooltip
+- feat: support showLegend
+- feat: support showWeek
+- feat: support showMonth
+- feat: support cellSize and cellGap
+- feat: support year
+- feat: support custom cell
+
 ### 2024.5.3 (2024-12-23)
 
 #### Core

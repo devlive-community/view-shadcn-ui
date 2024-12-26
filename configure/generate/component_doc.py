@@ -238,7 +238,8 @@ def is_enum_type(type_string):
 
 def generate_random_default(prop):
     if prop["type"] == "number":
-        value = int(prop["default"]) == 0 and 100 or int(prop["default"])
+        str = prop["default"].replace("\n", "").replace("}", "")
+        value = int(str) == 0 and 100 or int(str)
         return random.randint(1, value)
     elif prop["type"] == "string":
         if prop["default"].startswith('#'):  # Color

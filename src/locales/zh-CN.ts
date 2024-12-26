@@ -207,6 +207,18 @@ export default {
             thursday: '星期四',
             friday: '星期五',
             saturday: '星期六',
+            january: '一月',
+            february: '二月',
+            march: '三月',
+            april: '四月',
+            may: '五月',
+            june: '六月',
+            july: '七月',
+            august: '八月',
+            september: '九月',
+            october: '十月',
+            november: '十一月',
+            december: '十二月',
             year: '年',
             month: '月',
             today: '今天',
@@ -270,6 +282,13 @@ export default {
             yearExecute: '年执行',
             nextExecutionTime: '下次执行时间',
             nextExecutionTimeAtOnN: '第 {{ n }} 次执行时间: {{ time }}'
+        }
+    },
+    contribution: {
+        text: {
+            less: '少',
+            more: '多',
+            contribution: '贡献'
         }
     }
 }
