@@ -6,7 +6,7 @@ title: Shadcn Contribution
 
 This document describes the features and usage of the ShadcnContribution component.
 
-## Data
+## Usage
 
 ::: raw
 
@@ -20,7 +20,7 @@ This document describes the features and usage of the ShadcnContribution compone
 
 ```vue
 <template>
-    <ShadcnContribution data="data" />
+    <ShadcnContribution :data="data" />
 </template>
 ```
 
@@ -31,7 +31,7 @@ This document describes the features and usage of the ShadcnContribution compone
 ::: raw
 
 <CodeRunner title="Color scheme">
-    <ShadcnContribution :data="data" :color-scheme="['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39']" />
+    <ShadcnContribution :data="data" :colorScheme="colorScheme" />
 </CodeRunner>
 
 :::
@@ -40,7 +40,7 @@ This document describes the features and usage of the ShadcnContribution compone
 
 ```vue
 <template>
-    <ShadcnContribution :colorScheme="['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39']" />
+    <ShadcnContribution :data="data" :colorScheme="colorScheme" />
 </template>
 ```
 
@@ -60,19 +60,131 @@ This document describes the features and usage of the ShadcnContribution compone
 
 ```vue
 <template>
-    <ShadcnContribution :yearCount="1" />
+    <ShadcnContribution :data="data" :yearCount="1" />
 </template>
 ```
 
 :::
+
+## Show legend
+
+::: raw
+
+<CodeRunner title="Show legend">
+    <ShadcnContribution :data="data" showLegend />
+    <ShadcnContribution :data="data" :showLegend="false" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnContribution :data="data" showLegend />
+    <ShadcnContribution :data="data" :showLegend="false" />
+</template>
+```
+
+:::
+
+## Show week
+
+::: raw
+
+<CodeRunner title="Show week">
+    <ShadcnContribution :data="data" showWeek />
+    <ShadcnContribution :data="data" :showWeek="false" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnContribution :data="data" showWeek />
+    <ShadcnContribution :data="data" :showWeek="false" />
+</template>
+```
+
+:::
+
+## Show month
+
+::: raw
+
+<CodeRunner title="Show month">
+    <ShadcnContribution :data="data" showMonth />
+    <ShadcnContribution :data="data" :showMonth="false" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnContribution :data="data" showMonth />
+    <ShadcnContribution :data="data" :showMonth="false" />
+</template>
+```
+
+:::
+
+## Cell size
+
+::: raw
+
+<CodeRunner title="Cell size">
+    <ShadcnContribution :data="data" :cellSize="15" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnContribution :data="data" :cellSize="15" />
+</template>
+```
+
+:::
+
+## Cell gap
+
+::: raw
+
+<CodeRunner title="Cell gap">
+    <ShadcnContribution :data="data" :cellGap="4" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnContribution :data="data" :cellGap="4" />
+</template>
+```
+
+:::
+
 ## Contribution Props
 
 <ApiTable title="Props"
     :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
     :columns="[
         ['data', 'data value', 'Array<ContributionOption>', '-', '-'],
-        ['colorScheme', 'colorScheme value', '[#ebedf0, #9be9a8, #40c463, #30a14e, #216e39]', '-'],
-        ['yearCount', 'yearCount value', 'number', '1', '-']
+        ['colorScheme', 'colorScheme value', 'Array<string>', '\[#ebedf0, #9be9a8, #40c463, #30a14e, #216e39\]', '-'],
+        ['yearCount', 'yearCount value', 'number', '1', '-'],
+        ['showLegend', 'showLegend value', 'boolean', 'true', '-'],
+        ['showWeek', 'showWeek value', 'boolean', 'true', '-'],
+        ['showMonth', 'showMonth value', 'boolean', 'true', '-'],
+        ['cellSize', 'cellSize value', 'number', '16', '-'],
+        ['cellGap', 'cellGap value', 'number', '4', '-']
     ]">
 </ApiTable>
 
@@ -82,6 +194,15 @@ This document describes the features and usage of the ShadcnContribution compone
     :headers="['Event', 'Description', 'Callback Parameters']"
     :columns="[
         ['on-select', 'Triggered when on select', 'value: ContributionOption']
+    ]">
+</ApiTable>
+
+## Contribution Slots
+
+<ApiTable title="Slots"
+    :headers="['Slot', 'Description', 'Parameters']"
+    :columns="[
+        ['cell', 'Slot for cell', 'ContributionCellSlotProps']
     ]">
 </ApiTable>
 
@@ -98,11 +219,15 @@ const data = ref([
   { date: '2024-01-07', count: 6 }
 ])
 
-const customColorScheme = [
-  '#ebedf0',    // 0 contributions
-  '#bfd4f2',    // 1-3 contributions
-  '#7fa8ed',    // 4-6 contributions
-  '#4775c9',    // 7-9 contributions
-  '#254e89'     // 10+ contributions
+const colorScheme = [
+  '#ebedf0',
+  '#bfd4f2',
+  '#7fa8ed',
+  '#4775c9',
+  '#254e89'
 ]
+
+const handleSelect = (data: any) => {
+  console.log(`Selected date: ${ data.date }, contributions: ${ data.count }`)
+}
 </script>

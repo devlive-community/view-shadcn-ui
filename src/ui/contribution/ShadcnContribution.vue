@@ -1,6 +1,7 @@
 <template>
   <div class="flex">
-    <div class="flex flex-col mt-6 justify-between mr-2 text-xs text-gray-500 text-center h-[94px] select-none"
+    <div v-if="showWeek"
+         class="flex flex-col mt-6 justify-between mr-2 text-xs text-gray-500 text-center h-[94px] select-none"
          :style="{
              height: `${7 * cellSize + 6 * cellGap}px`,
              marginTop: `${MONTH_LABEL_HEIGHT}px`
@@ -15,7 +16,8 @@
     </div>
 
     <div>
-      <div class="relative select-none"
+      <div v-if="showMonth"
+           class="relative select-none"
            :style="{ height: `${MONTH_LABEL_HEIGHT}px` }">
         <div v-for="(month, index) in monthLabels"
              :key="index"
@@ -25,28 +27,32 @@
         </div>
       </div>
 
-      <div class="grid grid-rows-7 grid-flow-col gap-1"
+      <div class="grid grid-rows-7 grid-flow-col"
            :style="`gap: ${cellGap}px`">
         <div v-for="(item, index) in contributionData"
              :key="index"
-             :class="[
-               'rounded-sm cursor-pointer relative transition-all duration-200',
-               'hover:scale-125 hover:z-10'
-             ]"
+             :class="['relative cursor-pointer transition-all duration-200',
+                       'hover:scale-125 hover:z-10']"
              :style="{
-                 backgroundColor: getColor(item.count),
                  width: `${cellSize}px`,
                  height: `${cellSize}px`
-             }"
+               }"
              @mouseenter="showTooltip($event, item)"
              @mouseleave="hideTooltip"
              @click="onSelect(item)">
+          <slot name="cell"
+                :item="item"
+                :color="getColor(item.count)">
+            <div class="w-full h-full rounded-sm"
+                 :style="{ backgroundColor: getColor(item.count) }"/>
+          </slot>
+
           <div v-if="activeTooltip?.date === item.date"
-               class="absolute z-50 px-2 py-1 text-white bg-gray-800 rounded whitespace-nowrap"
+               class="absolute z-50 p-2 text-xs text-white bg-gray-800 rounded whitespace-nowrap transition-all duration-200"
                style="bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 4px;">
-            <div class="flex flex-col text-xs">
-              <span>{{ formatDate(item.date) }}</span>
-              <span>{{ item.count }} {{ t('contribution.text.contribution') }}</span>
+            <div class="mb-2">
+              <div class="font-medium">{{ formatDate(item.date) }}</div>
+              <div>{{ item.count }} contributions</div>
             </div>
           </div>
         </div>
@@ -94,12 +100,16 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { t } from '@/utils/locale'
-import { type ContributionEmits, ContributionOption, type ContributionProps } from './types'
+import { type ContributionEmits, ContributionOption, type ContributionProps, ContributionSlots } from './types'
+
+defineSlots<ContributionSlots>()
 
 const props = withDefaults(defineProps<ContributionProps>(), {
   colorScheme: () => ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39'],
   yearCount: 1,
   showLegend: true,
+  showWeek: true,
+  showMonth: true,
   cellSize: 16,
   cellGap: 4
 })

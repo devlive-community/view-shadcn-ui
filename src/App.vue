@@ -1,10 +1,22 @@
 <template>
   <div class="p-4 min-h-screen">
     <h2 class="text-xl font-semibold mb-4">Contribution Graph</h2>
-
     <ShadcnContribution :data="contributionData"
                         :color-scheme="customColorScheme"
                         @on-select="handleSelect"/>
+
+    <ShadcnContribution :data="contributionData"
+                        :color-scheme="customColorScheme"
+                        :show-legend="false"
+                        @on-select="handleSelect">
+      <template #cell="{ item, color }">
+        <div class="w-full h-full rounded-lg border-2"
+             :style="{
+               backgroundColor: color,
+               borderColor: item.count > 0 ? color : 'transparent'
+             }"/>
+      </template>
+    </ShadcnContribution>
 
     <div class="mt-4">
       Selected: {{ selectedDate }} - {{ selectedCount }} contributions
