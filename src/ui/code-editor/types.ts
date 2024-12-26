@@ -7,6 +7,22 @@ export interface CodeEditorAutoCompleteProps
     transform?: (data: any) => monaco.languages.CompletionItem[]
 }
 
+export interface CodeEditorContextMenuItem
+{
+    label: string
+    icon?: string
+    action: (params: {
+        editor: monaco.editor.IStandaloneCodeEditor
+        selection: monaco.Selection | null
+    }) => void
+}
+
+export interface CodeEditorContextMenuProps
+{
+    showDefaultItems?: boolean
+    items?: CodeEditorContextMenuItem[]
+}
+
 export interface CodeEditorProps
 {
     modelValue: string
@@ -14,6 +30,7 @@ export interface CodeEditorProps
     config?: any // see monaco.editor.IStandaloneEditorConstructionOptions
     disableValidation?: boolean
     autoCompleteConfig?: CodeEditorAutoCompleteProps
+    contextMenuConfig?: CodeEditorContextMenuProps
 }
 
 export type CodeEditorEmits = {

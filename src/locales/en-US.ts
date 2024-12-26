@@ -293,7 +293,10 @@ export default {
     },
     codeEditor: {
         text: {
-            loading: 'Loading code hint...'
+            loading: 'Loading code hint...',
+            copy: 'Copy',
+            cut: 'Cut',
+            paste: 'Paste'
         }
     }
 }

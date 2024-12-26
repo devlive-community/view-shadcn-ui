@@ -293,7 +293,10 @@ export default {
     },
     codeEditor: {
         text: {
-            loading: '正在加载代码提示...'
+            loading: '正在加载代码提示...',
+            copy: '复制',
+            cut: '剪切',
+            paste: '粘贴'
         }
     }
 }

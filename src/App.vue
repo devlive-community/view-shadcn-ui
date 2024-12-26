@@ -13,6 +13,16 @@
                             }))
                           }
                         }"
+                      :context-menu-config="{
+                           showDefaultItems: true,
+                           items: [{
+                              label: 'Format Code',
+                              icon: 'Save',
+                              action: ({ editor, selection}) => {
+                                console.log(editor.getModel()?.getValueInRange(selection))
+                              }
+                           }]
+                      }"
     />
   </div>
 </template>

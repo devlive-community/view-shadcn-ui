@@ -9,8 +9,9 @@ import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import * as monaco from 'monaco-editor'
 import { CodeEditorEmits, CodeEditorProps } from './types'
 import { calcSize } from '@/utils/common.ts'
-import { registerApiCompletion } from '@/ui/code-editor/feature/auto-completion.ts'
-import { disableLanguageValidation } from '@/ui/code-editor/feature/disable_language_validation.ts'
+import { registerApiCompletion } from './feature/auto-completion.ts'
+import { disableLanguageValidation } from './feature/disable_language_validation.ts'
+import { registerContextMenu } from './feature/context-menu.ts'
 
 const props = withDefaults(defineProps<CodeEditorProps>(), {
   height: 300,
@@ -26,6 +27,7 @@ const emit = defineEmits<CodeEditorEmits>()
 
 const editorContainer = ref<HTMLElement | null>(null)
 let editor: monaco.editor.IStandaloneCodeEditor | null = null
+let menuDisposable: { dispose: () => void } | null = null
 
 const initEditor = () => {
   if (!editorContainer.value) {
@@ -38,10 +40,15 @@ const initEditor = () => {
 
   const options: monaco.editor.IStandaloneEditorConstructionOptions = {
     value: props.modelValue || '',
+    contextmenu: false,
     ...props.config
   }
 
   editor = monaco.editor.create(editorContainer.value, options)
+
+  if (props.contextMenuConfig) {
+    menuDisposable = registerContextMenu(editor, props.contextMenuConfig)
+  }
 
   editor.onDidChangeModelContent(() => {
     emit('update:modelValue', editor?.getValue())
@@ -94,5 +101,6 @@ onBeforeUnmount(() => {
   if (editor) {
     editor.dispose()
   }
+  menuDisposable?.dispose()
 })
 </script>
