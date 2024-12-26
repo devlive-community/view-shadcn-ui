@@ -2,6 +2,7 @@ export interface ContributionOption
 {
     date: string
     count: number
+    weekday: number
 }
 
 export interface ContributionProps
@@ -14,6 +15,7 @@ export interface ContributionProps
     showMonth?: boolean
     cellSize?: number
     cellGap?: number
+    year?: number
 }
 
 export type ContributionEmits = {

@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 min-h-screen">
+  <div class="p-4 min-h-screen space-y-6">
     <h2 class="text-xl font-semibold mb-4">Contribution Graph</h2>
     <ShadcnContribution :data="contributionData"
                         :color-scheme="customColorScheme"
@@ -17,6 +17,11 @@
              }"/>
       </template>
     </ShadcnContribution>
+
+    <ShadcnContribution :data="contributionData"
+                        :color-scheme="customColorScheme"
+                        :year="2025"
+                        @on-select="handleSelect"/>
 
     <div class="mt-4">
       Selected: {{ selectedDate }} - {{ selectedCount }} contributions

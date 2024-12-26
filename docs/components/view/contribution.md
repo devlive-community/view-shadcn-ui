@@ -172,6 +172,26 @@ This document describes the features and usage of the ShadcnContribution compone
 
 :::
 
+## Year
+
+::: raw
+
+<CodeRunner title="Year">
+    <ShadcnContribution :data="data" :year="2023" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnContribution :data="data" :year="2023" />
+</template>
+```
+
+:::
+
 ## Contribution Props
 
 <ApiTable title="Props"
@@ -184,7 +204,8 @@ This document describes the features and usage of the ShadcnContribution compone
         ['showWeek', 'showWeek value', 'boolean', 'true', '-'],
         ['showMonth', 'showMonth value', 'boolean', 'true', '-'],
         ['cellSize', 'cellSize value', 'number', '16', '-'],
-        ['cellGap', 'cellGap value', 'number', '4', '-']
+        ['cellGap', 'cellGap value', 'number', '4', '-'],
+        ['year', 'year value', 'number', '-', '-']
     ]">
 </ApiTable>
 
