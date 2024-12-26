@@ -9,6 +9,7 @@ export interface ContributionProps
     data: Array<ContributionOption>
     colorScheme?: Array<string>
     yearCount?: number
+    showLegend?: boolean
 }
 
 export type ContributionEmits = {

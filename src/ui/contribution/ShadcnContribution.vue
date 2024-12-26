@@ -19,10 +19,14 @@
           {{ month.label }}
         </div>
       </div>
+
       <div class="grid grid-rows-7 grid-flow-col gap-1">
         <div v-for="(item, index) in contributionData"
              :key="index"
-             :class="['w-3 h-3 rounded-sm cursor-pointer relative']"
+             :class="[
+               'w-3 h-3 rounded-sm cursor-pointer relative transition-all duration-200',
+               'hover:scale-125 hover:z-10'
+             ]"
              :style="{ backgroundColor: getColor(item.count) }"
              @mouseenter="showTooltip($event, item)"
              @mouseleave="hideTooltip"
@@ -37,6 +41,34 @@
           </div>
         </div>
       </div>
+
+      <div v-if="showLegend" class="flex items-center gap-2 mt-2 text-xs text-gray-500 justify-end">
+        <span>Less</span>
+        <div class="flex gap-1 relative"
+             @mouseenter="showLegendTooltip"
+             @mouseleave="hideLegendTooltip">
+          <div v-for="(color, index) in props.colorScheme"
+               :key="index"
+               :style="{ backgroundColor: color }"
+               class="w-3 h-3 rounded-sm cursor-help">
+          </div>
+
+          <div v-if="showLegendDetail"
+               class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 p-2 bg-gray-800 rounded text-white whitespace-nowrap z-50 transition-all duration-200">
+            <div class="flex flex-col gap-1.5">
+              <div v-for="(range, index) in contributionRanges"
+                   :key="index"
+                   class="flex items-center gap-1">
+                <div :style="{ backgroundColor: props.colorScheme[index] }"
+                     class="w-2 h-2 rounded-sm">
+                </div>
+                <span>{{ range }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <span>More</span>
+      </div>
     </div>
   </div>
 </template>
@@ -49,7 +81,8 @@ import { calcSize } from '@/utils/common.ts'
 
 const props = withDefaults(defineProps<ContributionProps>(), {
   colorScheme: () => ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39'],
-  yearCount: 1
+  yearCount: 1,
+  showLegend: true
 })
 
 const emit = defineEmits<ContributionEmits>()
@@ -161,4 +194,22 @@ const formatDate = (dateString: string) => {
     day: 'numeric'
   })
 }
+
+const showLegendDetail = ref(false)
+
+const showLegendTooltip = () => {
+  showLegendDetail.value = true
+}
+
+const hideLegendTooltip = () => {
+  showLegendDetail.value = false
+}
+
+const contributionRanges = computed(() => [
+  'No contributions',
+  '1-3 contributions',
+  '4-6 contributions',
+  '7-9 contributions',
+  '10+ contributions'
+])
 </script>
