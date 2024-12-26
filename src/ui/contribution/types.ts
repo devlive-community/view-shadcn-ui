@@ -10,6 +10,8 @@ export interface ContributionProps
     colorScheme?: Array<string>
     yearCount?: number
     showLegend?: boolean
+    cellSize?: number
+    cellGap?: number
 }
 
 export type ContributionEmits = {

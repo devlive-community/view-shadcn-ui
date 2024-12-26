@@ -1,6 +1,10 @@
 <template>
   <div class="flex">
-    <div class="flex flex-col mt-6 justify-between mr-2 text-xs text-gray-500 text-center h-[94px] select-none">
+    <div class="flex flex-col mt-6 justify-between mr-2 text-xs text-gray-500 text-center h-[94px] select-none"
+         :style="{
+             height: `${7 * cellSize + 6 * cellGap}px`,
+             marginTop: `${MONTH_LABEL_HEIGHT}px`
+           }">
       <span>{{ t('datePicker.text.sunday') }}</span>
       <span>{{ t('datePicker.text.monday') }}</span>
       <span>{{ t('datePicker.text.tuesday') }}</span>
@@ -11,46 +15,56 @@
     </div>
 
     <div>
-      <div class="relative h-4 mb-2.5 select-none">
+      <div class="relative select-none"
+           :style="{ height: `${MONTH_LABEL_HEIGHT}px` }">
         <div v-for="(month, index) in monthLabels"
              :key="index"
              class="absolute text-xs text-gray-500"
-             :style="{ left: calcSize(month.offset) }">
+             :style="{ left: `${month.offset}px` }">
           {{ month.label }}
         </div>
       </div>
 
-      <div class="grid grid-rows-7 grid-flow-col gap-1">
+      <div class="grid grid-rows-7 grid-flow-col gap-1"
+           :style="`gap: ${cellGap}px`">
         <div v-for="(item, index) in contributionData"
              :key="index"
              :class="[
-               'w-3 h-3 rounded-sm cursor-pointer relative transition-all duration-200',
+               'rounded-sm cursor-pointer relative transition-all duration-200',
                'hover:scale-125 hover:z-10'
              ]"
-             :style="{ backgroundColor: getColor(item.count) }"
+             :style="{
+                 backgroundColor: getColor(item.count),
+                 width: `${cellSize}px`,
+                 height: `${cellSize}px`
+             }"
              @mouseenter="showTooltip($event, item)"
              @mouseleave="hideTooltip"
              @click="onSelect(item)">
           <div v-if="activeTooltip?.date === item.date"
-               class="absolute z-50 px-2 py-1 text-xs text-white bg-gray-800 rounded whitespace-nowrap"
+               class="absolute z-50 px-2 py-1 text-white bg-gray-800 rounded whitespace-nowrap"
                style="bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 4px;">
-            <div class="flex flex-col">
+            <div class="flex flex-col text-xs">
               <span>{{ formatDate(item.date) }}</span>
-              <span>{{ item.count }} contributions</span>
+              <span>{{ item.count }} {{ t('contribution.text.contribution') }}</span>
             </div>
           </div>
         </div>
       </div>
 
       <div v-if="showLegend" class="flex items-center gap-2 mt-2 text-xs text-gray-500 justify-end">
-        <span>Less</span>
+        <span>{{ t('contribution.text.less') }}</span>
         <div class="flex gap-1 relative"
              @mouseenter="showLegendTooltip"
              @mouseleave="hideLegendTooltip">
           <div v-for="(color, index) in props.colorScheme"
                :key="index"
-               :style="{ backgroundColor: color }"
-               class="w-3 h-3 rounded-sm cursor-help">
+               :style="{
+                 backgroundColor: color,
+                 width: `${cellSize}px`,
+                 height: `${cellSize}px`
+               }"
+               class="rounded-sm cursor-help">
           </div>
 
           <div v-if="showLegendDetail"
@@ -59,15 +73,19 @@
               <div v-for="(range, index) in contributionRanges"
                    :key="index"
                    class="flex items-center gap-1">
-                <div :style="{ backgroundColor: props.colorScheme[index] }"
-                     class="w-2 h-2 rounded-sm">
+                <div :style="{
+                       backgroundColor: props.colorScheme[index],
+                       width: `${Math.max(cellSize - 2, 8)}px`,
+                       height: `${Math.max(cellSize - 2, 8)}px`
+                     }"
+                     class="rounded-sm">
                 </div>
                 <span>{{ range }}</span>
               </div>
             </div>
           </div>
         </div>
-        <span>More</span>
+        <span>{{ t('contribution.text.more') }}</span>
       </div>
     </div>
   </div>
@@ -77,15 +95,18 @@
 import { computed, ref } from 'vue'
 import { t } from '@/utils/locale'
 import { type ContributionEmits, ContributionOption, type ContributionProps } from './types'
-import { calcSize } from '@/utils/common.ts'
 
 const props = withDefaults(defineProps<ContributionProps>(), {
   colorScheme: () => ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39'],
   yearCount: 1,
-  showLegend: true
+  showLegend: true,
+  cellSize: 16,
+  cellGap: 4
 })
 
 const emit = defineEmits<ContributionEmits>()
+
+const MONTH_LABEL_HEIGHT = 20
 
 // Get last N years of dates
 // 获取过去N年的日期
@@ -144,7 +165,7 @@ const monthLabels = computed(() => {
       if (month !== currentMonth) {
         labels.push({
           label: monthNames[month],
-          offset: calcSize(weekCounter * (12 + 4))
+          offset: weekCounter * (props.cellSize + props.cellGap)
         })
         currentMonth = month
       }
@@ -206,10 +227,10 @@ const hideLegendTooltip = () => {
 }
 
 const contributionRanges = computed(() => [
-  'No contributions',
-  '1-3 contributions',
-  '4-6 contributions',
-  '7-9 contributions',
-  '10+ contributions'
+  '0',
+  '1-3',
+  '4-6',
+  '7-9',
+  '10+'
 ])
 </script>

@@ -283,5 +283,12 @@ export default {
             nextExecutionTime: 'Next execution time',
             nextExecutionTimeAtOnN: '{{ n }}th execution time: {{ time }}',
         }
+    },
+    contribution: {
+        text: {
+            less: 'Less',
+            more: 'More',
+            contribution: 'Contribution'
+        }
     }
 }

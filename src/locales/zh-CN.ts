@@ -283,5 +283,12 @@ export default {
             nextExecutionTime: '下次执行时间',
             nextExecutionTimeAtOnN: '第 {{ n }} 次执行时间: {{ time }}'
         }
+    },
+    contribution: {
+        text: {
+            less: '少',
+            more: '多',
+            contribution: '贡献'
+        }
     }
 }
