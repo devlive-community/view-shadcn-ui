@@ -13,7 +13,7 @@ import ShadcnInput from '@/ui/input'
 import ShadcnIcon from '@/ui/icon'
 import ShadcnModal from '@/ui/modal'
 import ShadcnTooltip from '@/ui/tooltip'
-import ShadcnCode from '@/ui/code'
+import { ShadcnCodeEditor } from '@/ui/code-editor'
 import ShadcnRow from '@/ui/row'
 import ShadcnCol from '@/ui/col/ShadcnCol.vue'
 import ShadcnDivider from '@/ui/divider'
@@ -104,7 +104,7 @@ let components = [
     ShadcnButtonGroup,
     ShadcnCard,
     ShadcnCopy,
-    ShadcnCode,
+    ShadcnCodeEditor,
     ShadcnInput,
     ShadcnIcon,
     ShadcnModal,
@@ -234,7 +234,7 @@ export { default as ShadcnButton } from '@/ui/button'
 export { default as ShadcnButtonGroup } from '@/ui/button/group'
 export { default as ShadcnCard } from '@/ui/card'
 export { default as ShadcnCopy } from '@/ui/copy'
-export { default as ShadcnCode } from '@/ui/code'
+export { ShadcnCodeEditor } from '@/ui/code-editor'
 export { default as ShadcnInput } from '@/ui/input'
 export { default as ShadcnIcon } from '@/ui/icon'
 export { default as ShadcnModal } from '@/ui/modal'
