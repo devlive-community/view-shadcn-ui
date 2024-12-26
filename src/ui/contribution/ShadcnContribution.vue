@@ -22,16 +22,27 @@
       <div class="grid grid-rows-7 grid-flow-col gap-1">
         <div v-for="(item, index) in contributionData"
              :key="index"
-             :class="['w-3 h-3 rounded-sm cursor-pointer']"
+             :class="['w-3 h-3 rounded-sm cursor-pointer relative']"
              :style="{ backgroundColor: getColor(item.count) }"
-             @click="onSelect(item)"/>
+             @mouseenter="showTooltip($event, item)"
+             @mouseleave="hideTooltip"
+             @click="onSelect(item)">
+          <div v-if="activeTooltip?.date === item.date"
+               class="absolute z-50 px-2 py-1 text-xs text-white bg-gray-800 rounded whitespace-nowrap"
+               style="bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 4px;">
+            <div class="flex flex-col">
+              <span>{{ formatDate(item.date) }}</span>
+              <span>{{ item.count }} contributions</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { t } from '@/utils/locale'
 import { type ContributionEmits, ContributionOption, type ContributionProps } from './types'
 import { calcSize } from '@/utils/common.ts'
@@ -131,5 +142,23 @@ const getColor = (count: number) => {
 
 const onSelect = (item: ContributionOption) => {
   emit('on-select', item)
+}
+
+const activeTooltip = ref<ContributionOption | null>(null)
+
+const showTooltip = (_event: MouseEvent, item: ContributionOption) => {
+  activeTooltip.value = item
+}
+
+const hideTooltip = () => {
+  activeTooltip.value = null
+}
+
+const formatDate = (dateString: string) => {
+  return new Date(dateString).toLocaleDateString(undefined, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  })
 }
 </script>
