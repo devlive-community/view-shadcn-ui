@@ -1,7 +1,19 @@
 <template>
   <div class="p-4 min-h-screen space-y-6">
     <h2 class="text-xl font-semibold mb-4">Code</h2>
-    <ShadcnCodeEditor v-model="value" language="typescript"/>
+    <ShadcnCodeEditor v-model="value"
+                      :auto-complete-config="{
+                          endpoint: 'https://www.ip.cn/api/index?ip&type=0',
+                          trigger: ['.', '@'],
+                          transform: (data: any) => {
+                            return data.items.map((item: any) => ({
+                              label: item.name,
+                              insertText: item.code,
+                              detail: item.description
+                            }))
+                          }
+                        }"
+    />
   </div>
 </template>
 

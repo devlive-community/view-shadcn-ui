@@ -9,6 +9,8 @@ import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import * as monaco from 'monaco-editor'
 import { CodeEditorEmits, CodeEditorProps } from './types'
 import { calcSize } from '@/utils/common.ts'
+import { registerApiCompletion } from '@/ui/code-editor/feature/auto-completion.ts'
+import { disableLanguageValidation } from '@/ui/code-editor/feature/disable_language_validation.ts'
 
 const props = withDefaults(defineProps<CodeEditorProps>(), {
   height: 300,
@@ -16,7 +18,8 @@ const props = withDefaults(defineProps<CodeEditorProps>(), {
     language: 'javascript',
     fontSize: 18,
     tabSize: 2
-  } as any
+  } as any,
+  disableValidation: true
 })
 
 const emit = defineEmits<CodeEditorEmits>()
@@ -27,6 +30,10 @@ let editor: monaco.editor.IStandaloneCodeEditor | null = null
 const initEditor = () => {
   if (!editorContainer.value) {
     return
+  }
+
+  if (props.disableValidation) {
+    ['typescript', 'javascript', 'css', 'json'].forEach(language => disableLanguageValidation(language))
   }
 
   const options: monaco.editor.IStandaloneEditorConstructionOptions = {
@@ -66,8 +73,21 @@ const updateEditorContent = () => {
 watch(() => props.config, updateEditorOptions)
 watch(() => props.modelValue, updateEditorContent)
 
+const setupApiCompletion = () => {
+  if (!editor || !props.autoCompleteConfig) {
+    return
+  }
+
+  const disposable = registerApiCompletion(editor, props.autoCompleteConfig)
+
+  onBeforeUnmount(() => {
+    disposable.dispose()
+  })
+}
+
 onMounted(() => {
   initEditor()
+  setupApiCompletion()
 })
 
 onBeforeUnmount(() => {

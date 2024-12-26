@@ -290,5 +290,10 @@ export default {
             more: 'More',
             contribution: 'Contribution'
         }
+    },
+    codeEditor: {
+        text: {
+            loading: 'Loading code hint...'
+        }
     }
 }

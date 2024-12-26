@@ -290,5 +290,10 @@ export default {
             more: '多',
             contribution: '贡献'
         }
+    },
+    codeEditor: {
+        text: {
+            loading: '正在加载代码提示...'
+        }
     }
 }

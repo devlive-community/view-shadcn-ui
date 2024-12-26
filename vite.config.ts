@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue'
 
 import tailwind from 'tailwindcss'
 import autoprefixer from 'autoprefixer'
+import monacoEditorPlugin from 'vite-plugin-monaco-editor'
 
 export default defineConfig({
     // base: '/devlive-community/shadcn-ui-vue-admin',
@@ -12,7 +13,10 @@ export default defineConfig({
             plugins: [tailwind(), autoprefixer()]
         }
     },
-    plugins: [vue()],
+    plugins: [
+        vue(),
+        monacoEditorPlugin({})
+    ],
     resolve: {
         alias: {
             '@': path.resolve(__dirname, './src')
