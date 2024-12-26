@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- Define gradient -->
+    <defs>
+        <linearGradient id="contributorGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#93c5fd;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#a5b4fc;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="100" fill="url(#contributorGradient)" opacity="0.2" />
+
+    <!-- User head -->
+    <circle cx="100" cy="80" r="20" fill="white" stroke="#93c5fd" stroke-width="4" />
+
+    <!-- User body -->
+    <path d="M85 110 Q100 130 115 110 Q120 120 120 130 L80 130 Q80 120 85 110 Z"
+          fill="white" stroke="#93c5fd" stroke-width="4" />
+
+    <!-- Star badge -->
+    <circle cx="140" cy="60" r="15" fill="#facc15" stroke="white" stroke-width="2" />
+    <path d="M140 52 L143 58 L150 59 L145 64 L146 71 L140 68 L134 71 L135 64 L130 59 L137 58 Z"
+          fill="white" />
+
+    <!-- Contribution line (decoration) -->
+    <line x1="70" y1="150" x2="130" y2="150" stroke="#60a5fa" stroke-width="4" stroke-linecap="round" />
+</svg>
