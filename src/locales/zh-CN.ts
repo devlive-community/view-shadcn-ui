@@ -303,7 +303,9 @@ export default {
         },
         validated: {
             endpoint: '必须提供 API 接口地址',
-            transform: '必须提供转换函数'
+            transform: '必须提供转换函数',
+            regex: '正则表达式无效',
+            search: '搜索错误'
         }
     }
 }

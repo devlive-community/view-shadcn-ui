@@ -4,7 +4,7 @@ import { t } from '@/utils/locale'
 import ShadcnIcon from '@/ui/icon'
 import { CodeEditorSearchProps } from '@/ui/code-editor/types.ts'
 
-export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor, config: CodeEditorSearchProps)
+export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor, _config: CodeEditorSearchProps)
 {
     const searchPanelEl = document.createElement('div')
     searchPanelEl.className = 'fixed z-[9999] bg-white rounded-md shadow-lg border border-gray-200 transition-opacity duration-200 ease-in-out opacity-0 pointer-events-none'
@@ -124,6 +124,8 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
         render(nextIconVNode, nextButton)
         actionWrapper.appendChild(nextButton)
 
+        // 全字匹配
+        // Match whole word
         const matchWholeWordButton = document.createElement('button')
         matchWholeWordButton.className = 'p-1 hover:bg-gray-100 rounded'
         const wordIconVNode = h(ShadcnIcon, {
@@ -133,6 +135,18 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
         })
         render(wordIconVNode, matchWholeWordButton)
         actionWrapper.appendChild(matchWholeWordButton)
+
+        // 正则
+        // Regex
+        const regexButton = document.createElement('button')
+        regexButton.className = 'p-1 hover:bg-gray-100 rounded'
+        const regexIconVNode = h(ShadcnIcon, {
+            icon: 'Code',
+            size: 14,
+            class: 'w-4 h-4 text-gray-600'
+        })
+        render(regexIconVNode, regexButton)
+        actionWrapper.appendChild(regexButton)
 
         const caseButton = document.createElement('button')
         caseButton.className = 'p-1 hover:bg-gray-100 rounded'
@@ -160,8 +174,9 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
 
         // 搜索状态管理
         // Search state management
-        let caseSensitive = config.caseSensitive || false
-        let matchWholeWord = config.matchWholeWord || false
+        let caseSensitive = false
+        let matchWholeWord = false
+        let useRegex = false
         let searchState = [] as any
         let currentMatchIndex = -1
 
@@ -185,45 +200,71 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
                 return
             }
 
-            // 执行搜索
-            // Perform search
-            searchState = model.findMatches(
-                searchText,
-                true,
-                matchWholeWord,
-                caseSensitive,
-                null,
-                true
-            )
-
-            // 更新计数器
-            // Update counter
-            currentMatchIndex = searchState.length > 0 ? 0 : -1
-            matchCount.textContent = searchState.length > 0
-                ? `${ currentMatchIndex + 1 }/${ searchState.length }`
-                : '0/0'
-
-            // 高亮所有匹配项
-            // Highlight all matches
-            if (searchState.length > 0) {
-                const decorationOptions = searchState.map((match, index) => ({
-                    range: match.range,
-                    options: {
-                        className: index === currentMatchIndex ? 'bg-blue-200' : 'bg-yellow-100',
-                        isWholeLine: false,
-                        stickiness: monaco.editor.TrackedRangeStickiness.NeverGrowsWhenTypingAtEdges
+            try {
+                let searchPattern = searchText
+                if (useRegex) {
+                    try {
+                        // 尝试创建正则表达式
+                        // Try to create a regular expression
+                        new RegExp(searchText)
+                        searchPattern = searchText
                     }
-                }))
-                decorations = model.deltaDecorations([], decorationOptions)
+                    catch (e) {
+                        // 正则表达式无效
+                        // Invalid regular expression
+                        searchState = []
+                        currentMatchIndex = -1
+                        matchCount.textContent = t('codeMirror.validated.regex')
+                        return
+                    }
+                }
 
-                // 跳转到第一个匹配项
-                // Jump to the first match
-                const match = searchState[currentMatchIndex]
-                editor.revealRangeInCenterIfOutsideViewport(match.range)
-                editor.setPosition({
-                    lineNumber: match.range.startLineNumber,
-                    column: match.range.startColumn
-                })
+                // 执行搜索
+                // Perform search
+                searchState = model.findMatches(
+                    searchPattern,
+                    !useRegex,
+                    matchWholeWord,
+                    caseSensitive,
+                    null,
+                    true
+                )
+
+                // 更新计数器
+                // Update counter
+                currentMatchIndex = searchState.length > 0 ? 0 : -1
+                matchCount.textContent = searchState.length > 0
+                    ? `${ currentMatchIndex + 1 }/${ searchState.length }`
+                    : '0/0'
+
+                // 高亮所有匹配项
+                // Highlight all matches
+                if (searchState.length > 0) {
+                    const decorationOptions = searchState.map((match, index) => ({
+                        range: match.range,
+                        options: {
+                            className: index === currentMatchIndex ? 'bg-blue-200' : 'bg-yellow-100',
+                            isWholeLine: false,
+                            stickiness: monaco.editor.TrackedRangeStickiness.NeverGrowsWhenTypingAtEdges
+                        }
+                    }))
+                    decorations = model.deltaDecorations([], decorationOptions)
+
+                    // 跳转到第一个匹配项
+                    // Jump to the first match
+                    const match = searchState[currentMatchIndex]
+                    editor.revealRangeInCenterIfOutsideViewport(match.range)
+                    editor.setPosition({
+                        lineNumber: match.range.startLineNumber,
+                        column: match.range.startColumn
+                    })
+                }
+            }
+            catch (e) {
+                console.error('Search error:', e)
+                searchState = []
+                currentMatchIndex = -1
+                matchCount.textContent = t('codeMirror.validated.search')
             }
         }
 
@@ -336,12 +377,32 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
             if (model && decorations.length > 0) {
                 decorations = model.deltaDecorations(decorations, [])
             }
+            searchInput.value = ''
+            searchInput.style.color = ''
+            replaceInput.value = ''
             editor.focus()
         }
 
         // 事件绑定
         // Event binding
         searchInput.addEventListener('input', () => {
+            const value = searchInput.value.trim()
+            if (useRegex && value) {
+                try {
+                    new RegExp(value)
+                    searchInput.style.color = ''
+                }
+                catch (e) {
+                    // 无效正则时显示红色
+                    // Invalid regex
+                    searchInput.style.color = 'red'
+                }
+            }
+            else {
+                // 非正则模式下恢复正常颜色
+                // Normal color
+                searchInput.style.color = ''
+            }
             requestAnimationFrame(search)
         })
         prevButton.onclick = () => navigateToMatch('prev')
@@ -350,7 +411,13 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
 
         matchWholeWordButton.onclick = () => {
             matchWholeWord = !matchWholeWord
-            matchWholeWordButton.className = `p-1 hover:bg-gray-100 rounded ${matchWholeWord ? 'bg-blue-100' : ''}`
+            matchWholeWordButton.className = `p-1 hover:bg-gray-100 rounded ${ matchWholeWord ? 'bg-blue-100' : '' }`
+            search()
+        }
+
+        regexButton.onclick = () => {
+            useRegex = !useRegex
+            regexButton.className = `p-1 hover:bg-gray-100 rounded ${ useRegex ? 'bg-blue-100' : '' }`
             search()
         }
 

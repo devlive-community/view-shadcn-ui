@@ -303,7 +303,9 @@ export default {
         },
         validated: {
             endpoint: 'The API interface address must be provided',
-            transform: 'The transform function must be provided'
+            transform: 'The transform function must be provided',
+            regex: 'The regex is invalid',
+            search: 'Search error'
         }
     }
 }
