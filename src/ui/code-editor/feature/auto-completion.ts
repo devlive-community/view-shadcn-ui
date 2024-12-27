@@ -128,39 +128,85 @@ export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEdito
         async provideCompletionItems(model, position)
         {
             try {
-                // 显示加载状态
-                // Show the loading state
-                const coords = editor.getScrolledVisiblePosition(position)
                 const editorDom = editor.getDomNode()
-                if (coords && editorDom) {
-                    completionContainer.style.display = 'block'
-                    loadingContainer.style.display = 'flex'
-                    suggestionsList.style.display = 'none'
-
-                    // 计算最佳显示位置
-                    // Calculate the best display position
-                    const containerWidth = completionContainer.offsetWidth || 300
-                    const containerHeight = completionContainer.offsetHeight || 200
-
-                    // 计算左侧位置，避免超出右边界
-                    // Calculate the left position， avoid exceeding the right border
-                    let leftPos = editorDom.offsetLeft + coords.left
-                    const maxLeft = window.innerWidth - containerWidth - 20
-                    if (leftPos > maxLeft) {
-                        leftPos = maxLeft
-                    }
-
-                    // 计算顶部位置，避免超出底部边界
-                    // Calculate the top position， avoid exceeding the bottom border
-                    let topPos = editorDom.offsetTop + coords.top + 20
-                    const maxTop = window.innerHeight - containerHeight - 20
-                    if (topPos > maxTop) {
-                        topPos = editorDom.offsetTop + coords.top - containerHeight - 10
-                    }
-
-                    completionContainer.style.top = `${ topPos }px`
-                    completionContainer.style.left = `${ leftPos }px`
+                if (!editorDom) {
+                    return { suggestions: [] }
                 }
+
+                // 显示加载状态
+                // Show loading state
+                loadingContainer.style.display = 'flex'
+                suggestionsList.style.display = 'none'
+                completionContainer.style.display = 'block'
+
+                // 获取编辑器视口和内容的信息
+                // Get editor viewport and content information
+                const editorRect = editorDom.getBoundingClientRect()
+                const viewportColumn = position.column
+                const viewportLine = position.lineNumber
+
+                // 获取光标在视口中的坐标
+                // Get cursor coordinates in viewport
+                const cursorCoords = editor.getScrolledVisiblePosition({
+                    lineNumber: viewportLine,
+                    column: viewportColumn
+                }) as any
+
+                // 计算容器尺寸
+                // Calculate container dimensions
+                const containerWidth = completionContainer.offsetWidth || 300
+                const containerHeight = completionContainer.offsetHeight || 200
+
+                // 基础位置计算
+                // Base position calculation
+                let leftPos = editorRect.left + cursorCoords.left
+                let topPos = editorRect.top + cursorCoords.top + 20
+
+                // 获取视窗尺寸
+                // Get viewport dimensions
+                const viewportWidth = window.innerWidth
+                const viewportHeight = window.innerHeight
+
+                // 边界检查和调整 - 水平方向
+                // Boundary check and adjustment - horizontal
+                if (leftPos + containerWidth > viewportWidth - 20) {
+                    // 如果右边超出，尝试显示在左边
+                    // If right is out of bounds, try to show it on the left
+                    leftPos = leftPos - containerWidth
+                    // 如果左边也显示不下，就贴着左边缘显示
+                    // If left is also not visible, show it on the left edge
+                    if (leftPos < 20) {
+                        leftPos = 20
+                    }
+                }
+                // 确保不会超出左边界
+                // Ensure left boundary is not exceeded
+                if (leftPos < 20) {
+                    leftPos = 20
+                }
+
+                // 边界检查和调整 - 垂直方向
+                // Boundary check and adjustment - vertical
+                if (topPos + containerHeight > viewportHeight - 20) {
+                    // 如果底部超出，显示在光标上方
+                    // If bottom is out of bounds, show it above the cursor
+                    topPos = editorRect.top + cursorCoords.top - containerHeight - 10
+                    // 如果上方也显示不下，就贴着顶部显示
+                    // If top is also not visible, show it at the top
+                    if (topPos < 20) {
+                        topPos = 20
+                    }
+                }
+                // 确保不会超出顶部边界
+                // Ensure top boundary is not exceeded
+                if (topPos < 20) {
+                    topPos = 20
+                }
+
+                // 应用计算后的位置
+                // Apply calculated position
+                completionContainer.style.left = `${ leftPos }px`
+                completionContainer.style.top = `${ topPos }px`
 
                 const word = model.getWordUntilPosition(position)
                 currentWord = word.word
@@ -208,22 +254,14 @@ export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEdito
                 }
 
                 const suggestions = config.transform ? config.transform(data) : data
-
-                // 限制建议数量, 这里最好是服务端处理
-                // Limit the number of suggestions, this is best handled by the server
                 const limitedSuggestions = suggestions?.slice(0, config.maxSuggestions)
 
                 // 更新建议列表
-                // Update the suggestions
+                // Update suggestions list
                 currentTooltipCleanups.forEach(cleanup => cleanup())
                 currentTooltipCleanups = []
                 suggestionsList.innerHTML = ''
                 selectedIndex = 0
-
-                // 清理之前的 tooltips
-                // Clean up previous tooltips
-                currentTooltipCleanups.forEach(cleanup => cleanup())
-                currentTooltipCleanups = []
 
                 if (limitedSuggestions && limitedSuggestions.length > 0) {
                     limitedSuggestions.forEach((item: any, index: number) => {
@@ -261,8 +299,6 @@ export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEdito
             catch (error) {
                 console.error('API completion error:', error)
                 completionContainer.style.display = 'none'
-                // 清理当前所有的 tooltips
-                // Clean up all tooltips
                 currentTooltipCleanups.forEach(cleanup => cleanup())
                 currentTooltipCleanups = []
                 return { suggestions: [] }
