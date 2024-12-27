@@ -4,6 +4,72 @@ import { t } from '@/utils/locale'
 import ShadcnIcon from '@/ui/icon'
 import { CodeEditorSearchProps } from '@/ui/code-editor/types.ts'
 
+function renderPreviewPanel()
+{
+    const previewPanel = document.createElement('div')
+    previewPanel.className = 'hidden max-h-[200px] overflow-y-auto border-t border-gray-200'
+
+    // 预览内容容器
+    // Preview content container
+    const previewContent = document.createElement('div')
+    previewContent.className = 'p-2'
+    previewPanel.appendChild(previewContent)
+
+    return {
+        panel: previewPanel,
+        updatePreview: (match: monaco.editor.FindMatch, model: monaco.editor.ITextModel) => {
+            const lineNumber = match.range.startLineNumber
+            const startLine = Math.max(1, lineNumber - 1)
+            const endLine = Math.min(model.getLineCount(), lineNumber + 1)
+
+            // 获取上下文内容
+            // Get context
+            let previewHtml = ''
+            for (let i = startLine; i <= endLine; i++) {
+                const lineContent = model.getLineContent(i)
+                const lineClass = i === lineNumber ? 'bg-yellow-50' : ''
+                const lineNumberClass = 'text-gray-400 select-none pr-2 w-8 inline-block text-right'
+
+                if (i === lineNumber) {
+                    // 高亮匹配文本
+                    // Highlight matched text
+                    const beforeMatch = lineContent.substring(0, match.range.startColumn - 1)
+                    const matchedText = lineContent.substring(match.range.startColumn - 1, match.range.endColumn - 1)
+                    const afterMatch = lineContent.substring(match.range.endColumn - 1)
+
+                    previewHtml += `
+                        <div class="${ lineClass }">
+                            <span class="${ lineNumberClass }">${ i }</span>
+                            <span>${ beforeMatch }</span>
+                            <span class="bg-yellow-200">${ matchedText }</span>
+                            <span>${ afterMatch }</span>
+                        </div>`
+                }
+                else {
+                    previewHtml += `
+                        <div>
+                            <span class="${ lineNumberClass }">${ i }</span>
+                            <span>${ lineContent }</span>
+                        </div>`
+                }
+            }
+
+            previewContent.innerHTML = previewHtml
+        },
+        show: () => {
+            previewPanel.className = previewPanel.className.replace('hidden', '')
+        },
+        hide: () => {
+            if (!previewPanel.className.includes('hidden')) {
+                previewPanel.className += ' hidden'
+            }
+        },
+        clear: () => {
+            previewContent.innerHTML = ''
+        }
+    }
+}
+
 export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor, _config: CodeEditorSearchProps)
 {
     const searchPanelEl = document.createElement('div')
@@ -115,6 +181,9 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
                 historyPanel.appendChild(historyItem)
             })
         }
+
+        const preview = renderPreviewPanel()
+        container.appendChild(preview.panel)
 
         // 搜索输入区域
         // Search input area
@@ -312,6 +381,13 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
                         lineNumber: match.range.startLineNumber,
                         column: match.range.startColumn
                     })
+
+                    preview.updatePreview(searchState[currentMatchIndex], model)
+                    preview.show()
+                }
+                else {
+                    preview.hide()
+                    preview.clear()
                 }
             }
             catch (e) {
@@ -389,6 +465,8 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
                 return
             }
 
+            preview.updatePreview(searchState[currentMatchIndex], model)
+
             // 更新当前索引
             // Update current index
             if (direction === 'next') {
@@ -435,6 +513,8 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
             searchInput.style.color = ''
             replaceInput.value = ''
             historyPanel.className = historyPanel.className + ' hidden'
+            preview.hide()
+            preview.clear()
             editor.focus()
         }
 
