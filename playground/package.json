@@ -1,0 +1,24 @@
+{
+  "name": "view-shadcn-ui-playground",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "view-shadcn-ui": "2024.5.4-alpha.1735315465",
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@vue/compiler-sfc": "^3.5.13",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.3.2",
+    "vite": "^4.4.0",
+    "vite-plugin-monaco-editor": "^1.1.0"
+  }
+}
