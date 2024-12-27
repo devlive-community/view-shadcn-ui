@@ -26,7 +26,8 @@ const props = withDefaults(defineProps<CodeEditorProps>(), {
     caseSensitive: false,
     replace: true,
     matchWholeWord: false,
-    useRegex: false
+    useRegex: false,
+    showHistory: false
   } as any
 })
 

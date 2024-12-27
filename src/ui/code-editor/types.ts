@@ -42,6 +42,7 @@ export interface CodeEditorSearchProps
     replace?: boolean
     matchWholeWord?: boolean
     useRegex?: boolean
+    showHistory?: boolean
 }
 
 export interface CodeEditorProps

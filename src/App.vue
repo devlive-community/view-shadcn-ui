@@ -36,8 +36,7 @@
                            }]
                       }"
                       :search-config="{
-                          caseSensitive: false,
-                          replace: true
+                          showHistory: true
                       }"
     />
   </div>

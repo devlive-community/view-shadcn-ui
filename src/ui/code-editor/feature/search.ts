@@ -13,6 +13,12 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
     // 存储所有需要清理的订阅
     // Store all subscriptions
     const disposables: monaco.IDisposable[] = []
+
+    // 存储搜索历史记录
+    // Store search history
+    let searchHistory: string[] = []
+    const MAX_HISTORY = 10
+
     // 存储搜索高亮的装饰器 IDs
     // Store search highlight decorations
     let decorations: string[] = []
@@ -24,6 +30,7 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
         const searchArea = document.createElement('div')
         searchArea.className = 'flex items-center px-2 py-1.5'
         container.appendChild(searchArea)
+
         const replaceArea = document.createElement('div')
         replaceArea.className = 'flex items-center px-2 py-1.5 border-t border-gray-200'
 
@@ -70,6 +77,44 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
         replaceArea.appendChild(replaceWrapper)
         replaceArea.appendChild(replaceActionWrapper)
         container.appendChild(replaceArea)
+
+        // 搜索历史
+        // Search history
+        const historyPanel = document.createElement('div')
+        historyPanel.className = 'hidden max-h-[200px] overflow-y-auto border-t border-gray-200'
+        container.appendChild(historyPanel)
+        const renderHistoryItems = () => {
+            if (!_config.showHistory) {
+                return
+            }
+            historyPanel.innerHTML = ''
+            searchHistory.forEach((term) => {
+                const historyItem = document.createElement('div')
+                historyItem.className = 'flex items-center px-2 py-1.5 hover:bg-gray-50 cursor-pointer'
+
+                const historyIcon = document.createElement('span')
+                historyIcon.className = 'mr-2'
+                const historyIconVNode = h(ShadcnIcon, {
+                    icon: 'History',
+                    size: 14,
+                    class: 'w-4 h-4 text-gray-400'
+                })
+                render(historyIconVNode, historyIcon)
+                historyItem.appendChild(historyIcon)
+
+                const termText = document.createElement('span')
+                termText.textContent = term
+                termText.className = 'text-sm text-gray-600'
+                historyItem.appendChild(termText)
+
+                historyItem.onclick = () => {
+                    searchInput.value = term
+                    search()
+                    historyPanel.className = historyPanel.className + ' hidden'
+                }
+                historyPanel.appendChild(historyItem)
+            })
+        }
 
         // 搜索输入区域
         // Search input area
@@ -182,6 +227,15 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
 
         const search = () => {
             const searchText = searchInput.value.trim()
+
+            if (searchText && _config.showHistory && !searchHistory.includes(searchText)) {
+                searchHistory.unshift(searchText)
+                if (searchHistory.length > MAX_HISTORY) {
+                    searchHistory.pop()
+                }
+                renderHistoryItems()
+            }
+
             const model = editor.getModel()
             if (!model) {
                 return
@@ -380,6 +434,7 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
             searchInput.value = ''
             searchInput.style.color = ''
             replaceInput.value = ''
+            historyPanel.className = historyPanel.className + ' hidden'
             editor.focus()
         }
 
@@ -387,6 +442,13 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
         // Event binding
         searchInput.addEventListener('input', () => {
             const value = searchInput.value.trim()
+            if (value && _config.showHistory) {
+                historyPanel.className = historyPanel.className.replace('hidden', '')
+            }
+            else {
+                historyPanel.className = historyPanel.className + ' hidden'
+            }
+
             if (useRegex && value) {
                 try {
                     new RegExp(value)
@@ -405,6 +467,13 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
             }
             requestAnimationFrame(search)
         })
+
+        searchInput.addEventListener('focus', () => {
+            if (_config.showHistory && searchHistory.length > 0) {
+                historyPanel.className = historyPanel.className.replace('hidden', '')
+            }
+        })
+
         prevButton.onclick = () => navigateToMatch('prev')
         nextButton.onclick = () => navigateToMatch('next')
         closeButton.onclick = closeSearch
