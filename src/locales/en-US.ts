@@ -297,6 +297,10 @@ export default {
             copy: 'Copy',
             cut: 'Cut',
             paste: 'Paste'
+        },
+        validated: {
+            endpoint: 'The API interface address must be provided',
+            transform: 'The transform function must be provided'
         }
     }
 }

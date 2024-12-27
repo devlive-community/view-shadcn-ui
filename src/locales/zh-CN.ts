@@ -297,6 +297,10 @@ export default {
             copy: '复制',
             cut: '剪切',
             paste: '粘贴'
+        },
+        validated: {
+            endpoint: '必须提供 API 接口地址',
+            transform: '必须提供转换函数'
         }
     }
 }

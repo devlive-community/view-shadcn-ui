@@ -16,6 +16,8 @@ export interface CodeEditorAutoCompleteProps
     transform?: (data: any) => monaco.languages.CompletionItem[]
     requestBody?: (context: CodeEditorAutoCompleteParams) => any;
     requestParams?: (context: CodeEditorAutoCompleteParams) => URLSearchParams;
+    maxSuggestions?: number
+    timeout?: number
 }
 
 export interface CodeEditorContextMenuItem
