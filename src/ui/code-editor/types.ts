@@ -40,6 +40,7 @@ export interface CodeEditorSearchProps
 {
     caseSensitive?: boolean
     replace?: boolean
+    matchWholeWord?: boolean
 }
 
 export interface CodeEditorProps

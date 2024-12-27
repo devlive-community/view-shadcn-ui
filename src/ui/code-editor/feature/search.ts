@@ -124,6 +124,16 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
         render(nextIconVNode, nextButton)
         actionWrapper.appendChild(nextButton)
 
+        const matchWholeWordButton = document.createElement('button')
+        matchWholeWordButton.className = 'p-1 hover:bg-gray-100 rounded'
+        const wordIconVNode = h(ShadcnIcon, {
+            icon: 'Text',
+            size: 14,
+            class: 'w-4 h-4 text-gray-600'
+        })
+        render(wordIconVNode, matchWholeWordButton)
+        actionWrapper.appendChild(matchWholeWordButton)
+
         const caseButton = document.createElement('button')
         caseButton.className = 'p-1 hover:bg-gray-100 rounded'
         const caseIconVNode = h(ShadcnIcon, {
@@ -151,6 +161,7 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
         // 搜索状态管理
         // Search state management
         let caseSensitive = config.caseSensitive || false
+        let matchWholeWord = config.matchWholeWord || false
         let searchState = [] as any
         let currentMatchIndex = -1
 
@@ -179,7 +190,7 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
             searchState = model.findMatches(
                 searchText,
                 true,
-                false,
+                matchWholeWord,
                 caseSensitive,
                 null,
                 true
@@ -336,6 +347,12 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
         prevButton.onclick = () => navigateToMatch('prev')
         nextButton.onclick = () => navigateToMatch('next')
         closeButton.onclick = closeSearch
+
+        matchWholeWordButton.onclick = () => {
+            matchWholeWord = !matchWholeWord
+            matchWholeWordButton.className = `p-1 hover:bg-gray-100 rounded ${matchWholeWord ? 'bg-blue-100' : ''}`
+            search()
+        }
 
         caseButton.onclick = () => {
             caseSensitive = !caseSensitive
