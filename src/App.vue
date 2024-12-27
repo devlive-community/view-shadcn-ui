@@ -9,6 +9,7 @@
                           transform: (data: any) => {
                             return data.map((item: any) => ({
                               label: item.title,
+                              icon: 'Save',
                               insertText: item.body,
                               detail: item.title
                             }))
@@ -20,7 +21,9 @@
                           // requestBody: (context) => ({
                           //     code: context.modelValue,
                           //     position: context.position
-                          // })
+                          // }),
+                          timeout: 1000,
+                          maxSuggestions: 10
                         }"
                       :context-menu-config="{
                            showDefaultItems: true,

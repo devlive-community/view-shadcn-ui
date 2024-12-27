@@ -18,6 +18,12 @@ All notable changes to this project will be documented in this file. See [standa
 - feat: support year
 - feat: support custom cell
 
+#### Code Editor
+
+- refactor: refactor code editor to use monaco editor
+- feat: support auto completion
+- feat: support context menu
+
 ### 2024.5.3 (2024-12-23)
 
 #### Core

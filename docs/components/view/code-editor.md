@@ -51,7 +51,7 @@ This document describes the features and usage of the ShadcnCodeEditor component
 ::: raw
 
 <CodeRunner title="Config">
-    <ShadcnCodeEditor v-model="value" config="language: 'javascript" />
+    <ShadcnCodeEditor v-model="value" :config="{language: 'javascript'}" />
 </CodeRunner>
 
 :::
@@ -60,11 +60,108 @@ This document describes the features and usage of the ShadcnCodeEditor component
 
 ```vue
 <template>
-    <ShadcnCodeEditor v-model="value" config="language: 'javascript" />
+  <ShadcnCodeEditor v-model="value" :config="{language: 'javascript'}" />
 </template>
 ```
 
 :::
+
+## Auto Completion
+
+::: raw
+
+<CodeRunner title="Auto Completion">
+    <ShadcnCodeEditor v-model="value"
+                      :auto-complete-config="{
+                          endpoint: 'http://jsonplaceholder.typicode.com/posts',
+                          method: 'GET',
+                          trigger: ['.', '@'],
+                          transform: (data: any) => {
+                            return data.map((item: any) => ({
+                              label: item.title,
+                              insertText: item.body,
+                              detail: item.title
+                            }))
+                          },
+                          // requestParams: (context) => ({
+                          //     word: context.word,
+                          //     line: context.position.lineNumber.toString()
+                          // }),
+                          // requestBody: (context) => ({
+                          //     code: context.modelValue,
+                          //     position: context.position
+                          // })
+                        }"/>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<ShadcnCodeEditor v-model="value"
+                      :auto-complete-config="{
+                          endpoint: 'http://jsonplaceholder.typicode.com/posts',
+                          method: 'GET',
+                          trigger: ['.', '@'],
+                          transform: (data: any) => {
+                            return data.map((item: any) => ({
+                              label: item.title,
+                              insertText: item.body,
+                              detail: item.title
+                            }))
+                          },
+                          // requestParams: (context) => ({
+                          //     word: context.word,
+                          //     line: context.position.lineNumber.toString()
+                          // }),
+                          // requestBody: (context) => ({
+                          //     code: context.modelValue,
+                          //     position: context.position
+                          // })
+                        }"/>
+```
+
+:::
+
+## Context Menu
+
+::: raw
+
+<CodeRunner title="Context Menu">
+    <ShadcnCodeEditor v-model="value"
+                      :context-menu-config="{
+                           showDefaultItems: true,
+                           items: [{
+                              label: 'Format Code',
+                              icon: 'Save',
+                              action: ({ editor, selection}) => {
+                                console.log(editor.getModel()?.getValueInRange(selection))
+                              }
+                           }]
+                      }"/>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+    <ShadcnCodeEditor v-model="value"
+                      :context-menu-config="{
+                           showDefaultItems: true,
+                           items: [{
+                              label: 'Format Code',
+                              icon: 'Save',
+                              action: ({ editor, selection}) => {
+                                console.log(editor.getModel()?.getValueInRange(selection))
+                              }
+                           }]
+                      }"/>
+```
+
+:::
+
 ## CodeEditor Props
 
 <ApiTable title="Props"
@@ -72,7 +169,9 @@ This document describes the features and usage of the ShadcnCodeEditor component
     :columns="[
         ['modelValue', 'modelValue value', 'string', '-', '-'],
         ['height', 'height value', 'number', '300', '-'],
-        ['config', 'see monaco.editor.IStandaloneEditorConstructionOptions', 'any', '{}', '-']
+        ['config', 'see monaco.editor.IStandaloneEditorConstructionOptions', 'any', '{}', '-'],
+        ['autoCompleteConfig', 'see CodeEditorAutoCompleteProps', 'any', '{}', '-'],
+        ['contextMenuConfig', 'see CodeEditorContextMenuProps', 'any', '{}', '-'],
     ]">
 </ApiTable>
 
