@@ -296,7 +296,8 @@ export default {
             loading: 'Loading code hint...',
             copy: 'Copy',
             cut: 'Cut',
-            paste: 'Paste'
+            paste: 'Paste',
+            findInContext: 'Find in context'
         },
         validated: {
             endpoint: 'The API interface address must be provided',

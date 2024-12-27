@@ -22,7 +22,9 @@ const props = withDefaults(defineProps<CodeEditorProps>(), {
     tabSize: 2
   } as any,
   disableValidation: true,
-  searchConfig: {} as any
+  searchConfig: {
+    caseSensitive: false
+  } as any
 })
 
 const emit = defineEmits<CodeEditorEmits>()
@@ -83,7 +85,7 @@ const initEditor = () => {
   }
 
   if (props.searchConfig) {
-    searchPanelDisposable = registerSearchPanel(editor)
+    searchPanelDisposable = registerSearchPanel(editor, props.searchConfig)
   }
 
   editor.onDidChangeModelContent(() => {

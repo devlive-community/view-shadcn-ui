@@ -38,6 +38,7 @@ export interface CodeEditorContextMenuProps
 
 export interface CodeEditorSearchProps
 {
+    caseSensitive?: boolean
     replace?: boolean
 }
 

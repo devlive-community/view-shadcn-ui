@@ -296,7 +296,8 @@ export default {
             loading: '正在加载代码提示...',
             copy: '复制',
             cut: '剪切',
-            paste: '粘贴'
+            paste: '粘贴',
+            findInContext: '在文中查找',
         },
         validated: {
             endpoint: '必须提供 API 接口地址',

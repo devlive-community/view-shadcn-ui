@@ -2,8 +2,9 @@ import * as monaco from 'monaco-editor'
 import { h, render } from 'vue'
 import { t } from '@/utils/locale'
 import ShadcnIcon from '@/ui/icon'
+import { CodeEditorSearchProps } from '@/ui/code-editor/types.ts'
 
-export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor)
+export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor, config: CodeEditorSearchProps)
 {
     const searchPanelEl = document.createElement('div')
     searchPanelEl.className = 'fixed z-[9999] bg-white rounded-md shadow-lg border border-gray-200 transition-opacity duration-200 ease-in-out opacity-0 pointer-events-none'
@@ -38,8 +39,8 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor)
         const searchInput = document.createElement('input')
         searchInput.type = 'text'
         searchInput.className = 'flex-1 outline-none text-sm'
-        searchInput.placeholder = typeof t('codeEditor.search.findInFile') === 'string'
-            ? t('codeEditor.search.findInFile')
+        searchInput.placeholder = typeof t('codeEditor.text.findInContext') === 'string'
+            ? t('codeEditor.text.findInContext')
             : 'Find in file'
         searchWrapper.appendChild(searchInput)
 
@@ -73,6 +74,16 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor)
         render(nextIconVNode, nextButton)
         actionWrapper.appendChild(nextButton)
 
+        const caseButton = document.createElement('button')
+        caseButton.className = 'p-1 hover:bg-gray-100 rounded'
+        const caseIconVNode = h(ShadcnIcon, {
+            icon: 'CaseLower',
+            size: 14,
+            class: 'w-4 h-4 text-gray-600'
+        })
+        render(caseIconVNode, caseButton)
+        actionWrapper.appendChild(caseButton)
+
         const closeButton = document.createElement('button')
         closeButton.className = 'p-1 hover:bg-gray-100 rounded ml-1'
         const closeIconVNode = h(ShadcnIcon, {
@@ -88,6 +99,7 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor)
 
         // 搜索状态管理
         // Search state management
+        let caseSensitive = config.caseSensitive || false
         let searchState = [] as any
         let currentMatchIndex = -1
 
@@ -117,7 +129,7 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor)
                 searchText,
                 true,
                 false,
-                true,
+                caseSensitive,
                 null,
                 true
             )
@@ -216,6 +228,17 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor)
         prevButton.onclick = () => navigateToMatch('prev')
         nextButton.onclick = () => navigateToMatch('next')
         closeButton.onclick = closeSearch
+
+        caseButton.onclick = () => {
+            caseSensitive = !caseSensitive
+            const newIconVNode = h(ShadcnIcon, {
+                icon: caseSensitive ? 'CaseUpper' : 'CaseLower',
+                size: 14,
+                class: 'w-4 h-4 text-gray-600'
+            })
+            render(newIconVNode, caseButton)
+            search()
+        }
 
         // 快捷键支持
         // Keyboard support
