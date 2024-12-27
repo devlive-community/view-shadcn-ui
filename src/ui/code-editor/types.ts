@@ -36,6 +36,15 @@ export interface CodeEditorContextMenuProps
     items?: CodeEditorContextMenuItem[]
 }
 
+export interface CodeEditorSearchProps
+{
+    caseSensitive?: boolean
+    replace?: boolean
+    matchWholeWord?: boolean
+    useRegex?: boolean
+    showHistory?: boolean
+}
+
 export interface CodeEditorProps
 {
     modelValue: string
@@ -44,6 +53,7 @@ export interface CodeEditorProps
     disableValidation?: boolean
     autoCompleteConfig?: CodeEditorAutoCompleteProps
     contextMenuConfig?: CodeEditorContextMenuProps
+    searchConfig?: CodeEditorSearchProps
 }
 
 export type CodeEditorEmits = {

@@ -12,6 +12,7 @@ import { calcSize } from '@/utils/common.ts'
 import { registerApiCompletion } from './feature/auto-completion.ts'
 import { disableLanguageValidation } from './feature/disable_language_validation.ts'
 import { registerContextMenu } from './feature/context-menu.ts'
+import { registerSearchPanel } from './feature/search.ts'
 
 const props = withDefaults(defineProps<CodeEditorProps>(), {
   height: 300,
@@ -20,7 +21,14 @@ const props = withDefaults(defineProps<CodeEditorProps>(), {
     fontSize: 18,
     tabSize: 2
   } as any,
-  disableValidation: true
+  disableValidation: true,
+  searchConfig: {
+    caseSensitive: false,
+    replace: true,
+    matchWholeWord: false,
+    useRegex: false,
+    showHistory: false
+  } as any
 })
 
 const emit = defineEmits<CodeEditorEmits>()
@@ -28,6 +36,7 @@ const emit = defineEmits<CodeEditorEmits>()
 const editorContainer = ref<HTMLElement | null>(null)
 let editor: monaco.editor.IStandaloneCodeEditor | null = null
 let menuDisposable: { dispose: () => void } | null = null
+let searchPanelDisposable: { dispose: () => void } | null = null
 
 const initEditor = () => {
   if (!editorContainer.value) {
@@ -72,9 +81,15 @@ const initEditor = () => {
   }
 
   editor = monaco.editor.create(editorContainer.value, options)
+  editor.addCommand(monaco.KeyCode.KeyF | monaco.KeyMod.CtrlCmd, () => {
+  })
 
   if (props.contextMenuConfig) {
     menuDisposable = registerContextMenu(editor, props.contextMenuConfig)
+  }
+
+  if (props.searchConfig) {
+    searchPanelDisposable = registerSearchPanel(editor, props.searchConfig)
   }
 
   editor.onDidChangeModelContent(() => {
@@ -129,5 +144,6 @@ onBeforeUnmount(() => {
     editor.dispose()
   }
   menuDisposable?.dispose()
+  searchPanelDisposable?.dispose()
 })
 </script>

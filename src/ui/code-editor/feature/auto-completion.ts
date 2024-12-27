@@ -246,11 +246,17 @@ export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEdito
                     clearTimeout(timeoutId)
                     if (error.name === 'AbortError') {
                         console.error('Request timeout:', config.timeout + 'ms')
-                        completionContainer.style.display = 'none'
-                        currentTooltipCleanups.forEach(cleanup => cleanup())
+                        loadingContainer.style.display = 'none'
+                        suggestionsList.innerHTML = `<li class="suggestion-item px-3 py-2 text-red-500 select-none">Request timeout after ${ config.timeout }ms</li>`
+                        suggestionsList.style.display = 'block'
                         return { suggestions: [] }
                     }
-                    throw error
+
+                    loadingContainer.style.display = 'none'
+                    suggestionsList.innerHTML = `<li class="suggestion-item px-3 py-2 text-red-500 select-none">${ error.message }</li>`
+                    suggestionsList.style.display = 'block'
+                    currentTooltipCleanups.forEach(cleanup => cleanup())
+                    return { suggestions: [] }
                 }
 
                 const suggestions = config.transform ? config.transform(data) : data

@@ -296,11 +296,16 @@ export default {
             loading: 'Loading code hint...',
             copy: 'Copy',
             cut: 'Cut',
-            paste: 'Paste'
+            paste: 'Paste',
+            findInContext: 'Find in context',
+            replace: 'Replace',
+            replaceAll: 'Replace all'
         },
         validated: {
             endpoint: 'The API interface address must be provided',
-            transform: 'The transform function must be provided'
+            transform: 'The transform function must be provided',
+            regex: 'The regex is invalid',
+            search: 'Search error'
         }
     }
 }

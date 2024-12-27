@@ -296,11 +296,16 @@ export default {
             loading: '正在加载代码提示...',
             copy: '复制',
             cut: '剪切',
-            paste: '粘贴'
+            paste: '粘贴',
+            findInContext: '在文中查找',
+            replace: '替换',
+            replaceAll: '全部替换'
         },
         validated: {
             endpoint: '必须提供 API 接口地址',
-            transform: '必须提供转换函数'
+            transform: '必须提供转换函数',
+            regex: '正则表达式无效',
+            search: '搜索错误'
         }
     }
 }

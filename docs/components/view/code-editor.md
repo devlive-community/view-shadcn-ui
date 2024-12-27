@@ -162,6 +162,32 @@ This document describes the features and usage of the ShadcnCodeEditor component
 
 :::
 
+## Search
+
+::: raw
+
+<CodeRunner title="Search">
+    <ShadcnCodeEditor v-model="value"
+                      :search-config="{
+                            caseSensitive: false,
+                            replace: true
+                      }"/>
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+    <ShadcnCodeEditor v-model="value"
+                      :search-config="{
+                            caseSensitive: false,
+                            replace: true
+                      }"/>
+```
+
+:::
+
 ## CodeEditor Props
 
 <ApiTable title="Props"
@@ -172,6 +198,7 @@ This document describes the features and usage of the ShadcnCodeEditor component
         ['config', 'see monaco.editor.IStandaloneEditorConstructionOptions', 'any', '{}', '-'],
         ['autoCompleteConfig', 'see CodeEditorAutoCompleteProps', 'any', '{}', '-'],
         ['contextMenuConfig', 'see CodeEditorContextMenuProps', 'any', '{}', '-'],
+        ['searchConfig', 'see CodeEditorSearchProps', 'any', '{}', '-'],
     ]">
 </ApiTable>
 
