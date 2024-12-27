@@ -36,7 +36,8 @@
                            }]
                       }"
                       :search-config="{
-                        caseSensitive: false
+                          caseSensitive: false,
+                          replace: true
                       }"
     />
   </div>

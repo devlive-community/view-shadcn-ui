@@ -19,7 +19,57 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
 
     const renderSearchPanel = () => {
         const container = document.createElement('div')
-        container.className = 'flex items-center px-2 py-1.5 min-w-[300px]'
+        container.className = 'flex flex-col min-w-[300px]'
+
+        const searchArea = document.createElement('div')
+        searchArea.className = 'flex items-center px-2 py-1.5'
+        container.appendChild(searchArea)
+        const replaceArea = document.createElement('div')
+        replaceArea.className = 'flex items-center px-2 py-1.5 border-t border-gray-200'
+
+        const replaceWrapper = document.createElement('div')
+        replaceWrapper.className = 'flex items-center flex-1 mr-2'
+
+        const replaceIcon = document.createElement('span')
+        replaceIcon.className = 'mr-2'
+        const replaceIconVNode = h(ShadcnIcon, {
+            icon: 'Replace',
+            size: 14,
+            class: 'w-4 h-4 text-gray-400'
+        })
+        render(replaceIconVNode, replaceIcon)
+        replaceWrapper.appendChild(replaceIcon)
+
+        const replaceInput = document.createElement('input')
+        replaceInput.type = 'text'
+        replaceInput.className = 'flex-1 outline-none text-sm'
+        replaceInput.placeholder = typeof t('codeEditor.text.replace') === 'string'
+            ? t('codeEditor.text.replace')
+            : 'Replace'
+        replaceWrapper.appendChild(replaceInput)
+
+        // 替换按钮区域
+        // Replace button area
+        const replaceActionWrapper = document.createElement('div')
+        replaceActionWrapper.className = 'flex items-center space-x-1.5'
+
+        const replaceButton = document.createElement('button')
+        replaceButton.className = 'px-2 py-1 text-xs hover:bg-gray-100 rounded'
+        replaceButton.textContent = typeof t('codeEditor.text.replace') === 'string'
+            ? t('codeEditor.text.replace')
+            : 'Replace'
+        replaceActionWrapper.appendChild(replaceButton)
+
+        const replaceAllButton = document.createElement('button')
+        replaceAllButton.className = 'px-2 py-1 text-xs hover:bg-gray-100 rounded'
+        replaceAllButton.textContent = typeof t('codeEditor.text.replaceAll') === 'string'
+            ? t('codeEditor.text.replaceAll')
+            : 'Replace All'
+        replaceActionWrapper.appendChild(replaceAllButton)
+
+        replaceArea.appendChild(replaceWrapper)
+        replaceArea.appendChild(replaceActionWrapper)
+        container.appendChild(replaceArea)
 
         // 搜索输入区域
         // Search input area
@@ -88,13 +138,14 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
         closeButton.className = 'p-1 hover:bg-gray-100 rounded ml-1'
         const closeIconVNode = h(ShadcnIcon, {
             icon: 'X',
+            size: 14,
             class: 'w-4 h-4 text-gray-600'
         })
         render(closeIconVNode, closeButton)
         actionWrapper.appendChild(closeButton)
 
-        container.appendChild(searchWrapper)
-        container.appendChild(actionWrapper)
+        searchArea.appendChild(searchWrapper)
+        searchArea.appendChild(actionWrapper)
         searchPanelEl.appendChild(container)
 
         // 搜索状态管理
@@ -163,6 +214,63 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
                     column: match.range.startColumn
                 })
             }
+        }
+
+        const replace = () => {
+            if (currentMatchIndex === -1 || !searchState.length) {
+                return
+            }
+
+            const model = editor.getModel()
+            if (!model) {
+                return
+            }
+
+            const match = searchState[currentMatchIndex]
+            const replaceText = replaceInput.value
+
+            // 创建编辑操作
+            // Create edit
+            const edit = {
+                range: match.range,
+                text: replaceText
+            }
+
+            // 执行替换
+            // Perform replace
+            model.pushEditOperations([], [edit], () => null)
+
+            // 重新搜索以更新匹配项
+            // Re-search to update matches
+            search()
+        }
+
+        const replaceAll = () => {
+            if (!searchState.length) {
+                return
+            }
+
+            const model = editor.getModel()
+            if (!model) {
+                return
+            }
+
+            const replaceText = replaceInput.value
+
+            // 创建所有编辑操作
+            // Create all edits
+            const edits = searchState.map(match => ({
+                range: match.range,
+                text: replaceText
+            }))
+
+            // 执行所有替换
+            // Perform all replaces
+            model.pushEditOperations([], edits, () => null)
+
+            // 重新搜索以更新匹配项
+            // Re-search to update matches
+            search()
         }
 
         const navigateToMatch = (direction: 'next' | 'prev') => {
@@ -240,6 +348,9 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
             search()
         }
 
+        replaceButton.onclick = replace
+        replaceAllButton.onclick = replaceAll
+
         // 快捷键支持
         // Keyboard support
         searchInput.addEventListener('keydown', (e) => {
@@ -255,12 +366,33 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
                 closeSearch()
                 e.preventDefault()
             }
+                // 添加替换快捷键
+            // Add replace shortcut
+            else if (e.key === 'Enter' && e.ctrlKey) {
+                replace()
+                e.preventDefault()
+            }
         })
 
-        return { searchInput, search }
+        replaceInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.ctrlKey) {
+                replace()
+                e.preventDefault()
+            }
+            else if (e.key === 'Enter' && e.ctrlKey) {
+                replaceAll()
+                e.preventDefault()
+            }
+            else if (e.key === 'Escape') {
+                closeSearch()
+                e.preventDefault()
+            }
+        })
+
+        return { searchInput, replaceInput, search }
     }
 
-    const { searchInput, search } = renderSearchPanel()
+    const { searchInput, replaceInput, search } = renderSearchPanel()
 
     // 注册快捷键和命令
     // Register shortcut keys and commands
@@ -296,6 +428,17 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
                 searchInput.value = text
                 search()
             }
+        }) as any,
+
+        editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyMod.Alt | monaco.KeyCode.KeyF, () => {
+            // 触发搜索面板显示
+            // Trigger search panel display
+            editor.trigger('editor', 'actions.find', null)
+            // 聚焦替换输入框
+            // Focus the replacement input box
+            setTimeout(() => {
+                replaceInput.focus()
+            }, 0)
         }) as any
     )
 

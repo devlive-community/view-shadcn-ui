@@ -297,7 +297,9 @@ export default {
             copy: 'Copy',
             cut: 'Cut',
             paste: 'Paste',
-            findInContext: 'Find in context'
+            findInContext: 'Find in context',
+            replace: 'Replace',
+            replaceAll: 'Replace all'
         },
         validated: {
             endpoint: 'The API interface address must be provided',

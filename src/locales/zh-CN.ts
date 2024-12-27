@@ -298,6 +298,8 @@ export default {
             cut: '剪切',
             paste: '粘贴',
             findInContext: '在文中查找',
+            replace: '替换',
+            replaceAll: '全部替换'
         },
         validated: {
             endpoint: '必须提供 API 接口地址',

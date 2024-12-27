@@ -168,7 +168,10 @@ This document describes the features and usage of the ShadcnCodeEditor component
 
 <CodeRunner title="Search">
     <ShadcnCodeEditor v-model="value"
-                      :search-config="{}"/>
+                      :search-config="{
+                            caseSensitive: false,
+                            replace: true
+                      }"/>
 </CodeRunner>
 
 :::
@@ -177,7 +180,10 @@ This document describes the features and usage of the ShadcnCodeEditor component
 
 ```vue
     <ShadcnCodeEditor v-model="value"
-                      :search-config="{}"/>
+                      :search-config="{
+                            caseSensitive: false,
+                            replace: true
+                      }"/>
 ```
 
 :::
