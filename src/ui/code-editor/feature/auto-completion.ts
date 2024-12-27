@@ -43,17 +43,30 @@ export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEdito
                     loadingToast.style.left = `${ editorDom.offsetLeft + coords.left + 5 }px`
                 }
 
-                const response = await fetch(config.endpoint, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        context: model.getValue(),
-                        position: position,
-                        word: word.word
-                    })
-                })
+                const context = {
+                    modelValue: model.getValue(),
+                    position: position,
+                    word: word.word
+                }
 
+                let url = config.endpoint
+                if (config.requestParams) {
+                    const params = new URLSearchParams(config.requestParams(context))
+                    url = `${ url }${ url.includes('?') ? '&' : '?' }${ params.toString() }`
+                }
+
+                const options: RequestInit = {
+                    method: config.method || 'POST',
+                    headers: { 'Content-Type': 'application/json', ...config.headers }
+                }
+
+                if (config.requestBody) {
+                    options.body = JSON.stringify(config.requestBody(context))
+                }
+
+                const response = await fetch(url, options)
                 const data = await response.json()
+
                 return {
                     suggestions: config.transform
                         ? config.transform(data)

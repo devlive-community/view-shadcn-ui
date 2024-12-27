@@ -3,15 +3,24 @@
     <h2 class="text-xl font-semibold mb-4">Code</h2>
     <ShadcnCodeEditor v-model="value"
                       :auto-complete-config="{
-                          endpoint: 'https://www.ip.cn/api/index?ip&type=0',
+                          endpoint: 'http://jsonplaceholder.typicode.com/posts',
+                          method: 'GET',
                           trigger: ['.', '@'],
                           transform: (data: any) => {
-                            return data.items.map((item: any) => ({
-                              label: item.name,
-                              insertText: item.code,
-                              detail: item.description
+                            return data.map((item: any) => ({
+                              label: item.title,
+                              insertText: item.body,
+                              detail: item.title
                             }))
-                          }
+                          },
+                          // requestParams: (context) => ({
+                          //     word: context.word,
+                          //     line: context.position.lineNumber.toString()
+                          // }),
+                          // requestBody: (context) => ({
+                          //     code: context.modelValue,
+                          //     position: context.position
+                          // })
                         }"
                       :context-menu-config="{
                            showDefaultItems: true,
@@ -33,21 +42,5 @@ import { setLocale } from '@/utils/locale.ts'
 
 setLocale('zh-CN')
 
-const value = ref('<template>\n' +
-    '  <div ref="shadowContainer"></div>\n' +
-    '</template>\n' +
-    '\n' +
-    '<script setup lang="ts">\n' +
-    'import { onMounted, ref, watch } from \'vue\'\n' +
-    'import hljs from \'highlight.js\'\n' +
-    'import { themes } from \'@/ui/code/themes.ts\'\n' +
-    'import { CodeEmits, CodeProps } from \'@/ui/code/types.ts\'\n' +
-    '\n' +
-    'const emit = defineEmits<CodeEmits>()\n' +
-    '\n' +
-    'const props = withDefaults(defineProps<CodeProps>(), {\n' +
-    '  language: \'javascript\',\n' +
-    '  theme: \'github\',\n' +
-    '  showLineNumbers: false\n' +
-    '})')
+const value = ref('')
 </script>

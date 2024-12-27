@@ -1,10 +1,21 @@
 import * as monaco from 'monaco-editor'
 
+export interface CodeEditorAutoCompleteParams
+{
+    modelValue: string,
+    position: monaco.Position,
+    word: string
+}
+
 export interface CodeEditorAutoCompleteProps
 {
     endpoint: string
     trigger?: string[]
+    headers?: any
+    method?: string
     transform?: (data: any) => monaco.languages.CompletionItem[]
+    requestBody?: (context: CodeEditorAutoCompleteParams) => any;
+    requestParams?: (context: CodeEditorAutoCompleteParams) => URLSearchParams;
 }
 
 export interface CodeEditorContextMenuItem

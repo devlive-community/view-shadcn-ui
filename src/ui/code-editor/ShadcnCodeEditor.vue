@@ -39,9 +39,36 @@ const initEditor = () => {
   }
 
   const options: monaco.editor.IStandaloneEditorConstructionOptions = {
+    ...props.config,
     value: props.modelValue || '',
     contextmenu: false,
-    ...props.config
+    suggest: {
+      showMethods: false,
+      showFunctions: false,
+      showConstructors: false,
+      showFields: false,
+      showVariables: false,
+      showClasses: false,
+      showStructs: false,
+      showInterfaces: false,
+      showModules: false,
+      showProperties: false,
+      showEvents: false,
+      showOperators: false,
+      showUnits: false,
+      showValues: false,
+      showConstants: false,
+      showEnums: false,
+      showEnumMembers: false,
+      showKeywords: false,
+      showWords: false,
+      showColors: false,
+      showFiles: false,
+      showReferences: false,
+      showFolders: false,
+      showTypeParameters: false,
+      showSnippets: false
+    }
   }
 
   editor = monaco.editor.create(editorContainer.value, options)
