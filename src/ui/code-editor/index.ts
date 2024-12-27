@@ -1,0 +1,1 @@
+export { default as ShadcnCodeEditor } from './ShadcnCodeEditor.vue'

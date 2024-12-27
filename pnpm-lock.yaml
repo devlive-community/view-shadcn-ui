@@ -11,18 +11,15 @@ importers:
       clsx:
         specifier: ^2.1.0
         version: 2.1.1
-      cron-parser:
-        specifier: ^4.9.0
-        version: 4.9.0
-      highlight.js:
-        specifier: ^11.10.0
-        version: 11.10.0
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
       lucide-vue-next:
         specifier: ^0.360.0
         version: 0.360.0(vue@3.5.12(typescript@5.6.3))
+      monaco-editor:
+        specifier: ^0.52.2
+        version: 0.52.2
       qrcode:
         specifier: ^1.5.4
         version: 1.5.4
@@ -66,6 +63,9 @@ importers:
       vite:
         specifier: ^5.2.0
         version: 5.4.10(@types/node@20.17.1)(terser@5.37.0)
+      vite-plugin-monaco-editor:
+        specifier: ^1.1.0
+        version: 1.1.0(monaco-editor@0.52.2)
       vitepress:
         specifier: ^1.4.1
         version: 1.4.1(@algolia/client-search@4.24.0)(@types/node@20.17.1)(axios@1.7.8)(postcss@8.4.47)(qrcode@1.5.4)(search-insights@2.17.2)(terser@5.37.0)(typescript@5.6.3)
@@ -882,10 +882,6 @@ packages:
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
 
-  cron-parser@4.9.0:
-    resolution: {integrity: sha512-p0SaNjrHOnQeR8/VnfGbmg9te2kfyYSQ7Sc/j/6DtPL3JQvKxmjO9TSjNFpujqV3vEYYBvNNvXSxzyksBWAx1Q==}
-    engines: {node: '>=12.0.0'}
-
   cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
     engines: {node: '>= 8'}
@@ -1117,10 +1113,6 @@ packages:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
     hasBin: true
 
-  highlight.js@11.10.0:
-    resolution: {integrity: sha512-SYVnVFswQER+zu1laSya563s+F8VDGt7o35d4utbamowvUNLLMovFqwCLSocpZTz3MgaSRA1IbqRWZv97dtErQ==}
-    engines: {node: '>=12.0.0'}
-
   hookable@5.5.3:
     resolution: {integrity: sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ==}
 
@@ -1269,10 +1261,6 @@ packages:
     peerDependencies:
       vue: '>=3.0.1'
 
-  luxon@3.5.0:
-    resolution: {integrity: sha512-rh+Zjr6DNfUYR3bPwJEnuwDdqMbxZW7LOQfUN4B54+Cl+0o5zaU9RJ6bcidfDtC1cWCZXQ+nvX8bf6bAji37QQ==}
-    engines: {node: '>=12'}
-
   magic-string@0.30.12:
     resolution: {integrity: sha512-Ea8I3sQMVXr8JhN4z+H/d8zwo+tYDgHE9+5G4Wnrwhs0gaK9fXTKx0Tw5Xwsd/bCPTTZNRAdpyzvoeORe9LYpw==}
 
@@ -1356,6 +1344,9 @@ packages:
   modify-values@1.0.1:
     resolution: {integrity: sha512-xV2bxeN6F7oYjZWTe/YPAy6MN2M+sL4u/Rlm2AHCIVGfo2p1yGmBHQ6vHehl4bRTZBdHu3TSkWdYgkwpYzAGSw==}
     engines: {node: '>=0.10.0'}
+
+  monaco-editor@0.52.2:
+    resolution: {integrity: sha512-GEQWEZmfkOGLdd3XK8ryrfWz3AIP8YymVXiPHEdewrUq7mh0qrKrfHLNCXcbB6sTnMLnOZ3ztSiKcciFUkIJwQ==}
 
   muggle-string@0.4.1:
     resolution: {integrity: sha512-VNTrAak/KhO2i8dqqnqnAHOa3cYBwXEZe9h+D5h/1ZqFSTEFHdM65lR7RoIqq3tBBYavsOXV84NoHXZ0AkPyqQ==}
@@ -1880,6 +1871,11 @@ packages:
 
   vfile@6.0.3:
     resolution: {integrity: sha512-KzIbH/9tXat2u30jf+smMwFCsno4wHVdNmzFyL+T/L3UGqqk6JKfVqOFOZEpZSHADH1k40ab6NUIXZq422ov3Q==}
+
+  vite-plugin-monaco-editor@1.1.0:
+    resolution: {integrity: sha512-IvtUqZotrRoVqwT0PBBDIZPNraya3BxN/bfcNfnxZ5rkJiGcNtO5eAOWWSgT7zullIAEqQwxMU83yL9J5k7gww==}
+    peerDependencies:
+      monaco-editor: '>=0.33.0'
 
   vite@5.4.10:
     resolution: {integrity: sha512-1hvaPshuPUtxeQ0hsVH3Mud0ZanOLwVTneA1EgbAM5LhaZEqyPWGRQ7BtaMvUrTDeEaC8pxtj6a6jku3x4z6SQ==}
@@ -2850,10 +2846,6 @@ snapshots:
 
   core-util-is@1.0.3: {}
 
-  cron-parser@4.9.0:
-    dependencies:
-      luxon: 3.5.0
-
   cross-spawn@7.0.3:
     dependencies:
       path-key: 3.1.1
@@ -3099,8 +3091,6 @@ snapshots:
 
   he@1.2.0: {}
 
-  highlight.js@11.10.0: {}
-
   hookable@5.5.3: {}
 
   hosted-git-info@2.8.9: {}
@@ -3216,8 +3206,6 @@ snapshots:
     dependencies:
       vue: 3.5.12(typescript@5.6.3)
 
-  luxon@3.5.0: {}
-
   magic-string@0.30.12:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
@@ -3309,6 +3297,8 @@ snapshots:
   mitt@3.0.1: {}
 
   modify-values@1.0.1: {}
+
+  monaco-editor@0.52.2: {}
 
   muggle-string@0.4.1: {}
 
@@ -3860,6 +3850,10 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
+
+  vite-plugin-monaco-editor@1.1.0(monaco-editor@0.52.2):
+    dependencies:
+      monaco-editor: 0.52.2
 
   vite@5.4.10(@types/node@20.17.1)(terser@5.37.0):
     dependencies:

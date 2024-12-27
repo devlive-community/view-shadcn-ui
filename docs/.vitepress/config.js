@@ -177,7 +177,7 @@ export default {
                     const items = [
                         {text: 'Modal', link: 'view/modal', icon: '/components/view/modal.svg', version: '2024.1.1'},
                         {text: 'Tooltip', link: 'view/tooltip', icon: '/components/view/tooltip.svg', version: '2024.1.1'},
-                        {text: 'Code', link: 'view/code', icon: '/components/view/code.svg', version: '2024.1.1'},
+                        {text: 'Code Editor', link: 'view/code-editor', icon: '/components/view/code.svg', version: '2024.1.1'},
                         {text: 'Alert', link: 'view/alert', icon: '/components/view/alert.svg', version: '2024.1.2'},
                         {text: 'Progress', link: 'view/progress', icon: '/components/view/progress.svg', version: '2024.1.2'},
                         {text: 'Drawer', link: 'view/drawer', icon: '/components/view/drawer.svg', version: '2024.1.2'},

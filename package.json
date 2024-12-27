@@ -97,10 +97,9 @@
   },
   "dependencies": {
     "clsx": "^2.1.0",
-    "cron-parser": "^4.9.0",
-    "highlight.js": "^11.10.0",
     "lodash": "^4.17.21",
     "lucide-vue-next": "^0.360.0",
+    "monaco-editor": "^0.52.2",
     "qrcode": "^1.5.4",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
@@ -117,6 +116,7 @@
     "terser": "^5.37.0",
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
+    "vite-plugin-monaco-editor": "^1.1.0",
     "vitepress": "^1.4.1",
     "vue-tsc": "^2.0.6"
   }
