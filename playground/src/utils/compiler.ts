@@ -1,13 +1,34 @@
 import { parse } from '@vue/compiler-sfc'
 import { computed, defineComponent, onMounted, reactive, ref, version as vueVersion, watch } from 'vue'
 
+function escapeHtml(str)
+{
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;')
+}
+
 export async function compileVueCode(code)
 {
     try {
-        const { descriptor } = parse(code)
+        const { descriptor, errors } = parse(code)
 
-        if (!descriptor.template) {
-            throw new Error('Template is required')
+        if (errors && errors.length > 0) {
+            const error = errors[0]
+            const finalErrors = [] as any[]
+            finalErrors.push(`Template parsing error at line ${ (error as any).loc.start.line }`)
+            const message = `${ (error as any).loc.start.line }: ${ escapeHtml(code.split('\n')[(error as any).loc.start.line - 1]) }`
+            finalErrors.push(message)
+            finalErrors.push('Error: Invalid template structure or syntax.')
+            throw new Error(finalErrors.join('\n'))
+        }
+
+        // Check for empty or missing template
+        if (!descriptor.template || descriptor.template.content.trim() === '') {
+            throw new Error(`Template parsing error: Missing or empty template`)
         }
 
         let setupVariables = {}
@@ -159,7 +180,6 @@ export async function compileVueCode(code)
         })
     }
     catch (error) {
-        console.error('Compilation error:', error)
         throw new Error(`Compilation error: ${ error.message }`)
     }
 }

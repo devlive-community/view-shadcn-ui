@@ -36,7 +36,12 @@
       <div class="flex flex-col" style="height: calc(100vh - 96px)">
         <div class="w-full h-96 rounded-md p-4 overflow-auto">
 
-          <ShadcnAlert v-if="error" type="error" show-icon>{{ error }}</ShadcnAlert>
+          <div v-if="error" class="text-red-500 whitespace-pre-wrap font-mono mx-auto">
+            <div v-for="(line, index) in error.split('\n')" class="space-y-4" :key="line">
+              <div v-if="index === 0 || index === error.split('\n').length - 1" class="text-sm" v-html="line"></div>
+              <div v-else class="text-sm bg-white p-2 rounded border border-red-200 overflow-x-auto font-mono my-2" v-html="line"></div>
+            </div>
+          </div>
 
           <div v-else>
             <component :is="compiledComponent" v-if="compiledComponent"/>
@@ -76,7 +81,6 @@ const onChange = async () => {
     compiledComponent.value = result
   }
   catch (err) {
-    console.error('Error:', err)
     error.value = err.message
   }
 }
