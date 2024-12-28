@@ -6,9 +6,7 @@ export default defineConfig({
     plugins: [
         vue({
             template: {
-                compilerOptions: {
-                    runtimeCompiler: true
-                }
+                compilerOptions: {}
             }
         })
     ],
