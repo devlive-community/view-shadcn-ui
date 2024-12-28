@@ -693,7 +693,11 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
         dispose: () => {
             // 清理所有订阅
             // Clear all subscriptions
-            disposables.forEach(d => d.dispose())
+            disposables.forEach(d => {
+                if (d && typeof d.dispose === 'function') {
+                    d.dispose()
+                }
+            })
             // 移除事件监听
             // Remove event listeners
             document.removeEventListener('click', clickHandler)

@@ -166,9 +166,13 @@ const input = ref('Hello View Shadcn UI')
 
 ## Disabled
 
+::: raw
+
 <CodeRunner title="Disabled">
     <ShadcnInput placeholder="Input" v-model="input" disabled />
 </CodeRunner>
+
+:::
 
 ::: details Show code
 

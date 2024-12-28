@@ -1,7 +1,7 @@
 <template>
   <div ref="editorContainer"
-       class="border w-full"
-       :style="{ height: calcSize(height)}"/>
+       class="border w-full overflow-hidden"
+       :style="{ height: calcSize(height) }"/>
 </template>
 
 <script setup lang="ts">
@@ -13,6 +13,7 @@ import { registerApiCompletion } from './feature/auto-completion.ts'
 import { disableLanguageValidation } from './feature/disable_language_validation.ts'
 import { registerContextMenu } from './feature/context-menu.ts'
 import { registerSearchPanel } from './feature/search.ts'
+import 'monaco-editor/min/vs/editor/editor.main.css'
 
 const props = withDefaults(defineProps<CodeEditorProps>(), {
   height: 300,
@@ -77,7 +78,8 @@ const initEditor = () => {
       showFolders: false,
       showTypeParameters: false,
       showSnippets: false
-    }
+    },
+    scrollBeyondLastLine: false
   }
 
   editor = monaco.editor.create(editorContainer.value, options)

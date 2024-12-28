@@ -23,6 +23,13 @@ All notable changes to this project will be documented in this file. See [standa
 - refactor: refactor code editor to use monaco editor
 - feat: support auto completion
 - feat: support context menu
+- feat: support search
+- feat: support caseSensitive for search
+- feat: support replace and replaceAll for search
+- feat: support matchWholeWord for search
+- feat: support regex for search
+- feat: support search history search
+- feat: support search preview search
 
 ### 2024.5.3 (2024-12-23)
 
