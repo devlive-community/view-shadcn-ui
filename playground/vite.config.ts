@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
+import examplePlugin from './vite-example-plugin'
 
 export default defineConfig({
     plugins: [
@@ -8,6 +9,9 @@ export default defineConfig({
             template: {
                 compilerOptions: {}
             }
+        }),
+        examplePlugin({
+            dir: 'src/example'
         })
     ],
     resolve: {
