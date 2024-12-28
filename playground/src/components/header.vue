@@ -5,17 +5,8 @@
         <!-- Logo and Title Section -->
         <div class="flex items-center space-x-4">
           <div class="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg"
-                 viewBox="0 0 24 24"
-                 fill="none"
-                 stroke="currentColor"
-                 class="w-6 h-6 mr-2">
-              <path stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M13 10V3L4 14h7v7l9-11h-7z"/>
-            </svg>
-            <h1 class="text-xl font-semibold text-gray-900">{{ title }}</h1>
+            <img src="https://view-shadcn-ui.devlive.org/logo.svg" alt="Logo" class="w-8 h-8 mr-2"/>
+            <h1 class="text-xl font-semibold text-gray-900 select-none">{{ title }}</h1>
           </div>
         </div>
 
