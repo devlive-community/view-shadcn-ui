@@ -38,12 +38,12 @@
 
     <span v-if="$slots.prefix" class="absolute start-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer"
           @click="onPrefixClick">
-      <slot v-if="$slots.prefix" name="prefix"/>
+      <slot name="prefix"/>
     </span>
 
     <span v-if="$slots.suffix" class="absolute end-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer"
           @click="onSuffixClick">
-      <slot v-if="$slots.suffix" name="suffix"/>
+      <slot name="suffix"/>
     </span>
   </div>
 </template>
