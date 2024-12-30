@@ -6,7 +6,13 @@ titleTemplate: View Shadcn UI is a Vue3 component library built on Tailwind CSS.
 
 hero:
   name: View Shadcn UI
-  tagline: View Shadcn UI is a Vue3 component library built on Tailwind CSS.
+  tagline: |
+    View Shadcn UI is a Vue3 component library built on Tailwind CSS. <br />
+    <div class="flex gap-2">
+        <img alt="NPM Downloads" src="https://img.shields.io/npm/d18m/view-shadcn-ui?style=flat&label=D">
+        <img alt="GitHub stars" src="https://img.shields.io/github/stars/devlive-community/view-shadcn-ui?style=flat"/>
+        <img alt="Gitee stars" src="https://gitee.com/devlive-community/view-shadcn-ui/badge/star.svg?theme=white"/>
+    </div>
   image:
     alt: View Shadcn UI
     src: /logo.svg
@@ -20,6 +26,9 @@ hero:
     - theme: alt
       text: View on Gitee
       link: https://gitee.com/devlive-community/view-shadcn-ui
+    - theme: alt
+      text: View on NPM
+      link: https://www.npmjs.com/package/view-shadcn-ui
 
 features:
   - icon: 💡
