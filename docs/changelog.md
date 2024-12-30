@@ -4,6 +4,35 @@ title: "Release Notes"
 
 # Changelog
 
+## 2024.5.4 (2024-12-30)
+
+#### Core
+
+- fix: fix ci scope causing publishing failure
+
+#### Contribution
+
+- feat: support tooltip
+- feat: support showLegend
+- feat: support showWeek
+- feat: support showMonth
+- feat: support cellSize and cellGap
+- feat: support year
+- feat: support custom cell
+
+#### Code Editor
+
+- refactor: refactor code editor to use monaco editor
+- feat: support auto completion
+- feat: support context menu
+- feat: support search
+- feat: support caseSensitive for search
+- feat: support replace and replaceAll for search
+- feat: support matchWholeWord for search
+- feat: support regex for search
+- feat: support search history search
+- feat: support search preview search
+
 ## 2024.5.3 (2024-12-23)
 
 #### Core

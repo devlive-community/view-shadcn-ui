@@ -94,6 +94,11 @@ const handleMore = () => {
 watch(example, onExampleChange, { immediate: true })
 
 onMounted(() => {
+  const params = new URLSearchParams(window.location.search)
+  const codeKey = params.get('codeKey')
+  if (codeKey) {
+    example.value = codeKey
+  }
   onChange()
 })
 </script>
