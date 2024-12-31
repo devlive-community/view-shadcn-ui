@@ -37,9 +37,10 @@ const emit = defineEmits<CodeEditorEmits>()
 const editorContainer = ref<HTMLElement | null>(null)
 let editor: monaco.editor.IStandaloneCodeEditor | null = null
 let menuDisposable: { dispose: () => void } | null = null
+let currentSearchPanel: { dispose: () => void } | null = null
+let currentApiCompletion: { dispose: () => void } | null = null
 let focusDisposable: monaco.IDisposable | null = null
 let blurDisposable: monaco.IDisposable | null = null
-let currentSearchPanel: { dispose: () => void } | null = null
 
 const initEditor = () => {
   if (!editorContainer.value) {
@@ -91,11 +92,25 @@ const initEditor = () => {
   focusDisposable = editor.onDidFocusEditorText(() => {
     if (editor) {
       emit('on-focus', editor)
+
+      cleanAllDisposable()
+      // 处理搜索面板
+      // Handle search panel
       if (props.searchConfig) {
-        if (currentSearchPanel) {
-          currentSearchPanel.dispose()
-        }
-        currentSearchPanel = registerSearchPanel(editor, props.searchConfig) as any
+        // @ts-ignore
+        currentSearchPanel = registerSearchPanel(editor, props.searchConfig)
+      }
+
+      // 处理右键菜单
+      // Handle right-click menu
+      if (props.contextMenuConfig) {
+        menuDisposable = registerContextMenu(editor, props.contextMenuConfig)
+      }
+
+      // 处理 API 自动完成
+      // Handle API auto-completion
+      if (props.autoCompleteConfig) {
+        currentApiCompletion = registerApiCompletion(editor, props.autoCompleteConfig)
       }
     }
   })
@@ -105,15 +120,13 @@ const initEditor = () => {
   blurDisposable = editor.onDidBlurEditorText(() => {
     if (editor) {
       emit('on-blur', editor)
+
+      cleanAllDisposable()
     }
   })
 
   editor.addCommand(monaco.KeyCode.KeyF | monaco.KeyMod.CtrlCmd, () => {
   })
-
-  if (props.contextMenuConfig) {
-    menuDisposable = registerContextMenu(editor, props.contextMenuConfig)
-  }
 
   editor.onDidChangeModelContent(() => {
     emit('update:modelValue', editor?.getValue())
@@ -121,6 +134,18 @@ const initEditor = () => {
   })
 
   emit('on-created', editor)
+}
+
+const cleanAllDisposable = () => {
+  if (currentSearchPanel) {
+    currentSearchPanel.dispose()
+  }
+  if (currentApiCompletion) {
+    currentApiCompletion.dispose()
+  }
+  if (menuDisposable) {
+    menuDisposable.dispose()
+  }
 }
 
 const updateEditorOptions = () => {
@@ -145,30 +170,16 @@ const updateEditorContent = () => {
 watch(() => props.config, updateEditorOptions)
 watch(() => props.modelValue, updateEditorContent)
 
-const setupApiCompletion = () => {
-  if (!editor || !props.autoCompleteConfig) {
-    return
-  }
-
-  const disposable = registerApiCompletion(editor, props.autoCompleteConfig)
-
-  onBeforeUnmount(() => {
-    disposable.dispose()
-  })
-}
-
 onMounted(() => {
   initEditor()
-  setupApiCompletion()
 })
 
 onBeforeUnmount(() => {
   if (editor) {
     editor.dispose()
   }
-  menuDisposable?.dispose()
+  cleanAllDisposable()
   focusDisposable?.dispose()
   blurDisposable?.dispose()
-  currentSearchPanel?.dispose()
 })
 </script>
