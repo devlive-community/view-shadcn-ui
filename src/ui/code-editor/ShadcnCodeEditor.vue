@@ -38,6 +38,8 @@ const editorContainer = ref<HTMLElement | null>(null)
 let editor: monaco.editor.IStandaloneCodeEditor | null = null
 let menuDisposable: { dispose: () => void } | null = null
 let searchPanelDisposable: { dispose: () => void } | null = null
+let focusDisposable: monaco.IDisposable | null = null
+let blurDisposable: monaco.IDisposable | null = null
 
 const initEditor = () => {
   if (!editorContainer.value) {
@@ -83,6 +85,21 @@ const initEditor = () => {
   }
 
   editor = monaco.editor.create(editorContainer.value, options)
+
+  // 注册焦点事件
+  focusDisposable = editor.onDidFocusEditorText(() => {
+    if (editor) {
+      emit('on-focus', editor)
+    }
+  })
+
+  // 注册失焦事件
+  blurDisposable = editor.onDidBlurEditorText(() => {
+    if (editor) {
+      emit('on-blur', editor)
+    }
+  })
+
   editor.addCommand(monaco.KeyCode.KeyF | monaco.KeyMod.CtrlCmd, () => {
   })
 
@@ -147,5 +164,7 @@ onBeforeUnmount(() => {
   }
   menuDisposable?.dispose()
   searchPanelDisposable?.dispose()
+  focusDisposable?.dispose()
+  blurDisposable?.dispose()
 })
 </script>
