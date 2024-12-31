@@ -60,4 +60,6 @@ export type CodeEditorEmits = {
     (e: 'update:modelValue', value?: string): void
     (e: 'on-change', value?: string): void
     (e: 'on-created', value: monaco.editor.IStandaloneCodeEditor): void
+    (e: 'on-focus', value: monaco.editor.IStandaloneCodeEditor): void
+    (e: 'on-blur', value: monaco.editor.IStandaloneCodeEditor): void
 }

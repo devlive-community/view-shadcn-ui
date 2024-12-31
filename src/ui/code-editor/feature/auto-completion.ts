@@ -274,7 +274,10 @@ export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEdito
                         const { element: li, cleanup } = createSuggestionItem(item, index)
                         currentTooltipCleanups.push(cleanup)
 
-                        li.addEventListener('click', () => {
+                        li.addEventListener('mousedown', (event) => {
+                            event.preventDefault()
+                            event.stopPropagation()
+
                             const text = item.insertText || item.label
                             const position = editor.getPosition()
                             if (position) {

@@ -202,6 +202,19 @@ This document describes the features and usage of the ShadcnCodeEditor component
     ]">
 </ApiTable>
 
+## CodeEditor Events
+
+<ApiTable title="Events"
+    :headers="['Event', 'Description', 'Parameters']"
+    :columns="[
+        ['update:modelValue', 'update modelValue value', 'string'],
+        ['on-change', 'on change', 'string'],
+        ['on-created', 'on created', 'monaco.editor.IStandaloneCodeEditor'],
+        ['on-focus', 'on focus', 'monaco.editor.IStandaloneCodeEditor'],
+        ['on-blur', 'on blur', 'monaco.editor.IStandaloneCodeEditor']
+    ]">
+</ApiTable>
+
 
 <script setup lang="ts">
 import { ref } from 'vue';

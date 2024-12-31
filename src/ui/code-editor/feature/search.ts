@@ -73,8 +73,13 @@ function renderPreviewPanel()
 export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor, _config: CodeEditorSearchProps)
 {
     const searchPanelEl = document.createElement('div')
-    searchPanelEl.className = 'fixed z-[9999] bg-white rounded-md shadow-lg border border-gray-200 transition-opacity duration-200 ease-in-out opacity-0 pointer-events-none'
-    document.body.appendChild(searchPanelEl)
+    searchPanelEl.className = 'absolute z-[9999] bg-white rounded-md shadow-lg border border-gray-200 transition-opacity duration-200 ease-in-out opacity-0 pointer-events-none'
+    // 获取当前编辑器的 DOM 节点并附加搜索面板
+    const editorDomNode = editor.getDomNode()
+    if (!editorDomNode) return
+
+    // 附加到当前编辑器的 DOM 节点
+    editorDomNode.appendChild(searchPanelEl)
 
     // 存储所有需要清理的订阅
     // Store all subscriptions
@@ -631,17 +636,9 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
     // Register shortcut keys and commands
     disposables.push(
         editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyF, () => {
-            // 计算位置：放置在编辑器右上角
-            // Calculate position: place it in the upper right corner of the editor
-            const editorPos = editor.getContainerDomNode().getBoundingClientRect()
-            const parentPos = editor.getContainerDomNode().offsetParent?.getBoundingClientRect()
-                || { left: 0, top: 0 }
-
-            // 计算右侧位置，预留一定边距
-            // Calculate the right position, leaving a certain margin
-            const rightPosition = editorPos.right - parentPos.left - searchPanelEl.offsetWidth
-            searchPanelEl.style.left = `${ rightPosition }px`
-            searchPanelEl.style.top = `${ editorPos.top - parentPos.top }px`
+            searchPanelEl.style.right = '10px'
+            searchPanelEl.style.top = '5px'
+            searchPanelEl.style.left = 'auto'
 
             // 显示面板
             // Show panel
