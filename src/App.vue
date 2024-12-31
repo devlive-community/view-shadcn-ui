@@ -2,6 +2,16 @@
   <div class="p-4 min-h-screen space-y-6">
     <h2 class="text-xl font-semibold mb-4">Shadcn Code Editor</h2>
     <ShadcnCodeEditor v-model="value"
+                      :context-menu-config="{
+                           showDefaultItems: true,
+                           items: [{
+                              label: 'Format Code',
+                              icon: 'Save',
+                              action: ({ editor, selection}) => {
+                                console.log(editor.getModel()?.getValueInRange(selection))
+                              }
+                           }]
+                      }"
                       :auto-complete-config="{
                           endpoint: 'http://jsonplaceholder.typicode.com/posts',
                           method: 'GET',
@@ -13,20 +23,23 @@
                               detail: item.title
                             }))
                           },
-                          // requestParams: (context) => ({
-                          //     word: context.word,
-                          //     line: context.position.lineNumber.toString()
-                          // }),
-                          // requestBody: (context) => ({
-                          //     code: context.modelValue,
-                          //     position: context.position
-                          // })
-                        }"/>
+                        }">
+    </ShadcnCodeEditor>
 
     <ShadcnCodeEditor v-model="value">
     </ShadcnCodeEditor>
 
     <ShadcnCodeEditor v-model="value"
+                      :context-menu-config="{
+                           showDefaultItems: true,
+                           items: [{
+                              label: 'Format Code',
+                              icon: 'Save',
+                              action: ({ editor, selection}) => {
+                                console.log(editor.getModel()?.getValueInRange(selection))
+                              }
+                           }]
+                      }"
                       :auto-complete-config="{
                           endpoint: 'http://jsonplaceholder.typicode.com/posts',
                           method: 'GET',
@@ -37,16 +50,9 @@
                               insertText: item.body,
                               detail: item.title
                             }))
-                          },
-                          // requestParams: (context) => ({
-                          //     word: context.word,
-                          //     line: context.position.lineNumber.toString()
-                          // }),
-                          // requestBody: (context) => ({
-                          //     code: context.modelValue,
-                          //     position: context.position
-                          // })
-                        }"/>
+                          }
+                        }">
+    </ShadcnCodeEditor>
   </div>
 </template>
 

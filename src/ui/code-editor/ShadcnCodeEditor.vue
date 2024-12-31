@@ -93,23 +93,28 @@ const initEditor = () => {
     if (editor) {
       emit('on-focus', editor)
 
-      cleanAllDisposable()
       // 处理搜索面板
       // Handle search panel
       if (props.searchConfig) {
+        if (currentSearchPanel) {
+          currentSearchPanel.dispose()
+        }
         // @ts-ignore
         currentSearchPanel = registerSearchPanel(editor, props.searchConfig)
       }
 
       // 处理右键菜单
       // Handle right-click menu
-      if (props.contextMenuConfig) {
+      if (props.contextMenuConfig && !menuDisposable) {
         menuDisposable = registerContextMenu(editor, props.contextMenuConfig)
       }
 
       // 处理 API 自动完成
       // Handle API auto-completion
       if (props.autoCompleteConfig) {
+        if (currentApiCompletion) {
+          currentApiCompletion.dispose()
+        }
         currentApiCompletion = registerApiCompletion(editor, props.autoCompleteConfig)
       }
     }
@@ -121,7 +126,9 @@ const initEditor = () => {
     if (editor) {
       emit('on-blur', editor)
 
-      cleanAllDisposable()
+      if (currentApiCompletion) {
+        currentApiCompletion.dispose()
+      }
     }
   })
 
@@ -134,18 +141,6 @@ const initEditor = () => {
   })
 
   emit('on-created', editor)
-}
-
-const cleanAllDisposable = () => {
-  if (currentSearchPanel) {
-    currentSearchPanel.dispose()
-  }
-  if (currentApiCompletion) {
-    currentApiCompletion.dispose()
-  }
-  if (menuDisposable) {
-    menuDisposable.dispose()
-  }
 }
 
 const updateEditorOptions = () => {
@@ -178,7 +173,9 @@ onBeforeUnmount(() => {
   if (editor) {
     editor.dispose()
   }
-  cleanAllDisposable()
+  menuDisposable?.dispose()
+  currentSearchPanel?.dispose()
+  currentApiCompletion?.dispose()
   focusDisposable?.dispose()
   blurDisposable?.dispose()
 })
