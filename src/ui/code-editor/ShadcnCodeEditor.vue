@@ -37,9 +37,9 @@ const emit = defineEmits<CodeEditorEmits>()
 const editorContainer = ref<HTMLElement | null>(null)
 let editor: monaco.editor.IStandaloneCodeEditor | null = null
 let menuDisposable: { dispose: () => void } | null = null
-let searchPanelDisposable: { dispose: () => void } | null = null
 let focusDisposable: monaco.IDisposable | null = null
 let blurDisposable: monaco.IDisposable | null = null
+let currentSearchPanel: { dispose: () => void } | null = null
 
 const initEditor = () => {
   if (!editorContainer.value) {
@@ -87,13 +87,21 @@ const initEditor = () => {
   editor = monaco.editor.create(editorContainer.value, options)
 
   // 注册焦点事件
+  // Register focus event
   focusDisposable = editor.onDidFocusEditorText(() => {
     if (editor) {
       emit('on-focus', editor)
+      if (props.searchConfig) {
+        if (currentSearchPanel) {
+          currentSearchPanel.dispose()
+        }
+        currentSearchPanel = registerSearchPanel(editor, props.searchConfig) as any
+      }
     }
   })
 
   // 注册失焦事件
+  // Register blur event
   blurDisposable = editor.onDidBlurEditorText(() => {
     if (editor) {
       emit('on-blur', editor)
@@ -105,10 +113,6 @@ const initEditor = () => {
 
   if (props.contextMenuConfig) {
     menuDisposable = registerContextMenu(editor, props.contextMenuConfig)
-  }
-
-  if (props.searchConfig) {
-    searchPanelDisposable = registerSearchPanel(editor, props.searchConfig)
   }
 
   editor.onDidChangeModelContent(() => {
@@ -163,8 +167,8 @@ onBeforeUnmount(() => {
     editor.dispose()
   }
   menuDisposable?.dispose()
-  searchPanelDisposable?.dispose()
   focusDisposable?.dispose()
   blurDisposable?.dispose()
+  currentSearchPanel?.dispose()
 })
 </script>

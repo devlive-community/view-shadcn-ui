@@ -4,23 +4,17 @@
     <ShadcnCodeEditor v-model="value"
                       :search-config="{
                           showHistory: true
-                      }"
-                      @on-focus="handleEditorFocus"
-                      @on-blur="handleEditorBlur">
+                      }">
     </ShadcnCodeEditor>
 
-    <ShadcnCodeEditor v-model="value"
-                      @on-focus="handleEditorFocus"
-                      @on-blur="handleEditorBlur">
+    <ShadcnCodeEditor v-model="value">
     </ShadcnCodeEditor>
 
     <ShadcnCodeEditor v-model="value"
                       :search-config="{
                             caseSensitive: false,
                             replace: true
-                      }"
-                      @on-focus="handleEditorFocus"
-                      @on-blur="handleEditorBlur">
+                      }">
     </ShadcnCodeEditor>
   </div>
 </template>
@@ -32,12 +26,4 @@ import { setLocale } from '@/utils/locale.ts'
 setLocale('zh-CN')
 
 const value = ref('')
-
-const handleEditorFocus = (ctx) => {
-  console.log('Focused editor ID:', ctx.getId())
-}
-
-const handleEditorBlur = (ctx) => {
-  console.log('Blurred editor ID:', ctx.getId())
-}
 </script>
