@@ -1,6 +1,6 @@
 <template>
-  <div class="select-group space-y-1">
-    <div class="px-1.5 py-1.5 text-sm font-normal text-gray-300">
+  <div class="select-group space-y-1 select-none">
+    <div class="px-2 py-1.5 text-sm font-medium text-gray-500">
       {{ label }}
     </div>
     <slot/>

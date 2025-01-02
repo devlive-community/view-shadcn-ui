@@ -1,66 +1,24 @@
 <template>
-  <div class="p-4 min-h-screen space-y-6">
-    <h2 class="text-xl font-semibold mb-4">Shadcn Code Editor</h2>
-    <ShadcnCodeEditor v-model="value"
-                      :context-menu-config="{
-                           showDefaultItems: true,
-                           items: [{
-                              label: 'Format Code',
-                              icon: 'Save',
-                              action: ({ editor, selection}) => {
-                                console.log(editor.getModel()?.getValueInRange(selection))
-                              }
-                           }]
-                      }"
-                      :auto-complete-config="{
-                          endpoint: 'http://jsonplaceholder.typicode.com/posts',
-                          method: 'GET',
-                          trigger: ['.', '@'],
-                          transform: (data: any) => {
-                            return data.map((item: any) => ({
-                              label: item.title,
-                              insertText: item.body,
-                              detail: item.title
-                            }))
-                          },
-                        }">
-    </ShadcnCodeEditor>
-
-    <ShadcnCodeEditor v-model="value">
-    </ShadcnCodeEditor>
-
-    <ShadcnCodeEditor v-model="value"
-                      :context-menu-config="{
-                           showDefaultItems: true,
-                           items: [{
-                              label: 'Format Code',
-                              icon: 'Save',
-                              action: ({ editor, selection}) => {
-                                console.log(editor.getModel()?.getValueInRange(selection))
-                              }
-                           }]
-                      }"
-                      :auto-complete-config="{
-                          endpoint: 'http://jsonplaceholder.typicode.com/posts',
-                          method: 'GET',
-                          trigger: ['.', '@'],
-                          transform: (data: any) => {
-                            return data.map((item: any) => ({
-                              label: item.title,
-                              insertText: item.body,
-                              detail: item.title
-                            }))
-                          }
-                        }">
-    </ShadcnCodeEditor>
+  <div class="p-32">
+    <ShadcnSelect multiple v-model="defaultSelect">
+      <template #options>
+        <ShadcnSelectGroup label="Group 1">
+          <ShadcnSelectOption v-for="i in 2"
+                              :key="i"
+                              :label="`Option ${i}`"
+                              :value="`Value ${i}`"/>
+        </ShadcnSelectGroup>
+        <ShadcnSelectOption v-for="i in 2"
+                            :key="i"
+                            :label="`Option ${i}`"
+                            :value="`Value ${i}`"/>
+      </template>
+    </ShadcnSelect>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { setLocale } from '@/utils/locale.ts'
 
-setLocale('zh-CN')
-
-const value = ref('')
+const defaultSelect = ref('')
 </script>

@@ -19,8 +19,8 @@ export function registerContextMenu(
         e.event.stopPropagation()
 
         const selection = editor.getSelection()
-        contextMenuEl.style.left = `${ e.event.browserEvent.pageX }px`
-        contextMenuEl.style.top = `${ e.event.browserEvent.pageY }px`
+        contextMenuEl.style.left = `${ e.event.browserEvent.clientX }px`
+        contextMenuEl.style.top = `${ e.event.browserEvent.clientY }px`
 
         contextMenuEl.className = contextMenuEl.className.replace('opacity-0 pointer-events-none', 'opacity-100 pointer-events-auto')
 
