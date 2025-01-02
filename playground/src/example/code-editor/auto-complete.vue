@@ -4,14 +4,7 @@
                         endpoint: 'http://jsonplaceholder.typicode.com/posts',
                         method: 'GET',
                         trigger: ['.', '@'],
-                        transform: (data: any) => {
-                          return data.map((item: any) => ({
-                              label: item.title,
-                              insertText: item.body,
-                              detail: item.title
-                          }))
-                        }
-                    }">
+                        transform: transfo}">
   </ShadcnCodeEditor>
 </template>
 
@@ -19,4 +12,11 @@
 import { ref } from 'vue'
 
 const value = ref('Hello View Shadcn UI')
+const transfo = (data: any) => {
+  return data.map((item: any) => ({
+    label: item.title,
+    insertText: item.body,
+    detail: item.title
+  }))
+}
 </script>

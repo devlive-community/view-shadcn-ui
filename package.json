@@ -102,7 +102,6 @@
     "monaco-editor": "^0.52.2",
     "qrcode": "^1.5.4",
     "tailwind-merge": "^2.2.2",
-    "tailwindcss-animate": "^1.0.7",
     "vue": "^3.4.21"
   },
   "devDependencies": {
@@ -113,6 +112,7 @@
     "postcss": "^8.4.47",
     "standard-version": "^9.5.0",
     "tailwindcss": "^3.4.1",
+    "tailwindcss-animate": "^1.0.7",
     "terser": "^5.37.0",
     "typescript": "^5.2.2",
     "vite": "^5.2.0",

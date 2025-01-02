@@ -26,9 +26,6 @@ importers:
       tailwind-merge:
         specifier: ^2.2.2
         version: 2.6.0
-      tailwindcss-animate:
-        specifier: ^1.0.7
-        version: 1.0.7(tailwindcss@3.4.17)
       vue:
         specifier: ^3.4.21
         version: 3.5.13(typescript@5.7.2)
@@ -54,6 +51,9 @@ importers:
       tailwindcss:
         specifier: ^3.4.1
         version: 3.4.17
+      tailwindcss-animate:
+        specifier: ^1.0.7
+        version: 1.0.7(tailwindcss@3.4.17)
       terser:
         specifier: ^5.37.0
         version: 5.37.0
