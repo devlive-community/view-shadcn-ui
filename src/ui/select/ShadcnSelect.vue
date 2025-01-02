@@ -1,22 +1,22 @@
 <template>
   <div ref="selectRef" class="relative">
-    <div :class="['flex rounded px-2',
-                   border && 'border',
+    <div :class="['flex rounded-md px-2 relative',
+                  border && 'border border-gray-200 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2',
                   {
                     'cursor-pointer': !disabled,
-                    'cursor-not-allowed opacity-50 bg-gray-100': disabled,
+                    'cursor-not-allowed opacity-50 bg-gray-50': disabled,
                     [HoverType[type]]: true
                   }
          ]"
          @click="toggleDropdown">
       <div class="flex-1 flex items-center overflow-hidden">
-        <div :class="['flex flex-wrap gap-1 w-full py-0.5',
+        <div :class="['flex flex-wrap gap-1 w-full py-1',
                     MinSize[size]
               ]">
           <slot name="selected">
             <template v-if="multiple && selectedLabels.length">
               <span v-for="(label, _index) in selectedLabels"
-                    class="bg-gray-100 px-2 rounded-md text-sm flex items-center gap-1"
+                    class="bg-gray-100 hover:bg-gray-200 px-2 select-none text-gray-600 rounded text-sm flex items-center gap-1 transition-colors"
                     :key="_index"
                     :style="{ paddingTop: PtPbSize[size], paddingBottom: PtPbSize[size] }">
                 {{ label }}
@@ -26,7 +26,7 @@
               </span>
             </template>
             <template v-else>
-              <span class="flex items-center min-w-0 truncate select-none">
+              <span class="flex items-center min-w-0 truncate select-none text-gray-300 px-2">
                 {{ selectedLabels[0] || placeholder }}
               </span>
             </template>
@@ -47,23 +47,31 @@
       </div>
     </div>
 
-    <div v-show="isExpanded"
-         ref="dropdownRef"
-         class="absolute z-10 bg-white border border-gray-300 rounded-sm mt-1 w-full py-2 px-2 space-y-1 overflow-y-auto max-h-60"
-         @scroll="handleScroll">
-      <slot name="options">
-        <ShadcnSelectOption v-for="(option, index) in internalOptions"
-                            :key="index"
-                            :value="option.value"
-                            :label="option.label"
-                            :selected="isOptionSelected(option.value)"
-                            :disabled="option.disabled"
-                            :type="type"/>
-      </slot>
-      <div v-if="isLoading" class="flex justify-center items-center py-2">
-        <div class="animate-spin rounded-full h-4 w-4 border-2 border-primary border-t-transparent"></div>
+    <Transition
+        enter-active-class="transition duration-300 ease-out"
+        enter-from-class="transform -translate-y-2 scale-95 opacity-0"
+        enter-to-class="transform translate-y-0 scale-100 opacity-100"
+        leave-active-class="transition duration-200 ease-in"
+        leave-from-class="transform translate-y-0 scale-100 opacity-100"
+        leave-to-class="transform -translate-y-2 scale-95 opacity-0">
+      <div v-show="isExpanded"
+           ref="dropdownRef"
+           class="absolute z-10 w-full px-2 rounded-md border border-gray-200 bg-white shadow-lg mt-1 py-1 overflow-y-auto max-h-60"
+           @scroll="handleScroll">
+        <slot name="options">
+          <ShadcnSelectOption v-for="(option, index) in internalOptions"
+                              :key="index"
+                              :value="option.value"
+                              :label="option.label"
+                              :selected="isOptionSelected(option.value)"
+                              :disabled="option.disabled"
+                              :type="type"/>
+        </slot>
+        <div v-if="isLoading" class="flex justify-center items-center py-2">
+          <div class="animate-spin rounded-full h-4 w-4 border-2 border-primary-500 border-t-transparent"></div>
+        </div>
       </div>
-    </div>
+    </Transition>
   </div>
 </template>
 
@@ -251,10 +259,10 @@ provide('selectContext', {
 
 onMounted(() => {
   document.addEventListener('click', onClickOutside)
-  isExpanded.value = true
-  nextTick(() => {
-    isExpanded.value = false
-  })
+  // isExpanded.value = true
+  // nextTick(() => {
+  //   isExpanded.value = false
+  // })
 })
 
 onUnmounted(() => {

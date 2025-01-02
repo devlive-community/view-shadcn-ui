@@ -82,7 +82,12 @@ const initEditor = () => {
       showTypeParameters: false,
       showSnippets: false
     },
-    scrollBeyondLastLine: false
+    scrollBeyondLastLine: false,
+    acceptSuggestionOnCommitCharacter: false,
+    acceptSuggestionOnEnter: 'off',
+    hover: {
+      enabled: false
+    },
   }
 
   editor = monaco.editor.create(editorContainer.value, options)

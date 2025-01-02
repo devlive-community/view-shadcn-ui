@@ -1,24 +1,25 @@
 <template>
-  <div :class="['flex items-center text-sm p-2 hover:bg-gray-100 h-8 rounded-sm',
-                 {
-                   'cursor-not-allowed opacity-50': disabled,
-                   'cursor-pointer': !disabled,
-                   [TextType[type]]: isSelected,
-                   'bg-gray-50': isSelected
-                 },
-                 inGroup && 'ml-4'
+  <div :class="['flex items-center text-sm px-2 py-1.5 my-1 hover:bg-gray-100 rounded-sm transition-colors',
+                  {
+                    'cursor-not-allowed opacity-50': disabled,
+                    'cursor-pointer': !disabled,
+                    [TextType[type]]: isSelected,
+                    'bg-gray-50': isSelected
+                  },
+                  inGroup && 'ml-4'
        ]"
        :data-parent="parentName"
        @click="onSelect">
     <div :class="['flex items-center gap-2 select-none']">
       <div v-if="context.multiple"
-           class="w-4 h-4 border rounded flex items-center justify-center">
+           class="w-4 h-4 border border-gray-300 rounded flex items-center justify-center transition-colors"
+           :class="{'bg-primary-500 border-primary-500': isSelected}">
         <svg v-if="isSelected"
              xmlns="http://www.w3.org/2000/svg"
              viewBox="0 0 24 24"
              fill="none"
              stroke="currentColor"
-             class="w-3 h-3">
+             class="w-3 h-3 stroke-current">
           <polyline points="20 6 9 17 4 12"/>
         </svg>
       </div>
