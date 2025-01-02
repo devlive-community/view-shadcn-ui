@@ -1,3 +1,1 @@
-import ShadcnSlider from './ShadcnSlider.vue'
-
-export default ShadcnSlider
+export { default as ShadcnSlider } from './ShadcnSlider.vue'

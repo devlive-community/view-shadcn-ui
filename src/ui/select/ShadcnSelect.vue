@@ -10,13 +10,13 @@
          ]"
          @click="toggleDropdown">
       <div class="flex-1 flex items-center overflow-hidden">
-        <div :class="['flex flex-wrap gap-1 w-full py-0.5',
+        <div :class="['flex flex-wrap gap-1 w-full py-1',
                     MinSize[size]
               ]">
           <slot name="selected">
             <template v-if="multiple && selectedLabels.length">
               <span v-for="(label, _index) in selectedLabels"
-                    class="bg-gray-100 hover:bg-gray-200 px-2 rounded text-sm flex items-center gap-1 transition-colors"
+                    class="bg-gray-100 hover:bg-gray-200 px-2 select-none text-gray-600 rounded text-sm flex items-center gap-1 transition-colors"
                     :key="_index"
                     :style="{ paddingTop: PtPbSize[size], paddingBottom: PtPbSize[size] }">
                 {{ label }}
@@ -26,7 +26,7 @@
               </span>
             </template>
             <template v-else>
-              <span class="flex items-center min-w-0 truncate select-none">
+              <span class="flex items-center min-w-0 truncate select-none text-gray-300 px-2">
                 {{ selectedLabels[0] || placeholder }}
               </span>
             </template>

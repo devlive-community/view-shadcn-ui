@@ -8,7 +8,7 @@
 
       <!-- Filled track -->
       <div :class="['absolute h-full rounded z-[1]',
-                    disabled ? 'bg-gray-300' : 'bg-blue-500'
+                    disabled ? 'bg-gray-300' : ButtonBackgroundType[type]
            ]"
            :style="`width: ${percentage}%`"/>
 
@@ -51,27 +51,22 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
+import { SliderEmits, SliderProps } from '@/ui/slider/types.ts'
+import { ButtonBackgroundType } from '@/ui/common/type.ts'
 
-const emit = defineEmits(['update:modelValue', 'on-change'])
+const emit = defineEmits<SliderEmits>()
 
-const props = withDefaults(defineProps<{
-  modelValue: number | string
-  min?: number | string
-  max?: number | string
-  step?: number | string
-  showTip?: boolean
-  showStep?: boolean
-  disabled?: boolean
-}>(), {
+const props = withDefaults(defineProps<SliderProps>(), {
   min: 0,
   max: 100,
   step: 1,
   showTip: false,
   showStep: false,
-  disabled: false
+  disabled: false,
+  type: 'primary'
 })
 
-const internalValue = ref(props.modelValue)
+const internalValue = ref(Number(props.modelValue))
 
 const min = computed(() => Number(props.min) ?? 0)
 const max = computed(() => Number(props.max) ?? 100)
@@ -96,12 +91,20 @@ const stepMarks = computed(() => {
   return marks
 })
 
-watch(() => props.modelValue, (newValue: number | string) => internalValue.value = Number(newValue))
+watch(() => props.modelValue, (newValue) => {
+  const numericValue = Number(newValue)
+  if (!isNaN(numericValue)) {
+    internalValue.value = numericValue
+  }
+})
 
 const onChange = () => {
   if (!props.disabled) {
-    emit('update:modelValue', internalValue.value)
-    emit('on-change', internalValue.value)
+    const numericValue = Number(internalValue.value)
+    if (!isNaN(numericValue)) {
+      emit('update:modelValue', numericValue)
+      emit('on-change', numericValue)
+    }
   }
 }
 </script>
