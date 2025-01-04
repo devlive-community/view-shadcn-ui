@@ -1,6 +1,10 @@
 <template>
   <div class="p-32 space-y-7">
-    {{value}}
+    <ShadcnMention :items="items" type="primary"/>
+    <ShadcnMention :items="items" type="success"/>
+    <ShadcnMention :items="items" type="warning"/>
+    <ShadcnMention :items="items" type="error"/>
+
     <ShadcnMention v-model="value"
                    :items="items"
                    placeholder="Type your message with @ to mention"
@@ -9,9 +13,9 @@
                    @on-change="handleChange">
     </ShadcnMention>
 
-    <ShadcnMention :items="items" size="small" />
-    <ShadcnMention :items="items" size="default" />
-    <ShadcnMention :items="items" size="large" />
+    <ShadcnMention :items="items" size="small"/>
+    <ShadcnMention :items="items" size="default"/>
+    <ShadcnMention :items="items" size="large"/>
   </div>
 </template>
 

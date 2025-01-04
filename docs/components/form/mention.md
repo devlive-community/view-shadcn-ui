@@ -10,7 +10,7 @@ title: Shadcn Mention
 
 ::: raw
 
-<CodeRunner title="列表">
+<CodeRunner title="列表" codeKey="mention-items">
     <ShadcnMention :items="items" />
 </CodeRunner>
 
@@ -30,7 +30,7 @@ title: Shadcn Mention
 
 ::: raw
 
-<CodeRunner title="提示词">
+<CodeRunner title="提示词" codeKey="mention-placeholder">
     <ShadcnMention placeholder="键入 @ 以提及" />
 </CodeRunner>
 
@@ -50,7 +50,7 @@ title: Shadcn Mention
 
 ::: raw
 
-<CodeRunner title="尺寸">
+<CodeRunner title="尺寸" codeKey="mention-size">
   <ShadcnMention size="small" :items="items" />
   <ShadcnMention size="default" :items="items" />
   <ShadcnMention size="large" :items="items" />
@@ -70,6 +70,32 @@ title: Shadcn Mention
 
 :::
 
+## 类型 (type)
+
+::: raw
+
+<CodeRunner title="类型" codeKey="mention-type">
+  <ShadcnMention type="primary" :items="items" />
+  <ShadcnMention type="success" :items="items" />
+  <ShadcnMention type="warning" :items="items" />
+  <ShadcnMention type="error" :items="items" />
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+  <ShadcnMention type="primary" :items="items" />
+  <ShadcnMention type="success" :items="items" />
+  <ShadcnMention type="warning" :items="items" />    
+  <ShadcnMention type="error" :items="items" />
+</template>
+```
+
+:::
+
 ## Mention 属性
 
 <ApiTable title="属性"
@@ -79,6 +105,7 @@ title: Shadcn Mention
         ['items', '提及的项目列表', 'MentionOption\[\]', '-', '-'],
         ['placeholder', '提示词', 'string', '-', '-'],
         ['size', '尺寸', 'enum', 'default', 'small, default, large'],
+        ['type', '类型', 'enum', 'default', 'primary, success, warning, error'],
     ]">
 </ApiTable>
 

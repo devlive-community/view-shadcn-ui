@@ -1,4 +1,5 @@
 import { Size } from '@/ui/common/size.ts'
+import { HoverType } from '@/ui/common/type.ts'
 
 export interface MentionOption
 {
@@ -12,6 +13,7 @@ export interface MentionProps
     items: Array<MentionOption>
     placeholder?: string
     size?: keyof typeof Size
+    type?: keyof typeof HoverType
 }
 
 export type MentionEmits = {

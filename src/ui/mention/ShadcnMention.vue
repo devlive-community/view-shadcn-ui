@@ -1,11 +1,18 @@
 <template>
   <div class="relative w-full">
     <div class="relative w-full border rounded-md overflow-hidden flex items-center"
-         :class="[Size[finalSize]]">
+         :class="[
+             Size[finalSize],
+             [HoverType[type]]
+         ]">
       <div class="w-full px-1 flex flex-wrap gap-1 items-center min-h-full">
         <template v-for="tag in selectedTags" :key="tag.id">
-          <span class="inline-flex items-center bg-blue-100 rounded px-1.5 text-sm select-none text-gray-500"
-                :class="[WrapSize[finalSize], { 'animate-shake bg-red-100': tag.id === highlightedId }]">
+          <span class="inline-flex items-center rounded px-1.5 text-sm select-none text-white"
+                :class="[
+                    WrapSize[finalSize],
+                     { 'animate-shake bg-red-100': tag.id === highlightedId },
+                     [BaseBackgroundType[type]]
+                ]">
             @{{ tag.name }}
           </span>
         </template>
@@ -27,17 +34,18 @@
         enter-to-class="opacity-100 translate-y-0"
         leave-active-class="transition ease-in duration-150"
         leave-from-class="opacity-100 translate-y-0"
-        leave-to-class="opacity-0 translate-y-1"
-    >
+        leave-to-class="opacity-0 translate-y-1">
       <div v-if="showItems && filteredItems.length > 0"
            class="absolute z-50 w-full max-h-[200px] mt-1 overflow-auto bg-white border rounded-md shadow-lg space-y-1 px-2 py-2">
         <div v-for="(item, index) in filteredItems"
              :key="item.id"
-             class="p-2 hover:bg-gray-100 justify-between items-center flex rounded-md"
+             class="p-2 justify-between items-center flex rounded-md"
              :class="{
                  'bg-gray-100': selectedIndex === index,
                  'cursor-not-allowed opacity-50 bg-gray-100': isItemSelected(item),
-                 'cursor-pointer': !isItemSelected(item)
+                 'cursor-pointer': !isItemSelected(item),
+                 [BaseTextType[type]]: isItemSelected(item),
+                 [HoverType[type]]: true
              }"
              @click="(event) => selectItem(item, event)"
              @mouseenter="selectedIndex = index">
@@ -56,10 +64,12 @@ import { computed, nextTick, ref, watch } from 'vue'
 import { t } from '@/utils/locale'
 import type { MentionEmits, MentionOption, MentionProps } from './types'
 import { Size, WrapSize } from '@/ui/common/size.ts'
+import { BaseBackgroundType, BaseTextType, HoverType } from '@/ui/common/type.ts'
 
 const props = withDefaults(defineProps<MentionProps>(), {
   placeholder: t('mention.text.placeholder') as string,
-  size: 'default'
+  size: 'default',
+  type: 'primary'
 })
 
 const emit = defineEmits<MentionEmits>()
@@ -149,7 +159,7 @@ const selectItem = (item: MentionOption, event?: Event) => {
   event?.stopPropagation()
 
   if (isItemSelected(item)) {
-    highlightTag(item.id)
+    highlightTag(item.id as any)
     return
   }
 
