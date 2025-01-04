@@ -45,7 +45,7 @@ const value = ref([1, 2, 3])
 const items = ref([
   { id: 1, name: 'John Doe' },
   { id: 2, name: 'Jane Smith' },
-  { id: 3, name: 'Bob Johnson' },
+  { id: 3, name: 'Bob Johnson', disabled: true },
   { id: 4, name: 'Alice Brown' },
   { id: 5, name: 'Charlie Davis' },
   { id: 6, name: 'Eve Wilson' },

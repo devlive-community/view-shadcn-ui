@@ -5,6 +5,7 @@ export interface MentionOption
 {
     id: string | number
     name: string
+    disabled?: boolean
 }
 
 export interface MentionProps

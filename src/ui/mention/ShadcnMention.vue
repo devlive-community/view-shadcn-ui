@@ -51,13 +51,13 @@
              class="p-2 justify-between items-center flex rounded-md"
              :class="{
                  'bg-gray-100': selectedIndex === index,
-                 'cursor-not-allowed opacity-50 bg-gray-100': isItemSelected(item),
-                 'cursor-pointer': !isItemSelected(item),
+                 'cursor-not-allowed opacity-50 bg-gray-100': isItemSelected(item) || item.disabled,
+                 'cursor-pointer': !isItemSelected(item) && !item.disabled,
                  [BaseTextType[type]]: isItemSelected(item),
-                 [HoverType[type]]: true
+                 [HoverType[type]]: !item.disabled && !isItemSelected(item)
              }"
-             @click.stop="(event) => selectItem(item, event)"
-             @mouseenter="selectedIndex = index">
+             @click.stop="(event) => handleItemClick(item, event)"
+             @mouseenter="() => handleItemHover(index, item)">
           <slot name="item" :item="item" :selected="isItemSelected(item)">
             {{ item.name }}
             <span v-if="isItemSelected(item)">
@@ -82,7 +82,7 @@ const props = withDefaults(defineProps<MentionProps>(), {
   size: 'default',
   type: 'primary',
   disabled: false,
-  trigger: '@'  // 新增默认触发符号
+  trigger: '@'
 })
 
 const emit = defineEmits<MentionEmits>()
@@ -173,51 +173,39 @@ const handleBlur = (event: FocusEvent) => {
   }, 200)
 }
 
-const handleKeyUp = () => {
-  if (!showItems.value || filteredItems.value.length === 0) {
-    return
-  }
-
-  if (selectedIndex.value > 0) {
-    selectedIndex.value--
-  }
-  else {
-    selectedIndex.value = filteredItems.value.length - 1
+const handleItemHover = (index: number, item: MentionOption) => {
+  if (!item.disabled) {
+    selectedIndex.value = index
   }
 }
 
-const handleKeyDown = () => {
-  if (!showItems.value || filteredItems.value.length === 0) {
+const handleItemClick = (item: MentionOption, event?: Event) => {
+  event?.stopPropagation()
+
+  if (item.disabled) {
     return
   }
 
-  if (selectedIndex.value < filteredItems.value.length - 1) {
-    selectedIndex.value++
-  }
-  else {
-    selectedIndex.value = 0
-  }
-
-  nextTick(() => {
-    scrollToSelected()
-  })
-}
-
-const handleKeyEnter = () => {
-  if (!showItems.value || filteredItems.value.length === 0) {
+  if (isItemSelected(item)) {
+    highlightTag(item.id as any)
     return
   }
 
-  const selectedItem = filteredItems.value[selectedIndex.value]
-  if (selectedItem) {
-    selectItem(selectedItem)
-  }
+  selectItem(item)
 }
 
-const handleKeyEsc = () => {
+const selectItem = (item: MentionOption) => {
+  selectedTags.value.push(item)
+  inputValue.value = ''
   showItems.value = false
   selectedIndex.value = 0
-  inputRef.value?.blur()
+  emit('on-select', item)
+  emit('on-change', formatTags())
+  emit('update:modelValue', formatTags())
+
+  nextTick(() => {
+    inputRef.value?.focus()
+  })
 }
 
 const scrollToSelected = () => {
@@ -239,34 +227,66 @@ const scrollToSelected = () => {
   const elementBottom = elementTop + selectedItem.offsetHeight
 
   if (elementTop < containerTop) {
-    // 向上滚动
     container.scrollTop = elementTop
   }
   else if (elementBottom > containerBottom) {
-    // 向下滚动
     container.scrollTop = elementBottom - container.clientHeight
   }
 }
 
-const selectItem = (item: MentionOption, event?: Event) => {
-  event?.stopPropagation()
-
-  if (isItemSelected(item)) {
-    highlightTag(item.id as any)
+const handleKeyUp = (event: KeyboardEvent) => {
+  event.stopPropagation()
+  if (!showItems.value || filteredItems.value.length === 0) {
     return
   }
 
-  selectedTags.value.push(item)
-  inputValue.value = ''
-  showItems.value = false
-  selectedIndex.value = 0
-  emit('on-select', item)
-  emit('on-change', formatTags())
-  emit('update:modelValue', formatTags())
+  if (selectedIndex.value > 0) {
+    selectedIndex.value--
+  }
+  else {
+    selectedIndex.value = filteredItems.value.length - 1
+  }
 
   nextTick(() => {
-    inputRef.value?.focus()
+    scrollToSelected()
   })
+}
+
+const handleKeyDown = (event: KeyboardEvent) => {
+  event.stopPropagation()
+  if (!showItems.value || filteredItems.value.length === 0) {
+    return
+  }
+
+  if (selectedIndex.value < filteredItems.value.length - 1) {
+    selectedIndex.value++
+  }
+  else {
+    selectedIndex.value = 0
+  }
+
+  nextTick(() => {
+    scrollToSelected()
+  })
+}
+
+const handleKeyEnter = (event: KeyboardEvent) => {
+  event.stopPropagation()
+  if (!showItems.value || filteredItems.value.length === 0) {
+    return
+  }
+
+  const selectedItem = filteredItems.value[selectedIndex.value]
+  if (selectedItem && !selectedItem.disabled) {
+    selectItem(selectedItem)
+  }
+}
+
+const handleKeyEsc = (event: KeyboardEvent) => {
+  event.stopPropagation()
+  showItems.value = false
+  selectedIndex.value = 0
+  inputRef.value?.blur()
 }
 
 const formatTags = () => {
