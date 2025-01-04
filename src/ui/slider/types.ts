@@ -1,19 +1,18 @@
-import { ButtonBackgroundType } from '@/ui/common/type.ts'
+import { BaseBackgroundType } from '@/ui/common/type.ts'
 
 export interface SliderProps
 {
     modelValue: number | number[]
-    min?: number | string
-    max?: number | string
-    step?: number | string
+    min?: number
+    max?: number
+    step?: number
     showTip?: boolean
     showStep?: boolean
     disabled?: boolean
-    type?: keyof typeof ButtonBackgroundType
+    type?: keyof typeof BaseBackgroundType
 }
 
 export type SliderEmits = {
     (e: 'update:modelValue', value: number | number[]): void
     (e: 'on-change', value: number | number[]): void
 }
-

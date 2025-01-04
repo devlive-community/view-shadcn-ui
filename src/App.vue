@@ -1,28 +1,61 @@
 <template>
   <div class="p-32 space-y-7">
-    <ShadcnSelect multiple v-model="defaultSelect">
-      <template #options>
-        <ShadcnSelectGroup label="Group 1">
-          <ShadcnSelectOption v-for="i in 2"
-                              :key="i"
-                              :label="`Option ${i}`"
-                              :value="`Value ${i}`"/>
-        </ShadcnSelectGroup>
-        <ShadcnSelectOption v-for="i in 2"
-                            :key="i"
-                            :label="`Option ${i}`"
-                            :value="`Value ${i}`"/>
-      </template>
-    </ShadcnSelect>
+    <ShadcnTab>
+      <ShadcnTabItem label="Tab 1" value="Tab 1">
+        <p>Tab 1 content</p>
+      </ShadcnTabItem>
+      <ShadcnTabItem label="Tab 2" value="Tab 2">
+        <p>Tab 2 content</p>
+      </ShadcnTabItem>
+      <ShadcnTabItem label="Tab 3" value="Tab 3">
+        <p>Tab 3 content</p>
+      </ShadcnTabItem>
+    </ShadcnTab>
 
-    Slider Value: {{ value }}
-    <ShadcnSlider v-model="value" />
+    <ShadcnTab type="primary">
+      <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
+      <ShadcnTabItem label="Tab 2" value="Tab 2" disabled>Tab 2 content</ShadcnTabItem>
+      <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
+    </ShadcnTab>
+    <ShadcnTab type="success">
+      <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
+      <ShadcnTabItem label="Tab 2" value="Tab 2" disabled>Tab 2 content</ShadcnTabItem>
+      <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
+    </ShadcnTab>
+    <ShadcnTab type="warning">
+      <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
+      <ShadcnTabItem label="Tab 2" value="Tab 2" disabled>Tab 2 content</ShadcnTabItem>
+      <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
+    </ShadcnTab>
+    <ShadcnTab type="error">
+      <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
+      <ShadcnTabItem label="Tab 2" value="Tab 2" disabled>Tab 2 content</ShadcnTabItem>
+      <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
+    </ShadcnTab>
+
+    <ShadcnTab size="default">
+      <ShadcnTabItem label="Default 1" value="Default 1">Tab 1 content</ShadcnTabItem>
+      <ShadcnTabItem label="Default 2" value="Default 2" disabled>Tab 2 content</ShadcnTabItem>
+      <ShadcnTabItem label="Default 3" value="Default 3">Tab 3 content</ShadcnTabItem>
+    </ShadcnTab>
+    <ShadcnTab size="small">
+      <ShadcnTabItem label="Small 1" value="Small 1">Tab 1 content</ShadcnTabItem>
+      <ShadcnTabItem label="Small 2" value="Small 2" disabled>Tab 2 content</ShadcnTabItem>
+      <ShadcnTabItem label="Small 3" value="Small 3">Tab 3 content</ShadcnTabItem>
+    </ShadcnTab>
+
+    <ShadcnTab direction="vertical" position="left">
+      <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
+      <ShadcnTabItem label="Tab 2" value="Tab 2">Tab 2 content</ShadcnTabItem>
+      <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
+    </ShadcnTab>
+    <ShadcnTab direction="vertical" position="right">
+      <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
+      <ShadcnTabItem label="Tab 2" value="Tab 2">Tab 2 content</ShadcnTabItem>
+      <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
+    </ShadcnTab>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
-const defaultSelect = ref('')
-const value = ref(50)
 </script>

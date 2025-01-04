@@ -4,14 +4,13 @@ title: Shadcn Slider
 
 # Introduction
 
-This document is mainly used to describe some features and usage of the ShadcnSlider component.
+This document describes the features and usage of the ShadcnSlider component.
 
 ## Usage
 
 ::: raw
 
 <CodeRunner title="Usage">
-    Default Value: {{ value }}
     <ShadcnSlider v-model="value" />
 </CodeRunner>
 
@@ -23,12 +22,46 @@ This document is mainly used to describe some features and usage of the ShadcnSl
 <template>
     <ShadcnSlider v-model="value" />
 </template>
+```
 
-<script setup lang="ts">
-import { ref } from 'vue';
+:::
 
-const value = ref(50);
-</script>
+## Min
+
+::: raw
+
+<CodeRunner title="Min">
+    <ShadcnSlider v-model="value" :min="0" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+    <ShadcnSlider v-model="value" :min="0" />
+</template>
+```
+
+:::
+
+## Max
+
+::: raw
+
+<CodeRunner title="Max">
+    <ShadcnSlider v-model="value" :max="10" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnSlider v-model="value" :max="10" />
+</template>
 ```
 
 :::
@@ -47,24 +80,19 @@ const value = ref(50);
 
 ```vue
 <template>
-    <ShadcnSlider v-model="value" :step="10" />
+  <ShadcnSlider v-model="value" :step="10" />
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue';
-
-const value = ref(50);
-</script>
 ```
 
 :::
 
-## Show Tip
+## Show tip
 
 ::: raw
 
-<CodeRunner title="Show Tip">
-    <ShadcnSlider v-model="value" show-tip />
+<CodeRunner title="Show tip">
+    <ShadcnSlider v-model="value" showTip />
+    <ShadcnSlider v-model="value" :showTip="false" />
 </CodeRunner>
 
 :::
@@ -73,24 +101,20 @@ const value = ref(50);
 
 ```vue
 <template>
-    <ShadcnSlider v-model="value" show-tip />
+    <ShadcnSlider v-model="value" showTip />
+    <ShadcnSlider v-model="value" :showTip="false" />
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue';
-
-const value = ref(50);
-</script>
 ```
 
 :::
 
-## Show Step
+## Show step
 
 ::: raw
 
-<CodeRunner title="Show Step">
-    <ShadcnSlider v-model="value" step="10" show-step />
+<CodeRunner title="Show step">
+    <ShadcnSlider v-model="value" :step="10" showStep />
+    <ShadcnSlider v-model="value" :showStep="false" />
 </CodeRunner>
 
 :::
@@ -99,14 +123,9 @@ const value = ref(50);
 
 ```vue
 <template>
-    <ShadcnSlider v-model="value" step="10" show-step />
+    <ShadcnSlider v-model="value" showStep />
+    <ShadcnSlider v-model="value" :showStep="false" />
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue';
-
-const value = ref(50);
-</script>
 ```
 
 :::
@@ -117,6 +136,7 @@ const value = ref(50);
 
 <CodeRunner title="Disabled">
     <ShadcnSlider v-model="value" disabled />
+    <ShadcnSlider v-model="value" :disabled="false" />
 </CodeRunner>
 
 :::
@@ -126,43 +146,66 @@ const value = ref(50);
 ```vue
 <template>
     <ShadcnSlider v-model="value" disabled />
+    <ShadcnSlider v-model="value" :disabled="false" />
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue';
-
-const value = ref(50);
-</script>
 ```
 
 :::
 
-## Props
+## Type
+
+::: raw
+
+<CodeRunner title="Type">
+    <ShadcnSlider v-model="value" type="primary" />
+    <ShadcnSlider v-model="value" type="warning" />
+    <ShadcnSlider v-model="value" type="success" />
+    <ShadcnSlider v-model="value" type="error" />
+</CodeRunner>
+
+:::
+
+::: details Show code
+
+```vue
+<template>
+  <ShadcnSlider v-model="value" type="primary" />
+  <ShadcnSlider v-model="value" type="warning" />
+  <ShadcnSlider v-model="value" type="success" />
+  <ShadcnSlider v-model="value" type="error" />
+</template>
+```
+
+:::
+## Slider Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
     :columns="[
-        ['modelValue', 'Slider value', 'number', '0'],
-        ['min', 'Minimum value of the slider', 'number', '0'],
-        ['max', 'Maximum value of the slider', 'number', '100'],
-        ['step', 'Step value of the slider', 'number', '1'],
-        ['showTip', 'Display a tooltip', 'boolean', 'false'],
-        ['showStep', 'Display a step', 'boolean', 'false'],
-        ['disabled', 'Disable the slider', 'boolean', 'false'],
+        ['modelValue', 'modelValue value', 'number | number\[\]', '-', 'number, number\[\]'],
+        ['min', 'min value', 'number', '0', 'number'],
+        ['max', 'max value', 'number', '100', 'number'],
+        ['step', 'step value', 'number', '1', 'number'],
+        ['showTip', 'showTip value', 'boolean', 'false', '-'],
+        ['showStep', 'showStep value', 'boolean', 'false', '-'],
+        ['disabled', 'disabled value', 'boolean', 'false', '-'],
+        ['type', 'type value', 'keyof typeof ButtonBackgroundType', 'primary', '-']
     ]">
 </ApiTable>
 
-## Events
+## Slider Events
 
 <ApiTable title="Events"
-    :headers="['Attribute', 'Description', 'Type']"
+    :headers="['Event', 'Description', 'Callback Parameters']"
     :columns="[
-        ['on-change', 'Triggered when the value of the slider is changed', 'number'],
+        ['update:modelValue', 'Triggered when update:modelValue', 'value: number | number\[\]'],
+        ['on-change', 'Triggered when on change', 'value: number | number\[\]']
     ]">
 </ApiTable>
+
 
 <script setup lang="ts">
 import { ref } from 'vue';
 
-const value = ref(50);
+const value = ref('')
 </script>
