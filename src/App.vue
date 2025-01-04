@@ -1,39 +1,6 @@
 <template>
   <div class="p-32 space-y-7">
-    <ShadcnMention v-model="value" :items="items">
-      <template #item="{ item, selected }">
-        <div class="flex items-center gap-2">
-          <div class="flex space-x-2 items-center">
-            <div class="font-medium">{{ item.id }}</div>
-            <div class="text-sm text-gray-500">{{ item.name }}</div>
-          </div>
-          <span v-if="selected" class="ml-auto">
-            <ShadcnIcon icon="Check"/>
-          </span>
-        </div>
-      </template>
-    </ShadcnMention>
-
-    <ShadcnMention :items="items" trigger="#"/>
-
-    <ShadcnMention :items="items" disabled/>
-
-    <ShadcnMention :items="items" type="primary"/>
-    <ShadcnMention :items="items" type="success"/>
-    <ShadcnMention :items="items" type="warning"/>
-    <ShadcnMention :items="items" type="error"/>
-
-    <ShadcnMention v-model="value"
-                   :items="items"
-                   placeholder="Type your message with @ to mention"
-                   @on-select="handleSelect"
-                   @on-search="handleSearch"
-                   @on-change="handleChange">
-    </ShadcnMention>
-
-    <ShadcnMention :items="items" size="small"/>
-    <ShadcnMention :items="items" size="default"/>
-    <ShadcnMention :items="items" size="large"/>
+    <ShadcnMention v-model="value" :items="items" :load-data="loadMoreData"/>
   </div>
 </template>
 
@@ -47,23 +14,28 @@ const items = ref([
   { id: 2, name: 'Jane Smith' },
   { id: 3, name: 'Bob Johnson', disabled: true },
   { id: 4, name: 'Alice Brown' },
-  { id: 5, name: 'Charlie Davis' },
-  { id: 6, name: 'Eve Wilson' },
-  { id: 7, name: 'Frank Miller' },
-  { id: 8, name: 'Grace Anderson' },
-  { id: 9, name: 'Hank Thomas' }
+  { id: 5, name: 'Charlie Davis' }
 ])
 
-const handleSelect = (user: { id: string | number; name: string }) => {
-  console.log('Selected user:', user)
+const currentPage = ref(1)
+
+const loadMoreData = async (callback: (children: any[]) => void) => {
+  try {
+    const newItems = await fetchMoreItems(currentPage.value)
+    items.value = [...items.value, ...newItems]
+    callback(newItems)
+    currentPage.value++
+  }
+  catch (error) {
+    console.error('Failed to load more items:', error)
+  }
 }
 
-const handleSearch = (query: string) => {
-  console.log('Search query:', query)
-  // You can implement API calls here to fetch suggestions
-}
-
-const handleChange = (text: string) => {
-  console.log('Content changed:', text)
+const fetchMoreItems = async (page: number): Promise<any[]> => {
+  await new Promise(resolve => setTimeout(resolve, 500))
+  return Array.from({ length: 10 }, (_, i) => ({
+    id: page * 10 + i,
+    name: `User ${ page }-${ i }`
+  }))
 }
 </script>

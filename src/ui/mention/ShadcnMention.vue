@@ -45,7 +45,8 @@
         leave-to-class="opacity-0 translate-y-1">
       <div v-if="showItems && filteredItems.length > 0"
            ref="dropdownRef"
-           class="absolute z-50 w-full max-h-[200px] mt-1 overflow-auto bg-white border rounded-md shadow-lg space-y-1 px-2 py-2">
+           class="absolute z-50 w-full max-h-[200px] mt-1 overflow-auto bg-white border rounded-md shadow-lg space-y-1 px-2 py-2"
+           @scroll="handleScroll">
         <div v-for="(item, index) in filteredItems"
              :key="item.id"
              class="p-2 justify-between items-center flex rounded-md"
@@ -65,6 +66,11 @@
             </span>
           </slot>
         </div>
+
+        <!-- 加载状态 -->
+        <div v-if="loading" class="py-2 text-center text-gray-500">
+          <ShadcnSpin :type="type" :model-value="loading"/>
+        </div>
       </div>
     </Transition>
   </div>
@@ -82,7 +88,8 @@ const props = withDefaults(defineProps<MentionProps>(), {
   size: 'default',
   type: 'primary',
   disabled: false,
-  trigger: '@'
+  trigger: '@',
+  loadData: undefined
 })
 
 const emit = defineEmits<MentionEmits>()
@@ -95,6 +102,40 @@ const showItems = ref(false)
 const selectedIndex = ref(0)
 const selectedTags = ref<MentionOption[]>([])
 const highlightedId = ref<number | null>(null)
+const loading = ref(false)
+
+const isBottom = (el: HTMLElement) => {
+  const { scrollHeight, scrollTop, clientHeight } = el
+  return scrollHeight <= Math.ceil(scrollTop + clientHeight)
+}
+
+// 处理滚动加载
+const handleScroll = (e: Event) => {
+  e.stopPropagation()
+
+  if (loading.value) {
+    return
+  }
+
+  const target = e.target as HTMLElement
+  if (isBottom(target)) {
+    loadMoreData()
+  }
+}
+
+// 加载更多数据
+const loadMoreData = () => {
+  if (!props.loadData || loading.value) {
+    return
+  }
+
+  loading.value = true
+  emit('on-load-data')
+
+  props.loadData((_newItems: MentionOption[]) => {
+    loading.value = false
+  })
+}
 
 const initSelectedTags = (value: any[] | undefined) => {
   if (!value || !Array.isArray(value)) {
@@ -139,6 +180,7 @@ const handleInput = (event: Event) => {
 
   if (inputValue.value.startsWith(props.trigger)) {
     showItems.value = true
+    selectedIndex.value = 0 // 重置选中索引
     emit('on-search', inputValue.value.slice(props.trigger.length))
   }
   else {
@@ -147,30 +189,6 @@ const handleInput = (event: Event) => {
 
   emit('on-change', formatTags())
   emit('update:modelValue', formatTags())
-}
-
-const handleBackspace = (event: KeyboardEvent) => {
-  event.stopPropagation()
-  if (!inputValue.value && selectedTags.value.length > 0) {
-    selectedTags.value.pop()
-    emit('on-change', formatTags())
-    emit('update:modelValue', formatTags())
-  }
-}
-
-const handleFocus = (event: FocusEvent) => {
-  event.stopPropagation()
-  if (inputValue.value.startsWith(props.trigger)) {
-    showItems.value = true
-  }
-}
-
-const handleBlur = (event: FocusEvent) => {
-  event.stopPropagation()
-  setTimeout(() => {
-    showItems.value = false
-    selectedIndex.value = 0
-  }, 200)
 }
 
 const handleItemHover = (index: number, item: MentionOption) => {
@@ -206,32 +224,6 @@ const selectItem = (item: MentionOption) => {
   nextTick(() => {
     inputRef.value?.focus()
   })
-}
-
-const scrollToSelected = () => {
-  if (!dropdownRef.value) {
-    return
-  }
-
-  const container = dropdownRef.value
-  const items = container.getElementsByTagName('div')
-  const selectedItem = items[selectedIndex.value]
-
-  if (!selectedItem) {
-    return
-  }
-
-  const containerTop = container.scrollTop
-  const containerBottom = containerTop + container.clientHeight
-  const elementTop = selectedItem.offsetTop
-  const elementBottom = elementTop + selectedItem.offsetHeight
-
-  if (elementTop < containerTop) {
-    container.scrollTop = elementTop
-  }
-  else if (elementBottom > containerBottom) {
-    container.scrollTop = elementBottom - container.clientHeight
-  }
 }
 
 const handleKeyUp = (event: KeyboardEvent) => {
@@ -287,6 +279,56 @@ const handleKeyEsc = (event: KeyboardEvent) => {
   showItems.value = false
   selectedIndex.value = 0
   inputRef.value?.blur()
+}
+
+const handleBackspace = (event: KeyboardEvent) => {
+  event.stopPropagation()
+  if (!inputValue.value && selectedTags.value.length > 0) {
+    selectedTags.value.pop()
+    emit('on-change', formatTags())
+    emit('update:modelValue', formatTags())
+  }
+}
+
+const handleFocus = (event: FocusEvent) => {
+  event.stopPropagation()
+  if (inputValue.value.startsWith(props.trigger)) {
+    showItems.value = true
+  }
+}
+
+const handleBlur = (event: FocusEvent) => {
+  event.stopPropagation()
+  setTimeout(() => {
+    showItems.value = false
+    selectedIndex.value = 0
+  }, 200)
+}
+
+const scrollToSelected = () => {
+  if (!dropdownRef.value) {
+    return
+  }
+
+  const container = dropdownRef.value
+  const items = container.getElementsByTagName('div')
+  const selectedItem = items[selectedIndex.value]
+
+  if (!selectedItem) {
+    return
+  }
+
+  const containerTop = container.scrollTop
+  const containerBottom = containerTop + container.clientHeight
+  const elementTop = selectedItem.offsetTop
+  const elementBottom = elementTop + selectedItem.offsetHeight
+
+  if (elementTop < containerTop) {
+    container.scrollTop = elementTop
+  }
+  else if (elementBottom > containerBottom) {
+    container.scrollTop = elementBottom - container.clientHeight
+  }
 }
 
 const formatTags = () => {

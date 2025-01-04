@@ -17,6 +17,7 @@ export interface MentionProps
     type?: keyof typeof HoverType
     disabled?: boolean
     trigger?: string
+    loadData?: (callback: (children: MentionOption[]) => void) => void
 }
 
 export type MentionEmits = {
@@ -24,4 +25,5 @@ export type MentionEmits = {
     (e: 'on-select', value: MentionOption): void
     (e: 'on-change', value: any[]): void
     (e: 'on-search', value: string): void
+    (e: 'on-load-data'): void
 }
