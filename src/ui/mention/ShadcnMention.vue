@@ -3,7 +3,8 @@
     <div class="relative w-full border rounded-md overflow-hidden flex items-center"
          :class="[
              Size[finalSize],
-             [HoverType[type]]
+             [HoverType[type]],
+             { 'cursor-not-allowed opacity-50 bg-gray-100': disabled }
          ]">
       <div class="w-full px-1 flex flex-wrap gap-1 items-center min-h-full">
         <template v-for="tag in selectedTags" :key="tag.id">
@@ -16,9 +17,12 @@
             @{{ tag.name }}
           </span>
         </template>
+
         <input ref="inputRef"
                type="text"
                class="flex-1 outline-none bg-transparent min-w-[60px]"
+               :class="{ 'cursor-not-allowed opacity-50 bg-gray-100': disabled }"
+               :disabled="disabled"
                :placeholder="selectedTags.length ? '' : placeholder"
                :value="inputValue"
                @input="handleInput"
@@ -69,7 +73,8 @@ import { BaseBackgroundType, BaseTextType, HoverType } from '@/ui/common/type.ts
 const props = withDefaults(defineProps<MentionProps>(), {
   placeholder: t('mention.text.placeholder') as string,
   size: 'default',
-  type: 'primary'
+  type: 'primary',
+  disabled: false
 })
 
 const emit = defineEmits<MentionEmits>()

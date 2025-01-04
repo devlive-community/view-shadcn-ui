@@ -96,6 +96,26 @@ title: Shadcn Mention
 
 :::
 
+## 禁用 (disabled)
+
+::: raw
+
+<CodeRunner title="禁用" codeKey="mention-disabled">
+  <ShadcnMention disabled :items="items" />
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+  <ShadcnMention disabled :items="items" />
+</template>
+```
+
+:::
+
 ## Mention 属性
 
 <ApiTable title="属性"
@@ -106,6 +126,7 @@ title: Shadcn Mention
         ['placeholder', '提示词', 'string', '-', '-'],
         ['size', '尺寸', 'enum', 'default', 'small, default, large'],
         ['type', '类型', 'enum', 'default', 'primary, success, warning, error'],
+        ['disabled', '是否禁用', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
