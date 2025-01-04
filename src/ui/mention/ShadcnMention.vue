@@ -26,6 +26,10 @@
                :placeholder="selectedTags.length ? '' : placeholder"
                :value="inputValue"
                @input="handleInput"
+               @keydown.up.prevent.stop="handleKeyUp"
+               @keydown.down.prevent.stop="handleKeyDown"
+               @keydown.enter.prevent.stop="handleKeyEnter"
+               @keydown.esc.prevent.stop="handleKeyEsc"
                @keydown.backspace="handleBackspace"
                @focus="handleFocus"
                @blur="handleBlur"/>
@@ -40,6 +44,7 @@
         leave-from-class="opacity-100 translate-y-0"
         leave-to-class="opacity-0 translate-y-1">
       <div v-if="showItems && filteredItems.length > 0"
+           ref="dropdownRef"
            class="absolute z-50 w-full max-h-[200px] mt-1 overflow-auto bg-white border rounded-md shadow-lg space-y-1 px-2 py-2">
         <div v-for="(item, index) in filteredItems"
              :key="item.id"
@@ -51,7 +56,7 @@
                  [BaseTextType[type]]: isItemSelected(item),
                  [HoverType[type]]: true
              }"
-             @click="(event) => selectItem(item, event)"
+             @click.stop="(event) => selectItem(item, event)"
              @mouseenter="selectedIndex = index">
           <slot name="item" :item="item" :selected="isItemSelected(item)">
             {{ item.name }}
@@ -77,13 +82,14 @@ const props = withDefaults(defineProps<MentionProps>(), {
   size: 'default',
   type: 'primary',
   disabled: false,
-  trigger: '@'
+  trigger: '@'  // 新增默认触发符号
 })
 
 const emit = defineEmits<MentionEmits>()
 
 const finalSize = computed(() => props.size)
 const inputRef = ref<HTMLInputElement>()
+const dropdownRef = ref<HTMLDivElement>()
 const inputValue = ref('')
 const showItems = ref(false)
 const selectedIndex = ref(0)
@@ -143,7 +149,8 @@ const handleInput = (event: Event) => {
   emit('update:modelValue', formatTags())
 }
 
-const handleBackspace = () => {
+const handleBackspace = (event: KeyboardEvent) => {
+  event.stopPropagation()
   if (!inputValue.value && selectedTags.value.length > 0) {
     selectedTags.value.pop()
     emit('on-change', formatTags())
@@ -151,16 +158,94 @@ const handleBackspace = () => {
   }
 }
 
-const handleFocus = () => {
+const handleFocus = (event: FocusEvent) => {
+  event.stopPropagation()
   if (inputValue.value.startsWith(props.trigger)) {
     showItems.value = true
   }
 }
 
-const handleBlur = () => {
+const handleBlur = (event: FocusEvent) => {
+  event.stopPropagation()
   setTimeout(() => {
     showItems.value = false
+    selectedIndex.value = 0
   }, 200)
+}
+
+const handleKeyUp = () => {
+  if (!showItems.value || filteredItems.value.length === 0) {
+    return
+  }
+
+  if (selectedIndex.value > 0) {
+    selectedIndex.value--
+  }
+  else {
+    selectedIndex.value = filteredItems.value.length - 1
+  }
+}
+
+const handleKeyDown = () => {
+  if (!showItems.value || filteredItems.value.length === 0) {
+    return
+  }
+
+  if (selectedIndex.value < filteredItems.value.length - 1) {
+    selectedIndex.value++
+  }
+  else {
+    selectedIndex.value = 0
+  }
+
+  nextTick(() => {
+    scrollToSelected()
+  })
+}
+
+const handleKeyEnter = () => {
+  if (!showItems.value || filteredItems.value.length === 0) {
+    return
+  }
+
+  const selectedItem = filteredItems.value[selectedIndex.value]
+  if (selectedItem) {
+    selectItem(selectedItem)
+  }
+}
+
+const handleKeyEsc = () => {
+  showItems.value = false
+  selectedIndex.value = 0
+  inputRef.value?.blur()
+}
+
+const scrollToSelected = () => {
+  if (!dropdownRef.value) {
+    return
+  }
+
+  const container = dropdownRef.value
+  const items = container.getElementsByTagName('div')
+  const selectedItem = items[selectedIndex.value]
+
+  if (!selectedItem) {
+    return
+  }
+
+  const containerTop = container.scrollTop
+  const containerBottom = containerTop + container.clientHeight
+  const elementTop = selectedItem.offsetTop
+  const elementBottom = elementTop + selectedItem.offsetHeight
+
+  if (elementTop < containerTop) {
+    // 向上滚动
+    container.scrollTop = elementTop
+  }
+  else if (elementBottom > containerBottom) {
+    // 向下滚动
+    container.scrollTop = elementBottom - container.clientHeight
+  }
 }
 
 const selectItem = (item: MentionOption, event?: Event) => {
