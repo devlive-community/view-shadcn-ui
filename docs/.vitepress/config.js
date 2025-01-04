@@ -70,10 +70,10 @@ export default {
                 link: 'https://playground.view-shadcn-ui.devlive.org'
             },
             {
-                text: '2024.5.4 <span class="VPBadge danger" style="margin-left: -18px; position: absolute; bottom: 38px;">Latest</span>',
+                text: '2025.1.0 <span class="VPBadge danger" style="margin-left: -18px; position: absolute; bottom: 38px;">Latest</span>',
                 items: [
                     {
-                        text: 'CHANGELOG <span class="VPBadge tip">2024.5.4</span>',
+                        text: 'CHANGELOG <span class="VPBadge tip">2025.1.0</span>',
                         link: '/changelog',
                         activeMatch: '/changelog'
                     },
@@ -218,7 +218,8 @@ export default {
                         {text: 'Time Picker', link: 'form/time-picker', icon: '/components/form/time-picker.svg', version: '2024.5.3'},
                         {text: 'Color Picker', link: 'form/color-picker', icon: '/components/form/color-picker.svg', version: '2024.5.3'},
                         {text: 'Date Picker', link: 'form/date-picker', icon: '/components/form/date-picker.svg', version: '2024.5.3'},
-                        {text: 'Cron', link: 'form/cron', icon: '/components/form/cron.svg', version: '2024.5.3'}
+                        {text: 'Cron', link: 'form/cron', icon: '/components/form/cron.svg', version: '2024.5.3'},
+                        {text: 'Mention (提及)', link: 'form/mention', icon: '/components/form/mention.svg', version: '2025.1.0'}
                     ]
 
                     return {

@@ -20,26 +20,22 @@
     </template>
 
     <template #footer>
-      <div v-if="onlineLink" class="flex items-center justify-center p-2 border-t w-full">
-        <ShadcnButton type="primary" @click="handleGoToOnline">{{ goToOnline }}</ShadcnButton>
-      </div>
+      <a v-if="codeKey"
+         class="flex items-center justify-center p-2 border-t w-full"
+         target="_blank"
+         :href="`https://playground.view-shadcn-ui.devlive.org/?codeKey=${codeKey}`">
+        <ShadcnButton type="primary">在演练场中打开</ShadcnButton>
+      </a>
     </template>
   </ShadcnCard>
 </template>
 
 <script setup lang="ts">
-
-const props = withDefaults(defineProps<{
+withDefaults(defineProps<{
   title: String
   description?: String
   warning?: String
-  onlineLink?: String
-  goToOnline?: String
-}>(), {
-  goToOnline: 'Go to online'
-})
+  codeKey?: String
+}>(), {})
 
-const handleGoToOnline = () => {
-  window.open(props.onlineLink)
-}
 </script>

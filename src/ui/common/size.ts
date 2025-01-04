@@ -5,6 +5,13 @@ export enum Size
     large = 'h-10'
 }
 
+export enum WrapSize
+{
+    default = 'h-6',
+    small = 'h-4',
+    large = 'h-8'
+}
+
 export enum MinSize
 {
     default = 'min-h-8',

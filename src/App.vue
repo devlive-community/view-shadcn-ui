@@ -1,61 +1,51 @@
 <template>
   <div class="p-32 space-y-7">
-    <ShadcnTab>
-      <ShadcnTabItem label="Tab 1" value="Tab 1">
-        <p>Tab 1 content</p>
-      </ShadcnTabItem>
-      <ShadcnTabItem label="Tab 2" value="Tab 2">
-        <p>Tab 2 content</p>
-      </ShadcnTabItem>
-      <ShadcnTabItem label="Tab 3" value="Tab 3">
-        <p>Tab 3 content</p>
-      </ShadcnTabItem>
-    </ShadcnTab>
-
-    <ShadcnTab type="primary">
-      <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
-      <ShadcnTabItem label="Tab 2" value="Tab 2" disabled>Tab 2 content</ShadcnTabItem>
-      <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
-    </ShadcnTab>
-    <ShadcnTab type="success">
-      <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
-      <ShadcnTabItem label="Tab 2" value="Tab 2" disabled>Tab 2 content</ShadcnTabItem>
-      <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
-    </ShadcnTab>
-    <ShadcnTab type="warning">
-      <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
-      <ShadcnTabItem label="Tab 2" value="Tab 2" disabled>Tab 2 content</ShadcnTabItem>
-      <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
-    </ShadcnTab>
-    <ShadcnTab type="error">
-      <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
-      <ShadcnTabItem label="Tab 2" value="Tab 2" disabled>Tab 2 content</ShadcnTabItem>
-      <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
-    </ShadcnTab>
-
-    <ShadcnTab size="default">
-      <ShadcnTabItem label="Default 1" value="Default 1">Tab 1 content</ShadcnTabItem>
-      <ShadcnTabItem label="Default 2" value="Default 2" disabled>Tab 2 content</ShadcnTabItem>
-      <ShadcnTabItem label="Default 3" value="Default 3">Tab 3 content</ShadcnTabItem>
-    </ShadcnTab>
-    <ShadcnTab size="small">
-      <ShadcnTabItem label="Small 1" value="Small 1">Tab 1 content</ShadcnTabItem>
-      <ShadcnTabItem label="Small 2" value="Small 2" disabled>Tab 2 content</ShadcnTabItem>
-      <ShadcnTabItem label="Small 3" value="Small 3">Tab 3 content</ShadcnTabItem>
-    </ShadcnTab>
-
-    <ShadcnTab direction="vertical" position="left">
-      <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
-      <ShadcnTabItem label="Tab 2" value="Tab 2">Tab 2 content</ShadcnTabItem>
-      <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
-    </ShadcnTab>
-    <ShadcnTab direction="vertical" position="right">
-      <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
-      <ShadcnTabItem label="Tab 2" value="Tab 2">Tab 2 content</ShadcnTabItem>
-      <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
-    </ShadcnTab>
+    <ShadcnForm v-model="formState">
+      <ShadcnFormItem name="mentions" label="提及对象" :rules="[{ required: true, message: '请选择提及对象' }]">
+        <ShadcnMention v-model="formState.mentions"
+                       name="mentions"
+                       :items="items"
+                       :load-data="loadMoreData">
+        </ShadcnMention>
+      </ShadcnFormItem>
+    </ShadcnForm>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+
+const formState = ref({
+  mentions: []
+})
+
+const items = ref([
+  { id: 1, name: 'John Doe' },
+  { id: 2, name: 'Jane Smith' },
+  { id: 3, name: 'Bob Johnson', disabled: true },
+  { id: 4, name: 'Alice Brown' },
+  { id: 5, name: 'Charlie Davis' }
+])
+
+const currentPage = ref(1)
+
+const loadMoreData = async (callback: (children: any[]) => void) => {
+  try {
+    const newItems = await fetchMoreItems(currentPage.value)
+    items.value = [...items.value, ...newItems]
+    callback(newItems)
+    currentPage.value++
+  }
+  catch (error) {
+    console.error('Failed to load more items:', error)
+  }
+}
+
+const fetchMoreItems = async (page: number): Promise<any[]> => {
+  await new Promise(resolve => setTimeout(resolve, 500))
+  return Array.from({ length: 10 }, (_, i) => ({
+    id: page * 10 + i,
+    name: `User ${ page }-${ i }`
+  }))
+}
 </script>

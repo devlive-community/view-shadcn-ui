@@ -307,5 +307,10 @@ export default {
             regex: '正则表达式无效',
             search: '搜索错误'
         }
+    },
+    mention: {
+        text: {
+            placeholder: '键入 @ 以提及'
+        }
     }
 }

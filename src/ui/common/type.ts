@@ -14,6 +14,14 @@ export enum BaseBorderType
     error = 'border-red-400'
 }
 
+export enum BaseTextType
+{
+    primary = 'text-blue-400',
+    success = 'text-green-400',
+    warning = 'text-yellow-400',
+    error = 'text-red-400'
+}
+
 export enum HoverType
 {
     primary = 'hover:border-blue-400',
