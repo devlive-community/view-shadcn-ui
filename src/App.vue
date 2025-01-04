@@ -1,11 +1,15 @@
 <template>
   <div class="p-32 space-y-7">
-    <ShadcnMention :suggestions="users"
+    <ShadcnMention :items="users"
                    placeholder="Type your message with @ to mention"
                    @on-select="handleSelect"
                    @on-search="handleSearch"
                    @on-change="handleChange">
     </ShadcnMention>
+
+    <ShadcnMention :items="users" size="small" />
+    <ShadcnMention :items="users" size="default" />
+    <ShadcnMention :items="users" size="large" />
   </div>
 </template>
 

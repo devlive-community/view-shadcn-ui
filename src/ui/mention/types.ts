@@ -1,3 +1,5 @@
+import { Size } from '@/ui/common/size.ts'
+
 export interface MentionOption
 {
     id: string | number
@@ -6,12 +8,13 @@ export interface MentionOption
 
 export interface MentionProps
 {
-    suggestions: Array<MentionOption>
+    items: Array<MentionOption>
     placeholder?: string
+    size?: keyof typeof Size
 }
 
 export type MentionEmits = {
-    (e: 'on-select', value: { id: string | number; name: string }): void
+    (e: 'on-select', value: MentionOption): void
+    (e: 'on-change', value: MentionOption | string): void
     (e: 'on-search', value: string): void
-    (e: 'on-change', value: string): void
 }

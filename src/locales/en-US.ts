@@ -307,5 +307,10 @@ export default {
             regex: 'The regex is invalid',
             search: 'Search error'
         }
+    },
+    mention: {
+        text: {
+            placeholder: 'Type @ to mention'
+        }
     }
 }

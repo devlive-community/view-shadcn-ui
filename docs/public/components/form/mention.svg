@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- Define gradient -->
+    <defs>
+        <linearGradient id="mentionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#93c5fd;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#a5b4fc;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="100" fill="url(#mentionGradient)" opacity="0.2" />
+
+    <!-- Outer Circle -->
+    <circle cx="100" cy="100" r="50" fill="none" stroke="#60a5fa" stroke-width="8" />
+
+    <!-- At Symbol (@) -->
+    <text x="100" y="115" text-anchor="middle" font-size="48" font-weight="bold" fill="#2563eb">@</text>
+</svg>
