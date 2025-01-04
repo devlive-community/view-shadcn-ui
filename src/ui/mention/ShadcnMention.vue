@@ -53,10 +53,12 @@
              }"
              @click="(event) => selectItem(item, event)"
              @mouseenter="selectedIndex = index">
-          {{ item.name }}
-          <span v-if="isItemSelected(item)">
-            <ShadcnIcon icon="Check"/>
-          </span>
+          <slot name="item" :item="item" :selected="isItemSelected(item)">
+            {{ item.name }}
+            <span v-if="isItemSelected(item)">
+              <ShadcnIcon icon="Check"/>
+            </span>
+          </slot>
         </div>
       </div>
     </Transition>

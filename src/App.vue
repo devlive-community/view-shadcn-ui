@@ -1,5 +1,19 @@
 <template>
   <div class="p-32 space-y-7">
+    <ShadcnMention v-model="value" :items="items">
+      <template #item="{ item, selected }">
+        <div class="flex items-center gap-2">
+          <div class="flex space-x-2 items-center">
+            <div class="font-medium">{{ item.id }}</div>
+            <div class="text-sm text-gray-500">{{ item.name }}</div>
+          </div>
+          <span v-if="selected" class="ml-auto">
+            <ShadcnIcon icon="Check"/>
+          </span>
+        </div>
+      </template>
+    </ShadcnMention>
+
     <ShadcnMention :items="items" trigger="#"/>
 
     <ShadcnMention :items="items" disabled/>

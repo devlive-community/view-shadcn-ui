@@ -136,6 +136,50 @@ title: Shadcn Mention
 
 :::
 
+## 自定义插槽 (item)
+
+::: raw
+
+<CodeRunner title="自定义插槽" codeKey="mention-item">
+    <ShadcnMention v-model="value" :items="items">
+      <template #item="{ item, selected }">
+        <div class="flex items-center gap-2">
+          <div class="flex space-x-2 items-center">
+            <div class="font-medium">{{ item.id }}</div>
+            <div class="text-sm text-gray-500">{{ item.name }}</div>
+          </div>
+          <span v-if="selected" class="ml-auto">
+            <ShadcnIcon icon="Check"/>
+          </span>
+        </div>
+      </template>
+    </ShadcnMention>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+  <ShadcnMention v-model="value" :items="items">
+    <template #item="{ item, selected }">
+      <div class="flex items-center gap-2">
+        <div class="flex space-x-2 items-center">
+          <div class="font-medium">{{ item.id }}</div>
+          <div class="text-sm text-gray-500">{{ item.name }}</div>
+        </div>
+        <span v-if="selected" class="ml-auto">
+            <ShadcnIcon icon="Check"/>
+        </span>
+      </div>
+    </template>
+  </ShadcnMention>
+</template>
+```
+
+:::
+
 ## Mention 属性
 
 <ApiTable title="属性"
@@ -160,6 +204,15 @@ title: Shadcn Mention
         ['on-select', '选择项目时触发', 'MentionOption'],
         ['on-change', '更改值时触发', 'any\[\]'],
         ['on-search', '搜索时触发', 'string'],
+    ]">
+</ApiTable>
+
+## Mention 插槽
+
+<ApiTable title="插槽"
+    :headers="['插槽', '描述', '参数']"
+    :columns="[
+        ['item', '项目插槽', 'MentionOption'],
     ]">
 </ApiTable>
 
