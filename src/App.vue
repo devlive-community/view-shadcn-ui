@@ -1,22 +1,26 @@
 <template>
   <div class="p-32 space-y-7">
-    <ShadcnMention :items="users"
+    {{value}}
+    <ShadcnMention v-model="value"
+                   :items="items"
                    placeholder="Type your message with @ to mention"
                    @on-select="handleSelect"
                    @on-search="handleSearch"
                    @on-change="handleChange">
     </ShadcnMention>
 
-    <ShadcnMention :items="users" size="small" />
-    <ShadcnMention :items="users" size="default" />
-    <ShadcnMention :items="users" size="large" />
+    <ShadcnMention :items="items" size="small" />
+    <ShadcnMention :items="items" size="default" />
+    <ShadcnMention :items="items" size="large" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const users = ref([
+const value = ref([1, 2, 3])
+
+const items = ref([
   { id: 1, name: 'John Doe' },
   { id: 2, name: 'Jane Smith' },
   { id: 3, name: 'Bob Johnson' },

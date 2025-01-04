@@ -75,6 +75,7 @@ title: Shadcn Mention
 <ApiTable title="属性"
     :headers="['属性', '描述', '类型', '默认值', '列表']"
     :columns="[
+        ['modelValue', '绑定值，这里返回的是数据的 id', 'any\[\]', '-', '-'],
         ['items', '提及的项目列表', 'MentionOption\[\]', '-', '-'],
         ['placeholder', '提示词', 'string', '-', '-'],
         ['size', '尺寸', 'enum', 'default', 'small, default, large'],
@@ -86,7 +87,10 @@ title: Shadcn Mention
 <ApiTable title="事件"
     :headers="['事件', '描述', '参数']"
     :columns="[
-        ['on-change', '更改 mention 的值时触发', 'string']
+        ['update:modelValue', '更新值时触发', 'any\[\]'],
+        ['on-select', '选择项目时触发', 'MentionOption'],
+        ['on-change', '更改值时触发', 'any\[\]'],
+        ['on-search', '搜索时触发', 'string'],
     ]">
 </ApiTable>
 

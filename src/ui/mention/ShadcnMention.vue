@@ -9,10 +9,11 @@
             @{{ tag.name }}
           </span>
         </template>
+
         <input ref="inputRef"
                type="text"
                class="flex-1 outline-none bg-transparent min-w-[60px]"
-               :placeholder="!selectedTags.length ? placeholder : ''"
+               :placeholder="selectedTags.length ? '' : placeholder"
                :value="inputValue"
                @input="handleInput"
                @keydown.backspace="handleBackspace"
@@ -36,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue'
 import { t } from '@/utils/locale'
 import type { MentionEmits, MentionOption, MentionProps } from './types'
 import { Size, WrapSize } from '@/ui/common/size.ts'
@@ -49,12 +50,22 @@ const props = withDefaults(defineProps<MentionProps>(), {
 const emit = defineEmits<MentionEmits>()
 
 const finalSize = computed(() => props.size)
-
 const inputRef = ref<HTMLInputElement>()
 const inputValue = ref('')
 const showItems = ref(false)
 const selectedIndex = ref(0)
-const selectedTags = ref<Array<{ id: string | number; name: string }>>([])
+const selectedTags = ref<MentionOption[]>([])
+
+const initSelectedTags = (value: any[] | undefined) => {
+  if (!value || !Array.isArray(value)) {
+    selectedTags.value = []
+    return
+  }
+
+  selectedTags.value = value.map(id => {
+    return props.items.find(item => item.id === id)
+  }).filter((item): item is MentionOption => item != null)
+}
 
 const filteredItems = computed(() => {
   if (!inputValue.value.startsWith('@')) {
@@ -83,13 +94,16 @@ const handleInput = (event: Event) => {
     showItems.value = false
   }
 
-  emit('on-change', getFullText())
+  emit('on-change', formatTags())
+  emit('update:modelValue', formatTags())
 }
 
 const handleBackspace = () => {
   if (!inputValue.value && selectedTags.value.length > 0) {
     selectedTags.value.pop()
-    emit('on-change', getFullText())
+
+    emit('on-change', formatTags())
+    emit('update:modelValue', formatTags())
   }
 }
 
@@ -113,21 +127,19 @@ const selectItem = (item: MentionOption, event?: Event) => {
   showItems.value = false
   selectedIndex.value = 0
   emit('on-select', item)
-  emit('on-change', getFullText())
+  emit('on-change', formatTags())
+  emit('update:modelValue', formatTags())
 
   nextTick(() => {
     inputRef.value?.focus()
   })
 }
 
-const getFullText = () => {
-  return selectedTags.value.map(tag => `@${ tag.name }`).join(' ') +
-      (inputValue.value ? ' ' + inputValue.value : '')
+const formatTags = () => {
+  return selectedTags.value.map(item => item.id)
 }
 
-onMounted(() => {
-  if (inputRef.value) {
-    inputRef.value.placeholder = props.placeholder
-  }
-})
+watch(() => props.modelValue, (newVal) => {
+  initSelectedTags(newVal)
+}, { immediate: true, deep: true })
 </script>
