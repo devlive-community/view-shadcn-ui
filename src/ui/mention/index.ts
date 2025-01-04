@@ -1,0 +1,1 @@
+export { default as ShadcnMention } from './ShadcnMention.vue'
