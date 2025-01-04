@@ -35,7 +35,10 @@ const isDisabled = computed(() => group?.disabled.value ?? props.disabled)
 
 const isSelected = computed(() => {
   if (group) {
-    return group.modelValue.value?.includes(props.value) ?? false
+    if (group.multiple.value) {
+      return group.modelValue.value?.includes(props.value) ?? false
+    }
+    return group.modelValue.value === props.value
   }
   return props.modelValue === props.value
 })
@@ -49,24 +52,22 @@ const onToggle = (e: MouseEvent) => {
   }
 
   if (group) {
-    const currentValue = group.modelValue.value || []
+    const currentValue = group.modelValue.value
     let newValue
 
-    if (isSelected.value) {
-      newValue = currentValue.filter(v => v !== props.value)
-    }
-    else {
-      if (group.multiple.value) {
-        newValue = [...currentValue, props.value]
+    if (group.multiple.value) {
+      const currentArray = Array.isArray(currentValue) ? currentValue : []
+      if (isSelected.value) {
+        newValue = currentArray.filter(v => v !== props.value)
+      } else {
+        newValue = [...currentArray, props.value]
       }
-      else {
-        newValue = [props.value]
-      }
+    } else {
+      newValue = isSelected.value ? null : props.value
     }
 
     group.onChange(newValue)
-  }
-  else {
+  } else {
     const newValue = isSelected.value ? null : props.value
     emit('update:modelValue', newValue)
     emit('on-change', newValue)

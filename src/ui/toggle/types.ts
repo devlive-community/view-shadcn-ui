@@ -11,7 +11,7 @@ export interface ToggleProps
 
 export interface ToggleGroupProps
 {
-    modelValue?: any[]
+    modelValue?: string | string[] | null
     disabled?: boolean
     size?: keyof typeof WrapperSize
     multiple?: boolean
@@ -28,7 +28,7 @@ export interface ToggleGroupContext
     onChange: (value: any) => void
 }
 
-export type ToggleEmits = {
-    (e: 'update:modelValue', payload: any): void
-    (e: 'on-change', payload: any): void
+export interface ToggleEmits {
+    (e: 'update:modelValue', value: string | string[] | null): void
+    (e: 'on-change', value: string | string[] | null): void
 }

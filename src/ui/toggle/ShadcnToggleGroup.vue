@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<ToggleGroupProps>(), {
 })
 
 provide('toggleGroup', {
-  modelValue: computed(() => props.modelValue || []),
+  modelValue: computed(() => props.modelValue),
   disabled: computed(() => props.disabled),
   size: computed(() => props.size),
   multiple: computed(() => props.multiple),
