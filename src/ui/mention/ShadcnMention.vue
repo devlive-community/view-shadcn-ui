@@ -78,11 +78,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, ref, watch } from 'vue'
+import { computed, inject, nextTick, ref, watch } from 'vue'
 import { t } from '@/utils/locale'
 import type { MentionEmits, MentionOption, MentionProps } from './types'
 import { Size, WrapSize } from '@/ui/common/size.ts'
 import { BaseBackgroundType, BaseTextType, HoverType } from '@/ui/common/type.ts'
+import { FormItemContext } from '@/ui/form/context.ts'
 
 const props = withDefaults(defineProps<MentionProps>(), {
   placeholder: t('mention.text.placeholder') as string,
@@ -95,6 +96,8 @@ const props = withDefaults(defineProps<MentionProps>(), {
 })
 
 const emit = defineEmits<MentionEmits>()
+
+const formItemContext = props.name ? inject<FormItemContext | null>(`form-item-${ props.name }`) : null
 
 const finalSize = computed(() => props.size)
 const inputRef = ref<HTMLInputElement>()
@@ -191,6 +194,10 @@ const handleInput = (event: Event) => {
 
   emit('on-change', formatTags())
   emit('update:modelValue', formatTags())
+
+  if (formItemContext) {
+    formItemContext.onBlur()
+  }
 }
 
 const handleItemHover = (index: number, item: MentionOption) => {
@@ -226,6 +233,10 @@ const selectItem = (item: MentionOption) => {
   emit('on-select', item)
   emit('on-change', formatTags())
   emit('update:modelValue', formatTags())
+
+  if (formItemContext) {
+    formItemContext.onBlur()
+  }
 
   nextTick(() => {
     inputRef.value?.focus()
@@ -305,6 +316,11 @@ const handleFocus = (event: FocusEvent) => {
 
 const handleBlur = (event: FocusEvent) => {
   event.stopPropagation()
+
+  if (formItemContext) {
+    formItemContext.onBlur()
+  }
+
   setTimeout(() => {
     showItems.value = false
     selectedIndex.value = 0

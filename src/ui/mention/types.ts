@@ -19,6 +19,7 @@ export interface MentionProps
     trigger?: string
     loadData?: (callback: (children: MentionOption[]) => void) => void
     max?: number
+    name?: string
 }
 
 export type MentionEmits = {

@@ -200,6 +200,34 @@ title: Shadcn Mention
 
 :::
 
+## 表单 (form)
+
+::: raw
+
+<CodeRunner title="表单" codeKey="mention-form">
+      <ShadcnForm v-model="formState">
+      <ShadcnFormItem name="mentions" label="提及对象" :rules="[{ required: true, message: '请选择提及对象' }]">
+        <ShadcnMention v-model="formState.mentions" name="mentions" :items="items" />
+      </ShadcnFormItem>
+    </ShadcnForm>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+  <ShadcnForm v-model="formState">
+      <ShadcnFormItem name="mentions" label="提及对象" :rules="[{ required: true, message: '请选择提及对象' }]">
+        <ShadcnMention v-model="formState.mentions" name="mentions" :items="items" />
+      </ShadcnFormItem>
+    </ShadcnForm>
+</template>
+```
+
+:::
+
 ## Mention 属性
 
 <ApiTable title="属性"
@@ -240,6 +268,12 @@ title: Shadcn Mention
 </ApiTable>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+
+const formState = ref({
+  mentions: []
+})
+
 const items =  [
     {id: 1, name: '测试数据 1'}, 
     {id: 2, name: '测试数据 2'}

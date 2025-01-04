@@ -1,16 +1,23 @@
 <template>
   <div class="p-32 space-y-7">
-    <ShadcnMention v-model="value"
-                   :items="items"
-                   :load-data="loadMoreData">
-    </ShadcnMention>
+    <ShadcnForm v-model="formState">
+      <ShadcnFormItem name="mentions" label="提及对象" :rules="[{ required: true, message: '请选择提及对象' }]">
+        <ShadcnMention v-model="formState.mentions"
+                       name="mentions"
+                       :items="items"
+                       :load-data="loadMoreData">
+        </ShadcnMention>
+      </ShadcnFormItem>
+    </ShadcnForm>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const value = ref([1, 2, 3])
+const formState = ref({
+  mentions: []
+})
 
 const items = ref([
   { id: 1, name: 'John Doe' },
