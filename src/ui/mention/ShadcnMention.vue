@@ -14,7 +14,7 @@
                      { 'animate-shake bg-red-100': tag.id === highlightedId },
                      [BaseBackgroundType[type]]
                 ]">
-            @{{ tag.name }}
+            {{ trigger }}{{ tag.name }}
           </span>
         </template>
 
@@ -74,7 +74,8 @@ const props = withDefaults(defineProps<MentionProps>(), {
   placeholder: t('mention.text.placeholder') as string,
   size: 'default',
   type: 'primary',
-  disabled: false
+  disabled: false,
+  trigger: '@'
 })
 
 const emit = defineEmits<MentionEmits>()
@@ -111,10 +112,10 @@ const highlightTag = (id: number) => {
 }
 
 const filteredItems = computed(() => {
-  if (!inputValue.value.startsWith('@')) {
+  if (!inputValue.value.startsWith(props.trigger)) {
     return []
   }
-  const query = inputValue.value.slice(1).toLowerCase()
+  const query = inputValue.value.slice(props.trigger.length).toLowerCase()
   if (!query) {
     return props.items
   }
@@ -128,9 +129,9 @@ const handleInput = (event: Event) => {
   const target = event.target as HTMLInputElement
   inputValue.value = target.value
 
-  if (inputValue.value.startsWith('@')) {
+  if (inputValue.value.startsWith(props.trigger)) {
     showItems.value = true
-    emit('on-search', inputValue.value.slice(1))
+    emit('on-search', inputValue.value.slice(props.trigger.length))
   }
   else {
     showItems.value = false
@@ -149,7 +150,7 @@ const handleBackspace = () => {
 }
 
 const handleFocus = () => {
-  if (inputValue.value.startsWith('@')) {
+  if (inputValue.value.startsWith(props.trigger)) {
     showItems.value = true
   }
 }

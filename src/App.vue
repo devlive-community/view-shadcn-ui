@@ -1,5 +1,7 @@
 <template>
   <div class="p-32 space-y-7">
+    <ShadcnMention :items="items" trigger="#"/>
+
     <ShadcnMention :items="items" disabled/>
 
     <ShadcnMention :items="items" type="primary"/>

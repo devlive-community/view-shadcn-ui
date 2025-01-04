@@ -15,6 +15,7 @@ export interface MentionProps
     size?: keyof typeof Size
     type?: keyof typeof HoverType
     disabled?: boolean
+    trigger?: string
 }
 
 export type MentionEmits = {

@@ -116,6 +116,26 @@ title: Shadcn Mention
 
 :::
 
+## 触发字符 (trigger)
+
+::: raw
+
+<CodeRunner title="触发字符" codeKey="mention-trigger">
+  <ShadcnMention trigger="#" :items="items" placeholder="键入 # 以提及" />
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+  <ShadcnMention trigger="#" :items="items" />
+</template>
+```
+
+:::
+
 ## Mention 属性
 
 <ApiTable title="属性"
@@ -127,6 +147,7 @@ title: Shadcn Mention
         ['size', '尺寸', 'enum', 'default', 'small, default, large'],
         ['type', '类型', 'enum', 'default', 'primary, success, warning, error'],
         ['disabled', '是否禁用', 'boolean', 'false', '-'],
+        ['trigger', '触发字符', 'string', '@', '-'],
     ]">
 </ApiTable>
 
