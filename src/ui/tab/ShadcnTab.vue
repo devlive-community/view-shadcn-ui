@@ -5,62 +5,54 @@
          'flex-row-reverse': direction === 'vertical' && position === 'right',
          'flex-col': direction !== 'vertical'
        }">
-    <div :class="[direction !== 'vertical' ? 'border-b' : '',
-                  direction === 'vertical' ? 'border-b-0 border-r flex-col' : 'flex justify-between',
-                  card ? 'space-x-1' : ''
-                ]"
+    <div :class="[
+          direction !== 'vertical' ? '' : '',
+          direction === 'vertical' ? 'border-b-0 border-r border-slate-200 flex-col' : 'flex justify-between',
+          card ? 'space-x-1' : ''
+        ]"
          :style="{ width: direction === 'vertical' ? 'auto' : '100%' }">
       <div :class="[
-                    direction === 'vertical' ? 'flex flex-col' : 'flex',
-                    card && direction !== 'vertical' ? 'space-x-1' : '',
-                    card && direction === 'vertical' ? 'space-y-1' : ''
-                  ]">
+            direction === 'vertical' ? 'flex flex-col' : 'flex bg-slate-100 p-1 rounded-lg inline-flex',
+            card && direction !== 'vertical' ? 'space-x-1' : '',
+            card && direction === 'vertical' ? 'space-y-1' : ''
+          ]">
         <div v-for="tab in tabs"
              :key="tab.value"
              :class="[
-                  'py-2 transition-colors duration-200 flex group items-center',
-                  direction === 'horizontal' ? 'px-4' : '',
-                  direction === 'horizontal' ? [TabSize[size]] : '',
-                  card && direction === 'vertical' ? 'py-2 px-2 h-auto' : '',
-                  {
-                    'border-b-2 cursor-pointer': activeTab === tab.value && !tab.disabled && direction !== 'vertical',
-                    'border-r-2 cursor-pointer': activeTab === tab.value && !tab.disabled && direction === 'vertical',
-                    [TextType[type]]: activeTab === tab.value && !tab.disabled,
-                    [BorderType[type]]: activeTab === tab.value && !tab.disabled,
-                    'text-gray-600 hover:border-b-2 hover:cursor-pointer': activeTab !== tab.value && !tab.disabled && direction !== 'vertical',
-                    'text-gray-600 hover:border-r-2 hover:cursor-pointer': activeTab !== tab.value && !tab.disabled && direction === 'vertical',
-                    [HoverTextType[type]]: activeTab !== tab.value && !tab.disabled,
-                    [HoverType[type]]: activeTab !== tab.value && !tab.disabled,
-                    'text-gray-400 cursor-not-allowed opacity-50': tab.disabled
-                  },
-                  {
-                    'border-t border-l border-r rounded-t items-center': card && direction !== 'vertical',
-                    'border-l border-t border-b rounded-l items-center': card && direction === 'vertical'
-                  }
+                'inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-all cursor-pointer',
+                direction === 'vertical' ? 'py-2 px-2' : 'px-3 py-1.5 rounded-md',
+                direction === 'horizontal' ? [TabSize[size]] : '',
+                card && direction === 'vertical' ? 'py-2 px-2 h-auto' : '',
+                {
+                  'bg-white cursor-pointer shadow-sm': activeTab === tab.value && !tab.disabled && direction !== 'vertical',
+                  'border-r-2 cursor-pointer': activeTab === tab.value && !tab.disabled && direction === 'vertical',
+                  [TextType[type]]: activeTab === tab.value && !tab.disabled,
+                  [BorderType[type]]: activeTab === tab.value && !tab.disabled && direction === 'vertical',
+                  'hover:text-slate-900': activeTab !== tab.value && !tab.disabled && direction !== 'vertical',
+                  'text-gray-600 hover:border-r-2 hover:cursor-pointer': activeTab !== tab.value && !tab.disabled && direction === 'vertical',
+                  [HoverTextType[type]]: activeTab !== tab.value && !tab.disabled,
+                  [HoverType[type]]: activeTab !== tab.value && !tab.disabled && direction === 'vertical',
+                  'text-gray-400 cursor-not-allowed opacity-50': tab.disabled
+                }
              ]"
              @click="handleTabClick($event, tab)">
           <div :class="['flex items-center',
-                        direction === 'vertical' ? 'space-y-1' : 'space-x-1',
+                    direction === 'vertical' ? 'space-y-1' : 'space-x-2',
                 ]"
-               :style="direction === 'horizontal' ? {} : {
+               :style="direction === 'vertical' ? {
                   writingMode: 'vertical-rl',
                   textOrientation: 'mixed',
                   height: 'auto',
                   alignItems: 'center',
-                }">
-            <ShadcnIcon v-if="tab.icon" :icon="tab.icon"/>
-            <!-- Render either the custom label slot or the default label text -->
+                } : {}">
+            <ShadcnIcon v-if="tab.icon" :icon="tab.icon" class="h-4 w-4"/>
             <div class="whitespace-nowrap">
               <component v-if="tab.labelSlot" :is="tab.labelSlot"/>
               <template v-else>{{ tab.label }}</template>
             </div>
             <ShadcnIcon v-if="closable && !tab.disabled"
                         icon="CircleX"
-                        :class="{
-                              'inline-block': activeTab === tab.value || closable && !tab.disabled,
-                              'hidden group-hover:inline-block': activeTab !== tab.value && !tab.disabled
-                        }"
-                        :style="direction === 'vertical' ? {} : {marginLeft: '10px'}"
+                        class="h-4 w-4 opacity-70 hover:opacity-100"
                         @click.stop="onTabRemove(tab.value)"/>
           </div>
         </div>
@@ -74,10 +66,11 @@
     </div>
 
     <div :class="[
-                  direction === 'vertical' && position === 'right' ? 'mr-4 flex-1' : '',
-                  direction === 'vertical' && position !== 'right' ? 'ml-4 flex-1' : '',
-                  direction !== 'vertical' ? 'py-2' : ''
-                ]">
+          'mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+          direction === 'vertical' && position === 'right' ? 'mr-4 flex-1' : '',
+          direction === 'vertical' && position !== 'right' ? 'ml-4 flex-1' : '',
+          direction !== 'vertical' ? 'py-2' : ''
+        ]">
       <slot/>
     </div>
   </div>

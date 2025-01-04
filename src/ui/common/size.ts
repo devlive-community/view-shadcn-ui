@@ -21,8 +21,8 @@ export enum PtPbSize
 
 export enum TabSize
 {
-    default = 'h-10',
-    small = 'h-8',
+    default = 'h-8',
+    small = 'h-6',
 }
 
 export enum SkeletonSize
