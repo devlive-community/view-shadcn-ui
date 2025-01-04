@@ -2,7 +2,6 @@
   <div class="p-32 space-y-7">
     <ShadcnMention v-model="value"
                    :items="items"
-                   :max="3"
                    :load-data="loadMoreData">
     </ShadcnMention>
   </div>

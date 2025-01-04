@@ -6,9 +6,10 @@
              [HoverType[type]],
              { 'cursor-not-allowed opacity-50 bg-gray-100': disabled }
          ]">
-      <div class="w-full px-1 flex flex-wrap gap-1 items-center min-h-full">
+      <div class="w-full px-1 flex flex-nowrap gap-1 overflow-x-auto items-center min-h-full"
+           style="scrollbar-width: none;">
         <template v-for="tag in selectedTags" :key="tag.id">
-          <span class="inline-flex items-center rounded px-1.5 text-sm select-none text-white"
+          <span class="inline-flex items-center rounded px-1.5 text-sm select-none text-white shrink-0"
                 :class="[
                     WrapSize[finalSize],
                      { 'animate-shake bg-red-100': tag.id === highlightedId },
