@@ -1,28 +1,14 @@
 <template>
   <div class="p-32 space-y-7">
-    <ShadcnSelect multiple v-model="defaultSelect">
-      <template #options>
-        <ShadcnSelectGroup label="Group 1">
-          <ShadcnSelectOption v-for="i in 2"
-                              :key="i"
-                              :label="`Option ${i}`"
-                              :value="`Value ${i}`"/>
-        </ShadcnSelectGroup>
-        <ShadcnSelectOption v-for="i in 2"
-                            :key="i"
-                            :label="`Option ${i}`"
-                            :value="`Value ${i}`"/>
-      </template>
-    </ShadcnSelect>
-
-    Slider Value: {{ value }}
-    <ShadcnSlider v-model="value" />
+    <ShadcnToggleGroup v-model="value" size="default">
+      <ShadcnToggle value="1">O000000000001</ShadcnToggle>
+      <ShadcnToggle value="2">O2</ShadcnToggle>
+    </ShadcnToggleGroup>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const defaultSelect = ref('')
-const value = ref(50)
+const value = ref('1')
 </script>

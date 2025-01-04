@@ -1,3 +1,19 @@
+export enum BaseBackgroundType
+{
+    primary = 'bg-blue-400',
+    success = 'bg-green-400',
+    warning = 'bg-yellow-400',
+    error = 'bg-red-400'
+}
+
+export enum BaseBorderType
+{
+    primary = 'border-blue-400',
+    success = 'border-green-400',
+    warning = 'border-yellow-400',
+    error = 'border-red-400'
+}
+
 export enum HoverType
 {
     primary = 'hover:border-blue-400',
