@@ -180,6 +180,26 @@ title: Shadcn Mention
 
 :::
 
+## 最大项目数 (max)
+
+::: raw
+
+<CodeRunner title="最大项目数" codeKey="mention-max">
+  <ShadcnMention :items="items" max="2" />
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+  <ShadcnMention :items="items" max="2" />
+</template>
+```
+
+:::
+
 ## Mention 属性
 
 <ApiTable title="属性"
@@ -192,6 +212,8 @@ title: Shadcn Mention
         ['type', '类型', 'enum', 'default', 'primary, success, warning, error'],
         ['disabled', '是否禁用', 'boolean', 'false', '-'],
         ['trigger', '触发字符', 'string', '@', '-'],
+        ['max', '最大项目数', 'number', 'Infinity', '-'],
+        ['loadData', '异步加载数据', 'function', '-', '-'],
     ]">
 </ApiTable>
 
@@ -204,6 +226,7 @@ title: Shadcn Mention
         ['on-select', '选择项目时触发', 'MentionOption'],
         ['on-change', '更改值时触发', 'any\[\]'],
         ['on-search', '搜索时触发', 'string'],
+        ['on-load-data', '加载数据时触发', 'function']
     ]">
 </ApiTable>
 
@@ -212,7 +235,7 @@ title: Shadcn Mention
 <ApiTable title="插槽"
     :headers="['插槽', '描述', '参数']"
     :columns="[
-        ['item', '项目插槽', 'MentionOption'],
+        ['item', '项目插槽', 'item: any, selected: boolean'],
     ]">
 </ApiTable>
 

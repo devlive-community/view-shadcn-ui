@@ -89,7 +89,8 @@ const props = withDefaults(defineProps<MentionProps>(), {
   type: 'primary',
   disabled: false,
   trigger: '@',
-  loadData: undefined
+  loadData: undefined,
+  max: Infinity
 })
 
 const emit = defineEmits<MentionEmits>()
@@ -213,6 +214,10 @@ const handleItemClick = (item: MentionOption, event?: Event) => {
 }
 
 const selectItem = (item: MentionOption) => {
+  if (selectedTags.value.length >= props.max) {
+    return
+  }
+
   selectedTags.value.push(item)
   inputValue.value = ''
   showItems.value = false

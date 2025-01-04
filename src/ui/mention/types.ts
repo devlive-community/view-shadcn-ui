@@ -18,6 +18,7 @@ export interface MentionProps
     disabled?: boolean
     trigger?: string
     loadData?: (callback: (children: MentionOption[]) => void) => void
+    max?: number
 }
 
 export type MentionEmits = {
