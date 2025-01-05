@@ -18,6 +18,26 @@ export interface ImageProps
     border?: boolean
 }
 
+export interface ImageGroupProps
+{
+    images: Array<ImageProps>
+    columns?: number
+    gap?: number
+    preview?: boolean
+}
+
+export interface ImagePreviewProps
+{
+    visible: boolean
+    images: Array<ImageProps>
+    current: number
+}
+
+export type ImagePreviewEmits = {
+    (e: 'update:visible', value: boolean): void
+    (e: 'update:current', value: number): void
+}
+
 export type ImageEmits = {
     (e: 'on-load'): void
     (e: 'on-error'): void

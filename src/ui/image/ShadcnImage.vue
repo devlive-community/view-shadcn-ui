@@ -4,13 +4,16 @@
        :style="{ width: `${calcSize(width)}`, height: `${calcSize(height)}` }">
     <ShadcnSpin v-model="localLoading" fixed/>
 
-    <img class="w-full h-full rounded-md"
+    <img class="w-full h-full"
          v-show="!showFallback"
          :src="src"
          :alt="alt"
          :width="width"
          :height="height"
-         :class="[ImageFit[fit]]"
+         :class="[
+             ImageFit[fit],
+             border && 'rounded-md'
+         ]"
          :loading="loading"
          @load="handleLoad"
          @error="handleError"/>

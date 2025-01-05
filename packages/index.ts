@@ -99,7 +99,7 @@ import { ShadcnDatePicker } from '@/ui/date-picker'
 import { ShadcnCron } from '@/ui/cron'
 import { ShadcnContribution } from '@/ui/contribution'
 import { ShadcnMention } from '@/ui/mention'
-import { ShadcnImage } from '@/ui/image'
+import { ShadcnImage, ShadcnImageGroup, ShadcnImageViewer } from '@/ui/image'
 
 let components = [
     ShadcnButton,
@@ -196,7 +196,7 @@ let components = [
     ShadcnCron,
     ShadcnContribution,
     ShadcnMention,
-    ShadcnImage
+    ShadcnImage, ShadcnImageGroup, ShadcnImageViewer
 ]
 
 interface InstallOptions
@@ -328,7 +328,7 @@ export { ShadcnDatePicker } from '@/ui/date-picker'
 export { ShadcnCron } from '@/ui/cron'
 export { ShadcnContribution } from '@/ui/contribution'
 export { ShadcnMention } from '@/ui/mention'
-export { ShadcnImage } from '@/ui/image'
+export { ShadcnImage, ShadcnImageGroup, ShadcnImageViewer } from '@/ui/image'
 
 // Export functions
 export { fnToString, fnToFunction } from '@/utils/formatter'

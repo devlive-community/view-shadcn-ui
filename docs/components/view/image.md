@@ -1,4 +1,4 @@
----
+~~---
 title: Shadcn Image
 ---
 
@@ -156,6 +156,26 @@ title: Shadcn Image
 
 :::
 
+## 图片组 (group)
+
+::: raw
+
+<CodeRunner title="图片组" codeKey="image-group">
+    <ShadcnImageGroup :images="images" :columns="8" :gap="4" preview/>
+</CodeRunner>
+
+:::
+
+::: details 显示代码
+
+```vue
+<template>
+  <ShadcnImageGroup :images="images" :columns="8" :gap="4" preview/>
+</template>
+```
+
+:::
+
 ## Image 属性
 
 <ApiTable title="属性"
@@ -168,6 +188,29 @@ title: Shadcn Image
         ['fit', '图片的填充方式', 'enum', 'cover', 'cover | contain | fill | none | scale-down'],
         ['lazy', '是否懒加载', 'boolean', 'false'],
         ['border', '是否显示边框', 'boolean', 'false']
+    ]">
+</ApiTable>
+
+## Image Group 属性
+
+<ApiTable title="属性"
+    :headers="['属性', '描述', '类型', '默认值', '列表']"
+    :columns="[
+        ['images', '图片列表，配置参考 Image', 'array', '-', '-'],
+        ['columns', '列数', 'number', '6', '-'],
+        ['gap', '列间距', 'number', '2', '-'],
+        ['preview', '是否显示预览', 'boolean', 'false']
+    ]">
+</ApiTable>
+
+## Image Preview 属性
+
+<ApiTable title="属性"
+    :headers="['属性', '描述', '类型', '默认值', '列表']"
+    :columns="[
+        ['images', '图片列表，配置参考 Image', 'array', '-', '-'],
+        ['visible', '是否显示预览', 'boolean', 'false'],
+        ['current', '当前预览的图片索引', 'number', '0']
     ]">
 </ApiTable>
 
@@ -189,3 +232,11 @@ title: Shadcn Image
         ['fallback', '加载失败时显示的内容']
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+const images = [] as any[]
+
+for (let i = 0; i < 100; i++) {
+  images.push({ src: `https://picsum.photos/800/400?random=${ i }`, alt: `Image ${ i }` })
+}
+</script>
