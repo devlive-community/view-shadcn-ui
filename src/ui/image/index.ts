@@ -1,0 +1,1 @@
+export { default as ShadcnImage } from './ShadcnImage.vue'
