@@ -23,9 +23,9 @@
     </div>
 
     <ShadcnImageViewer v-if="preview"
-                        v-model:visible="previewVisible"
-                        v-model:current="currentIndex"
-                        :images="images">
+                       v-model:visible="previewVisible"
+                       v-model:current="currentIndex"
+                       :images="images">
     </ShadcnImageViewer>
   </div>
 </template>
