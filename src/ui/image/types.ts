@@ -15,6 +15,7 @@ export interface ImageProps
     height?: number | string
     fit?: keyof typeof ImageFit
     lazy?: boolean
+    border?: boolean
 }
 
 export type ImageEmits = {

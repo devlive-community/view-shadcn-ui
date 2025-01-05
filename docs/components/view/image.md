@@ -136,6 +136,26 @@ title: Shadcn Image
 
 :::
 
+## 边框 (border)
+
+::: raw
+
+<CodeRunner title="边框" codeKey="image-border">
+    <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" border />
+</CodeRunner>
+
+:::
+
+::: details 显示代码
+
+```vue
+<template>
+  <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" border />
+</template>
+```
+
+:::
+
 ## Image 属性
 
 <ApiTable title="属性"
@@ -147,6 +167,7 @@ title: Shadcn Image
         ['height', '图片的高度', 'string | number', '200', '-'],
         ['fit', '图片的填充方式', 'enum', 'cover', 'cover | contain | fill | none | scale-down'],
         ['lazy', '是否懒加载', 'boolean', 'false'],
+        ['border', '是否显示边框', 'boolean', 'false']
     ]">
 </ApiTable>
 

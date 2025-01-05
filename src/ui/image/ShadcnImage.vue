@@ -1,8 +1,10 @@
 <template>
-  <div class="relative inline-block" :style="{ width: `${calcSize(width)}`, height: `${calcSize(height)}` }">
+  <div class="relative inline-block"
+       :class="[ border && 'border border-gray-200 border-dashed rounded-md' ]"
+       :style="{ width: `${calcSize(width)}`, height: `${calcSize(height)}` }">
     <ShadcnSpin v-model="localLoading" fixed/>
 
-    <img class="w-full h-full"
+    <img class="w-full h-full rounded-md"
          v-show="!showFallback"
          :src="src"
          :alt="alt"
@@ -32,7 +34,8 @@ const props = withDefaults(defineProps<ImageProps>(), {
   width: 200,
   height: 200,
   fit: 'cover',
-  lazy: false
+  lazy: false,
+  border: false
 })
 
 const emit = defineEmits<ImageEmits>()
