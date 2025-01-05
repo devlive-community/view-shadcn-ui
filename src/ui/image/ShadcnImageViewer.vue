@@ -3,19 +3,19 @@
        class="fixed inset-0 z-50 flex items-center justify-center bg-black/75 select-none transition-opacity duration-300"
        @click.self="handleClose">
     <div class="relative w-full h-full flex items-center justify-center" @click.stop>
-      <button class="absolute top-4 right-4 text-white p-2 rounded-full hover:bg-gray-500 items-center flex transition-colors duration-200 z-20"
+      <button class="absolute top-4 right-4 text-white p-2 rounded-full hover:bg-gray-500 items-center flex transition-colors duration-200 z-20 focus:outline-none"
               @click.stop="handleClose">
         <ShadcnIcon icon="X"/>
       </button>
 
       <button v-if="current > 0"
-              class="absolute left-4 text-white p-2 rounded-full hover:bg-gray-500 items-center flex transition-colors duration-200 z-20"
+              class="absolute left-4 text-white p-2 rounded-full hover:bg-gray-500 items-center flex transition-colors duration-200 z-20 focus:outline-none"
               @click.stop="handlePrevious">
         <ShadcnIcon icon="ChevronLeft"/>
       </button>
 
       <button v-if="current < images.length - 1"
-              class="absolute right-4 text-white p-2 rounded-full hover:bg-gray-500 items-center flex transition-colors duration-200 z-20"
+              class="absolute right-4 text-white p-2 rounded-full hover:bg-gray-500 items-center flex transition-colors duration-200 z-20 focus:outline-none"
               @click.stop="handleNext">
         <ShadcnIcon icon="ChevronRight"/>
       </button>
@@ -29,7 +29,7 @@
                :alt="image.alt"
                :class="[ index === current ? 'opacity-100 relative' : 'opacity-0' ]"
                :style="{
-                 transform: `scale(${zoom}) rotate(${rotation}deg) translate(${position.x}px, ${position.y}px)`,
+                 transform: `scale(${zoom}) translate(${position.x}px, ${position.y}px) rotate(${rotation}deg)`,
                  transition: isDragging ? 'none' : 'transform 0.3s ease-out'
                }"
                @mousedown.stop.prevent="handleDragStart"
@@ -49,25 +49,25 @@
 
         <div class="flex items-center space-x-4 bg-black/30 py-1 px-4 rounded border border-gray-600">
           <ShadcnHoverCard :content="zoom">
-            <button class="text-white p-2 rounded-full flex items-center hover:scale-150 hover:duration-300 hover:transition-transform"
+            <button class="text-white p-2 rounded-full flex items-center hover:scale-150 hover:duration-300 hover:transition-transform focus:outline-none"
                     @click.stop="handleZoomIn">
               <ShadcnIcon icon="ZoomIn"/>
             </button>
           </ShadcnHoverCard>
 
           <ShadcnHoverCard :content="zoom">
-            <button class="text-white p-2 rounded-full items-center flex hover:scale-150 hover:duration-300 hover:transition-transform"
+            <button class="text-white p-2 rounded-full items-center flex hover:scale-150 hover:duration-300 hover:transition-transform focus:outline-none"
                     @click.stop="handleZoomOut">
               <ShadcnIcon icon="ZoomOut"/>
             </button>
           </ShadcnHoverCard>
 
-          <button class="text-white p-2 rounded-full items-center flex hover:scale-150 hover:duration-300 hover:transition-transform"
+          <button class="text-white p-2 rounded-full items-center flex hover:scale-150 hover:duration-300 hover:transition-transform focus:outline-none"
                   @click="handleRotateLeft">
             <ShadcnIcon icon="RotateCcwSquare"/>
           </button>
 
-          <button class="text-white p-2 rounded-full items-center flex hover:scale-150 hover:duration-300 hover:transition-transform"
+          <button class="text-white p-2 rounded-full items-center flex hover:scale-150 hover:duration-300 hover:transition-transform focus:outline-none"
                   @click="handleRotateRight">
             <ShadcnIcon icon="RotateCwSquare"/>
           </button>
@@ -79,7 +79,7 @@
 
 <script setup lang="ts">
 import { ImagePreviewEmits, ImagePreviewProps } from './types'
-import { onUnmounted, ref } from 'vue'
+import { onUnmounted, ref, watchEffect } from 'vue'
 
 const props = defineProps<ImagePreviewProps>()
 const emit = defineEmits<ImagePreviewEmits>()
@@ -185,7 +185,60 @@ const handleDragEnd = (e?: MouseEvent | TouchEvent) => {
   document.removeEventListener('touchcancel', handleDragEnd)
 }
 
+const handleKeydown = (e: KeyboardEvent) => {
+  if (!props.visible) {
+    return
+  }
+
+  const handledKeys = ['ArrowLeft', 'ArrowRight', 'Escape', '+', '-']
+
+  if (handledKeys.includes(e.key)) {
+    e.preventDefault()
+    e.stopPropagation()
+
+    switch (e.key) {
+      case 'ArrowLeft':
+        if (props.current > 0) {
+          handlePrevious()
+        }
+        break
+      case 'ArrowRight':
+        if (props.current < props.images.length - 1) {
+          handleNext()
+        }
+        break
+      case 'Escape':
+        handleClose()
+        break
+      case '+':
+        handleZoomIn()
+        break
+      case '-':
+        handleZoomOut()
+        break
+    }
+  }
+}
+
+const addKeyboardListener = () => {
+  document.addEventListener('keydown', handleKeydown)
+}
+
+const removeKeyboardListener = () => {
+  document.removeEventListener('keydown', handleKeydown)
+}
+
+watchEffect(() => {
+  if (props.visible) {
+    addKeyboardListener()
+  }
+  else {
+    removeKeyboardListener()
+  }
+})
+
 onUnmounted(() => {
+  removeKeyboardListener()
   handleDragEnd()
 })
 </script>
