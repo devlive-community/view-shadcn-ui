@@ -29,7 +29,7 @@
                :alt="image.alt"
                :class="[ index === current ? 'opacity-100 relative' : 'opacity-0' ]"
                :style="{
-                 transform: `scale(${zoom}) translate(${position.x}px, ${position.y}px)`,
+                 transform: `scale(${zoom}) rotate(${rotation}deg) translate(${position.x}px, ${position.y}px)`,
                  transition: isDragging ? 'none' : 'transform 0.3s ease-out'
                }"
                @mousedown.stop.prevent="handleDragStart"
@@ -47,7 +47,7 @@
           <span>{{ current + 1 }} / {{ images.length }}</span>
         </div>
 
-        <div class="flex items-center space-x-10 bg-black/30 py-1 px-4 rounded border border-gray-600">
+        <div class="flex items-center space-x-4 bg-black/30 py-1 px-4 rounded border border-gray-600">
           <ShadcnHoverCard :content="zoom">
             <button class="text-white p-2 rounded-full flex items-center hover:scale-150 hover:duration-300 hover:transition-transform"
                     @click.stop="handleZoomIn">
@@ -61,6 +61,16 @@
               <ShadcnIcon icon="ZoomOut"/>
             </button>
           </ShadcnHoverCard>
+
+          <button class="text-white p-2 rounded-full items-center flex hover:scale-150 hover:duration-300 hover:transition-transform"
+                  @click="handleRotateLeft">
+            <ShadcnIcon icon="RotateCcwSquare"/>
+          </button>
+
+          <button class="text-white p-2 rounded-full items-center flex hover:scale-150 hover:duration-300 hover:transition-transform"
+                  @click="handleRotateRight">
+            <ShadcnIcon icon="RotateCwSquare"/>
+          </button>
         </div>
       </div>
     </div>
@@ -78,6 +88,7 @@ const zoom = ref(1)
 const position = ref({ x: 0, y: 0 })
 const dragStart = ref({ x: 0, y: 0 })
 const isDragging = ref(false)
+const rotation = ref(0)
 
 const handleClose = () => {
   emit('update:visible', false)
@@ -87,6 +98,7 @@ const handleClose = () => {
 const resetView = () => {
   zoom.value = 1
   position.value = { x: 0, y: 0 }
+  rotation.value = 0
 }
 
 const handlePrevious = () => {
@@ -112,6 +124,16 @@ const handleZoomOut = () => {
   if (zoom.value === 1) {
     resetView()
   }
+}
+
+const handleRotateLeft = () => {
+  rotation.value = rotation.value - 90
+  position.value = { x: 0, y: 0 }
+}
+
+const handleRotateRight = () => {
+  rotation.value = rotation.value + 90
+  position.value = { x: 0, y: 0 }
 }
 
 const handleDragStart = (e: MouseEvent | TouchEvent) => {
