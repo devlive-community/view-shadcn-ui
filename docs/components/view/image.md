@@ -114,13 +114,13 @@ title: Shadcn Image
 
 :::
 
-## 加载方式 (loading)
+## 懒加载 (lazy)
 
 ::: raw
 
-<CodeRunner title="加载方式" codeKey="image-loading">
-    <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" loading="eager" />
-    <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" loading="lazy" />
+<CodeRunner title="懒加载" codeKey="image-lazy">
+    <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" />
+    <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" lazy />
 </CodeRunner>
 
 :::
@@ -129,8 +129,8 @@ title: Shadcn Image
 
 ```vue
 <template>
-  <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" loading="eager" />
-  <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" loading="lazy" />
+  <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" />
+  <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" lazy />
 </template>
 ```
 
@@ -146,7 +146,7 @@ title: Shadcn Image
         ['width', '图片的宽度', 'string | number', '200', '-'],
         ['height', '图片的高度', 'string | number', '200', '-'],
         ['fit', '图片的填充方式', 'enum', 'cover', 'cover | contain | fill | none | scale-down'],
-        ['loading', '图片的加载方式', 'enum', 'eager', 'eager | lazy']
+        ['lazy', '是否懒加载', 'boolean', 'false'],
     ]">
 </ApiTable>
 
@@ -157,5 +157,14 @@ title: Shadcn Image
     :columns="[
         ['on-load', '加载时触发', '-'],
         ['on-error', '加载失败时触发', '-']
+    ]">
+</ApiTable>
+
+## Image 插槽
+
+<ApiTable title="插槽"
+    :headers="['插槽', '描述']"
+    :columns="[
+        ['fallback', '加载失败时显示的内容']
     ]">
 </ApiTable>
