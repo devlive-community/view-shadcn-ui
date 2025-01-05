@@ -71,6 +71,11 @@
                   @click="handleRotateRight">
             <ShadcnIcon icon="RotateCwSquare"/>
           </button>
+
+          <button class="text-white p-2 rounded-full items-center flex hover:scale-150 hover:duration-300 hover:transition-transform focus:outline-none"
+                  @click="handleReset">
+            <ShadcnIcon icon="RotateCcw"/>
+          </button>
         </div>
       </div>
     </div>
@@ -226,6 +231,12 @@ const addKeyboardListener = () => {
 
 const removeKeyboardListener = () => {
   document.removeEventListener('keydown', handleKeydown)
+}
+
+const handleReset = () => {
+  if (props.visible) {
+    resetView()
+  }
 }
 
 watchEffect(() => {
