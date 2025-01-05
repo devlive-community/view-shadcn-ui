@@ -1,32 +1,45 @@
 <template>
   <div class="relative inline-block">
-    <img :src="src"
+    <ShadcnSpin v-model="localLoading" fixed/>
+
+    <img class="max-w-full h-auto"
+         :src="src"
          :alt="alt"
          :width="width"
          :height="height"
-         class="max-w-full h-auto"
          :class="[ImageFit[fit]]"
-         @load="emit('on-load')"
+         :loading="loading"
+         @load="handleLoad"
          @error="handleError"/>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ImageEmits, ImageFit, ImageProps } from './types'
+import { ref } from 'vue'
 
 // Define props and emits
 // 定义属性和事件
-withDefaults(defineProps<ImageProps>(), {
+const props = withDefaults(defineProps<ImageProps>(), {
   width: 200,
   height: 200,
-  fit: 'cover'
+  fit: 'cover',
+  loading: 'eager'
 })
 
 const emit = defineEmits<ImageEmits>()
 
+const localLoading = ref(props.loading === 'lazy')
+
+const handleLoad = () => {
+  localLoading.value = false
+  emit('on-load')
+}
+
 // Handle image load error
 // 处理图片加载错误
 const handleError = () => {
+  localLoading.value = false
   emit('on-error')
 }
 </script>

@@ -11,7 +11,7 @@ title: Shadcn Image
 ::: raw
 
 <CodeRunner title="源" codeKey="image-src">
-    <ShadcnImage src="https://view-shadcn-ui.devlive.org/logo.svg" />
+    <ShadcnImage src="https://picsum.photos/800/400" />
 </CodeRunner>
 
 :::
@@ -20,7 +20,7 @@ title: Shadcn Image
 
 ```vue
 <template>
-  <ShadcnImage src="https://view-shadcn-ui.devlive.org/logo.svg" />
+  <ShadcnImage src="https://picsum.photos/800/400" />
 </template>
 ```
 
@@ -31,7 +31,7 @@ title: Shadcn Image
 ::: raw
 
 <CodeRunner title="提示">
-    <ShadcnImage src="https://view-shadcn-ui.devlive.org/logo.svg" alt="View Shadcn UI" />
+    <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" />
 </CodeRunner>
 
 :::
@@ -40,7 +40,7 @@ title: Shadcn Image
 
 ```vue
 <template>
-  <ShadcnImage src="https://view-shadcn-ui.devlive.org/logo.svg" alt="View Shadcn UI" />
+  <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" />
 </template>
 ```
 
@@ -51,7 +51,7 @@ title: Shadcn Image
 ::: raw
 
 <CodeRunner title="宽度" codeKey="image-width">
-    <ShadcnImage src="https://view-shadcn-ui.devlive.org/logo.svg" width="300" />
+    <ShadcnImage src="https://picsum.photos/800/400" width="300" />
 </CodeRunner>
 
 :::
@@ -60,7 +60,7 @@ title: Shadcn Image
 
 ```vue
 <template>
-  <ShadcnImage src="https://view-shadcn-ui.devlive.org/logo.svg" width="300" />
+  <ShadcnImage src="https://picsum.photos/800/400" width="300" />
 </template>
 ```
 
@@ -71,7 +71,7 @@ title: Shadcn Image
 ::: raw
 
 <CodeRunner title="高度" codeKey="image-height">
-    <ShadcnImage src="https://view-shadcn-ui.devlive.org/logo.svg" height="300" />
+    <ShadcnImage src="https://picsum.photos/800/400" height="300" />
 </CodeRunner>
 
 :::
@@ -80,7 +80,7 @@ title: Shadcn Image
 
 ```vue
 <template>
-  <ShadcnImage src="https://view-shadcn-ui.devlive.org/logo.svg" height="300" />
+  <ShadcnImage src="https://picsum.photos/800/400" height="300" />
 </template>
 ```
 
@@ -91,11 +91,11 @@ title: Shadcn Image
 ::: raw
 
 <CodeRunner title="填充方式" codeKey="image-fit">
-    <ShadcnImage src="https://view-shadcn-ui.devlive.org/logo.svg" alt="View Shadcn UI" fit="cover"/>
-    <ShadcnImage src="https://view-shadcn-ui.devlive.org/logo.svg" alt="View Shadcn UI" fit="contain"/>
-    <ShadcnImage src="https://view-shadcn-ui.devlive.org/logo.svg" alt="View Shadcn UI" fit="fill"/>
-    <ShadcnImage src="https://view-shadcn-ui.devlive.org/logo.svg" alt="View Shadcn UI" fit="none"/>
-    <ShadcnImage src="https://view-shadcn-ui.devlive.org/logo.svg" alt="View Shadcn UI" fit="scale-down"/>
+    <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" fit="cover"/>
+    <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" fit="contain"/>
+    <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" fit="fill"/>
+    <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" fit="none"/>
+    <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" fit="scale-down"/>
 </CodeRunner>
 
 :::
@@ -104,11 +104,33 @@ title: Shadcn Image
 
 ```vue
 <template>
-  <ShadcnImage src="https://view-shadcn-ui.devlive.org/logo.svg" alt="View Shadcn UI" fit="cover"/>
-  <ShadcnImage src="https://view-shadcn-ui.devlive.org/logo.svg" alt="View Shadcn UI" fit="contain"/>
-  <ShadcnImage src="https://view-shadcn-ui.devlive.org/logo.svg" alt="View Shadcn UI" fit="fill"/>
-  <ShadcnImage src="https://view-shadcn-ui.devlive.org/logo.svg" alt="View Shadcn UI" fit="none"/>
-  <ShadcnImage src="https://view-shadcn-ui.devlive.org/logo.svg" alt="View Shadcn UI" fit="scale-down"/>
+  <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" fit="cover"/>
+  <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" fit="contain"/>
+  <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" fit="fill"/>
+  <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" fit="none"/>
+  <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" fit="scale-down"/>
+</template>
+```
+
+:::
+
+## 加载方式 (loading)
+
+::: raw
+
+<CodeRunner title="加载方式" codeKey="image-loading">
+    <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" loading="eager" />
+    <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" loading="lazy" />
+</CodeRunner>
+
+:::
+
+::: details 显示代码
+
+```vue
+<template>
+  <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" loading="eager" />
+  <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" loading="lazy" />
 </template>
 ```
 
@@ -124,6 +146,7 @@ title: Shadcn Image
         ['width', '图片的宽度', 'string | number', '200', '-'],
         ['height', '图片的高度', 'string | number', '200', '-'],
         ['fit', '图片的填充方式', 'enum', 'cover', 'cover | contain | fill | none | scale-down'],
+        ['loading', '图片的加载方式', 'enum', 'eager', 'eager | lazy']
     ]">
 </ApiTable>
 

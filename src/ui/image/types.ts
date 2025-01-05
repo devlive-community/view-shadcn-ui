@@ -14,6 +14,7 @@ export interface ImageProps
     width?: number | string
     height?: number | string
     fit?: keyof typeof ImageFit
+    loading?: 'eager' | 'lazy'
 }
 
 export type ImageEmits = {
