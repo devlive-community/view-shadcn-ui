@@ -9,7 +9,7 @@
       <div v-for="(image, index) in images"
            :key="index"
            class="relative"
-           :class="[preview && 'cursor-pointer']"
+           :class="[preview && 'cursor-pointer hover:opacity-75 hover:transition-opacity hover:scale-105 hover:duration-300 hover:transition-transform']"
            @click="handleImageClick(index)">
         <ShadcnImage :src="image.src"
                      :alt="image.alt"
