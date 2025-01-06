@@ -78,7 +78,7 @@ This document is mainly used to describe some features and usage of the ShadcnEx
 ## Props
 
 <ApiTable title="Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['type', 'The type of the exception', 'Enum', '404', '-', '404 | 403 | 500'],
         ['title', 'The title of the exception', 'String', 'Page not found', '-', '-'],

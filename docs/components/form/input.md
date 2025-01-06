@@ -241,7 +241,7 @@ const input = ref('Hello View Shadcn UI')
 ## API Attributes
 
 <ApiTable title="Input Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['modelValue', 'The value of the input', 'String', '-', '-', '-'],
         ['placeholder', 'The placeholder of the input', 'String', '-', '-', '-'],

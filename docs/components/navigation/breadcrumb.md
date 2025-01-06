@@ -74,7 +74,7 @@ This document is mainly used to describe some features and usage of the ShadcnBr
 ## Props
 
 <ApiTable title="Item Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
         ['href', 'The href of the breadcrumb item', 'String', '-'],
         ['separator', 'The separator of the breadcrumb item', 'String', '/'],

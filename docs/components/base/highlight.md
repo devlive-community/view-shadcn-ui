@@ -1,16 +1,18 @@
 ---
-title: Shadcn Highlight
+title: 高亮 (Highlight)
 ---
 
-# Inroduction
+# 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnHighlight component.
+<br />
 
-## Usage
+本文档主要用于描述 `ShadcnHighlight` 组件的一些功能和用法。
+
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
   <ShadcnHighlight text="Vue3 is an awesome framework for building user interfaces"
       :highlight="['Vue3', 'awesome']"/>
   <br/>
@@ -37,11 +39,11 @@ This document is mainly used to describe some features and usage of the ShadcnHi
 
 :::
 
-## Case Sensitive
+## 区分大小写 (case-sensitive)
 
 ::: raw
 
-<CodeRunner title="Case Sensitive">
+<CodeRunner title="区分大小写">
   <ShadcnHighlight text="The quick brown fox jumps over the lazy dog"
                    case-sensitive
                    highlight="the" />
@@ -64,13 +66,13 @@ This document is mainly used to describe some features and usage of the ShadcnHi
 
 :::
 
-## Props
+## 高亮 (Highlight)
 
-<ApiTable title="Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+<ApiTable title="高亮 (Highlight) 属性"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['text', 'The content of the highlight', 'string', '-', '-', '-'],
-        ['highlight', 'The highlight content', 'string | string[]', '-', '-', '-'],
-        ['case-sensitive', 'Whether the highlight is case sensitive', 'boolean', 'false', '-', '-'],
+        ['text', '需要高亮的原始文本内容', 'string', '-'],
+        ['highlight', '高亮内容', 'string | string\[\]', '-'],
+        ['case-sensitive', '高亮显示是否区分大小写', 'boolean', 'false'],
     ]">
 </ApiTable>

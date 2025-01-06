@@ -475,7 +475,7 @@ const data = [
 ## Props
 
 <ApiTable title="Tree Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
         ['modelValue', 'Tree value', 'array', '\[\]'],
         ['data', 'Tree data', 'array', '\[\]'],
@@ -490,7 +490,7 @@ const data = [
 <br />
 
 <ApiTable title="Tree Node Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
         ['value', 'Tree node value', 'string', ''],
         ['label', 'Tree node label', 'string', ''],

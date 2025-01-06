@@ -109,7 +109,7 @@ This document is mainly used to describe some features and usage of the ShadcnLo
 ## Logger Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
         ['items', 'The items of the logger', 'array<string>', '\[\]'],
         ['highlightConfig', 'The highlight config of the logger', 'object', '{ WARN: \'rgb(234 179 8)\', ERROR: \'rgb(239 68 68)\', DEBUG: \'rgb(107 114 128)\', TRACE: \'rgb(156 163 175)\'}'],

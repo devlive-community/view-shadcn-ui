@@ -102,7 +102,7 @@ title: 复制 (Copy)
 ## 复制 (Copy) 属性
 
 <ApiTable title="复制 (Copy) 属性"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['text', '复制的文本内容', 'string', '-', '-', '-'],
         ['tooltip', '是否显示提示', 'boolean', 'true', '-', '-'],

@@ -175,7 +175,7 @@ This document is mainly used to describe some features and usage of the ShadcnWo
 ## Workflow Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
             ['modelValue', 'The model value of the workflow', '{ <br />nodes: WorkflowNode\[\], <br />connections: WorkflowConnection\[\] <br />}', '-'],
             ['nodes', 'The nodes of the workflow', 'WorkflowNode\[\]', '\[\]'],
@@ -190,7 +190,7 @@ This document is mainly used to describe some features and usage of the ShadcnWo
 <br />
 
 <ApiTable title="WorkflowNode"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
             ['id', 'The id of the node', 'string', '-'],
             ['tid', 'The tid of the  original node id', 'string', '-'],

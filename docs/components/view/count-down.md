@@ -223,7 +223,7 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 ## Count Down Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
         ['progress', 'The progress of the count down, support <code>v-model:progress</code>', 'number', ''],
         ['time', 'The time of the count down', 'date', ''],

@@ -84,7 +84,7 @@ This document is mainly used to describe some features and usage of the ShadcnTr
 ## Props
 
 <ApiTable title="Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['value', 'The value of the trend, if > 0, rise, if < 0, descend', 'number', '0', '-', '-'],
         ['reverse', 'Reverse the trend direction', 'boolean', 'false', '-', '-'],

@@ -169,7 +169,7 @@ const checked2 = ref(null)
 ## API Attributes
 
 <ApiTable title="Switch Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['modelValue', 'The value of the switch', 'boolean', 'false', '-', '-'],
         ['type', 'The type of the switch', 'string', '-', '-', 'success, warning, error, primary'],

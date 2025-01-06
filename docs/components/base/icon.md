@@ -86,7 +86,7 @@ title: 图标 (Icon)
 ## 图标 (Icon) 属性
 
 <ApiTable title="图标 (Icon) 属性"
-    :headers="['属性', '描述', '类似', '默认值', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['icon', '图标名称', 'string', '-', '-'],
         ['size', '图标尺寸', 'number', '20', '-'],

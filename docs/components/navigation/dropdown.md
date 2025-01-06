@@ -190,7 +190,7 @@ This document is mainly used to describe some features and usage of the ShadcnDr
 ## Props
 
 <ApiTable title="Dropdown Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['trigger', 'The trigger of the dropdown', 'enum', 'click', '-', 'click | hover'],
         ['position', 'The position of the dropdown', 'enum', 'left', '-', 'left | right | top | bottom'],
@@ -200,7 +200,7 @@ This document is mainly used to describe some features and usage of the ShadcnDr
 <br />
 
 <ApiTable title="DropdownItem Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['name', 'The name of the dropdown item', 'String', '', '-', '-'],
         ['active', 'Whether the dropdown item is active', 'boolean', 'false', '-', '-'],

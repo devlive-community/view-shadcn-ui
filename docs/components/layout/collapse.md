@@ -94,7 +94,7 @@ const expandedItems = ref<string[]>([])
 ## Collapse Props
 
 <ApiTable title="Collapse Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['modelValue', 'You can use v-model to bind data in both directions', 'Any[]', '-', '-', '-'],
         ['accordion', 'Whether it is an accordion', 'boolean', 'false', '-', '-'],
@@ -104,7 +104,7 @@ const expandedItems = ref<string[]>([])
 <br />
 
 <ApiTable title="Collapse Item Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['title', 'The title of the collapse item', 'string', '-', '-', '-'],
         ['name', 'The name of the collapse item', 'string', '-', '-', '-'],
@@ -114,7 +114,7 @@ const expandedItems = ref<string[]>([])
 ## Collapse Slot
 
 <ApiTable title="Collapse Item Slot"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['title', 'The title of the collapse item', 'string', '-', '-', '-'],
     ]">

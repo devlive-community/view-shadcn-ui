@@ -321,7 +321,7 @@ This document is mainly used to describe some features and usage of the ShadcnTi
 ## Props
 
 <ApiTable title="Timeline Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
         ['split', 'The split of the timeline', 'Boolean', 'false'],
     ]">

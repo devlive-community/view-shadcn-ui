@@ -134,10 +134,10 @@ export default {
                         {text: '按钮 (Button)', link: 'base/button', icon: '/components/base/button.svg', version: '2024.1.1'},
                         {text: '图标 (Icon)', link: 'base/icon', icon: '/components/base/icon.svg', version: '2024.1.1'},
                         {text: '复制 (Copy)', link: 'base/copy', icon: '/components/base/copy.svg', version: '2024.1.1'},
-                        {text: 'Watermark', link: 'base/watermark', icon: '/components/base/watermark.svg', version: '2024.2.0'},
-                        {text: 'Highlight', link: 'base/highlight', icon: '/components/base/highlight.svg', version: '2024.2.0'},
-                        {text: 'Text', link: 'base/text', icon: '/components/base/text.svg', version: '2024.3.0'},
-                        {text: 'Gradient Text', link: 'base/gradient-text', icon: '/components/base/gradient-text.svg', version: '2024.3.0'},
+                        {text: '水印 (Watermark)', link: 'base/watermark', icon: '/components/base/watermark.svg', version: '2024.2.0'},
+                        {text: '高亮 (Highlight)', link: 'base/highlight', icon: '/components/base/highlight.svg', version: '2024.2.0'},
+                        {text: '文本 (Text)', link: 'base/text', icon: '/components/base/text.svg', version: '2024.3.0'},
+                        {text: '渐变文本 (Gradient Text)', link: 'base/gradient-text', icon: '/components/base/gradient-text.svg', version: '2024.3.0'},
                     ]
 
                     return {

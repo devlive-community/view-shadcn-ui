@@ -201,7 +201,7 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 ## Props
 
 <ApiTable title="Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['text', 'The content of the tag', 'string', '-', '-', '-'],
         ['name', 'The name of the tag, clicked when closable', 'string', '-', '-', '-'],

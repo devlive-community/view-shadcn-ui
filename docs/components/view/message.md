@@ -245,7 +245,7 @@ export default {
 ## API
 
 <ApiTable title="Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
             ['content', 'Content content', 'String', '-', '-', '-'],
             ['duration', 'The duration of the message, in seconds, if the value is 0, the message will not be closed', 'Number', '1.5', '-', '-'],

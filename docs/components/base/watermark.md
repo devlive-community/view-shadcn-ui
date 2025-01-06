@@ -1,16 +1,18 @@
 ---
-title: Shadcn Watermark
+title: 水印 (Watermark)
 ---
 
-# Introduction
+# 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnWatermark component.
+<br />
 
-## Usage
+本文档主要用于描述 `ShadcnWatermark` 组件的一些功能和用法。
+
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
   <ShadcnWatermark>
     <div style="height: 24rem;"/>
   </ShadcnWatermark>
@@ -26,18 +28,15 @@ This document is mainly used to describe some features and usage of the ShadcnWa
     <div style="height: 24rem;"/>
   </ShadcnWatermark>
 </template>
-
-<script setup lang="ts">
-</script>
 ```
 
 :::
 
-## Array
+## 内容 (content)
 
 ::: raw
 
-<CodeRunner title="Array">
+<CodeRunner title="内容">
   <ShadcnWatermark :content="['Company', 'Name', 'Time']">
     <div style="height: 24rem;"/>
   </ShadcnWatermark>
@@ -53,20 +52,17 @@ This document is mainly used to describe some features and usage of the ShadcnWa
     <div class="h-96"/>
   </ShadcnWatermark>
 </template>
-
-<script setup lang="ts">
-</script>
 ```
 
 :::
 
-## FullScreen
+## 全屏 (fullscreen)
 
 ::: raw
 
-<CodeRunner title="FullScreen">
+<CodeRunner title="全屏">
   <ShadcnWatermark :content="['Company', 'Name', 'Time']" :fullscreen="fullScreen"/>
-  <ShadcnButton @click="fullScreen = !fullScreen">FullScreen {{ fullScreen ? '[ Close ]' : '[ Open ]' }}</ShadcnButton>
+  <ShadcnButton @click="fullScreen = !fullScreen">全屏 {{ fullScreen ? '[ 关闭 ]' : '[ 打开 ]' }}</ShadcnButton>
 </CodeRunner>
 
 :::
@@ -88,25 +84,25 @@ const fullScreen = ref(false)
 
 :::
 
-## Props
+## 水印 (Watermark) 属性
 
-<ApiTable title="Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+<ApiTable title="水印 (Watermark) 属性"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['content', 'The text content of the watermark', 'string | string[]', '-', '-', '-'],
-        ['width', 'The width of each watermark unit', 'number', '120', '-', '-'],
-        ['height', 'The height of each watermark unit', 'number', '64', '-', '-'],
-        ['gapX', 'The horizontal spacing between watermarks', 'number', '100', '-', '-'],
-        ['gapY', 'The vertical spacing between watermarks', 'number', '100', '-', '-'],
-        ['rotate', 'The rotation angle of the watermark text', 'number', '-22', '-', '-'],
-        ['fontSize', 'The font size of the watermark text', 'number', '14', '-', '-'],
-        ['fontColor', 'The color of the watermark text', 'string', 'rgba(0, 0, 0, 0.15)', '-', '-'],
-        ['fontFamily', 'The font family of the watermark text', 'string', 'sans-serif', '-', '-'],
-        ['opacity', 'The opacity of the entire watermark layer', 'number', '1', '-', '-'],
-        ['antiTamperLayers', 'Number of anti-tampering layers', 'number', '2', '-', '-'],
-        ['fontWeight', 'The font weight of the watermark text', 'number | string', '400', '-', '-'],
-        ['zIndex', 'The z-index of the watermark layer', 'number', '9', '-', '-'],
-        ['fullScreen', 'Whether to enable full screen mode', 'boolean', 'false', '-', '-'],
+        ['content', '水印的文本内容', 'string | string\[\]', '-'],
+        ['width', '每个水印单元的宽度', 'number', '120'],
+        ['height', '每个水印单位的高度', 'number', '64'],
+        ['gapX', '水印之间的水平间距', 'number', '100'],
+        ['gapY', '水印之间的垂直间距', 'number', '100'],
+        ['rotate', '水印文本的旋转角度', 'number', '-22'],
+        ['fontSize', '水印文本的字体大小', 'number', '14'],
+        ['fontColor', '水印文本的颜色', 'string', 'rgba(0, 0, 0, 0.15)'],
+        ['fontFamily', '水印文本的字体系列', 'string', 'sans-serif'],
+        ['opacity', '整个水印图层的不透明度', 'number', '1'],
+        ['antiTamperLayers', '防篡改层数', 'number', '2'],
+        ['fontWeight', '水印文本的字体粗细', 'number | string', '400'],
+        ['zIndex', '水印图层的 z-index', 'number', '9'],
+        ['fullScreen', '是否启用全屏模式', 'boolean', 'false'],
     ]">
 </ApiTable>
 

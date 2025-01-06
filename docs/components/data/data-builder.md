@@ -445,7 +445,7 @@ If it's a style group, you must configure the following for it to take effect:
 ::: 
 
 <ApiTable title="DataBuilder Editor Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['items', 'The data of the data builder', '\[\]', '-', '-', '-'],
         ['panelWidth', 'The width of the panel', 'number', '200', '-', '-'],
@@ -467,7 +467,7 @@ If it's a style group, you must configure the following for it to take effect:
 <br />
 
 <ApiTable title="DataBuilder Panel Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['width', 'The width of the panel', 'number', '200', '-', '-'],
         ['items', 'The data of the data builder', '\[\]', '-', '-', '-'],
@@ -477,7 +477,7 @@ If it's a style group, you must configure the following for it to take effect:
 <br />
 
 <ApiTable title="DataBuilder Canvas Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['showGrid', 'Whether to show the grid', 'boolean', 'true', '-', '-'],
         ['snapToGrid', 'Whether to snap to the grid', 'boolean', 'true', '-', '-'],
@@ -496,7 +496,7 @@ If it's a style group, you must configure the following for it to take effect:
 <br />
 
 <ApiTable title="DataBuilder Configure Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['width', 'The width of the content', 'number', '200', '-', '-'],
         ['selectedComponent', 'The selected component', 'any', '-', '-', '-'],
@@ -509,7 +509,7 @@ If it's a style group, you must configure the following for it to take effect:
 <br />
 
 <ApiTable title="DataBuilder View Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['width', 'The width of the content', 'number', '1920', '-', '-'],
         ['height', 'The height of the content', 'number', '1080', '-', '-'],

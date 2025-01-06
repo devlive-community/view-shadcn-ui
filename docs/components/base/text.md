@@ -1,14 +1,18 @@
 ---
-title: Shadcn Text
+title: 文本 (Text)
 ---
 
-This document is mainly used to describe some features and usage of the ShadcnText component.
+# 介绍
 
-## Usage
+<br />
+
+本文档主要用于描述 `ShadcnText` 组件的一些功能和用法。
+
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnText color-type="default">Default</ShadcnText>
     <ShadcnText color-type="primary">Primary</ShadcnText>
     <ShadcnText color-type="success">Success</ShadcnText>
@@ -32,11 +36,11 @@ This document is mainly used to describe some features and usage of the ShadcnTe
 
 :::
 
-## Color
+## 颜色 (color)
 
 ::: raw
 
-<CodeRunner title="Color">
+<CodeRunner title="颜色">
       <ShadcnText color="#18A058">#18A058</ShadcnText>
       <ShadcnText color="#F59E0B">#F59E0B</ShadcnText>
       <ShadcnText color="#EF4444">#EF4444</ShadcnText>
@@ -68,11 +72,11 @@ This document is mainly used to describe some features and usage of the ShadcnTe
 
 :::
 
-## Strong
+## 粗体 (strong)
 
 ::: raw
 
-<CodeRunner title="Strong">
+<CodeRunner title="粗体">
       <ShadcnText strong color="#18A058">#18A058</ShadcnText>
       <ShadcnText strong color="#F59E0B">#F59E0B</ShadcnText>
       <ShadcnText strong color="#EF4444">#EF4444</ShadcnText>
@@ -92,11 +96,11 @@ This document is mainly used to describe some features and usage of the ShadcnTe
 
 :::
 
-## Italic
+## 斜体 (italic)
 
 ::: raw
 
-<CodeRunner title="Italic">
+<CodeRunner title="斜体">
       <ShadcnText italic color="#18A058">#18A058</ShadcnText>
       <ShadcnText italic color="#F59E0B">#F59E0B</ShadcnText>
       <ShadcnText italic color="#EF4444">#EF4444</ShadcnText>
@@ -116,11 +120,11 @@ This document is mainly used to describe some features and usage of the ShadcnTe
 
 :::
 
-## Underline
+## 下划线 (underline)
 
 ::: raw
 
-<CodeRunner title="Underline">
+<CodeRunner title="下划线">
       <ShadcnText underline color="#18A058">#18A058</ShadcnText>
       <ShadcnText underline color="#F59E0B">#F59E0B</ShadcnText>
       <ShadcnText underline color="#EF4444">#EF4444</ShadcnText>
@@ -140,11 +144,11 @@ This document is mainly used to describe some features and usage of the ShadcnTe
 
 :::
 
-## Delete
+## 删除线 (deleted)
 
 ::: raw
 
-<CodeRunner title="Delete">
+<CodeRunner title="删除线">
       <ShadcnText deleted color="#18A058">#18A058</ShadcnText>
       <ShadcnText deleted color="#F59E0B">#F59E0B</ShadcnText>
       <ShadcnText deleted color="#EF4444">#EF4444</ShadcnText>
@@ -164,11 +168,11 @@ This document is mainly used to describe some features and usage of the ShadcnTe
 
 :::
 
-## Type
+## 类型 (type)
 
 ::: raw
 
-<CodeRunner title="Type">
+<CodeRunner title="类型">
     <div class="space-x-2">
         <ShadcnText type="code">Code</ShadcnText>
         <ShadcnText type="pre">Pre</ShadcnText>
@@ -210,26 +214,26 @@ This document is mainly used to describe some features and usage of the ShadcnTe
 
 :::
 
-## Text Props
+## 文本 (Text) 属性
 
-<ApiTable title="Text Props"
+<ApiTable title="文本 (Text) 属性"
     :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['colorType', 'The color type of the text', 'enum', 'default', 'default | primary | success | warning | error'],
-        ['color', 'The color of the text, if set colorType will be ignored', 'string', 'default', '-'],
-        ['strong', 'Whether the text is strong', 'boolean', 'false', '-'],
-        ['italic', 'Whether the text is italic', 'boolean', 'false', '-'],
-        ['underline', 'Whether the text is underlined', 'boolean', 'false', '-'],
-        ['deleted', 'Whether the text is deleted', 'boolean', 'false', '-'],
-        ['type', 'The type of the text', 'enum', 'p', 'p | code | pre | small | h1 | h2 | h3 | h4 | h5 | h6 | label | span'],
+        ['colorType', '文本的颜色类型', 'enum', 'default', 'default | primary | success | warning | error'],
+        ['color', '文本的颜色，如果设置了 colorType，将被忽略', 'string', 'default', '-'],
+        ['strong', '文本是否加粗', 'boolean', 'false', '-'],
+        ['italic', '文本是否斜体', 'boolean', 'false', '-'],
+        ['underline', '文本是否下划线', 'boolean', 'false', '-'],
+        ['deleted', '文本是否删除线', 'boolean', 'false', '-'],
+        ['type', '文本类型', 'enum', 'p', 'p | code | pre | small | h1 | h2 | h3 | h4 | h5 | h6 | label | span'],
     ]">
 </ApiTable>
 
-## Text Slots
+## 文本 (Text) 插槽
 
-<ApiTable title="Text Slots"
+<ApiTable title="文本 (Text) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[ 
-        ['default', 'Text content'],
+        ['default', '文本插槽'],
     ]">
 </ApiTable>

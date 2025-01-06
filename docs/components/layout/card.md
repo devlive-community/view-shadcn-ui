@@ -316,7 +316,7 @@ This document is mainly used to describe some features and usage of the ShadcnCa
 ## API Attributes
 
 <ApiTable title="Card Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['title', 'Card title', 'string', '-', '-', '-'],
         ['description', 'Card description', 'string', '-', 'title', '-'],

@@ -326,7 +326,7 @@ onMounted(() => onAdd())
 ## Form Props
 
 <ApiTable title="Form Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['modelValue', 'The value of the form', 'Any', '-', '-', '-'],
     ]">
@@ -335,7 +335,7 @@ onMounted(() => onAdd())
 <br />
 
 <ApiTable title="Item Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['name', 'The name of the form item', 'String', '-', '-', '-'],
         ['label', 'The label of the form item', 'String', '-', '-', '-'],

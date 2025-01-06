@@ -151,7 +151,7 @@ const heightValue = ref(false)
 ## API Attributes
 
 <ApiTable title="Drawer Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['modelValue', 'Whether the drawer is visible', 'Boolean', 'false', '', ''],
         ['title', 'The title of the drawer', 'String', '-', '', ''],

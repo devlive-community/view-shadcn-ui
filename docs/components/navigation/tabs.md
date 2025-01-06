@@ -402,7 +402,7 @@ const addTab = () => {
 ## Tabs Props
 
 <ApiTable title="Tab Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['modelValue', 'The value of the active tab', 'String', '-', '-', '-'],
         ['type', 'The type of the tab', 'String', 'primary', '-', 'primary | success | warning | error'],
@@ -417,7 +417,7 @@ const addTab = () => {
 <br />
 
 <ApiTable title="Tab Item Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['label', 'The label of the tab', 'String', '-', '-', '-'],
         ['value', 'The value of the tab', 'String', '-', '-', '-'],

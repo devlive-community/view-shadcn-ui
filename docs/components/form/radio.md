@@ -142,7 +142,7 @@ const checkedGroup = ref('ON')
 ## API Attributes
 
 <ApiTable title="Radio Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['modelValue', 'The value of the radio', 'Any', '-', '-', '-'],
         ['value', 'The value of the radio', 'Any', '-', '-', '-'],
@@ -155,7 +155,7 @@ const checkedGroup = ref('ON')
 <br />
 
 <ApiTable title="Radio Group Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['modelValue', 'The value of the radio group', 'Any', '-', '-', '-'],
     ]">

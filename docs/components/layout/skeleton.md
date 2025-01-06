@@ -119,7 +119,7 @@ This document is mainly used to describe some features and usage of the ShadcnSk
 ## API Attributes
 
 <ApiTable title="Skeleton Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['rows', 'The rows of the skeleton', 'Number | String', '4', '-', '-'],
         ['cols', 'The columns of the skeleton', 'Number | String', '1', '-', '-'],
@@ -131,7 +131,7 @@ This document is mainly used to describe some features and usage of the ShadcnSk
 <br />
 
 <ApiTable title="Skeleton Item Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['animation', 'Whether to use animation', 'Boolean', 'false', '-', '-'],
         ['width', 'The width of the skeleton item', 'Number | String', '-', '-', '-'],

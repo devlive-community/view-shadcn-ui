@@ -131,7 +131,7 @@ This document is mainly used to describe some features and usage of the ShadcnAl
 ## API Attributes
 
 <ApiTable title="Alert Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['title', 'The title of the alert', 'String', '-', '-', '-'],
         ['type', 'The type of the alert', 'Enum', 'primary', '-', 'primary, success, warning, error'],

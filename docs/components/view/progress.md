@@ -115,7 +115,7 @@ const value = ref(10)
 ## API Attributes
 
 <ApiTable title="Progress Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['modelValue', 'Detailed data, support port binding, less than 0 is reset to 0, greater than 100 is reset to 100.', 'number', '0', '-', '-'],
         ['status', 'Progress status.', 'Enum', '-', '-', 'success, error, warning, info'],

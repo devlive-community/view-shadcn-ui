@@ -141,7 +141,7 @@ const checkedGroup = ref(['Vue'])
 ## API Attributes
 
 <ApiTable title="Checkbox Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['modelValue', 'You can use v-model to bind data in both directions', 'Any', '-', '-', '-'],
         ['value', 'The value of the checkbox', 'Any', '-', '-', '-'],
@@ -154,7 +154,7 @@ const checkedGroup = ref(['Vue'])
 <br />
 
 <ApiTable title="Checkbox Group Props"
-    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['modelValue', 'You can use v-model to bind data in both directions', 'Any[]', '-', '-', '-'],
     ]">

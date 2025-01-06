@@ -126,7 +126,7 @@ This document is mainly used to describe some features and usage of the ShadcnDa
 ## Data Filter Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
         ['modelValue', 'The value of the data filter', 'array', '\[\]'],
         ['fields', 'The fields of the data filter', 'array', '\[\]'],
@@ -172,7 +172,7 @@ This document is mainly used to describe some features and usage of the ShadcnDa
 ## Hierarchical Data Filter Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
         ['modelValue', 'The value of the data filter', 'array', 'FilterGroup\[\]'],
         ['fields', 'The fields of the data filter', 'array', 'Field\[\]'],

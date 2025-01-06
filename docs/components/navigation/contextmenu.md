@@ -204,7 +204,7 @@ const onItemClick = (action) => console.log(`Clicked: ${action}`)
 ## Context Menu Props
 
 <ApiTable title="Context Menu Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
         ['modelValue', 'The model value of the context menu', 'boolean', 'false'],
         ['position', 'The position of the context menu', '{x: number, y: number}', 'trigger position'],
@@ -214,7 +214,7 @@ const onItemClick = (action) => console.log(`Clicked: ${action}`)
 <br />
 
 <ApiTable title="Context Menu Item Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
         ['disabled', 'Whether the context menu item is disabled', 'boolean', 'false'],
     ]">
@@ -223,7 +223,7 @@ const onItemClick = (action) => console.log(`Clicked: ${action}`)
 <br />
 
 <ApiTable title="Context Menu Sub Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
         ['label', 'The label of the context menu sub item', 'string', '-'],
         ['disabled', 'Whether the context menu sub item is disabled', 'boolean', 'false'],

@@ -113,7 +113,7 @@ title: Shadcn Toolbar Footer
 ## Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
         ['modelValue', 'The value of the drawer', 'boolean', 'true'],
         ['autoHide', 'Whether to auto hide', 'boolean', 'false'],
