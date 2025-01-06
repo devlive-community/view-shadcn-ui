@@ -96,21 +96,25 @@ export default {
                         {text: "快速开始", link: "quickstart"},
                     ]
                 },
-                {
-                    text: "Utility",
-                    collapsed: false,
-                    base: "/guide/",
-                    items: [
-                        {text: 'calcSize <span class="VPBadge tip">2024.2.0</span>', link: 'calc-size'},
-                        {text: 'isLightColor <span class="VPBadge tip">2024.2.0</span>', link: 'is-light-color'},
-                        {text: 'getContrastTextColor <span class="VPBadge tip">2024.2.0</span>', link: 'get-contrast-text-color'},
-                        {text: 'getHoverColor <span class="VPBadge tip">2024.2.0</span>', link: 'get-hover-color'},
-                        {text: 'generateColorShades <span class="VPBadge tip">2024.2.0</span>', link: 'generate-color-shades'},
-                        {text: 'Function <span class="VPBadge tip">2024.5.0</span>', link: 'function'},
-                        {text: 'Logger <span class="VPBadge tip">2024.5.1</span>', link: 'logger'},
-                        {text: 'UUID <span class="VPBadge tip">2024.5.2</span>', link: 'uuid'},
+                (() => {
+                    const items = [
+                        {text: '计算尺寸 (calcSize)', link: 'calc-size', version: '2024.5.2'},
+                        {text: '是否浅色 (isLightColor)', link: 'is-light-color', version: '2024.2.0'},
+                        {text: '获取对比文本颜色 (getContrastTextColor)', link: 'get-contrast-text-color', version: '2024.2.0'},
+                        {text: '获取悬停颜色 (getHoverColor)', link: 'get-hover-color', version: '2024.2.0'},
+                        {text: '生成颜色色调 (generateColorShades)', link: 'generate-color-shades', version: '2024.2.0'},
+                        {text: '函数 (Function)', link: 'function', version: '2024.5.0'},
+                        {text: '日志 (Logger)', link: 'logger', version: '2024.5.1'},
+                        {text: '唯一标记 (UUID)', link: 'uuid', version: '2024.5.2'}
                     ]
-                }
+
+                    return {
+                        text: `工具函数 [ ${items.length} ]`,
+                        base: '/guide/',
+                        collapsed: false,
+                        items: items.map(item => createSidebarItem(item))
+                    }
+                })()
             ],
             '/components/': [
                 (() => {

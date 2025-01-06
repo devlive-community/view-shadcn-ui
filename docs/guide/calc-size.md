@@ -1,15 +1,17 @@
 ---
-title: calcSize
+title: 计算尺寸 (calcSize)
 ---
 
-# Introduction
+# 介绍
 
-This document is mainly used to describe some features and usage of the calcSize utils.
+<br />
 
-## Usage
+本文档主要用于描述 `calcSize` 函数的一些功能和用法。
+
+## 用法
 
 ```typescript
-import { calcSize } from '@/utils/common.ts'
+import { calcSize } from 'view-shadcn-ui'
 
 calcSize(100) // => "100px"
 calcSize('2rem') // => "2rem"
@@ -17,16 +19,16 @@ calcSize(100, { defaultUnit: 'rem' }) // => "100rem"
 calcSize('auto') // => "auto"
 ```
 
-## Props
+## 参数
 
-<ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+<ApiTable title="参数"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['defaultUnit', 'The default unit of the size', 'string', 'px'],
-        ['allowNegative', 'Whether to allow negative values', 'boolean', 'true'],
-        ['min', 'The minimum value', 'number', 'Number.NEGATIVE_INFINITY'],
-        ['max', 'The maximum value', 'number', 'Number.POSITIVE_INFINITY'],
-        ['decimals', 'The number of decimal places', 'number', '2'],
-        ['fallback', 'The fallback value', 'string', 'auto'],
+        ['defaultUnit', '默认单位', 'string', 'px'],
+        ['allowNegative', '是否允许负值', 'boolean', 'true'],
+        ['min', '最小值', 'number', 'Number.NEGATIVE_INFINITY'],
+        ['max', '最大值', 'number', 'Number.POSITIVE_INFINITY'],
+        ['decimals', '小数位数', 'number', '2'],
+        ['fallback', 'fallback 值，计算失败时返回', 'string', 'auto'],
     ]">
 </ApiTable>

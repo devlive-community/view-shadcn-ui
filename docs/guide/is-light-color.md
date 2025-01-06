@@ -1,25 +1,27 @@
 ---
-title: isLightColor
+title: 是否浅色 (isLightColor)
 ---
 
-# Introduction
+# 介绍
 
-This document is mainly used to describe some features and usage of the isLightColor utils.
+<br />
 
-## Usage
+本文档主要用于描述 `isLightColor` 函数的一些功能和用法。
+
+## 用法
 
 ```typescript
-import { isLightColor } from '@/utils/common.ts'
+import { isLightColor } from 'view-shadcn-ui'
 
 isLightColor('#fff') // => true
 isLightColor('#000') // => false
 ```
 
-## Props
+## 参数
 
-<ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+<ApiTable title="参数"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['color', 'The color to check', 'string', '-'],
+        ['color', '需要检查的颜色，格式为 HEX/RGB/HSL', 'string', '-'],
     ]">
 </ApiTable>
