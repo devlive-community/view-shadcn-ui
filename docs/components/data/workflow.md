@@ -1,16 +1,18 @@
 ---
-title: Shadcn Workflow
+title: 流程 (Workflow)
 ---
 
-# Introduction
+# 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnWorkflow component.
+<br />
 
-## Usage
+本文档主要用于描述 `ShadcnWorkflow` 组件的一些特性和使用方法。
+
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
   <div style="width: 1080px">
     <ShadcnWorkflowEditor v-model="workflowState"
                             :categories="categories"
@@ -36,11 +38,11 @@ This document is mainly used to describe some features and usage of the ShadcnWo
 
 :::
 
-## View
+## 视图
 
 ::: raw
 
-<CodeRunner title="View">
+<CodeRunner title="视图">
   <div style="width: 1080px">
     <ShadcnWorkflowView :nodes="nodes" :data="data"/>
   </div>
@@ -60,7 +62,7 @@ This document is mainly used to describe some features and usage of the ShadcnWo
 
 :::
 
-## Example
+## 示例
 
 ```json
 {
@@ -102,28 +104,28 @@ This document is mainly used to describe some features and usage of the ShadcnWo
 }
 ```
 
-- `id` : Node ID
-- `label` : Node label
-- `category` : Node category
-- `position` : Node position
-    - `x` : Node x position
-    - `y` : Node y position
-- `configure` : Node configure
-    - `field` : Configure field
-    - `label` : Configure label
-    - `type` : Configure type, support all `form` component
-    - `description` : Configure description
-    - `required` : Configure required
-    - `rules` : Configure rules
-- `description` : Node description
-- `ports` : Node ports
-    - `id` : Port ID
-    - `type` : Port type
-    - `label` : Port label
-    - `required` : Port required
-    - `message` : Port message
+- `id` ： 节点 ID
+- `label` ： 节点标签
+- `category` ：节点类别
+- `position` ： 节点位置
+    - `x` ： 节点 x 位置
+    - `y` ： 节点 y 位置
+- `configure` ： 节点配置
+    - `field` ： 配置字段
+    - `label` ： 配置标签
+    - `type` ： 配置类型，支持所有 `form` 组件
+    - `description` ： 配置描述
+    - `required` ：配置必需
+    - `rules` ： 配置规则
+- `description` ： 节点描述
+- `ports` ： 节点端口
+    - `id` ： 端口 ID
+    - `type` ： 端口类型
+    - `label` ： 端口标签
+    - `required` ：需要端口
+    - `message` ： 端口消息
 
-## Data
+## 数据
 
 ```json
 {
@@ -159,91 +161,91 @@ This document is mainly used to describe some features and usage of the ShadcnWo
 }
 ```
 
-- `nodes` : Nodes
-  - `id` : Node ID
-  - `tid` : Node tid (original node id)
-  - `category` : Node category
-  - `position` : Node position
-    - `x` : Node x position
-    - `y` : Node y position
-  - `data` : Node form data
-- `connections` : Connections
-  - `id` : Connection ID
-  - `source` : Connection source
-  - `target` : Connection target
+- `nodes` ：节点
+  - `id` ： 节点 ID
+  - `tid` ： 节点 tid （原始节点 ID）
+  - `category` ：节点类别
+  - `position` ： 节点位置
+    - `x` ： 节点 x 位置
+    - `y` ： 节点 y 位置
+  - `data` ：节点表单数据
+- `connections` ：连接
+  - `id` ： 连接 ID
+  - `source` ： 连接源
+  - `target` ： 连接目标
 
-## Workflow Props
+## 流程 (Workflow) 属性
 
-<ApiTable title="Props"
+<ApiTable title="流程 (Workflow) 属性"
     :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-            ['modelValue', 'The model value of the workflow', '{ <br />nodes: WorkflowNode\[\], <br />connections: WorkflowConnection\[\] <br />}', '-'],
-            ['nodes', 'The nodes of the workflow', 'WorkflowNode\[\]', '\[\]'],
-            ['connections', 'The connections of the workflow', 'WorkflowConnection\[\]', '\[\]'],
-            ['categories', 'The categories of the workflow', '{ <br />label: string <br />value: string <br />}', '\[\]'],
-            ['searchText', 'The search text of the workflow', 'string', ''],
-            ['panelWidth', 'The panel width of the workflow', 'number', '250'],
-            ['configureWidth', 'The panel height of the workflow', 'number', '300'],
+            ['modelValue', '流程的 model 值', '{ <br />nodes: WorkflowNode\[\], <br />connections: WorkflowConnection\[\] <br />}', '-'],
+            ['nodes', '流程的节点', 'WorkflowNode\[\]', '\[\]'],
+            ['connections', '流程的连接', 'WorkflowConnection\[\]', '\[\]'],
+            ['categories', '流程的类别', '{ <br />label: string <br />value: string <br />}', '\[\]'],
+            ['searchText', '流程的搜索文本', 'string', ''],
+            ['panelWidth', '流程的面板宽度', 'number', '250'],
+            ['configureWidth', '流程的面板高度', 'number', '300'],
     ]">
 </ApiTable>
 
 <br />
 
-<ApiTable title="WorkflowNode"
+<ApiTable title="流程节点 (Workflow Node) 属性"
     :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-            ['id', 'The id of the node', 'string', '-'],
-            ['tid', 'The tid of the  original node id', 'string', '-'],
-            ['label', 'The label of the node', 'string', '-'],
-            ['category', 'The category of the node', 'string', '-'],
-            ['ports', 'The ports of the node', 'WorkflowPort\[\]', '\[\]'],
-            ['position', 'The position of the node', '{<br /> x: number, <br />y: number <br />}', '-'],
-            ['configure', 'The configure of the node', 'array<any>', '-'],
-            ['data', 'The data of the node', 'array<any>', '-'],
-            ['description', 'The description of the node', 'string', '-'],
+            ['id', '节点的 ID', 'string', '-'],
+            ['tid', '原始节点 id 的 tid', 'string', '-'],
+            ['label', '节点的标签', 'string', '-'],
+            ['category', '节点的类别', 'string', '-'],
+            ['ports', '节点的端口', 'WorkflowPort\[\]', '\[\]'],
+            ['position', '节点的位置', '{<br /> x: number, <br />y: number <br />}', '-'],
+            ['configure', '节点的配置', 'array<any>', '-'],
+            ['data', '节点的数据', 'array<any>', '-'],
+            ['description', '节点的描述', 'string', '-'],
     ]">
 </ApiTable>
 
 <br />
 
-<ApiTable title="WorkflowPort"
-    :headers="['Attribute', 'Description', 'Type']"
+<ApiTable title="流程端口 (Workflow Port) 属性"
+    :headers="['事件', '描述', '类型']"
     :columns="[
-        ['id', 'The id of the port', 'string'],
-        ['type', 'The type of the port', 'input | output'],
-        ['label', 'The label of the port', 'string'],
-        ['required', 'The required of the port', 'boolean'],
-        ['validated', 'The validated of the port', '{ <br />valid: boolean<br />message: string <br />}'],
+        ['id', '端口的 ID', 'string'],
+        ['type', '端口的类型', 'input | output'],
+        ['label', '端口的标签', 'string'],
+        ['required', '端口是否必须', 'boolean'],
+        ['validated', '端口的验证状态', '{ <br />valid: boolean<br />message: string <br />}'],
     ]">
 </ApiTable>
 
-## Workflow Slots
+## 流程 (Workflow) 插槽
 
-<ApiTable title="Slots"
-    :headers="['Slot', 'Description', 'Parameters']"
+<ApiTable title="流程 (Workflow) 插槽"
+    :headers="['插槽', '描述', '参数']" 
     :columns="[
-        ['panel-search', 'The search panel of the workflow', '-'],
-        ['panel-category-header', 'The category header of the workflow', '{ <br />category: { <br />label: string <br />value: string <br />} <br />}'],
-        ['panel-node', 'The node panel of the workflow', 'node, onDragStart'],
-        ['panel-bottom', 'The bottom panel of the workflow', '-'],
-        ['canvas-node', 'The node of the workflow', 'node'],
-        ['configure-\[node.type\]', 'The configure panel of the workflow', 'node, validation, onChange'],
+        ['panel-search', '流程的搜索面板', '-'],
+        ['panel-category-header', '流程的类别标题', '{ <br />category: { <br />label: string <br />value: string <br />} <br />}'],
+        ['panel-node', '流程的节点面板', 'node, onDragStart'],
+        ['panel-bottom', '流程的底部面板', '-'],
+        ['canvas-node', '流程节点', 'node'],
+        ['configure-\[node.type\]', '流程的配置面板', 'node, validation, onChange'],
     ]">
 </ApiTable>
 
-## Workflow Events
+## 流程 (Workflow) 事件
 
-<ApiTable title="Events"
-    :headers="['Attribute', 'Description', 'Type']"
+<ApiTable title="流程 (Workflow) 事件"
+    :headers="['事件', '描述', '类型']"
     :columns="[
-        ['update:modelValue', 'The model value of the workflow', '{ <br />nodes: WorkflowNode\[\], <br />connections: WorkflowConnection\[\] <br />data: any <br />validation: any <br />}'],
-        ['update:searchText', 'The search text of the workflow', 'string'],
-        ['on-node-moved', 'The event of the node moved', 'WorkflowNode'],
-        ['on-node-added', 'The event of the node selected', 'WorkflowNode'],
-        ['on-node-selected', 'The event of the node selected', 'WorkflowNode'],
-        ['on-node-deleted', 'The event of the node deleted', 'WorkflowNode'],
-        ['on-connection-created', 'The event of the connection created', 'WorkflowConnection'],
-        ['on-connection-removed', 'The event of the connection removed', 'connectionId'],
+        ['update:modelValue', '流程的 model 值', '{ <br />nodes: WorkflowNode\[\], <br />connections: WorkflowConnection\[\] <br />data: any <br />validation: any <br />}'],
+        ['update:searchText', '流程的搜索文本', 'string'],
+        ['on-node-moved', '节点移动', 'WorkflowNode'],
+        ['on-node-added', '节点添加', 'WorkflowNode'],
+        ['on-node-selected', '节点选择', 'WorkflowNode'],
+        ['on-node-deleted', '节点删除', 'WorkflowNode'],
+        ['on-connection-created', '连接创建', 'WorkflowConnection'],
+        ['on-connection-removed', '连接删除', 'connectionId'],
     ]">
 </ApiTable>
 

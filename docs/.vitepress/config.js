@@ -255,13 +255,13 @@ export default {
                 })(),
                 (() => {
                     const items = [
-                        {text: 'Data Builder', link: 'data/data-builder', icon: '/components/data/data-builder.svg', version: '2024.5.0'},
-                        {text: 'Workflow', link: 'data/workflow', icon: '/components/data/workflow.svg', version: '2024.5.1'},
-                        {text: 'Data Filter', link: 'data/data-filter', icon: '/components/data/data-filter.svg', version: '2024.5.2'},
+                        {text: '数据构建 (Data Builder)', link: 'data/data-builder', icon: '/components/data/data-builder.svg', version: '2024.5.0'},
+                        {text: '流程 (Workflow)', link: 'data/workflow', icon: '/components/data/workflow.svg', version: '2024.5.1'},
+                        {text: '数据过滤 (Data Filter)', link: 'data/data-filter', icon: '/components/data/data-filter.svg', version: '2024.5.2'},
                     ]
 
                     return {
-                        text: `Data [ ${items.length} ]`,
+                        text: `数据组件 [ ${items.length} ]`,
                         base: '/components/',
                         collapsed: false,
                         items: items.map(item => createSidebarItem(item))

@@ -66,7 +66,7 @@ title: 高亮 (Highlight)
 
 :::
 
-## 高亮 (Highlight)
+## 高亮 (Highlight) 属性
 
 <ApiTable title="高亮 (Highlight) 属性"
     :headers="['属性', '描述', '类型', '默认值']"

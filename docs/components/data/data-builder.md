@@ -1,22 +1,18 @@
 ---
-title: Shadcn Data Builder
+title: 数据构建 (Data Builder)
 ---
 
-# Introduction
+# 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnDataBuilder component.
+<br />
 
-- ShadcnDataBuilderPanel
-- ShadcnDataBuilderEditor
-- ShadcnDataBuilderConfigure
-- ShadcnDataBuilderCanvas
-- ShadcnDataBuilderView
+本文档主要用于描述 `ShadcnDataBuilder` 组件的一些功能和用法。
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnDataBuilderEditor :items="panels"/>
 </CodeRunner>
 
@@ -46,11 +42,11 @@ const items = ref([
 
 :::
 
-## Width and Height
+## 宽高 (width & height)
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="宽高">
     <ShadcnDataBuilderEditor :items="panels" :width="800" :height="600"/>
 </CodeRunner>
 
@@ -66,11 +62,11 @@ const items = ref([
 
 :::
 
-## Toolbar
+## 工具栏 (show-toolbar)
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="工具栏">
     <ShadcnDataBuilderEditor :items="panels" :show-toolbar="false" :width="800" :height="600" />
 </CodeRunner>
 
@@ -86,11 +82,11 @@ const items = ref([
 
 :::
 
-## Show Grid
+## 显示网格 (show-grid)
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="显示网格">
     <ShadcnDataBuilderEditor :items="panels" :show-grid="false" :width="800" :height="600" />
 </CodeRunner>
 
@@ -106,11 +102,11 @@ const items = ref([
 
 :::
 
-## Snap to Grid
+## 对齐网格 (snap-to-grid)
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="对齐网格">
     <ShadcnDataBuilderEditor :items="panels" :snap-to-grid="false" :width="800" :height="600" />
 </CodeRunner>
 
@@ -126,11 +122,11 @@ const items = ref([
 
 :::
 
-## Canvas Center
+## 居中 (is-center)
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="居中">
     <ShadcnDataBuilderEditor :items="panels" is-center />
 </CodeRunner>
 
@@ -146,11 +142,11 @@ const items = ref([
 
 :::
 
-## Resize
+## 重置尺寸 (resize)
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="重置尺寸">
     <ShadcnDataBuilderEditor :items="panels" :resize="false" />
 </CodeRunner>
 
@@ -166,11 +162,11 @@ const items = ref([
 
 :::
 
-## Canvas Style
+## 画布样式 (canvas-style)
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="画布样式">
     <ShadcnDataBuilderEditor :items="panels" :canvas-style="{backgroundColor: '#e01a1a'}" />
 </CodeRunner>
 
@@ -186,11 +182,11 @@ const items = ref([
 
 :::
 
-## Guidelines
+## 辅助线 (show-guidelines)
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="辅助线">
     <ShadcnDataBuilderEditor :items="panels" show-guidelines />
 </CodeRunner>
 
@@ -206,11 +202,11 @@ const items = ref([
 
 :::
 
-## Slot
+## 自定义面板插槽
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="自定义面板插槽">
     <ShadcnDataBuilderEditor :items="panels2" :config-width="300" :height="300" :width="1080" @update-config="console.log($event)">
         <template #panel-label="{ item }">
           {{ item.label }} - {{ item.type }}
@@ -259,11 +255,11 @@ const items = ref([
 
 :::
 
-## Style
+## 自定义面板样式
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="自定义面板样式">
     <ShadcnDataBuilderEditor :items="stylePanels" :config-width="300" :height="300" :width="1080" @update-config="console.log($event)">
         <template #panel-label="{ item }">
           {{ item.label }} - {{ item.type }}
@@ -312,11 +308,11 @@ const items = ref([
 
 :::
 
-## View
+## 数据构建视图
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="数据构建视图">
   <ShadcnDataBuilderView :width="style.width" :height="style.height" :items="items" :canvas-style="style.canvasStyle">
     <template #text="{ configure, isSelected }">
       <ShadcnText type="h1" :class="isSelected ? 'text-blue-600' : 'text-gray-900'">
@@ -405,11 +401,11 @@ const items = ref([
 
 :::
 
-## DataBuilder Props
+## 数据构建 (Data Builder) 属性
 
 ::: warning
 
-Let's start with an example:
+让我们从一个例子开始：
 
 ```json
 {
@@ -426,123 +422,123 @@ Let's start with an example:
 }
 ```
 
-There is a special group `key=style` which is mainly used for style configuration, and it takes effect automatically by default.
+有一个特殊的组 `key=style` 主要用于样式配置，默认自动生效。
 
-The items in items are configured as follows:
+`items` 中的项配置如下：
 
-- **type**: component type (refer to all currently supported form components)
-- **label**: The name of the component display
-- **description**: The description displayed by the component
+- **type**：组件类型（参考当前支持的所有表单组件）
+- **label**：组件显示的名称
+- **description**：组件显示的描述
 
-For other properties, see Supported Configurations for Components.
+有关其他属性，请参阅组件支持的配置。
 
-If it's a style group, you must configure the following for it to take effect:
+如果是样式组，则必须配置以下内容才能生效：
 
-- **key**: corresponds to the name of the CSS property
-- **value**: corresponds to the value of the CSS property
-- **formatter**: A function used to format the configuration
+- **key**：对应 CSS 属性的名称
+- **value**：对应 CSS 属性的值
+- **formatter**：用于格式化配置的函数
 
 ::: 
 
-<ApiTable title="DataBuilder Editor Props"
-    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
+<ApiTable title="数据构建 (Data Builder) 属性"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['items', 'The data of the data builder', '\[\]', '-', '-', '-'],
-        ['panelWidth', 'The width of the panel', 'number', '200', '-', '-'],
-        ['configWidth', 'The width of the config', 'number', '200', '-', '-'],
-        ['showGrid', 'Whether to show the grid', 'boolean', 'true', '-', '-'],
-        ['snapToGrid', 'Whether to snap to the grid', 'boolean', 'true', '-', '-'],
-        ['gridSize', 'The size of the grid', 'number', '20', '-', '-'],
-        ['showRuler', 'Whether to show the ruler', 'boolean', 'true', '-', '-'],
-        ['width', 'The width of the content', 'number', '1920', '-', '-'],
-        ['height', 'The height of the content', 'number', '1080', '-', '-'],
-        ['showToolbar', 'Whether to show the toolbar', 'boolean', 'true', '-', '-'],
-        ['isCenter', 'Whether to center the canvas', 'boolean', 'false', '-', '-'],
-        ['resize', 'Whether to enable resize', 'boolean', 'true', '-', '-'],
-        ['canvasStyle', 'The style of the canvas', 'object', '-', '-', '-'],
-        ['showGuidelines', 'Whether to show the guidelines', 'boolean', 'false', '-', '-'],
+        ['items', '数据构建器的数据', '\[\]', '-'],
+        ['panelWidth', '面板的宽度', 'number', '200'],
+        ['configWidth', '配置的宽度', 'number', '200'],
+        ['showGrid', '是否显示网格', 'boolean', 'true'],
+        ['snapToGrid', '是否对齐网格', 'boolean', 'true'],
+        ['gridSize', '网格的大小', 'number', '20'],
+        ['showRuler', '是否显示标尺', 'boolean', 'true'],
+        ['width', '内容的宽度', 'number', '1920'],
+        ['height', '内容的高度', 'number', '1080'],
+        ['showToolbar', '是否显示工具栏', 'boolean', 'true'],
+        ['isCenter', '是否将画布居中', 'boolean', 'false'],
+        ['resize', '是否启用调整大小', 'boolean', 'true'],
+        ['canvasStyle', '画布的样式', 'object', '-'],
+        ['showGuidelines', '是否显示辅助线', 'boolean', 'false'],
     ]">
 </ApiTable>
 
 <br />
 
-<ApiTable title="DataBuilder Panel Props"
-    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
+<ApiTable title="数据构建面板 (Data Builder Panel) 属性"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['width', 'The width of the panel', 'number', '200', '-', '-'],
-        ['items', 'The data of the data builder', '\[\]', '-', '-', '-'],
+        ['width', '面板的宽度', 'number', '200'],
+        ['items', '数据构建器的数据', '\[\]', '-'],
     ]">
 </ApiTable>
 
 <br />
 
-<ApiTable title="DataBuilder Canvas Props"
-    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
+<ApiTable title="数据构建画布 (Data Builder Canvas) 属性"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['showGrid', 'Whether to show the grid', 'boolean', 'true', '-', '-'],
-        ['snapToGrid', 'Whether to snap to the grid', 'boolean', 'true', '-', '-'],
-        ['gridSize', 'The size of the grid', 'number', '20', '-', '-'],
-        ['showRuler', 'Whether to show the ruler', 'boolean', 'true', '-', '-'],
-        ['width', 'The width of the content', 'number', '1920', '-', '-'],
-        ['height', 'The height of the content', 'number', '1080', '-', '-'],
-        ['showToolbar', 'Whether to show the toolbar', 'boolean', 'true', '-', '-'],
-        ['isCenter', 'Whether to center the canvas', 'boolean', 'false', '-', '-'],
-        ['resize', 'Whether to enable resize', 'boolean', 'true', '-', '-'],
-        ['canvasStyle', 'The style of the canvas', 'object', '-', '-', '-'],
-        ['showGuidelines', 'Whether to show the guidelines', 'boolean', 'false', '-', '-'],
+        ['showGrid', '是否显示网格', 'boolean', 'true'],
+        ['snapToGrid', '是否对齐网格', 'boolean', 'true'],
+        ['gridSize', '网格的大小', 'number', '20'],
+        ['showRuler', '是否显示标尺', 'boolean', 'true'],
+        ['width', '内容的宽度', 'number', '1920'],
+        ['height', '内容的高度', 'number', '1080'],
+        ['showToolbar', '是否显示工具栏', 'boolean', 'true'],
+        ['isCenter', '是否将画布居中', 'boolean', 'false'],
+        ['resize', '是否启用调整大小', 'boolean', 'true'],
+        ['canvasStyle', '画布的样式', 'object', '-'],
+        ['showGuidelines', '是否显示辅助线', 'boolean', 'false'],
     ]">
 </ApiTable>
 
 <br />
 
-<ApiTable title="DataBuilder Configure Props"
-    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
+<ApiTable title="数据构建配置 (Data Builder Config) 属性"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['width', 'The width of the content', 'number', '200', '-', '-'],
-        ['selectedComponent', 'The selected component', 'any', '-', '-', '-'],
-        ['canvasWidth', 'The width of the canvas', 'number', '1920', '-', '-'],
-        ['canvasHeight', 'The height of the canvas', 'number', '1080', '-', '-'],
-        ['gridSize', 'The size of the grid', 'number', '20', '-', '-'],
+        ['width', '内容的宽度', 'number', '200'],
+        ['selectedComponent', '所选组件', 'any', '-'],
+        ['canvasWidth', '画布的宽度', 'number', '1920'],
+        ['canvasHeight', '画布的高度', 'number', '1080'],
+        ['gridSize', '网格的大小', 'number', '20'],
     ]">
 </ApiTable>
 
 <br />
 
-<ApiTable title="DataBuilder View Props"
-    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
+<ApiTable title="数据构建视图 (Data Builder View) 属性"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['width', 'The width of the content', 'number', '1920', '-', '-'],
-        ['height', 'The height of the content', 'number', '1080', '-', '-'],
-        ['canvasStyle', 'The style of the canvas', 'object', '-', '-', '-'],
-        ['items', 'The data of the data builder', '\[\]', '-', '-', '-'],
+        ['width', '内容的宽度', 'number', '1920'],
+        ['height', '内容的高度', 'number', '1080'],
+        ['canvasStyle', '画布的样式', 'object', '-'],
+        ['items', '数据构建器的数据', '\[\]', '-'],
     ]">
 </ApiTable>
 
-## DataBuilder Slots
+## 数据构建 (Data Builder) 插槽
 
-<ApiTable title="DataBuilder Editor Slots"
+<ApiTable title="数据构建 (Data Builder) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['slots', 'Render the corresponding slot according to the component type, for example, if item.type=text, render the text slot, { component, configure, isSelected }'],
-        ['panel-label', 'Render the panel label, { item }'],
+        ['slots', '根据组件类型渲染对应的槽位，例如如果 item.type=text，则渲染文本槽位，{ component， configure， isSelected }'],
+        ['panel-label', '渲染面板标签 { item }'],
     ]">
 </ApiTable>
 
 <br />
 
-<ApiTable title="DataBuilder Panel Slots"
+<ApiTable title="数据构建面板 (Data Builder Panel) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['label' , 'Render the panel label, { item }'],
+        ['label' , '渲染面板标签 { item }'],
     ]">
 </ApiTable>
 
-## DataBuilder Events
+## 数据构建 (Data Builder) 事件
 
-<ApiTable title="DataBuilder Editor Events"
+<ApiTable title="数据构建 (Data Builder) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['update-config', 'Triggered when the configuration is updated', 'any\[\]'],
+        ['update-config', '更新配置时触发', 'any\[\]'],
     ]">
 </ApiTable>
 

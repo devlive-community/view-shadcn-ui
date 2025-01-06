@@ -221,7 +221,7 @@ This document describes the features and usage of the ShadcnContribution compone
 ## Contribution Slots
 
 <ApiTable title="Slots"
-    :headers="['Slot', 'Description', 'Parameters']"
+    :headers="['插槽', '描述', '参数']" 
     :columns="[
         ['cell', 'Slot for cell', 'ContributionCellSlotProps']
     ]">

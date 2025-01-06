@@ -226,7 +226,7 @@ const defaultValue = ref(null)
 ## Toggle Events
 
 <ApiTable title="Events"
-    :headers="['Attribute', 'Description', 'Type']"
+    :headers="['事件', '描述', '类型']"
     :columns="[
         ['update:modelValue', 'The value of the toggle', 'any'],
         ['on-change', 'Triggered when the value of the toggle is changed', 'any'],
@@ -236,7 +236,7 @@ const defaultValue = ref(null)
 <br />
 
 <ApiTable title="Group Events"
-    :headers="['Attribute', 'Description', 'Type']"
+    :headers="['事件', '描述', '类型']"
     :columns="[
         ['update:modelValue', 'The value of the toggle', 'any[]'],
         ['on-change', 'Triggered when the value of the toggle is changed', 'any[]'],
