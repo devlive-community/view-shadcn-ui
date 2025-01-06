@@ -1,51 +1,32 @@
 <template>
-  <div class="p-32 space-y-7">
-    <ShadcnForm v-model="formState">
-      <ShadcnFormItem name="mentions" label="提及对象" :rules="[{ required: true, message: '请选择提及对象' }]">
-        <ShadcnMention v-model="formState.mentions"
-                       name="mentions"
-                       :items="items"
-                       :load-data="loadMoreData">
-        </ShadcnMention>
-      </ShadcnFormItem>
-    </ShadcnForm>
+  <div class="p-32 space-y-7 space-x-4">
+    <ShadcnDivider text="图片组"/>
+    <ShadcnImageGroup :images="images" :columns="8" :gap="4" preview/>
+
+    <ShadcnDivider text="图片边框"/>
+    <ShadcnImage src="https://picsum.photoss/800/400" alt="View Shadcn UI" border/>
+
+    <ShadcnImage src="https://picsum.photoss/800/400" alt="View Shadcn UI"/>
+
+    <ShadcnDivider text="图片加载"/>
+    <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI"/>
+    <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" lazy/>
+
+    <ShadcnDivider text="图片填充"/>
+    <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" fit="cover"/>
+    <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" fit="contain"/>
+    <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" fit="fill"/>
+    <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" fit="none"/>
+    <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI" fit="scale-down"/>
+
+    <ShadcnImage src="https://picsum.photos/800/400" alt="View Shadcn UI"/>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+const images = [] as any[]
 
-const formState = ref({
-  mentions: []
-})
-
-const items = ref([
-  { id: 1, name: 'John Doe' },
-  { id: 2, name: 'Jane Smith' },
-  { id: 3, name: 'Bob Johnson', disabled: true },
-  { id: 4, name: 'Alice Brown' },
-  { id: 5, name: 'Charlie Davis' }
-])
-
-const currentPage = ref(1)
-
-const loadMoreData = async (callback: (children: any[]) => void) => {
-  try {
-    const newItems = await fetchMoreItems(currentPage.value)
-    items.value = [...items.value, ...newItems]
-    callback(newItems)
-    currentPage.value++
-  }
-  catch (error) {
-    console.error('Failed to load more items:', error)
-  }
-}
-
-const fetchMoreItems = async (page: number): Promise<any[]> => {
-  await new Promise(resolve => setTimeout(resolve, 500))
-  return Array.from({ length: 10 }, (_, i) => ({
-    id: page * 10 + i,
-    name: `User ${ page }-${ i }`
-  }))
+for (let i = 0; i < 100; i++) {
+  images.push({ src: `https://picsum.photos/800/400?random=${ i }`, alt: `Image ${ i }`, lazy: i % 2 === 0, border: i % 3 === 0 })
 }
 </script>

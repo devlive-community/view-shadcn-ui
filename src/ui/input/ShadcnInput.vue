@@ -8,8 +8,8 @@
                        : { type: currentType }"
                :class="cn('w-full p-2 rounded outline-none border-none',
                         type !== 'textarea' && size && Size[size],
-                        $slots.prefix && 'pl-6',
-                        $slots.suffix && 'pr-6'
+                        $slots.prefix && 'pl-8',
+                        $slots.suffix && 'pr-8'
                )"
                :style="wordCount || maxCount ? { paddingRight: paddingRight + 'px' } : ''"
                :value="localValue"
@@ -36,12 +36,12 @@
       <span v-else>{{ textCount }}</span>
     </span>
 
-    <span v-if="$slots.prefix" class="absolute start-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer"
+    <span v-if="$slots.prefix" class="absolute start-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer text-gray-400"
           @click="onPrefixClick">
       <slot name="prefix"/>
     </span>
 
-    <span v-if="$slots.suffix" class="absolute end-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer"
+    <span v-if="$slots.suffix" class="absolute end-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer text-gray-400"
           @click="onSuffixClick">
       <slot name="suffix"/>
     </span>
