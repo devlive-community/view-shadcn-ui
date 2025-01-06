@@ -312,5 +312,11 @@ export default {
         text: {
             placeholder: 'Type @ to mention'
         }
+    },
+    copy: {
+        text: {
+            copied: 'Copied!',
+            failed: 'Failed to copy!'
+        }
     }
 }

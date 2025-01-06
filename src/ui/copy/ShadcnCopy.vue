@@ -23,17 +23,15 @@
 import ShadcnIcon from '@/ui/icon'
 import { ref } from 'vue'
 import { cn } from '@/lib/utils.ts'
+import { t } from '@/utils/locale'
+import { CopyEmits, CopyProps } from '@/ui/copy/types.ts'
 
-const props = withDefaults(defineProps<{
-  text: string
-  tooltip?: boolean
-  position?: 'top' | 'bottom' | 'left' | 'right'
-}>(), {
+const props = withDefaults(defineProps<CopyProps>(), {
   tooltip: true,
   position: 'top'
 })
 
-const emit = defineEmits(['on-success', 'on-failed'])
+const emit = defineEmits<CopyEmits>()
 
 const icon = ref<string>('Copy')
 const showTooltip = ref<boolean>(false)
@@ -44,12 +42,12 @@ const onCopy = async () => {
     await navigator.clipboard
                    .writeText(props.text)
     icon.value = 'Check'
-    tooltipMessage.value = 'Copied!'
+    tooltipMessage.value = t('copy.text.copied')
     showTooltip.value = true
     emit('on-success')
   }
   catch (error) {
-    tooltipMessage.value = 'Copy failed!'
+    tooltipMessage.value = t('copy.text.failed')
     showTooltip.value = true
     emit('on-failed')
   }

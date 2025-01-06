@@ -36,8 +36,14 @@ title: 复制 (Copy)
 ::: raw
 
 <CodeRunner title="提示">
-    <ShadcnCopy text="Hello Shadcn UI"/>
-    <ShadcnCopy text="Hello Shadcn UI" :tooltip="false"/>
+    <div class="flex items-center gap-2">
+        <span>显示提示</span>
+        <ShadcnCopy text="Hello Shadcn UI"/>
+    </div>
+    <div class="flex items-center gap-2">
+        <span>不显示提示</span>
+        <ShadcnCopy text="Hello Shadcn UI" :tooltip="false"/>
+    </div>
 </CodeRunner>
 
 :::
@@ -59,10 +65,22 @@ title: 复制 (Copy)
 ## 位置 (position)
 
 <CodeRunner title="位置">
-    <ShadcnCopy text="Position" position="top"/>
-    <ShadcnCopy text="Position" position="bottom"/>
-    <ShadcnCopy text="Position" position="left"/>
-    <ShadcnCopy text="Position" position="right"/>
+    <div class="flex items-center gap-2">
+        <span>顶部</span>
+        <ShadcnCopy text="Position" position="top"/>
+    </div>
+    <div class="flex items-center gap-2">
+        <span>底部</span>
+        <ShadcnCopy text="Position" position="bottom"/>
+    </div>
+    <div class="flex items-center gap-2">
+        <span>左侧</span>
+        <ShadcnCopy text="Position" position="left"/>
+    </div>
+    <div class="flex items-center gap-2">
+        <span>右侧</span>
+        <ShadcnCopy text="Position" position="right"/>
+    </div>
 </CodeRunner>
 
 ::: details 查看代码
