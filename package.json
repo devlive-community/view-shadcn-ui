@@ -37,7 +37,6 @@
     "docs:serve": "vitepress serve docs"
   },
   "dependencies": {
-    "@vueuse/core": "^12.3.0",
     "clsx": "^2.1.0",
     "lodash": "^4.17.21",
     "lucide-vue-next": "^0.360.0",

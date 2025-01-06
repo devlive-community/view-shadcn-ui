@@ -119,11 +119,11 @@ export default {
             '/components/': [
                 (() => {
                     const items = [
-                        {text: 'Language', link: 'utility/language', version: '2024.5.2'},
+                        {text: '语言 (Language)', link: 'utility/language', version: '2024.5.2'},
                     ]
 
                     return {
-                        text: `Utility [ ${items.length} ]`,
+                        text: `工具函数 [ ${items.length} ]`,
                         base: '/components/',
                         collapsed: false,
                         items: items.map(item => createSidebarItem(item))

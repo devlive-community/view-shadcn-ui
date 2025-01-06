@@ -1,16 +1,16 @@
 ---
-title: Language
+title: 语言 (Language)
 ---
 
-This document describes the operation of the entire UI system for each language.
+本文档主要用于描述 UI 系统的多语言功能
 
 <br />
 
-<CodeRunner title="Example">
+<CodeRunner title="示例">
     <ShadcnUpload action="//jsonplaceholder.typicode.com/posts/" />
 </CodeRunner>
 
-## Change Language
+## 修改语言
 
 ::: raw
 
@@ -18,7 +18,7 @@ This document describes the operation of the entire UI system for each language.
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -44,17 +44,17 @@ const changeLocale = (value: any) => {
 
 :::
 
-## Add new Language
+## 添加语言
 
 ::: raw
 
-<CodeRunner title="Add new Language">
-    <ShadcnButton @click="onAddLanguage">Add ru-RU Language</ShadcnButton>
+<CodeRunner title="添加语言">
+    <ShadcnButton @click="onAddLanguage">添加 ru-RU 语言</ShadcnButton>
 </CodeRunner>
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
