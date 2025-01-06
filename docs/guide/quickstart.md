@@ -1,42 +1,44 @@
-# Quickstart
+---
+title: 快速入门
+---
 
-View Shadcn UI supports two ways to introduce components.
+# 快速入门
 
-- Global introduction
-- Introduced on demand
+## 引用方式
 
-## Global introduction
+View Shadcn UI 支持两种方式引入组件。
 
-View Shadcn UI supports global introduction of components.
+- 全局引入
+- 按需引入
 
-Generally, the configuration in the entry file `main.ts` is as follows:
+## 全局引入
+
+View Shadcn UI 支持全局引入组件。 通常，入口文件 `main.ts` 中的配置如下：
 
 ```ts
 import { createApp } from 'vue'
 import App from './App.vue'
 const app = createApp(App)
 
-// Import View Shadcn UI
+// 引入 View Shadcn UI
 import ViewShadcnUI from 'view-shadcn-ui'
 app.use(ViewShadcnUI)
 ```
 
-## Introduced on demand
+## 按需引入
 
-View Shadcn UI supports introducing components on demand.
+View Shadcn UI 支持按需引入组件。
 
 ```ts
 import { ShadcnButton } from 'view-shadcn-ui'
 app.component('ShadcnButton', ShadcnButton)
 ```
 
-## Special reminder
+## 特别提醒
 
-Whether it is a global introduction or an on-demand reference, there is no need to add `import 'view-shadcn-ui/dist/view-shadcn-ui.min.css'` in `main.ts`
+无论是全局介绍还是按需引用，都无需在 main.ts 中添加 `import 'view-shadcn-ui/dist/view-shadcn-ui.min.css'`。默认情况下，该组件在编译过程中已导入样式。
 
-The component has imported styles by default during the compilation process.
-
-## Component usage
+## 组件使用
 
 ```vue
 <template>

@@ -1,32 +1,28 @@
-# Installation
+# 安装
 
-## Environment support
+## 环境支持
 
-All browsers that support Vue3 support View Shadcn UI.
+所有支持 Vue3 的浏览器都支持 View Shadcn UI。
 
-## Version iteration
+## 包管理器
 
-The following list is historical versions of View Shadcn UI.
+建议使用包管理器（如 npm、yarn、pnpm 等）安装 View Shadcn UI。
 
-## Package Manager
+对于打包工具，您可以选择自己喜欢的工具，例如 vite、webpack 等。
 
-It is recommended that you use a package manager (such as npm, yarn, pnpm, etc.) to install View Shadcn UI.
-
-For packaging tools, you can choose your favorite tools such as vite, webpack, etc.
-
-### Using npm
+## 使用 npm
 
 ```bash
 npm install -D view-shadcn-ui
 ```
 
-### Use yarn
+## 使用 yarn
 
 ```bash
 yarn add -D view-shadcn-ui
 ```
 
-### Using pnpm
+## 使用 pnpm
 
 ```bash
 pnpm add -D view-shadcn-ui

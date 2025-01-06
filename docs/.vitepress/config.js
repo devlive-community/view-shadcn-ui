@@ -88,12 +88,12 @@ export default {
         sidebar: {
             "/guide/": [
                 {
-                    text: "Guide",
+                    text: "使用指南",
                     collapsed: false,
                     base: "/guide/",
                     items: [
-                        {text: "Installation", link: "installation"},
-                        {text: "Quick Start", link: "quickstart"},
+                        {text: "安装", link: "installation"},
+                        {text: "快速开始", link: "quickstart"},
                     ]
                 },
                 {
