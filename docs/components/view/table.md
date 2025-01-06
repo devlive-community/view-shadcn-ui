@@ -16,7 +16,7 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -50,7 +50,7 @@ const data = [
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -84,7 +84,7 @@ const data = [
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -118,7 +118,7 @@ const data = [
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -152,7 +152,7 @@ const data = [
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -190,7 +190,7 @@ const data = [
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -235,7 +235,7 @@ const click = (row: any, index: number) => {
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -269,7 +269,7 @@ const click = (row: any, index: number) => {
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -307,7 +307,7 @@ const data = [
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -341,7 +341,7 @@ const data = [
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -374,7 +374,7 @@ const rowClick = (row: any, index: number) => {
 ## Props
 
 <ApiTable title="Table Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['columns', 'The columns of the table', 'array', '-', '-'],
         ['data', 'The data of the table', 'array', '-', '-'],
@@ -390,7 +390,7 @@ const rowClick = (row: any, index: number) => {
 <br />
 
 <ApiTable title="Column Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['label', 'The label of the column', 'string', '-', '-'],
         ['key', 'The key of the column', 'string', '${label}', '-'],
@@ -403,7 +403,7 @@ const rowClick = (row: any, index: number) => {
 ## Events
 
 <ApiTable title="Table Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['on-row-click', 'Triggered when the user clicks on a row', '{row: object, index: number}'],
     ]">

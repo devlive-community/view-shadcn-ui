@@ -42,7 +42,7 @@ This document is mainly used to describe some features and usage of the ShadcnMe
       </ShadcnMenu>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -108,7 +108,7 @@ This document is mainly used to describe some features and usage of the ShadcnMe
       </ShadcnMenu>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -174,7 +174,7 @@ This document is mainly used to describe some features and usage of the ShadcnMe
       </ShadcnMenu>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -212,7 +212,7 @@ This document is mainly used to describe some features and usage of the ShadcnMe
 ## API
 
 <ApiTable title="Menu"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['modelValue', 'The model value of the menu', 'String', ''],
         ['width', 'The width of the menu', 'String | Number', '300', '-'],
@@ -253,7 +253,7 @@ This document is mainly used to describe some features and usage of the ShadcnMe
 ## Slots
 
 <ApiTable title="Menu Item"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['default', 'Default slot'],
         ['icon', 'Icon slot'],
@@ -264,7 +264,7 @@ This document is mainly used to describe some features and usage of the ShadcnMe
 <br />
 
 <ApiTable title="Menu Group"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['default', 'Default slot'],
         ['title', 'Title slot'],
@@ -274,7 +274,7 @@ This document is mainly used to describe some features and usage of the ShadcnMe
 <br />
 
 <ApiTable title="Menu Sub"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['default', 'Default slot'],
         ['icon', 'Icon slot'],

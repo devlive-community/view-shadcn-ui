@@ -16,7 +16,7 @@ This document is mainly used to describe some features and usage of the ShadcnUp
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -36,7 +36,7 @@ This document is mainly used to describe some features and usage of the ShadcnUp
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -56,7 +56,7 @@ This document is mainly used to describe some features and usage of the ShadcnUp
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -87,7 +87,7 @@ This document is mainly used to describe some features and usage of the ShadcnUp
 ## Upload Slots
 
 <ApiTable title="Upload Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['title', 'The title of the upload'],
         ['description', 'The description of the upload'],
@@ -97,7 +97,7 @@ This document is mainly used to describe some features and usage of the ShadcnUp
 ## Upload Events
 
 <ApiTable title="Upload Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['update:files', 'Triggered when the file is changed', 'File\[\]'],
         ['on-change', 'Triggered when the file is changed', 'File\[\]'],

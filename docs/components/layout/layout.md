@@ -24,7 +24,7 @@ This document is mainly used to describe some features and usage of the ShadcnLa
     </ShadcnLayout>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -56,7 +56,7 @@ This document is mainly used to describe some features and usage of the ShadcnLa
     </ShadcnLayout>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -129,7 +129,7 @@ This document is mainly used to describe some features and usage of the ShadcnLa
     </ShadcnLayout>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -216,7 +216,7 @@ This document is mainly used to describe some features and usage of the ShadcnLa
     </ShadcnLayout>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -256,7 +256,7 @@ This document is mainly used to describe some features and usage of the ShadcnLa
 ## API Attributes
 
 <ApiTable title="Layout Sider Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
     :columns="[
         ['width', 'The width of the layout sider', 'Number | String', '200', '-', '-'],
         ['collapsedWidth', 'The width of the layout sider when collapsed', 'Number | String', '80', '-', '-'],
@@ -269,7 +269,7 @@ This document is mainly used to describe some features and usage of the ShadcnLa
 <br />
 
 <ApiTable title="Layout Sider Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['on-collapse', 'Emitted when the layout sider is collapsed', '-'],
     ]">
@@ -278,7 +278,7 @@ This document is mainly used to describe some features and usage of the ShadcnLa
 <br />
 
 <ApiTable title="Layout Sider Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['trigger', 'The trigger slot of the layout sider'],
     ]">

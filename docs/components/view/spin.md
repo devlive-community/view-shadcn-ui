@@ -16,7 +16,7 @@ This document is mainly used to describe some features and usage of the ShadcnSp
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -45,7 +45,7 @@ const value = ref(false);
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -73,7 +73,7 @@ const value = ref(false);
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -103,7 +103,7 @@ const value = ref(false);
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -135,7 +135,7 @@ const value = ref(false);
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -162,7 +162,7 @@ const value = ref(false);
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -189,7 +189,7 @@ export default {
 ## Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['modelValue', 'Spin value', 'boolean', 'false', '-'],
         ['type', 'Spin type', 'enum', 'primary', 'primary | success | warning | error'],
@@ -201,7 +201,7 @@ export default {
 ## Slots
 
 <ApiTable title="Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['default', 'Content, If set, type and size will not work'],
     ]">
@@ -210,7 +210,7 @@ export default {
 ## Events
 
 <ApiTable title="Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['on-change', 'Spin value', 'boolean'],
     ]">

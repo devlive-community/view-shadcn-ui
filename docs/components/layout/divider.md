@@ -14,7 +14,7 @@ This document is mainly used to describe some features and usage of the ShadcnDi
     <ShadcnDivider />
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -43,7 +43,7 @@ This document is mainly used to describe some features and usage of the ShadcnDi
     </div>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -73,7 +73,7 @@ This document is mainly used to describe some features and usage of the ShadcnDi
     <ShadcnDivider orientation="right">Right</ShadcnDivider>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -95,7 +95,7 @@ This document is mainly used to describe some features and usage of the ShadcnDi
     <ShadcnDivider dashed />
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -111,7 +111,7 @@ This document is mainly used to describe some features and usage of the ShadcnDi
 ## API Attributes
 
 <ApiTable title="Divider Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['text', 'Text content', 'String', '-', '-'],
         ['type', 'Divider type', 'Enum', '-', 'horizontal | vertical'],

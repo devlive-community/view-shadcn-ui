@@ -16,7 +16,7 @@ This document describes the features and usage of the ShadcnContribution compone
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -36,7 +36,7 @@ This document describes the features and usage of the ShadcnContribution compone
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -56,7 +56,7 @@ This document describes the features and usage of the ShadcnContribution compone
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -77,7 +77,7 @@ This document describes the features and usage of the ShadcnContribution compone
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -99,7 +99,7 @@ This document describes the features and usage of the ShadcnContribution compone
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -121,7 +121,7 @@ This document describes the features and usage of the ShadcnContribution compone
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -142,7 +142,7 @@ This document describes the features and usage of the ShadcnContribution compone
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -162,7 +162,7 @@ This document describes the features and usage of the ShadcnContribution compone
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -182,7 +182,7 @@ This document describes the features and usage of the ShadcnContribution compone
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -195,7 +195,7 @@ This document describes the features and usage of the ShadcnContribution compone
 ## Contribution Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['data', 'data value', 'Array<ContributionOption>', '-', '-'],
         ['colorScheme', 'colorScheme value', 'Array<string>', '\[#ebedf0, #9be9a8, #40c463, #30a14e, #216e39\]', '-'],
@@ -212,7 +212,7 @@ This document describes the features and usage of the ShadcnContribution compone
 ## Contribution Events
 
 <ApiTable title="Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['on-select', 'Triggered when on select', 'value: ContributionOption']
     ]">

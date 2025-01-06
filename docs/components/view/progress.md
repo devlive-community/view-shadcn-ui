@@ -12,7 +12,7 @@ This document is mainly used to describe some features and usage of the ShadcnPr
     <ShadcnProgress v-model="value">Progress</ShadcnProgress>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -39,7 +39,7 @@ const value = ref(10)
     </div>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -67,7 +67,7 @@ const value = ref(10)
     </div>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -90,7 +90,7 @@ const value = ref(10)
     <ShadcnProgress v-model="value" size="large" show-label>Progress</ShadcnProgress>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -115,7 +115,7 @@ const value = ref(10)
 ## API Attributes
 
 <ApiTable title="Progress Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
     :columns="[
         ['modelValue', 'Detailed data, support port binding, less than 0 is reset to 0, greater than 100 is reset to 100.', 'number', '0', '-', '-'],
         ['status', 'Progress status.', 'Enum', '-', '-', 'success, error, warning, info'],

@@ -12,7 +12,7 @@ This document is mainly used to describe some features and usage of the ShadcnSk
     <ShadcnSkeleton />
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -31,7 +31,7 @@ This document is mainly used to describe some features and usage of the ShadcnSk
     <ShadcnSkeleton animation />
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -50,7 +50,7 @@ This document is mainly used to describe some features and usage of the ShadcnSk
     <ShadcnSkeleton :paragraph=" { rows: 5, width: [100, 200, '300px', '50%', '62%'] }"/>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -75,7 +75,7 @@ This document is mainly used to describe some features and usage of the ShadcnSk
     <ShadcnSkeletonItem animation type="rect"/>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -101,7 +101,7 @@ This document is mainly used to describe some features and usage of the ShadcnSk
     </ShadcnSpace>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -119,7 +119,7 @@ This document is mainly used to describe some features and usage of the ShadcnSk
 ## API Attributes
 
 <ApiTable title="Skeleton Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
     :columns="[
         ['rows', 'The rows of the skeleton', 'Number | String', '4', '-', '-'],
         ['cols', 'The columns of the skeleton', 'Number | String', '1', '-', '-'],
@@ -131,7 +131,7 @@ This document is mainly used to describe some features and usage of the ShadcnSk
 <br />
 
 <ApiTable title="Skeleton Item Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
     :columns="[
         ['animation', 'Whether to use animation', 'Boolean', 'false', '-', '-'],
         ['width', 'The width of the skeleton item', 'Number | String', '-', '-', '-'],
@@ -143,7 +143,7 @@ This document is mainly used to describe some features and usage of the ShadcnSk
 <br />
 
 <ApiTable title="Skeleton Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['template', 'Skeleton template slot'],
     ]">

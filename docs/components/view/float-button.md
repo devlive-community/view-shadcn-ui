@@ -18,7 +18,7 @@ This document is mainly used to describe some features and usage of the ShadcnFl
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -49,7 +49,7 @@ This document is mainly used to describe some features and usage of the ShadcnFl
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -71,7 +71,7 @@ This document is mainly used to describe some features and usage of the ShadcnFl
 ## FloatButton Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['position', 'The position of the float button', 'enum', 'bottom-right', 'top-right | top-left | bottom-right | bottom-left'],
         ['circle', 'Whether the float button is a circle', 'boolean', 'false', '-'],

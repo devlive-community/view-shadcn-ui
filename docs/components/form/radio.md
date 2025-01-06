@@ -13,7 +13,7 @@ This document is mainly used to describe some features and usage of the ShadcnRa
     <ShadcnRadio v-model="checked" value="OFF">OFF</ShadcnRadio>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -37,7 +37,7 @@ const checked = ref('ON')
     <ShadcnRadio v-model="checked" value="OFF">OFF</ShadcnRadio>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -62,7 +62,7 @@ const checked = ref('ON')
     <ShadcnRadio v-model="checked" value="Large" size="large">Large</ShadcnRadio>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -89,7 +89,7 @@ const checked = ref('Default')
     <ShadcnRadio v-model="checked" value="Error" type="error">Error</ShadcnRadio>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -119,7 +119,7 @@ const checked = ref('Primary')
     </ShadcnRadioGroup>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -142,7 +142,7 @@ const checkedGroup = ref('ON')
 ## API Attributes
 
 <ApiTable title="Radio Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
     :columns="[
         ['modelValue', 'The value of the radio', 'Any', '-', '-', '-'],
         ['value', 'The value of the radio', 'Any', '-', '-', '-'],
@@ -155,7 +155,7 @@ const checkedGroup = ref('ON')
 <br />
 
 <ApiTable title="Radio Group Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
     :columns="[
         ['modelValue', 'The value of the radio group', 'Any', '-', '-', '-'],
     ]">
@@ -164,7 +164,7 @@ const checkedGroup = ref('ON')
 <br />
 
 <ApiTable title="Radio Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['on-change', 'Triggered when the value of the radio is changed', 'boolean'],
     ]">
@@ -173,7 +173,7 @@ const checkedGroup = ref('ON')
 <br />
 
 <ApiTable title="Radio Group Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['on-change', 'Triggered when the value of the radio is changed', 'boolean'],
     ]">
@@ -182,7 +182,7 @@ const checkedGroup = ref('ON')
 <br />
 
 <ApiTable title="Radio Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['label', 'Radio label'],
         ['default', 'Radio label'],

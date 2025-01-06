@@ -14,7 +14,7 @@ This document is mainly used to describe some features and usage of the ShadcnCh
     <ShadcnCheckbox v-model="checked" value="Nuxt">Nuxt</ShadcnCheckbox>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -38,7 +38,7 @@ const checked = ref('Vue')
     <ShadcnCheckbox v-model="checked" value="Nuxt">Nuxt</ShadcnCheckbox>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -63,7 +63,7 @@ const checked = ref('Vue')
     <ShadcnCheckbox v-model="checked" value="Large" size="large" @on-change="onChange">Large</ShadcnCheckbox>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -90,7 +90,7 @@ const checked = ref('Default')
     <ShadcnCheckbox v-model="checked" value="Error" type="error">Error</ShadcnCheckbox>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -119,7 +119,7 @@ const checked = ref('Primary')
     </ShadcnCheckboxGroup>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -141,7 +141,7 @@ const checkedGroup = ref(['Vue'])
 ## API Attributes
 
 <ApiTable title="Checkbox Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
     :columns="[
         ['modelValue', 'You can use v-model to bind data in both directions', 'Any', '-', '-', '-'],
         ['value', 'The value of the checkbox', 'Any', '-', '-', '-'],
@@ -154,7 +154,7 @@ const checkedGroup = ref(['Vue'])
 <br />
 
 <ApiTable title="Checkbox Group Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
     :columns="[
         ['modelValue', 'You can use v-model to bind data in both directions', 'Any[]', '-', '-', '-'],
     ]">
@@ -163,7 +163,7 @@ const checkedGroup = ref(['Vue'])
 <br />
 
 <ApiTable title="Checkbox Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['on-change', 'Triggered when the value of the checkbox is changed', 'boolean'],
     ]">
@@ -172,7 +172,7 @@ const checkedGroup = ref(['Vue'])
 <br />
 
 <ApiTable title="Checkbox Group Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['on-change', 'Triggered when the value of the checkbox group is changed', '[]'],
     ]">
@@ -181,7 +181,7 @@ const checkedGroup = ref(['Vue'])
 <br />
 
 <ApiTable title="Checkbox Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['label', 'Checkbox label'],
         ['default', 'Default slot'],

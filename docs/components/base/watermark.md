@@ -18,7 +18,7 @@ This document is mainly used to describe some features and usage of the ShadcnWa
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -45,7 +45,7 @@ This document is mainly used to describe some features and usage of the ShadcnWa
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -71,7 +71,7 @@ This document is mainly used to describe some features and usage of the ShadcnWa
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -91,7 +91,7 @@ const fullScreen = ref(false)
 ## Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
     :columns="[
         ['content', 'The text content of the watermark', 'string | string[]', '-', '-', '-'],
         ['width', 'The width of each watermark unit', 'number', '120', '-', '-'],

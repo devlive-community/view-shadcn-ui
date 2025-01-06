@@ -16,7 +16,7 @@ This document describes the features and usage of the ShadcnColorPicker componen
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -36,7 +36,7 @@ This document describes the features and usage of the ShadcnColorPicker componen
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -57,7 +57,7 @@ This document describes the features and usage of the ShadcnColorPicker componen
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -79,7 +79,7 @@ This document describes the features and usage of the ShadcnColorPicker componen
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -100,7 +100,7 @@ This document describes the features and usage of the ShadcnColorPicker componen
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -123,7 +123,7 @@ This document describes the features and usage of the ShadcnColorPicker componen
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -147,7 +147,7 @@ This document describes the features and usage of the ShadcnColorPicker componen
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -169,7 +169,7 @@ This document describes the features and usage of the ShadcnColorPicker componen
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -191,7 +191,7 @@ This document describes the features and usage of the ShadcnColorPicker componen
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -213,7 +213,7 @@ This document describes the features and usage of the ShadcnColorPicker componen
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -226,7 +226,7 @@ This document describes the features and usage of the ShadcnColorPicker componen
 ## ColorPicker Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['modelValue', 'Color values in HEX/RGB/HSL format are supported', 'string', '-', '-'],
         ['color', 'color value', 'string', '-', '-'],
@@ -244,7 +244,7 @@ This document describes the features and usage of the ShadcnColorPicker componen
 ## ColorPicker Events
 
 <ApiTable title="Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['update:modelValue', 'Triggered when update:modelValue', 'value: string'],
         ['on-change', 'Triggered when on change', 'value: string']

@@ -12,7 +12,7 @@ This document is mainly used to describe some features and usage of the ShadcnAl
     <ShadcnAlert>Alert</ShadcnAlert>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -31,7 +31,7 @@ This document is mainly used to describe some features and usage of the ShadcnAl
     <ShadcnAlert title="Title">Alert</ShadcnAlert>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -55,7 +55,7 @@ This document is mainly used to describe some features and usage of the ShadcnAl
     </div>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -77,7 +77,7 @@ This document is mainly used to describe some features and usage of the ShadcnAl
     <ShadcnAlert title="Title" show-icon>Alert</ShadcnAlert>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -96,7 +96,7 @@ This document is mainly used to describe some features and usage of the ShadcnAl
     <ShadcnAlert title="Title" banner>Alert</ShadcnAlert>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -115,7 +115,7 @@ This document is mainly used to describe some features and usage of the ShadcnAl
     <ShadcnAlert title="Title" closable>Alert</ShadcnAlert>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -131,7 +131,7 @@ This document is mainly used to describe some features and usage of the ShadcnAl
 ## API Attributes
 
 <ApiTable title="Alert Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
     :columns="[
         ['title', 'The title of the alert', 'String', '-', '-', '-'],
         ['type', 'The type of the alert', 'Enum', 'primary', '-', 'primary, success, warning, error'],
@@ -144,7 +144,7 @@ This document is mainly used to describe some features and usage of the ShadcnAl
 <br />
 
 <ApiTable title="Alert Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['close', 'Close event', 'true | false'],
     ]">

@@ -18,7 +18,7 @@ This document is mainly used to describe some features and usage of the ShadcnTe
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -50,7 +50,7 @@ This document is mainly used to describe some features and usage of the ShadcnTe
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -80,7 +80,7 @@ This document is mainly used to describe some features and usage of the ShadcnTe
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -104,7 +104,7 @@ This document is mainly used to describe some features and usage of the ShadcnTe
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -128,7 +128,7 @@ This document is mainly used to describe some features and usage of the ShadcnTe
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -152,7 +152,7 @@ This document is mainly used to describe some features and usage of the ShadcnTe
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -187,7 +187,7 @@ This document is mainly used to describe some features and usage of the ShadcnTe
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -213,7 +213,7 @@ This document is mainly used to describe some features and usage of the ShadcnTe
 ## Text Props
 
 <ApiTable title="Text Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['colorType', 'The color type of the text', 'enum', 'default', 'default | primary | success | warning | error'],
         ['color', 'The color of the text, if set colorType will be ignored', 'string', 'default', '-'],
@@ -228,7 +228,7 @@ This document is mainly used to describe some features and usage of the ShadcnTe
 ## Text Slots
 
 <ApiTable title="Text Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[ 
         ['default', 'Text content'],
     ]">

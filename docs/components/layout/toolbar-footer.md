@@ -14,7 +14,7 @@ title: Shadcn Toolbar Footer
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -41,7 +41,7 @@ title: Shadcn Toolbar Footer
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -68,7 +68,7 @@ title: Shadcn Toolbar Footer
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -95,7 +95,7 @@ title: Shadcn Toolbar Footer
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -127,7 +127,7 @@ title: Shadcn Toolbar Footer
 ## Events
 
 <ApiTable title="Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['on-cancel', 'Triggered when the drawer is closed', 'boolean'],
         ['on-ok', 'Triggered when the drawer is closed', 'boolean'],

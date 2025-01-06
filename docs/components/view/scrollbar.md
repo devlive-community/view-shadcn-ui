@@ -20,7 +20,7 @@ This document is mainly used to describe some features and usage of the ShadcnSc
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -48,7 +48,7 @@ This document is mainly used to describe some features and usage of the ShadcnSc
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -76,7 +76,7 @@ This document is mainly used to describe some features and usage of the ShadcnSc
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -104,7 +104,7 @@ This document is mainly used to describe some features and usage of the ShadcnSc
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>

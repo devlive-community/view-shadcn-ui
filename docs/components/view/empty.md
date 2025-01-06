@@ -16,7 +16,7 @@ This document is mainly used to describe some features and usage of the ShadcnEm
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -52,7 +52,7 @@ This document is mainly used to describe some features and usage of the ShadcnEm
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -84,7 +84,7 @@ This document is mainly used to describe some features and usage of the ShadcnEm
 ## Empty Slots
 
 <ApiTable title="Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['image', 'Image slot'],
         ['title', 'Title slot'],

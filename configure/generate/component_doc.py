@@ -287,7 +287,7 @@ This document describes the features and usage of the {component_name} component
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -324,7 +324,7 @@ This document describes the features and usage of the {component_name} component
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>"""

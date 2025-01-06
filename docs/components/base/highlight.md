@@ -20,7 +20,7 @@ This document is mainly used to describe some features and usage of the ShadcnHi
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -49,7 +49,7 @@ This document is mainly used to describe some features and usage of the ShadcnHi
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -67,7 +67,7 @@ This document is mainly used to describe some features and usage of the ShadcnHi
 ## Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
     :columns="[
         ['text', 'The content of the highlight', 'string', '-', '-', '-'],
         ['highlight', 'The highlight content', 'string | string[]', '-', '-', '-'],

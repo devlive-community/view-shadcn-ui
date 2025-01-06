@@ -18,7 +18,7 @@ Modify by [vue3-vCrontab](https://github.com/dongchacha/vue3-vCrontab)
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -30,7 +30,7 @@ Modify by [vue3-vCrontab](https://github.com/dongchacha/vue3-vCrontab)
 ## Cron Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['modelValue', 'modelValue value', 'string', '* * * * * ?', '-']
     ]">

@@ -13,7 +13,7 @@ This document is mainly used to describe some features and usage of the ShadcnRa
     <ShadcnRate v-model="rate" />
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -36,7 +36,7 @@ const rate = ref(1)
     <ShadcnRate v-model="rate" max="10" />
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -63,7 +63,7 @@ const rate = ref(1)
     </ShadcnRate>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -94,7 +94,7 @@ const rate = ref(1)
     </ShadcnSpace>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -120,7 +120,7 @@ const rate = ref(1)
     <ShadcnRate v-model="rate" disabled />
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -147,7 +147,7 @@ const rate = ref(1)
     </ShadcnRate>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -169,7 +169,7 @@ const rate = ref(1)
 ## API Attributes
 
 <ApiTable title="Rate Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['modelValue', 'Rate value', 'number', '0', '-'],
         ['max', 'Maximum value', 'number', '5', '-'],
@@ -183,7 +183,7 @@ const rate = ref(1)
 <br />
 
 <ApiTable title="Rate Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['character', 'Rate character slot'],
         ['text', 'Rate text slot'],

@@ -15,7 +15,7 @@ This document is mainly used to describe some features and usage of the ShadcnMo
     </ShadcnModal>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -43,7 +43,7 @@ const modal = ref(false);
     </ShadcnModal>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -73,7 +73,7 @@ const modal = ref(false);
     </ShadcnModal>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -103,7 +103,7 @@ const modal = ref(false);
     </ShadcnModal>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -132,7 +132,7 @@ const modal = ref(false);
     </ShadcnModal>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -160,7 +160,7 @@ const modal = ref(false);
     </ShadcnModal>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -188,7 +188,7 @@ const modal = ref(false);
     </ShadcnModal>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -229,7 +229,7 @@ const modal = ref(false);
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -272,7 +272,7 @@ const customClosableModal = ref(false);
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -311,7 +311,7 @@ const value = ref(false);
 ## Events
 
 <ApiTable title="Modal Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['update:modelValue', 'Triggered when display status changes', 'true | false'],
         ['on-close', 'Triggered when the dialog box is closed', '-'],
@@ -321,7 +321,7 @@ const value = ref(false);
 ## Slots
 
 <ApiTable title="Modal Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['title', 'Modal title'],
         ['description', 'Modal description'],

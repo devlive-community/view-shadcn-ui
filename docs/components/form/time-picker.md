@@ -16,7 +16,7 @@ This document describes the features and usage of the ShadcnTimePicker component
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -36,7 +36,7 @@ This document describes the features and usage of the ShadcnTimePicker component
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -57,7 +57,7 @@ This document describes the features and usage of the ShadcnTimePicker component
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -79,7 +79,7 @@ This document describes the features and usage of the ShadcnTimePicker component
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -100,7 +100,7 @@ This document describes the features and usage of the ShadcnTimePicker component
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -123,7 +123,7 @@ This document describes the features and usage of the ShadcnTimePicker component
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -138,7 +138,7 @@ This document describes the features and usage of the ShadcnTimePicker component
 ## TimePicker Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['modelValue', 'modelValue value', 'string', '', '-'],
         ['placeholder', 'placeholder value', 'string', '-', '-'],
@@ -152,7 +152,7 @@ This document describes the features and usage of the ShadcnTimePicker component
 ## TimePicker Events
 
 <ApiTable title="Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['update:modelValue', 'Triggered when update:modelValue', 'value: string'],
         ['on-change', 'Triggered when on change', 'value: string'],
@@ -163,7 +163,7 @@ This document describes the features and usage of the ShadcnTimePicker component
 ## TimePicker Slots
 
 <ApiTable title="Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['icon', 'Slot for icon'],
         ['clear', 'Slot for clear']

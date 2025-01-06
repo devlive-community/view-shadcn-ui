@@ -34,7 +34,7 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -100,7 +100,7 @@ const onItemClick = (action) => console.log(`Clicked: ${action}`)
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -167,7 +167,7 @@ const onItemClick = (action) => console.log(`Clicked: ${action}`)
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -253,7 +253,7 @@ const onItemClick = (action) => console.log(`Clicked: ${action}`)
 ## Context Menu Slots
 
 <ApiTable title="Context Menu Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[ 
         ['trigger', 'The trigger slot of the context menu'],
     ]">

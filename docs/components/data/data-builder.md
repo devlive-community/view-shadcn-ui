@@ -22,7 +22,7 @@ This document is mainly used to describe some features and usage of the ShadcnDa
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -56,7 +56,7 @@ const items = ref([
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -76,7 +76,7 @@ const items = ref([
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -96,7 +96,7 @@ const items = ref([
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -116,7 +116,7 @@ const items = ref([
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -136,7 +136,7 @@ const items = ref([
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -156,7 +156,7 @@ const items = ref([
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -176,7 +176,7 @@ const items = ref([
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -196,7 +196,7 @@ const items = ref([
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -225,7 +225,7 @@ const items = ref([
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -278,7 +278,7 @@ const items = ref([
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -328,7 +328,7 @@ const items = ref([
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -445,7 +445,7 @@ If it's a style group, you must configure the following for it to take effect:
 ::: 
 
 <ApiTable title="DataBuilder Editor Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
     :columns="[
         ['items', 'The data of the data builder', '\[\]', '-', '-', '-'],
         ['panelWidth', 'The width of the panel', 'number', '200', '-', '-'],
@@ -467,7 +467,7 @@ If it's a style group, you must configure the following for it to take effect:
 <br />
 
 <ApiTable title="DataBuilder Panel Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
     :columns="[
         ['width', 'The width of the panel', 'number', '200', '-', '-'],
         ['items', 'The data of the data builder', '\[\]', '-', '-', '-'],
@@ -477,7 +477,7 @@ If it's a style group, you must configure the following for it to take effect:
 <br />
 
 <ApiTable title="DataBuilder Canvas Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
     :columns="[
         ['showGrid', 'Whether to show the grid', 'boolean', 'true', '-', '-'],
         ['snapToGrid', 'Whether to snap to the grid', 'boolean', 'true', '-', '-'],
@@ -496,7 +496,7 @@ If it's a style group, you must configure the following for it to take effect:
 <br />
 
 <ApiTable title="DataBuilder Configure Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
     :columns="[
         ['width', 'The width of the content', 'number', '200', '-', '-'],
         ['selectedComponent', 'The selected component', 'any', '-', '-', '-'],
@@ -509,7 +509,7 @@ If it's a style group, you must configure the following for it to take effect:
 <br />
 
 <ApiTable title="DataBuilder View Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
     :columns="[
         ['width', 'The width of the content', 'number', '1920', '-', '-'],
         ['height', 'The height of the content', 'number', '1080', '-', '-'],
@@ -521,7 +521,7 @@ If it's a style group, you must configure the following for it to take effect:
 ## DataBuilder Slots
 
 <ApiTable title="DataBuilder Editor Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['slots', 'Render the corresponding slot according to the component type, for example, if item.type=text, render the text slot, { component, configure, isSelected }'],
         ['panel-label', 'Render the panel label, { item }'],
@@ -531,7 +531,7 @@ If it's a style group, you must configure the following for it to take effect:
 <br />
 
 <ApiTable title="DataBuilder Panel Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['label' , 'Render the panel label, { item }'],
     ]">
@@ -540,7 +540,7 @@ If it's a style group, you must configure the following for it to take effect:
 ## DataBuilder Events
 
 <ApiTable title="DataBuilder Editor Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['update-config', 'Triggered when the configuration is updated', 'any\[\]'],
     ]">
@@ -549,7 +549,7 @@ If it's a style group, you must configure the following for it to take effect:
 <br />
 
 <ApiTable title="DataBuilder Canvas Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['update:components', 'Triggered when the components are updated', 'any\[\]'],
         ['select', 'Triggered when the component is selected', 'any\[\]'],

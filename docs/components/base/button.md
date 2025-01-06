@@ -1,16 +1,18 @@
 ---
-title: Shadcn Button
+title: 按钮 (Button)
 ---
 
-# Introduction
+# 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnButton component.
+<br />
 
-## Type
+本文档主要用于描述 `ShadcnButton` 组件的一些功能和用法。
+
+## 类型 (type)
 
 ::: raw
 
-<CodeRunner title="Button Type">
+<CodeRunner title="按钮类型">
     <ShadcnButton type="primary">Primary</ShadcnButton>
     <ShadcnButton type="success">Success</ShadcnButton>
     <ShadcnButton type="warning">Warning</ShadcnButton>
@@ -22,7 +24,7 @@ This document is mainly used to describe some features and usage of the ShadcnBu
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -41,16 +43,19 @@ This document is mainly used to describe some features and usage of the ShadcnBu
 
 :::
 
-## Size
+## 尺寸 (size)
 
-<CodeRunner title="Button Size"
-            description="Create buttons of different sizes by setting size, not setting it to the default size.">
+::: raw
+
+<CodeRunner title="按钮尺寸">
     <ShadcnButton size="small">Small</ShadcnButton>
     <ShadcnButton size="default">Default</ShadcnButton>
     <ShadcnButton size="large">Large</ShadcnButton>
 </CodeRunner>
 
-::: details Show code
+:::
+
+::: details 查看代码
 
 ```vue
 <template>
@@ -65,10 +70,11 @@ This document is mainly used to describe some features and usage of the ShadcnBu
 
 :::
 
-## Icon
+## 图标 (icon)
 
-<CodeRunner title="Button Icon"
-            description="Create buttons with icons.">
+::: raw
+
+<CodeRunner title="图标按钮">
     <ShadcnButton>
         <template #icon>
             <ShadcnIcon icon="Save"/>
@@ -89,7 +95,9 @@ This document is mainly used to describe some features and usage of the ShadcnBu
     </ShadcnButton>
 </CodeRunner>
 
-::: details Show code
+:::
+
+::: details 查看代码
 
 ```vue
 <template>
@@ -119,16 +127,19 @@ This document is mainly used to describe some features and usage of the ShadcnBu
 
 :::
 
-## Rounded
+## 圆角 (round)
 
-<CodeRunner title="Button Rounded"
-            description="Create buttons with rounded corners.">
+::: raw
+
+<CodeRunner title="圆角按钮">
     <ShadcnButton round>Round</ShadcnButton>
     <ShadcnButton type="danger" round>Round + Type</ShadcnButton>
     <ShadcnButton type="success" size="small" round>Round + Type + Size</ShadcnButton>
 </CodeRunner> 
 
-::: details Show code
+:::
+
+::: details 查看代码
 
 ```vue
 <template>
@@ -143,16 +154,19 @@ This document is mainly used to describe some features and usage of the ShadcnBu
 
 :::
 
-## Disabled
+## 禁用 (disabled)
 
-<CodeRunner title="Button Disabled"
-            description="Create disabled buttons.">
+::: raw
+
+<CodeRunner title="禁用按钮">
     <ShadcnButton disabled>Disabled</ShadcnButton>
     <ShadcnButton type="danger" disabled>Disabled + Type</ShadcnButton>
     <ShadcnButton type="success" size="small" disabled>Disabled + Type + Size</ShadcnButton>
 </CodeRunner> 
 
-::: details Show code
+:::
+
+::: details 查看代码
 
 ```vue
 <template>
@@ -167,16 +181,19 @@ This document is mainly used to describe some features and usage of the ShadcnBu
 
 :::
 
-## Circle
+## 圆形 (circle)
 
-<CodeRunner title="Button Circle"
-            description="Create circle buttons.">
+::: raw
+
+<CodeRunner title="圆形按钮">
     <ShadcnButton circle size="large"></ShadcnButton>
     <ShadcnButton type="danger" circle></ShadcnButton>
     <ShadcnButton type="success" size="small" circle></ShadcnButton>
 </CodeRunner> 
 
-::: details Show code
+:::
+
+::: details 查看代码
 
 ```vue
 <template>
@@ -191,16 +208,19 @@ This document is mainly used to describe some features and usage of the ShadcnBu
 
 :::
 
-## Loading
+## 加载 (loading)
 
-<CodeRunner title="Button Loading"
-            description="Create loading buttons.">
+::: raw
+
+<CodeRunner title="加载按钮">
     <ShadcnButton loading>Loading</ShadcnButton>    
     <ShadcnButton type="success" loading>Loading + Type</ShadcnButton>
     <ShadcnButton type="success" size="small" loading>Loading + Type + Size</ShadcnButton>
 </CodeRunner> 
 
-::: details Show code
+:::
+
+::: details 查看代码
 
 ```vue
 <template>
@@ -215,16 +235,19 @@ This document is mainly used to describe some features and usage of the ShadcnBu
 
 :::
 
-## Color
+## 颜色 (color)
 
-<CodeRunner title="Button Color"
-            description="Create buttons with different colors.">
+::: raw
+
+<CodeRunner title="自定义颜色">
     <ShadcnButton color="red">Red</ShadcnButton>
     <ShadcnButton type="danger" color="red">Red + Type</ShadcnButton>
     <ShadcnButton type="success" size="small" color="red">Red + Type + Size</ShadcnButton>
 </CodeRunner> 
 
-::: details Show code
+:::
+
+::: details 查看代码
 
 ```vue
 <template>
@@ -239,42 +262,46 @@ This document is mainly used to describe some features and usage of the ShadcnBu
 
 :::
 
-## Ghost
-
-<CodeRunner title="Ghost">
-    <ShadcnButton type="primary" ghost>Primary</ShadcnButton>
-    <ShadcnButton type="success" ghost>Success</ShadcnButton>
-    <ShadcnButton type="warning" ghost>Warning</ShadcnButton>
-    <ShadcnButton type="danger" ghost>Danger</ShadcnButton>
-    <ShadcnButton type="info" ghost>Info</ShadcnButton>
-    <ShadcnButton type="text" ghost>Text</ShadcnButton>
-    <ShadcnButton type="default" ghost>Default</ShadcnButton>
-</CodeRunner>
-
-::: details Show code
-
-```vue
-<template>
-    <ShadcnButton type="primary" ghost>Primary</ShadcnButton>
-    <ShadcnButton type="success" ghost>Success</ShadcnButton>
-    <ShadcnButton type="warning" ghost>Warning</ShadcnButton>
-    <ShadcnButton type="danger" ghost>Danger</ShadcnButton>
-    <ShadcnButton type="info" ghost>Info</ShadcnButton>
-    <ShadcnButton type="text" ghost>Text</ShadcnButton>
-    <ShadcnButton type="default" ghost>Default</ShadcnButton>
-</template>
-
-<script setup lang="ts">
-</script>
-```
-
-:::
-
-## Group
+## 幽灵 (ghost)
 
 ::: raw
 
-<CodeRunner title="Button Group">
+<CodeRunner title="幽灵按钮">
+    <ShadcnButton type="primary" ghost>Primary</ShadcnButton>
+    <ShadcnButton type="success" ghost>Success</ShadcnButton>
+    <ShadcnButton type="warning" ghost>Warning</ShadcnButton>
+    <ShadcnButton type="danger" ghost>Danger</ShadcnButton>
+    <ShadcnButton type="info" ghost>Info</ShadcnButton>
+    <ShadcnButton type="text" ghost>Text</ShadcnButton>
+    <ShadcnButton type="default" ghost>Default</ShadcnButton>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <ShadcnButton type="primary" ghost>Primary</ShadcnButton>
+    <ShadcnButton type="success" ghost>Success</ShadcnButton>
+    <ShadcnButton type="warning" ghost>Warning</ShadcnButton>
+    <ShadcnButton type="danger" ghost>Danger</ShadcnButton>
+    <ShadcnButton type="info" ghost>Info</ShadcnButton>
+    <ShadcnButton type="text" ghost>Text</ShadcnButton>
+    <ShadcnButton type="default" ghost>Default</ShadcnButton>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
+## 按钮组 (group)
+
+::: raw
+
+<CodeRunner title="按钮组">
     <ShadcnButtonGroup>
       <ShadcnButton>Left</ShadcnButton>
       <ShadcnButton>Middle</ShadcnButton>
@@ -284,7 +311,7 @@ This document is mainly used to describe some features and usage of the ShadcnBu
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -301,9 +328,11 @@ This document is mainly used to describe some features and usage of the ShadcnBu
 
 :::
 
-## Group Direction
+## 按钮组方向 (direction)
 
-<CodeRunner title="Button Group Direction">
+::: raw
+
+<CodeRunner title="按钮组方向">
     <ShadcnButtonGroup direction="vertical">
         <ShadcnButton type="primary">T</ShadcnButton>
         <ShadcnButton type="primary">C</ShadcnButton>
@@ -311,7 +340,9 @@ This document is mainly used to describe some features and usage of the ShadcnBu
     </ShadcnButtonGroup>
 </CodeRunner>
 
-::: details Show code
+:::
+
+::: details 查看代码
 
 ```vue
 <template>
@@ -328,52 +359,52 @@ This document is mainly used to describe some features and usage of the ShadcnBu
 
 :::
 
-## API Attributes
+## 按钮 (Button) 属性
 
-<ApiTable title="Button Props" 
-            :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']" 
+<ApiTable title="按钮 (Button) 属性" 
+            :headers="['属性', '描述', '类型', '默认值', '支持列表']"
             :columns="[
-                ['text', 'Button text', 'String', '-', '-'],
-                ['size', 'Button size', 'Enum', 'default', 'small, default, large'],
-                ['type', 'Button type', 'Enum', 'primary', 'primary, success, warning, danger, info, text, default'],
-                ['round', 'Whether to add surrounding fillets', 'Boolean', 'false', '-'],
-                ['circle', 'Whether to create a circle button', 'Boolean', 'false', '-'],
-                ['loading', 'Whether to display loading', 'Boolean', 'false', '-'],
-                ['color', 'Custom colors, supports all colors, and automatically calculates the color difference such as hover used', 'String', '-', 'All supported color values'],
-                ['ghost', 'Whether to create a ghost button', 'Boolean', 'false', '-'],
-                ['disabled', 'Whether to disable the button', 'Boolean', 'false', '-'],
-                ['submit', 'Whether to trigger form submission', 'Boolean', 'false', '-'],
-                ['reset', 'Whether to trigger form reset', 'Boolean', 'false', '-'],
-                ['to', 'The path to navigate to, only supported in router mode', 'String', '-', '-'],
+                ['text', '按钮文本', 'string', '-', '-'],
+                ['size', '按钮尺寸', 'enum', 'default', 'small | default | large'],
+                ['type', '按钮类型', 'enum', 'primary', 'primary | success | warning | danger | info | text | default'],
+                ['round', '是否添加周围的圆角', 'boolean', 'false', '-'],
+                ['circle', '是否创建圆形按钮', 'boolean', 'false', '-'],
+                ['loading', '是否显示加载状态', 'boolean', 'false', '-'],
+                ['color', '自定义颜色，支持所有颜色，并自动计算使用的悬停等色差', 'string', '-', '所有支持的颜色值'],
+                ['ghost', '是否为幽灵按钮', 'boolean', 'false', '-'],
+                ['disabled', '是否禁用按钮', 'boolean', 'false', '-'],
+                ['submit', '是否提交触发表单按钮', 'boolean', 'false', '-'],
+                ['reset', '是否重置触发表单按钮', 'boolean', 'false', '-'],
+                ['to', '要导航到的路径，仅在路由模式下受支持', 'string', '-', '-'],
             ]">
 </ApiTable>
 
-<br />
+## 按钮组 (Button Group) 属性
 
-<ApiTable title="Button Group Props"
-            :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+<ApiTable title="按钮组 (Button Group) 属性"
+            :headers="['属性', '描述', '类型', '默认值', '支持列表']"
             :columns="[
-                ['size', 'The size of the button group', 'Enum', 'default', 'small, default, large'],
-                ['direction', 'The direction of the button group', 'Enum', 'horizontal', 'horizontal, vertical'],
+                ['size', '按钮组的大小', 'enum', 'default', 'small | default | large'],
+                ['direction', '按钮组的方向', 'enum', 'horizontal', 'horizontal | vertical'],
             ]">
 </ApiTable>
 
-<br />
+## 按钮 (Button) 事件
 
-<ApiTable title="Button Events" 
-            :headers="['Event', 'Description', 'Callback Parameters']" 
+<ApiTable title="按钮 (Button) 事件" 
+            :headers="['事件', '描述', '回调参数']" 
             :columns="[
-                ['click', 'Click event', 'event'],
+                ['click', '点击事件', 'event'],
             ]">
 </ApiTable>
 
-<br />
+## 按钮 (Button) 插槽
 
-<ApiTable title="Button Slots" 
-            :headers="['Slot', 'Description']" 
+<ApiTable title="按钮 (Button) 插槽" 
+            :headers="['插槽', '描述']" 
             :columns="[
-                ['default', 'Button text slot'],
-                ['icon', 'Icon slot'],
-                ['loading', 'Loading slot'],
+                ['default', '默认插槽'],
+                ['icon', '图标插槽'],
+                ['loading', '加载状态插槽'],
             ]">
 </ApiTable>

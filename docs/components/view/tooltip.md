@@ -15,7 +15,7 @@ This document is mainly used to describe some features and usage of the ShadcnTo
     </ShadcnTooltip>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -39,7 +39,7 @@ This document is mainly used to describe some features and usage of the ShadcnTo
     </ShadcnTooltip>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -72,7 +72,7 @@ This document is mainly used to describe some features and usage of the ShadcnTo
     </ShadcnTooltip>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -108,7 +108,7 @@ This document is mainly used to describe some features and usage of the ShadcnTo
     </ShadcnTooltip>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -136,7 +136,7 @@ This document is mainly used to describe some features and usage of the ShadcnTo
     </ShadcnTooltip>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -160,7 +160,7 @@ This document is mainly used to describe some features and usage of the ShadcnTo
     </ShadcnTooltip>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -191,7 +191,7 @@ This document is mainly used to describe some features and usage of the ShadcnTo
 <br />
 
 <ApiTable title="Modal Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['default', 'Tooltip trigger'],
         ['content', 'Tooltip content'],

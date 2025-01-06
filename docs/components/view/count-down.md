@@ -16,7 +16,7 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -36,7 +36,7 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -56,7 +56,7 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -76,7 +76,7 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -96,7 +96,7 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -116,7 +116,7 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -172,7 +172,7 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -256,7 +256,7 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 ## Count Down Events
 
 <ApiTable title="Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['on-complete', 'Triggered when the count down is finished', 'void'],
     ]">

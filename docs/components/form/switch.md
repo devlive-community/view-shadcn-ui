@@ -12,7 +12,7 @@ This document is mainly used to describe some features and usage of the ShadcnSw
     <ShadcnSwitch v-model="checked" />
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -37,7 +37,7 @@ const checked = ref(false)
     <ShadcnSwitch v-model="checked" type="primary" />
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -64,7 +64,7 @@ const checked = ref(false)
     <ShadcnSwitch v-model="checked" size="large" />
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -88,7 +88,7 @@ const checked = ref(false)
     <ShadcnSwitch v-model="checked" disabled />
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -113,7 +113,7 @@ const checked = ref(false)
     </ShadcnSwitch>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -146,7 +146,7 @@ const checked = ref(false)
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -169,7 +169,7 @@ const checked2 = ref(null)
 ## API Attributes
 
 <ApiTable title="Switch Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
     :columns="[
         ['modelValue', 'The value of the switch', 'boolean', 'false', '-', '-'],
         ['type', 'The type of the switch', 'string', '-', '-', 'success, warning, error, primary'],
@@ -183,7 +183,7 @@ const checked2 = ref(null)
 <br />
 
 <ApiTable title="Switch Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['update:modelValue', 'Triggered when the value of the switch is changed', 'boolean'],
         ['on-change', 'Triggered when the value of the switch is changed', 'boolean'],
@@ -193,7 +193,7 @@ const checked2 = ref(null)
 <br />
 
 <ApiTable title="Switch Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['open', 'Open label'],
         ['close', 'Close label'],

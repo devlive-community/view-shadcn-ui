@@ -131,9 +131,9 @@ export default {
                 })(),
                 (() => {
                     const items = [
-                        {text: 'Button', link: 'base/button', icon: '/components/base/button.svg', version: '2024.1.1'},
-                        {text: 'Icon', link: 'base/icon', icon: '/components/base/icon.svg', version: '2024.1.1'},
-                        {text: 'Copy', link: 'base/copy', icon: '/components/base/copy.svg', version: '2024.1.1'},
+                        {text: '按钮 (Button)', link: 'base/button', icon: '/components/base/button.svg', version: '2024.1.1'},
+                        {text: '图标 (Icon)', link: 'base/icon', icon: '/components/base/icon.svg', version: '2024.1.1'},
+                        {text: '复制 (Copy)', link: 'base/copy', icon: '/components/base/copy.svg', version: '2024.1.1'},
                         {text: 'Watermark', link: 'base/watermark', icon: '/components/base/watermark.svg', version: '2024.2.0'},
                         {text: 'Highlight', link: 'base/highlight', icon: '/components/base/highlight.svg', version: '2024.2.0'},
                         {text: 'Text', link: 'base/text', icon: '/components/base/text.svg', version: '2024.3.0'},
@@ -141,7 +141,7 @@ export default {
                     ]
 
                     return {
-                        text: `Base [ ${items.length} ]`,
+                        text: `基础组件 [ ${items.length} ]`,
                         base: '/components/',
                         collapsed: false,
                         items: items.map(item => createSidebarItem(item))

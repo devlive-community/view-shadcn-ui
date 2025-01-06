@@ -13,7 +13,7 @@ This document is mainly used to describe some features and usage of the ShadcnDr
     <ShadcnDrawer v-model="defaultValue" title="Title">Content</ShadcnDrawer>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -37,7 +37,7 @@ const defaultValue = ref(false)
     <ShadcnDrawer v-model="closableValue" closable title="Title">Content</ShadcnDrawer>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -60,7 +60,7 @@ const defaultValue = ref(false)
     <ShadcnDrawer v-model="maskClosableValue" mask-closable title="Title">Content</ShadcnDrawer>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -91,7 +91,7 @@ const defaultValue = ref(false)
     <ShadcnDrawer v-model="rightValue" title="Right" position="right"/>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -128,7 +128,7 @@ const rightValue = ref(false)
     <ShadcnDrawer v-model="heightValue" title="Height 400" position="top" height="400"/>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -151,7 +151,7 @@ const heightValue = ref(false)
 ## API Attributes
 
 <ApiTable title="Drawer Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
     :columns="[
         ['modelValue', 'Whether the drawer is visible', 'Boolean', 'false', '', ''],
         ['title', 'The title of the drawer', 'String', '-', '', ''],
@@ -166,7 +166,7 @@ const heightValue = ref(false)
 <br />
 
 <ApiTable title="Drawer Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['on-close', 'Triggered when the drawer is closed', 'boolean'],
     ]">
@@ -175,7 +175,7 @@ const heightValue = ref(false)
 <br />
 
 <ApiTable title="Drawer Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['default', 'Drawer content'],
         ['header', 'Drawer header'],

@@ -15,7 +15,7 @@ This document is mainly used to describe some features and usage of the ShadcnCa
     </ShadcnCard>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -39,7 +39,7 @@ This document is mainly used to describe some features and usage of the ShadcnCa
     </ShadcnCard>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -63,7 +63,7 @@ This document is mainly used to describe some features and usage of the ShadcnCa
     </ShadcnCard>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -85,7 +85,7 @@ This document is mainly used to describe some features and usage of the ShadcnCa
     <ShadcnCard title="Title"></ShadcnCard>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -109,7 +109,7 @@ This document is mainly used to describe some features and usage of the ShadcnCa
     </div>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -142,7 +142,7 @@ This document is mainly used to describe some features and usage of the ShadcnCa
 :::
 
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -171,7 +171,7 @@ This document is mainly used to describe some features and usage of the ShadcnCa
     </ShadcnCard>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -199,7 +199,7 @@ This document is mainly used to describe some features and usage of the ShadcnCa
     </ShadcnCard>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -225,7 +225,7 @@ This document is mainly used to describe some features and usage of the ShadcnCa
     </ShadcnCard>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -250,7 +250,7 @@ This document is mainly used to describe some features and usage of the ShadcnCa
     </ShadcnCard>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -274,7 +274,7 @@ This document is mainly used to describe some features and usage of the ShadcnCa
     </ShadcnCard>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -298,7 +298,7 @@ This document is mainly used to describe some features and usage of the ShadcnCa
     </ShadcnCard>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -316,7 +316,7 @@ This document is mainly used to describe some features and usage of the ShadcnCa
 ## API Attributes
 
 <ApiTable title="Card Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类似', '默认值', '依赖', '支持列表']"
     :columns="[
         ['title', 'Card title', 'string', '-', '-', '-'],
         ['description', 'Card description', 'string', '-', 'title', '-'],
@@ -330,7 +330,7 @@ This document is mainly used to describe some features and usage of the ShadcnCa
 <br />
 
 <ApiTable title="Card Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['title', 'Card title slot'],
         ['description', 'Card description slot'],

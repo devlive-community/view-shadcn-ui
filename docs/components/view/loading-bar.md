@@ -16,7 +16,7 @@ This document is mainly used to describe some features and usage of the ShadcnLo
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -47,7 +47,7 @@ const progress = ref(50)
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -79,7 +79,7 @@ const progress = ref(50)
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -101,7 +101,7 @@ const progress = ref(50)
 ## LoadingBar Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['progress', 'The value of the loading bar.', 'number', '0', '-'],
         ['height', 'The height of the loading bar.', 'number | string', '2', '-'],
@@ -115,7 +115,7 @@ const progress = ref(50)
 ## LoadingBar Events
 
 <ApiTable title="Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['on-complete', 'Triggered when the loading bar completes.', 'void'],
     ]">
