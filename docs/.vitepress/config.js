@@ -14,7 +14,7 @@ function createSidebarItem(item) {
 
 export default {
     title: 'View Shadcn UI',
-    description: 'View Shadcn UI is a Vue3 component library built on Tailwind CSS.',
+    description: 'View Shadcn UI 是一个基于 Tailwind CSS 构建的 Vue3 组件库。',
 
     head: [
         ['link', {rel: 'icon', href: '/favicon.ico'}]
@@ -28,57 +28,57 @@ export default {
         ],
         editLink: {
             pattern: 'https://github.com/devlive-community/view-shadcn-ui/edit/dev/docs/:path',
-            text: 'Edit this page on GitHub'
+            text: '在 GitHub 上编辑此页'
         },
         lastUpdated: {
-            text: 'Updated at',
+            text: '更新时间',
             formatOptions: {
                 dateStyle: 'full',
                 timeStyle: 'medium'
             }
         },
         footer: {
-            message: 'Released under the MIT License.',
+            message: '在 MIT 许可证下发布.',
             copyright: 'Copyright © 2024 Present by <a href="https://community.devlive.org" target="_blank">Devlive Community</a>'
         },
         docFooter: {
-            prev: 'Previous page',
-            next: 'Next page'
+            prev: '上一页',
+            next: '下一页'
         },
         search: {
             provider: 'local'
         },
         nav: [
-            {text: 'Home', link: '/'},
+            {text: '主页', link: '/'},
             {
-                text: 'Team',
+                text: '团队',
                 link: '/team',
                 activeMatch: '/team'
             },
             {
-                text: "Guide",
+                text: "指南",
                 link: "/guide/installation",
                 activeMatch: '/guide/'
             },
             {
-                text: 'Components',
+                text: '组件',
                 link: '/components/base/button',
                 activeMatch: '/components'
             },
             {
-                text: 'Playground',
+                text: '演练场',
                 link: 'https://playground.view-shadcn-ui.devlive.org'
             },
             {
-                text: '2025.1.0 <span class="VPBadge danger" style="margin-left: -18px; position: absolute; bottom: 38px;">Latest</span>',
+                text: '2025.1.0 <span class="VPBadge danger" style="margin-left: -18px; position: absolute; bottom: 38px;">最新</span>',
                 items: [
                     {
-                        text: 'CHANGELOG <span class="VPBadge tip">2025.1.0</span>',
+                        text: '发布日志 <span class="VPBadge tip">2025.1.0</span>',
                         link: '/changelog',
                         activeMatch: '/changelog'
                     },
                     {
-                        text: 'CONTRIBUTING',
+                        text: '贡献指南',
                         external: true,
                         link: 'https://github.com/devlive-community/view-shadcn-ui/blob/dev/CONTRIBUTING.md',
                     }

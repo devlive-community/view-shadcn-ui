@@ -4,10 +4,10 @@ layout: page
 
 <VPTeamPage>
   <VPTeamPageTitle>
-    <template #title>Our Team</template>
+    <template #title>我们的团队</template>
     <template #lead>
-        The development of the View Shadcn UI was guided by an open source team, 
-        some of whose members have chosen to be showcased below.
+        View Shadcn UI 的开发由一个开源团队指导。
+        他们的一些成员选择在下面展示。
     </template>
   </VPTeamPageTitle>
   <VPTeamMembers :members="members"/>
@@ -20,7 +20,7 @@ const members = [
   {
     avatar: 'https://www.github.com/qianmoq.png',
     name: 'qianmoQ',
-    title: 'Creator',
+    title: '创始人',
     links: [
       { icon: 'github', link: 'https://github.com/qianmoq' },
       { icon: 'twitter', link: 'https://twitter.com/qianmoq' }
@@ -29,7 +29,7 @@ const members = [
   {
     avatar: 'https://www.github.com/devlive-community.png',
     name: 'Devlive Community',
-    title: 'Reviewer',
+    title: '成员',
     links: [
       { icon: 'github', link: 'https://github.com/devlive-community' }
     ]

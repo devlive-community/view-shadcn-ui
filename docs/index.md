@@ -2,12 +2,12 @@
 layout: home
 
 title: View Shadcn UI
-titleTemplate: View Shadcn UI is a Vue3 component library built on Tailwind CSS.
+titleTemplate: View Shadcn UI 是一个基于 Tailwind CSS 构建的 Vue3 组件库。
 
 hero:
   name: View Shadcn UI
   tagline: |
-    View Shadcn UI is a Vue3 component library built on Tailwind CSS. <br />
+    View Shadcn UI 是一个基于 Tailwind CSS 构建的 Vue3 组件库。 <br />
     <div class="flex gap-2">
         <img alt="NPM Downloads" src="https://img.shields.io/npm/d18m/view-shadcn-ui?style=flat&label=D">
         <img alt="GitHub stars" src="https://img.shields.io/github/stars/devlive-community/view-shadcn-ui?style=flat"/>
@@ -18,63 +18,62 @@ hero:
     src: /logo.svg
   actions:
     - theme: brand
-      text: Guide
+      text: 指南
       link: /guide/installation
     - theme: alt
-      text: View on GitHub
+      text: 在 GitHub 上查看
       link: https://github.com/devlive-community/view-shadcn-ui
     - theme: alt
-      text: View on Gitee
+      text: 在 Gitee 上查看
       link: https://gitee.com/devlive-community/view-shadcn-ui
     - theme: alt
-      text: View on NPM
+      text: 在 NPM 上查看
       link: https://www.npmjs.com/package/view-shadcn-ui
 
 features:
   - icon: 💡
-    title: Component beautification
-    details: Developed based on Shadcn UI and Tailwin CSS to beautify various underlying components
+    title: 组件美化
+    details: 基于 Shadcn UI 和 Tailwin CSS 开发，美化各种底层组件
   - icon: 📦
-    title: Development Tools
-    details: Source code and build using the popular TypeScript language and the Vite build tool
+    title: 开发工具
+    details: 使用流行的 TypeScript 语言和 Vite 构建工具进行源代码和构建
   - icon: 🛠️
-    title: Quick introduction
-    details: Support global | On-demand component introduction, convenient and fast development and testing
+    title: 多种引入方式
+    details: 支持全局 |按需引入组件，方便快捷的开发测试
   - icon: ⚙️
-    title: High Customizability
-    details: Provides flexible configuration options to easily customize component styles and functionality
+    title: 高度可定制性
+    details: 提供灵活的配置选项，轻松自定义组件样式和功能
   - icon: 🚀
-    title: High Performance
-    details: Built using modern frameworks and optimized build tools to ensure fast loading and smooth interactions
+    title: 高性能
+    details: 使用现代框架和优化的构建工具构建，以确保快速加载和流畅交互
   - icon: 🖥️
-    title: Comprehensive Documentation
-    details: Clear and detailed documentation with examples for quick and easy understanding
+    title: 全面的文档
+    details: 清晰详细的文档，带有示例，便于快速理解
   - icon: 🌐
-    title: Multiple Language Support
-    details: Supports multi-language customization to cater to users from different regions
+    title: 多语言支持
+    details: 支持多语言定制，以满足来自不同地区的用户
   - icon: 🔒
-    title: Security and Stability
-    details: Regular security updates and active maintenance to ensure safe and stable usage
+    title: 安全稳定
+    details: 定期进行安全更新和主动维护，确保安全稳定使用
   - icon: 🎨
-    title: Themeable
-    details: Easily switch between different themes to match your brand or project's design requirements
+    title: 可主题化
+    details: 在不同主题之间轻松切换，以满足您的品牌或项目的设计要求
   - icon: 📱
-    title: Mobile-first Design
-    details: Responsive and mobile-friendly components to provide a great experience on any device
+    title: 移动优先设计
+    details: 响应式和移动友好型组件，可在任何设备上提供出色的体验
   - icon: 🧩
-    title: Modular Structure
-    details: Highly modular components to allow flexible integration and expansion in your projects
+    title: 模块化结构
+    details: 高度模块化的组件，允许在您的项目中灵活集成和扩展
   - icon: 📊
-    title: Data Visualization
-    details: Offers built-in data visualization components for creating interactive and insightful charts
+    title: 数据可视化
+    details: 提供内置的数据可视化组件，用于创建交互式和富有洞察力的图表
   - icon: 🧑‍💻
-    title: Developer-friendly APIs
-    details: Intuitive and well-structured APIs to speed up the development process and enhance productivity
+    title: 开发人员友好的 API
+    details: 直观且结构良好的 API，可加快开发过程并提高生产力
   - icon: 🧩
-    title: Plugin System
-    details: Extensible plugin system for integrating with third-party tools and enhancing functionality
+    title: 插件系统
+    details: 可扩展的插件系统，用于与第三方工具集成并增强功能
   - icon: 📝
-    title: Code Examples
-    details: Ready-to-use code examples to help developers quickly learn and integrate components
-
+    title: 代码示例
+    details: 即用型代码示例，帮助开发人员快速学习和集成组件
 ---

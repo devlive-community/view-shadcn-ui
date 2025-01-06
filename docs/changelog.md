@@ -1,8 +1,8 @@
 ---
-title: "Release Notes"
+title: "发布日志"
 ---
 
-# Changelog
+# 发布日志
 
 ## 2024.5.4 (2024-12-30)
 
