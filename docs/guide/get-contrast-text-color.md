@@ -1,25 +1,27 @@
 ---
-title: getContrastTextColor
+title: 获取对比文本颜色 (getContrastTextColor)
 ---
 
-# Introduction
+# 介绍
 
-This document is mainly used to describe some features and usage of the getContrastTextColor utils.
+<br />
 
-## Usage
+本文档主要用于描述 `getContrastTextColor` 函数的一些功能和用法。
+
+## 用法
 
 ```typescript
-import { getContrastTextColor } from '@/utils/common.ts'
+import { getContrastTextColor } from 'view-shadcn-ui' 
 
 getContrastTextColor('#fff') // => '#000'
 getContrastTextColor('#000') // => '#fff'
 ```
 
-## Props
+## 属性
 
-<ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+<ApiTable title="属性"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['color', 'The color to check', 'string', '-'],
+        ['color', '需要对比的颜色，格式为 HEX/RGB/HSL', 'string', '-'],
     ]">
 </ApiTable>

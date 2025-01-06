@@ -18,7 +18,7 @@ This document is mainly used to describe some features and usage of the ShadcnRo
     </ShadcnRow>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -48,7 +48,7 @@ This document is mainly used to describe some features and usage of the ShadcnRo
     </ShadcnRow>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -92,7 +92,7 @@ This document is mainly used to describe some features and usage of the ShadcnRo
     </div>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -154,7 +154,7 @@ This document is mainly used to describe some features and usage of the ShadcnRo
     </div>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -201,7 +201,7 @@ This document is mainly used to describe some features and usage of the ShadcnRo
     </div>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -236,7 +236,7 @@ This document is mainly used to describe some features and usage of the ShadcnRo
     </div>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -268,7 +268,7 @@ This document is mainly used to describe some features and usage of the ShadcnRo
     </div>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -289,7 +289,7 @@ This document is mainly used to describe some features and usage of the ShadcnRo
 ## API Attributes
 
 <ApiTable title="Row Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['gutter', 'Grid spacing, unit px, divided equally between left and right', 'Number', '0', '-'],
         ['align', 'Vertical alignment under layout', 'Enum', '-', 'top | middle | bottom'],
@@ -301,7 +301,7 @@ This document is mainly used to describe some features and usage of the ShadcnRo
 <br />
 
 <ApiTable title="Col Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['span', 'The number of placeholders for the grid. The optional value is an integer from 1 to 12. For example, if the child element under the same ShadcnRow exceeds 12, it will automatically wrap.', 'String | Number', '1', '1 - 12'],
         ['order', 'The order of the grid', 'String | Number', '-', '-'],

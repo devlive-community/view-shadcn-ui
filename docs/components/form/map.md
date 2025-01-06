@@ -16,7 +16,7 @@ This document is mainly used to describe some features and usage of the ShadcnMa
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -44,7 +44,7 @@ const value = ref([])
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -75,7 +75,7 @@ const value = ref([])
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -104,7 +104,7 @@ const value = ref([])
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -130,7 +130,7 @@ const value = ref([])
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -163,7 +163,7 @@ const value = ref([])
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -205,7 +205,7 @@ const formState = ref({
 ## Map Events
 
 <ApiTable title="Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['on-add', 'Triggered when the map is added', 'object'],
         ['on-remove', 'Triggered when the map is removed', 'object'],

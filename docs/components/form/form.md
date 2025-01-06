@@ -97,7 +97,7 @@ This document is mainly used to describe some features and usage of the ShadcnFo
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -273,7 +273,7 @@ const resetForm = () => {
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -326,7 +326,7 @@ onMounted(() => onAdd())
 ## Form Props
 
 <ApiTable title="Form Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['modelValue', 'The value of the form', 'Any', '-', '-', '-'],
     ]">
@@ -335,7 +335,7 @@ onMounted(() => onAdd())
 <br />
 
 <ApiTable title="Item Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['name', 'The name of the form item', 'String', '-', '-', '-'],
         ['label', 'The label of the form item', 'String', '-', '-', '-'],
@@ -348,7 +348,7 @@ onMounted(() => onAdd())
 ## Form Events
 
 <ApiTable title="Form Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['on-submit', 'Triggered when the form is submitted', 'Object'],
         ['on-error', 'Triggered when the form is submitted with errors', 'Object'],

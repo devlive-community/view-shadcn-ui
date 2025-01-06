@@ -16,7 +16,7 @@ This document describes the features and usage of the ShadcnSlider component.
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -36,7 +36,7 @@ This document describes the features and usage of the ShadcnSlider component.
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -56,7 +56,7 @@ This document describes the features and usage of the ShadcnSlider component.
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -76,7 +76,7 @@ This document describes the features and usage of the ShadcnSlider component.
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -97,7 +97,7 @@ This document describes the features and usage of the ShadcnSlider component.
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -119,7 +119,7 @@ This document describes the features and usage of the ShadcnSlider component.
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -141,7 +141,7 @@ This document describes the features and usage of the ShadcnSlider component.
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -165,7 +165,7 @@ This document describes the features and usage of the ShadcnSlider component.
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -180,7 +180,7 @@ This document describes the features and usage of the ShadcnSlider component.
 ## Slider Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['modelValue', 'modelValue value', 'number | number\[\]', '-', 'number, number\[\]'],
         ['min', 'min value', 'number', '0', 'number'],
@@ -196,7 +196,7 @@ This document describes the features and usage of the ShadcnSlider component.
 ## Slider Events
 
 <ApiTable title="Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['update:modelValue', 'Triggered when update:modelValue', 'value: number | number\[\]'],
         ['on-change', 'Triggered when on change', 'value: number | number\[\]']

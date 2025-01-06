@@ -23,7 +23,7 @@ This document is mainly used to describe some features and usage of the ShadcnBr
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -54,7 +54,7 @@ This document is mainly used to describe some features and usage of the ShadcnBr
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -74,7 +74,7 @@ This document is mainly used to describe some features and usage of the ShadcnBr
 ## Props
 
 <ApiTable title="Item Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
         ['href', 'The href of the breadcrumb item', 'String', '-'],
         ['separator', 'The separator of the breadcrumb item', 'String', '/'],
@@ -84,7 +84,7 @@ This document is mainly used to describe some features and usage of the ShadcnBr
 ## Slots
 
 <ApiTable title="Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['default', 'item content'],
     ]">
@@ -93,7 +93,7 @@ This document is mainly used to describe some features and usage of the ShadcnBr
 <br />
 
 <ApiTable title="Item Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['default', 'content'],
     ]">

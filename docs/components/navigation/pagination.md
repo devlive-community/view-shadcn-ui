@@ -13,7 +13,7 @@ This document is mainly used to describe some features and usage of the ShadcnPa
     <ShadcnPagination v-model="defaultValue" total="100"/>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -36,7 +36,7 @@ const defaultValue = ref(1)
     <ShadcnPagination v-model="defaultValue" total="100" page-size="20"/>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -59,7 +59,7 @@ const defaultValue = ref(1)
     <ShadcnPagination v-model="defaultValue" total="100" prev-text="P" next-text="N"/>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -82,7 +82,7 @@ const defaultValue = ref(1)
     <ShadcnPagination v-model="defaultValue" total="100" max-show-page="8"/>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -105,7 +105,7 @@ const defaultValue = ref(1)
     <ShadcnPagination v-model="defaultValue" total="100" show-total/>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -130,7 +130,7 @@ const defaultValue = ref(1)
     <ShadcnPagination v-model="defaultValue" total="100" show-sizer :sizer-options="[5, 10, 20]"/>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -150,7 +150,7 @@ const defaultValue = ref(1)
 ## API Attributes
 
 <ApiTable title="Page Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['modelValue', 'The current page number', 'Number | String', '1', ''],
         ['total', 'The total number of data count', 'Number | String', '100', ''],
@@ -179,7 +179,7 @@ const defaultValue = ref(1)
 <br />
 
 <ApiTable title="Page Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['showTotal', 'The content of the total number of items'],
         ['sizer', 'The content of the page size selector'],

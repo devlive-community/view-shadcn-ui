@@ -16,7 +16,7 @@ This document is mainly used to describe some features and usage of the ShadcnGl
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -59,7 +59,7 @@ const socials = [
 ## Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
         ['company', 'The company name', 'String', 'Devlive Community'],
         ['description', 'The description', 'String', 'The Devlive Software Foundation is a community of developers who are passionate about creating innovative software solutions.'],
@@ -71,7 +71,7 @@ const socials = [
 ## Slots
 
 <ApiTable title="Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['logo', 'Logo slot'],
         ['copyright', 'Copyright slot'],

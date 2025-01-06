@@ -21,7 +21,7 @@ This document is mainly used to describe some features and usage of the ShadcnEx
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -55,7 +55,7 @@ This document is mainly used to describe some features and usage of the ShadcnEx
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -78,7 +78,7 @@ This document is mainly used to describe some features and usage of the ShadcnEx
 ## Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['type', 'The type of the exception', 'Enum', '404', '-', '404 | 403 | 500'],
         ['title', 'The title of the exception', 'String', 'Page not found', '-', '-'],
@@ -89,7 +89,7 @@ This document is mainly used to describe some features and usage of the ShadcnEx
 ## Slots
 
 <ApiTable title="Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['icon', 'Icon slot'],
         ['actions', 'The actions of the exception'],

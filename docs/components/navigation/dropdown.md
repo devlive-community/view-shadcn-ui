@@ -34,7 +34,7 @@ This document is mainly used to describe some features and usage of the ShadcnDr
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -79,7 +79,7 @@ This document is mainly used to describe some features and usage of the ShadcnDr
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -140,7 +140,7 @@ This document is mainly used to describe some features and usage of the ShadcnDr
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -190,7 +190,7 @@ This document is mainly used to describe some features and usage of the ShadcnDr
 ## Props
 
 <ApiTable title="Dropdown Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['trigger', 'The trigger of the dropdown', 'enum', 'click', '-', 'click | hover'],
         ['position', 'The position of the dropdown', 'enum', 'left', '-', 'left | right | top | bottom'],
@@ -200,7 +200,7 @@ This document is mainly used to describe some features and usage of the ShadcnDr
 <br />
 
 <ApiTable title="DropdownItem Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['name', 'The name of the dropdown item', 'String', '', '-', '-'],
         ['active', 'Whether the dropdown item is active', 'boolean', 'false', '-', '-'],
@@ -212,7 +212,7 @@ This document is mainly used to describe some features and usage of the ShadcnDr
 ## Slots
 
 <ApiTable title="Dropdown Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['trigger', 'The trigger slot of the dropdown'],
         ['list', 'Dropdown list content'],
@@ -222,7 +222,7 @@ This document is mainly used to describe some features and usage of the ShadcnDr
 ## Events
 
 <ApiTable title="Dropdown Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['onOpen', 'Triggered when the dropdown is opened', 'boolean'],
         ['onClose', 'Triggered when the dropdown is closed', 'boolean'],
@@ -233,7 +233,7 @@ This document is mainly used to describe some features and usage of the ShadcnDr
 <br />
 
 <ApiTable title="DropdownItem Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['onClick', 'Triggered when the dropdown item is clicked', 'boolean'],
     ]">

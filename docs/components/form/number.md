@@ -16,7 +16,7 @@ This document is mainly used to describe some features and usage of the ShadcnNu
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -46,7 +46,7 @@ const value = ref(0)
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -79,7 +79,7 @@ const value = ref(0)
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -111,7 +111,7 @@ const value = ref(0)
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -138,7 +138,7 @@ const value = ref(0)
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -164,7 +164,7 @@ const value = ref(0)
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -197,7 +197,7 @@ const value = ref(0)
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -238,7 +238,7 @@ const value = ref(0)
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -265,7 +265,7 @@ const value = ref(0)
 ## Props
 
 <ApiTable title="Number Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['modelValue', 'Number value', 'number | string', '-', '-'],
         ['size', 'Size of the number', 'string', 'default', 'small | default | large'],
@@ -283,7 +283,7 @@ const value = ref(0)
 ## Slots
 
 <ApiTable title="Number Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['clear', 'Clear icon'],
         ['add', 'Add icon'],
@@ -294,7 +294,7 @@ const value = ref(0)
 ## Events
 
 <ApiTable title="Number Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['on-change', 'Emitted when the number value changes', 'number'],
         ['on-blur', 'Emitted when the number loses focus', '-'],

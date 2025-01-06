@@ -12,7 +12,7 @@ This document is mainly used to describe some features and usage of the ShadcnBa
     <ShadcnBadge text="Badge">Badge</ShadcnBadge>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -34,7 +34,7 @@ This document is mainly used to describe some features and usage of the ShadcnBa
     <ShadcnBadge type="danger" text="Badge">Danger</ShadcnBadge>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -56,7 +56,7 @@ This document is mainly used to describe some features and usage of the ShadcnBa
     <ShadcnBadge text="Text">Badge</ShadcnBadge>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -75,7 +75,7 @@ This document is mainly used to describe some features and usage of the ShadcnBa
     <ShadcnBadge dot>Badge</ShadcnBadge>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -94,7 +94,7 @@ This document is mainly used to describe some features and usage of the ShadcnBa
     <ShadcnBadge text="10" max="5">Badge</ShadcnBadge>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -110,7 +110,7 @@ This document is mainly used to describe some features and usage of the ShadcnBa
 ## API Attributes
 
 <ApiTable title="Badge Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['type', 'The type of the badge', 'Enum', 'primary', 'primary, success, warning, danger, info, text'],
         ['text', 'The content of the badge', 'String', '-', '-'],
@@ -122,7 +122,7 @@ This document is mainly used to describe some features and usage of the ShadcnBa
 <br /> 
 
 <ApiTable title="Badge Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['default', 'Content text'],
         ['text', 'Content text'],

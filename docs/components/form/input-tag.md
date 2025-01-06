@@ -17,7 +17,7 @@ This document is mainly used to describe some features and usage of the ShadcnIn
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -43,7 +43,7 @@ const tags = ref([])
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -65,7 +65,7 @@ const tags = ref([])
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -90,7 +90,7 @@ const tags = ref([])
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -113,7 +113,7 @@ const tags = ref([])
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -140,7 +140,7 @@ const tags = ref([])
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -160,7 +160,7 @@ const tags = ref([])
 ## InputTag Props
 
 <ApiTable title="Props"
-        :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+        :headers="['属性', '描述', '类型', '默认值', '支持列表']"
         :columns="[
             ['modelValue', 'You can use v-model to bind data in both directions', 'any\[\]', '-', '-'],
             ['placeholder', 'Placeholder of the input', 'string', '-', '-'],
@@ -175,7 +175,7 @@ const tags = ref([])
 ## InputTag Events
 
 <ApiTable title="Events"
-        :headers="['Event', 'Description', 'Callback Parameters']"
+        :headers="['事件', '描述', '回调参数']"
         :columns="[
             ['on-add', 'Triggered when the tag is added', 'string'],
             ['on-remove', 'Triggered when the tag is removed', 'string'],

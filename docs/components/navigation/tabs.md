@@ -19,7 +19,7 @@ This document is mainly used to describe some features and usage of the ShadcnTa
     </ShadcnTab>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -55,7 +55,7 @@ This document is mainly used to describe some features and usage of the ShadcnTa
     </ShadcnTab>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -105,7 +105,7 @@ This document is mainly used to describe some features and usage of the ShadcnTa
     </ShadcnSpace>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -152,7 +152,7 @@ This document is mainly used to describe some features and usage of the ShadcnTa
     </ShadcnTab>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -184,7 +184,7 @@ This document is mainly used to describe some features and usage of the ShadcnTa
     </ShadcnTab>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -211,7 +211,7 @@ This document is mainly used to describe some features and usage of the ShadcnTa
     </ShadcnTab>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -238,7 +238,7 @@ This document is mainly used to describe some features and usage of the ShadcnTa
     </ShadcnTab>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -266,7 +266,7 @@ This document is mainly used to describe some features and usage of the ShadcnTa
     </ShadcnTab>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -294,7 +294,7 @@ This document is mainly used to describe some features and usage of the ShadcnTa
     </ShadcnTab>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -326,7 +326,7 @@ This document is mainly used to describe some features and usage of the ShadcnTa
     </ShadcnTab>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -362,7 +362,7 @@ This document is mainly used to describe some features and usage of the ShadcnTa
     </ShadcnTab>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -402,7 +402,7 @@ const addTab = () => {
 ## Tabs Props
 
 <ApiTable title="Tab Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['modelValue', 'The value of the active tab', 'String', '-', '-', '-'],
         ['type', 'The type of the tab', 'String', 'primary', '-', 'primary | success | warning | error'],
@@ -417,7 +417,7 @@ const addTab = () => {
 <br />
 
 <ApiTable title="Tab Item Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['label', 'The label of the tab', 'String', '-', '-', '-'],
         ['value', 'The value of the tab', 'String', '-', '-', '-'],
@@ -429,7 +429,7 @@ const addTab = () => {
 ## Tabs Events
 
 <ApiTable title="Tab Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['on-change', 'Emitted when the active tab changes', 'String'],
         ['on-tab-remove', 'Emitted when the tab is removed', 'String'],
@@ -439,7 +439,7 @@ const addTab = () => {
 <br />
 
 <ApiTable title="Tab Item Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['on-click', 'Emitted when the tab is clicked', 'String'],
     ]">
@@ -448,7 +448,7 @@ const addTab = () => {
 ## Tabs Slots
 
 <ApiTable title="Tab Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['extra', 'Extra slot'],
     ]">
@@ -457,7 +457,7 @@ const addTab = () => {
 <br />
 
 <ApiTable title="Tab Item Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['label', 'Label slot'],
     ]">

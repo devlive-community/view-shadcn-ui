@@ -23,7 +23,7 @@ This document is mainly used to describe some features and usage of the ShadcnBa
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -46,7 +46,7 @@ This document is mainly used to describe some features and usage of the ShadcnBa
 ## BackTop Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
         ['visibilityHeight', 'The visibility height of the back top', 'number', '200'],
         ['right', 'The right position of the back top', 'number', '40'],
@@ -58,7 +58,7 @@ This document is mainly used to describe some features and usage of the ShadcnBa
 ## BackTop Events
 
 <ApiTable title="Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['click', 'Triggered when the back top is clicked', 'event'],
     ]">

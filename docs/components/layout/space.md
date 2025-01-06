@@ -16,7 +16,7 @@ This document is mainly used to describe some features and usage of the ShadcnSp
     </ShadcnSpace>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -42,7 +42,7 @@ This document is mainly used to describe some features and usage of the ShadcnSp
     </ShadcnSpace>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -70,7 +70,7 @@ This document is mainly used to describe some features and usage of the ShadcnSp
     </ShadcnSpace>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -92,7 +92,7 @@ This document is mainly used to describe some features and usage of the ShadcnSp
 ## API Attributes
 
 <ApiTable title="Space Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['size', 'Space size, If it is an array parameter, it is passed as \[x, y\]', 'Enum | String | Number | Array', 'default', 'small, default, large'],
         ['wrap', 'Whether to wrap', 'Boolean', 'false', '']

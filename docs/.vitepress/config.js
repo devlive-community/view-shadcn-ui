@@ -14,7 +14,7 @@ function createSidebarItem(item) {
 
 export default {
     title: 'View Shadcn UI',
-    description: 'View Shadcn UI is a Vue3 component library built on Tailwind CSS.',
+    description: 'View Shadcn UI 是一个基于 Tailwind CSS 构建的 Vue3 组件库。',
 
     head: [
         ['link', {rel: 'icon', href: '/favicon.ico'}]
@@ -28,57 +28,57 @@ export default {
         ],
         editLink: {
             pattern: 'https://github.com/devlive-community/view-shadcn-ui/edit/dev/docs/:path',
-            text: 'Edit this page on GitHub'
+            text: '在 GitHub 上编辑此页'
         },
         lastUpdated: {
-            text: 'Updated at',
+            text: '更新时间',
             formatOptions: {
                 dateStyle: 'full',
                 timeStyle: 'medium'
             }
         },
         footer: {
-            message: 'Released under the MIT License.',
+            message: '在 MIT 许可证下发布.',
             copyright: 'Copyright © 2024 Present by <a href="https://community.devlive.org" target="_blank">Devlive Community</a>'
         },
         docFooter: {
-            prev: 'Previous page',
-            next: 'Next page'
+            prev: '上一页',
+            next: '下一页'
         },
         search: {
             provider: 'local'
         },
         nav: [
-            {text: 'Home', link: '/'},
+            {text: '主页', link: '/'},
             {
-                text: 'Team',
+                text: '团队',
                 link: '/team',
                 activeMatch: '/team'
             },
             {
-                text: "Guide",
+                text: "指南",
                 link: "/guide/installation",
                 activeMatch: '/guide/'
             },
             {
-                text: 'Components',
+                text: '组件',
                 link: '/components/base/button',
                 activeMatch: '/components'
             },
             {
-                text: 'Playground',
+                text: '演练场',
                 link: 'https://playground.view-shadcn-ui.devlive.org'
             },
             {
-                text: '2025.1.0 <span class="VPBadge danger" style="margin-left: -18px; position: absolute; bottom: 38px;">Latest</span>',
+                text: '2025.1.0 <span class="VPBadge danger" style="margin-left: -18px; position: absolute; bottom: 38px;">最新</span>',
                 items: [
                     {
-                        text: 'CHANGELOG <span class="VPBadge tip">2025.1.0</span>',
+                        text: '发布日志 <span class="VPBadge tip">2025.1.0</span>',
                         link: '/changelog',
                         activeMatch: '/changelog'
                     },
                     {
-                        text: 'CONTRIBUTING',
+                        text: '贡献指南',
                         external: true,
                         link: 'https://github.com/devlive-community/view-shadcn-ui/blob/dev/CONTRIBUTING.md',
                     }
@@ -88,38 +88,42 @@ export default {
         sidebar: {
             "/guide/": [
                 {
-                    text: "Guide",
+                    text: "使用指南",
                     collapsed: false,
                     base: "/guide/",
                     items: [
-                        {text: "Installation", link: "installation"},
-                        {text: "Quick Start", link: "quickstart"},
+                        {text: "安装", link: "installation"},
+                        {text: "快速开始", link: "quickstart"},
                     ]
                 },
-                {
-                    text: "Utility",
-                    collapsed: false,
-                    base: "/guide/",
-                    items: [
-                        {text: 'calcSize <span class="VPBadge tip">2024.2.0</span>', link: 'calc-size'},
-                        {text: 'isLightColor <span class="VPBadge tip">2024.2.0</span>', link: 'is-light-color'},
-                        {text: 'getContrastTextColor <span class="VPBadge tip">2024.2.0</span>', link: 'get-contrast-text-color'},
-                        {text: 'getHoverColor <span class="VPBadge tip">2024.2.0</span>', link: 'get-hover-color'},
-                        {text: 'generateColorShades <span class="VPBadge tip">2024.2.0</span>', link: 'generate-color-shades'},
-                        {text: 'Function <span class="VPBadge tip">2024.5.0</span>', link: 'function'},
-                        {text: 'Logger <span class="VPBadge tip">2024.5.1</span>', link: 'logger'},
-                        {text: 'UUID <span class="VPBadge tip">2024.5.2</span>', link: 'uuid'},
+                (() => {
+                    const items = [
+                        {text: '计算尺寸 (calcSize)', link: 'calc-size', version: '2024.5.2'},
+                        {text: '是否浅色 (isLightColor)', link: 'is-light-color', version: '2024.2.0'},
+                        {text: '获取对比文本颜色 (getContrastTextColor)', link: 'get-contrast-text-color', version: '2024.2.0'},
+                        {text: '获取悬停颜色 (getHoverColor)', link: 'get-hover-color', version: '2024.2.0'},
+                        {text: '生成颜色色调 (generateColorShades)', link: 'generate-color-shades', version: '2024.2.0'},
+                        {text: '函数 (Function)', link: 'function', version: '2024.5.0'},
+                        {text: '日志 (Logger)', link: 'logger', version: '2024.5.1'},
+                        {text: '唯一标记 (UUID)', link: 'uuid', version: '2024.5.2'}
                     ]
-                }
+
+                    return {
+                        text: `工具函数 [ ${items.length} ]`,
+                        base: '/guide/',
+                        collapsed: false,
+                        items: items.map(item => createSidebarItem(item))
+                    }
+                })()
             ],
             '/components/': [
                 (() => {
                     const items = [
-                        {text: 'Language', link: 'utility/language', version: '2024.5.2'},
+                        {text: '语言 (Language)', link: 'utility/language', version: '2024.5.2'},
                     ]
 
                     return {
-                        text: `Utility [ ${items.length} ]`,
+                        text: `工具函数 [ ${items.length} ]`,
                         base: '/components/',
                         collapsed: false,
                         items: items.map(item => createSidebarItem(item))
@@ -127,17 +131,17 @@ export default {
                 })(),
                 (() => {
                     const items = [
-                        {text: 'Button', link: 'base/button', icon: '/components/base/button.svg', version: '2024.1.1'},
-                        {text: 'Icon', link: 'base/icon', icon: '/components/base/icon.svg', version: '2024.1.1'},
-                        {text: 'Copy', link: 'base/copy', icon: '/components/base/copy.svg', version: '2024.1.1'},
-                        {text: 'Watermark', link: 'base/watermark', icon: '/components/base/watermark.svg', version: '2024.2.0'},
-                        {text: 'Highlight', link: 'base/highlight', icon: '/components/base/highlight.svg', version: '2024.2.0'},
-                        {text: 'Text', link: 'base/text', icon: '/components/base/text.svg', version: '2024.3.0'},
-                        {text: 'Gradient Text', link: 'base/gradient-text', icon: '/components/base/gradient-text.svg', version: '2024.3.0'},
+                        {text: '按钮 (Button)', link: 'base/button', icon: '/components/base/button.svg', version: '2024.1.1'},
+                        {text: '图标 (Icon)', link: 'base/icon', icon: '/components/base/icon.svg', version: '2024.1.1'},
+                        {text: '复制 (Copy)', link: 'base/copy', icon: '/components/base/copy.svg', version: '2024.1.1'},
+                        {text: '水印 (Watermark)', link: 'base/watermark', icon: '/components/base/watermark.svg', version: '2024.2.0'},
+                        {text: '高亮 (Highlight)', link: 'base/highlight', icon: '/components/base/highlight.svg', version: '2024.2.0'},
+                        {text: '文本 (Text)', link: 'base/text', icon: '/components/base/text.svg', version: '2024.3.0'},
+                        {text: '渐变文本 (Gradient Text)', link: 'base/gradient-text', icon: '/components/base/gradient-text.svg', version: '2024.3.0'},
                     ]
 
                     return {
-                        text: `Base [ ${items.length} ]`,
+                        text: `基础组件 [ ${items.length} ]`,
                         base: '/components/',
                         collapsed: false,
                         items: items.map(item => createSidebarItem(item))
@@ -251,13 +255,13 @@ export default {
                 })(),
                 (() => {
                     const items = [
-                        {text: 'Data Builder', link: 'data/data-builder', icon: '/components/data/data-builder.svg', version: '2024.5.0'},
-                        {text: 'Workflow', link: 'data/workflow', icon: '/components/data/workflow.svg', version: '2024.5.1'},
-                        {text: 'Data Filter', link: 'data/data-filter', icon: '/components/data/data-filter.svg', version: '2024.5.2'},
+                        {text: '数据构建 (Data Builder)', link: 'data/data-builder', icon: '/components/data/data-builder.svg', version: '2024.5.0'},
+                        {text: '流程 (Workflow)', link: 'data/workflow', icon: '/components/data/workflow.svg', version: '2024.5.1'},
+                        {text: '数据过滤 (Data Filter)', link: 'data/data-filter', icon: '/components/data/data-filter.svg', version: '2024.5.2'},
                     ]
 
                     return {
-                        text: `Data [ ${items.length} ]`,
+                        text: `数据组件 [ ${items.length} ]`,
                         base: '/components/',
                         collapsed: false,
                         items: items.map(item => createSidebarItem(item))

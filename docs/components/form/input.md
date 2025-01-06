@@ -13,7 +13,7 @@ This document is mainly used to describe some features and usage of the ShadcnIn
     <ShadcnInput placeholder="Input" />
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -36,7 +36,7 @@ const input = ref('')
     <ShadcnInput placeholder="Input" v-model="input" clearable />
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -63,7 +63,7 @@ const input = ref('Hello View Shadcn UI')
     </div>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -88,7 +88,7 @@ const input = ref('Hello View Shadcn UI')
     <ShadcnInput placeholder="Input" v-model="input" word-count />
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -111,7 +111,7 @@ const input = ref('Hello View Shadcn UI')
     <ShadcnInput placeholder="Input" v-model="input" word-count :max-count="100" />
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -141,7 +141,7 @@ const input = ref('Hello View Shadcn UI')
     </ShadcnInput>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -174,7 +174,7 @@ const input = ref('Hello View Shadcn UI')
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -196,7 +196,7 @@ const input = ref('Hello View Shadcn UI')
     <ShadcnInput placeholder="Input" v-model="input" type="password" />
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -222,7 +222,7 @@ const input = ref('Hello View Shadcn UI')
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -241,7 +241,7 @@ const input = ref('Hello View Shadcn UI')
 ## API Attributes
 
 <ApiTable title="Input Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['modelValue', 'The value of the input', 'String', '-', '-', '-'],
         ['placeholder', 'The placeholder of the input', 'String', '-', '-', '-'],
@@ -260,7 +260,7 @@ const input = ref('Hello View Shadcn UI')
 <br />
 
 <ApiTable title="Input Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['on-change', 'Triggered when the input value is changed', 'Object'],
         ['on-clear', 'Triggered when the clear icon is clicked', '-'],
@@ -273,7 +273,7 @@ const input = ref('Hello View Shadcn UI')
 <br />
 
 <ApiTable title="Input Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['prefix', 'Input prefix'],
         ['suffix', 'Input suffix'],

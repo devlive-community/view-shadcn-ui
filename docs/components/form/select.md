@@ -13,7 +13,7 @@ This document is mainly used to describe some features and usage of the ShadcnSe
     <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" />
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -41,7 +41,7 @@ const defaultSelectOptions = [
     <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" disabled />
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -78,7 +78,7 @@ const defaultSelectOptions = [
     </ShadcnSelect>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -114,7 +114,7 @@ const defaultSelect = ref(null)
     </div>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -150,7 +150,7 @@ const defaultSelectOptions = [
     </div>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -189,7 +189,7 @@ const defaultSelectOptions = [
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -235,7 +235,7 @@ const defaultSelectOptions = [
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -274,7 +274,7 @@ const defaultSelect = ref('')
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -309,7 +309,7 @@ const defaultSelectOptions = [
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -369,7 +369,7 @@ loadMoreData((children) => {
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -455,7 +455,7 @@ loadMoreData((children) => {
 <br />
 
 <ApiTable title="Select Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['options', 'Option slot'],
     ]">
@@ -464,7 +464,7 @@ loadMoreData((children) => {
 <br />
 
 <ApiTable title="Select Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['onChange', 'Triggered when the value of the select is changed', 'any'],
         ['onClickOutside', 'Triggered when the click outside the select is triggered', 'boolean'],

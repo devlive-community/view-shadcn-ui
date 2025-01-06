@@ -16,7 +16,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -36,7 +36,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -56,7 +56,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -76,7 +76,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -99,7 +99,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -122,7 +122,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -142,7 +142,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -162,7 +162,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -174,7 +174,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 ## QrCode Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['modelValue', 'modelValue value', 'string', '-', '-'],
         ['size', 'size value', 'number', '200', '-'],
@@ -190,7 +190,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 ## QrCode Events
 
 <ApiTable title="Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['on-complete', 'Triggered when on complete', '-']
     ]">
@@ -199,7 +199,7 @@ This document describes the features and usage of the ShadcnQrCode component.
 ## QrCode Slots
 
 <ApiTable title="Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['img', 'Slot for img']
     ]">

@@ -312,5 +312,11 @@ export default {
         text: {
             placeholder: '键入 @ 以提及'
         }
+    },
+    copy: {
+        text: {
+            copied: '复制成功',
+            failed: '复制失败'
+        }
     }
 }

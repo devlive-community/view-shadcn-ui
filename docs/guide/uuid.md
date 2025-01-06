@@ -1,26 +1,28 @@
 ---
-title: UUID Utility
+title: 唯一标记 (UUID)
 ---
 
-# Introduction
+# 介绍
 
-This document is mainly used to describe some features and usage of the uuid utility.
+<br />
+
+本文档主要用于描述 `randomUUID` 和 `validateUUID` 函数的一些功能和用法。
 
 ## randomUUID
 
-Generate a string that follows the UUID v4 standard
+生成一个符合 UUID v4 标准的字符串
 
 ::: raw
 
 <CodeRunner title="randomUUID">
     <ShadcnText>UUID: {{ uuid }}</ShadcnText>
     <br />
-    <ShadcnButton @click="randomUUIDValue()">Generate UUID</ShadcnButton>
+    <ShadcnButton @click="randomUUIDValue()">生成 UUID</ShadcnButton>
 </CodeRunner>
 
 :::
 
-::: details Show code
+::: details 显示代码
 
 ```vue
 <template>
@@ -39,19 +41,19 @@ const uuid = ref(randomUUID())
 
 ## validateUUID
 
-Verify if a string follows the UUID v4 standard
+验证字符串是否符合 UUID v4 标准
 
 ::: raw
 
 <CodeRunner title="validateUUID">
-    <ShadcnText>Verify UUID: {{ verifyUUIDResult }}</ShadcnText>
+    <ShadcnText>验证 UUID: {{ verifyUUIDResult }}</ShadcnText>
     <br />
-    <ShadcnButton @click="verifyUUID('4000051c-3ae9-40df-b49a-d2aefa499a60')">Verify UUID 4000051c-3ae9-40df-b49a-d2aefa499a60</ShadcnButton>
+    <ShadcnButton @click="verifyUUID('4000051c-3ae9-40df-b49a-d2aefa499a60')">验证 UUID 4000051c-3ae9-40df-b49a-d2aefa499a60</ShadcnButton>
 </CodeRunner>
 
 :::
 
-::: details Show code
+::: details 显示代码
 
 ```vue
 <template>

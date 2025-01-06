@@ -20,7 +20,7 @@ This document is mainly used to describe some features and usage of the ShadcnTr
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -77,7 +77,7 @@ console.log('Click Node:', node)
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -126,7 +126,7 @@ const data = [
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -175,7 +175,7 @@ const data = [
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -224,7 +224,7 @@ const data = [
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -289,7 +289,7 @@ const loadNodeData = (item: any, callback: (children: any[]) => void) => {
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -339,7 +339,7 @@ const data = reactive([
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -370,7 +370,7 @@ const data = reactive([
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -431,7 +431,7 @@ const data = [
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -475,7 +475,7 @@ const data = [
 ## Props
 
 <ApiTable title="Tree Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
         ['modelValue', 'Tree value', 'array', '\[\]'],
         ['data', 'Tree data', 'array', '\[\]'],
@@ -490,7 +490,7 @@ const data = [
 <br />
 
 <ApiTable title="Tree Node Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value']"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
         ['value', 'Tree node value', 'string', ''],
         ['label', 'Tree node label', 'string', ''],
@@ -503,7 +503,7 @@ const data = [
 ## Slots
 
 <ApiTable title="Tree Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['label', 'Tree label'],
         ['expand', 'Tree expand icon'],

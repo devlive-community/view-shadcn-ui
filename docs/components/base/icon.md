@@ -1,19 +1,26 @@
 ---
-title: Shadcn Icon
+title: 图标 (Icon)
 ---
 
-# Introduction
+# 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnIcon component.
+<br />
 
-## Basic Usage
+本文档主要用于描述 `ShadcnIcon` 组件的使用方法。
 
-<CodeRunner title="Basic Usage"
-    description="Create a simple icon.">
+图标使用的是 [Lucide](https://lucide.dev/) 图标库。
+
+## 用法
+
+::: raw
+
+<CodeRunner title="用法">
     <ShadcnIcon icon="Save"/>
 </CodeRunner>
 
-::: details Show code
+:::
+
+::: details 查看代码
 
 ```vue
 <template>
@@ -26,16 +33,19 @@ This document is mainly used to describe some features and usage of the ShadcnIc
 
 :::
 
-## Size
+## 尺寸 (size)
 
-<CodeRunner title="Icon Size"
-    description="Create icons with different sizes.">
+::: raw
+
+<CodeRunner title="图标尺寸">
     <ShadcnIcon icon="Save"/>
     <ShadcnIcon icon="Save" :size="30"/>
     <ShadcnIcon icon="Save" :size="40"/>
 </CodeRunner>
 
-::: details Show code
+:::
+
+::: details 查看代码
 
 ```vue
 <template>
@@ -50,14 +60,17 @@ This document is mainly used to describe some features and usage of the ShadcnIc
 
 :::
 
-## Color
+## 颜色 (color)
 
-<CodeRunner title="Icon Color"
-    description="Create icons with different colors.">
+::: raw
+
+<CodeRunner title="图标颜色">
     <ShadcnIcon icon="Save" color="red"/>
 </CodeRunner>
 
-::: details Show code
+:::
+
+::: details 查看代码
 
 ```vue
 <template>
@@ -70,64 +83,31 @@ This document is mainly used to describe some features and usage of the ShadcnIc
 
 :::
 
-## Custom
+## 图标 (Icon) 属性
 
-<CodeRunner title="Custom"
-    description="Create a custom icon.">
-    <ShadcnIcon>
-        <template #icon>
-            <Ban/>
-        </template>
-    </ShadcnIcon>
-</CodeRunner>
-
-::: details Show code
-
-```vue
-<template>
-    <ShadcnIcon>
-        <template #icon>
-            <Ban/>
-        </template>
-    </ShadcnIcon>
-</template>
-
-<script setup lang="ts">
-  import { Ban } from 'lucide-vue-next'
-</script>
-```
-
-:::
-
-<script setup lang="ts">
-import { Ban } from 'lucide-vue-next';
-</script>
-
-## API Attributes
-
-<ApiTable title="Icon Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+<ApiTable title="图标 (Icon) 属性"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['icon', 'The icon name', 'String', '-', '-', '-'],
-        ['size', 'The size of the icon', 'Number', '20', '-', '-'],
-        ['color', 'The color of the icon', 'String', '-', '-', 'All supported color values'],
+        ['icon', '图标名称', 'string', '-', '-'],
+        ['size', '图标尺寸', 'number', '20', '-'],
+        ['color', '图标颜色', 'string', '-', '所有支持的颜色值'],
     ]">
 </ApiTable>
 
-<br />
+## 图标 (Icon) 事件
 
-<ApiTable title="Icon Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+<ApiTable title="图标 (Icon) 事件"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['click', 'Click event', 'event'],
+        ['click', '点击图标时触发', 'event'],
     ]">
 </ApiTable>
 
-<br />
+## 图标 (Icon) 插槽
 
-<ApiTable title="Icon Slots"
-    :headers="['Slot', 'Description']"
+<ApiTable title="图标 (Icon) 插槽"
+    :headers="['插槽', '描述']" 
     :columns="[
-        ['icon', 'Icon slot'],
+        ['icon', '图标插槽'],
     ]">
 </ApiTable>

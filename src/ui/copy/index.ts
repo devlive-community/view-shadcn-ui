@@ -1,3 +1,1 @@
-import ShadcnCopy from './ShadcnCopy.vue'
-
-export default ShadcnCopy
+export { default as ShadcnCopy } from './ShadcnCopy.vue'

@@ -16,7 +16,7 @@ This document describes the features and usage of the ShadcnCodeEditor component
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -36,7 +36,7 @@ This document describes the features and usage of the ShadcnCodeEditor component
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -56,7 +56,7 @@ This document describes the features and usage of the ShadcnCodeEditor component
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -96,7 +96,7 @@ This document describes the features and usage of the ShadcnCodeEditor component
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <ShadcnCodeEditor v-model="value"
@@ -144,7 +144,7 @@ This document describes the features and usage of the ShadcnCodeEditor component
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
     <ShadcnCodeEditor v-model="value"
@@ -176,7 +176,7 @@ This document describes the features and usage of the ShadcnCodeEditor component
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
     <ShadcnCodeEditor v-model="value"
@@ -191,7 +191,7 @@ This document describes the features and usage of the ShadcnCodeEditor component
 ## CodeEditor Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['modelValue', 'modelValue value', 'string', '-', '-'],
         ['height', 'height value', 'number', '300', '-'],

@@ -16,7 +16,7 @@ This document is mainly used to describe some features and usage of the ShadcnLi
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -39,7 +39,7 @@ This document is mainly used to describe some features and usage of the ShadcnLi
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -62,7 +62,7 @@ This document is mainly used to describe some features and usage of the ShadcnLi
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -78,7 +78,7 @@ This document is mainly used to describe some features and usage of the ShadcnLi
 ## Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['link', 'The link of the link', 'string', '-', '-', ''],
         ['external', 'Whether the link is external', 'boolean', 'false', '-', ''],

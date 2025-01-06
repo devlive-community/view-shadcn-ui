@@ -1,19 +1,24 @@
 ---
-title: Shadcn Copy
+title: 复制 (Copy)
 ---
 
-# Introduction
+# 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnCopy component.
+<br />
 
-## Basic Usage
+本文档主要用于描述 `ShadcnCopy` 组件的一些功能和用法。
 
-<CodeRunner title="Basic Usage"
-    description="Create a simple copy.">
+## 用法
+
+::: raw
+
+<CodeRunner title="用法">
     <ShadcnCopy text="Hello Shadcn UI"/>
 </CodeRunner>
 
-::: details Show code
+:::
+
+::: details 查看代码
 
 ```vue
 <template>
@@ -26,15 +31,24 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 
 :::
 
-## Tooltip
+## 提示 (tooltip)
 
-<CodeRunner title="Tooltip"
-    description="Create a copy with tooltip.">
-    <ShadcnCopy text="Hello Shadcn UI"/>
-    <ShadcnCopy text="Hello Shadcn UI" :tooltip="false"/>
+::: raw
+
+<CodeRunner title="提示">
+    <div class="flex items-center gap-2">
+        <span>显示提示</span>
+        <ShadcnCopy text="Hello Shadcn UI"/>
+    </div>
+    <div class="flex items-center gap-2">
+        <span>不显示提示</span>
+        <ShadcnCopy text="Hello Shadcn UI" :tooltip="false"/>
+    </div>
 </CodeRunner>
 
-::: details Show code
+:::
+
+::: details 查看代码
 
 ```vue
 <template>
@@ -48,24 +62,35 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 
 :::
 
-## Position
+## 位置 (position)
 
-<CodeRunner title="Position"
-    description="Create a copy with custom position.">
+<CodeRunner title="位置">
+    <div class="flex items-center gap-2">
+        <span>顶部</span>
+        <ShadcnCopy text="Position" position="top"/>
+    </div>
+    <div class="flex items-center gap-2">
+        <span>底部</span>
+        <ShadcnCopy text="Position" position="bottom"/>
+    </div>
+    <div class="flex items-center gap-2">
+        <span>左侧</span>
+        <ShadcnCopy text="Position" position="left"/>
+    </div>
+    <div class="flex items-center gap-2">
+        <span>右侧</span>
+        <ShadcnCopy text="Position" position="right"/>
+    </div>
+</CodeRunner>
+
+::: details 查看代码
+
+```vue
+<template>
     <ShadcnCopy text="Position" position="top"/>
     <ShadcnCopy text="Position" position="bottom"/>
     <ShadcnCopy text="Position" position="left"/>
     <ShadcnCopy text="Position" position="right"/>
-</CodeRunner>
-
-::: details Show code
-
-```vue
-<template>
-    <ShadcnCopy text="Position" position="top"/>
-    <ShadcnCopy text="Position" position="bottom"/>
-    <ShadcnCopy text="Position" position="left"/>
-    <ShadcnCopy text="Position" position="right"/>
 </template>
 
 <script setup lang="ts">
@@ -74,32 +99,32 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 
 :::
 
-## API Attributes
+## 复制 (Copy) 属性
 
-<ApiTable title="Copy Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+<ApiTable title="复制 (Copy) 属性"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
-        ['text', 'The content of the copy', 'String', '-', '-', '-'],
-        ['tooltip', 'Show tooltip', 'Boolean', 'true', '-', '-'],
-        ['position', 'The position of the copy', 'Enum', 'top', '-', 'top, bottom, left, right'],
+        ['text', '复制的文本内容', 'string', '-', '-', '-'],
+        ['tooltip', '是否显示提示', 'boolean', 'true', '-', '-'],
+        ['position', '提示的位置', 'enum', 'top', '-', 'top | bottom | left | right'],
     ]">
 </ApiTable>
 
-<br />
+## 复制 (Copy) 事件
 
-<ApiTable title="Copy Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+<ApiTable title="复制 (Copy) 事件"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['on-success', 'Triggered when the copy is successful', 'event'],
-        ['on-failed', 'Triggered when the copy fails', 'event'],
+        ['on-success', '复制成功时触发', 'event'],
+        ['on-failed', '复制失败时触发', 'event'],
     ]">
 </ApiTable>
 
-<br />
+## 复制 (Copy) 插槽
 
-<ApiTable title="Copy Slots"
-    :headers="['Slot', 'Description']"
+<ApiTable title="复制 (Copy) 插槽"
+    :headers="['插槽', '描述']" 
     :columns="[
-        ['icon', 'Copy icon'],
+        ['icon', '复制图标'],
     ]">
 </ApiTable>

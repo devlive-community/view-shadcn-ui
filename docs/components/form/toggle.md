@@ -17,7 +17,7 @@ This document is mainly used to describe some features and usage of the ShadcnTo
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -45,7 +45,7 @@ const defaultValue = ref(null)
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -70,7 +70,7 @@ const defaultValue = ref(null)
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -108,7 +108,7 @@ const defaultValue = ref(null)
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -148,7 +148,7 @@ const defaultValue = ref(null)
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -181,7 +181,7 @@ const defaultValue = ref(null)
 
 :::
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -201,7 +201,7 @@ const defaultValue = ref(null)
 ## Toggle Props
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['modelValue', 'You can use v-model to bind data in both directions', 'any', '-', '-'],
         ['value', 'The value of the toggle', 'any', '-', '-'],
@@ -213,7 +213,7 @@ const defaultValue = ref(null)
 <br />
 
 <ApiTable title="Group Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['modelValue', 'You can use v-model to bind data in both directions', 'any', '-', '-'],
         ['disabled', 'Whether the toggle is disabled', 'boolean', 'false', '-'],
@@ -226,7 +226,7 @@ const defaultValue = ref(null)
 ## Toggle Events
 
 <ApiTable title="Events"
-    :headers="['Attribute', 'Description', 'Type']"
+    :headers="['事件', '描述', '类型']"
     :columns="[
         ['update:modelValue', 'The value of the toggle', 'any'],
         ['on-change', 'Triggered when the value of the toggle is changed', 'any'],
@@ -236,7 +236,7 @@ const defaultValue = ref(null)
 <br />
 
 <ApiTable title="Group Events"
-    :headers="['Attribute', 'Description', 'Type']"
+    :headers="['事件', '描述', '类型']"
     :columns="[
         ['update:modelValue', 'The value of the toggle', 'any[]'],
         ['on-change', 'Triggered when the value of the toggle is changed', 'any[]'],

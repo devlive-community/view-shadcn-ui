@@ -12,7 +12,7 @@ This document is mainly used to describe some features and usage of the ShadcnMe
     <ShadcnButton @click="info(false)">Show Message</ShadcnButton>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -42,7 +42,7 @@ export default defineComponent({
     <ShadcnButton @click="info(false)">Show Message</ShadcnButton>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -78,7 +78,7 @@ export default defineComponent({
   </ShadcnSpace>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -148,7 +148,7 @@ export default {
   </ShadcnSpace>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -217,7 +217,7 @@ export default {
     <ShadcnButton @click="closable">Closable</ShadcnButton>
 </CodeRunner>
 
-::: details Show code
+::: details 查看代码
 
 ```vue
 <template>
@@ -245,7 +245,7 @@ export default {
 ## API
 
 <ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List']"
+    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
             ['content', 'Content content', 'String', '-', '-', '-'],
             ['duration', 'The duration of the message, in seconds, if the value is 0, the message will not be closed', 'Number', '1.5', '-', '-'],
@@ -259,7 +259,7 @@ export default {
 ## Slots
 
 <ApiTable title="Slots"
-    :headers="['Slot', 'Description']"
+    :headers="['插槽', '描述']" 
     :columns="[
         ['default', 'Content slot'],
         ['close', 'Close slot'],
@@ -269,7 +269,7 @@ export default {
 ## Events
 
 <ApiTable title="Events"
-    :headers="['Event', 'Description', 'Callback Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['on-close', 'Triggered when the message is closed', 'event'],
     ]">
