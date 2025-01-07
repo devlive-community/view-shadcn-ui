@@ -2,13 +2,13 @@
 title: Shadcn Alert
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnAlert component.
 
-## Usage
+## 用法
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnAlert>Alert</ShadcnAlert>
 </CodeRunner>
 
@@ -44,9 +44,9 @@ This document is mainly used to describe some features and usage of the ShadcnAl
 
 :::
 
-## Type
+## 类型 (type)
 
-<CodeRunner title="Type">
+<CodeRunner title="类型 (type)">
     <div class="space-y-2">
         <ShadcnAlert type="primary">Alert</ShadcnAlert>
         <ShadcnAlert type="success">Alert</ShadcnAlert>
@@ -71,9 +71,9 @@ This document is mainly used to describe some features and usage of the ShadcnAl
 
 :::
 
-## Icon
+## 图标 (icon)
 
-<CodeRunner title="Icon">
+<CodeRunner title="图标 (icon)">
     <ShadcnAlert title="Title" show-icon>Alert</ShadcnAlert>
 </CodeRunner>
 

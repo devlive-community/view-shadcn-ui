@@ -2,13 +2,13 @@
 title: Shadcn Progress
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnProgress component.
 
-## Usage
+## 用法
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnProgress v-model="value">Progress</ShadcnProgress>
 </CodeRunner>
 
@@ -58,9 +58,9 @@ const value = ref(10)
 
 :::
 
-## Size
+## 尺寸 (size)
 
-<CodeRunner title="Size">
+<CodeRunner title="尺寸 (size)">
     <div class="space-y-2">
         <ShadcnProgress v-model="value" size="default">Default</ShadcnProgress>
         <ShadcnProgress v-model="value" size="large">Large</ShadcnProgress>

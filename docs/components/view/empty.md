@@ -2,15 +2,15 @@
 title: Shadcn Empty
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnEmpty component.
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnEmpty />
 </CodeRunner>
 

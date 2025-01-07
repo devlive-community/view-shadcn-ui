@@ -2,15 +2,15 @@
 title: Shadcn TimePicker
 ---
 
-# Introduction
+# 介绍
 
 This document describes the features and usage of the ShadcnTimePicker component.
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnTimePicker v-model="value" />
 </CodeRunner>
 
@@ -46,11 +46,11 @@ This document describes the features and usage of the ShadcnTimePicker component
 
 :::
 
-## Disabled
+## 禁用 (disabled)
 
 ::: raw
 
-<CodeRunner title="Disabled">
+<CodeRunner title="禁用 (disabled)">
     <ShadcnTimePicker v-model="value" disabled />
     <ShadcnTimePicker v-model="value" :disabled="false" />
 </CodeRunner>

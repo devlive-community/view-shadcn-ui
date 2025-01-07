@@ -2,13 +2,13 @@
 title: Shadcn Skeleton
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnSkeleton component.
 
-## Usage
+## 用法
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnSkeleton />
 </CodeRunner>
 

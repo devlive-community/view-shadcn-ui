@@ -2,13 +2,13 @@
 title: Shadcn Radio
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnRadio component.
 
-## Usage
+## 用法
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnRadio v-model="checked" value="ON">ON</ShadcnRadio>
     <ShadcnRadio v-model="checked" value="OFF">OFF</ShadcnRadio>
 </CodeRunner>
@@ -30,9 +30,9 @@ const checked = ref('ON')
 
 :::
 
-## Disabled
+## 禁用 (disabled)
 
-<CodeRunner title="Disabled">
+<CodeRunner title="禁用 (disabled)">
     <ShadcnRadio v-model="checked" value="ON" disabled>ON</ShadcnRadio>
     <ShadcnRadio v-model="checked" value="OFF">OFF</ShadcnRadio>
 </CodeRunner>
@@ -54,9 +54,9 @@ const checked = ref('ON')
 
 :::
 
-## Size
+## 尺寸 (size)
 
-<CodeRunner title="Size">
+<CodeRunner title="尺寸 (size)">
     <ShadcnRadio v-model="checked" value="Default" size="default">Default</ShadcnRadio>
     <ShadcnRadio v-model="checked" value="Small" size="small">Small</ShadcnRadio>
     <ShadcnRadio v-model="checked" value="Large" size="large">Large</ShadcnRadio>
@@ -80,9 +80,9 @@ const checked = ref('Default')
 
 :::
 
-## Type
+## 类型 (type)
 
-<CodeRunner title="Type">
+<CodeRunner title="类型 (type)">
     <ShadcnRadio v-model="checked" value="Primary" type="primary">Primary</ShadcnRadio>
     <ShadcnRadio v-model="checked" value="Success" type="success">Success</ShadcnRadio>
     <ShadcnRadio v-model="checked" value="Warning" type="warning">Warning</ShadcnRadio>

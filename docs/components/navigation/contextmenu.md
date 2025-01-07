@@ -2,7 +2,7 @@
 title: Shadcn Context Menu
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnContextMenu component.
 
@@ -10,11 +10,11 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 - ShadcnContextMenuItem
 - ShadcnContextMenuSub
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnContextMenu v-model="showMenu">
       <template #trigger>
         <div class="w-full h-32 bg-gray-100 rounded-lg flex items-center justify-center">
@@ -141,11 +141,11 @@ const onItemClick = (action) => console.log(`Clicked: ${action}`)
 
 :::
 
-## Disabled
+## 禁用 (disabled)
 
 ::: raw
 
-<CodeRunner title="Disabled">
+<CodeRunner title="禁用 (disabled)">
   <ShadcnContextMenu v-model="disabledMenu">
     <template #trigger>
       <div class="w-full h-32 bg-gray-100 rounded-lg flex items-center justify-center">
@@ -233,7 +233,7 @@ const onItemClick = (action) => console.log(`Clicked: ${action}`)
 ## Context Menu Events
 
 <ApiTable title="Context Menu Events"
-    :headers="['Event', 'Description', 'Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['update:modelValue', 'Update the model value of the context menu', 'boolean'],
         ['on-open', 'Emit when the context menu is opened', '-'],
@@ -244,7 +244,7 @@ const onItemClick = (action) => console.log(`Clicked: ${action}`)
 <br />
 
 <ApiTable title="Context Menu Item Events"
-    :headers="['Event', 'Description', 'Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['on-click', 'Emit when the context menu item is clicked', '-'],
     ]">

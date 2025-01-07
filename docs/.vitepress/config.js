@@ -236,9 +236,9 @@ export default {
                 })(),
                 (() => {
                     const items = [
-                        {text: 'Tabs', link: 'navigation/tabs', icon: '/components/navigation/tabs.svg', version: '2024.1.2'},
-                        {text: 'Pagination', link: 'navigation/pagination', icon: '/components/navigation/pagination.svg', version: '2024.1.2'},
-                        {text: 'Menu', link: 'navigation/menu', icon: '/components/navigation/menu.svg', version: '2024.1.2'},
+                        {text: '选项卡 (Tabs)', link: 'navigation/tabs', icon: '/components/navigation/tabs.svg', version: '2024.1.2'},
+                        {text: '分页 (Pagination)', link: 'navigation/pagination', icon: '/components/navigation/pagination.svg', version: '2024.1.2'},
+                        {text: '菜单 (Menu)', link: 'navigation/menu', icon: '/components/navigation/menu.svg', version: '2024.1.2'},
                         {text: 'Badge', link: 'navigation/badge', icon: '/components/navigation/badge.svg', version: '2024.1.2'},
                         {text: 'Breadcrumb', link: 'navigation/breadcrumb', icon: '/components/navigation/breadcrumb.svg', version: '2024.2.0'},
                         {text: 'Link', link: 'navigation/link', icon: '/components/navigation/link.svg', version: '2024.2.0'},
@@ -247,7 +247,7 @@ export default {
                     ]
 
                     return {
-                        text: `Navigation [ ${items.length} ]`,
+                        text: `导航组件 [ ${items.length} ]`,
                         base: '/components/',
                         collapsed: false,
                         items: items.map(item => createSidebarItem(item))

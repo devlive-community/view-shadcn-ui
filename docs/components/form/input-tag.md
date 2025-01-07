@@ -2,15 +2,15 @@
 title: Shadcn InputTag
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnInputTag component.
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnText>Value: {{ tags }}</ShadcnText>
     <ShadcnInputTag v-model="tags" />
 </CodeRunner>
@@ -33,11 +33,11 @@ const tags = ref([])
 
 :::
 
-## Disabled
+## 禁用 (disabled)
 
 ::: raw
 
-<CodeRunner title="Disabled">
+<CodeRunner title="禁用 (disabled)">
     <ShadcnInputTag v-model="tags" disabled />
 </CodeRunner>
 
@@ -53,11 +53,11 @@ const tags = ref([])
 
 :::
 
-## Size
+## 尺寸 (size)
 
 ::: raw
 
-<CodeRunner title="Size">
+<CodeRunner title="尺寸 (size)">
     <ShadcnInputTag v-model="tags" size="small" />
     <ShadcnInputTag v-model="tags" size="default" />
     <ShadcnInputTag v-model="tags" size="large" />
@@ -77,11 +77,11 @@ const tags = ref([])
 
 :::
 
-## Type
+## 类型 (type)
 
 ::: raw
 
-<CodeRunner title="Type">
+<CodeRunner title="类型 (type)">
     <ShadcnInputTag v-model="value" type="primary"/>
     <ShadcnInputTag v-model="value" type="error"/>
     <ShadcnInputTag v-model="value" type="warning"/>

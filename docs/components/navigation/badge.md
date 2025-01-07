@@ -2,13 +2,13 @@
 title: Shadcn Badge
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnBadge component.
 
-## Usage
+## 用法
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnBadge text="Badge">Badge</ShadcnBadge>
 </CodeRunner>
 
@@ -25,9 +25,9 @@ This document is mainly used to describe some features and usage of the ShadcnBa
 
 :::
 
-## Type
+## 类型 (type)
 
-<CodeRunner title="Type">
+<CodeRunner title="类型 (type)">
     <ShadcnBadge type="primary" text="Badge">Primary</ShadcnBadge>
     <ShadcnBadge type="success" text="Badge">Success</ShadcnBadge>
     <ShadcnBadge type="warning" text="Badge">Warning</ShadcnBadge>

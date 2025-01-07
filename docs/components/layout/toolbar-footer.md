@@ -2,11 +2,11 @@
 title: Shadcn Toolbar Footer
 ---
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnToolbarFooter>
       <template #left>Basic</template>
     </ShadcnToolbarFooter>

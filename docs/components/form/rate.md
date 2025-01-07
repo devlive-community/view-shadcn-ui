@@ -2,13 +2,13 @@
 title: Shadcn Rate
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnRate component.
 
-## Usage
+## 用法
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     Rate Value: {{ rate }}
     <ShadcnRate v-model="rate" />
 </CodeRunner>
@@ -82,9 +82,9 @@ const rate = ref(1)
 
 :::
 
-## Type
+## 类型 (type)
 
-<CodeRunner title="Type">
+<CodeRunner title="类型 (type)">
     Rate Value: {{ rate }}
     <ShadcnSpace wrap>
         <ShadcnRate v-model="rate" max="10" type="primary"/>
@@ -113,9 +113,9 @@ const rate = ref(1)
 
 :::
 
-## Disabled
+## 禁用 (disabled)
 
-<CodeRunner title="Disabled">
+<CodeRunner title="禁用 (disabled)">
     Rate Value: {{ rate }}
     <ShadcnRate v-model="rate" disabled />
 </CodeRunner>

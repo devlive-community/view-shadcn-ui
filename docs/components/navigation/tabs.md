@@ -1,14 +1,16 @@
 ---
-title: Shadcn Tab
+title: 选项卡 (Tabs)
 ---
 
-# Introduction
+# 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnTab and ShadcnTabItem component.
+<br />
 
-## Usage
+本文档主要用于描述 `ShadcnTab` 和 `ShadcnTabItem` 组件的一些特性和用法。
 
-<CodeRunner title="Usage">
+## 用法
+
+<CodeRunner title="用法">
     <ShadcnTab>
         <ShadcnTabItem label="Tab 1" value="Tab 1">
             <p>Tab 1 content</p>
@@ -39,9 +41,9 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
-## Disabled
+## 禁用 (disabled)
 
-<CodeRunner title="Disabled">
+<CodeRunner title="禁用 (disabled)">
     <ShadcnTab>
         <ShadcnTabItem label="Tab 1" value="Tab 1">
             <p>Tab 1 content</p>
@@ -78,9 +80,9 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
-## Type
+## 类型 (type)
 
-<CodeRunner title="Type">
+<CodeRunner title="类型 (type)">
     <ShadcnSpace wrap>
         <ShadcnTab type="primary">
             <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
@@ -137,9 +139,9 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
-## Size
+## 尺寸 (size)
 
-<CodeRunner title="Size">
+<CodeRunner title="尺寸 (size)">
     <ShadcnTab size="default">
         <ShadcnTabItem label="Default 1" value="Default 1">Tab 1 content</ShadcnTabItem>
         <ShadcnTabItem label="Default 2" value="Default 2" disabled>Tab 2 content</ShadcnTabItem>
@@ -174,9 +176,9 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
-## Icon
+## 图标 (icon)
 
-<CodeRunner title="Icon">
+<CodeRunner title="图标 (icon)">
     <ShadcnTab>
         <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 2" value="Tab 2" icon="Save" disabled>Tab 2 content</ShadcnTabItem>
@@ -201,9 +203,9 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
-## Card
+## 卡片 (card)
 
-<CodeRunner title="Card">
+<CodeRunner title="卡片 (card)">
     <ShadcnTab type="primary" card>
         <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 2" value="Tab 2" disabled>Tab 2 content</ShadcnTabItem>
@@ -228,9 +230,9 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
-## Closeable
+## 可关闭 (closeable)
 
-<CodeRunner title="Closeable">
+<CodeRunner title="可关闭 (closeable)">
     <ShadcnTab closable>
         <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 2" value="Tab 2">Tab 2 content</ShadcnTabItem>
@@ -255,9 +257,9 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
-## Extra
+## 附加信息 (extra)
 
-<CodeRunner title="Extra">
+<CodeRunner title="附加信息 (extra)">
     <ShadcnTab>
         <template #extra>Close</template>
         <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
@@ -284,9 +286,9 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
-## Direction
+## 方向 (direction)
 
-<CodeRunner title="Direction">
+<CodeRunner title="方向 (direction)">
     <ShadcnTab direction="vertical">
         <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 2" value="Tab 2">Tab 2 content</ShadcnTabItem>
@@ -311,9 +313,9 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
-## Position
+## 位置 (position)
 
-<CodeRunner title="Position">
+<CodeRunner title="位置 (position)">
     <ShadcnTab direction="vertical" position="left">
         <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 2" value="Tab 2">Tab 2 content</ShadcnTabItem>
@@ -348,9 +350,9 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
-## Dynamic Tabs
+## 动态选项卡
 
-<CodeRunner title="Dynamic Tabs">
+<CodeRunner title="动态选项卡">
     Tab Value: {{ defaultValue }}
     <ShadcnTab v-model="defaultValue" size="small" card closable>
       <template #extra>
@@ -399,67 +401,67 @@ const addTab = () => {
 
 :::
 
-## Tabs Props
+## 选项卡 (Tabs) 属性
 
-<ApiTable title="Tab Props"
-    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
+<ApiTable title="选项卡 (Tabs) 属性"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['modelValue', 'The value of the active tab', 'String', '-', '-', '-'],
-        ['type', 'The type of the tab', 'String', 'primary', '-', 'primary | success | warning | error'],
-        ['size', 'The size of the tab', 'String', 'default', '-', 'default | small'],
-        ['card', 'Whether the tab is a card', 'Boolean', 'false', '-', '-'],
-        ['closable', 'Whether the tab is closable', 'Boolean', 'false', '-', '-'],
-        ['direction', 'The direction of the tab', 'String', 'horizontal', '-', 'horizontal | vertical'],
-        ['position', 'The position of the tab', 'String', 'top', '-', 'left | right'],
+        ['modelValue', '当前激活选项卡的值', 'String', '-', '-'],
+        ['type', '选项卡的类型', 'String', 'primary', 'primary | success | warning | error'],
+        ['size', '选项卡的大小', 'String', 'default', 'default | small'],
+        ['card', '选项卡是否为卡片', 'Boolean', 'false', '-'],
+        ['closable', '选项卡是否可关闭', 'Boolean', 'false', '-'],
+        ['direction', '选项卡的方向', 'String', 'horizontal', 'horizontal | vertical'],
+        ['position', '选项卡的位置', 'String', 'top', 'left | right'],
     ]">
 </ApiTable>
 
-<br />
+## 选项卡选项 (Tabs Item) 属性
 
-<ApiTable title="Tab Item Props"
-    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
+<ApiTable title="选项卡选项 (Tabs Item) 属性"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['label', 'The label of the tab', 'String', '-', '-', '-'],
-        ['value', 'The value of the tab', 'String', '-', '-', '-'],
-        ['disabled', 'Whether the tab is disabled', 'Boolean', 'false', '-', '-'],
-        ['icon', 'The icon of the tab', 'String', '-', '-', '-'],
+        ['label', '选项卡的标签', 'String', '-'],
+        ['value', '选项卡的值', 'String', '-'],
+        ['disabled', '选项卡是否禁用', 'Boolean', 'false'],
+        ['icon', '选项卡的图标', 'String', '-'],
     ]">
 </ApiTable>
 
-## Tabs Events
+## 选项卡 (Tabs) 事件
 
-<ApiTable title="Tab Events"
+<ApiTable title="选项卡 (Tabs) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['on-change', 'Emitted when the active tab changes', 'String'],
-        ['on-tab-remove', 'Emitted when the tab is removed', 'String'],
+        ['on-change', '活动选项卡更改时发出', 'String'],
+        ['on-tab-remove', '删除选项卡时发出', 'String'],
     ]">
 </ApiTable>
 
-<br />
+## 选项卡选项 (Tabs Item) 事件
 
-<ApiTable title="Tab Item Events"
+<ApiTable title="选项卡选项 (Tabs Item) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['on-click', 'Emitted when the tab is clicked', 'String'],
+        ['on-click', '点击选项卡时发出', 'String'],
     ]">
 </ApiTable>
 
-## Tabs Slots
+## 选项卡 (Tabs) 插槽
 
-<ApiTable title="Tab Slots"
+<ApiTable title="选项卡 (Tabs) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['extra', 'Extra slot'],
+        ['extra', '额外内容'],
     ]">
 </ApiTable>
 
-<br />
+## 选项卡选项 (Tabs Item) 插槽
 
-<ApiTable title="Tab Item Slots"
+<ApiTable title="选项卡选项 (Tabs Item) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['label', 'Label slot'],
+        ['label', '选项卡的标签'],
     ]">
 </ApiTable>
 

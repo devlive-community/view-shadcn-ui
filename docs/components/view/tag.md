@@ -2,15 +2,15 @@
 title: Shadcn Tag
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnTag component.
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnSpace wrap>
       <ShadcnTag text="Text"/>
       <ShadcnTag>Slot</ShadcnTag>
@@ -35,11 +35,11 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
-## Type
+## 类型 (type)
 
 ::: raw
 
-<CodeRunner title="Type">
+<CodeRunner title="类型 (type)">
     <ShadcnSpace wrap>
       <ShadcnTag text="Text"/>
       <ShadcnTag text="Text" type="primary"/>
@@ -105,11 +105,11 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
-## Size
+## 尺寸 (size)
 
 ::: raw
 
-<CodeRunner title="Size">
+<CodeRunner title="尺寸 (size)">
     <ShadcnSpace wrap>
       <ShadcnTag text="Default Tag" size="default"/>
       <ShadcnTag text="Medium Tag" size="medium"/>
@@ -136,11 +136,11 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
-## Closeable
+## 可关闭 (closeable)
 
 ::: raw
 
-<CodeRunner title="Closeable">
+<CodeRunner title="可关闭 (closeable)">
     <ShadcnSpace wrap>
       <ShadcnTag text="Default Tag" size="default" closable @on-close="console.log('on-close')"/>
       <ShadcnTag text="Medium Tag" size="medium" closable/>

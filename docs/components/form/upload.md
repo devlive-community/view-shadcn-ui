@@ -2,15 +2,15 @@
 title: Shadcn Upload
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnUpload component.
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnUpload action="//jsonplaceholder.typicode.com/posts/" />
 </CodeRunner>
 
@@ -46,7 +46,7 @@ This document is mainly used to describe some features and usage of the ShadcnUp
 
 :::
 
-## Disabled
+## 禁用 (disabled)
 
 ::: raw
 

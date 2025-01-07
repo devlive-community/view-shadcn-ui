@@ -6,11 +6,11 @@ title: Shadcn Spin
 
 This document is mainly used to describe some features and usage of the ShadcnSpin component.
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnSpin />
 </CodeRunner>
 
@@ -32,11 +32,11 @@ const value = ref(false);
 
 :::
 
-## Type
+## 类型 (type)
 
 ::: raw
 
-<CodeRunner title="Type">
+<CodeRunner title="类型 (type)">
     <ShadcnSpin type="primary"/>
     <ShadcnSpin type="success"/>
     <ShadcnSpin type="error"/>
@@ -61,11 +61,11 @@ const value = ref(false);
 
 :::
 
-## Size
+## 尺寸 (size)
 
 ::: raw
 
-<CodeRunner title="Size">
+<CodeRunner title="尺寸 (size)">
     <ShadcnSpin type="primary" size="small"/>
     <ShadcnSpin type="success" size="default"/>
     <ShadcnSpin type="error" size="large"/>

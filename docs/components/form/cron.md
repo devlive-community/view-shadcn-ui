@@ -2,17 +2,17 @@
 title: Shadcn Cron
 ---
 
-# Introduction
+# 介绍
 
 This document describes the features and usage of the ShadcnCron component.
 
 Modify by [vue3-vCrontab](https://github.com/dongchacha/vue3-vCrontab)
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnCron v-model="value" />
 </CodeRunner>
 

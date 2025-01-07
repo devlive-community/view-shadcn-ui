@@ -2,7 +2,7 @@
 title: Shadcn Layout
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnLayout component.
 
@@ -14,9 +14,9 @@ This document is mainly used to describe some features and usage of the ShadcnLa
 - ShadcnLayoutWrapper
 - ShadcnLayoutMain
 
-## Usage
+## 用法
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnLayout>
         <ShadcnLayoutHeader class="bg-blue-100 h-12">Header</ShadcnLayoutHeader>
         <ShadcnLayoutContent class="bg-blue-500 h-32">Content</ShadcnLayoutContent>

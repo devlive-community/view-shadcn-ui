@@ -2,7 +2,7 @@
 title: Shadcn Modal
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnModal component.
 
@@ -151,7 +151,7 @@ const modal = ref(false);
 
 :::
 
-## Width
+## 宽度 (width)
 
 <CodeRunner title="Custom Width">
     <ShadcnButton @click="customWidthModal = true">Click</ShadcnButton>
@@ -207,7 +207,7 @@ const modal = ref(false);
 
 :::
 
-## Closeable
+## 可关闭 (closeable)
 
 ::: raw
 

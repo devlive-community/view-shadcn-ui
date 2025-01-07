@@ -2,15 +2,15 @@
 title: Shadcn Slider
 ---
 
-# Introduction
+# 介绍
 
 This document describes the features and usage of the ShadcnSlider component.
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnSlider v-model="value" />
 </CodeRunner>
 
@@ -130,11 +130,11 @@ This document describes the features and usage of the ShadcnSlider component.
 
 :::
 
-## Disabled
+## 禁用 (disabled)
 
 ::: raw
 
-<CodeRunner title="Disabled">
+<CodeRunner title="禁用 (disabled)">
     <ShadcnSlider v-model="value" disabled />
     <ShadcnSlider v-model="value" :disabled="false" />
 </CodeRunner>
@@ -152,11 +152,11 @@ This document describes the features and usage of the ShadcnSlider component.
 
 :::
 
-## Type
+## 类型 (type)
 
 ::: raw
 
-<CodeRunner title="Type">
+<CodeRunner title="类型 (type)">
     <ShadcnSlider v-model="value" type="primary" />
     <ShadcnSlider v-model="value" type="warning" />
     <ShadcnSlider v-model="value" type="success" />

@@ -2,7 +2,7 @@
 title: Shadcn Card
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnCard component.
 

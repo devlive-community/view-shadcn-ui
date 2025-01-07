@@ -2,11 +2,11 @@
 title: Shadcn Link
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnLink.
 
-## Usage
+## 用法
 
 ::: raw
 

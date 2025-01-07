@@ -2,15 +2,15 @@
 title: Shadcn QrCode
 ---
 
-# Introduction
+# 介绍
 
 This document describes the features and usage of the ShadcnQrCode component.
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnQrCode v-model="value" />
 </CodeRunner>
 
@@ -26,11 +26,11 @@ This document describes the features and usage of the ShadcnQrCode component.
 
 :::
 
-## Size
+## 尺寸 (size)
 
 ::: raw
 
-<CodeRunner title="Size">
+<CodeRunner title="尺寸 (size)">
     <ShadcnQrCode v-model="value" :size="177" />
 </CodeRunner>
 

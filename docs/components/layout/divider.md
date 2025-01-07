@@ -2,11 +2,11 @@
 title: Shadcn Divider
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnDivider.
 
-## Usage
+## 用法
 
 <CodeRunner title="Simple Divider"
     description="Created a simple divider">
@@ -28,7 +28,7 @@ This document is mainly used to describe some features and usage of the ShadcnDi
 
 :::
 
-## Type
+## 类型 (type)
 
 <CodeRunner title="Type"
     description="Created a type divider">
@@ -64,7 +64,7 @@ This document is mainly used to describe some features and usage of the ShadcnDi
 
 :::
 
-## Position
+## 位置 (position)
 
 <CodeRunner title="Position"
     description="Created a position divider">

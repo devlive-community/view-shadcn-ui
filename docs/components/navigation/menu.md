@@ -1,19 +1,16 @@
 ---
-title: Shadcn Menu
+title: 菜单 (Menu)
 ---
 
-# Introduction
+# 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnMenu component.
+<br />
 
-- ShadcnMenu
-- ShadcnMenuItem
-- ShadcnMenuGroup
-- ShadcnMenuSub
+本文档主要用于描述 `ShadcnMenu` 组件的一些特性和用法。
 
-## Usage
+## 用法
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnMenu>
         <ShadcnMenuItem name="home">
           <template #icon>
@@ -77,9 +74,9 @@ This document is mainly used to describe some features and usage of the ShadcnMe
 
 :::
 
-## Width
+## 宽度 (width)
 
-<CodeRunner title="Usage">
+<CodeRunner title="宽度 (width)">
     <ShadcnMenu width="300">
         <ShadcnMenuItem name="home">
           <template #icon>
@@ -143,9 +140,9 @@ This document is mainly used to describe some features and usage of the ShadcnMe
 
 :::
 
-## Direction
+## 方向 (direction)
 
-<CodeRunner title="Usage">
+<CodeRunner title="方向 (direction)">
     <ShadcnMenu direction="horizontal">
         <ShadcnMenuItem name="home">
           <template #icon>
@@ -209,75 +206,75 @@ This document is mainly used to describe some features and usage of the ShadcnMe
 
 :::
 
-## API
+## 菜单 (Menu) 属性
 
-<ApiTable title="Menu"
+<ApiTable title="菜单 (Menu) 属性"
     :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['modelValue', 'The model value of the menu', 'String', ''],
-        ['width', 'The width of the menu', 'String | Number', '300', '-'],
-        ['direction', 'The direction of the menu', 'String', 'horizontal', 'horizontal | vertical'],
+        ['modelValue', '当前选中的菜单值', 'string', '-', '-'],
+        ['width', '菜单的宽度', 'string | number', '300', '-'],
+        ['direction', '菜单的方向', 'string', 'horizontal', 'horizontal | vertical'],
     ]">
 </ApiTable>
 
-<br />
+## 菜单项 (Menu Item) 属性
 
-<ApiTable title="Menu Item"
+<ApiTable title="菜单项 (Menu Item) 属性"
     :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['name', 'The name of the menu item', 'String', ''],
-        ['to', 'The to of the menu item, onlu support via vue-router', 'String', ''],
-        ['active', 'Whether the menu item is active', 'boolean', 'false'],
+        ['name', '菜单项的名称', 'string', '-'],
+        ['to', '菜单项的跳转，通过 <code>vue-router</code> 支持', 'string', '-'],
+        ['active', '菜单项是否处于激活状态', 'boolean', 'false'],
     ]">
 </ApiTable>
 
-<br />
+## 菜单组 (Menu Group) 属性
 
-<ApiTable title="Menu Group"
+<ApiTable title="菜单组 (Menu Group) 属性"
     :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['name', 'The name of the menu group', 'String', ''],
+        ['name', '菜单组的名称', 'string', '-'],
     ]">
 </ApiTable>
 
-<br />
+## 菜单子项 (Menu Sub) 属性
 
-<ApiTable title="Menu Sub"
+<ApiTable title="菜单子项 (Menu Sub) 属性"
     :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['name', 'The name of the menu sub', 'String', ''],
-        ['active', 'Whether the menu sub is active', 'boolean', 'false'],
+        ['name', '菜单子项的名称', 'String', '-'],
+        ['active', '菜单子项是否处于激活状态', 'boolean', 'false'],
     ]">
 </ApiTable>
 
-## Slots
+## 菜单项 (Menu Item) 插槽
 
-<ApiTable title="Menu Item"
+<ApiTable title="菜单项 (Menu Item) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['default', 'Default slot'],
-        ['icon', 'Icon slot'],
-        ['suffix', 'Suffix slot'],
+        ['default', '默认插槽'],
+        ['icon', '图标插槽'],
+        ['suffix', '后缀插槽']
     ]">
 </ApiTable>
 
-<br />
+## 菜单组 (Menu Group) 插槽
 
-<ApiTable title="Menu Group"
+<ApiTable title="菜单组 (Menu Group) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['default', 'Default slot'],
-        ['title', 'Title slot'],
+        ['default', '默认插槽'],
+        ['title', '标题插槽'],
     ]">
 </ApiTable>
 
-<br />
+## 菜单子项 (Menu Sub) 插槽
 
-<ApiTable title="Menu Sub"
+<ApiTable title="菜单子项 (Menu Sub) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['default', 'Default slot'],
-        ['icon', 'Icon slot'],
-        ['title', 'Title slot'],
+        ['default', '默认插槽'],
+        ['icon', '图标插槽'],
+        ['title', '标题插槽'],
     ]">
 </ApiTable>

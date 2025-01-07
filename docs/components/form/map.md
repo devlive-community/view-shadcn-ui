@@ -2,15 +2,15 @@
 title: Shadcn Map
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnMap component.
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnMap v-model="value"/>
 </CodeRunner>
 
@@ -32,11 +32,11 @@ const value = ref([])
 
 :::
 
-## Size
+## 尺寸 (size)
 
 ::: raw
 
-<CodeRunner title="Size">
+<CodeRunner title="尺寸 (size)">
     <ShadcnMap v-model="value" size="small"/>
     <ShadcnMap v-model="value" size="default"/>
     <ShadcnMap v-model="value" size="large"/>
@@ -62,11 +62,11 @@ const value = ref([])
 
 :::
 
-## Type
+## 类型 (type)
 
 ::: raw
 
-<CodeRunner title="Type">
+<CodeRunner title="类型 (type)">
     <ShadcnMap v-model="value" type="primary"/>
     <ShadcnMap v-model="value" type="success"/>
     <ShadcnMap v-model="value" type="warning"/>
@@ -94,11 +94,11 @@ const value = ref([])
 
 :::
 
-## Disabled
+## 禁用 (disabled)
 
 ::: raw
 
-<CodeRunner title="Disabled">
+<CodeRunner title="禁用 (disabled)">
     <ShadcnMap v-model="value" disabled/>
 </CodeRunner>
 

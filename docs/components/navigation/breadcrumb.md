@@ -2,18 +2,18 @@
 title: Shadcn Breadcrumb
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnBreadcrumb component.
 
 - ShadcnBreadcrumb
 - ShadcnBreadcrumbItem
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
   <ShadcnBreadcrumb>
     <ShadcnBreadcrumbItem href="#">Home</ShadcnBreadcrumbItem>
     <ShadcnBreadcrumbItem href="#">Products</ShadcnBreadcrumbItem>

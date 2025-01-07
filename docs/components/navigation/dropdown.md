@@ -2,14 +2,14 @@
 title: Shadcn Dropdown
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnDropdown component.
 
 - ShadcnDropdown
 - ShadcnDropdownItem
 
-## Usage
+## 用法
 
 ::: raw
 
@@ -99,11 +99,11 @@ This document is mainly used to describe some features and usage of the ShadcnDr
 
 :::
 
-## Position
+## 位置 (position)
 
 ::: raw
 
-<CodeRunner title="Position">
+<CodeRunner title="位置 (position)">
     <ShadcnDropdown trigger="hover" position="left">
       <template #trigger>
         <ShadcnButton>Left</ShadcnButton>

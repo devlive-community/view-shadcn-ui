@@ -2,13 +2,13 @@
 title: Shadcn Drawer
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnDrawer component.
 
-## Usage
+## 用法
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnButton @click="defaultValue = !defaultValue">Open</ShadcnButton>
     <ShadcnDrawer v-model="defaultValue" title="Title">Content</ShadcnDrawer>
 </CodeRunner>
@@ -30,9 +30,9 @@ const defaultValue = ref(false)
 
 :::
 
-## Closeable
+## 可关闭 (closeable)
 
-<CodeRunner title="Closeable">
+<CodeRunner title="可关闭 (closeable)">
     <ShadcnButton @click="closableValue = !closableValue">Open</ShadcnButton>
     <ShadcnDrawer v-model="closableValue" closable title="Title">Content</ShadcnDrawer>
 </CodeRunner>
@@ -76,9 +76,9 @@ const defaultValue = ref(false)
 
 :::
 
-## Position
+## 位置 (position)
 
-<CodeRunner title="Position">
+<CodeRunner title="位置 (position)">
         <ShadcnSpace>
       <ShadcnButton @click="topValue = !topValue">Top</ShadcnButton>
       <ShadcnButton @click="buttomValue = !buttomValue">Buttom</ShadcnButton>
@@ -119,7 +119,7 @@ const rightValue = ref(false)
 
 :::
 
-## Width and Height
+## 宽度 (width) and Height
 
 <CodeRunner title="Width and Height">
     <ShadcnButton @click="widthValue = !widthValue">Width 400</ShadcnButton>

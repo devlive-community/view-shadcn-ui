@@ -1,3 +1,1 @@
-import ShadcnBadge from './ShadcnBadge.vue'
-
-export default ShadcnBadge
+export { default as ShadcnBadge } from './ShadcnBadge.vue'

@@ -2,7 +2,7 @@
 title: Shadcn Input
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnInput component.
 
@@ -52,7 +52,7 @@ const input = ref('Hello View Shadcn UI')
 
 :::
 
-## Size
+## 尺寸 (size)
 
 <CodeRunner title="Size"
     description="Create a size input.">
@@ -164,11 +164,11 @@ const input = ref('Hello View Shadcn UI')
 
 :::
 
-## Disabled
+## 禁用 (disabled)
 
 ::: raw
 
-<CodeRunner title="Disabled">
+<CodeRunner title="禁用 (disabled)">
     <ShadcnInput placeholder="Input" v-model="input" disabled />
 </CodeRunner>
 

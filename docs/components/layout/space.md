@@ -2,13 +2,13 @@
 title: Shadcn Space
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnSpace component.
 
-## Usage
+## 用法
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnSpace>
         <ShadcnButton>Button 1</ShadcnButton>
         <ShadcnButton>Button 2</ShadcnButton>
@@ -33,9 +33,9 @@ This document is mainly used to describe some features and usage of the ShadcnSp
 
 :::
 
-## Size
+## 尺寸 (size)
 
-<CodeRunner title="Size">
+<CodeRunner title="尺寸 (size)">
     <ShadcnSpace size="large">
         <ShadcnButton>Button 1</ShadcnButton>
         <ShadcnButton>Button 2</ShadcnButton>
