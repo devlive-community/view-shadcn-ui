@@ -2,18 +2,18 @@
 title: Shadcn Timeline
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnTimeline component.
 
 - ShadcnTimeline
 - ShadcnTimelineItem
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnTimeline>
         <ShadcnTimelineItem title="Title 1">Content 1</ShadcnTimelineItem>
         <ShadcnTimelineItem title="Title 2">Content 2</ShadcnTimelineItem>

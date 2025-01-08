@@ -263,7 +263,7 @@ def generate_markdown(component_name: str, props: List[Dict], emits: List[Dict],
 title: {component_name.replace('Shadcn', 'Shadcn ')}
 ---
 
-# Introduction
+# 介绍
 
 This document describes the features and usage of the {component_name} component.
 """
@@ -277,11 +277,11 @@ This document describes the features and usage of the {component_name} component
             if prop['name'] == 'modelValue':
                 markdown += \
                     f"""
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <{component_name} {has_model_value and 'v-model="value"'} />
 </CodeRunner>
 

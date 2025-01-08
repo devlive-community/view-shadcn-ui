@@ -1,14 +1,16 @@
 ---
-title: Shadcn Badge
+title: 徽章 (Badge)
 ---
 
-# Introduction
+# 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnBadge component.
+<br />
 
-## Usage
+本文档主要用于描述 `ShadcnBadge` 组件的一些功能和用法。
 
-<CodeRunner title="Usage">
+## 用法
+
+<CodeRunner title="用法">
     <ShadcnBadge text="Badge">Badge</ShadcnBadge>
 </CodeRunner>
 
@@ -25,9 +27,9 @@ This document is mainly used to describe some features and usage of the ShadcnBa
 
 :::
 
-## Type
+## 类型 (type)
 
-<CodeRunner title="Type">
+<CodeRunner title="类型 (type)">
     <ShadcnBadge type="primary" text="Badge">Primary</ShadcnBadge>
     <ShadcnBadge type="success" text="Badge">Success</ShadcnBadge>
     <ShadcnBadge type="warning" text="Badge">Warning</ShadcnBadge>
@@ -50,9 +52,9 @@ This document is mainly used to describe some features and usage of the ShadcnBa
 
 :::
 
-## Text
+## 文本 (text)
 
-<CodeRunner title="Text">
+<CodeRunner title="文本 (text)">
     <ShadcnBadge text="Text">Badge</ShadcnBadge>
 </CodeRunner>
 
@@ -69,9 +71,9 @@ This document is mainly used to describe some features and usage of the ShadcnBa
 
 :::
 
-## Dot
+## 点 (dot)
 
-<CodeRunner title="Dot">
+<CodeRunner title="点 (dot)">
     <ShadcnBadge dot>Badge</ShadcnBadge>
 </CodeRunner>
 
@@ -88,9 +90,9 @@ This document is mainly used to describe some features and usage of the ShadcnBa
 
 :::
 
-## Max
+## 最大值 (max)
 
-<CodeRunner title="Max">
+<CodeRunner title="最大值 (max)">
     <ShadcnBadge text="10" max="5">Badge</ShadcnBadge>
 </CodeRunner>
 
@@ -107,24 +109,24 @@ This document is mainly used to describe some features and usage of the ShadcnBa
 
 :::
 
-## API Attributes
+## 徽章 (Badge) 属性
 
-<ApiTable title="Badge Props"
+<ApiTable title="徽章 (Badge) 属性"
     :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['type', 'The type of the badge', 'Enum', 'primary', 'primary, success, warning, danger, info, text'],
-        ['text', 'The content of the badge', 'String', '-', '-'],
-        ['dot', 'Whether to display a dot', 'Boolean', 'false', '-'],
-        ['max', 'The maximum number of dots, only text is number', 'Number', '-', '-'],
+        ['type', '徽章类型', 'enum', 'primary', 'primary | success | warning | danger'],
+        ['text', '徽章文本', 'string', '-', '-'],
+        ['dot', '是否显示为点', 'boolean', 'false', '-'],
+        ['max', '最大点数，只有文本是数字时生效', 'number', '-', '-'],
     ]">
 </ApiTable>
 
-<br /> 
+## 徽章 (Badge) 插槽
 
-<ApiTable title="Badge Slots"
+<ApiTable title="徽章 (Badge) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['default', 'Content text'],
-        ['text', 'Content text'],
+        ['default', '默认插槽'],
+        ['text', '文本插槽'],
     ]">
 </ApiTable>

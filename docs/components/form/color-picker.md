@@ -2,15 +2,15 @@
 title: Shadcn ColorPicker
 ---
 
-# Introduction
+# 介绍
 
 This document describes the features and usage of the ShadcnColorPicker component.
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnColorPicker v-model="value" />
 </CodeRunner>
 
@@ -46,11 +46,11 @@ This document describes the features and usage of the ShadcnColorPicker componen
 
 :::
 
-## Disabled
+## 禁用 (disabled)
 
 ::: raw
 
-<CodeRunner title="Disabled">
+<CodeRunner title="禁用 (disabled)">
     <ShadcnColorPicker v-model="value" disabled />
     <ShadcnColorPicker v-model="value" :disabled="false" />
 </CodeRunner>

@@ -2,15 +2,15 @@
 title: Shadcn BackTop
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnBackTop component.
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
   <div class="p-8">
     <div v-for="n in 3" :key="n" class="mb-8 p-4 bg-gray-100 rounded">
       <h2 class="text-xl font-bold mb-2">Section {{ n }}</h2>

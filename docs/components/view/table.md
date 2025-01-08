@@ -2,15 +2,15 @@
 title: Shadcn Table
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnTable component.
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnTable :columns="columns" :data="data"/>
 </CodeRunner>
 
@@ -108,7 +108,7 @@ const data = [
 
 :::
 
-## Width
+## 宽度 (width)
 
 ::: raw
 

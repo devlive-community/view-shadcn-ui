@@ -2,11 +2,11 @@
 title: Shadcn Contribution
 ---
 
-# Introduction
+# 介绍
 
 This document describes the features and usage of the ShadcnContribution component.
 
-## Usage
+## 用法
 
 ::: raw
 

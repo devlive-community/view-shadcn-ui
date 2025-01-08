@@ -2,15 +2,15 @@
 title: Shadcn Toggle
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnToggle component.
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <p>Default Value: {{ defaultValue }}</p>
     <ShadcnToggle v-model="defaultValue" value="B">B</ShadcnToggle>
 </CodeRunner>
@@ -34,11 +34,11 @@ const defaultValue = ref(null)
 
 :::
 
-## Disabled
+## 禁用 (disabled)
 
 ::: raw
 
-<CodeRunner title="Disabled">
+<CodeRunner title="禁用 (disabled)">
     <ShadcnToggle v-model="defaultValue" value="B">B</ShadcnToggle>
     <ShadcnToggle v-model="disabledValue" disabled value="D">D</ShadcnToggle>
 </CodeRunner>
@@ -56,11 +56,11 @@ const defaultValue = ref(null)
 
 :::
 
-## Size
+## 尺寸 (size)
 
 ::: raw
 
-<CodeRunner title="Size">
+<CodeRunner title="尺寸 (size)">
     <ShadcnSpace>
       <ShadcnToggle v-model="defaultValue" size="small" value="S">S</ShadcnToggle>
       <ShadcnToggle v-model="defaultValue" size="default" value="D">D</ShadcnToggle>

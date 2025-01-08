@@ -2,15 +2,15 @@
 title: Shadcn HoverCard
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnHoverCard component.
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnHoverCard content="This is a hover card">
         <ShadcnButton>Hover</ShadcnButton>
     </ShadcnHoverCard>
@@ -60,11 +60,11 @@ This document is mainly used to describe some features and usage of the ShadcnHo
 
 :::
 
-## Position
+## 位置 (position)
 
 ::: raw
 
-<CodeRunner title="Position">
+<CodeRunner title="位置 (position)">
     <ShadcnHoverCard content="Position" position="top">
         <ShadcnButton>Top</ShadcnButton>
     </ShadcnHoverCard>
@@ -138,7 +138,7 @@ This document is mainly used to describe some features and usage of the ShadcnHo
 
 :::
 
-## Width
+## 宽度 (width)
 
 ::: raw
 

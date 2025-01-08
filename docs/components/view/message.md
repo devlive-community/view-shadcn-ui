@@ -2,13 +2,13 @@
 title: Shadcn Message
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnMessage component.
 
-## Usage
+## 用法
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnButton @click="info(false)">Show Message</ShadcnButton>
 </CodeRunner>
 
@@ -66,9 +66,9 @@ export default defineComponent({
 
 :::
 
-## Type
+## 类型 (type)
 
-<CodeRunner title="Type">
+<CodeRunner title="类型 (type)">
   <ShadcnSpace wrap>
     <ShadcnButton @click="info(false)">Info</ShadcnButton>
     <ShadcnButton @click="success(false)">Success</ShadcnButton>
@@ -138,7 +138,7 @@ export default {
 
 ## Background
 
-<CodeRunner title="Type">
+<CodeRunner title="类型 (type)">
   <ShadcnSpace wrap>
     <ShadcnButton @click="info(true)">Info</ShadcnButton>
     <ShadcnButton @click="success(true)">Success</ShadcnButton>

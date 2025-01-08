@@ -2,15 +2,15 @@
 title: Shadcn CodeEditor
 ---
 
-# Introduction
+# 介绍
 
 This document describes the features and usage of the ShadcnCodeEditor component.
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnCodeEditor v-model="value" />
 </CodeRunner>
 
@@ -205,7 +205,7 @@ This document describes the features and usage of the ShadcnCodeEditor component
 ## CodeEditor Events
 
 <ApiTable title="Events"
-    :headers="['Event', 'Description', 'Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['update:modelValue', 'update modelValue value', 'string'],
         ['on-change', 'on change', 'string'],

@@ -2,13 +2,13 @@
 title: Shadcn Select
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnSelect and ShadcnSelectOption component.
 
-## Usage
+## 用法
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <p>Select Value: {{ defaultSelect }}</p>
     <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" />
 </CodeRunner>
@@ -34,9 +34,9 @@ const defaultSelectOptions = [
 
 :::
 
-## Disabled
+## 禁用 (disabled)
 
-<CodeRunner title="Disabled">
+<CodeRunner title="禁用 (disabled)">
     <p>Select Value: {{ defaultSelect }}</p>
     <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" disabled />
 </CodeRunner>
@@ -103,9 +103,9 @@ const defaultSelect = ref(null)
 
 :::
 
-## Size
+## 尺寸 (size)
 
-<CodeRunner title="Size">
+<CodeRunner title="尺寸 (size)">
     <div class="space-y-2">
         <p>Select Value: {{ defaultSelect }}</p>
         <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" size="small" />
@@ -138,9 +138,9 @@ const defaultSelectOptions = [
 
 :::
 
-## Type
+## 类型 (type)
 
-<CodeRunner title="Type">
+<CodeRunner title="类型 (type)">
     <div class="space-y-2">
         <p>Select Value: {{ defaultSelect }}</p>
         <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" type="primary" />

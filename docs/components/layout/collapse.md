@@ -2,18 +2,18 @@
 title: Shadcn Collapse
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnCollapse component.
 
 - ShadcnCollapse
 - ShadcnCollapseItem
 
-## Usage
+## 用法
 
 :::raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     Default Value: {{ expandedItems }}
     <ShadcnCollapse class="w-full" v-model="expandedItems">
       <ShadcnCollapseItem title="Section 1" name="1">
@@ -123,7 +123,7 @@ const expandedItems = ref<string[]>([])
 ## Collapse Events
 
 <ApiTable title="Collapse Events"
-    :headers="['Event', 'Description', 'Parameters']"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['on-change', 'The event is triggered when the value changes', 'Any[]'],
     ]">

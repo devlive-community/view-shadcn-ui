@@ -2,7 +2,7 @@
 title: Shadcn Tooltip
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnTooltip component.
 
@@ -54,7 +54,7 @@ This document is mainly used to describe some features and usage of the ShadcnTo
 
 :::
 
-## Position
+## 位置 (position)
 
 <CodeRunner title="Position"
     description="Create a tooltip with custom position.">
@@ -152,7 +152,7 @@ This document is mainly used to describe some features and usage of the ShadcnTo
 
 :::
 
-## Width
+## 宽度 (width)
 
 <CodeRunner title="Width">
     <ShadcnTooltip content="Steve Jobs (English: Steve Jobs) is an American entrepreneur, marketer and inventor. He is one of the co-founders of Apple and has served as chairman and CEO. He is also the founder and CEO of NeXT and the founder and former CEO of Pixar Animation. He was a member of the board of directors of the Walt Disney Company in 2006. The place where Apple's press conference was held in September 2017 was named Steve Jobs Theater after him." width="200">

@@ -2,13 +2,13 @@
 title: Shadcn Checkbox
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnCheckbox component.
 
-## Usage
+## 用法
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <p>Checkbox Value: {{ checked }}</p>
     <ShadcnCheckbox v-model="checked" value="Vue">Vue</ShadcnCheckbox>
     <ShadcnCheckbox v-model="checked" value="Nuxt">Nuxt</ShadcnCheckbox>
@@ -31,9 +31,9 @@ const checked = ref('Vue')
 
 :::
 
-## Disabled
+## 禁用 (disabled)
 
-<CodeRunner title="Disabled">
+<CodeRunner title="禁用 (disabled)">
     <ShadcnCheckbox v-model="checked" value="Vue" disabled>Vue</ShadcnCheckbox>
     <ShadcnCheckbox v-model="checked" value="Nuxt">Nuxt</ShadcnCheckbox>
 </CodeRunner>
@@ -55,9 +55,9 @@ const checked = ref('Vue')
 
 :::
 
-## Size
+## 尺寸 (size)
 
-<CodeRunner title="Size">
+<CodeRunner title="尺寸 (size)">
     <ShadcnCheckbox v-model="checked" value="Default" size="default" @on-change="onChange">Default</ShadcnCheckbox>
     <ShadcnCheckbox v-model="checked" value="Small" size="small" @on-change="onChange">Small</ShadcnCheckbox>
     <ShadcnCheckbox v-model="checked" value="Large" size="large" @on-change="onChange">Large</ShadcnCheckbox>
@@ -81,9 +81,9 @@ const checked = ref('Default')
 
 :::
 
-## Type
+## 类型 (type)
 
-<CodeRunner title="Type">
+<CodeRunner title="类型 (type)">
     <ShadcnCheckbox v-model="checked" value="Primary" type="primary">Primary</ShadcnCheckbox>
     <ShadcnCheckbox v-model="checked" value="Success" type="success">Success</ShadcnCheckbox>
     <ShadcnCheckbox v-model="checked" value="Warning" type="warning">Warning</ShadcnCheckbox>

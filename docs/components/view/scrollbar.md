@@ -2,15 +2,15 @@
 title: Shadcn Scrollbar
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnScrollbar component.
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnScrollbar>
       <div class="space-y-4">
         <p v-for="i in 100">This is a scrollbar component example index {{ i }}</p>
@@ -62,11 +62,11 @@ This document is mainly used to describe some features and usage of the ShadcnSc
 
 :::
 
-## Position
+## 位置 (position)
 
 ::: raw
 
-<CodeRunner title="Position">
+<CodeRunner title="位置 (position)">
     <ShadcnScrollbar position="left">
       <div class="space-y-4">
         <p v-for="i in 100">This is a scrollbar component example index {{ i }}</p>

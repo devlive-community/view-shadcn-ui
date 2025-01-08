@@ -2,15 +2,15 @@
 title: Shadcn CountDown
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnCountDown component.
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnCountDown :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)" />
 </CodeRunner>
 

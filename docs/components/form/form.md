@@ -2,18 +2,18 @@
 title: Shadcn Form
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnForm component.
 
 - ShadcnForm
 - ShadcnFormItem
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnForm ref="formRef"
                 v-model="formData"
                 @on-submit="onSubmit"

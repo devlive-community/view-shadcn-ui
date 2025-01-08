@@ -2,13 +2,13 @@
 title: Shadcn Switch
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnSwitch component.
 
-## Usage
+## 用法
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnSwitch v-model="checked" />
 </CodeRunner>
 
@@ -28,9 +28,9 @@ const checked = ref(false)
 
 :::
 
-## Type
+## 类型 (type)
 
-<CodeRunner title="Type">
+<CodeRunner title="类型 (type)">
     <ShadcnSwitch v-model="checked" type="success" />
     <ShadcnSwitch v-model="checked" type="warning" />
     <ShadcnSwitch v-model="checked" type="error" />
@@ -56,9 +56,9 @@ const checked = ref(false)
 
 :::
 
-## Size
+## 尺寸 (size)
 
-<CodeRunner title="Size">
+<CodeRunner title="尺寸 (size)">
     <ShadcnSwitch v-model="checked" size="small" />
     <ShadcnSwitch v-model="checked" size="default" />
     <ShadcnSwitch v-model="checked" size="large" />
@@ -82,9 +82,9 @@ const checked = ref(false)
 
 :::
 
-## Disabled
+## 禁用 (disabled)
 
-<CodeRunner title="Disabled">
+<CodeRunner title="禁用 (disabled)">
     <ShadcnSwitch v-model="checked" disabled />
 </CodeRunner>
 

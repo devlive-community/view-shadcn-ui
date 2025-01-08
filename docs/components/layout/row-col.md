@@ -2,11 +2,11 @@
 title: Shadcn Row and Shadcn Col
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnRow and ShadcnCol.
 
-## Usage
+## 用法
 
 <CodeRunner title="Simple Row and Col"
     description="Created a simple row and col with 4 cols">

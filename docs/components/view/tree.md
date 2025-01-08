@@ -2,15 +2,15 @@
 title: Shadcn Tree
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnTree component.
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     Value: {{ basicValue }}
     <ShadcnTree v-model="basicValue"
                 :data="data"
@@ -278,11 +278,11 @@ const loadNodeData = (item: any, callback: (children: any[]) => void) => {
 
 :::
 
-## Disabled
+## 禁用 (disabled)
 
 ::: raw
 
-<CodeRunner title="Disabled">
+<CodeRunner title="禁用 (disabled)">
     Value: {{ disabledValue }}
     <ShadcnTree v-model="disabledValue" :data="disabledData"/>
 </CodeRunner>

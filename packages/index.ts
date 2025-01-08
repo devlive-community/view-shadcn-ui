@@ -20,7 +20,7 @@ import ShadcnDivider from '@/ui/divider'
 import ShadcnEllipsis from '@/ui/ellipsis'
 import ShadcnAvatar from '@/ui/avatar'
 import ShadcnAvatarGroup from '@/ui/avatar/group'
-import ShadcnBadge from '@/ui/badge'
+import { ShadcnBadge } from '@/ui/badge'
 import ShadcnAlert from '@/ui/alert'
 import ShadcnProgress from '@/ui/progress'
 import ShadcnSpace from '@/ui/space'
@@ -100,6 +100,7 @@ import { ShadcnCron } from '@/ui/cron'
 import { ShadcnContribution } from '@/ui/contribution'
 import { ShadcnMention } from '@/ui/mention'
 import { ShadcnImage, ShadcnImageGroup, ShadcnImageViewer } from '@/ui/image'
+import { ShadcnCarousel } from '@/ui/carousel'
 
 let components = [
     ShadcnButton,
@@ -196,7 +197,8 @@ let components = [
     ShadcnCron,
     ShadcnContribution,
     ShadcnMention,
-    ShadcnImage, ShadcnImageGroup, ShadcnImageViewer
+    ShadcnImage, ShadcnImageGroup, ShadcnImageViewer,
+    ShadcnCarousel
 ]
 
 interface InstallOptions
@@ -249,7 +251,7 @@ export { default as ShadcnDivider } from '@/ui/divider'
 export { default as ShadcnEllipsis } from '@/ui/ellipsis'
 export { default as ShadcnAvatar } from '@/ui/avatar'
 export { default as ShadcnAvatarGroup } from '@/ui/avatar/group'
-export { default as ShadcnBadge } from '@/ui/badge'
+export { ShadcnBadge } from '@/ui/badge'
 export { default as ShadcnAlert } from '@/ui/alert'
 export { default as ShadcnProgress } from '@/ui/progress'
 export { default as ShadcnSpace } from '@/ui/space'
@@ -329,6 +331,7 @@ export { ShadcnCron } from '@/ui/cron'
 export { ShadcnContribution } from '@/ui/contribution'
 export { ShadcnMention } from '@/ui/mention'
 export { ShadcnImage, ShadcnImageGroup, ShadcnImageViewer } from '@/ui/image'
+export { ShadcnCarousel } from '@/ui/carousel'
 
 // Export functions
 export { fnToString, fnToFunction } from '@/utils/formatter'

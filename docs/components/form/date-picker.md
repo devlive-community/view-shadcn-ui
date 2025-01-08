@@ -2,15 +2,15 @@
 title: Shadcn DatePicker
 ---
 
-# Introduction
+# 介绍
 
 This document describes the features and usage of the ShadcnDatePicker component.
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnDatePicker v-model="value" />
 </CodeRunner>
 
@@ -26,11 +26,11 @@ This document describes the features and usage of the ShadcnDatePicker component
 
 :::
 
-## Type
+## 类型 (type)
 
 ::: raw
 
-<CodeRunner title="Type">
+<CodeRunner title="类型 (type)">
     <ShadcnDatePicker v-model="value" type="date" />
     <ShadcnDatePicker v-model="value" type="range" />
 </CodeRunner>
@@ -68,11 +68,11 @@ This document describes the features and usage of the ShadcnDatePicker component
 
 :::
 
-## Disabled
+## 禁用 (disabled)
 
 ::: raw
 
-<CodeRunner title="Disabled">
+<CodeRunner title="禁用 (disabled)">
     <ShadcnDatePicker v-model="value" disabled />
     <ShadcnDatePicker v-model="value" :disabled="false" />
 </CodeRunner>

@@ -1,15 +1,17 @@
 ---
-title: Shadcn Page
+title: 分页 (Pagination)
 ---
 
-# Introduction
+# 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnPage component.
+<br />
 
-## Usage
+本文档主要用于描述 `ShadcnPagination` 组件的一些特性和用法。
 
-<CodeRunner title="Usage">
-    Default Page : {{defaultValue}}
+## 用法
+
+<CodeRunner title="用法">
+    数据值 : {{defaultValue}}
     <ShadcnPagination v-model="defaultValue" total="100"/>
 </CodeRunner>
 
@@ -29,10 +31,10 @@ const defaultValue = ref(1)
 
 :::
 
-## Page Size
+## 每页大小 (page-size)
 
-<CodeRunner title="Page Size">
-    Default Page : {{defaultValue}}
+<CodeRunner title="每页大小 (page-size)">
+    数据值 : {{defaultValue}}
     <ShadcnPagination v-model="defaultValue" total="100" page-size="20"/>
 </CodeRunner>
 
@@ -52,10 +54,10 @@ const defaultValue = ref(1)
 
 :::
 
-## Prev and Next
+## 上下页文本 (prev-text, next-text)
 
-<CodeRunner title="Prev and Next">
-    Default Page : {{defaultValue}}
+<CodeRunner title="上下页文本 (prev-text, next-text)">
+    数据值 : {{defaultValue}}
     <ShadcnPagination v-model="defaultValue" total="100" prev-text="P" next-text="N"/>
 </CodeRunner>
 
@@ -75,10 +77,10 @@ const defaultValue = ref(1)
 
 :::
 
-## Show Max Page
+## 最大页数 (max-show-page)
 
-<CodeRunner title="Show Max Page">
-    Default Page : {{defaultValue}}
+<CodeRunner title="最大页数 (max-show-page)">
+    数据值 : {{defaultValue}}
     <ShadcnPagination v-model="defaultValue" total="100" max-show-page="8"/>
 </CodeRunner>
 
@@ -98,10 +100,10 @@ const defaultValue = ref(1)
 
 :::
 
-## Show Total Count
+## 显示总数 (show-total)
 
-<CodeRunner title="Show Total Count">
-    Default Page : {{defaultValue}}
+<CodeRunner title="显示总数 (show-total)">
+    数据值 : {{defaultValue}}
     <ShadcnPagination v-model="defaultValue" total="100" show-total/>
 </CodeRunner>
 
@@ -121,12 +123,12 @@ const defaultValue = ref(1)
 
 :::
 
-## Show Sizer
+## 页数选择器 (show-sizer)
 
-<CodeRunner title="Show Sizer">
-    Default Page : {{defaultValue}}
+<CodeRunner title="页数选择器 (show-sizer)">
+    数据值 : {{defaultValue}}
     <ShadcnPagination v-model="defaultValue" total="100" show-sizer/>
-    Custom
+    自定义
     <ShadcnPagination v-model="defaultValue" total="100" show-sizer :sizer-options="[5, 10, 20]"/>
 </CodeRunner>
 
@@ -147,42 +149,42 @@ const defaultValue = ref(1)
 
 :::
 
-## API Attributes
+## 分页 (Pagination) 属性
 
-<ApiTable title="Page Props"
-    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
+<ApiTable title="分页 (Pagination) 属性"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['modelValue', 'The current page number', 'Number | String', '1', ''],
-        ['total', 'The total number of data count', 'Number | String', '100', ''],
-        ['pageSize', 'The number of items per page', 'Number | String', '10', ''],
-        ['prevText', 'The text of the previous page button', 'String', 'Prev Page', ''],
-        ['nextText', 'The text of the next page button', 'String', 'Next Page', ''],
-        ['maxShowPage', 'The maximum number of pages to display', 'Number | String', '5', ''],
-        ['showTotal', 'Whether to display the total number of items', 'Boolean', 'false', ''],
-        ['showSizer', 'Whether to display the page size selector', 'Boolean', 'false', ''],
-        ['sizerOptions', 'The options of the page size selector', 'Array', '\[10, 20, 50, 100\]', ''],
+        ['modelValue', '当前页码', 'number | string', '1'],
+        ['total', '数据总数', 'number | string', '100'],
+        ['pageSize', '每页大小', 'number | string', '10'],
+        ['prevText', '上一页文本', 'string', 'Prev Page'],
+        ['nextText', '下一页文本', 'string', 'Next Page'],
+        ['maxShowPage', '最大显示页数', 'number | string', '5'],
+        ['showTotal', '是否显示项总数', 'boolean', 'false'],
+        ['showSizer', '是否显示页数选择器', 'boolean', 'false'],
+        ['sizerOptions', '页数选择器选项', 'array', '\[10, 20, 50, 100\]'],
     ]">
 </ApiTable>
 
-<br />
+## 分页 (Pagination) 事件
 
-<ApiTable title="Page Events"
-    :headers="['Event', 'Description', 'Parameters']"
+<ApiTable title="分页 (Pagination) 事件"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['on-change', 'Triggered when the page number is changed', 'Number'],
-        ['on-prev', 'Triggered when the previous page button is clicked', 'Number'],
-        ['on-next', 'Triggered when the next page button is clicked', 'Number'],
-        ['on-change-size', 'Triggered when the page size is changed', 'Number'],
+        ['on-change', '更改页码时触发', 'number'],
+        ['on-prev', '点击上一页按钮时触发', 'number'],
+        ['on-next', '点击下一页按钮时触发', 'number'],
+        ['on-change-size', '更改每页大小时触发', 'number'],
     ]">
 </ApiTable>
 
-<br />
+## 分页 (Pagination) 插槽
 
-<ApiTable title="Page Slots"
+<ApiTable title="分页 (Pagination) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['showTotal', 'The content of the total number of items'],
-        ['sizer', 'The content of the page size selector'],
+        ['showTotal', '项总数的内容'],
+        ['sizer', '页面大小选择器的内容'],
     ]">
 </ApiTable>
 

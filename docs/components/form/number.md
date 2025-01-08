@@ -2,15 +2,15 @@
 title: Shadcn Number
 ---
 
-# Introduction
+# 介绍
 
 This document is mainly used to describe some features and usage of the ShadcnNumber component.
 
-## Usage
+## 用法
 
 ::: raw
 
-<CodeRunner title="Usage">
+<CodeRunner title="用法">
     <ShadcnNumber v-model="basicValue" />
 </CodeRunner>
 
@@ -32,11 +32,11 @@ const value = ref(0)
 
 :::
 
-## Size
+## 尺寸 (size)
 
 ::: raw
 
-<CodeRunner title="Size">
+<CodeRunner title="尺寸 (size)">
     <div class="space-y-2">
         <ShadcnNumber v-model="basicValue" size="small" />
         <ShadcnNumber v-model="basicValue" size="default" />
@@ -64,11 +64,11 @@ const value = ref(0)
 
 :::
 
-## Type
+## 类型 (type)
 
 ::: raw
 
-<CodeRunner title="Type">
+<CodeRunner title="类型 (type)">
     <div class="space-y-2">
         <ShadcnNumber v-model="value" size="small" type="primary"/>
         <ShadcnNumber v-model="value" size="default" type="warning"/>
@@ -98,11 +98,11 @@ const value = ref(0)
 
 :::
 
-## Disabled
+## 禁用 (disabled)
 
 ::: raw
 
-<CodeRunner title="Disabled">
+<CodeRunner title="禁用 (disabled)">
     <div class="space-y-2">
         <ShadcnNumber v-model="basicValue"/>
         <ShadcnNumber v-model="basicValue" disabled />
