@@ -96,6 +96,26 @@ title: 轮播 (Carousel)
 
 :::
 
+## 轮播方向 (direction)
+
+::: raw
+
+<CodeRunner title="轮播方向 (direction)">
+    <ShadcnCarousel :items="items" direction="vertical" />
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <ShadcnCarousel :items="items" direction="vertical" />
+</template>
+```
+
+:::
+
 ## 轮播 (Carousel) 属性
 
 <ApiTable title="属性"
@@ -104,7 +124,8 @@ title: 轮播 (Carousel)
         ['items', '要显示的项数组', 'any\[\]', '-'],
         ['interval', '自动播放间隔（以毫秒为单位）', 'number', '3000'],
         ['showArrows', '是否显示箭头', 'boolean', 'true'],
-        ['showIndicators', '是否显示指示器', 'boolean', 'true']
+        ['showIndicators', '是否显示指示器', 'boolean', 'true'],
+        ['direction', '轮播方向', 'horizontal | vertical', 'horizontal']
     ]">
 </ApiTable>
 
@@ -122,6 +143,7 @@ title: 轮播 (Carousel)
 <ApiTable title="轮播 (Carousel) 插槽"
     :headers="['插槽', '描述', '回调参数']"
     :columns="[
+        ['item', '要显示的项', 'item: any'],
         ['prev', '上一个插槽', '-'],
         ['next', '下一个插槽', '-']
     ]">

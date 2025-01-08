@@ -2,6 +2,12 @@
   <div class="p-32 space-y-7 space-x-4">
     <div class="p-2 flex flex-col space-y-4 min-h-32 space-x-6 overflow-x-auto">
       <ShadcnCarousel :items="items"
+                      direction="vertical"
+                      :interval="5000"
+                      @on-change="handleChange">
+      </ShadcnCarousel>
+
+      <ShadcnCarousel :items="items"
                       :interval="5000"
                       @on-change="handleChange">
       </ShadcnCarousel>

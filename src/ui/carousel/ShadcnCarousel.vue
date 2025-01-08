@@ -1,14 +1,21 @@
 <template>
-  <div class="relative w-full overflow-hidden">
-    <div class="flex transition-transform duration-300 ease-in-out" :style="containerStyle">
-      <div v-for="(item, index) in props.items" :key="index" class="w-full flex-shrink-0">
+  <div class="relative w-full h-96 overflow-hidden">
+    <div class="flex transition-transform duration-300 ease-in-out"
+         :class="[props.direction === 'vertical' ? 'h-full flex-col' : '']"
+         :style="containerStyle">
+      <div v-for="(item, index) in props.items"
+           :key="index"
+           class="flex-shrink-0"
+           :class="[props.direction === 'vertical' ? 'w-full h-full' : 'w-full']">
         <slot :item="item" :index="index">
           <ShadcnImage :src="item.src" :alt="item.text" width="100%" height="100%"/>
         </slot>
       </div>
     </div>
 
-    <div v-if="props.showIndicators" class="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+    <div v-if="props.showIndicators"
+         class="absolute flex gap-2"
+         :class="[props.direction === 'vertical' ? 'right-4 top-0 bottom-0 flex-col items-center justify-center' : 'bottom-4 left-0 right-0 justify-center']">
       <button v-for="(_, index) in props.items"
               :key="index"
               class="w-2 h-2 rounded-full transition-colors"
@@ -17,13 +24,15 @@
     </div>
 
     <template v-if="props.showArrows">
-      <button class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full hover:bg-black/30 text-white"
+      <button class="absolute flex items-center justify-center rounded-full hover:bg-black/30 text-white w-10 h-10"
+              :class="[props.direction === 'vertical' ? 'left-1/2 top-4 -translate-x-1/2 rotate-90' : 'left-4 top-1/2 -translate-y-1/2']"
               @click="prev">
         <slot name="prev">
           ←
         </slot>
       </button>
-      <button class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full hover:bg-black/30 text-white"
+      <button class="absolute flex items-center justify-center rounded-full hover:bg-black/30 text-white w-10 h-10"
+              :class="[props.direction === 'vertical' ? 'left-1/2 bottom-4 -translate-x-1/2 rotate-90' : 'right-4 top-1/2 -translate-y-1/2']"
               @click="next">
         <slot name="next">
           →
@@ -41,7 +50,8 @@ import { ShadcnImage } from '@/ui/image'
 const props = withDefaults(defineProps<CarouselProps>(), {
   interval: 3000,
   showArrows: true,
-  showIndicators: true
+  showIndicators: true,
+  direction: 'horizontal'
 })
 
 const emit = defineEmits<CarouselEmits>()
@@ -49,9 +59,12 @@ const emit = defineEmits<CarouselEmits>()
 const currentIndex = ref(0)
 let timer: number | null = null
 
-const containerStyle = computed(() => ({
-  transform: `translateX(-${ currentIndex.value * 100 }%)`
-}))
+const containerStyle = computed(() => {
+  const translate = currentIndex.value * 100
+  return props.direction === 'vertical'
+      ? { transform: `translateY(-${translate}%)`, height: `${props.items.length * 100}%` }
+      : { transform: `translateX(-${translate}%)` }
+})
 
 const updateIndex = (index: number) => {
   currentIndex.value = index
