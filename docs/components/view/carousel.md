@@ -117,6 +117,16 @@ title: 轮播 (Carousel)
     ]">
 </ApiTable>
 
+## 轮播 (Carousel) 插槽
+
+<ApiTable title="轮播 (Carousel) 插槽"
+    :headers="['插槽', '描述', '回调参数']"
+    :columns="[
+        ['prev', '上一个插槽', '-'],
+        ['next', '下一个插槽', '-']
+    ]">
+</ApiTable>
+
 <script setup lang="ts">
 const items = [
   { text: 'Slide 1', src: 'https://picsum.photos/800/400' },

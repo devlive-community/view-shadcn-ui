@@ -19,11 +19,15 @@
     <template v-if="props.showArrows">
       <button class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full hover:bg-black/30 text-white"
               @click="prev">
-        ←
+        <slot name="prev">
+          ←
+        </slot>
       </button>
       <button class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full hover:bg-black/30 text-white"
               @click="next">
-        →
+        <slot name="next">
+          →
+        </slot>
       </button>
     </template>
   </div>
