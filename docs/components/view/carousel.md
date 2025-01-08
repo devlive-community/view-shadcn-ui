@@ -134,6 +134,28 @@ title: 轮播 (Carousel)
 </template>
 ```
 
+:::
+
+## 高度 (height)
+
+::: raw
+
+<CodeRunner title="高度 (height)">
+    <ShadcnCarousel :items="items" height="200px" />
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <ShadcnCarousel :items="items" height="200px" />
+</template>
+```
+
+:::
+
 ## 轮播 (Carousel) 属性
 
 <ApiTable title="属性"
@@ -144,7 +166,8 @@ title: 轮播 (Carousel)
         ['showArrows', '是否显示箭头', 'boolean', 'true'],
         ['showIndicators', '是否显示指示器', 'boolean', 'true'],
         ['direction', '轮播方向', 'horizontal | vertical', 'horizontal'],
-        ['autoPlay', '是否自动播放', 'boolean', 'true']
+        ['autoPlay', '是否自动播放', 'boolean', 'true'],
+        ['height', '轮播高度', 'number | string', '300']
     ]">
 </ApiTable>
 

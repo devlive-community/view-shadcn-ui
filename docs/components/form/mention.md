@@ -1,16 +1,18 @@
 ---
-title: Shadcn Mention
+title: 提及 (Mention)
 ---
 
 # 介绍
 
-本文介绍了 ShadcnMention 组件的功能和用法。
+<br />
 
-## 列表 (items)
+本文介绍了 `ShadcnMention` 组件的功能和用法。
+
+## 用法
 
 ::: raw
 
-<CodeRunner title="列表" codeKey="mention-items">
+<CodeRunner title="用法" codeKey="mention-items">
     <ShadcnMention :items="items" />
 </CodeRunner>
 
@@ -228,16 +230,16 @@ title: Shadcn Mention
 
 :::
 
-## Mention 属性
+## 提及 (Mention) 属性
 
-<ApiTable title="属性"
+<ApiTable title="提及 (Mention) 属性"
     :headers="['属性', '描述', '类型', '默认值', '列表']"
     :columns="[
         ['modelValue', '绑定值，这里返回的是数据的 id', 'any\[\]', '-', '-'],
         ['items', '提及的项目列表', 'MentionOption\[\]', '-', '-'],
         ['placeholder', '提示词', 'string', '-', '-'],
-        ['size', '尺寸', 'enum', 'default', 'small, default, large'],
-        ['type', '类型', 'enum', 'default', 'primary, success, warning, error'],
+        ['size', '尺寸', 'enum', 'default', 'small ｜ default ｜ large'],
+        ['type', '类型', 'enum', 'default', 'primary ｜ success ｜ warning ｜ error'],
         ['disabled', '是否禁用', 'boolean', 'false', '-'],
         ['trigger', '触发字符', 'string', '@', '-'],
         ['max', '最大项目数', 'number', 'Infinity', '-'],
@@ -245,9 +247,9 @@ title: Shadcn Mention
     ]">
 </ApiTable>
 
-## Mention 事件
+## 提及 (Mention) 事件
 
-<ApiTable title="事件"
+<ApiTable title="提及 (Mention) 事件"
     :headers="['事件', '描述', '参数']"
     :columns="[
         ['update:modelValue', '更新值时触发', 'any\[\]'],
@@ -258,9 +260,9 @@ title: Shadcn Mention
     ]">
 </ApiTable>
 
-## Mention 插槽
+## 提及 (Mention) 插槽
 
-<ApiTable title="插槽"
+<ApiTable title="提及 (Mention) 插槽"
     :headers="['插槽', '描述', '参数']"
     :columns="[
         ['item', '项目插槽', 'item: any, selected: boolean'],

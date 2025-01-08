@@ -6,6 +6,7 @@ export interface CarouselProps
     showIndicators?: boolean // 是否显示指示器
     showArrows?: boolean // 是否显示箭头
     direction?: 'horizontal' | 'vertical' // 轮播方向
+    height?: number | string
 }
 
 export type CarouselEmits = {

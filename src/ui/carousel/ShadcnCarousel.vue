@@ -1,5 +1,6 @@
 <template>
-  <div class="relative w-full h-96 overflow-hidden">
+  <div class="relative w-full overflow-hidden"
+        :style="{ height: `${calcSize(height)}` }">
     <div class="flex transition-transform duration-300 ease-in-out"
          :class="[props.direction === 'vertical' ? 'h-full flex-col' : '']"
          :style="containerStyle">
@@ -46,13 +47,15 @@
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import type { CarouselEmits, CarouselProps } from './types'
 import { ShadcnImage } from '@/ui/image'
+import { calcSize } from '@/utils/common.ts'
 
 const props = withDefaults(defineProps<CarouselProps>(), {
   interval: 3000,
   showArrows: true,
   showIndicators: true,
   direction: 'horizontal',
-  autoPlay: true
+  autoPlay: true,
+  height: 300
 })
 
 const emit = defineEmits<CarouselEmits>()

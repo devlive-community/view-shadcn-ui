@@ -224,12 +224,12 @@ export default {
                         {text: 'Time Picker', link: 'form/time-picker', icon: '/components/form/time-picker.svg', version: '2024.5.3'},
                         {text: 'Color Picker', link: 'form/color-picker', icon: '/components/form/color-picker.svg', version: '2024.5.3'},
                         {text: 'Date Picker', link: 'form/date-picker', icon: '/components/form/date-picker.svg', version: '2024.5.3'},
-                        {text: 'Cron', link: 'form/cron', icon: '/components/form/cron.svg', version: '2024.5.3'},
-                        {text: 'Mention (提及)', link: 'form/mention', icon: '/components/form/mention.svg', version: '2025.1.0'}
+                        {text: '计划任务 (Cron)', link: 'form/cron', icon: '/components/form/cron.svg', version: '2024.5.3'},
+                        {text: '提及 (Mention)', link: 'form/mention', icon: '/components/form/mention.svg', version: '2025.1.0'}
                     ]
 
                     return {
-                        text: `Form [ ${items.length} ]`,
+                        text: `表单组件 [ ${items.length} ]`,
                         base: '/components/',
                         collapsed: false,
                         items: items.map(item => createSidebarItem(item))
