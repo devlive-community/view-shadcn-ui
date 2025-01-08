@@ -51,7 +51,8 @@ const props = withDefaults(defineProps<CarouselProps>(), {
   interval: 3000,
   showArrows: true,
   showIndicators: true,
-  direction: 'horizontal'
+  direction: 'horizontal',
+  autoPlay: true
 })
 
 const emit = defineEmits<CarouselEmits>()
@@ -97,7 +98,9 @@ const stopTimer = () => {
 }
 
 onMounted(() => {
-  startTimer()
+  if (props.autoPlay) {
+    startTimer()
+  }
 })
 
 onUnmounted(() => {

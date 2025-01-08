@@ -116,6 +116,24 @@ title: 轮播 (Carousel)
 
 :::
 
+## 自动播放 (auto-play)
+
+::: raw
+
+<CodeRunner title="自动播放 (auto-play)">
+    <ShadcnCarousel :items="items" :auto-play="false" />
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <ShadcnCarousel :items="items" :auto-play="false" />
+</template>
+```
+
 ## 轮播 (Carousel) 属性
 
 <ApiTable title="属性"
@@ -125,7 +143,8 @@ title: 轮播 (Carousel)
         ['interval', '自动播放间隔（以毫秒为单位）', 'number', '3000'],
         ['showArrows', '是否显示箭头', 'boolean', 'true'],
         ['showIndicators', '是否显示指示器', 'boolean', 'true'],
-        ['direction', '轮播方向', 'horizontal | vertical', 'horizontal']
+        ['direction', '轮播方向', 'horizontal | vertical', 'horizontal'],
+        ['autoPlay', '是否自动播放', 'boolean', 'true']
     ]">
 </ApiTable>
 
