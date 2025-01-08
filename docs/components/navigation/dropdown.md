@@ -1,19 +1,18 @@
 ---
-title: Shadcn Dropdown
+title: 下拉菜单 (Dropdown)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnDropdown component.
+<br />
 
-- ShadcnDropdown
-- ShadcnDropdownItem
+本文档主要用于描述 `ShadcnDropdown` 组件的一些特性和用法。
 
 ## 用法
 
 ::: raw
 
-<CodeRunner title="Dropdown">
+<CodeRunner title="用法">
   <ShadcnDropdown trigger="click">
     <template #trigger>
       <ShadcnButton>Click Open</ShadcnButton>
@@ -62,11 +61,11 @@ This document is mainly used to describe some features and usage of the ShadcnDr
 
 :::
 
-## Divided
+## 分割线 (divided)
 
 ::: raw
 
-<CodeRunner title="Divided">
+<CodeRunner title="分割线 (divided)">
   <ShadcnDropdown trigger="hover">
     <template #trigger>
       <ShadcnButton>Hover Open</ShadcnButton>
@@ -187,54 +186,54 @@ This document is mainly used to describe some features and usage of the ShadcnDr
 
 :::
 
-## Props
+## 下拉菜单 (Dropdown) 属性
 
-<ApiTable title="Dropdown Props"
-    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
+<ApiTable title="下拉菜单 (Dropdown) 属性"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['trigger', 'The trigger of the dropdown', 'enum', 'click', '-', 'click | hover'],
-        ['position', 'The position of the dropdown', 'enum', 'left', '-', 'left | right | top | bottom'],
+        ['trigger', '下拉菜单触发方式', 'enum', 'click', 'click | hover'],
+        ['position', '下拉菜单位置', 'enum', 'left', 'left | right | top | bottom'],
     ]">
 </ApiTable>
 
-<br />
+## 下拉菜单项 (DropdownItem) 属性
 
-<ApiTable title="DropdownItem Props"
-    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
+<ApiTable title="下拉菜单项 (DropdownItem) 属性"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['name', 'The name of the dropdown item', 'String', '', '-', '-'],
-        ['active', 'Whether the dropdown item is active', 'boolean', 'false', '-', '-'],
-        ['disabled', 'Whether the dropdown item is disabled', 'boolean', 'false', '-', '-'],
-        ['divided', 'Whether the dropdown item is divided', 'boolean', 'false', '-', '-'],
+        ['name', '下拉项的名称', 'string', '-'],
+        ['active', '下拉项是否处于激活状态', 'boolean', 'false'],
+        ['disabled', '下拉项是否被禁用', 'boolean', 'false'],
+        ['divided', '下拉项是否为分割线', 'boolean', 'false'],
     ]">
 </ApiTable>
 
-## Slots
+## 下拉菜单 (Dropdown) 插槽
 
-<ApiTable title="Dropdown Slots"
+<ApiTable title="下拉菜单 (Dropdown) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['trigger', 'The trigger slot of the dropdown'],
-        ['list', 'Dropdown list content'],
+        ['trigger', '下拉菜单触发器'],
+        ['list', '下拉菜单列表'],
     ]">
 </ApiTable>
 
-## Events
+## 下拉菜单 (Dropdown) 事件
 
-<ApiTable title="Dropdown Events"
+<ApiTable title="下拉菜单 (Dropdown) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['onOpen', 'Triggered when the dropdown is opened', 'boolean'],
-        ['onClose', 'Triggered when the dropdown is closed', 'boolean'],
-        ['onClickOutside', 'Triggered when the dropdown is clicked outside', 'boolean'],
+        ['on-open', '打开下拉列表时触发', 'boolean'],
+        ['on-close', '关闭下拉列表时触发', 'boolean'],
+        ['on-click-outside', '在外部单击下拉列表时触发', 'boolean'],
     ]">
 </ApiTable>
 
-<br />
+## 下拉菜单项 (DropdownItem) 事件
 
-<ApiTable title="DropdownItem Events"
+<ApiTable title="下拉菜单项 (DropdownItem) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['onClick', 'Triggered when the dropdown item is clicked', 'boolean'],
+        ['on-click', '单击下拉项时触发', 'boolean'],
     ]">
 </ApiTable>

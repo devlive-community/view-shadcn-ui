@@ -239,11 +239,11 @@ export default {
                         {text: '选项卡 (Tabs)', link: 'navigation/tabs', icon: '/components/navigation/tabs.svg', version: '2024.1.2'},
                         {text: '分页 (Pagination)', link: 'navigation/pagination', icon: '/components/navigation/pagination.svg', version: '2024.1.2'},
                         {text: '菜单 (Menu)', link: 'navigation/menu', icon: '/components/navigation/menu.svg', version: '2024.1.2'},
-                        {text: 'Badge', link: 'navigation/badge', icon: '/components/navigation/badge.svg', version: '2024.1.2'},
-                        {text: 'Breadcrumb', link: 'navigation/breadcrumb', icon: '/components/navigation/breadcrumb.svg', version: '2024.2.0'},
-                        {text: 'Link', link: 'navigation/link', icon: '/components/navigation/link.svg', version: '2024.2.0'},
-                        {text: 'Dropdown', link: 'navigation/dropdown', icon: '/components/navigation/dropdown.svg', version: '2024.2.0'},
-                        {text: 'Contextmenu', link: 'navigation/contextmenu', icon: '/components/navigation/contextmenu.svg', version: '2024.4.0'},
+                        {text: '徽章 (Badge)', link: 'navigation/badge', icon: '/components/navigation/badge.svg', version: '2024.1.2'},
+                        {text: '面包屑 (Breadcrumb)', link: 'navigation/breadcrumb', icon: '/components/navigation/breadcrumb.svg', version: '2024.2.0'},
+                        {text: '链接 (Link)', link: 'navigation/link', icon: '/components/navigation/link.svg', version: '2024.2.0'},
+                        {text: '下拉菜单 (Dropdown)', link: 'navigation/dropdown', icon: '/components/navigation/dropdown.svg', version: '2024.2.0'},
+                        {text: '右键菜单 (Contextmenu)', link: 'navigation/contextmenu', icon: '/components/navigation/contextmenu.svg', version: '2024.4.0'},
                     ]
 
                     return {

@@ -103,11 +103,11 @@ const tags = ref([])
 
 :::
 
-## Max
+## 最大值 (max)
 
 ::: raw
 
-<CodeRunner title="Max">
+<CodeRunner title="最大值 (max)">
     <ShadcnInputTag v-model="tags" max="3" />
 </CodeRunner>
 

@@ -1,13 +1,12 @@
 ---
-title: Shadcn Breadcrumb
+title: 面包屑 (Breadcrumb)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnBreadcrumb component.
+<br />
 
-- ShadcnBreadcrumb
-- ShadcnBreadcrumbItem
+本文档主要用于描述 `ShadcnBreadcrumb` 组件的一些特性和用法。
 
 ## 用法
 
@@ -40,11 +39,11 @@ This document is mainly used to describe some features and usage of the ShadcnBr
 
 :::
 
-## Separator
+## 分隔符 (separator)
 
 ::: raw
 
-<CodeRunner title="Separator">
+<CodeRunner title="分隔符 (separator)">
   <ShadcnBreadcrumb separator="&">
     <ShadcnBreadcrumbItem href="#">Home</ShadcnBreadcrumbItem>
     <ShadcnBreadcrumbItem href="#">Products</ShadcnBreadcrumbItem>
@@ -71,30 +70,30 @@ This document is mainly used to describe some features and usage of the ShadcnBr
 
 :::
 
-## Props
+## 面包屑 (Breadcrumb) 属性
 
-<ApiTable title="Item Props"
+<ApiTable title="面包屑 (Breadcrumb) 属性"
     :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['href', 'The href of the breadcrumb item', 'String', '-'],
-        ['separator', 'The separator of the breadcrumb item', 'String', '/'],
+        ['href', '面包屑项目的链接', 'string', '-'],
+        ['separator', '面包屑项目之间的分隔符', 'string', '/'],
     ]">
 </ApiTable>
 
-## Slots
+## 面包屑 (Breadcrumb) 插槽
 
-<ApiTable title="Slots"
+<ApiTable title="面包屑 (Breadcrumb) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['default', 'item content'],
+        ['default', '面包屑项目的内容'],
     ]">
 </ApiTable>
 
-<br />
+## 面包屑项目 (Breadcrumb Item) 插槽
 
-<ApiTable title="Item Slots"
+<ApiTable title="面包屑项目 (Breadcrumb Item) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['default', 'content'],
+        ['default', '面包屑项目的内容'],
     ]">
 </ApiTable>

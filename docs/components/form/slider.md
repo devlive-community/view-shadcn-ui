@@ -46,11 +46,11 @@ This document describes the features and usage of the ShadcnSlider component.
 
 :::
 
-## Max
+## 最大值 (max)
 
 ::: raw
 
-<CodeRunner title="Max">
+<CodeRunner title="最大值 (max)">
     <ShadcnSlider v-model="value" :max="10" />
 </CodeRunner>
 

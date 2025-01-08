@@ -1,14 +1,12 @@
 ---
-title: Shadcn Context Menu
+title: 右键菜单 (Contextmenu)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnContextMenu component.
+<br />
 
-- ShadcnContextMenu
-- ShadcnContextMenuItem
-- ShadcnContextMenuSub
+本文档主要用于描述 `ShadcnContextMenu` 组件的一些特性和用法。
 
 ## 用法
 
@@ -67,11 +65,11 @@ const onItemClick = (action) => console.log(`Clicked: ${action}`)
 
 :::
 
-## Sub menu
+## 子菜单 (Sub menu)
 
 ::: raw
 
-<CodeRunner title="Sub menu">
+<CodeRunner title="子菜单 (Sub menu)">
   <ShadcnContextMenu v-model="subMenu">
     <template #trigger>
       <div class="w-full h-32 bg-gray-100 rounded-lg flex items-center justify-center">
@@ -201,61 +199,61 @@ const onItemClick = (action) => console.log(`Clicked: ${action}`)
 
 :::
 
-## Context Menu Props
+## 右键菜单 (Contextmenu) 属性
 
-<ApiTable title="Context Menu Props"
+<ApiTable title="右键菜单 (Contextmenu) 属性"
     :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['modelValue', 'The model value of the context menu', 'boolean', 'false'],
-        ['position', 'The position of the context menu', '{x: number, y: number}', 'trigger position'],
+        ['modelValue', '右键菜单的值', 'boolean', 'false'],
+        ['position', '右键菜单的位置', '{x: number, y: number}', 'trigger position'],
     ]">
 </ApiTable>
 
-<br />
+## 右键菜单项 (Contextmenu Item) 属性
 
-<ApiTable title="Context Menu Item Props"
+<ApiTable title="右键菜单项 (Contextmenu Item) 属性"
     :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['disabled', 'Whether the context menu item is disabled', 'boolean', 'false'],
+        ['disabled', '右键菜单项是否处于禁用状态', 'boolean', 'false'],
     ]">
 </ApiTable>
 
-<br />
+## 右键菜单子项 (Contextmenu Sub) 属性
 
-<ApiTable title="Context Menu Sub Props"
+<ApiTable title="右键菜单子项 (Contextmenu Sub) 属性"
     :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['label', 'The label of the context menu sub item', 'string', '-'],
-        ['disabled', 'Whether the context menu sub item is disabled', 'boolean', 'false'],
+        ['label', '右键菜单子项的标签', 'string', '-'],
+        ['disabled', '右键菜单子项是否处于禁用状态', 'boolean', 'false'],
     ]">
 </ApiTable>
 
-## Context Menu Events
+## 右键菜单 (Contextmenu) 事件
 
-<ApiTable title="Context Menu Events"
+<ApiTable title="右键菜单 (Contextmenu) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['update:modelValue', 'Update the model value of the context menu', 'boolean'],
-        ['on-open', 'Emit when the context menu is opened', '-'],
-        ['on-close', 'Emit when the context menu is closed', '-'],
+        ['update:modelValue', '更新右键菜单的值', 'boolean'],
+        ['on-open', '打开右键菜单时发出', '-'],
+        ['on-close', '关闭右键菜单时发出', '-'],
     ]">
 </ApiTable>
 
-<br />
+## 右键菜单项 (Contextmenu Item) 事件
 
-<ApiTable title="Context Menu Item Events"
+<ApiTable title="右键菜单项 (Contextmenu Item) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['on-click', 'Emit when the context menu item is clicked', '-'],
+        ['on-click', '点击右键菜单项时发出', '-'],
     ]">
 </ApiTable>
 
-## Context Menu Slots
+## 右键菜单 (Contextmenu) 插槽
 
-<ApiTable title="Context Menu Slots"
+<ApiTable title="右键菜单 (Contextmenu) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[ 
-        ['trigger', 'The trigger slot of the context menu'],
+        ['trigger', '触发右键菜单的元素'],
     ]">
 </ApiTable>
 

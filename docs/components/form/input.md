@@ -104,7 +104,7 @@ const input = ref('Hello View Shadcn UI')
 
 :::
 
-## Max Count
+## 最大值 (max) Count
 
 <CodeRunner title="Max Count"
     description="Create a max count input.">

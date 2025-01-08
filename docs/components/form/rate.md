@@ -29,7 +29,7 @@ const rate = ref(1)
 
 :::
 
-## Maximum Value
+## 最大值 (max)imum Value
 
 <CodeRunner title="Maximum Value">
     Rate Value: {{ rate }}
