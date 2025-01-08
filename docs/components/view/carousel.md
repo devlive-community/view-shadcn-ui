@@ -72,6 +72,30 @@ title: 轮播 (Carousel)
 
 :::
 
+## 显示指示器 (show-indicators)
+
+::: raw
+
+<CodeRunner title="显示指示器 (show-indicators)">
+    显示指示器
+    <ShadcnCarousel :items="items" showIndicators />
+    不显示指示器
+    <ShadcnCarousel :items="items" :showIndicators="false" />
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <ShadcnCarousel :items="items" showIndicators />
+    <ShadcnCarousel :items="items" :showIndicators="false" />
+</template>
+```
+
+:::
+
 ## 轮播 (Carousel) 属性
 
 <ApiTable title="属性"
@@ -79,7 +103,8 @@ title: 轮播 (Carousel)
     :columns="[
         ['items', '要显示的项数组', 'any\[\]', '-'],
         ['interval', '自动播放间隔（以毫秒为单位）', 'number', '3000'],
-        ['showArrows', '是否显示箭头', 'boolean', 'true']
+        ['showArrows', '是否显示箭头', 'boolean', 'true'],
+        ['showIndicators', '是否显示指示器', 'boolean', 'true']
     ]">
 </ApiTable>
 

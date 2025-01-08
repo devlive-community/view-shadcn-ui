@@ -8,6 +8,14 @@
       </div>
     </div>
 
+    <div v-if="props.showIndicators" class="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+      <button v-for="(_, index) in props.items"
+              :key="index"
+              class="w-2 h-2 rounded-full transition-colors"
+              :class="[currentIndex === index ? 'bg-white' : 'bg-white/50']"
+              @click="updateIndex(index)"/>
+    </div>
+
     <template v-if="props.showArrows">
       <button class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full hover:bg-black/30 text-white"
               @click="prev">
@@ -28,10 +36,11 @@ import { ShadcnImage } from '@/ui/image'
 
 const props = withDefaults(defineProps<CarouselProps>(), {
   interval: 3000,
-  showArrows: true
+  showArrows: true,
+  showIndicators: true
 })
 
-defineEmits<CarouselEmits>()
+const emit = defineEmits<CarouselEmits>()
 
 const currentIndex = ref(0)
 let timer: number | null = null
@@ -40,12 +49,19 @@ const containerStyle = computed(() => ({
   transform: `translateX(-${ currentIndex.value * 100 }%)`
 }))
 
+const updateIndex = (index: number) => {
+  currentIndex.value = index
+  emit('on-change', index)
+}
+
 const next = () => {
   currentIndex.value = (currentIndex.value + 1) % props.items.length
+  emit('on-change', currentIndex.value)
 }
 
 const prev = () => {
   currentIndex.value = (currentIndex.value - 1 + props.items.length) % props.items.length
+  emit('on-change', currentIndex.value)
 }
 
 const startTimer = () => {
