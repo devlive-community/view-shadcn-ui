@@ -100,6 +100,7 @@ import { ShadcnCron } from '@/ui/cron'
 import { ShadcnContribution } from '@/ui/contribution'
 import { ShadcnMention } from '@/ui/mention'
 import { ShadcnImage, ShadcnImageGroup, ShadcnImageViewer } from '@/ui/image'
+import { ShadcnCarousel } from '@/ui/carousel'
 
 let components = [
     ShadcnButton,
@@ -196,7 +197,8 @@ let components = [
     ShadcnCron,
     ShadcnContribution,
     ShadcnMention,
-    ShadcnImage, ShadcnImageGroup, ShadcnImageViewer
+    ShadcnImage, ShadcnImageGroup, ShadcnImageViewer,
+    ShadcnCarousel
 ]
 
 interface InstallOptions
@@ -329,6 +331,7 @@ export { ShadcnCron } from '@/ui/cron'
 export { ShadcnContribution } from '@/ui/contribution'
 export { ShadcnMention } from '@/ui/mention'
 export { ShadcnImage, ShadcnImageGroup, ShadcnImageViewer } from '@/ui/image'
+export { ShadcnCarousel } from '@/ui/carousel'
 
 // Export functions
 export { fnToString, fnToFunction } from '@/utils/formatter'

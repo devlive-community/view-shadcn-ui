@@ -1,16 +1,18 @@
-~~---
-title: Shadcn Image
+---
+title: 图片 (Image)
 ---
 
 # 介绍
 
-本文介绍了 ShadcnImage 组件的功能和用法。
+<br />
 
-## 源 (src)
+本文介绍了 `ShadcnImage` 组件的功能和用法。
+
+## 用法
 
 ::: raw
 
-<CodeRunner title="源" codeKey="image-src">
+<CodeRunner title="用法" codeKey="image-src">
     <ShadcnImage src="https://picsum.photos/800/400" />
 </CodeRunner>
 
@@ -176,9 +178,9 @@ title: Shadcn Image
 
 :::
 
-## Image 属性
+## 图片 (Image) 属性
 
-<ApiTable title="属性"
+<ApiTable title="图片 (Image) 属性"
     :headers="['属性', '描述', '类型', '默认值', '列表']"
     :columns="[
         ['src', '图片的路径', 'string', '-', '-'],
@@ -186,37 +188,37 @@ title: Shadcn Image
         ['width', '图片的宽度', 'string | number', '200', '-'],
         ['height', '图片的高度', 'string | number', '200', '-'],
         ['fit', '图片的填充方式', 'enum', 'cover', 'cover | contain | fill | none | scale-down'],
-        ['lazy', '是否懒加载', 'boolean', 'false'],
-        ['border', '是否显示边框', 'boolean', 'false']
+        ['lazy', '是否懒加载', 'boolean', 'false', '-'],
+        ['border', '是否显示边框', 'boolean', 'false', '-']
     ]">
 </ApiTable>
 
-## Image Group 属性
+## 图片组 (Image Group) 属性
 
-<ApiTable title="属性"
-    :headers="['属性', '描述', '类型', '默认值', '列表']"
+<ApiTable title="图片组 (Image Group) 属性"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['images', '图片列表，配置参考 Image', 'array', '-', '-'],
-        ['columns', '列数', 'number', '6', '-'],
-        ['gap', '列间距', 'number', '2', '-'],
+        ['images', '图片列表，配置参考 Image', 'array', '-'],
+        ['columns', '列数', 'number', '6'],
+        ['gap', '列间距', 'number', '2'],
         ['preview', '是否显示预览', 'boolean', 'false']
     ]">
 </ApiTable>
 
-## Image Preview 属性
+## 图片预览 (Image Preview) 属性
 
-<ApiTable title="属性"
-    :headers="['属性', '描述', '类型', '默认值', '列表']"
+<ApiTable title="图片预览 (Image Preview) 属性"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['images', '图片列表，配置参考 Image', 'array', '-', '-'],
+        ['images', '图片列表，配置参考 Image', 'array', '-'],
         ['visible', '是否显示预览', 'boolean', 'false'],
         ['current', '当前预览的图片索引', 'number', '0']
     ]">
 </ApiTable>
 
-## Image 事件
+## 图片 (Image) 事件
 
-<ApiTable title="事件"
+<ApiTable title="图片 (Image) 事件"
     :headers="['事件', '描述', '参数']"
     :columns="[
         ['on-load', '加载时触发', '-'],
@@ -224,9 +226,9 @@ title: Shadcn Image
     ]">
 </ApiTable>
 
-## Image 插槽
+## 图片 (Image) 插槽
 
-<ApiTable title="插槽"
+<ApiTable title="图片 (Image) 插槽"
     :headers="['插槽', '描述']"
     :columns="[
         ['fallback', '加载失败时显示的内容']

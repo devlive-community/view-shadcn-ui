@@ -195,11 +195,12 @@ export default {
                         {text: 'Float Button', link: 'view/float-button', icon: '/components/view/float-button.svg', version: '2024.5.2'},
                         {text: 'QrCode', link: 'view/qr-code', icon: '/components/view/qrcode.svg', version: '2024.5.3'},
                         {text: 'Contributor', link: 'view/contribution', icon: '/components/view/contribution.svg', version: '2024.5.4'},
-                        {text: 'Image (图片)', link: 'view/image', icon: '/components/view/image.svg', version: '2025.1.0'},
+                        {text: '图片 (Image)', link: 'view/image', icon: '/components/view/image.svg', version: '2025.1.0'},
+                        {text: '轮播 (Carousel)', link: 'view/carousel', icon: '/components/view/carousel.svg', version: '2025.1.0'},
                     ]
 
                     return {
-                        text: `View [ ${items.length} ]`,
+                        text: `视图组件 [ ${items.length} ]`,
                         base: '/components/',
                         collapsed: false,
                         items: items.map(item => createSidebarItem(item))
