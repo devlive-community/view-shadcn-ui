@@ -19,15 +19,10 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { SkeletonType } from '@/ui/common/type.ts'
 import { SkeletonSize } from '@/ui/common/size.ts'
+import { SkeletonItemProps } from '@/ui/skeleton/types.ts'
 
-const props = withDefaults(defineProps<{
-  animation?: boolean
-  width?: string
-  type?: keyof typeof SkeletonType
-  size?: keyof typeof SkeletonSize
-}>(), {
+const props = withDefaults(defineProps<SkeletonItemProps>(), {
   animation: false,
   type: 'rect',
   size: 'default'
@@ -36,21 +31,17 @@ const props = withDefaults(defineProps<{
 const skeletonShapeClass = computed(() => {
   switch (props.type) {
     case 'circle':
-      return 'rounded-full aspect-square'
+      return `rounded-full aspect-square ${ SkeletonSize[props.size] }`
     case 'square':
-      return 'rounded aspect-square'
+      return `rounded aspect-square ${ SkeletonSize[props.size] }`
     case 'rect':
-      return `rounded w-full h-8`
+      return `rounded w-full ${ SkeletonSize[props.size] }`
     case 'image':
       return `rounded-md ${ SkeletonSize[props.size] }`
   }
 })
 
 const skeletonClass = computed(() => {
-  // type 为 rect 时强制设置宽度为 w-full
-  if (props.type === 'rect') {
-    return 'w-full'
-  }
   return SkeletonSize[props.size] || SkeletonSize.default
 })
 </script>

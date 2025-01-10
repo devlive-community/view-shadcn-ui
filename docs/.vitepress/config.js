@@ -155,7 +155,7 @@ export default {
                         {text: 'Ellipsis', link: 'layout/ellipsis', icon: '/components/layout/ellipsis.svg', version: '2024.1.2'},
                         {text: 'Avatar', link: 'layout/avatar', icon: '/components/layout/avatar.svg', version: '2024.1.2'},
                         {text: 'Space', link: 'layout/space', icon: '/components/layout/space.svg', version: '2024.1.2'},
-                        {text: 'Skeleton', link: 'layout/skeleton', icon: '/components/layout/skeleton.svg', version: '2024.1.2'},
+                        {text: '骨架屏 (Skeleton)', link: 'layout/skeleton', icon: '/components/layout/skeleton.svg', version: '2024.1.2'},
                         {text: 'Layout', link: 'layout/layout', icon: '/components/layout/layout.svg', version: '2024.1.2'},
                         {text: 'Collapse', link: 'layout/collapse', icon: '/components/layout/collapse.svg', version: '2024.2.0'},
                         {text: 'Global Footer', link: 'layout/global-footer', icon: '/components/layout/global-footer.svg', version: '2024.2.0'},

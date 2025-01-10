@@ -4,6 +4,7 @@
       <ShadcnSkeletonItem v-for="(width, index) in itemWidths"
                           :key="index"
                           :width="width"
+                          :size="size"
                           :animation="animation"/>
     </slot>
   </div>
@@ -11,17 +12,14 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import ShadcnSkeletonItem from '@/ui/skeleton/item'
+import ShadcnSkeletonItem from './ShadcnSkeletonItem.vue'
+import { SkeletonProps } from './types'
 
-const props = withDefaults(defineProps<{
-  cols?: number | string
-  rows?: number | string
-  animation?: boolean
-  paragraph?: { rows: number, width: (number | string)[] }
-}>(), {
+const props = withDefaults(defineProps<SkeletonProps>(), {
   cols: 1,
   rows: 4,
-  animation: false
+  animation: false,
+  size: 'mini'
 })
 
 const addPxIfNumber = (value: number | string): string => {

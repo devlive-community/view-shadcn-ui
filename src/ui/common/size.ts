@@ -1,3 +1,10 @@
+export enum BaseSize
+{
+    default = 'h-8',
+    small = 'h-6',
+    large = 'h-10'
+}
+
 export enum Size
 {
     default = 'h-8',
@@ -34,9 +41,10 @@ export enum TabSize
 
 export enum SkeletonSize
 {
-    default = 'h-10 w-10',
-    small = 'h-8 w-8',
-    large = 'h-16 w-16'
+    mini = 'h-4',
+    default = BaseSize.default,
+    small = BaseSize.small,
+    large = BaseSize.large
 }
 
 export enum ButtonSize

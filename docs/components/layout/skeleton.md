@@ -1,10 +1,12 @@
 ---
-title: Shadcn Skeleton
+title: 骨架屏 (Skeleton)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnSkeleton component.
+<br />
+
+本文档主要用于描述 `ShadcnSkeleton` 组件的一些特性和用法。
 
 ## 用法
 
@@ -25,9 +27,9 @@ This document is mainly used to describe some features and usage of the ShadcnSk
 
 :::
 
-## Animation
+## 动画 (animation)
 
-<CodeRunner title="Animation">
+<CodeRunner title="动画 (animation)">
     <ShadcnSkeleton animation />
 </CodeRunner>
 
@@ -44,9 +46,9 @@ This document is mainly used to describe some features and usage of the ShadcnSk
 
 :::
 
-## Paragraph
+## 排版 (paragraph)
 
-<CodeRunner title="Title">
+<CodeRunner title="排版 (paragraph)">
     <ShadcnSkeleton :paragraph=" { rows: 5, width: [100, 200, '300px', '50%', '62%'] }"/>
 </CodeRunner>
 
@@ -63,9 +65,9 @@ This document is mainly used to describe some features and usage of the ShadcnSk
 
 :::
 
-## Item Type
+## 类型 (type)
 
-<CodeRunner title="Item Type">
+<CodeRunner title="类型 (type)">
     <ShadcnSpace>
         <ShadcnSkeletonItem animation type="circle"/>
         <ShadcnSkeletonItem animation type="square"/>
@@ -91,9 +93,9 @@ This document is mainly used to describe some features and usage of the ShadcnSk
 
 :::
 
-## Item Size
+## 尺寸 (size)
 
-<CodeRunner title="Item Size">
+<CodeRunner title="尺寸 (size)">
     <ShadcnSpace>
         <ShadcnSkeletonItem animation type="image" size="small"/>
         <ShadcnSkeletonItem animation type="image" size="default"/>
@@ -116,35 +118,35 @@ This document is mainly used to describe some features and usage of the ShadcnSk
 
 :::
 
-## API Attributes
+## 骨架屏 (Skeleton) 属性
 
-<ApiTable title="Skeleton Props"
-    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
+<ApiTable title="骨架屏 (Skeleton) 属性"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['rows', 'The rows of the skeleton', 'Number | String', '4', '-', '-'],
-        ['cols', 'The columns of the skeleton', 'Number | String', '1', '-', '-'],
-        ['animation', 'Whether to use animation', 'Boolean', 'false', '-', '-'],
-        ['paragraph', 'The paragraph of the skeleton', '{ rows: 5, width: \[100, 200, 300px, 50%, 62%\] }', '-', '-', '-'],
+        ['rows', '骨架的行数', 'number | string', '4'],
+        ['cols', '骨架的列数', 'number | string', '1'],
+        ['animation', '是否显示动画', 'boolean', 'false'],
+        ['paragraph', '骨架的排版', '{ rows: 5, width: \[100, 200, 300px, 50%, 62%\] }', '-'],
     ]">
 </ApiTable>
 
-<br />
+## 骨架屏节点 (Skeleton Item) 属性
 
-<ApiTable title="Skeleton Item Props"
-    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
+<ApiTable title="骨架屏节点 (Skeleton Item) 属性"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['animation', 'Whether to use animation', 'Boolean', 'false', '-', '-'],
-        ['width', 'The width of the skeleton item', 'Number | String', '-', '-', '-'],
-        ['type', 'The type of the skeleton item', 'Enum', 'rect', '-', 'circle | square | rect | image'],
-        ['size', 'The size of the skeleton item', 'Enum', 'default', '-', 'small | default | large'],
+        ['animation', '是否显示动画', 'Boolean', 'false', '-'],
+        ['width', '节点的宽度', 'Number | String', '-', '-'],
+        ['type', '节点的类型', 'Enum', 'rect', 'circle | square | rect | image'],
+        ['size', '节点的尺寸', 'Enum', 'default', 'small | default | large'],
     ]">
 </ApiTable>
 
-<br />
+## 骨架屏 (Skeleton) 插槽
 
-<ApiTable title="Skeleton Slots"
+<ApiTable title="骨架屏 (Skeleton) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['template', 'Skeleton template slot'],
+        ['template', '骨架的模板'],
     ]">
 </ApiTable>

@@ -4,7 +4,7 @@
                   border && 'border border-gray-200',
                   MinSize[size]
          ]">
-      <ShadcnSkeleton animation :rows="1" class="w-full"/>
+      <ShadcnSkeleton animation :rows="1" :size="size" class="w-full"/>
     </div>
     <div v-else :class="['flex rounded-md px-2 relative',
                   border && 'border border-gray-200 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2',
@@ -89,7 +89,7 @@ import { MinSize, PtPbSize } from '@/ui/common/size.ts'
 import { HoverType } from '@/ui/common/type.ts'
 import { SelectEmits, SelectOptionProps, SelectProps } from '@/ui/select/types.ts'
 import { generateRandomId } from '@/utils/common.ts'
-import ShadcnSkeleton from '@/ui/skeleton'
+import { ShadcnSkeleton } from '@/ui/skeleton'
 
 const emit = defineEmits<SelectEmits>()
 
