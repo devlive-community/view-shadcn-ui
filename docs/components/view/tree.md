@@ -379,6 +379,7 @@ const data = [
         ['children', '子节点数据', 'array', '\[\]'],
         ['isLeaf', '是否为懒加载节点', 'boolean', 'false'],
         ['disabled', '是否禁用', 'boolean', 'false'],
+        ['selected', '是否选中', 'boolean', 'false'],
     ]">
 </ApiTable>
 

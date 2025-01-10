@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineEmits, defineProps } from 'vue'
+import { computed, defineEmits, defineProps, onMounted, ref, watch } from 'vue'
 import { TreeEmits, TreeNode, TreeProps } from './types'
 import ShadcnTreeNode from './ShadcnTreeNode.vue'
 
@@ -42,9 +42,42 @@ const props = withDefaults(defineProps<TreeProps>(), {
   loadData: undefined
 })
 
-const selectedValues = computed(() => props.modelValue || [])
+// 存储所有预设选中的节点值
+const preSelectedValues = ref<any[]>([])
 
-const onExpand = (node: TreeNode) => emit('on-expand', node)
+// 递归查找所有预设选中的节点
+const findPreSelectedNodes = (nodes: TreeNode[]) => {
+  nodes.forEach(node => {
+    if (node.selected && !preSelectedValues.value.includes(node.value)) {
+      preSelectedValues.value.push(node.value)
+    }
+    if (node.children && node.children.length > 0) {
+      findPreSelectedNodes(node.children)
+    }
+  })
+}
+
+// 合并 modelValue 和预设选中的值
+const selectedValues = computed(() => {
+  const uniqueValues = new Set([...props.modelValue, ...preSelectedValues.value])
+  return Array.from(uniqueValues)
+})
+
+// 在组件挂载时初始化预设选中的节点
+onMounted(() => {
+  findPreSelectedNodes(props.data)
+  // 如果有预设选中的节点，通知父组件更新
+  if (preSelectedValues.value.length > 0) {
+    emit('update:modelValue', selectedValues.value)
+  }
+})
+
+// 观察数据变化，更新预设选中的节点
+watch(() => props.data, () => {
+  preSelectedValues.value = []
+  findPreSelectedNodes(props.data)
+  emit('update:modelValue', selectedValues.value)
+}, { deep: true })
 
 // Recursively gets the values of all child nodes
 const getAllChildrenValues = (node: TreeNode): any[] => {
@@ -96,34 +129,39 @@ const areAllChildrenSelected = (node: TreeNode, selectedValues: any[]): boolean 
   })
 }
 
+const onExpand = (node: TreeNode) => emit('on-expand', node)
+
 const onNodeClick = (node: TreeNode) => {
   if (!props.checkable) {
-    const index = props.modelValue.indexOf(node.value)
+    const index = selectedValues.value.indexOf(node.value)
     let updatedValues: any[]
+
     if (index === -1) {
       if (!props.multiple) {
         updatedValues = [node.value]
+        preSelectedValues.value = [] // 单选模式下清除预设选中
       }
       else {
-        updatedValues = [...props.modelValue, node.value]
+        updatedValues = [...selectedValues.value, node.value]
       }
     }
     else {
-      updatedValues = props.modelValue.slice()
-      updatedValues.splice(index, 1)
+      updatedValues = selectedValues.value.filter(v => v !== node.value)
     }
+
     emit('update:modelValue', updatedValues)
     emit('on-node-click', node)
     return
   }
 
-  let updatedValues = [...props.modelValue]
+  let updatedValues = [...selectedValues.value]
   const index = updatedValues.indexOf(node.value)
 
   if (!props.cascade) {
     if (index === -1) {
       if (!props.multiple) {
         updatedValues = [node.value]
+        preSelectedValues.value = [] // 单选模式下清除预设选中
       }
       else {
         updatedValues = [...updatedValues, node.value]

@@ -9,7 +9,8 @@
 
 <script setup>
 import { ref } from "vue"
-const value = ref([6])
+
+const value = ref([])
 const data = [
   {
     value: 1,
@@ -20,7 +21,7 @@ const data = [
         value: 3,
         label: 'Child Node 1.2',
         children: [
-          {value: 4, label: 'Child Node 1.2.1'}
+          {value: 4, selected: true, label: 'Child Node 1.2.1'}
         ]
       }
     ]
