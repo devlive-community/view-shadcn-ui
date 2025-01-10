@@ -1,10 +1,12 @@
 ---
-title: Shadcn Global Footer
+title: 全局页脚 (Global Footer)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnGlobalFooter component.
+<br />
+
+本文档主要用于描述 `ShadcnGlobalFooter` 组件的特性和用法。
 
 ## 用法
 
@@ -56,25 +58,25 @@ const socials = [
 
 :::
 
-## Props
+## 全局页脚 (Global Footer) 属性
 
-<ApiTable title="Props"
+<ApiTable title="全局页脚 (Global Footer) 属性"
     :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['company', 'The company name', 'String', 'Devlive Community'],
-        ['description', 'The description', 'String', 'The Devlive Software Foundation is a community of developers who are passionate about creating innovative software solutions.'],
-        ['links', 'The link groups', 'Array', '[]'],
-        ['socials', 'The socials', 'Array', '[]'],
+        ['company', '公司名称', 'string', 'Devlive Community'],
+        ['description', '描述', 'string', 'The Devlive Software Foundation is a community of developers who are passionate about creating innovative software solutions.'],
+        ['links', '链接组，3列', 'array', '\[\]'],
+        ['socials', '社交链接', 'array', '\[\]'],
     ]">
 </ApiTable>
 
-## Slots
+## 全局页脚 (Global Footer) 插槽
 
-<ApiTable title="Slots"
+<ApiTable title="全局页脚 (Global Footer) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['logo', 'Logo slot'],
-        ['copyright', 'Copyright slot'],
+        ['logo', 'Logo 图标'],
+        ['copyright', '版权信息'],
     ]">
 </ApiTable>
 

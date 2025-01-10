@@ -154,12 +154,12 @@ export default {
                         {text: '分隔线 (Divider)', link: 'layout/divider', icon: '/components/layout/divider.svg', version: '2024.1.2'},
                         {text: '省略 (Ellipsis)', link: 'layout/ellipsis', icon: '/components/layout/ellipsis.svg', version: '2024.1.2'},
                         {text: '头像 (Avatar)', link: 'layout/avatar', icon: '/components/layout/avatar.svg', version: '2024.1.2'},
-                        {text: 'Space', link: 'layout/space', icon: '/components/layout/space.svg', version: '2024.1.2'},
+                        {text: '间距 (Space)', link: 'layout/space', icon: '/components/layout/space.svg', version: '2024.1.2'},
                         {text: '骨架屏 (Skeleton)', link: 'layout/skeleton', icon: '/components/layout/skeleton.svg', version: '2024.1.2'},
-                        {text: 'Layout', link: 'layout/layout', icon: '/components/layout/layout.svg', version: '2024.1.2'},
-                        {text: 'Collapse', link: 'layout/collapse', icon: '/components/layout/collapse.svg', version: '2024.2.0'},
-                        {text: 'Global Footer', link: 'layout/global-footer', icon: '/components/layout/global-footer.svg', version: '2024.2.0'},
-                        {text: 'Toolbar Footer', link: 'layout/toolbar-footer', icon: '/components/layout/toolbar-footer.svg', version: '2024.2.0'}
+                        {text: '布局 (Layout)', link: 'layout/layout', icon: '/components/layout/layout.svg', version: '2024.1.2'},
+                        {text: '折叠 (Collapse)', link: 'layout/collapse', icon: '/components/layout/collapse.svg', version: '2024.2.0'},
+                        {text: '全局页脚 (Global Footer)', link: 'layout/global-footer', icon: '/components/layout/global-footer.svg', version: '2024.2.0'},
+                        {text: '工具栏页脚 (Toolbar Footer)', link: 'layout/toolbar-footer', icon: '/components/layout/toolbar-footer.svg', version: '2024.2.0'}
                     ]
 
                     return {

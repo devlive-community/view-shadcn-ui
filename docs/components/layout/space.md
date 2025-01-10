@@ -1,10 +1,12 @@
 ---
-title: Shadcn Space
+title: 间距 (Space)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnSpace component.
+<br />
+
+本文档主要用于描述 `ShadcnSpace` 组件的一些特性和用法。
 
 ## 用法
 
@@ -58,9 +60,9 @@ This document is mainly used to describe some features and usage of the ShadcnSp
 
 :::
 
-## Wrap
+## 自动换行 (wrap)
 
-<CodeRunner title="Wrap">
+<CodeRunner title="自动换行 (wrap)">
     <ShadcnSpace wrap>
         <ShadcnButton v-for="i in 20" type="primary">Wrap {{ i }}</ShadcnButton>
     </ShadcnSpace>
@@ -89,12 +91,12 @@ This document is mainly used to describe some features and usage of the ShadcnSp
 
 :::
 
-## API Attributes
+## 间距 (Space) 属性
 
-<ApiTable title="Space Props"
+<ApiTable title="间距 (Space) 属性"
     :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['size', 'Space size, If it is an array parameter, it is passed as \[x, y\]', 'Enum | String | Number | Array', 'default', 'small, default, large'],
-        ['wrap', 'Whether to wrap', 'Boolean', 'false', '']
+        ['size', '空间大小，如果是数组参数，则作为 \[x， y\] 传递', 'enum | string | number | array', 'default', 'small, default, large'],
+        ['wrap', '是否自动换行', 'boolean', 'false', '-']
     ]">
 </ApiTable>

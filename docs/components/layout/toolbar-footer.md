@@ -1,6 +1,12 @@
 ---
-title: Shadcn Toolbar Footer
+title: 工具栏页脚 (Toolbar Footer)
 ---
+
+# 介绍
+
+<br />
+
+本文档主要用于描述 `ShadcnToolbarFooter` 组件的一些特性和用法。
 
 ## 用法
 
@@ -29,11 +35,11 @@ title: Shadcn Toolbar Footer
 
 :::
 
-## Auto Hide
+## 自动隐藏 (auto-hide)
 
 ::: raw
 
-<CodeRunner title="Auto Hide">
+<CodeRunner title="自动隐藏 (auto-hide)">
     <ShadcnToolbarFooter auto-hide>
         <template #left>Auto Hide</template> 
     </ShadcnToolbarFooter>
@@ -56,11 +62,11 @@ title: Shadcn Toolbar Footer
 
 :::
 
-## Auto Hide Delay
+## 自动隐藏延迟 (auto-hide-delay)
 
 ::: raw
 
-<CodeRunner title="Auto Hide Delay">
+<CodeRunner title="自动隐藏延迟 (auto-hide-delay)">
     <ShadcnToolbarFooter auto-hide auto-hide-delay="2000">
         <template #left>Auto Hide Delay</template>
     </ShadcnToolbarFooter>
@@ -83,11 +89,11 @@ title: Shadcn Toolbar Footer
 
 :::
 
-## Full Width
+## 全宽 (full-width)
 
 ::: raw
 
-<CodeRunner title="Full Width">
+<CodeRunner title="全宽 (full-width)">
     <ShadcnToolbarFooter v-model="defaultValue" full-width>
       <template #left>Full Width</template>
     </ShadcnToolbarFooter>
@@ -110,26 +116,25 @@ title: Shadcn Toolbar Footer
 
 :::
 
-## Props
+## 工具栏页脚 (Toolbar Footer) 属性
 
-<ApiTable title="Props"
+<ApiTable title="工具栏页脚 (Toolbar Footer) 属性"
     :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['modelValue', 'The value of the drawer', 'boolean', 'true'],
-        ['autoHide', 'Whether to auto hide', 'boolean', 'false'],
-        ['autoHideDelay', 'Auto hide delay', 'number', '3000'],
-        ['hideOnScroll', 'Whether to hide on scroll', 'boolean', 'true'],
-        ['scrollStopDelay', 'Scroll stop delay', 'number', '600'],
-        ['fullWidth', 'Whether to full width', 'boolean', 'false'],
+        ['autoHide', '是否自动隐藏', 'boolean', 'false'],
+        ['autoHideDelay', '自动隐藏延迟', 'number', '3000'],
+        ['hideOnScroll', '是否在滚动时隐藏', 'boolean', 'true'],
+        ['scrollStopDelay', '滚动停止延迟', 'number', '600'],
+        ['fullWidth', '是否全宽', 'boolean', 'false'],
     ]">
 </ApiTable>
 
-## Events
+## 工具栏页脚 (Toolbar Footer) 事件
 
-<ApiTable title="Events"
+<ApiTable title="工具栏页脚 (Toolbar Footer) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['on-cancel', 'Triggered when the drawer is closed', 'boolean'],
-        ['on-ok', 'Triggered when the drawer is closed', 'boolean'],
+        ['on-cancel', '当关闭时触发', 'boolean'],
+        ['on-ok', '当确认时触发', 'boolean'],
     ]">
 </ApiTable>
