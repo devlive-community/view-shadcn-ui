@@ -74,11 +74,11 @@ const data = [
 
 :::
 
-## Border
+## 边框 (border)
 
 ::: raw
 
-<CodeRunner title="Border">
+<CodeRunner title="边框 (border)">
     <ShadcnTable :columns="columns" :data="data" border/>
 </CodeRunner>
 

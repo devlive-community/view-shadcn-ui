@@ -166,11 +166,9 @@ const circleClass = computed(() => {
 const buttonProps = computed(() => ({
   ...(props.to ? { link: props.to } : { type: props.submit ? 'submit' : props.reset ? 'reset' : 'button' }),
   class: [
-    // Style
     'inline-flex items-center justify-center whitespace-nowrap transition-colors',
-    // Size
+    'w-fit',
     !props.circle && ButtonSize[finalSize.value],
-    // Type style with conditional hover
     props.ghost
         ? [
           'bg-transparent',
@@ -180,12 +178,9 @@ const buttonProps = computed(() => ({
           !props.disabled && !props.loading && getHoverClass.value
         ]
         : getTypeStyles.value,
-    // Rounded corners
     { 'rounded-full': props.round || props.circle },
     { 'rounded-md': !props.round && !props.circle },
-    // Rounded
     circleClass.value,
-    // State
     { 'opacity-50 cursor-not-allowed': props.loading || props.disabled }
   ],
   disabled: props.loading || props.disabled,

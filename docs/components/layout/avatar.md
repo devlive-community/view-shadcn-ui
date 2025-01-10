@@ -86,11 +86,11 @@ This document is mainly used to describe some features and usage of the ShadcnAv
 
 :::
 
-## Group
+## 组 (group)
 
 ::: raw
 
-<CodeRunner title="Group">
+<CodeRunner title="组 (group)">
     <ShadcnAvatarGroup :items="items" />
     <ShadcnAvatarGroup :items="items" size="small"/>
     <ShadcnAvatarGroup :items="items" size="large"/>

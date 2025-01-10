@@ -143,8 +143,26 @@ const nodeChecked = computed({
   }
 })
 
+// 判断当前节点是否是目标值的父节点
+const isParentOfSelected = (node: TreeNode, selectedValue: any): boolean => {
+  if (!node.children) {
+    return false
+  }
+  return node.children.some(child => {
+    if (child.value === selectedValue) {
+      return true
+    }
+    return isParentOfSelected(child, selectedValue)
+  })
+}
+
 watch(() => props.selectedValues, (newValues) => {
-  if (newValues.includes(props.node.value) && hasChildren.value) {
+  // 如果当前节点被选中，或者是选中节点的父节点，则展开
+  const shouldExpand = newValues.some(value => {
+    return isParentOfSelected(props.node, value)
+  })
+
+  if (shouldExpand || props.selectedValues.includes(props.node.value)) {
     isExpanded.value = true
   }
 }, { immediate: true })

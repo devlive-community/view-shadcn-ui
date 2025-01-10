@@ -12,6 +12,7 @@ export interface SelectProps
     multiple?: boolean
     border?: boolean
     lazy?: boolean
+    loading?: boolean
     loadData?: (callback: (children: SelectOptionProps[]) => void) => void
 }
 

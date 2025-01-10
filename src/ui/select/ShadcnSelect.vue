@@ -1,6 +1,12 @@
 <template>
   <div ref="selectRef" class="relative">
-    <div :class="['flex rounded-md px-2 relative',
+    <div v-if="loading" :class="['flex rounded-md relative',
+                  border && 'border border-gray-200',
+                  MinSize[size]
+         ]">
+      <ShadcnSkeleton animation :rows="1" :size="size" class="w-full"/>
+    </div>
+    <div v-else :class="['flex rounded-md px-2 relative',
                   border && 'border border-gray-200 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2',
                   {
                     'cursor-pointer': !disabled,
@@ -26,7 +32,7 @@
               </span>
             </template>
             <template v-else>
-              <span class="flex items-center min-w-0 truncate select-none text-gray-300 px-2">
+              <span class="flex items-center min-w-0 truncate select-none text-gray-600 px-2">
                 {{ selectedLabels[0] || placeholder }}
               </span>
             </template>
@@ -56,7 +62,7 @@
         leave-to-class="transform -translate-y-2 scale-95 opacity-0">
       <div v-show="isExpanded"
            ref="dropdownRef"
-           class="absolute z-10 w-full px-2 rounded-md border border-gray-200 bg-white shadow-lg mt-1 py-1 overflow-y-auto max-h-60"
+           class="absolute z-20 w-full px-2 rounded-md border border-gray-200 bg-white shadow-lg mt-1 py-1 overflow-y-auto max-h-60"
            @scroll="handleScroll">
         <slot name="options">
           <ShadcnSelectOption v-for="(option, index) in internalOptions"
@@ -83,6 +89,7 @@ import { MinSize, PtPbSize } from '@/ui/common/size.ts'
 import { HoverType } from '@/ui/common/type.ts'
 import { SelectEmits, SelectOptionProps, SelectProps } from '@/ui/select/types.ts'
 import { generateRandomId } from '@/utils/common.ts'
+import { ShadcnSkeleton } from '@/ui/skeleton'
 
 const emit = defineEmits<SelectEmits>()
 
@@ -93,7 +100,8 @@ const props = withDefaults(defineProps<SelectProps>(), {
   type: 'primary',
   multiple: false,
   border: true,
-  lazy: false
+  lazy: false,
+  loading: false
 })
 
 const isExpanded = ref(false)
@@ -259,10 +267,6 @@ provide('selectContext', {
 
 onMounted(() => {
   document.addEventListener('click', onClickOutside)
-  // isExpanded.value = true
-  // nextTick(() => {
-  //   isExpanded.value = false
-  // })
 })
 
 onUnmounted(() => {
