@@ -1,15 +1,16 @@
 ---
-title: Shadcn Select
+title: 选择器 (Select)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnSelect and ShadcnSelectOption component.
+<br />
+
+本文档主要用于描述 `ShadcnSelect` 组件的一些特性和用法。
 
 ## 用法
 
 <CodeRunner title="用法">
-    <p>Select Value: {{ defaultSelect }}</p>
     <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" />
 </CodeRunner>
 
@@ -37,7 +38,6 @@ const defaultSelectOptions = [
 ## 禁用 (disabled)
 
 <CodeRunner title="禁用 (disabled)">
-    <p>Select Value: {{ defaultSelect }}</p>
     <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" disabled />
 </CodeRunner>
 
@@ -62,52 +62,10 @@ const defaultSelectOptions = [
 
 :::
 
-## Slot
-
-<CodeRunner title="Slot">
-    <p>Select Value: {{ slotSelect }}</p>
-    <ShadcnSelect v-model="slotSelect">
-        <template #options>
-            <ShadcnSelectOption v-for="i in 10"
-                :key="i"
-                :selected="defaultSelect === `Value ${i}`"
-                :disabled="i % 2 === 0"
-                :value="`Value ${i}`"
-                :label="`Option ${i}`"/>
-        </template>
-    </ShadcnSelect>
-</CodeRunner>
-
-::: details 查看代码
-
-```vue
-<template>
-    <ShadcnSelect v-model="defaultSelect">
-        <template #options>
-            <ShadcnSelectOption v-for="i in 10"
-                :key="i"
-                :selected="defaultSelect === `Value ${i}`"
-                :disabled="i % 2 === 0"
-                :value="`Value ${i}`"
-                :label="`Option ${i}`"/>
-        </template>
-    </ShadcnSelect>
-</template>
-
-<script setup lang="ts">
-import { ref } from 'vue';
-
-const defaultSelect = ref(null)
-</script>
-```
-
-:::
-
 ## 尺寸 (size)
 
 <CodeRunner title="尺寸 (size)">
     <div class="space-y-2">
-        <p>Select Value: {{ defaultSelect }}</p>
         <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" size="small" />
         <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" size="default" />
         <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" size="large" />
@@ -142,7 +100,6 @@ const defaultSelectOptions = [
 
 <CodeRunner title="类型 (type)">
     <div class="space-y-2">
-        <p>Select Value: {{ defaultSelect }}</p>
         <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" type="primary" />
         <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" type="success" />
         <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" type="warning" />
@@ -175,13 +132,12 @@ const defaultSelectOptions = [
 
 :::
 
-## Border
+## 边框 (border)
 
 ::: raw
 
-<CodeRunner title="Border">
+<CodeRunner title="边框 (border)">
     <div class="space-y-2">
-        <p>Select Value: {{ defaultSelect }}</p>
         <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" />
         <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" :border="false" />
     </div>
@@ -212,11 +168,11 @@ const defaultSelectOptions = [
 
 :::
 
-## Group
+## 组 (group)
 
 ::: raw
 
-<CodeRunner title="Group">
+<CodeRunner title="组 (group)">
     <ShadcnSelect v-model="defaultSelect">
       <template #options>
         <ShadcnSelectGroup label="Group 1">
@@ -264,11 +220,11 @@ const defaultSelect = ref('')
 
 :::
 
-## Multiple
+## 多选 (multiple)
 
 ::: raw
 
-<CodeRunner title="Multiple">
+<CodeRunner title="多选 (multiple)">
     <ShadcnSelect v-model="defaultSelect" multiple :options="defaultSelectOptions" />
 </CodeRunner>
 
@@ -295,11 +251,22 @@ const defaultSelectOptions = [
 
 :::
 
-## Lazy data
+## 加载 (loading)
 
 ::: raw
 
-<CodeRunner title="Lazy data">
+<CodeRunner title="加载 (loading)">
+    <ShadcnButton @click="onClick">{{ !loading ? '显示 Loading' : '隐藏 Loading' }}</ShadcnButton>
+    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" :loading="loading" />
+</CodeRunner>
+
+:::
+
+## 懒加载 (lazy)
+
+::: raw
+
+<CodeRunner title="懒加载 (lazy)">
   <ShadcnSelect v-model="lazySelect"
                 lazy
                 :options="options"
@@ -413,67 +380,69 @@ loadMoreData((children) => {
 
 :::
 
-## API Attributes
+## 选择器 (Select) 属性
 
-<ApiTable title="Select Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default', 'List']"
+<ApiTable title="选择器 (Select) 属性"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['modelValue', 'The value of the select', 'any | any\[\]', '-', '-'],
-        ['options', 'The options of the select, format is { label: string, value: any, disabled?: boolean, selected?: boolean }', 'array', '-', '-'],
-        ['disabled', 'Whether the select is disabled', 'boolean', 'false', 'true | false'],
-        ['size', 'The size of the select', 'enum', 'default', 'small | default | large'],
-        ['type', 'The type of the select', 'enum', 'default', 'primary | success | warning | error'],
-        ['placeholder', 'The placeholder of the select', 'string', '-', '-'],
-        ['multiple', 'Whether the select is multiple', 'boolean', 'false', 'true | false'],
-        ['border', 'Whether the select has border', 'boolean', 'true', 'true | false'],
-        ['lazy', 'Whether the select is lazy', 'boolean', 'false', 'true | false'],
-        ['loadData', 'Load data when the select is lazy', 'function', '-', '-'],
+        ['modelValue', '当前选择的值', 'any | any\[\]', '-', '-'],
+        ['options', '选择器的选项，格式为 { label: string, value: any, disabled?: boolean, selected?: boolean }', 'array', '-', '-'],
+        ['disabled', '是否为禁用', 'boolean', 'false', 'true | false'],
+        ['size', '选择器的尺寸', 'enum', 'default', 'small | default | large'],
+        ['type', '选择器的类型', 'enum', 'default', 'primary | success | warning | error'],
+        ['placeholder', '选择器的占位符', 'string', '-', '-'],
+        ['multiple', '是否为多选', 'boolean', 'false', 'true | false'],
+        ['border', '是否显示边框', 'boolean', 'true', 'true | false'],
+        ['lazy', '是否为懒加载', 'boolean', 'false', 'true | false'],
+        ['loading', '是否为加载中', 'boolean', 'false', 'true | false'],
+        ['loadData', '懒加载数据函数', 'function', '-', '-'],
     ]">
 </ApiTable>
 
-<br />
+## 选择器选项 (Select Option) 属性
 
-<ApiTable title="Select Option Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default']"
+<ApiTable title="选择器选项 (Select Option) 属性"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['label', 'The label of the option', 'String', '-'],
-        ['value', 'The value of the option', 'Any', '-'],
-        ['disabled', 'Whether the option is disabled', 'Boolean', 'false'],
-        ['selected', 'Whether the option is selected', 'Boolean', 'false'],
+        ['label', '选项标签', 'string', '-'],
+        ['value', '选项值', 'any', '-'],
+        ['disabled', '是否为禁用', 'boolean', 'false'],
+        ['selected', '是否为选中', 'boolean', 'false'],
     ]">
 </ApiTable>
 
-<br />
+## 选择器分组 (Select Group) 属性
 
-<ApiTable title="Select Group Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default']"
+<ApiTable title="选择器分组 (Select Group) 属性"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['label', 'The label of the group', 'String', '-'],
+        ['label', '分组标签', 'string', '-'],
     ]">
 </ApiTable>
 
-<br />
+## 选择器 (Select) 插槽
 
-<ApiTable title="Select Slots"
+<ApiTable title="选择器 (Select) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['options', 'Option slot'],
+        ['options', '选择器的选项'],
     ]">
 </ApiTable>
 
-<br />
+## 选择器 (Select) 事件
 
-<ApiTable title="Select Events"
+<ApiTable title="选择器 (Select) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['onChange', 'Triggered when the value of the select is changed', 'any'],
-        ['onClickOutside', 'Triggered when the click outside the select is triggered', 'boolean'],
+        ['on-change', '更改选择器的值时触发', 'any'],
+        ['on-click-outside', '点击选择器外部时触发', 'boolean'],
     ]">
 </ApiTable>
 
 <script setup lang="ts">
 import { ref } from 'vue';
 
+const loading = ref(false)
 const defaultSelect = ref('Value 1')
 const defaultSelectOptions = [
     { label: 'Vue', value: 'Vue' },
@@ -510,4 +479,8 @@ const loadMoreData = (callback: (children: any[]) => void) => {
 loadMoreData((children) => {
   options.value = children
 })
+
+const onClick = () => {
+  loading.value = !loading.value
+}
 </script>

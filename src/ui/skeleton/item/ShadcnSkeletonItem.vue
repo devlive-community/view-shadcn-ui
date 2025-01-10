@@ -40,7 +40,7 @@ const skeletonShapeClass = computed(() => {
     case 'square':
       return 'rounded aspect-square'
     case 'rect':
-      return `rounded w-full h-4`
+      return `rounded w-full h-8`
     case 'image':
       return `rounded-md ${ SkeletonSize[props.size] }`
   }

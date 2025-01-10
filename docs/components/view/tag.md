@@ -70,11 +70,11 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
-## Border
+## 边框 (border)
 
 ::: raw
 
-<CodeRunner title="Border">
+<CodeRunner title="边框 (border)">
     <ShadcnSpace wrap>
       <ShadcnTag text="Text" border/>
       <ShadcnTag text="Text" type="primary" border/>

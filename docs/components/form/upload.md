@@ -26,7 +26,7 @@ This document is mainly used to describe some features and usage of the ShadcnUp
 
 :::
 
-## Multiple
+## 多选 (multiple)
 
 ::: raw
 

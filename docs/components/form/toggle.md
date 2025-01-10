@@ -84,11 +84,11 @@ const defaultValue = ref(null)
 
 :::
 
-## Group
+## 组 (group)
 
 ::: raw
 
-<CodeRunner title="Group">
+<CodeRunner title="组 (group)">
   <div class="space-y-2">
     <p>Default Value: {{ defaultValue }}</p>
     <ShadcnToggleGroup v-model="defaultValue" size="small">
@@ -132,11 +132,11 @@ const defaultValue = ref(null)
 
 :::
 
-## Multiple
+## 多选 (multiple)
 
 ::: raw
 
-<CodeRunner title="Multiple">
+<CodeRunner title="多选 (multiple)">
     <p>Default Value: {{ defaultValue }}</p>
     <ShadcnToggleGroup v-model="defaultValue" multiple>
       <ShadcnToggle value="1">O1</ShadcnToggle>

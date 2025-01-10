@@ -1,16 +1,17 @@
 ---
-title: Shadcn Card
+title: 卡片 (Card)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnCard component.
+<br />
 
-## Basic Usage
+本文档主要用于描述 `ShadcnCard` 组件的一些特性和用法。
 
-<CodeRunner title="Basic Usage"
-    description="Create a simple card.">
-    <ShadcnCard title="Title">
+## 用法
+
+<CodeRunner title="用法">
+    <ShadcnCard title="用法">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnCard>
 </CodeRunner>
@@ -30,10 +31,9 @@ This document is mainly used to describe some features and usage of the ShadcnCa
 
 :::
 
-## Description
+## 描述 (description)
 
-<CodeRunner title="Description"
-    description="Create a card with description.">
+<CodeRunner title="描述 (description)">
     <ShadcnCard title="Title" description="Description">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnCard>
@@ -54,54 +54,9 @@ This document is mainly used to describe some features and usage of the ShadcnCa
 
 :::
 
-## No Title
+## 阴影 (shadow)
 
-<CodeRunner title="No Title"
-    description="Create a card without title.">
-    <ShadcnCard>
-        <div class="flex items-center justify-center h-32">Content</div>
-    </ShadcnCard>
-</CodeRunner>
-
-::: details 查看代码
-
-```vue
-<template>
-    <ShadcnCard>
-        <div class="flex items-center justify-center h-32">Content</div>
-    </ShadcnCard>
-</template>
-
-<script setup lang="ts">
-</script>
-```
-
-:::
-
-## No Content
-
-<CodeRunner title="No Content"
-    description="Create a card without content.">
-    <ShadcnCard title="Title"></ShadcnCard>
-</CodeRunner>
-
-::: details 查看代码
-
-```vue
-<template>
-    <ShadcnCard title="Title"></ShadcnCard>
-</template>
-
-<script setup lang="ts">
-</script>
-```
-
-:::
-
-## Shadow
-
-<CodeRunner title="Custom Title Class"
-    description="Create a card with custom title class.">
+<CodeRunner title="阴影 (shadow)">
     <div class="space-y-4">
         <ShadcnCard title="Shadow Never" shadow="never"/>
         <ShadcnCard title="Shadow Always" shadow="always"/>
@@ -126,11 +81,11 @@ This document is mainly used to describe some features and usage of the ShadcnCa
 
 :::
 
-## Loading
+## 加载 (loading)
 
 ::: raw
 
-<CodeRunner title="Loading">
+<CodeRunner title="加载 (loading)">
     <ShadcnCard title="Loading" :loading="true">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnCard>
@@ -160,9 +115,9 @@ This document is mainly used to describe some features and usage of the ShadcnCa
 
 :::
 
-## Border
+## 边框 (border)
 
-<CodeRunner title="Border">
+<CodeRunner title="边框 (border)">
     <ShadcnCard title="Border" border>
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnCard>
@@ -189,153 +144,29 @@ This document is mainly used to describe some features and usage of the ShadcnCa
 
 :::
 
-## Custom Title Slot
+## 卡片 (Card) 属性
 
-<CodeRunner title="Custom Title Slot"
-    description="Create a card with custom title slot.">
-    <ShadcnCard>
-        <template #title>Custom Title</template>
-        <div class="flex items-center justify-center h-32">Content</div>
-    </ShadcnCard>
-</CodeRunner>
-
-::: details 查看代码
-
-```vue
-<template>
-    <ShadcnCard>
-        <template #title>Custom Title</template>
-        <div class="flex items-center justify-center h-32">Content</div>
-    </ShadcnCard>
-</template>
-
-<script setup lang="ts">
-</script>
-```
-
-:::
-
-## Custom Description Slot
-
-<CodeRunner title="Custom Description Slot"
-    description="Create a card with custom description slot.">
-    <ShadcnCard title="Title">
-        <template #description>Custom Description</template>
-        <div class="flex items-center justify-center h-32">Content</div>
-    </ShadcnCard>
-</CodeRunner>
-
-::: details 查看代码
-
-```vue
-<template>
-    <ShadcnCard title="Title">
-        <template #description>Custom Description</template>
-        <div class="flex items-center justify-center h-32">Content</div>
-    </ShadcnCard>
-</template>
-
-<script setup lang="ts">
-</script>
-```
-
-:::
-
-## Custom Content Slot
-
-<CodeRunner title="Custom Content Slot"
-    description="Create a card with custom content slot.">
-    <ShadcnCard title="Title">
-        <template #content>Custom Content</template>
-    </ShadcnCard>
-</CodeRunner>
-
-::: details 查看代码
-
-```vue
-<template>
-    <ShadcnCard title="Title">
-        <template #content>Custom Content</template>
-    </ShadcnCard>
-</template>
-
-<script setup lang="ts">
-</script>
-```
-
-:::
-
-## Custom Footer Slot
-
-<CodeRunner title="Custom Footer Slot"
-    description="Create a card with custom footer slot.">
-    <ShadcnCard title="Title">
-        <template #footer>Custom Footer</template>
-    </ShadcnCard>
-</CodeRunner>
-
-::: details 查看代码
-
-```vue
-<template>
-    <ShadcnCard title="Title">
-        <template #footer>Custom Footer</template>
-    </ShadcnCard>
-</template>
-
-<script setup lang="ts">
-</script>
-```
-
-:::
-
-## Custom Extra Slot
-
-<CodeRunner title="Custom Extra Slot"
-    description="Create a card with custom extra slot.">
-    <ShadcnCard title="Title">
-        <template #extra>Custom Extra</template>
-    </ShadcnCard>
-</CodeRunner>
-
-::: details 查看代码
-
-```vue
-<template>
-    <ShadcnCard title="Title">
-        <template #extra>Custom Extra</template>
-    </ShadcnCard>
-</template>
-
-<script setup lang="ts">
-</script>
-```
-
-:::
-
-## API Attributes
-
-<ApiTable title="Card Props"
+<ApiTable title="卡片 (Card)"
     :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
-        ['title', 'Card title', 'string', '-', '-', '-'],
-        ['description', 'Card description', 'string', '-', 'title', '-'],
-        ['shadow', 'Show shadow mode', 'enum', 'never', '-', 'never | always | hover'],
-        ['loading', 'Whether to display loading', 'boolean', 'false', '-', '-'],
-        ['border', 'Whether to display border', 'boolean', 'true', '-', '-'],
-        ['onlyContentLoading', 'Whether to display only content loading', 'boolean', 'false', '-', '-'],
+        ['title', '卡片标题', 'string', '-', '-', '-'],
+        ['description', '卡片描述', 'string', '-', 'title', '-'],
+        ['shadow', '卡片阴影模式', 'enum', 'never', '-', 'never | always | hover'],
+        ['loading', '是否显示加载', 'boolean', 'false', '-', '-'],
+        ['border', '是否显示边框', 'boolean', 'true', '-', '-'],
+        ['onlyContentLoading', '是否仅显示内容加载，设置后加载状态不会显示在标题上', 'boolean', 'false', '-', '-'],
     ]">
 </ApiTable>
 
-<br />
+## 卡片 (Card) 插槽
 
-<ApiTable title="Card Slots"
+<ApiTable title="卡片 (Card) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['title', 'Card title slot'],
-        ['description', 'Card description slot'],
-        ['extra', 'Card extra slot'],
-        ['content', 'Card content slot'],
-        ['footer', 'Card footer slot'],
+        ['title', '卡片标题插槽'],
+        ['description', '卡片描述插槽'],
+        ['extra', '卡片额外信息插槽，在标题的右侧显示'],
+        ['content', '卡片内容插槽'],
+        ['footer', '卡片底部插槽'],
     ]">
 </ApiTable>

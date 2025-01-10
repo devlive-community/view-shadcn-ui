@@ -149,7 +149,7 @@ export default {
                 })(),
                 (() => {
                     const items = [
-                        {text: 'Card', link: 'layout/card', icon: '/components/layout/card.svg', version: '2024.1.1'},
+                        {text: '卡片 (Card)', link: 'layout/card', icon: '/components/layout/card.svg', version: '2024.1.1'},
                         {text: 'Row / Col', link: 'layout/row-col', icon: '/components/layout/row-col.svg', version: '2024.1.2'},
                         {text: 'Divider', link: 'layout/divider', icon: '/components/layout/divider.svg', version: '2024.1.2'},
                         {text: 'Ellipsis', link: 'layout/ellipsis', icon: '/components/layout/ellipsis.svg', version: '2024.1.2'},
@@ -163,7 +163,7 @@ export default {
                     ]
 
                     return {
-                        text: `Layout [ ${items.length} ]`,
+                        text: `布局组件 [ ${items.length} ]`,
                         base: '/components/',
                         collapsed: false,
                         items: items.map(item => createSidebarItem(item))
@@ -212,7 +212,7 @@ export default {
                         {text: 'Switch', link: 'form/switch', icon: '/components/form/switch.svg', version: '2024.1.2'},
                         {text: 'Radio', link: 'form/radio', icon: '/components/form/radio.svg', version: '2024.1.2'},
                         {text: 'Checkbox', link: 'form/checkbox', icon: '/components/form/checkbox.svg', version: '2024.1.2'},
-                        {text: 'Select', link: 'form/select', icon: '/components/form/select.svg', version: '2024.1.2'},
+                        {text: '选择器 (Select)', link: 'form/select', icon: '/components/form/select.svg', version: '2024.1.2'},
                         {text: 'Rate', link: 'form/rate', icon: '/components/form/rate.svg', version: '2024.1.2'},
                         {text: 'Form', link: 'form/form', icon: '/components/form/form.svg', version: '2024.2.0'},
                         {text: 'Slider', link: 'form/slider', icon: '/components/form/slider.svg', version: '2024.2.0'},

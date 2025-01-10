@@ -108,9 +108,9 @@ const checked = ref('Primary')
 
 :::
 
-## Group
+## 组 (group)
 
-<CodeRunner title="Group">
+<CodeRunner title="组 (group)">
     Checkbox Group Value: {{ checkedGroup }}
     <ShadcnRadioGroup v-model="checkedGroup">
         <ShadcnRadio value="ON">ON</ShadcnRadio>
