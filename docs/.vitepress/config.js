@@ -184,7 +184,7 @@ export default {
                         {text: 'Trend', link: 'view/trend', icon: '/components/view/trend.svg', version: '2024.2.0'},
                         {text: 'Exception', link: 'view/exception', icon: '/components/view/exception.svg', version: '2024.2.0'},
                         {text: 'Tag', link: 'view/tag', icon: '/components/view/tag.svg', version: '2024.2.0'},
-                        {text: 'Tree', link: 'view/tree', icon: '/components/view/tree.svg', version: '2024.3.0'},
+                        {text: '树 (Tree)', link: 'view/tree', icon: '/components/view/tree.svg', version: '2024.3.0'},
                         {text: 'Hover Card', link: 'view/hover-card', icon: '/components/view/hover-card.svg', version: '2024.4.0'},
                         {text: 'Logger', link: 'view/logger', icon: '/components/view/logger.svg', version: '2024.5.1'},
                         {text: 'Scrollbar', link: 'view/scrollbar', icon: '/components/view/scrollbar.svg', version: '2024.5.1'},

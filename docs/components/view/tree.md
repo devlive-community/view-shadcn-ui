@@ -1,17 +1,19 @@
 ---
-title: Shadcn Tree
+title: 树 (Tree)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnTree component.
+<br />
+
+本文档主要用于描述 `ShadcnTree` 组件的一些特性和用法。
 
 ## 用法
 
 ::: raw
 
 <CodeRunner title="用法">
-    Value: {{ basicValue }}
+    值: {{ basicValue }}
     <ShadcnTree v-model="basicValue"
                 :data="data"
                 @on-expand="onExpand"
@@ -26,52 +28,16 @@ This document is mainly used to describe some features and usage of the ShadcnTr
 <template>
   <ShadcnTree v-model="value" :data="data"/>
 </template>
-
-<script setup>
-import { ref } from "vue"
-const value = ref([])
-const data = [
-    {
-      value: 1,
-      label: 'Parent Node 1',
-      children: [
-        {value: 2, label: 'Child Node 1.1'},
-        {
-          value: 3,
-          label: 'Child Node 1.2',
-          children: [
-            {value: 4, label: 'Child Node 1.2.1'}
-          ]
-        }
-      ]
-    },
-    {
-      value: 5,
-      label: 'Parent Node 2',
-      children: [
-        {value: 6, label: 'Child Node 2.1'}
-      ]
-    }
-]
-
-const onExpand = (node) => {
-console.log('Expand Node:', node)
-}
-
-const onNodeClick = (node) => {
-console.log('Click Node:', node)
-}
-</script>
 ```
 
 :::
 
-## Multiple
+## 多选 (multiple)
 
 ::: raw
 
-<CodeRunner title="Multiple">
-    Value: {{ multipleValue }}
+<CodeRunner title="多选 (multiple)">
+    值: {{ multipleValue }}
     <ShadcnTree v-model="multipleValue" multiple :data="data"/>
 </CodeRunner>
 
@@ -83,44 +49,16 @@ console.log('Click Node:', node)
 <template>
   <ShadcnTree v-model="value" multiple :data="data"/>
 </template>
-
-<script setup>
-import { ref } from "vue"
-const value = ref([])
-const data = [
-    {
-      value: 1,
-      label: 'Parent Node 1',
-      children: [
-        {value: 2, label: 'Child Node 1.1'},
-        {
-          value: 3,
-          label: 'Child Node 1.2',
-          children: [
-            {value: 4, label: 'Child Node 1.2.1'}
-          ]
-        }
-      ]
-    },
-    {
-      value: 5,
-      label: 'Parent Node 2',
-      children: [
-        {value: 6, label: 'Child Node 2.1'}
-      ]
-    }
-  ]
-</script>
 ```
 
 :::
 
-## Checkable
+## 选择框 (checkable)
 
 ::: raw
 
-<CodeRunner title="Checkable">
-    Value: {{ checkableValue }}
+<CodeRunner title="选择框 (checkable)">
+    值: {{ checkableValue }}
     <ShadcnTree v-model="checkableValue" multiple checkable :data="data"/>
 </CodeRunner>
 
@@ -132,44 +70,16 @@ const data = [
 <template>
   <ShadcnTree v-model="value" multiple checkable :data="data"/>
 </template>
-
-<script setup>
-import { ref } from "vue"
-const value = ref([])
-const data = [
-    {
-      value: 1,
-      label: 'Parent Node 1',
-      children: [
-        {value: 2, label: 'Child Node 1.1'},
-        {
-          value: 3,
-          label: 'Child Node 1.2',
-          children: [
-            {value: 4, label: 'Child Node 1.2.1'}
-          ]
-        }
-      ]
-    },
-    {
-      value: 5,
-      label: 'Parent Node 2',
-      children: [
-        {value: 6, label: 'Child Node 2.1'}
-      ]
-    }
-  ]
-</script>
 ```
 
 :::
 
-## Cascade
+## 级联选择 (cascade)
 
 ::: raw
 
-<CodeRunner title="Cascade">
-    Value: {{ cascadeValue }}
+<CodeRunner title="级联选择 (cascade)">
+    值: {{ cascadeValue }}
     <ShadcnTree v-model="cascadeValue" checkable cascade :data="data"/>
 </CodeRunner>
 
@@ -181,44 +91,16 @@ const data = [
 <template>
   <ShadcnTree v-model="value" cascade checkable :data="data"/>
 </template>
-
-<script setup>
-import { ref } from "vue"
-const value = ref([])
-const data = [
-    {
-      value: 1,
-      label: 'Parent Node 1',
-      children: [
-        {value: 2, label: 'Child Node 1.1'},
-        {
-          value: 3,
-          label: 'Child Node 1.2',
-          children: [
-            {value: 4, label: 'Child Node 1.2.1'}
-          ]
-        }
-      ]
-    },
-    {
-      value: 5,
-      label: 'Parent Node 2',
-      children: [
-        {value: 6, label: 'Child Node 2.1'}
-      ]
-    }
-  ]
-</script>
 ```
 
 :::
 
-## Lazy Data
+## 懒加载 (lazy)
 
 ::: raw
 
-<CodeRunner title="Lazy Data">
-    Value: {{ lazyValue }}
+<CodeRunner title="懒加载 (lazy)">
+    值: {{ lazyValue }}
     <ShadcnTree v-model="lazyValue" checkable cascade :data="lazyData" :loadData="loadNodeData"/>
 </CodeRunner>
 
@@ -283,7 +165,7 @@ const loadNodeData = (item: any, callback: (children: any[]) => void) => {
 ::: raw
 
 <CodeRunner title="禁用 (disabled)">
-    Value: {{ disabledValue }}
+    值: {{ disabledValue }}
     <ShadcnTree v-model="disabledValue" :data="disabledData"/>
 </CodeRunner>
 
@@ -328,12 +210,12 @@ const data = reactive([
 
 :::
 
-## Show Line
+## 显示线 (show-line)
 
 ::: raw
 
-<CodeRunner title="Show Line">
-    Value: {{ showLineValue }}
+<CodeRunner title="显示线 (show-line)">
+    值: {{ basicValue }}
     <ShadcnTree v-model="basicValue" show-line checkable :data="data"/>
 </CodeRunner>
 
@@ -349,12 +231,12 @@ const data = reactive([
 
 :::
 
-## Label Slot
+## 自定义 Label 插槽
 
 ::: raw
 
-<CodeRunner title="Label Slot">
-      Value: {{ customValue }}
+<CodeRunner title="自定义 Label 插槽">
+      值: {{ customValue }}
       <ShadcnTree v-model="customValue"
                   checkable
                   cascade
@@ -418,11 +300,11 @@ const data = [
 
 :::
 
-## Expand & Collapse Slot
+## 自定义 Expand/Collapse 插槽
 
 ::: raw
 
-<CodeRunner title="Expand & Collapse Slot">
+<CodeRunner title="自定义 Expand/Collapse 插槽">
     <ShadcnTree v-model="value" :data="data">
         <template #expand>O</template>
         <template #collapse>C</template>
@@ -472,52 +354,52 @@ const data = [
 
 :::
 
-## Props
+## 树 (Tree) 属性
 
-<ApiTable title="Tree Props"
+<ApiTable title="树 (Tree) 属性"
     :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['modelValue', 'Tree value', 'array', '\[\]'],
-        ['data', 'Tree data', 'array', '\[\]'],
-        ['multiple', 'Multiple mode', 'boolean', 'false'],
-        ['checkable', 'Checkable mode', 'boolean', 'false'],
-        ['cascade', 'Cascade mode, only works when checkable is true, if cascade is true, checkable become true, single mode is inworked', 'boolean', 'false'],
-        ['showLine', 'Show line', 'boolean', 'false'],
-        ['loadData', 'Load data function, only works when <strong>item.isLeaf</strong> is <strong>false</strong>', 'function', 'undefined'],
+        ['modelValue', '当前选择的值', 'array', '\[\]'],
+        ['data', '树的结构数据', 'array', '\[\]'],
+        ['multiple', '多选模式', 'boolean', 'false'],
+        ['checkable', '选择框模式', 'boolean', 'false'],
+        ['cascade', '级联模式，仅在 checkable 为 true 时有效，如果 cascade 为 true，则 checkable 变为 true，单模式无效', 'boolean', 'false'],
+        ['showLine', '是否显示线', 'boolean', 'false'],
+        ['loadData', '懒加载数据，仅在 <strong>item.isLeaf</strong> 为 <strong>false</strong> 时有效', 'function', '-'],
     ]">
 </ApiTable>
 
-<br />
+## 树节点 (Tree Node) 属性
 
-<ApiTable title="Tree Node Props"
+<ApiTable title="树节点 (Tree Node) 属性"
     :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['value', 'Tree node value', 'string', ''],
-        ['label', 'Tree node label', 'string', ''],
-        ['children', 'Tree node children', 'array', '\[\]'],
-        ['isLeaf', 'Whether the tree node is leaf', 'boolean', 'false'],
-        ['disabled', 'Whether the tree node is disabled', 'boolean', 'false'],
+        ['value', '节点的值', 'string', ''],
+        ['label', '节点的标签', 'string', ''],
+        ['children', '子节点数据', 'array', '\[\]'],
+        ['isLeaf', '是否为懒加载节点', 'boolean', 'false'],
+        ['disabled', '是否禁用', 'boolean', 'false'],
     ]">
 </ApiTable>
 
-## Slots
+## 树 (Tree) 插槽
 
-<ApiTable title="Tree Slots"
+<ApiTable title="树 (Tree) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['label', 'Tree label'],
-        ['expand', 'Tree expand icon'],
-        ['collapse', 'Tree collapse icon'],
+        ['label', '树节点的标签插槽'],
+        ['expand', '展开图标插槽'],
+        ['collapse', '合并图标插槽'],
     ]">
 </ApiTable>
 
-## Events
+## 树 (Tree) 事件
 
-<ApiTable title="Tree Events"
-    :headers="['Event Name', 'Description', 'Parameters']"
+<ApiTable title="树 (Tree) 事件"
+    :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['on-expand', 'Expand event', 'node'],
-        ['on-node-click', 'Node click event', 'node'],
+        ['on-expand', '节点展开事件', 'node'],
+        ['on-node-click', '节点点击事件', 'node'],
     ]">
 </ApiTable>
 

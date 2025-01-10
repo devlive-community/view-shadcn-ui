@@ -4,7 +4,7 @@
                     :key="item.value"
                     :node="item"
                     :level="0"
-                    :selected-values="modelValue"
+                    :selected-values="selectedValues"
                     :checkable="checkable"
                     :cascade="cascade"
                     :show-line="showLine"
@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineEmits, defineProps, ref, watch } from 'vue'
+import { computed, defineEmits, defineProps } from 'vue'
 import { TreeEmits, TreeNode, TreeProps } from './types'
 import ShadcnTreeNode from './ShadcnTreeNode.vue'
 
@@ -42,11 +42,7 @@ const props = withDefaults(defineProps<TreeProps>(), {
   loadData: undefined
 })
 
-const selectedNode = ref<any[]>([])
-
-watch(() => props.modelValue, (newValue) => {
-  selectedNode.value = newValue ?? []
-})
+const selectedValues = computed(() => props.modelValue || [])
 
 const onExpand = (node: TreeNode) => emit('on-expand', node)
 
