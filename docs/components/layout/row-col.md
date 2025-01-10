@@ -1,15 +1,16 @@
 ---
-title: Shadcn Row and Shadcn Col
+title: 行 & 列 (Row & Col)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnRow and ShadcnCol.
+<br />
+
+本文档主要用于描述 `ShadcnRow` 和 `ShadcnCol` 组件的一些特性和用法。
 
 ## 用法
 
-<CodeRunner title="Simple Row and Col"
-    description="Created a simple row and col with 4 cols">
+<CodeRunner title="用法">
     <ShadcnRow>
         <ShadcnCol class="bg-blue-200 h-12"></ShadcnCol>
         <ShadcnCol class="bg-blue-300 h-12"></ShadcnCol>
@@ -36,10 +37,9 @@ This document is mainly used to describe some features and usage of the ShadcnRo
 
 :::
 
-## Gutter
+## 间隔 (gutter)
 
-<CodeRunner title="Gutter"
-    description="Created a simple row and col with gutter">
+<CodeRunner title="间隔 (gutter)">
     <ShadcnRow :gutter="30">
         <ShadcnCol class="bg-blue-200 h-12"></ShadcnCol>
         <ShadcnCol class="bg-blue-300 h-12"></ShadcnCol>
@@ -66,10 +66,9 @@ This document is mainly used to describe some features and usage of the ShadcnRo
 
 :::
 
-## Align
+## 垂直对齐 (align)
 
-<CodeRunner title="Align"
-    description="Created a simple row and col with align">
+<CodeRunner title="垂直对齐 (align)">
     <div class="space-y-2">
         <ShadcnRow align="top">
             <ShadcnCol class="bg-blue-200 h-16"></ShadcnCol>
@@ -122,10 +121,9 @@ This document is mainly used to describe some features and usage of the ShadcnRo
 
 :::
 
-## Justify
+## 水平对齐 (justify)
 
-<CodeRunner title="Justify"
-    description="Created a simple row and col with justify">
+<CodeRunner title="水平对齐 (justify)">
     <div class="space-y-2">
         <ShadcnRow justify="start">
             <ShadcnCol class="bg-blue-200 h-16"></ShadcnCol>
@@ -190,10 +188,9 @@ This document is mainly used to describe some features and usage of the ShadcnRo
 
 :::
 
-## Wrap
+## 自动换行 (wrap)
 
-<CodeRunner title="Wrap"
-    description="Created a simple row and col with wrap">
+<CodeRunner title="自动换行 (wrap)">
     <div class="space-y-2 p-3">
         <ShadcnRow wrap :gutter="2">
             <ShadcnCol v-for="i in 40" class="bg-blue-200 h-12"/>
@@ -216,10 +213,9 @@ This document is mainly used to describe some features and usage of the ShadcnRo
 
 :::
 
-## Col span
+## 列数 (span)
 
-<CodeRunner title="Col span"
-    description="Created a simple row and col with col span">
+<CodeRunner title="列数 (span)">
     <div class="space-y-2 p-3">
         <ShadcnRow>
             <ShadcnCol class="bg-blue-200 h-12" span="2"></ShadcnCol>
@@ -254,10 +250,9 @@ This document is mainly used to describe some features and usage of the ShadcnRo
 
 :::
 
-## Col order
+## 列顺序 (order)
 
-<CodeRunner title="Col order"
-    description="Created a simple row and col with col order">
+<CodeRunner title="列顺序 (order)">
     <div class="space-y-2 p-3">
         <ShadcnRow>
             <ShadcnCol class="bg-blue-200 h-12" order="2" span="3">1 | order 2</ShadcnCol>
@@ -286,24 +281,24 @@ This document is mainly used to describe some features and usage of the ShadcnRo
 
 :::
 
-## API Attributes
+## 行 (Row) 属性
 
-<ApiTable title="Row Props"
+<ApiTable title="行 (Row) 属性"
     :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['gutter', 'Grid spacing, unit px, divided equally between left and right', 'Number', '0', '-'],
-        ['align', 'Vertical alignment under layout', 'Enum', '-', 'top | middle | bottom'],
-        ['justify', 'Horizontal alignment under layout', 'Enum', '-', 'start | center | end | between | around | evenly | normal | stretch'],
-        ['wrap', 'Whether to automatically wrap', 'Boolean', 'false', '-'],
+        ['gutter', '网格间距，单位 px，在左和右之间平均分配', 'number', '0', '-'],
+        ['align', '布局下的垂直对齐', 'enum', '-', 'top | middle | bottom'],
+        ['justify', '布局下的水平对齐', 'enum', '-', 'start | center | end | between | around | evenly | normal | stretch'],
+        ['wrap', '是否自动换行', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
-<br />
+## 列 (Col) 属性
 
-<ApiTable title="Col Props"
+<ApiTable title="列 (Col) 属性"
     :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['span', 'The number of placeholders for the grid. The optional value is an integer from 1 to 12. For example, if the child element under the same ShadcnRow exceeds 12, it will automatically wrap.', 'String | Number', '1', '1 - 12'],
-        ['order', 'The order of the grid', 'String | Number', '-', '-'],
+        ['span', '网格的占位符数。可选值是 1 到 12 之间的整数。例如，如果同一 ShadcnRow 下的子元素超过 12，则会自动换行。', 'string | number', '1', '1 - 12'],
+        ['order', '网格的顺序', 'string | number', '-', '-'],
     ]">
 </ApiTable>

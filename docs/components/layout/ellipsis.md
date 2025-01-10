@@ -1,14 +1,16 @@
 ---
-title: Shadcn Ellipsis
+title: 省略 (Ellipsis)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnEllipsis.
+<br />
+
+本文档主要用于描述 `ShadcnEllipsis` 组件的一些特性和用法。
 
 ## 用法
 
-<CodeRunner title="Simple Ellipsis">
+<CodeRunner title="用法">
     <ShadcnEllipsis text="Steve Jobs (English: Steve Jobs) is an American entrepreneur, marketer and inventor. He is one of the co-founders of Apple and has served as chairman and CEO. He is also the founder and CEO of NeXT and the founder and former CEO of Pixar Animation. He was a member of the board of directors of the Walt Disney Company in 2006. The place where Apple's press conference was held in September 2017 was named Steve Jobs Theater after him." />
 </CodeRunner>
 
@@ -25,9 +27,9 @@ This document is mainly used to describe some features and usage of the ShadcnEl
 
 :::
 
-## 多选 (multiple) lines
+## 行数 (line)
 
-<CodeRunner title="Multiple lines">
+<CodeRunner title="行数 (line)">
     <ShadcnEllipsis line="4" text="Steve Jobs (English: Steve Jobs) is an American entrepreneur, marketer and inventor. He is one of the co-founders of Apple and has served as chairman and CEO. He is also the founder and CEO of NeXT and the founder and former CEO of Pixar Animation. He was a member of the board of directors of the Walt Disney Company in 2006. The place where Apple's press conference was held in September 2017 was named Steve Jobs Theater after him." />
 </CodeRunner>
 
@@ -44,9 +46,9 @@ This document is mainly used to describe some features and usage of the ShadcnEl
 
 :::
 
-## Tooltip
+## 提示 (tooltip)
 
-<CodeRunner title="Tooltip">
+<CodeRunner title="提示 (tooltip)">
     <ShadcnEllipsis tooltip line="3" text="Steve Jobs (English: Steve Jobs) is an American entrepreneur, marketer and inventor. He is one of the co-founders of Apple and has served as chairman and CEO. He is also the founder and CEO of NeXT and the founder and former CEO of Pixar Animation. He was a member of the board of directors of the Walt Disney Company in 2006. The place where Apple's press conference was held in September 2017 was named Steve Jobs Theater after him." />
 </CodeRunner>
 
@@ -60,9 +62,9 @@ This document is mainly used to describe some features and usage of the ShadcnEl
 
 :::
 
-## Length
+## 长度 (length)
 
-<CodeRunner title="Length">
+<CodeRunner title="长度 (length)">
     <ShadcnEllipsis tooltip length="120" text="Steve Jobs (English: Steve Jobs) is an American entrepreneur, marketer and inventor. He is one of the co-founders of Apple and has served as chairman and CEO. He is also the founder and CEO of NeXT and the founder and former CEO of Pixar Animation. He was a member of the board of directors of the Walt Disney Company in 2006. The place where Apple's press conference was held in September 2017 was named Steve Jobs Theater after him." />
 </CodeRunner>
 
@@ -79,23 +81,23 @@ This document is mainly used to describe some features and usage of the ShadcnEl
 
 :::
 
-## API Attributes
+## 省略 (Ellipsis) 属性
 
-<ApiTable title="Ellipsis Props"
-    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
+<ApiTable title="省略 (Ellipsis) 属性"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['text', 'Text content', 'String', '-', '-'],
-        ['line', 'Number of lines', 'Number | String', '1', '-'],
-        ['tooltip', 'Show tooltip', 'Boolean', 'false', '-'],
-        ['length', 'Length of text', 'Number | String', '-', '-'],
+        ['text', '文本内容', 'string', '-'],
+        ['line', '行数', 'number | string', '1'],
+        ['tooltip', '是否显示提示', 'boolean', 'false'],
+        ['length', '文本长度', 'number | string', '-'],
     ]">
 </ApiTable>
 
-<br />
+## 省略 (Ellipsis) 插槽
 
-<ApiTable title="Ellipsis Slots"
-    :headers="['Slot', 'Description', 'Props Reference']"
+<ApiTable title="省略 (Ellipsis) 插槽"
+    :headers="['插槽', '描述', '参数']"
     :columns="[
-        ['default', 'Default slot', 'text'],
+        ['default', '默认文本插槽', 'text'],
     ]">
 </ApiTable>

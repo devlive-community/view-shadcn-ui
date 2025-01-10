@@ -1,10 +1,12 @@
 ---
-title: Shadcn Avatar
+title: 头像 (Avatar)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnAvatar component.
+<br />
+
+本文档主要用于描述 `ShadcnAvatar` 组件的一些特性和用法。
 
 ## 用法
 
@@ -25,9 +27,9 @@ This document is mainly used to describe some features and usage of the ShadcnAv
 
 :::
 
-## Alt Text
+## 替换文本 (alt)
 
-<CodeRunner title="Alt Text">
+<CodeRunner title="替换文本 (alt)">
     <ShadcnAvatar src="" alt="UI" />
 </CodeRunner>
 
@@ -67,9 +69,9 @@ This document is mainly used to describe some features and usage of the ShadcnAv
 
 :::
 
-## Square
+## 方形 (square)
 
-<CodeRunner title="Square">
+<CodeRunner title="方形 (square)">
     <ShadcnAvatar src="" square />
 </CodeRunner>
 
@@ -124,37 +126,37 @@ const items = [
 
 :::
 
-## Props
+## 头像 (Avatar) 属性
 
-<ApiTable title="Avatar Props"
+<ApiTable title="头像 (Avatar) 属性"
     :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['src', 'Image URL', 'String', '-', '-'],
-        ['alt', 'Alternative text', 'String', '-', '-'],
-        ['size', 'Size', 'String', 'default', 'large | default | small'],
-        ['square', 'Square', 'Boolean', 'false', '-'],
+        ['src', '图片路径', 'string', '-', '-'],
+        ['alt', '替换文本', 'string', '-', '-'],
+        ['size', '尺寸', 'string', 'default', 'large | default | small'],
+        ['square', '是否为方形', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
-<br />
+## 头像组 (Avatar Group) 属性
 
-<ApiTable title="Avatar Group Props"
+<ApiTable title="头像组 (Avatar Group) 属性"
     :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['items', 'The items of the avatar group', 'array<{src: string, name: string}>', '-', '-'],
-        ['size', 'The size of the avatar group', 'string', 'default', 'large | default | small'],
-        ['square', 'Whether the avatar group is square', 'boolean', 'false', '-'],
-        ['max', 'The maximum number of avatars to display', 'number | stringgit', '-', '-'],
+        ['items', '头像组的项目', 'array<{src: string, name: string}>', '-', '-'],
+        ['size', '头像组的尺寸', 'string', 'default', 'large | default | small'],
+        ['square', '是否为方形', 'boolean', 'false', '-'],
+        ['max', '最大显示个数', 'number | string', '-', '-'],
     ]">
 </ApiTable>
 
-## Events
+## 头像 (Avatar) 事件
 
-<ApiTable title="Avatar Events"
-    :headers="['Event', 'Description']"
+<ApiTable title="头像 (Avatar) 事件"
+    :headers="['事件', '描述']"
     :columns="[
-        ['on-success', 'Called when the image is successfully loaded'],
-        ['on-failed', 'Called when the image fails to load'],
+        ['on-success', '成功加载图像时调用'],
+        ['on-failed', '当图像加载失败时调用'],
     ]">
 </ApiTable>
 

@@ -1,15 +1,15 @@
 <template>
-  <div :class="cn('relative inline-block overflow-hidden bg-muted',
+  <div :class="cn('relative inline-flex overflow-hidden bg-muted w-fit',
                   size && SkeletonSize[size],
                   square ? 'rounded-sm' : 'rounded-full')">
     <img v-if="src"
          :src="String(src)"
-         :class="cn('h-full w-full object-cover cursor-pointer border-white border-2')"
+         :class="cn('aspect-square object-cover cursor-pointer border-white border-2')"
          :alt="alt"
          @load="onImageLoaded"
          @error="onImageFailed"/>
     <div v-else
-         :class="cn('flex h-full w-full items-center justify-center bg-muted font-medium',
+         :class="cn('flex aspect-square items-center justify-center bg-muted font-medium',
                     size && SkeletonSize[size])">
       {{ alt }}
     </div>

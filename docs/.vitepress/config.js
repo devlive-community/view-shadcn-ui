@@ -150,10 +150,10 @@ export default {
                 (() => {
                     const items = [
                         {text: '卡片 (Card)', link: 'layout/card', icon: '/components/layout/card.svg', version: '2024.1.1'},
-                        {text: 'Row / Col', link: 'layout/row-col', icon: '/components/layout/row-col.svg', version: '2024.1.2'},
-                        {text: 'Divider', link: 'layout/divider', icon: '/components/layout/divider.svg', version: '2024.1.2'},
-                        {text: 'Ellipsis', link: 'layout/ellipsis', icon: '/components/layout/ellipsis.svg', version: '2024.1.2'},
-                        {text: 'Avatar', link: 'layout/avatar', icon: '/components/layout/avatar.svg', version: '2024.1.2'},
+                        {text: '行 & 列 (Row & Col)', link: 'layout/row-col', icon: '/components/layout/row-col.svg', version: '2024.1.2'},
+                        {text: '分隔线 (Divider)', link: 'layout/divider', icon: '/components/layout/divider.svg', version: '2024.1.2'},
+                        {text: '省略 (Ellipsis)', link: 'layout/ellipsis', icon: '/components/layout/ellipsis.svg', version: '2024.1.2'},
+                        {text: '头像 (Avatar)', link: 'layout/avatar', icon: '/components/layout/avatar.svg', version: '2024.1.2'},
                         {text: 'Space', link: 'layout/space', icon: '/components/layout/space.svg', version: '2024.1.2'},
                         {text: '骨架屏 (Skeleton)', link: 'layout/skeleton', icon: '/components/layout/skeleton.svg', version: '2024.1.2'},
                         {text: 'Layout', link: 'layout/layout', icon: '/components/layout/layout.svg', version: '2024.1.2'},
