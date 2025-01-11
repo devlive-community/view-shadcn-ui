@@ -63,7 +63,7 @@ All notable changes to this project will be documented in this file. See [standa
 - feat: support quick times
 - feat: support format
 
-#### Color Picker
+#### 颜色 (color) Picker
 
 - support disabled and readonly
 - support presetColors

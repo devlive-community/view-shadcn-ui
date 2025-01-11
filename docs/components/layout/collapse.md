@@ -1,20 +1,18 @@
 ---
-title: Shadcn Collapse
+title: 折叠 (Collapse)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnCollapse component.
+<br />
 
-- ShadcnCollapse
-- ShadcnCollapseItem
+本文档主要介绍 `ShadcnCollapse` 组件的一些特性和用法。
 
 ## 用法
 
 :::raw
 
 <CodeRunner title="用法">
-    Default Value: {{ expandedItems }}
     <ShadcnCollapse class="w-full" v-model="expandedItems">
       <ShadcnCollapseItem title="Section 1" name="1">
         Content for section 1
@@ -50,12 +48,11 @@ const expandedItems = ref<string[]>([])
 
 :::
 
-## Accordion
+## 手风琴 (accordion)
 
 :::raw
 
-<CodeRunner title="Accordion">
-    Default Value: {{ expandedItems }}
+<CodeRunner title="手风琴 (accordion)">
     <ShadcnCollapse class="w-full" v-model="expandedItems" accordion>
       <ShadcnCollapseItem title="Section 1" name="1">
         Content for section 1
@@ -91,41 +88,41 @@ const expandedItems = ref<string[]>([])
 
 :::
 
-## Collapse Props
+## 折叠 (Collapse) 属性
 
-<ApiTable title="Collapse Props"
-    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
+<ApiTable title="折叠 (Collapse) 属性"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['modelValue', 'You can use v-model to bind data in both directions', 'Any[]', '-', '-', '-'],
-        ['accordion', 'Whether it is an accordion', 'boolean', 'false', '-', '-'],
+        ['modelValue', '当前选中的值', 'any\[\]', '-'],
+        ['accordion', '手风琴模式', 'boolean', 'false'],
     ]">
 </ApiTable>
 
-<br />
+## 折叠节点 (Collapse Item) 属性
 
-<ApiTable title="Collapse Item Props"
-    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
+<ApiTable title="折叠节点 (Collapse Item) 属性"
+    :headers="['属性', '描述', '类型']"
     :columns="[
-        ['title', 'The title of the collapse item', 'string', '-', '-', '-'],
-        ['name', 'The name of the collapse item', 'string', '-', '-', '-'],
+        ['title', '折叠项目的标题', 'string'],
+        ['name', '折叠项的名称', 'string'],
     ]">
 </ApiTable>
 
-## Collapse Slot
+## 折叠 (Collapse) 插槽
 
-<ApiTable title="Collapse Item Slot"
-    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
+<ApiTable title="折叠 (Collapse) 插槽"
+    :headers="['属性', '描述', '类型']"
     :columns="[
-        ['title', 'The title of the collapse item', 'string', '-', '-', '-'],
+        ['title', '折叠项目的标题', 'string'],
     ]">
 </ApiTable>
 
-## Collapse Events
+## 折叠 (Collapse) 事件
 
-<ApiTable title="Collapse Events"
+<ApiTable title="折叠 (Collapse) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['on-change', 'The event is triggered when the value changes', 'Any[]'],
+        ['on-change', '选中项发生变化时触发', 'any\[\]'],
     ]">
 </ApiTable>
 

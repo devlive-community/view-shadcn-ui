@@ -1,15 +1,16 @@
 ---
-title: Shadcn Input
+title: 输入框 (Input)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnInput component.
+<br />
 
-## Basic Usage
+本文档主要用于描述 `ShadcnInput` 组件的一些特性和用法。
 
-<CodeRunner title="Basic Usage"
-    description="Create a simple input.">
+## 用法
+
+<CodeRunner title="用法">
     <ShadcnInput placeholder="Input" />
 </CodeRunner>
 
@@ -29,10 +30,9 @@ const input = ref('')
 
 :::
 
-## Clearable
+## 清空 (clearable)
 
-<CodeRunner title="Clearable"
-    description="Create a clearable input.">
+<CodeRunner title="清空 (clearable)">
     <ShadcnInput placeholder="Input" v-model="input" clearable />
 </CodeRunner>
 
@@ -54,8 +54,7 @@ const input = ref('Hello View Shadcn UI')
 
 ## 尺寸 (size)
 
-<CodeRunner title="Size"
-    description="Create a size input.">
+<CodeRunner title="尺寸 (size)">
     <div class="space-y-2">
         <ShadcnInput placeholder="Input" v-model="input" size="small" />
         <ShadcnInput placeholder="Input" v-model="input" size="default"/>
@@ -81,10 +80,9 @@ const input = ref('Hello View Shadcn UI')
 
 :::
 
-## Word Count
+## 字数统计 (word-count)
 
-<CodeRunner title="Word Count"
-    description="Create a word count input.">
+<CodeRunner title="字数统计 (word-count)">
     <ShadcnInput placeholder="Input" v-model="input" word-count />
 </CodeRunner>
 
@@ -104,10 +102,9 @@ const input = ref('Hello View Shadcn UI')
 
 :::
 
-## 最大值 (max) Count
+## 最大统计值 (max-count)
 
-<CodeRunner title="Max Count"
-    description="Create a max count input.">
+<CodeRunner title="最大统计值 (max-count)">
     <ShadcnInput placeholder="Input" v-model="input" word-count :max-count="100" />
 </CodeRunner>
 
@@ -127,10 +124,9 @@ const input = ref('Hello View Shadcn UI')
 
 :::
 
-## Prefix and Suffix
+## 前缀 & 后缀 (prefix & suffix)
 
-<CodeRunner title="Prefix and Suffix"
-    description="Create a prefix and suffix input.">
+<CodeRunner title="前缀 & 后缀 (prefix & suffix)">
     <ShadcnInput placeholder="Input" v-model="input">
         <template #prefix>
             <span class="text-xs text-gray-300">P</span>
@@ -190,9 +186,9 @@ const input = ref('Hello View Shadcn UI')
 
 :::
 
-## Password
+## 密码 (password)
 
-<CodeRunner title="Password">
+<CodeRunner title="密码 (password)">
     <ShadcnInput placeholder="Input" v-model="input" type="password" />
 </CodeRunner>
 
@@ -212,11 +208,11 @@ const input = ref('Hello View Shadcn UI')
 
 :::
 
-## Textarea
+## 多行文本 (textarea)
 
 ::: raw
 
-<CodeRunner title="Textarea">
+<CodeRunner title="多行文本 (textarea)">
     <ShadcnInput placeholder="Input" v-model="input" type="textarea" />
 </CodeRunner>
 
@@ -238,45 +234,45 @@ const input = ref('Hello View Shadcn UI')
 
 :::
 
-## API Attributes
+## 输入框 (Input) 属性
 
-<ApiTable title="Input Props"
+<ApiTable title="输入框 (Input) 属性"
     :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
-        ['modelValue', 'The value of the input', 'String', '-', '-', '-'],
-        ['placeholder', 'The placeholder of the input', 'String', '-', '-', '-'],
-        ['clearable', 'Show the clearable icon', 'Boolean', 'false', '-', '-'],
-        ['size', 'The size of the input', 'String', 'default', '-', 'small, default, large'],
-        ['wordCount', 'Show the word count', 'Boolean', 'false', '-', '-'],
-        ['maxCount', 'The max count of the input', 'Number', '-', '-', '-'],
-        ['disabled', 'Disable the input', 'Boolean', 'false', '-', '-'],
-        ['type', 'The type of the input', 'String', 'text', '-', 'text, password, textarea'],
-        ['rows', 'The rows of the textarea', 'Number', '3', '-', '-'],
-        ['cols', 'The cols of the textarea', 'Number', '20', '-', '-'],
-        ['name', 'The name of the input, support on form', 'String', '-', '-', '-'],
+        ['modelValue', '当前组件的值', 'string', '-', '-', '-'],
+        ['placeholder', '占位符内容', 'string', '-', '-', '-'],
+        ['clearable', '是否显示清空', 'boolean', 'false', '-', '-'],
+        ['size', '组件的尺寸', 'string', 'default', '-', 'small | default | large'],
+        ['wordCount', '是否显示字数统计', 'boolean', 'false', '-', '-'],
+        ['maxCount', '最大字数统计值', 'number', '-', '-', '-'],
+        ['disabled', '是否禁用', 'boolean', 'false', '-', '-'],
+        ['type', '组件的类型', 'string', 'text', '-', 'text | password | textarea'],
+        ['rows', '多行文本的行数', 'number', '3', '-', '-'],
+        ['cols', '多行文本的列数', 'number', '20', '-', '-'],
+        ['name', '在表单中的名称', 'string', '-', '-', '-'],
     ]">
 </ApiTable>
 
-<br />
+## 输入框 (Input) 事件
 
-<ApiTable title="Input Events"
+<ApiTable title="输入框 (Input) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['on-change', 'Triggered when the input value is changed', 'Object'],
-        ['on-clear', 'Triggered when the clear icon is clicked', '-'],
-        ['on-blur', 'Triggered when the input loses focus', '-'],
-        ['on-prefix-click', 'Triggered when the prefix icon is clicked', '-'],
-        ['on-suffix-click', 'Triggered when the suffix icon is clicked', '-'],
+        ['on-change', '当组件的值修改时触发', 'object'],
+        ['on-clear', '当清空按钮被点击时触发', '-'],
+        ['on-blur', '当输入框失去焦点时触发', '-'],
+        ['on-prefix-click', '当组件的前缀被点击时触发', '-'],
+        ['on-suffix-click', '当组件的后缀被点击时触发', '-'],
     ]">
 </ApiTable>
 
-<br />
+## 输入框 (Input) 插槽
 
-<ApiTable title="Input Slots"
+<ApiTable title="输入框 (Input) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['prefix', 'Input prefix'],
-        ['suffix', 'Input suffix'],
+        ['prefix', '组件的前缀'],
+        ['suffix', '组件的后缀'],
     ]">
 </ApiTable>
 

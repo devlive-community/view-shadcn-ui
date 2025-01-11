@@ -1,10 +1,12 @@
 ---
-title: Shadcn Table
+title: 表格 (Table)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnTable component.
+<br />
+
+本文档主要用于描述 `ShadcnTable` 组件的一些特性和用法。
 
 ## 用法
 
@@ -40,11 +42,11 @@ const data = [
 
 :::
 
-## Stripe
+## 条纹 (stripe)
 
 ::: raw
 
-<CodeRunner title="Stripe">
+<CodeRunner title="条纹 (stripe)">
     <ShadcnTable :columns="columns" :data="data" stripe/>
 </CodeRunner>
 
@@ -112,7 +114,7 @@ const data = [
 
 ::: raw
 
-<CodeRunner title="Width">
+<CodeRunner title="宽度 (width)">
     <ShadcnTable :columns="columns" :data="data" width="300"/>
 </CodeRunner>
 
@@ -142,11 +144,11 @@ const data = [
 
 :::
 
-## Height
+## 高度 (height)
 
 ::: raw
 
-<CodeRunner title="Height">
+<CodeRunner title="高度 (height)">
     <ShadcnTable :columns="columns" :data="data" height="300"/>
 </CodeRunner>
 
@@ -176,11 +178,11 @@ const data = [
 
 :::
 
-## Column Slot
+## 自定义列 (column)
 
 ::: raw
 
-<CodeRunner title="Column Slot">
+<CodeRunner title="自定义列">
     <ShadcnTable :columns="slotColumns" :data="data">
       <template #actions="{ row, index }">
         <ShadcnButton @click="click(row, index)">Edit</ShadcnButton>
@@ -225,11 +227,11 @@ const click = (row: any, index: number) => {
 
 :::
 
-## Column Fixed
+## 固定列 (fixed)
 
 ::: raw
 
-<CodeRunner title="Column Fixed">
+<CodeRunner title="固定列 (fixed)">
     <ShadcnTable :columns="fixedColumns" :data="data" width="300"/>
 </CodeRunner>
 
@@ -259,11 +261,11 @@ const click = (row: any, index: number) => {
 
 :::
 
-## Column Multiple Fixed
+## 多个固定列 (multiple-fixed)
 
 ::: raw
 
-<CodeRunner title="Column Multiple Fixed">
+<CodeRunner title="多个固定列 (multiple-fixed)">
     <ShadcnTable :columns="fixedMultiColumns" :data="data"/>
 </CodeRunner>
 
@@ -297,11 +299,11 @@ const data = [
 
 :::
 
-## Column Width
+## 列宽度 (width)
 
 ::: raw
 
-<CodeRunner title="Column Width">
+<CodeRunner title="列宽度 (width)">
     <ShadcnTable :columns="widthColumns" :data="data"/>
 </CodeRunner>
 
@@ -331,11 +333,11 @@ const data = [
 
 :::
 
-## Row Click
+## 行点击 (on-row-click)
 
 ::: raw
 
-<CodeRunner title="Row Click">
+<CodeRunner title="行点击 (on-row-click)">
     <ShadcnTable :columns="columns" :data="data" @on-row-click="click"/>
 </CodeRunner>
 
@@ -371,41 +373,41 @@ const rowClick = (row: any, index: number) => {
 
 :::
 
-## Props
+## 表格 (Table) 属性
 
-<ApiTable title="Table Props"
+<ApiTable title="表格 (Table) 属性"
     :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['columns', 'The columns of the table', 'array', '-', '-'],
-        ['data', 'The data of the table', 'array', '-', '-'],
-        ['stripe', 'Whether the table is striped', 'boolean', 'false', '-'],
-        ['border', 'Whether the table is bordered', 'boolean', 'false', '-'],
-        ['width', 'The width of the table', 'string | number', '100%', '-'],
-        ['height', 'The height of the table', 'string | number', 'auto', '-'],
-        ['maxHeight', 'The maximum height of the table', 'string | number', '300', '-'],
-        ['size', 'The size of the table', 'Enum', 'default', 'small | default | large'],
+        ['columns', '列头数据', 'array', '-', '-'],
+        ['data', '数据', 'array', '-', '-'],
+        ['stripe', '表是否为条带化', 'boolean', 'false', '-'],
+        ['border', '表是否显示边框', 'boolean', 'false', '-'],
+        ['width', '组件的宽度', 'string | number', '100%', '-'],
+        ['height', '组件的高度', 'string | number', 'auto', '-'],
+        ['maxHeight', '组件的最大高度', 'string | number', '300', '-'],
+        ['size', '组件的尺寸', 'enum', 'default', 'small | default | large'],
     ]">
 </ApiTable>
 
-<br />
+## 列 (Column) 属性
 
-<ApiTable title="Column Props"
+<ApiTable title="列 (Column) 属性"
     :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['label', 'The label of the column', 'string', '-', '-'],
-        ['key', 'The key of the column', 'string', '${label}', '-'],
-        ['slot', 'The slot of the column', 'string', '-', '-'],
-        ['fixed', 'Whether the column is fixed, must be set width', 'Enum', '-', 'left | right'],
-        ['width', 'The width of the column', 'string | number', 'auto', '-'],
+        ['label', '列标签', 'string', '-', '-'],
+        ['key', '列的唯一标识', 'string', '${label}', '-'],
+        ['slot', '列的插槽，配置后，必须实现', 'string', '-', '-'],
+        ['fixed', '列是否固定，必须设置宽度', 'enum', '-', 'left | right'],
+        ['width', '列的宽度', 'string | number', 'auto', '-'],
     ]">
 </ApiTable>
 
-## Events
+## 表格 (Table) 事件
 
-<ApiTable title="Table Events"
+<ApiTable title="表格 (Table) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['on-row-click', 'Triggered when the user clicks on a row', '{row: object, index: number}'],
+        ['on-row-click', '行点击时触发', '{row: object, index: number}'],
     ]">
 </ApiTable>
 

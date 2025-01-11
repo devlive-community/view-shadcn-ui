@@ -1,15 +1,16 @@
 ---
-title: Shadcn Divider
+title: 分隔线 (Divider)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnDivider.
+<br />
+
+本文档主要用于描述 `ShadcnDivider` 组件的一些特性和用法。
 
 ## 用法
 
-<CodeRunner title="Simple Divider"
-    description="Created a simple divider">
+<CodeRunner title="用法">
     <div>Hello, View Shadcn UI, Divider</div>
     <ShadcnDivider />
 </CodeRunner>
@@ -30,8 +31,7 @@ This document is mainly used to describe some features and usage of the ShadcnDi
 
 ## 类型 (type)
 
-<CodeRunner title="Type"
-    description="Created a type divider">
+<CodeRunner title="类型 (type)">
     <div>Horizontal</div>
     <ShadcnDivider type="horizontal" />
     <div class="flex space-x-2 mt-2">
@@ -66,8 +66,7 @@ This document is mainly used to describe some features and usage of the ShadcnDi
 
 ## 位置 (position)
 
-<CodeRunner title="Position"
-    description="Created a position divider">
+<CodeRunner title="位置 (position)">
     <ShadcnDivider orientation="left">Left</ShadcnDivider>
     <ShadcnDivider orientation="center">Center</ShadcnDivider>
     <ShadcnDivider orientation="right">Right</ShadcnDivider>
@@ -88,10 +87,9 @@ This document is mainly used to describe some features and usage of the ShadcnDi
 
 :::
 
-## Dashed
+## 虚线 (dashed)
 
-<CodeRunner title="Dashed"
-    description="Created a dashed divider">
+<CodeRunner title="虚线 (dashed)">
     <ShadcnDivider dashed />
 </CodeRunner>
 
@@ -108,23 +106,23 @@ This document is mainly used to describe some features and usage of the ShadcnDi
 
 :::
 
-## API Attributes
+## 分隔线 (Divider) 属性
 
-<ApiTable title="Divider Props"
+<ApiTable title="分隔线 (Divider) 属性"
     :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['text', 'Text content', 'String', '-', '-'],
-        ['type', 'Divider type', 'Enum', '-', 'horizontal | vertical'],
-        ['orientation', 'The position of the dividing line title', 'Enum', '-', 'left | center | right'],
-        ['dashed', 'Whether the divider is dashed', 'Boolean', 'false', '-'],
+        ['text', '文本内容', 'string', '-', '-'],
+        ['type', '分隔线类型', 'enum', '-', 'horizontal | vertical'],
+        ['orientation', '分割线标题的位置', 'enum', '-', 'left | center | right'],
+        ['dashed', '分隔线是否为虚线', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
-<br />
+## 分隔线 (Divider) 插槽
 
-<ApiTable title="Divider Slots"
-    :headers="['Slot', 'Description', 'Props Reference']"
+<ApiTable title="分隔线 (Divider) 插槽"
+    :headers="['插槽', '描述', '参数']"
     :columns="[
-        ['default', 'Default slot', 'text'],
+        ['default', '默认文本插槽', 'text'],
     ]">
 </ApiTable>

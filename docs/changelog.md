@@ -65,7 +65,7 @@ title: "发布日志"
 - feat: support quick times
 - feat: support format
 
-#### Color Picker
+#### 颜色 (color) Picker
 
 - support disabled and readonly
 - support presetColors

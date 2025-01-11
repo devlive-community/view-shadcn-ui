@@ -1,10 +1,12 @@
 ---
-title: Shadcn Rate
+title: 评分 (Rate)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnRate component.
+<br />
+
+本文档主要用于描述 `ShadcnRate` 组件的一些特性和用法。
 
 ## 用法
 
@@ -29,9 +31,9 @@ const rate = ref(1)
 
 :::
 
-## 最大值 (max)imum Value
+## 最大值 (max)
 
-<CodeRunner title="Maximum Value">
+<CodeRunner title="最大值 (max)">
     Rate Value: {{ rate }}
     <ShadcnRate v-model="rate" max="10" />
 </CodeRunner>
@@ -52,9 +54,9 @@ const rate = ref(1)
 
 :::
 
-## Allow Half
+## 允许半选 (allow-half)
 
-<CodeRunner title="Allow Half">
+<CodeRunner title="允许半选 (allow-half)">
     Rate Value: {{ rate }}
     <ShadcnRate v-model="rate" allow-half />
     <p>Custom Character</p>
@@ -136,7 +138,7 @@ const rate = ref(1)
 
 :::
 
-## Show Text
+## 显示文本 (show-text)
 
 <CodeRunner title="Show Text">
     Rate Value: {{ rate }}
@@ -166,27 +168,27 @@ const rate = ref(1)
 
 :::
 
-## API Attributes
+## 评分 (Rate) 属性
 
-<ApiTable title="Rate Props"
+<ApiTable title="评分 (Rate) 属性"
     :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['modelValue', 'Rate value', 'number', '0', '-'],
-        ['max', 'Maximum value', 'number', '5', '-'],
-        ['allowHalf', 'Allow half', 'boolean', 'false', '-'],
-        ['type', 'Rate type', 'string', 'default', 'primary, success, warning, error'],
-        ['disabled', 'Disabled', 'boolean', 'false', '-'],
-        ['showText', 'Show text', 'boolean', 'false', '-'],
+        ['modelValue', '当前组件的值', 'number', '0', '-'],
+        ['max', '组件的最大值', 'number', '5', '-'],
+        ['allowHalf', '是否允许半选', 'boolean', 'false', '-'],
+        ['type', '组件的类型', 'string', 'default', 'primary | success | warning | error'],
+        ['disabled', '是否为禁用', 'boolean', 'false', '-'],
+        ['showText', '是否显示文本', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
-<br />
+## 评分 (Rate) 插槽
 
-<ApiTable title="Rate Slots"
+<ApiTable title="评分 (Rate) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['character', 'Rate character slot'],
-        ['text', 'Rate text slot'],
+        ['character', '组件的字符'],
+        ['text', '组件的文本'],
     ]">
 </ApiTable>
 

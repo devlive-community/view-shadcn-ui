@@ -1,15 +1,16 @@
 ---
-title: Shadcn Tooltip
+title: 提示 (Tooltip)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnTooltip component.
+<br />
 
-## Basic Usage
+本文档主要用于描述 `ShadcnTooltip` 组件的一些特性和用法。
 
-<CodeRunner title="Basic Usage"
-    description="Create a simple tooltip.">
+## 用法
+
+<CodeRunner title="用法">
     <ShadcnTooltip content="This is a tooltip">
         <ShadcnButton>Hover</ShadcnButton>
     </ShadcnTooltip>
@@ -30,10 +31,9 @@ This document is mainly used to describe some features and usage of the ShadcnTo
 
 :::
 
-## Delay
+## 延迟 (delay)
 
-<CodeRunner title="Delay"
-    description="Create a tooltip with delay.">
+<CodeRunner title="延迟 (delay)">
     <ShadcnTooltip content="This is a tooltip" :delay="500">
         <ShadcnButton>Hover</ShadcnButton>
     </ShadcnTooltip>
@@ -56,8 +56,7 @@ This document is mainly used to describe some features and usage of the ShadcnTo
 
 ## 位置 (position)
 
-<CodeRunner title="Position"
-    description="Create a tooltip with custom position.">
+<CodeRunner title="位置 (position)">
     <ShadcnTooltip content="Position" position="top">
         <ShadcnButton>Top</ShadcnButton>
     </ShadcnTooltip>
@@ -96,10 +95,9 @@ This document is mainly used to describe some features and usage of the ShadcnTo
 
 :::
 
-## Arrow
+## 箭头 (arrow)
 
-<CodeRunner title="Arrow"
-    description="Create a tooltip with arrow.">
+<CodeRunner title="箭头 (arrow)">
     <ShadcnTooltip content="Hello Shadcn UI" arrow>
         <ShadcnButton>Arrow</ShadcnButton>
     </ShadcnTooltip>
@@ -117,32 +115,6 @@ This document is mainly used to describe some features and usage of the ShadcnTo
     </ShadcnTooltip>
     <ShadcnTooltip content="Hello Shadcn UI" :arrow="false">
         <ShadcnButton>No Arrow</ShadcnButton>
-    </ShadcnTooltip>
-</template>
-
-<script setup lang="ts">
-</script>
-```
-
-:::
-
-## Custom Content
-
-<CodeRunner title="Custom Content"
-    description="Create a tooltip with custom content.">
-    <ShadcnTooltip>
-        <template #content>Custom Content</template>
-        <ShadcnButton>Hover</ShadcnButton>
-    </ShadcnTooltip>
-</CodeRunner>
-
-::: details 查看代码
-
-```vue
-<template>
-    <ShadcnTooltip>
-        <template #content>Custom Content</template>
-        <ShadcnButton>Hover</ShadcnButton>
     </ShadcnTooltip>
 </template>
 
@@ -154,7 +126,7 @@ This document is mainly used to describe some features and usage of the ShadcnTo
 
 ## 宽度 (width)
 
-<CodeRunner title="Width">
+<CodeRunner title="宽度 (width)">
     <ShadcnTooltip content="Steve Jobs (English: Steve Jobs) is an American entrepreneur, marketer and inventor. He is one of the co-founders of Apple and has served as chairman and CEO. He is also the founder and CEO of NeXT and the founder and former CEO of Pixar Animation. He was a member of the board of directors of the Walt Disney Company in 2006. The place where Apple's press conference was held in September 2017 was named Steve Jobs Theater after him." width="200">
         <ShadcnButton>Hover</ShadcnButton>
     </ShadcnTooltip>
@@ -175,25 +147,25 @@ This document is mainly used to describe some features and usage of the ShadcnTo
 
 :::
 
-## API Attributes
+## 提示 (Tooltip) 属性
 
-<ApiTable title="Tooltip Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List', 'Latest Version']"
+<ApiTable title="提示 (Tooltip) 属性"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['content', 'The content of the tooltip', 'Object', '-', '-', '-', '-'],
-        ['delay', 'Delay time, in milliseconds', 'Number', '0', '-', '-'],
-        ['position', 'The position of the tooltip', 'Enum', 'top', '-', 'top, bottom, left, right', '-'],
-        ['arrow', 'Show arrow', 'Boolean', 'true', '-', '-', '-'],
-        ['maxWidth', 'The maximum width of the tooltip, if the width is auto', 'Number | String', '200', '-', '-', '2024.1.2'],
+        ['content', '内容文本', 'object', '-', '-'],
+        ['delay', '延迟时间 (以毫秒为单位)', 'number', '0', '-'],
+        ['position', '组件的位置', 'enum', 'top', 'top | bottom | left | right'],
+        ['arrow', '是否显示箭头', 'boolean', 'true', '-'],
+        ['maxWidth', '如果宽度为 auto，则提示工具的最大宽度', 'number | string', '200', '-'],
     ]">
 </ApiTable>
 
-<br />
+## 提示 (Tooltip) 插槽
 
-<ApiTable title="Modal Slots"
+<ApiTable title="提示 (Tooltip) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['default', 'Tooltip trigger'],
-        ['content', 'Tooltip content'],
+        ['default', '提示器区域'],
+        ['content', '提示内容区域'],
     ]">
 </ApiTable>

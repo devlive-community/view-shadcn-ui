@@ -1,10 +1,12 @@
 ---
-title: Shadcn BackTop
+title: 返回顶部 (Back Top)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnBackTop component.
+<br />
+
+本文档主要用于描述 `ShadcnBackTop` 组件的一些特性和使用方法。
 
 ## 用法
 
@@ -41,25 +43,23 @@ This document is mainly used to describe some features and usage of the ShadcnBa
 
 :::
 
-## Condat
+## 返回顶部 (Back Top) 属性
 
-## BackTop Props
-
-<ApiTable title="Props"
+<ApiTable title="返回顶部 (Back Top) 属性"
     :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['visibilityHeight', 'The visibility height of the back top', 'number', '200'],
-        ['right', 'The right position of the back top', 'number', '40'],
-        ['bottom', 'The bottom position of the back top', 'number', '40'],
-        ['duration', 'The duration of the back top animation', 'number', '500'],
+        ['visibilityHeight', '到达该高度后显示返回顶部按钮', 'number', '200'],
+        ['right', '距离右侧的距离', 'number', '40'],
+        ['bottom', '距离底部的距离', 'number', '40'],
+        ['duration', '动画持续时间', 'number', '500'],
     ]">
 </ApiTable>
 
-## BackTop Events
+## 返回顶部 (Back Top) 事件
 
-<ApiTable title="Events"
+<ApiTable title="返回顶部 (Back Top) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['click', 'Triggered when the back top is clicked', 'event'],
+        ['click', '组件点击事件', 'event'],
     ]">
 </ApiTable>

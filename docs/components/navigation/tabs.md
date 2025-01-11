@@ -203,10 +203,10 @@ title: 选项卡 (Tabs)
 
 :::
 
-## 卡片 (card)
+## 线型 (line)
 
-<CodeRunner title="卡片 (card)">
-    <ShadcnTab type="primary" card>
+<CodeRunner title="线型 (line)">
+    <ShadcnTab type="primary" line>
         <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 2" value="Tab 2" disabled>Tab 2 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
@@ -217,7 +217,7 @@ title: 选项卡 (Tabs)
 
 ```vue
 <template>
-    <ShadcnTab type="primary" card>
+    <ShadcnTab type="primary" line>
         <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 2" value="Tab 2" disabled>Tab 2 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
@@ -406,13 +406,14 @@ const addTab = () => {
 <ApiTable title="选项卡 (Tabs) 属性"
     :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['modelValue', '当前激活选项卡的值', 'String', '-', '-'],
-        ['type', '选项卡的类型', 'String', 'primary', 'primary | success | warning | error'],
-        ['size', '选项卡的大小', 'String', 'default', 'default | small'],
-        ['card', '选项卡是否为卡片', 'Boolean', 'false', '-'],
-        ['closable', '选项卡是否可关闭', 'Boolean', 'false', '-'],
-        ['direction', '选项卡的方向', 'String', 'horizontal', 'horizontal | vertical'],
-        ['position', '选项卡的位置', 'String', 'top', 'left | right'],
+        ['modelValue', '当前激活选项卡的值', 'string', '-', '-'],
+        ['type', '选项卡的类型', 'string', 'primary', 'primary | success | warning | error'],
+        ['size', '选项卡的大小', 'string', 'default', 'default | small'],
+        ['line', '选项卡是否为线性', 'boolean', 'false', '-'],
+        ['closable', '选项卡是否可关闭', 'boolean', 'false', '-'],
+        ['direction', '选项卡的方向', 'string', 'horizontal', 'horizontal | vertical'],
+        ['position', '选项卡的位置', 'string', 'top', 'left | right'],
+        ['showScrollButtons', '是否显示滚动按钮', 'boolean', 'true', '-'],
     ]">
 </ApiTable>
 
@@ -421,10 +422,10 @@ const addTab = () => {
 <ApiTable title="选项卡选项 (Tabs Item) 属性"
     :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['label', '选项卡的标签', 'String', '-'],
-        ['value', '选项卡的值', 'String', '-'],
-        ['disabled', '选项卡是否禁用', 'Boolean', 'false'],
-        ['icon', '选项卡的图标', 'String', '-'],
+        ['label', '选项卡的标签', 'string', '-'],
+        ['value', '选项卡的值', 'string', '-'],
+        ['disabled', '选项卡是否禁用', 'boolean', 'false'],
+        ['icon', '选项卡的图标', 'string', '-'],
     ]">
 </ApiTable>
 

@@ -1,3 +1,2 @@
-import ShadcnTab from './ShadcnTab.vue'
-
-export default ShadcnTab
+export { default as ShadcnTab } from './ShadcnTab.vue'
+export { default as ShadcnTabItem } from './ShadcnTabItem.vue'

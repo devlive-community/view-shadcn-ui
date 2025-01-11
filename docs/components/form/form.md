@@ -1,13 +1,12 @@
 ---
-title: Shadcn Form
+title: 表单 (Form)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnForm component.
+<br />
 
-- ShadcnForm
-- ShadcnFormItem
+本文档主要用于描述 `ShadcnForm` 组件的一些特性和用法。
 
 ## 用法
 
@@ -250,11 +249,11 @@ const resetForm = () => {
 
 :::
 
-## Dynamic Form
+## 动态表单 (dynamic)
 
 ::: raw
 
-<CodeRunner title="Dynamic Form">
+<CodeRunner title="动态表单 (dynamic)">
     <ShadcnButton @click="onAdd">Add Column</ShadcnButton>
     <ShadcnForm v-model="formState" class="mt-2" @on-submit="onSubmit2">
       <ShadcnFormItem v-for="(item, index) in formState.columns"
@@ -323,35 +322,35 @@ onMounted(() => onAdd())
 
 :::
 
-## Form Props
+## 表单 (Form) 属性
 
-<ApiTable title="Form Props"
+<ApiTable title="表单 (Form) 属性"
     :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
-        ['modelValue', 'The value of the form', 'Any', '-', '-', '-'],
+        ['modelValue', '当前组件的值', 'any', '-', '-', '-'],
     ]">
 </ApiTable>
 
-<br />
+## 表单项 (Form Item) 属性
 
-<ApiTable title="Item Props"
+<ApiTable title="表单项 (Form Item) 属性"
     :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
-        ['name', 'The name of the form item', 'String', '-', '-', '-'],
-        ['label', 'The label of the form item', 'String', '-', '-', '-'],
-        ['description', 'The description of the form item', 'String', '-', '-', '-'],
-        ['rules', 'The rules of the form item', 'Array', '-', '-', '-'],
-        ['validateOnBlur', 'Whether to validate on blur', 'Boolean', 'true', '-', '-'],
+        ['name', '表单项的名称', 'string', '-', '-', '-'],
+        ['label', '表单项的标签', 'string', '-', '-', '-'],
+        ['description', '表单项的描述', 'string', '-', '-', '-'],
+        ['rules', '表单项的验证规则', 'array', '-', '-', '-'],
+        ['validateOnBlur', '是否在失去焦点时进行验证', 'boolean', 'true', '-', '-'],
     ]">
 </ApiTable>
 
-## Form Events
+## 表单 (Form) 事件
 
-<ApiTable title="Form Events"
+<ApiTable title="表单 (Form) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['on-submit', 'Triggered when the form is submitted', 'Object'],
-        ['on-error', 'Triggered when the form is submitted with errors', 'Object'],
+        ['on-submit', '当表单提交时触发', 'object'],
+        ['on-error', '当表单验证失败时触发', 'object'],
     ]">
 </ApiTable>
 

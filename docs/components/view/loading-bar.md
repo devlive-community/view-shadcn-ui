@@ -1,10 +1,12 @@
 ---
-title: Shadcn LoadingBar
+title: 加载条 (Loading Bar)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnLoadingBar component.
+<br />
+
+本文档主要用于描述 `ShadcnLoadingBar` 组件的一些特性和使用方法。
 
 ## 用法
 
@@ -32,11 +34,11 @@ const progress = ref(50)
 
 :::
 
-## Status
+## 状态 (status)
 
 ::: raw
 
-<CodeRunner title="Status">
+<CodeRunner title="状态 (status)">
     Default
     <ShadcnLoadingBar v-model="progress" :duration="500"/>
     Error
@@ -64,11 +66,11 @@ const progress = ref(50)
 
 :::
 
-## Service
+## 服务调用 (service)
 
 ::: raw
 
-<CodeRunner title="Service">
+<CodeRunner title="服务调用 (service)">
   <div class="space-x-4">
     <ShadcnButton @click="LoadingBar?.start">Start</ShadcnButton>
     <ShadcnButton @click="LoadingBar?.done">Done</ShadcnButton>
@@ -98,39 +100,39 @@ const progress = ref(50)
 
 :::
 
-## LoadingBar Props
+## 加载条 (Loading Bar) 属性
 
-<ApiTable title="Props"
+<ApiTable title="加载条 (Loading Bar) 属性"
     :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['progress', 'The value of the loading bar.', 'number', '0', '-'],
-        ['height', 'The height of the loading bar.', 'number | string', '2', '-'],
-        ['color', 'The color of the loading bar.', 'string', '#2563eb', '-'],
-        ['duration', 'The duration of the loading bar.', 'number | string', '300', '-'],
-        ['animate', 'Whether to animate the loading bar.', 'Boolean', 'true', '-'],
-        ['status', 'The status of the loading bar.', 'string', 'default', 'default | error | success'],
+        ['progress', '加载条的进度', 'number', '0', '-'],
+        ['height', '加载条的高度', 'number | string', '2', '-'],
+        ['color', '加载条的颜色', 'string', '#2563eb', '-'],
+        ['duration', '加载条的持续时间', 'number | string', '300', '-'],
+        ['animate', '是否启用加载条动画', 'Boolean', 'true', '-'],
+        ['status', '加载条的状态', 'string', 'default', 'default | error | success'],
     ]">
 </ApiTable>
 
-## LoadingBar Events
+## 加载条 (Loading Bar) 事件
 
-<ApiTable title="Events"
+<ApiTable title="加载条 (Loading Bar) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['on-complete', 'Triggered when the loading bar completes.', 'void'],
+        ['on-complete', '加载条完成时触发', 'void'],
     ]">
 </ApiTable>
 
-## LoadingBar Service
+## 加载条服务 (Loading Bar Service)
 
-<ApiTable title="Service"
-    :headers="['Method', 'Description', 'Parameters']"
+<ApiTable title="加载条服务 (Loading Bar Service)"
+    :headers="['方法', '描述', '回调参数']"
     :columns="[
-        ['start', 'Start the loading bar', '-'],
-        ['done', 'Complete the loading bar', 'success | error | default'],
-        ['success', 'Complete the loading bar with success status'],
-        ['error', 'Complete the loading bar with error status'],
-        ['enabledNetwork', 'Enable network status monitoring', 'boolean'],
+        ['start', '开始加载', '-'],
+        ['done', '完成加载', 'success | error | default'],
+        ['success', '成功完成加载', '-'],
+        ['error', '失败完成加载', '-'],
+        ['enabledNetwork', '是否启用网络监控', 'boolean'],
     ]">
 </ApiTable>
 

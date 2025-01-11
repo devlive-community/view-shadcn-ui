@@ -1,10 +1,12 @@
 ---
-title: Shadcn InputTag
+title: 输入标签 (Input Tag)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnInputTag component.
+<br />
+
+本文档主要用于描述 `ShadcnInputTag` 组件的一些特性和用法。
 
 ## 用法
 
@@ -123,11 +125,11 @@ const tags = ref([])
 
 :::
 
-## Form
+## 表单 (form)
 
 ::: raw
 
-<CodeRunner title="Form">
+<CodeRunner title="表单 (form)">
     <ShadcnForm ref="formRef" v-model="formState">
       <ShadcnFormItem name="tags"
                       label="Tags"
@@ -157,29 +159,29 @@ const tags = ref([])
 
 :::
 
-## InputTag Props
+## 输入标签 (Input Tag) 属性
 
-<ApiTable title="Props"
+<ApiTable title="输入标签 (Input Tag) 属性"
         :headers="['属性', '描述', '类型', '默认值', '支持列表']"
         :columns="[
-            ['modelValue', 'You can use v-model to bind data in both directions', 'any\[\]', '-', '-'],
-            ['placeholder', 'Placeholder of the input', 'string', '-', '-'],
-            ['name', 'The name of the input, support on form', 'string', '-', '-'],
-            ['disabled', 'Whether the input is disabled', 'boolean', 'false', '-'],
-            ['size', 'The size of the input', 'string', 'default', 'small | default | large'],
-            ['type', 'The type of the input', 'string', 'primary', 'primary | error | warning | success'],
-            ['max', 'The maximum number of tags', 'number', 'Infinity', '-'],
+            ['modelValue', '当前组件的值', 'any\[\]', '-', '-'],
+            ['placeholder', '占位符内容', 'string', '-', '-'],
+            ['name', '表单的名称', 'string', '-', '-'],
+            ['disabled', '是否为禁用', 'boolean', 'false', '-'],
+            ['size', '组件的尺寸', 'string', 'default', 'small | default | large'],
+            ['type', '组件的类型', 'string', 'primary', 'primary | error | warning | success'],
+            ['max', '最大的数量', 'number', 'Infinity', '-'],
         ]">
 </ApiTable>
 
-## InputTag Events
+## 输入标签 (Input Tag) 事件
 
-<ApiTable title="Events"
+<ApiTable title="输入标签 (Input Tag) 事件"
         :headers="['事件', '描述', '回调参数']"
         :columns="[
-            ['on-add', 'Triggered when the tag is added', 'string'],
-            ['on-remove', 'Triggered when the tag is removed', 'string'],
-            ['on-change', 'Triggered when the input value is changed', 'string[]'],
+            ['on-add', '当添加新的标签时触发', 'string'],
+            ['on-remove', '当删除标签时触发', 'string'],
+            ['on-change', '当值被更新时触发', 'string\[\]'],
         ]">
 </ApiTable>
 

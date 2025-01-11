@@ -1,10 +1,12 @@
 ---
-title: Shadcn Switch
+title: 开关 (Switch)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnSwitch component.
+<br />
+
+本文档主要用于描述 `ShadcnSwitch` 组件的一些特性和用法。
 
 ## 用法
 
@@ -104,9 +106,9 @@ const checked = ref(false)
 
 :::
 
-## Slot
+## 自定义 (slot)
 
-<CodeRunner title="Slot">
+<CodeRunner title="自定义 (slot)">
     <ShadcnSwitch v-model="checked">
         <template #open>ON</template>
         <template #close>OFF</template>
@@ -132,11 +134,11 @@ const checked = ref(false)
 
 :::
 
-## True and False Value
+## 自定义值 (true-value, false-value)
 
 ::: raw
 
-<CodeRunner title="True and False Value">
+<CodeRunner title="自定义值 (true-value, false-value)">
     <div>Null Value: {{ checked2 }}</div>
     <ShadcnSwitch v-model="checked2" true-value="ON" false-value="OFF">
       <template #open>OFF</template>
@@ -166,37 +168,37 @@ const checked2 = ref(null)
 
 :::
 
-## API Attributes
+## 开关 (Switch) 属性
 
-<ApiTable title="Switch Props"
-    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
+<ApiTable title="开关 (Switch) 属性"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['modelValue', 'The value of the switch', 'boolean', 'false', '-', '-'],
-        ['type', 'The type of the switch', 'string', '-', '-', 'success, warning, error, primary'],
-        ['size', 'The size of the switch', 'string', '-', '-', 'small, default, large'],
-        ['disabled', 'Whether the switch is disabled', 'boolean', 'false', '-', '-'],
-        ['trueValue', 'The value of the switch when it is checked', 'any', '-', '-', '-'],
-        ['falseValue', 'The value of the switch when it is not checked', 'any', '-', '-', '-'],
+        ['modelValue', '当前组件的值', 'boolean', 'false', '-'],
+        ['type', '组件的类型', 'string', '-', 'success | warning | error | primary'],
+        ['size', '组件的尺寸', 'string', '-',  'small | default | large'],
+        ['disabled', '是否为禁用', 'boolean', 'false',  '-'],
+        ['trueValue', '选中组件时的值', 'any', '-', '-'],
+        ['falseValue', '未选中组件时的值', 'any', '-', '-'],
     ]">
 </ApiTable>
 
-<br />
+## 开关 (Switch) 事件
 
-<ApiTable title="Switch Events"
+<ApiTable title="开关 (Switch) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['update:modelValue', 'Triggered when the value of the switch is changed', 'boolean'],
-        ['on-change', 'Triggered when the value of the switch is changed', 'boolean'],
+        ['update:modelValue', '当组件的值修改时触发', 'boolean'],
+        ['on-change', '当组件的值修改时触发', 'boolean'],
     ]">
 </ApiTable>
 
-<br />
+## 开关 (Switch) 插槽
 
-<ApiTable title="Switch Slots"
+<ApiTable title="开关 (Switch) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['open', 'Open label'],
-        ['close', 'Close label'],
+        ['open', '组件开启时的插槽'],
+        ['close', '组件关闭时的插槽'],
     ]">
 </ApiTable>
 

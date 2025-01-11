@@ -1,13 +1,12 @@
 ---
-title: Shadcn Timeline
+title: 时间线 (Timeline)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnTimeline component.
+<br />
 
-- ShadcnTimeline
-- ShadcnTimelineItem
+本文档主要用于描述 `ShadcnTimeline` 组件的一些特性和用法。
 
 ## 用法
 
@@ -40,11 +39,11 @@ This document is mainly used to describe some features and usage of the ShadcnTi
 
 :::
 
-## Discussion
+## 讨论布局 (discussion)
 
 ::: raw
 
-<CodeRunner title="Discussion">
+<CodeRunner title="讨论布局 (discussion)">
     <ShadcnTimeline>
       <ShadcnTimelineItem>
         <template #dot>
@@ -179,11 +178,11 @@ This document is mainly used to describe some features and usage of the ShadcnTi
 
 :::
 
-## Split
+## 拆分 (split)
 
 ::: raw
 
-<CodeRunner title="Discussion">
+<CodeRunner title="拆分 (split)">
     <ShadcnTimeline split>
       <ShadcnTimelineItem>
         <template #dot>
@@ -318,11 +317,11 @@ This document is mainly used to describe some features and usage of the ShadcnTi
 
 :::
 
-## Props
+## 时间线 (Timeline) 属性
 
-<ApiTable title="Timeline Props"
+<ApiTable title="时间线 (Timeline) 属性"
     :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['split', 'The split of the timeline', 'Boolean', 'false'],
+        ['split', '是否拆分，拆分后将分为左右两列', 'boolean', 'false'],
     ]">
 </ApiTable>

@@ -1,10 +1,12 @@
 ---
-title: Shadcn HoverCard
+title: 悬浮卡片 (Hover Card)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnHoverCard component.
+<br />
+
+本文档主要用于描述 `ShadcnHoverCard` 组件的一些特性和用法。
 
 ## 用法
 
@@ -33,11 +35,11 @@ This document is mainly used to describe some features and usage of the ShadcnHo
 
 :::
 
-## Delay
+## 延迟 (delay)
 
 ::: raw
 
-<CodeRunner title="Delay">
+<CodeRunner title="延迟 (delay)">
     <ShadcnHoverCard content="This is a hover card" :delay="500">
         <ShadcnButton>Delay 500ms</ShadcnButton>
     </ShadcnHoverCard>
@@ -105,11 +107,11 @@ This document is mainly used to describe some features and usage of the ShadcnHo
 
 :::
 
-## Arrow
+## 箭头 (arrow)
 
 ::: raw
 
-<CodeRunner title="Arrow">
+<CodeRunner title="箭头 (arrow)">
     <ShadcnHoverCard content="Hello Shadcn UI" arrow>
         <ShadcnButton>Arrow</ShadcnButton>
     </ShadcnHoverCard>
@@ -165,11 +167,11 @@ This document is mainly used to describe some features and usage of the ShadcnHo
 
 :::
 
-## Title and Footer
+## 标题和底部 (title & footer)
 
 ::: raw
 
-<CodeRunner title="Title and Footer">
+<CodeRunner title="标题和底部 (title & footer)">
     <ShadcnHoverCard content="This is a hover card">
       <template #title>Title</template>
       <template #footer>Footer</template>
@@ -196,56 +198,27 @@ This document is mainly used to describe some features and usage of the ShadcnHo
 
 :::
 
-## Custom Content
+## 悬浮卡片 (Hover Card) 属性
 
-::: raw
-
-<CodeRunner title="Custom Content">
-    <ShadcnHoverCard>
-        <template #content>Custom Content</template>
-        <ShadcnButton>Hover</ShadcnButton>
-    </ShadcnHoverCard>
-</CodeRunner>
-
-:::
-
-::: details 查看代码
-
-```vue
-<template>
-    <ShadcnHoverCard>
-        <template #content>Custom Content</template>
-        <ShadcnButton>Hover</ShadcnButton>
-    </ShadcnHoverCard>
-</template>
-
-<script setup lang="ts">
-</script>
-```
-
-:::
-
-## HoverCard Props
-
-<ApiTable title="Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend', 'List', 'Latest Version']"
+<ApiTable title="悬浮卡片 (Hover Card) 属性"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['content', 'The content of the tooltip', 'Object', '-', '-', '-', '-'],
-        ['delay', 'Delay time, in milliseconds', 'Number', '0', '-', '-'],
-        ['position', 'The position of the tooltip', 'Enum', 'top', '-', 'top, bottom, left, right', '-'],
-        ['arrow', 'Show arrow', 'Boolean', 'true', '-', '-', '-'],
-        ['maxWidth', 'The maximum width of the tooltip, if the width is auto', 'Number | String', '200', '-', '-', '2024.1.2'],
+        ['content', '显示的内容', 'object', '-', '-'],
+        ['delay', '延迟时间（以毫秒为单位）', 'number', '0', '-'],
+        ['position', '显示的位置', 'enum', 'top', 'top | bottom | left | right'],
+        ['arrow', '是否显示箭头', 'boolean', 'true', '-'],
+        ['maxWidth', '如果宽度为 auto，则最大宽度自动调整', 'number | string', '200', '-']
     ]">
 </ApiTable>
 
-## HoverCard Slots
+## 悬浮卡片 (Hover Card) 插槽
 
-<ApiTable title="Slots"
+<ApiTable title="悬浮卡片 (Hover Card) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['default', 'Tooltip trigger'],
-        ['content', 'Tooltip content'],
-        ['title', 'Tooltip title'],
-        ['footer', 'Tooltip footer'],
+        ['default', '触发器'],
+        ['content', '显示的内容'],
+        ['title', '显示的标题'],
+        ['footer', '显示的底部'],
     ]">
 </ApiTable>

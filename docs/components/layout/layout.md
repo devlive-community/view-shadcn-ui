@@ -1,18 +1,12 @@
 ---
-title: Shadcn Layout
+title: 布局 (Layout)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnLayout component.
+<br />
 
-- ShadcnLayout
-- ShadcnLayoutHeader
-- ShadcnLayoutContent
-- ShadcnLayoutFooter
-- ShadcnLayoutSider
-- ShadcnLayoutWrapper
-- ShadcnLayoutMain
+本文档主要用于描述 `ShadcnLayout` 组件的一些特性和用法。
 
 ## 用法
 
@@ -41,9 +35,9 @@ This document is mainly used to describe some features and usage of the ShadcnLa
 
 :::
 
-## Sider
+## 侧边栏 (sider)
 
-<CodeRunner title="Sider">
+<CodeRunner title="侧边栏 (sider)">
     <ShadcnLayout>
         <ShadcnLayoutWrapper>
             <ShadcnLayoutSider class="w-48 bg-blue-100">Sider</ShadcnLayoutSider>
@@ -78,9 +72,9 @@ This document is mainly used to describe some features and usage of the ShadcnLa
 
 :::
 
-## Layout
+## 布局示例 (layout)
 
-<CodeRunner title="Layout">
+<CodeRunner title="布局示例 (layout)">
     <div class="my-4 ml-2">Header + Content + Footer</div>
     <ShadcnLayout>
       <ShadcnLayoutHeader class="bg-blue-100 h-12">Header</ShadcnLayoutHeader>
@@ -187,9 +181,9 @@ This document is mainly used to describe some features and usage of the ShadcnLa
 
 :::
 
-## Trigger
+## 自定义触发器 (trigger)
 
-<CodeRunner>
+<CodeRunner title="自定义触发器 (trigger)">
     <ShadcnLayout>
       <ShadcnLayoutWrapper>
         <ShadcnLayoutSider class="bg-blue-100" collapsible :defaultCollapsed="false" trigger>
@@ -253,33 +247,33 @@ This document is mainly used to describe some features and usage of the ShadcnLa
 
 :::
 
-## API Attributes
+## 布局 (Layout) 属性
 
-<ApiTable title="Layout Sider Props"
-    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
+<ApiTable title="布局 (Layout) 属性"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['width', 'The width of the layout sider', 'Number | String', '200', '-', '-'],
-        ['collapsedWidth', 'The width of the layout sider when collapsed', 'Number | String', '80', '-', '-'],
-        ['collapsible', 'Whether the layout sider is collapsible', 'Boolean', 'false', '-', '-'],
-        ['defaultCollapsed', 'The default state of the layout sider', 'Boolean', 'false', '-', '-'],
-        ['trigger', 'The trigger of the layout sider', 'Boolean', 'false', '-', '-'],
+        ['width', '布局侧边器的宽度', 'number | string', '200'],
+        ['collapsedWidth', '折叠时侧边栏的宽度', 'number | string', '80'],
+        ['collapsible', '布局侧边器是否可折叠', 'boolean', 'false'],
+        ['defaultCollapsed', '布局侧边栏的默认状态', 'boolean', 'false'],
+        ['trigger', '布局侧边栏的触发器', 'boolean', 'false'],
     ]">
 </ApiTable>
 
-<br />
+## 布局 (Layout) 事件
 
-<ApiTable title="Layout Sider Events"
+<ApiTable title="布局 (Layout) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['on-collapse', 'Emitted when the layout sider is collapsed', '-'],
+        ['on-collapse', '当吃侧边栏折叠时发出', '-'],
     ]">
 </ApiTable>
 
-<br />
+## 布局 (Layout) 插槽
 
-<ApiTable title="Layout Sider Slots"
+<ApiTable title="布局 (Layout) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['trigger', 'The trigger slot of the layout sider'],
+        ['trigger', '自定义触发器'],
     ]">
 </ApiTable>

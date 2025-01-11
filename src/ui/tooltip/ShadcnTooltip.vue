@@ -1,5 +1,5 @@
 <template>
-  <div class="relative inline-block" @mouseenter="showTooltip" @mouseleave="hideTooltip">
+  <div class="relative inline-block w-fit" @mouseenter="showTooltip" @mouseleave="hideTooltip">
     <div ref="tooltipTrigger">
       <slot/>
     </div>
