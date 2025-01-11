@@ -1,10 +1,12 @@
 ---
-title: Shadcn Modal
+title: 模态框 (Modal)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnModal component.
+<br />
+
+本文档主要用于描述 `ShadcnModal` 组件的一些特性和用法。
 
 ## 用法
 
@@ -34,9 +36,9 @@ const modal = ref(false);
 
 :::
 
-## No Title
+## 无标题 (no-title)
 
-<CodeRunner title="No Title">
+<CodeRunner title="无标题 (no-title)">
     <ShadcnButton @click="noTitleModal = true">Click</ShadcnButton>
     <ShadcnModal v-model="noTitleModal">
         <div class="flex items-center justify-center h-32">Content</div>
@@ -64,8 +66,7 @@ const modal = ref(false);
 
 ## 标题 (title)
 
-<CodeRunner title="Custom Title"
-    description="Create a modal with custom title.">
+<CodeRunner title="标题 (title)">
     <ShadcnButton @click="customTitleModal = true">Click</ShadcnButton>
     <ShadcnModal v-model="customTitleModal">
         <template #title>Custom Title</template>
@@ -93,9 +94,9 @@ const modal = ref(false);
 
 :::
 
-## Footer
+## 底部 (footer)
 
-<CodeRunner title="Custom Footer">
+<CodeRunner title="底部 (footer)">
     <ShadcnButton @click="customFooterModal = true">Click</ShadcnButton>
     <ShadcnModal v-model="customFooterModal" title="Custom Footer">
         <div class="flex items-center justify-center h-32">Content</div>
@@ -123,9 +124,9 @@ const modal = ref(false);
 
 :::
 
-## Content
+## 内容 (content)
 
-<CodeRunner title="Custom Content">
+<CodeRunner title="内容 (content)">
     <ShadcnButton @click="customContentModal = true">Click</ShadcnButton>
     <ShadcnModal v-model="customContentModal" title="Custom Content">
         <template #content>Custom Content</template>
@@ -153,7 +154,7 @@ const modal = ref(false);
 
 ## 宽度 (width)
 
-<CodeRunner title="Custom Width">
+<CodeRunner title="宽度 (width)">
     <ShadcnButton @click="customWidthModal = true">Click</ShadcnButton>
     <ShadcnModal v-model="customWidthModal" title="Custom Width" width="200">
         <div class="flex items-center justify-center h-32">Content</div>
@@ -181,7 +182,7 @@ const modal = ref(false);
 
 ## 高度 (height)
 
-<CodeRunner title="Custom Height">
+<CodeRunner title="高度 (height)">
     <ShadcnButton @click="customHeightModal = true">Click</ShadcnButton>
     <ShadcnModal v-model="customHeightModal" title="Custom Height" height="200">
         <div class="flex items-center justify-center h-32">Content</div>
@@ -211,7 +212,7 @@ const modal = ref(false);
 
 ::: raw
 
-<CodeRunner title="Closeable and No Closeable">
+<CodeRunner title="可关闭 (closeable)">
     <ShadcnButton @click="closeableModal = true">Closeable</ShadcnButton>
     <ShadcnModal v-model="closeableModal" title="Closeable" closable>
         <div class="flex items-center justify-center h-32">Content</div>
@@ -291,43 +292,43 @@ const value = ref(false);
 
 :::
 
-## Props
+## 模态框 (Modal) 属性
 
-<ApiTable title="Modal Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value', 'Depend']"
+<ApiTable title="模态框 (Modal) 属性"
+    :headers="['属性', '描述', '类型', '默认值', '依赖']"
     :columns="[
-        ['modelValue', 'Whether the dialog box is displayed or not, v-model can be used to bind data in two directions.', 'boolean', 'false', '-'],
-        ['title', 'The title of the dialog box. If the page header is customized using slot, the title will be invalid.', 'string', '-', '-'],
-        ['description', 'Modal description', 'string', '-', 'title'],
-        ['width', 'Modal width', 'number | string', '30%', '-'],
-        ['height', 'Modal height', 'number | string', 'auto', '-'],
-        ['okText', 'The text of the OK button', 'string', 'OK', '-'],
-        ['cancelText', 'The text of the Cancel button', 'string', 'Cancel', '-'],
-        ['closable', 'Whether the dialog box can be closed', 'boolean', 'true', '-'],
-        ['maskClosable', 'Whether the mask can be closed', 'boolean', 'true', '-'],
+        ['modelValue', '组件的值', 'boolean', 'false', '-'],
+        ['title', '对话框的标题。如果页眉是使用 slot 自定义的，则标题将无效。', 'string', '-', '-'],
+        ['description', '组件的描述', 'string', '-', 'title'],
+        ['width', '组件的宽度', 'number | string', '30%', '-'],
+        ['height', '组件的高度', 'number | string', 'auto', '-'],
+        ['okText', 'OK 按钮的文本', 'string', 'OK', '-'],
+        ['cancelText', '取消按钮的文本', 'string', 'Cancel', '-'],
+        ['closable', '是否可关闭', 'boolean', 'true', '-'],
+        ['maskClosable', '是否可通过点击遮罩关闭', 'boolean', 'true', '-'],
     ]">
 </ApiTable>
 
-## Events
+## 模态框 (Modal) 事件
 
-<ApiTable title="Modal Events"
+<ApiTable title="模态框 (Modal) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['update:modelValue', 'Triggered when display status changes', 'true | false'],
-        ['on-close', 'Triggered when the dialog box is closed', '-'],
+        ['update:modelValue', '组件的值更新时触发', 'true | false'],
+        ['on-close', '组件关闭时触发', '-'],
     ]">
 </ApiTable>
 
-## Slots
+## 模态框 (Modal) 插槽
 
-<ApiTable title="Modal Slots"
+<ApiTable title="模态框 (Modal) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['title', 'Modal title'],
-        ['description', 'Modal description'],
-        ['close', 'Modal close'],
-        ['content', 'Modal content'],
-        ['footer', 'Modal footer'],
+        ['title', '标题区域'],
+        ['description', '描述区域'],
+        ['close', '关闭按钮区域'],
+        ['content', '内容区域'],
+        ['footer', '底部区域'],
     ]">
 </ApiTable>
 

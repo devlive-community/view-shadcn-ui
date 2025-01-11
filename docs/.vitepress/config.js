@@ -171,7 +171,7 @@ export default {
                 })(),
                 (() => {
                     const items = [
-                        {text: 'Modal', link: 'view/modal', icon: '/components/view/modal.svg', version: '2024.1.1'},
+                        {text: '模态框 (Modal)', link: 'view/modal', icon: '/components/view/modal.svg', version: '2024.1.1'},
                         {text: '提示 (Tooltip)', link: 'view/tooltip', icon: '/components/view/tooltip.svg', version: '2024.1.1'},
                         {text: '代码编辑器 (Code Editor)', link: 'view/code-editor', icon: '/components/view/code.svg', version: '2024.1.1'},
                         {text: '警告提示 (Alert)', link: 'view/alert', icon: '/components/view/alert.svg', version: '2024.1.2'},
