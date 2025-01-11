@@ -7,24 +7,22 @@
        }">
     <div :class="[
           direction !== 'vertical' ? '' : '',
-          direction === 'vertical' ? 'border-b-0 border-r border-slate-200 flex-col' : 'flex justify-between',
-          card ? 'space-x-1' : ''
+          direction === 'vertical' ? 'border-b-0 border-r border-slate-200 flex-col' : 'flex justify-between'
         ]"
          :style="{ width: direction === 'vertical' ? 'auto' : '100%' }">
       <div :class="[
-            direction === 'vertical' ? 'flex flex-col' : 'flex bg-slate-100 p-1 rounded-lg inline-flex',
-            card && direction !== 'vertical' ? 'space-x-1' : '',
-            card && direction === 'vertical' ? 'space-y-1' : ''
+            direction === 'vertical' ? 'flex flex-col' : line ? 'flex inline-flex' : 'flex bg-slate-100 p-1 rounded-lg inline-flex'
           ]">
         <div v-for="tab in tabs"
              :key="tab.value"
              :class="[
                 'inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-all cursor-pointer',
-                direction === 'vertical' ? 'py-2 px-2' : 'px-3 py-1.5 rounded-md',
+                direction === 'vertical' ? 'py-2 px-2' : line ? 'px-3 py-1.5' : 'px-3 py-1.5 rounded-md',
                 direction === 'horizontal' ? [TabSize[size]] : '',
-                card && direction === 'vertical' ? 'py-2 px-2 h-auto' : '',
                 {
-                  'bg-white cursor-pointer shadow-sm': activeTab === tab.value && !tab.disabled && direction !== 'vertical',
+                  'bg-white cursor-pointer shadow-sm': activeTab === tab.value && !tab.disabled && direction !== 'vertical' && !line,
+                  'border-b-2 cursor-pointer -mb-px': activeTab === tab.value && !tab.disabled && direction !== 'vertical' && line,
+                  [BorderType[type]]: activeTab === tab.value && !tab.disabled && direction !== 'vertical' && line,
                   'border-r-2 cursor-pointer': activeTab === tab.value && !tab.disabled && direction === 'vertical',
                   [TextType[type]]: activeTab === tab.value && !tab.disabled,
                   [BorderType[type]]: activeTab === tab.value && !tab.disabled && direction === 'vertical',
@@ -67,7 +65,7 @@
     </div>
 
     <div :class="[
-          'mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+          line ? 'ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2' : 'mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
           direction === 'vertical' && position === 'right' ? 'mr-4 flex-1' : '',
           direction === 'vertical' && position !== 'right' ? 'ml-4 flex-1' : '',
           direction !== 'vertical' ? 'py-2' : ''
@@ -91,7 +89,7 @@ interface Tab
   disabled?: boolean
   icon?: string
   labelSlot?: () => any
-  onClick?: (e: MouseEvent) => void // Add onClick handler to Tab interface
+  onClick?: (e: MouseEvent) => void
 }
 
 const emit = defineEmits(['update:modelValue', 'on-change', 'on-tab-remove'])
@@ -100,14 +98,14 @@ const props = withDefaults(defineProps<{
   modelValue?: string
   type?: keyof typeof TextType
   size?: keyof typeof TabSize
-  card?: boolean
+  line?: boolean
   closable?: boolean
   position?: keyof typeof ArrangePosition
   direction?: keyof typeof ArrangeDirection
 }>(), {
   type: 'primary',
   size: 'default',
-  card: false,
+  line: false,
   closable: false,
   position: 'left',
   direction: 'horizontal'
@@ -116,12 +114,9 @@ const props = withDefaults(defineProps<{
 const activeTab = ref('')
 const tabs = ref<Tab[]>([])
 
-// Handle tab click event
 const handleTabClick = (e: MouseEvent, tab: Tab) => {
   if (!tab.disabled) {
-    // Call the tab's click handler if it exists
     tab.onClick?.(e)
-    // Set the active tab
     setActiveTab(tab.value)
   }
 }
@@ -159,7 +154,6 @@ const registerTab = (
 const unregisterTab = (value: string) => {
   const index = tabs.value.findIndex(tab => tab.value === value)
   if (index !== -1) {
-    // If removing the active tab, activate another tab
     if (activeTab.value === value) {
       const previousEnabledTab = [...tabs.value]
           .slice(0, index)
@@ -189,7 +183,6 @@ provide('activeTab', activeTab)
 provide('registerTab', registerTab)
 provide('unregisterTab', unregisterTab)
 
-// Watch modelValue to update the active tab
 watch(() => props.modelValue, (newValue) => {
   if (newValue) {
     setActiveTab(newValue)
