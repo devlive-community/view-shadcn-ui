@@ -1,5 +1,5 @@
 <template>
-  <div class="relative inline-block"
+  <div class="relative inline-block w-fit"
        @mouseenter="showContext"
        @mouseleave="handleTriggerLeave">
     <div ref="tooltipTrigger">

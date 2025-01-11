@@ -1,10 +1,12 @@
 ---
-title: Shadcn Empty
+title: 空数据 (Empty)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnEmpty component.
+<br />
+
+本文档主要用于描述 `ShadcnEmpty` 组件的一些特性和用法。
 
 ## 用法
 
@@ -26,11 +28,11 @@ This document is mainly used to describe some features and usage of the ShadcnEm
 
 :::
 
-## Custom Slot
+## 自定义 (slot)
 
 ::: raw
 
-<CodeRunner title="Custom Slot">
+<CodeRunner title="自定义插槽 (slot)">
   <ShadcnEmpty>
     <template #image>
       <ShadcnIcon icon="User" size="80"/>
@@ -81,14 +83,14 @@ This document is mainly used to describe some features and usage of the ShadcnEm
 
 :::
 
-## Empty Slots
+## 空数据 (Empty) 插槽
 
-<ApiTable title="Slots"
+<ApiTable title="空数据 (Empty) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['image', 'Image slot'],
-        ['title', 'Title slot'],
-        ['description', 'Description slot'],
-        ['actions', 'The actions of the empty']
+        ['image', '图片插槽'],
+        ['title', '标题插槽'],
+        ['description', '描述插槽'],
+        ['actions', '操作插槽'],
     ]">
 </ApiTable>

@@ -1,10 +1,12 @@
 ---
-title: Shadcn CountDown
+title: 倒计时 (Count Down)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnCountDown component.
+<br />
+
+本文档主要用于描述 `ShadcnCountDown` 组件的一些特性和用法。
 
 ## 用法
 
@@ -26,11 +28,11 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 
 :::
 
-## Simple
+## 简洁 (simple)
 
 ::: raw
 
-<CodeRunner title="Simple">
+<CodeRunner title="简洁 (simple)">
     <ShadcnCountDown :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)" simple />
 </CodeRunner>
 
@@ -46,11 +48,11 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 
 :::
 
-## Title
+## 标题 (title)
 
 ::: raw
 
-<CodeRunner title="Title">
+<CodeRunner title="标题 (title)">
     <ShadcnCountDown :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)" title="Count Down" />
 </CodeRunner>
 
@@ -66,11 +68,11 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 
 :::
 
-## Toolbar
+## 工具栏 (toolbar)
 
 ::: raw
 
-<CodeRunner title="Toolbar">
+<CodeRunner title="工具栏 (toolbar)">
     <ShadcnCountDown title="Count Down" toolbar :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)"/>
 </CodeRunner>
 
@@ -86,11 +88,11 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 
 :::
 
-## Warning Threshold
+## 预警阈值 (warning-threshold)
 
 ::: raw
 
-<CodeRunner title="Warning Threshold">
+<CodeRunner title="预警阈值 (warning-threshold)">
     <ShadcnCountDown :time="new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)" warning-threshold="2" />
 </CodeRunner>
 
@@ -106,11 +108,11 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 
 :::
 
-## Show Progress
+## 显示进度 (show-progress)
 
 ::: raw
 
-<CodeRunner title="Show Progress">
+<CodeRunner title="显示进度 (show-progress)">
     <ShadcnCountDown :time="new Date(Date.now() + 20 * 1000)" show-progress />
 </CodeRunner>
 
@@ -126,11 +128,11 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 
 :::
 
-## Custom Slots
+## 自定义 (slots)
 
 ::: raw
 
-<CodeRunner title="Custom Slots">
+<CodeRunner title="自定义 (slots)">
   <div class="space-y-2">
     <ShadcnCard title="Custom Time Block">
       <ShadcnCountDown title="Activity events" :time="new Date(Date.now() + 6 * 1000)">
@@ -220,44 +222,44 @@ This document is mainly used to describe some features and usage of the ShadcnCo
 
 :::
 
-## Count Down Props
+## 倒计时 (Count Down) 属性
 
-<ApiTable title="Props"
+<ApiTable title="倒计时 (Count Down) 属性"
     :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['progress', 'The progress of the count down, support <code>v-model:progress</code>', 'number', ''],
-        ['time', 'The time of the count down', 'date', ''],
-        ['simple', 'Whether to display the simple version', 'boolean', 'false'],
-        ['title', 'The title of the count down, only valid when <code>simple</code> is false', 'string', ''],
-        ['toolbar', 'Whether to display the toolbar', 'boolean', 'false'],
-        ['warningThreshold', 'The warning threshold of the count down, only valid when <code>simple</code> is false', 'number', '5'],
-        ['showProgress', 'Whether to display the progress bar', 'boolean', 'false'],
+        ['progress', '进度倒计时，支持 <code>v-model:progress</code>', 'number', '-'],
+        ['time', '倒计时结束时间', 'date', '-'],
+        ['simple', '简洁模式', 'boolean', 'false'],
+        ['title', '倒计时的标题，仅在 <code>simple</code> 为 false 时有效', 'string', '-'],
+        ['toolbar', '是否显示工具栏', 'boolean', 'false'],
+        ['warningThreshold', '倒计时的警告阈值，仅在 <code>simple</code> 为 false 时有效', 'number', '5'],
+        ['showProgress', '是否显示进度', 'boolean', 'false'],
     ]">
 </ApiTable>
 
-## Count Down Slots
+## 倒计时 (Count Down) 插槽
 
-<ApiTable title="Slots"
-    :headers="['Slot', 'Description', 'Params']"
+<ApiTable title="倒计时 (Count Down) 插槽"
+    :headers="['插槽', '描述', '回调参数']"
     :columns="[
-        ['title', 'Count down content', '-'],
-        ['blocks', 'Count down blocks', '{ timeLeft, isWarning, isCompleted, isPaused }'],
-        ['days', 'Days block content', '{ timeLeft, isWarning, isCompleted, isPaused }'],
-        ['hours', 'Hours block content', '{ timeLeft, isWarning, isCompleted, isPaused }'],
-        ['minutes', 'Minutes block content', '{ timeLeft, isWarning, isCompleted, isPaused }'],
-        ['seconds', 'Seconds block content', '{ timeLeft, isWarning, isCompleted, isPaused }'],
-        ['days-label', 'Days label content', '-'],
-        ['hours-label', 'Hours label content', '-'],
-        ['minutes-label', 'Minutes label content', '-'],
-        ['seconds-label', 'Seconds label content', '-']
+        ['title', '组件标题', '-'],
+        ['blocks', '倒计时块', '{ timeLeft, isWarning, isCompleted, isPaused }'],
+        ['days', '倒计时天数', '{ timeLeft, isWarning, isCompleted, isPaused }'],
+        ['hours', '倒计时小时', '{ timeLeft, isWarning, isCompleted, isPaused }'],
+        ['minutes', '倒计时分钟', '{ timeLeft, isWarning, isCompleted, isPaused }'],
+        ['seconds', '倒计时秒数', '{ timeLeft, isWarning, isCompleted, isPaused }'],
+        ['days-label', '倒计时天数标签', '-'],
+        ['hours-label', '倒计时小时标签', '-'],
+        ['minutes-label', '倒计时分钟标签', '-'],
+        ['seconds-label', '倒计时秒数标签', '-']
     ]">
 </ApiTable>
 
-## Count Down Events
+## 倒计时 (Count Down) 事件
 
-<ApiTable title="Events"
+<ApiTable title="倒计时 (Count Down) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['on-complete', 'Triggered when the count down is finished', 'void'],
+        ['on-complete', '倒计时完成时触发', 'void'],
     ]">
 </ApiTable>

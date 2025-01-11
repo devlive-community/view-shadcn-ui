@@ -1,10 +1,12 @@
 ---
-title: Shadcn HoverCard
+title: 悬浮卡片 (Hover Card)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnHoverCard component.
+<br />
+
+本文档主要用于描述 `ShadcnHoverCard` 组件的一些特性和用法。
 
 ## 用法
 

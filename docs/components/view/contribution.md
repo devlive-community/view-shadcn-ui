@@ -1,16 +1,18 @@
 ---
-title: Shadcn Contribution
+title: 贡献图 (Contribution)
 ---
 
 # 介绍
 
-This document describes the features and usage of the ShadcnContribution component.
+<br />
+
+本文档主要用于描述 `ShadcnContribution` 组件的一些特性和用法。
 
 ## 用法
 
 ::: raw
 
-<CodeRunner title="Data">
+<CodeRunner title="用法">
     <ShadcnContribution :data="data" />
 </CodeRunner>
 
@@ -26,11 +28,11 @@ This document describes the features and usage of the ShadcnContribution compone
 
 :::
 
-## 颜色 (color) scheme
+## 颜色 (color-scheme)
 
 ::: raw
 
-<CodeRunner title="Color scheme">
+<CodeRunner title="颜色 (color-scheme)">
     <ShadcnContribution :data="data" :colorScheme="colorScheme" />
 </CodeRunner>
 
@@ -46,11 +48,11 @@ This document describes the features and usage of the ShadcnContribution compone
 
 :::
 
-## Year count
+## 统计的年数 (year-count)
 
 ::: raw
 
-<CodeRunner title="Year count">
+<CodeRunner title="统计的年数 (year-count)">
     <ShadcnContribution :data="data" :yearCount="1" />
 </CodeRunner>
 
@@ -66,11 +68,11 @@ This document describes the features and usage of the ShadcnContribution compone
 
 :::
 
-## Show legend
+## 显示图例 (show-legend)
 
 ::: raw
 
-<CodeRunner title="Show legend">
+<CodeRunner title="显示图例 (show-legend)">
     <ShadcnContribution :data="data" showLegend />
     <ShadcnContribution :data="data" :showLegend="false" />
 </CodeRunner>
@@ -88,11 +90,11 @@ This document describes the features and usage of the ShadcnContribution compone
 
 :::
 
-## Show week
+## 显示周 (show-week)
 
 ::: raw
 
-<CodeRunner title="Show week">
+<CodeRunner title="显示周 (show-week)">
     <ShadcnContribution :data="data" showWeek />
     <ShadcnContribution :data="data" :showWeek="false" />
 </CodeRunner>
@@ -110,11 +112,11 @@ This document describes the features and usage of the ShadcnContribution compone
 
 :::
 
-## Show month
+## 显示月 (show-month)
 
 ::: raw
 
-<CodeRunner title="Show month">
+<CodeRunner title="显示月 (show-month)">
     <ShadcnContribution :data="data" showMonth />
     <ShadcnContribution :data="data" :showMonth="false" />
 </CodeRunner>
@@ -132,11 +134,11 @@ This document describes the features and usage of the ShadcnContribution compone
 
 :::
 
-## Cell size
+## 单元格尺寸 (cell-size)
 
 ::: raw
 
-<CodeRunner title="Cell size">
+<CodeRunner title="单元格尺寸 (cell-size)">
     <ShadcnContribution :data="data" :cellSize="15" />
 </CodeRunner>
 
@@ -152,11 +154,11 @@ This document describes the features and usage of the ShadcnContribution compone
 
 :::
 
-## Cell gap
+## 单元格间距 (cell-gap)
 
 ::: raw
 
-<CodeRunner title="Cell gap">
+<CodeRunner title="单元格间距 (cell-gap)">
     <ShadcnContribution :data="data" :cellGap="4" />
 </CodeRunner>
 
@@ -172,11 +174,11 @@ This document describes the features and usage of the ShadcnContribution compone
 
 :::
 
-## Year
+## 年 (year)
 
 ::: raw
 
-<CodeRunner title="Year">
+<CodeRunner title="年 (year)">
     <ShadcnContribution :data="data" :year="2023" />
 </CodeRunner>
 
@@ -192,38 +194,38 @@ This document describes the features and usage of the ShadcnContribution compone
 
 :::
 
-## Contribution Props
+## 贡献图 (Contribution) 属性
 
-<ApiTable title="Props"
+<ApiTable title="贡献图 (Contribution) 属性"
     :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['data', 'data value', 'Array<ContributionOption>', '-', '-'],
-        ['colorScheme', 'colorScheme value', 'Array<string>', '\[#ebedf0, #9be9a8, #40c463, #30a14e, #216e39\]', '-'],
-        ['yearCount', 'yearCount value', 'number', '1', '-'],
-        ['showLegend', 'showLegend value', 'boolean', 'true', '-'],
-        ['showWeek', 'showWeek value', 'boolean', 'true', '-'],
-        ['showMonth', 'showMonth value', 'boolean', 'true', '-'],
-        ['cellSize', 'cellSize value', 'number', '16', '-'],
-        ['cellGap', 'cellGap value', 'number', '4', '-'],
-        ['year', 'year value', 'number', '-', '-']
+        ['data', '当前组件的数据', 'Array<ContributionOption>', '-', '-'],
+        ['colorScheme', '颜色配置', 'Array<string>', '\[#ebedf0, #9be9a8, #40c463, #30a14e, #216e39\]', '-'],
+        ['yearCount', '统计的年数', 'number', '1', '-'],
+        ['showLegend', '是否显示图例', 'boolean', 'true', '-'],
+        ['showWeek', '是否显示周', 'boolean', 'true', '-'],
+        ['showMonth', '是否显示月', 'boolean', 'true', '-'],
+        ['cellSize', '单元格尺寸', 'number', '16', '-'],
+        ['cellGap', '单元格间距', 'number', '4', '-'],
+        ['year', '当前年份', 'number', '-', '-']
     ]">
 </ApiTable>
 
-## Contribution Events
+## 贡献图 (Contribution) 事件
 
 <ApiTable title="Events"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['on-select', 'Triggered when on select', 'value: ContributionOption']
+        ['on-select', '组件选择的单元格', 'value: ContributionOption']
     ]">
 </ApiTable>
 
-## Contribution Slots
+## 贡献图 (Contribution) 插槽
 
 <ApiTable title="Slots"
     :headers="['插槽', '描述', '参数']" 
     :columns="[
-        ['cell', 'Slot for cell', 'ContributionCellSlotProps']
+        ['cell', '自定义单元格', 'ContributionCellSlotProps']
     ]">
 </ApiTable>
 

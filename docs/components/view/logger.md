@@ -1,10 +1,12 @@
 ---
-title: Shadcn Logger
+title: 日志 (Logger)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnLogger component.
+<br />
+
+本文档主要用于描述 `ShadcnLogger` 组件的使用方法和特性。
 
 ## 用法
 
@@ -26,11 +28,11 @@ This document is mainly used to describe some features and usage of the ShadcnLo
 
 :::
 
-## Highlight
+## 高亮 (highlight)
 
 ::: raw
 
-<CodeRunner title="Highlight">
+<CodeRunner title="高亮 (highlight)">
     <ShadcnLogger :items="generateMockLogs(10)" :highlight-config="{ INFO: 'green', WARN: 'yellow', ERROR: 'red', DEBUG: 'blue', TRACE: 'cyan', FATAL: 'red' }"/>
 </CodeRunner>
 
@@ -46,11 +48,11 @@ This document is mainly used to describe some features and usage of the ShadcnLo
 
 :::
 
-## Height
+## 高度 (height)
 
 ::: raw
 
-<CodeRunner title="Height">
+<CodeRunner title="高度 (height)">
     <ShadcnLogger :items="generateMockLogs(10)" :height="300"/>
 </CodeRunner>
 
@@ -66,11 +68,11 @@ This document is mainly used to describe some features and usage of the ShadcnLo
 
 :::
 
-## Toolbar
+## 工具栏 (toolbar)
 
 ::: raw
 
-<CodeRunner title="Toolbar">
+<CodeRunner title="工具栏 (toolbar)">
     <ShadcnLogger :items="generateMockLogs(10)" toolbar/>
 </CodeRunner>
 
@@ -86,11 +88,11 @@ This document is mainly used to describe some features and usage of the ShadcnLo
 
 :::
 
-## Case Sensitive
+## 忽略大小写 (case-sensitive)
 
 ::: raw
 
-<CodeRunner title="Case Sensitive">
+<CodeRunner title="忽略大小写 (case-sensitive)">
     <ShadcnLogger :items="generateMockLogs(10)" toolbar case-sensitive />
 </CodeRunner>
 
@@ -106,26 +108,26 @@ This document is mainly used to describe some features and usage of the ShadcnLo
 
 :::
 
-## Logger Props
+## 日志 (Logger) 属性
 
-<ApiTable title="Props"
+<ApiTable title="日志 (Logger) 属性"
     :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['items', 'The items of the logger', 'array<string>', '\[\]'],
-        ['highlightConfig', 'The highlight config of the logger', 'object', '{ WARN: \'rgb(234 179 8)\', ERROR: \'rgb(239 68 68)\', DEBUG: \'rgb(107 114 128)\', TRACE: \'rgb(156 163 175)\'}'],
-        ['height', 'The height of the logger', 'string | number', '200'],
-        ['toolbar', 'Whether to show the toolbar of the logger', 'boolean', 'false'],
-        ['caseSensitive', 'Whether to case sensitive of the logger', 'boolean', 'false'],
-        ['customPatterns', 'The custom patterns of the logger', 'object', '{  <br />timestamp: [/^(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2},\d{3})/], <br />level: [/\b(INFO|ERROR|WARN|DEBUG)\b/],  <br />thread: [/\[(pool-\d+-thread-\d+)\]/],  <br />file: [/\[([^[\]]+\.java:\d+)\]/] <br />}']
+        ['items', '组件的数据', 'array<string>', '\[\]'],
+        ['highlightConfig', '高亮配置', 'object', '{ WARN: \'rgb(234 179 8)\', ERROR: \'rgb(239 68 68)\', DEBUG: \'rgb(107 114 128)\', TRACE: \'rgb(156 163 175)\'}'],
+        ['height', '组件的高度', 'string | number', '200'],
+        ['toolbar', '是否显示工具栏', 'boolean', 'false'],
+        ['caseSensitive', '是否忽略大小写', 'boolean', 'false'],
+        ['customPatterns', '自定义正则表达式', 'object', '{  <br />timestamp: [/^(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2},\d{3})/], <br />level: [/\b(INFO|ERROR|WARN|DEBUG)\b/],  <br />thread: [/\[(pool-\d+-thread-\d+)\]/],  <br />file: [/\[([^[\]]+\.java:\d+)\]/] <br />}']
     ]">
 </ApiTable>
 
-## Logger Slots
+## 日志 (Logger) 插槽
 
-<ApiTable title="Slots"
-    :headers="['Slot', 'Description', 'Props']"
+<ApiTable title="日志 (Logger) 插槽"
+    :headers="['插槽', '描述', '回调参数']"
     :columns="[
-        ['content', 'The content of each item of the logger', 'item']
+        ['content', '日志内容', 'item']
     ]">
 </ApiTable>
 
