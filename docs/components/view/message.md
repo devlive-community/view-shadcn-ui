@@ -1,10 +1,12 @@
 ---
-title: Shadcn Message
+title: 消息 (Message)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnMessage component.
+<br />
+
+本文档主要用于描述 `ShadcnMessage` 组件的一些特性和用法。
 
 ## 用法
 
@@ -36,9 +38,9 @@ export default defineComponent({
 
 :::
 
-## Show Icon
+## 显示图标 (show-icon)
 
-<CodeRunner title="Show Icon">
+<CodeRunner title="显示图标 (show-icon)">
     <ShadcnButton @click="info(false)">Show Message</ShadcnButton>
 </CodeRunner>
 
@@ -136,9 +138,9 @@ export default {
 
 :::
 
-## Background
+## 背景色 (background)
 
-<CodeRunner title="类型 (type)">
+<CodeRunner title="背景色 (background)">
   <ShadcnSpace wrap>
     <ShadcnButton @click="info(true)">Info</ShadcnButton>
     <ShadcnButton @click="success(true)">Success</ShadcnButton>
@@ -211,9 +213,9 @@ export default {
 
 :::
 
-## Closable
+## 可关闭 (closable)
 
-<CodeRunner title="Closable">
+<CodeRunner title="可关闭 (closable)">
     <ShadcnButton @click="closable">Closable</ShadcnButton>
 </CodeRunner>
 
@@ -242,36 +244,36 @@ export default {
 
 :::
 
-## API
+## 消息 (Message) 属性
 
-<ApiTable title="Props"
-    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
+<ApiTable title="消息 (Message) 属性"
+    :headers="['属性', '描述', '类型', '默认值', '依赖']"
     :columns="[
-            ['content', 'Content content', 'String', '-', '-', '-'],
-            ['duration', 'The duration of the message, in seconds, if the value is 0, the message will not be closed', 'Number', '1.5', '-', '-'],
-            ['showIcon', 'Whether to show the icon', 'Boolean', 'true', '-', '-'],
-            ['type', 'Message type', 'String', 'info', 'info | success | warning | error | loading', '-'],
-            ['background', 'Whether to show the background, only works when type is set', 'Boolean', 'false', '-', '-'],
-            ['closeable', 'Whether to show the close button', 'Boolean', 'false', '-', '-'],
+            ['content', '内容文本', 'string', '-', '-'],
+            ['duration', '消息的持续时间（以秒为单位），如果值为 0，则不会关闭消息', 'number', '1.5', '-'],
+            ['showIcon', '是否显示图标', 'boolean', 'true', '-'],
+            ['type', '组件的类型', 'string', 'info', 'info | success | warning | error | loading'],
+            ['background', '是否显示背景，仅在设置类型时有效', 'boolean', 'false', '-'],
+            ['closeable', '是否显示关闭按钮', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
-## Slots
+## 消息 (Message) 插槽
 
-<ApiTable title="Slots"
+<ApiTable title="消息 (Message) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['default', 'Content slot'],
-        ['close', 'Close slot'],
+        ['default', '内容文本'],
+        ['close', '关闭按钮'],
     ]">
 </ApiTable>
 
-## Events
+## 消息 (Message) 事件
 
-<ApiTable title="Events"
+<ApiTable title="消息 (Message) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['on-close', 'Triggered when the message is closed', 'event'],
+        ['on-close', '关闭消息时触发', 'event'],
     ]">
 </ApiTable>
 

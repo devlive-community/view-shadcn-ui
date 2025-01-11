@@ -1,10 +1,12 @@
 ---
-title: Shadcn Progress
+title: 进度条 (Progress)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnProgress component.
+<br />
+
+本文档主要用于描述 `ShadcnProgress` 组件的一些特性和用法。
 
 ## 用法
 
@@ -28,9 +30,9 @@ const value = ref(10)
 
 :::
 
-## Status
+## 状态 (status)
 
-<CodeRunner title="Status">
+<CodeRunner title="状态 (status)">
     <div class="space-y-2">
         <ShadcnProgress v-model="value" status="success">Success</ShadcnProgress>
         <ShadcnProgress v-model="value" status="error">Error</ShadcnProgress>
@@ -84,9 +86,9 @@ const value = ref(10)
 
 :::
 
-## Show Label
+## 显示标签 (show-label)
 
-<CodeRunner title="Show Label">
+<CodeRunner title="显示标签 (show-label)">
     <ShadcnProgress v-model="value" size="large" show-label>Progress</ShadcnProgress>
 </CodeRunner>
 
@@ -112,14 +114,14 @@ import { ref } from 'vue';
 const value = ref(10)
 </script>
 
-## API Attributes
+## 进度条 (Progress) 属性
 
-<ApiTable title="Progress Props"
-    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
+<ApiTable title="进度条 (Progress) 属性"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['modelValue', 'Detailed data, support port binding, less than 0 is reset to 0, greater than 100 is reset to 100.', 'number', '0', '-', '-'],
-        ['status', 'Progress status.', 'Enum', '-', '-', 'success, error, warning, info'],
-        ['size', 'Progress size.', 'Enum', '-', '-', 'default, large'],
-        ['showLabel', 'Show progress label.', 'boolean', 'false', '-', '-'],
+        ['modelValue', '详细数据，小于 0 重置为 0，大于 100 重置为 100', 'number', '0', '-'],
+        ['status', '组件的状态', 'enum', '-', 'success | error | warning | info'],
+        ['size', '组件的尺寸', 'enum', '-', 'default | large'],
+        ['showLabel', '是否显示标签, 将显示在组件的内部', 'boolean', 'false', '-'],
     ]">
 </ApiTable>

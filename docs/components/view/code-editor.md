@@ -1,10 +1,12 @@
 ---
-title: Shadcn CodeEditor
+title: 代码编辑器 (Code Editor)
 ---
 
 # 介绍
 
-This document describes the features and usage of the ShadcnCodeEditor component.
+<br />
+
+本文档主要用于描述 `ShadcnCodeEditor` 组件的一些特性和用法。
 
 ## 用法
 
@@ -26,11 +28,11 @@ This document describes the features and usage of the ShadcnCodeEditor component
 
 :::
 
-## Height
+## 高度 (height)
 
 ::: raw
 
-<CodeRunner title="Height">
+<CodeRunner title="高度 (height)">
     <ShadcnCodeEditor v-model="value" :height="216" />
 </CodeRunner>
 
@@ -46,11 +48,11 @@ This document describes the features and usage of the ShadcnCodeEditor component
 
 :::
 
-## Config
+## 配置 (config)
 
 ::: raw
 
-<CodeRunner title="Config">
+<CodeRunner title="配置 (config)">
     <ShadcnCodeEditor v-model="value" :config="{language: 'javascript'}" />
 </CodeRunner>
 
@@ -66,7 +68,7 @@ This document describes the features and usage of the ShadcnCodeEditor component
 
 :::
 
-## Auto Completion
+## 自动完成 (auto-completion)
 
 ::: raw
 
@@ -124,7 +126,7 @@ This document describes the features and usage of the ShadcnCodeEditor component
 
 :::
 
-## Context Menu
+## 右键菜单 (context-menu)
 
 ::: raw
 
@@ -162,11 +164,11 @@ This document describes the features and usage of the ShadcnCodeEditor component
 
 :::
 
-## Search
+## 搜索 (search)
 
 ::: raw
 
-<CodeRunner title="Search">
+<CodeRunner title="搜索 (search)">
     <ShadcnCodeEditor v-model="value"
                       :search-config="{
                             caseSensitive: false,
@@ -188,33 +190,32 @@ This document describes the features and usage of the ShadcnCodeEditor component
 
 :::
 
-## CodeEditor Props
+## 代码编辑器 (Code Editor) 属性
 
-<ApiTable title="Props"
-    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
+<ApiTable title="代码编辑器 (Code Editor) 属性"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['modelValue', 'modelValue value', 'string', '-', '-'],
-        ['height', 'height value', 'number', '300', '-'],
-        ['config', 'see monaco.editor.IStandaloneEditorConstructionOptions', 'any', '{}', '-'],
-        ['autoCompleteConfig', 'see CodeEditorAutoCompleteProps', 'any', '{}', '-'],
-        ['contextMenuConfig', 'see CodeEditorContextMenuProps', 'any', '{}', '-'],
-        ['searchConfig', 'see CodeEditorSearchProps', 'any', '{}', '-'],
+        ['modelValue', '组件的值', 'string', '-'],
+        ['height', '组件的高度', 'number', '300'],
+        ['config', '参考 monaco.editor.IStandaloneEditorConstructionOptions', 'any', '{}'],
+        ['autoCompleteConfig', '参考 CodeEditorAutoCompleteProps', 'any', '{}'],
+        ['contextMenuConfig', '参考 CodeEditorContextMenuProps', 'any', '{}'],
+        ['searchConfig', '参考 CodeEditorSearchProps', 'any', '{}'],
     ]">
 </ApiTable>
 
-## CodeEditor Events
+## 代码编辑器 (Code Editor) 事件
 
-<ApiTable title="Events"
+<ApiTable title="代码编辑器 (Code Editor) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['update:modelValue', 'update modelValue value', 'string'],
-        ['on-change', 'on change', 'string'],
-        ['on-created', 'on created', 'monaco.editor.IStandaloneCodeEditor'],
-        ['on-focus', 'on focus', 'monaco.editor.IStandaloneCodeEditor'],
-        ['on-blur', 'on blur', 'monaco.editor.IStandaloneCodeEditor']
+        ['update:modelValue', '数据更新后触发', 'string'],
+        ['on-change', '数据更新后触发', 'string'],
+        ['on-created', '编辑器创建后触发', 'monaco.editor.IStandaloneCodeEditor'],
+        ['on-focus', '编辑器聚焦后触发', 'monaco.editor.IStandaloneCodeEditor'],
+        ['on-blur', '编辑器失焦后触发', 'monaco.editor.IStandaloneCodeEditor']
     ]">
 </ApiTable>
-
 
 <script setup lang="ts">
 import { ref } from 'vue';

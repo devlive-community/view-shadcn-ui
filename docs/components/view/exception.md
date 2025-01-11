@@ -1,11 +1,12 @@
 ---
-title: Shadcn Exception
-slug: exception
+title: 异常 (Exception)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnException component.
+<br />
+
+本文档主要用于描述 `ShadcnException` 组件的一些特性和用法。
 
 ## 用法
 
@@ -38,60 +39,23 @@ This document is mainly used to describe some features and usage of the ShadcnEx
 
 :::
 
-## Slot
+## 异常 (Exception) 属性
 
-::: raw
-
-<CodeRunner title="Slot">
-  <ShadcnException type="500">
-    <template #icon>
-      <ShadcnIcon icon="TriangleAlert" class="text-gray-400" :size="80"/>
-    </template>
-    <template #actions>
-      <ShadcnButton type="primary">Home</ShadcnButton>
-    </template>
-  </ShadcnException>
-</CodeRunner>
-
-:::
-
-::: details 查看代码
-
-```vue
-<template>
-  <ShadcnException type="500">
-    <template #icon>
-      <ShadcnIcon icon="TriangleAlert" class="text-gray-400" :size="80"/>
-    </template>
-    <template #actions>
-      <ShadcnButton type="primary">Home</ShadcnButton>
-    </template>
-  </ShadcnException>
-</template>
-
-<script setup lang="ts">
-</script>
-```
-
-:::
-
-## Props
-
-<ApiTable title="Props"
-    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
+<ApiTable title="异常 (Exception) 属性"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['type', 'The type of the exception', 'Enum', '404', '-', '404 | 403 | 500'],
-        ['title', 'The title of the exception', 'String', 'Page not found', '-', '-'],
-        ['description', 'The description of the exception', 'String', 'Sorry, the page you visited does not exist.', '-', '-'],
+        ['type', '异常的类型', 'enum', '404', '404 | 403 | 500'],
+        ['title', '异常的标题', 'string', 'Page not found', '-'],
+        ['description', '异常的描述', 'string', 'Sorry, the page you visited does not exist.', '-'],
     ]">
 </ApiTable>
 
-## Slots
+## 异常 (Exception) 插槽
 
-<ApiTable title="Slots"
+<ApiTable title="异常 (Exception) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['icon', 'Icon slot'],
-        ['actions', 'The actions of the exception'],
+        ['icon', '图标'],
+        ['actions', '操作'],
     ]">
 </ApiTable>

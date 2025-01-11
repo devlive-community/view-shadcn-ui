@@ -1,10 +1,12 @@
 ---
-title: Shadcn Tag
+title: 标签 (Tag)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnTag component.
+<br />
+
+本文档主要用于描述 `ShadcnTag` 组件的一些特性和用法。
 
 ## 用法
 
@@ -198,35 +200,35 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
-## Props
+## 标签 (Tag) 属性
 
-<ApiTable title="Props"
-    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
+<ApiTable title="标签 (Tag) 属性"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['text', 'The content of the tag', 'string', '-', '-', '-'],
-        ['name', 'The name of the tag, clicked when closable', 'string', '-', '-', '-'],
-        ['type', 'The type of the tag', 'enum', 'default', '-', 'default | primary | success | warning | error'],
-        ['border', 'The border of the tag', 'boolean', 'false', '-', '-'],
-        ['size', 'The size of the tag', 'enum', 'default', '-', 'default | medium | large'],
-        ['closable', 'Whether the tag can be closed', 'boolean', 'false', '-', '-'],
-        ['color', 'The color of the tag, auto calculate border color', 'string', '-', '-', '-'],
+        ['text', '显示的内容', 'string', '-', '-'],
+        ['name', '标签的名称', 'string', '-', '-'],
+        ['type', '组件的类型', 'enum', 'default', 'default | primary | success | warning | error'],
+        ['border', '是否显示边框', 'boolean', 'false', '-'],
+        ['size', '组件的尺寸', 'enum', 'default', 'default | medium | large'],
+        ['closable', '是否可关闭', 'boolean', 'false', '-'],
+        ['color', '标签的颜色', 'string', '-', '-'],
     ]">
 </ApiTable>
 
-## Slots
+## 标签 (Tag) 插槽
 
-<ApiTable title="Slots"
-    :headers="['Name', 'Description', 'Props Reference']"
+<ApiTable title="标签 (Tag) 插槽"
+    :headers="['插槽', '描述', '回调参数']"
     :columns="[
-        ['default', 'The content of the tag', 'text'],
+        ['default', '组件内容', 'text'],
     ]">
 </ApiTable>
 
-## Events
+## 标签 (Tag) 事件
 
-<ApiTable title="Events"
+<ApiTable title="标签 (Tag) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['on-close', 'Triggered when the tag is closed', 'event'],
+        ['on-close', '关闭时触发', 'event'],
     ]">
 </ApiTable>

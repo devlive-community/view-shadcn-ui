@@ -1,10 +1,12 @@
 ---
-title: Shadcn Alert
+title: 警告提示 (Alert)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnAlert component.
+<br />
+
+本文档主要用于描述 `ShadcnAlert` 组件的一些特性和用法。
 
 ## 用法
 
@@ -25,9 +27,9 @@ This document is mainly used to describe some features and usage of the ShadcnAl
 
 :::
 
-## Title
+## 标题 (title)
 
-<CodeRunner title="Title">
+<CodeRunner title="标题 (title)">
     <ShadcnAlert title="Title">Alert</ShadcnAlert>
 </CodeRunner>
 
@@ -90,9 +92,9 @@ This document is mainly used to describe some features and usage of the ShadcnAl
 
 :::
 
-## Banner
+## 横幅 (banner)
 
-<CodeRunner title="Banner">
+<CodeRunner title="横幅 (banner)">
     <ShadcnAlert title="Title" banner>Alert</ShadcnAlert>
 </CodeRunner>
 
@@ -109,9 +111,9 @@ This document is mainly used to describe some features and usage of the ShadcnAl
 
 :::
 
-## Closable
+## 可关闭 (closable)
 
-<CodeRunner title="Closable">
+<CodeRunner title="可关闭 (closable)">
     <ShadcnAlert title="Title" closable>Alert</ShadcnAlert>
 </CodeRunner>
 
@@ -128,35 +130,35 @@ This document is mainly used to describe some features and usage of the ShadcnAl
 
 :::
 
-## API Attributes
+## 警告提示 (Alert) 属性
 
-<ApiTable title="Alert Props"
-    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
+<ApiTable title="警告提示 (Alert) 属性"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['title', 'The title of the alert', 'String', '-', '-', '-'],
-        ['type', 'The type of the alert', 'Enum', 'primary', '-', 'primary, success, warning, error'],
-        ['show-icon', 'Whether to show the icon', 'Boolean', 'false', '-', '-'],
-        ['banner', 'Whether to create a banner alert', 'Boolean', 'false', '-', '-'],
-        ['closable', 'Whether to show the close button', 'Boolean', 'false', '-', '-'],
+        ['title', '组件的标题', 'string', '-', '-'],
+        ['type', '组件的类型', 'enum', 'primary', 'primary | success | warning | error'],
+        ['show-icon', '是否显示图标', 'boolean', 'false', '-'],
+        ['banner', '是否为横幅', 'boolean', 'false', '-'],
+        ['closable', '是否可关闭', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
-<br />
+## 警告提示 (Alert) 事件
 
-<ApiTable title="Alert Events"
+<ApiTable title="警告提示 (Alert) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['close', 'Close event', 'true | false'],
+        ['close', '点击关闭按钮时触发', 'true | false'],
     ]">
 </ApiTable>
 
-<br />
+## 警告提示 (Alert) 插槽
 
-<ApiTable title="Alert Slots"
-    :headers="['Name', 'Description', 'Props Reference']"
+<ApiTable title="警告提示 (Alert) 插槽"
+    :headers="['插槽', '描述', '回调参数']"
     :columns="[
-        ['default', 'Default slot', '-'],
-        ['icon', 'Icon slot', '-'],
-        ['close', 'Close slot', '-'],
+        ['default', '内容文本区域', '-'],
+        ['icon', '图标区域', '-'],
+        ['close', '关闭按钮区域', '-'],
     ]">
 </ApiTable>

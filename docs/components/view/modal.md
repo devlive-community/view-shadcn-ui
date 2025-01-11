@@ -62,7 +62,7 @@ const modal = ref(false);
 
 :::
 
-## Title
+## 标题 (title)
 
 <CodeRunner title="Custom Title"
     description="Create a modal with custom title.">
@@ -179,7 +179,7 @@ const modal = ref(false);
 
 :::
 
-## Height
+## 高度 (height)
 
 <CodeRunner title="Custom Height">
     <ShadcnButton @click="customHeightModal = true">Click</ShadcnButton>
@@ -259,11 +259,11 @@ const customClosableModal = ref(false);
 
 :::
 
-## Mask Closable
+## 背景关闭 (mask-closable)
 
 ::: raw
 
-<CodeRunner title="Mask Closable">
+<CodeRunner title="背景关闭 (mask-closable)">
     <ShadcnButton @click="customClosableModal = true">Mask Closable</ShadcnButton>
     <ShadcnModal v-model="customClosableModal" title="Mask Closable" :mask-closable="false">
         <div class="flex items-center justify-center h-32">Content</div>

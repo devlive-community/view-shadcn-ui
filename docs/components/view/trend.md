@@ -1,10 +1,12 @@
 ---
-title: Shadcn Trend
+title: 趋势 (Trend)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnTrend component.
+<br />
+
+本文档主要用于描述 `ShadcnTrend` 组件的一些特性和用法。
 
 ## 用法
 
@@ -31,11 +33,11 @@ This document is mainly used to describe some features and usage of the ShadcnTr
 
 :::
 
-## Reverse
+## 反转 (reverse)
 
 ::: raw
 
-<CodeRunner title="Reverse">
+<CodeRunner title="反转 (reverse)">
     <ShadcnTrend :value="10" reverse />
     <ShadcnTrend :value="-10" reverse />
 </CodeRunner>
@@ -56,11 +58,11 @@ This document is mainly used to describe some features and usage of the ShadcnTr
 
 :::
 
-## Text Color
+## 文本颜色 (text-color)
 
 ::: raw
 
-<CodeRunner title="Text Color">
+<CodeRunner title="文本颜色 (text-color)">
     <ShadcnTrend :value="10" text-color/>
     <ShadcnTrend :value="-10" text-color/>
 </CodeRunner>
@@ -81,24 +83,24 @@ This document is mainly used to describe some features and usage of the ShadcnTr
 
 :::
 
-## Props
+## 趋势 (Trend) 属性
 
-<ApiTable title="Props"
-    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
+<ApiTable title="趋势 (Trend) 属性"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['value', 'The value of the trend, if > 0, rise, if < 0, descend', 'number', '0', '-', '-'],
-        ['reverse', 'Reverse the trend direction', 'boolean', 'false', '-', '-'],
-        ['text-color', 'Text color', 'boolean', 'false', '-', '-'],
+        ['value', '趋势值，如果> 0，则上升，如果< 0，则下降', 'number', '0'],
+        ['reverse', '反转趋势方向', 'boolean', 'false'],
+        ['text-color', '是否使用文本颜色', 'boolean', 'false'],
     ]">
 </ApiTable>
 
-## Slots
+## 趋势 (Trend) 插槽
 
-<ApiTable title="Slots"
+<ApiTable title="趋势 (Trend) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['default', 'Value slot'],
-        ['rise', 'Rise slot'],
-        ['descend', 'Descend slot'],
+        ['default', '默认插槽'],
+        ['rise', '上升趋势'],
+        ['descend', '下降趋势'],
     ]">
 </ApiTable>
