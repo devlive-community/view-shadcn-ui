@@ -22,10 +22,9 @@
                 {
                   'bg-white cursor-pointer shadow-sm': activeTab === tab.value && !tab.disabled && direction !== 'vertical' && !line,
                   'border-b-2 cursor-pointer -mb-px': activeTab === tab.value && !tab.disabled && direction !== 'vertical' && line,
-                  [BorderType[type]]: activeTab === tab.value && !tab.disabled && direction !== 'vertical' && line,
+                  [BorderType[type]]: activeTab === tab.value && !tab.disabled && (direction === 'vertical' || line),
                   'border-r-2 cursor-pointer': activeTab === tab.value && !tab.disabled && direction === 'vertical',
                   [TextType[type]]: activeTab === tab.value && !tab.disabled,
-                  [BorderType[type]]: activeTab === tab.value && !tab.disabled && direction === 'vertical',
                   'hover:text-slate-900': activeTab !== tab.value && !tab.disabled && direction !== 'vertical',
                   'text-gray-600 hover:border-r-2 hover:cursor-pointer': activeTab !== tab.value && !tab.disabled && direction === 'vertical',
                   [HoverTextType[type]]: activeTab !== tab.value && !tab.disabled,
