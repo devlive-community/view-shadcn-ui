@@ -1,13 +1,12 @@
 function createSidebarItem(item) {
     return {
-        text: `<span class="sidebar-text-wrapper">
-            <span class="sidebar-item">
+        text: `<span class="sidebar-item">
             ${item.icon ? `<img src="${item.icon}" alt="icon" />` : ''}
             <span class="sidebar-text-wrapper">
-              ${item.text}
-              ${item.version ? `<span class="version-badge VPBadge tip">${item.version}</span>` : ''}
+                ${item.text}
             </span>
-           </span>`,
+            ${item.version ? `<span class="version-badge VPBadge tip">${item.version}</span>` : ''}
+        </span>`,
         link: item.link
     }
 }
@@ -66,17 +65,17 @@ export default {
                 activeMatch: '/components'
             },
             {
+                text: '发布日志',
+                link: '/changelog/latest',
+                activeMatch: '/changelog'
+            },
+            {
                 text: '演练场',
                 link: 'https://playground.view-shadcn-ui.devlive.org'
             },
             {
                 text: '2025.1.0 <span class="VPBadge danger" style="margin-left: -18px; position: absolute; bottom: 38px;">最新</span>',
                 items: [
-                    {
-                        text: '发布日志 <span class="VPBadge tip">2025.1.0</span>',
-                        link: '/changelog',
-                        activeMatch: '/changelog'
-                    },
                     {
                         text: '贡献指南',
                         external: true,
@@ -111,6 +110,30 @@ export default {
                     return {
                         text: `工具函数 [ ${items.length} ]`,
                         base: '/guide/',
+                        collapsed: false,
+                        items: items.map(item => createSidebarItem(item))
+                    }
+                })()
+            ],
+            '/changelog/': [
+                (() => {
+                    const items = [
+                        {text: '2025.1.0 <span class="VPBadge danger" style="left: 65px; margin-top: 6px; width: 45px;">最新</span>', link: 'latest', version: '2025-01-11'},
+                        {text: '2024.5.4', link: '2024.5.4', version: '2024-12-30'},
+                        {text: '2024.5.3', link: '2024.5.3', version: '2024-12-23'},
+                        {text: '2024.5.2', link: '2024.5.2', version: '2024-12-15'},
+                        {text: '2024.5.1', link: '2024.5.1', version: '2024-12-09'},
+                        {text: '2024.5.0', link: '2024.5.0', version: '2024-12-03'},
+                        {text: '2024.4.0', link: '2024.4.0', version: '2024-11-17'},
+                        {text: '2024.3.0', link: '2024.3.0', version: '2024-11-10'},
+                        {text: '2024.2.0', link: '2024.2.0', version: '2024-11-03'},
+                        {text: '2024.1.2', link: '2024.1.2', version: '2024-10-27'},
+                        {text: '2024.1.1', link: '2024.1.1', version: '2024-10-20'},
+                    ]
+
+                    return {
+                        text: `发布日志`,
+                        base: '/changelog/',
                         collapsed: false,
                         items: items.map(item => createSidebarItem(item))
                     }
