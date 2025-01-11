@@ -33,8 +33,7 @@ import ShadcnSelect from '@/ui/select'
 import ShadcnSelectOption from '@/ui/select/option'
 import ShadcnSelectGroup from '@/ui/select/group'
 import ShadcnRate from '@/ui/rate'
-import ShadcnTab from '@/ui/tab'
-import ShadcnTabItem from '@/ui/tab/item'
+import { ShadcnTab, ShadcnTabItem } from '@/ui/tab'
 import { ShadcnSkeleton, ShadcnSkeletonItem } from '@/ui/skeleton'
 import ShadcnLayout from '@/ui/layout'
 import ShadcnLayoutHeader from '@/ui/layout/header'
@@ -130,8 +129,7 @@ let components = [
     ShadcnSelectOption,
     ShadcnSelectGroup,
     ShadcnRate,
-    ShadcnTab,
-    ShadcnTabItem,
+    ShadcnTab, ShadcnTabItem,
     ShadcnSkeleton, ShadcnSkeletonItem,
     ShadcnLayout,
     ShadcnLayoutHeader,
@@ -262,8 +260,7 @@ export { default as ShadcnSelect } from '@/ui/select'
 export { default as ShadcnSelectOption } from '@/ui/select/option'
 export { default as ShadcnSelectGroup } from '@/ui/select/group'
 export { default as ShadcnRate } from '@/ui/rate'
-export { default as ShadcnTab } from '@/ui/tab'
-export { default as ShadcnTabItem } from '@/ui/tab/item'
+export { ShadcnTab, ShadcnTabItem } from '@/ui/tab'
 export { ShadcnSkeleton, ShadcnSkeletonItem } from '@/ui/skeleton'
 export { default as ShadcnLayout } from '@/ui/layout'
 export { default as ShadcnLayoutHeader } from '@/ui/layout/header'

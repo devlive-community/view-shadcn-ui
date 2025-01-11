@@ -413,6 +413,7 @@ const addTab = () => {
         ['closable', '选项卡是否可关闭', 'boolean', 'false', '-'],
         ['direction', '选项卡的方向', 'string', 'horizontal', 'horizontal | vertical'],
         ['position', '选项卡的位置', 'string', 'top', 'left | right'],
+        ['showScrollButtons', '是否显示滚动按钮', 'boolean', 'true', '-'],
     ]">
 </ApiTable>
 

@@ -6,13 +6,9 @@
 
 <script setup lang="ts">
 import { computed, inject, onBeforeUnmount, onMounted } from 'vue'
+import { TabItemProps } from '@/ui/tab/types.ts'
 
-const props = withDefaults(defineProps<{
-  label: string
-  value: string
-  disabled?: boolean
-  icon?: string
-}>(), {
+const props = withDefaults(defineProps<TabItemProps>(), {
   disabled: false
 })
 
