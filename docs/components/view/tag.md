@@ -167,11 +167,11 @@ This document is mainly used to describe some features and usage of the ShadcnTa
 
 :::
 
-## Color
+## 颜色 (color)
 
 ::: raw
 
-<CodeRunner title="Color">
+<CodeRunner title="颜色 (color)">
     <ShadcnSpace wrap>
         <ShadcnTag text="Default Tag" border color="#D35DD4"/>
         <ShadcnTag text="Medium Tag" border color="#39604B"/>

@@ -26,11 +26,11 @@ This document describes the features and usage of the ShadcnTimePicker component
 
 :::
 
-## Placeholder
+## 占位符 (placeholder)
 
 ::: raw
 
-<CodeRunner title="Placeholder">
+<CodeRunner title="占位符 (placeholder)">
     <ShadcnTimePicker v-model="value" placeholder="Enter string" />
 </CodeRunner>
 
@@ -68,11 +68,11 @@ This document describes the features and usage of the ShadcnTimePicker component
 
 :::
 
-## Clearable
+## 清空 (clearable)
 
 ::: raw
 
-<CodeRunner title="Clearable">
+<CodeRunner title="清空 (clearable)">
     <ShadcnTimePicker v-model="value" clearable />
     <ShadcnTimePicker v-model="value" :clearable="false" />
 </CodeRunner>
@@ -110,11 +110,11 @@ This document describes the features and usage of the ShadcnTimePicker component
 
 :::
 
-## Format
+## 格式 (format)
 
 ::: raw
 
-<CodeRunner title="Format">
+<CodeRunner title="格式 (format)">
     <ShadcnTimePicker v-model="value" format="HH:mm" />
     <ShadcnTimePicker v-model="value" format="HH:mm:ss" />
     <ShadcnTimePicker v-model="value" format="hh:mm A" />

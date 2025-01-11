@@ -1,9 +1,11 @@
 <template>
   <div class="p-32 space-y-7 space-x-4">
     <div class="p-2 flex flex-col space-y-4 min-h-60 space-x-6 overflow-x-auto">
-      <ShadcnAvatar src="" alt="UI" />
-      <ShadcnAvatar src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png"/>
-      <ShadcnAvatar src="" square />
+      <ShadcnTab closable>
+        <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 2" value="Tab 2">Tab 2 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
+      </ShadcnTab>
     </div>
   </div>
 </template>

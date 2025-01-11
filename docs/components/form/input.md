@@ -29,7 +29,7 @@ const input = ref('')
 
 :::
 
-## Clearable
+## 清空 (clearable)
 
 <CodeRunner title="Clearable"
     description="Create a clearable input.">

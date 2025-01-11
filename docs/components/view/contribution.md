@@ -26,7 +26,7 @@ This document describes the features and usage of the ShadcnContribution compone
 
 :::
 
-## Color scheme
+## 颜色 (color) scheme
 
 ::: raw
 

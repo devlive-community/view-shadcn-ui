@@ -52,7 +52,8 @@
             </div>
             <ShadcnIcon v-if="closable && !tab.disabled"
                         icon="CircleX"
-                        class="h-4 w-4 opacity-70 hover:opacity-100"
+                        size="14"
+                        class="justify-center items-center opacity-70 hover:opacity-100"
                         @click.stop="onTabRemove(tab.value)"/>
           </div>
         </div>

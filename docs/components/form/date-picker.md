@@ -1,10 +1,12 @@
 ---
-title: Shadcn DatePicker
+title: 日期选取器 (Date Picker)
 ---
 
 # 介绍
 
-This document describes the features and usage of the ShadcnDatePicker component.
+<br />
+
+本文档主要用于描述 `ShadcnDatePicker` 组件的一些特性和用法。
 
 ## 用法
 
@@ -48,11 +50,11 @@ This document describes the features and usage of the ShadcnDatePicker component
 
 :::
 
-## Placeholder
+## 占位符 (placeholder)
 
 ::: raw
 
-<CodeRunner title="Placeholder">
+<CodeRunner title="占位符 (placeholder)">
     <ShadcnDatePicker v-model="value" placeholder="Enter string" />
 </CodeRunner>
 
@@ -90,11 +92,11 @@ This document describes the features and usage of the ShadcnDatePicker component
 
 :::
 
-## Readonly
+## 只读 (readonly)
 
 ::: raw
 
-<CodeRunner title="Readonly">
+<CodeRunner title="只读 (readonly)">
     <ShadcnDatePicker v-model="value" readonly />
     <ShadcnDatePicker v-model="value" :readonly="false" />
 </CodeRunner>
@@ -112,11 +114,11 @@ This document describes the features and usage of the ShadcnDatePicker component
 
 :::
 
-## Format
+## 格式 (format)
 
 ::: raw
 
-<CodeRunner title="Format">
+<CodeRunner title="格式 (format)">
     <ShadcnDatePicker v-model="value" format="YYYY-MM-DD" />
 </CodeRunner>
 
@@ -132,11 +134,11 @@ This document describes the features and usage of the ShadcnDatePicker component
 
 :::
 
-## Clearable
+## 清空 (clearable)
 
 ::: raw
 
-<CodeRunner title="Clearable">
+<CodeRunner title="清空 (clearable)">
     <ShadcnDatePicker v-model="value" clearable />
     <ShadcnDatePicker v-model="value" :clearable="false" />
 </CodeRunner>
@@ -154,11 +156,11 @@ This document describes the features and usage of the ShadcnDatePicker component
 
 :::
 
-## Show shortcuts
+## 显示快捷方式 (show-shortcuts)
 
 ::: raw
 
-<CodeRunner title="Show shortcuts">
+<CodeRunner title="显示快捷方式 (show-shortcuts)">
     <ShadcnDatePicker v-model="value" showShortcuts />
     <ShadcnDatePicker v-model="value" :showShortcuts="false" />
 </CodeRunner>
@@ -175,32 +177,32 @@ This document describes the features and usage of the ShadcnDatePicker component
 ```
 
 :::
-## DatePicker Props
+
+## 日期选取器 (Date Picker) 属性
 
 <ApiTable title="Props"
     :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['modelValue', 'modelValue value', 'Date | string', '-', 'Date, string'],
-        ['type', 'type value', 'date | range', 'date', 'date, range'],
-        ['placeholder', 'placeholder value', 'string', '-', '-'],
-        ['disabled', 'disabled value', 'boolean', 'false', '-'],
-        ['readonly', 'readonly value', 'boolean', 'false', '-'],
-        ['format', 'format value', 'string', 'YYYY-MM-DD', '-'],
-        ['clearable', 'clearable value', 'boolean', 'true', '-'],
-        ['showShortcuts', 'showShortcuts value', 'boolean', 'true', '-']
+        ['modelValue', '当前的选择值', 'Date | string', '-', 'Date, string'],
+        ['type', '类型', 'date | range', 'date', 'date, range'],
+        ['placeholder', '占位符内容', 'string', '-', '-'],
+        ['disabled', '是否为禁用', 'boolean', 'false', '-'],
+        ['readonly', '是否为只读', 'boolean', 'false', '-'],
+        ['format', '日期格式', 'string', 'YYYY-MM-DD', '-'],
+        ['clearable', '是否显示清空按钮', 'boolean', 'true', '-'],
+        ['showShortcuts', '是否显示快捷方式', 'boolean', 'true', '-']
     ]">
 </ApiTable>
 
-## DatePicker Events
+## 日期选取器 (Date Picker) 事件
 
-<ApiTable title="Events"
+<ApiTable title="日期选取器 (Date Picker) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['update:modelValue', 'Triggered when update:modelValue', 'value: string | [string, string]'],
-        ['on-change', 'Triggered when on change', 'value: string | [string, string]']
+        ['update:modelValue', '当选择的值被更新时触发', 'value: string | \[string, string\]'],
+        ['on-change', '当选择的值被更新时触发', 'value: string | \[string, string\]']
     ]">
 </ApiTable>
-
 
 <script setup lang="ts">
 import { ref } from 'vue';

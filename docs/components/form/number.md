@@ -128,11 +128,11 @@ const value = ref(0)
 
 :::
 
-## Placeholder
+## 占位符 (placeholder)
 
 ::: raw
 
-<CodeRunner title="Placeholder">
+<CodeRunner title="占位符 (placeholder)">
     <ShadcnNumber v-model="placeholderValue" placeholder="Enter Number"/>
 </CodeRunner>
 
@@ -180,11 +180,11 @@ const value = ref(0)
 
 :::
 
-## Clearable
+## 清空 (clearable)
 
 ::: raw
 
-<CodeRunner title="Clearable">
+<CodeRunner title="清空 (clearable)">
     <div class="space-y-2">
     <ShadcnNumber v-model="clearableValue" clearable placeholder="Enter Number"/>
     <ShadcnNumber v-model="clearableValue" clearable placeholder="Enter Number">
