@@ -1,10 +1,12 @@
 ---
-title: Shadcn Number
+title: 数字输入框 (Number)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnNumber component.
+<br />
+
+本文档主要用于描述 `ShadcnNumber` 组件的一些特性和用法。
 
 ## 用法
 
@@ -154,11 +156,11 @@ const value = ref(0)
 
 :::
 
-## Min & Max
+## 最小值 (min) & 最大值 (max)
 
 ::: raw
 
-<CodeRunner title="Min & Max">
+<CodeRunner title="最小值 (min) & 最大值 (max)">
     <ShadcnNumber v-model="minAndMaxValue" min="0" max="10"/>
 </CodeRunner>
 
@@ -218,11 +220,11 @@ const value = ref(0)
 
 :::
 
-## Show Control
+## 显示控制器 (control)
 
 ::: raw
 
-<CodeRunner title="Show Control">
+<CodeRunner title="显示控制器 (control)">
     <div class="space-y-2">
         <ShadcnNumber v-model="controlValue" placeholder="Enter Number"/>
         <ShadcnNumber v-model="controlValue" placeholder="Enter Number">
@@ -262,42 +264,42 @@ const value = ref(0)
 
 :::
 
-## Props
+## 数字输入框 (Number) 属性
 
-<ApiTable title="Number Props"
+<ApiTable title="数字输入框 (Number) 属性"
     :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['modelValue', 'Number value', 'number | string', '-', '-'],
-        ['size', 'Size of the number', 'string', 'default', 'small | default | large'],
-        ['type', 'Type of the number', 'string', 'default', 'primary | warning | success | error'],
-        ['disabled', 'Whether the number is disabled', 'boolean', 'false', '-'],
-        ['placeholder', 'Placeholder of the number', 'string', '-', '-'],
-        ['min', 'Minimum value of the number', 'number | string', '-', '-'],
-        ['max', 'Maximum value of the number', 'number | string', '-', '-'],
-        ['clearable', 'Whether the number can be cleared', 'boolean', 'false', '-'],
-        ['formatter', 'Formatter of the number', 'function', '-', '-'],
-        ['parser', 'Parser of the number', 'function', '-', '-'],
+        ['modelValue', '当前组件的值', 'number | string', '-', '-'],
+        ['size', '组件的尺寸', 'string', 'default', 'small | default | large'],
+        ['type', '组件的类型', 'string', 'default', 'primary | warning | success | error'],
+        ['disabled', '是否为禁用', 'boolean', 'false', '-'],
+        ['placeholder', '占位符内容', 'string', '-', '-'],
+        ['min', '组件的最小值', 'number | string', '-', '-'],
+        ['max', '组件的最大值', 'number | string', '-', '-'],
+        ['clearable', '是否显示清空', 'boolean', 'false', '-'],
+        ['formatter', '格式化函数', 'function', '-', '-'],
+        ['parser', '解析函数', 'function', '-', '-'],
     ]">
 </ApiTable>
 
-## Slots
+## 数字输入框 (Number) 插槽
 
-<ApiTable title="Number Slots"
+<ApiTable title="数字输入框 (Number) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['clear', 'Clear icon'],
-        ['add', 'Add icon'],
-        ['minus', 'Minus icon'],
+        ['clear', '清空按钮'],
+        ['add', '添加按钮'],
+        ['minus', '减少按钮'],
     ]">
 </ApiTable>
 
-## Events
+## 数字输入框 (Number) 事件
 
-<ApiTable title="Number Events"
+<ApiTable title="数字输入框 (Number) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['on-change', 'Emitted when the number value changes', 'number'],
-        ['on-blur', 'Emitted when the number loses focus', '-'],
+        ['on-change', '当数字值更改时触发', 'number'],
+        ['on-blur', '当数字失去焦点时触发', '-'],
     ]">
 </ApiTable>
 

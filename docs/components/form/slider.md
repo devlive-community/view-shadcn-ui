@@ -1,10 +1,12 @@
 ---
-title: Shadcn Slider
+title: 滑块 (Slider)
 ---
 
 # 介绍
 
-This document describes the features and usage of the ShadcnSlider component.
+<br />
+
+本文档描述了 `ShadcnSlider` 组件的特性和使用方法。
 
 ## 用法
 
@@ -26,11 +28,11 @@ This document describes the features and usage of the ShadcnSlider component.
 
 :::
 
-## Min
+## 最小值 (min)
 
 ::: raw
 
-<CodeRunner title="Min">
+<CodeRunner title="最小值 (min)">
     <ShadcnSlider v-model="value" :min="0" />
 </CodeRunner>
 
@@ -66,11 +68,11 @@ This document describes the features and usage of the ShadcnSlider component.
 
 :::
 
-## Step
+## 间隔 (step)
 
 ::: raw
 
-<CodeRunner title="Step">
+<CodeRunner title="间隔 (step)">
     <ShadcnSlider v-model="value" :step="10" />
 </CodeRunner>
 
@@ -86,11 +88,11 @@ This document describes the features and usage of the ShadcnSlider component.
 
 :::
 
-## Show tip
+## 显示提示 (show-tip)
 
 ::: raw
 
-<CodeRunner title="Show tip">
+<CodeRunner title="显示提示 (show-tip)">
     <ShadcnSlider v-model="value" showTip />
     <ShadcnSlider v-model="value" :showTip="false" />
 </CodeRunner>
@@ -108,11 +110,11 @@ This document describes the features and usage of the ShadcnSlider component.
 
 :::
 
-## Show step
+## 显示间隔 (show-step)
 
 ::: raw
 
-<CodeRunner title="Show step">
+<CodeRunner title="显示间隔 (show-step)">
     <ShadcnSlider v-model="value" :step="10" showStep />
     <ShadcnSlider v-model="value" :showStep="false" />
 </CodeRunner>
@@ -177,29 +179,30 @@ This document describes the features and usage of the ShadcnSlider component.
 ```
 
 :::
-## Slider Props
 
-<ApiTable title="Props"
+## 滑块 (Slider) 属性
+
+<ApiTable title="滑块 (Slider) 属性"
     :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['modelValue', 'modelValue value', 'number | number\[\]', '-', 'number, number\[\]'],
-        ['min', 'min value', 'number', '0', 'number'],
-        ['max', 'max value', 'number', '100', 'number'],
-        ['step', 'step value', 'number', '1', 'number'],
-        ['showTip', 'showTip value', 'boolean', 'false', '-'],
-        ['showStep', 'showStep value', 'boolean', 'false', '-'],
-        ['disabled', 'disabled value', 'boolean', 'false', '-'],
-        ['type', 'type value', 'keyof typeof ButtonBackgroundType', 'primary', '-']
+        ['modelValue', '当前组件的值', 'number | number\[\]', '-', 'number, number\[\]'],
+        ['min', '组件的最小值', 'number', '0', 'number'],
+        ['max', '组件的最大值', 'number', '100', 'number'],
+        ['step', '组件的间隔', 'number', '1', 'number'],
+        ['showTip', '是否显示提示', 'boolean', 'false', '-'],
+        ['showStep', '是否显示间隔', 'boolean', 'false', '-'],
+        ['disabled', '是否为禁用', 'boolean', 'false', '-'],
+        ['type', '组件的类型', 'keyof typeof ButtonBackgroundType', 'primary', '-']
     ]">
 </ApiTable>
 
-## Slider Events
+## 滑块 (Slider) 事件
 
-<ApiTable title="Events"
+<ApiTable title="滑块 (Slider) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['update:modelValue', 'Triggered when update:modelValue', 'value: number | number\[\]'],
-        ['on-change', 'Triggered when on change', 'value: number | number\[\]']
+        ['update:modelValue', '组件的值被更新时触发', 'value: number | number\[\]'],
+        ['on-change', '组件的值被更新时触发', 'value: number | number\[\]']
     ]">
 </ApiTable>
 

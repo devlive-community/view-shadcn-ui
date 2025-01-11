@@ -1,10 +1,12 @@
 ---
-title: Shadcn Checkbox
+title: 复选框 (Checkbox)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnCheckbox component.
+<br />
+
+本文档主要用于描述 `ShadcnCheckbox` 组件的一些特性和用法。
 
 ## 用法
 
@@ -138,53 +140,53 @@ const checkedGroup = ref(['Vue'])
 
 :::
 
-## API Attributes
+## 复选框 (Checkbox) 属性
 
-<ApiTable title="Checkbox Props"
+<ApiTable title="复选框 (Checkbox) 属性"
     :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
-        ['modelValue', 'You can use v-model to bind data in both directions', 'Any', '-', '-', '-'],
-        ['value', 'The value of the checkbox', 'Any', '-', '-', '-'],
-        ['disabled', 'Whether the checkbox is disabled', 'boolean', 'false', '-', '-'],
-        ['size', 'The size of the checkbox', 'Enum', 'default', '-', 'small | default | large'],
-        ['type', 'The type of the checkbox', 'Enum', 'primary', '-', 'primary | success | warning | error'],
+        ['modelValue', '当前组件的值', 'any', '-', '-', '-'],
+        ['value', '组件项的值', 'any', '-', '-', '-'],
+        ['disabled', '是否为禁用', 'boolean', 'false', '-', '-'],
+        ['size', '组件的尺寸', 'enum', 'default', '-', 'small | default | large'],
+        ['type', '组件的类型', 'enum', 'primary', '-', 'primary | success | warning | error'],
     ]">
 </ApiTable>
 
-<br />
+## 复选框组 (Checkbox Group) 属性
 
-<ApiTable title="Checkbox Group Props"
+<ApiTable title="复选框组 (Checkbox Group) 属性"
     :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
-        ['modelValue', 'You can use v-model to bind data in both directions', 'Any[]', '-', '-', '-'],
+        ['modelValue', '当前组件的值', 'any\[\]', '-', '-', '-'],
     ]">
 </ApiTable>
 
-<br />
+## 复选框 (Checkbox) 事件
 
-<ApiTable title="Checkbox Events"
+<ApiTable title="复选框 (Checkbox) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['on-change', 'Triggered when the value of the checkbox is changed', 'boolean'],
+        ['on-change', '当前选中的值更改时触发', 'boolean'],
     ]">
 </ApiTable>
 
-<br />
+## 复选框组 (Checkbox Group) 事件
 
-<ApiTable title="Checkbox Group Events"
+<ApiTable title="复选框组 (Checkbox Group) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['on-change', 'Triggered when the value of the checkbox group is changed', '[]'],
+        ['on-change', '当前选中的值更改时触发', '\[\]'],
     ]">
 </ApiTable>
 
-<br />
+## 复选框 (Checkbox) 插槽
 
-<ApiTable title="Checkbox Slots"
+<ApiTable title="复选框 (Checkbox) 插槽"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['label', 'Checkbox label'],
-        ['default', 'Default slot'],
+        ['label', '组件的文本'],
+        ['default', '默认插槽'],
     ]">
 </ApiTable>
 

@@ -236,7 +236,7 @@ title: 颜色选择器 (Color Picker)
         ['disabled', '是否为禁用', 'boolean', 'false', '-'],
         ['readonly', '是否为可读', 'boolean', 'false', '-'],
         ['presetColors', '预设颜色', 'string\[\]', '[#f87171, #fb923c, #fbbf24, #a3e635, #34d399, #2dd4bf, #38bdf8, #818cf8, #c084fc, #e879f9, #fb7185, #475569, #737373, #78716c, #ef4444]', '-'],
-        ['format', '输出格式，默认为 <code>auto</code>', 'auto | hex | rgb | hsl', 'auto', 'auto, hex, rgb, hsl'],
+        ['format', '输出格式，默认为 <code>auto</code>', 'auto | hex | rgb | hsl', 'auto', 'auto | hex | rgb | hsl'],
         ['showPanel', '是否显示面板', 'boolean', 'true', '-'],
         ['showDropper', '是否显示吸管', 'boolean', 'true', '-'],
         ['showTransparency', '是否显示透明度', 'boolean', 'true', '-'],

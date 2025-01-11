@@ -1,10 +1,12 @@
 ---
-title: Shadcn Toggle
+title: 切换 (Toggle)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnToggle component.
+<br />
+
+本文档主要用于描述 `ShadcnToggle` 组件的一些特性和用法。
 
 ## 用法
 
@@ -164,11 +166,11 @@ const defaultValue = ref(null)
 
 :::
 
-## Image
+## 自定义图片 (image)
 
 ::: raw
 
-<CodeRunner title="Image">
+<CodeRunner title="自定义图片 (image)">
     <ShadcnToggleGroup v-model="defaultValue" multiple>
       <ShadcnToggle class="w-20 h-20 px-1 py-1" value="1">
         <img src="https://www.vectorlogo.zone/logos/java/java-icon.svg">
@@ -198,48 +200,48 @@ const defaultValue = ref(null)
 
 :::
 
-## Toggle Props
+## 切换 (Toggle) 属性
 
-<ApiTable title="Props"
+<ApiTable title="切换 (Toggle) 属性"
     :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['modelValue', 'You can use v-model to bind data in both directions', 'any', '-', '-'],
-        ['value', 'The value of the toggle', 'any', '-', '-'],
-        ['disabled', 'Whether the toggle is disabled', 'boolean', 'false', '-'],
-        ['size', 'The size of the toggle', 'string', 'default', 'small | default | large'],
+        ['modelValue', '当前选中的值', 'any', '-', '-'],
+        ['value', '组件的值', 'any', '-', '-'],
+        ['disabled', '是否为禁用', 'boolean', 'false', '-'],
+        ['size', '组件的尺寸', 'string', 'default', 'small | default | large'],
     ]">
 </ApiTable>
 
-<br />
+## 切换组 (Toggle Group) 属性
 
-<ApiTable title="Group Props"
+<ApiTable title="切换组 (Toggle Group) 属性"
     :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['modelValue', 'You can use v-model to bind data in both directions', 'any', '-', '-'],
-        ['disabled', 'Whether the toggle is disabled', 'boolean', 'false', '-'],
-        ['size', 'The size of the toggle', 'string', 'default', 'small | default | large'],
-        ['multiple', 'Whether to allow multiple selection', 'boolean', 'false', '-'],
-        ['orientation', 'The orientation of the toggle', 'string', 'horizontal', 'horizontal | vertical'],
+        ['modelValue', '当前选中的值', 'any', '-', '-'],
+        ['disabled', '是否为禁用', 'boolean', 'false', '-'],
+        ['size', '组件的尺寸', 'string', 'default', 'small | default | large'],
+        ['multiple', '是否支持多选', 'boolean', 'false', '-'],
+        ['orientation', '组件的方向', 'string', 'horizontal', 'horizontal | vertical'],
     ]">
 </ApiTable>
 
-## Toggle Events
+## 切换 (Toggle) 事件
 
-<ApiTable title="Events"
+<ApiTable title="切换 (Toggle) 事件"
     :headers="['事件', '描述', '类型']"
     :columns="[
-        ['update:modelValue', 'The value of the toggle', 'any'],
-        ['on-change', 'Triggered when the value of the toggle is changed', 'any'],
+        ['update:modelValue', '当前选中的值更改时触发', 'any'],
+        ['on-change', '当前选中的值更改时触发', 'any'],
     ]">
 </ApiTable>
 
-<br />
+## 切换组 (Toggle Group) 事件
 
-<ApiTable title="Group Events"
+<ApiTable title="切换组 (Toggle Group) 事件"
     :headers="['事件', '描述', '类型']"
     :columns="[
-        ['update:modelValue', 'The value of the toggle', 'any[]'],
-        ['on-change', 'Triggered when the value of the toggle is changed', 'any[]'],
+        ['update:modelValue', '当前选中的值更改时触发', 'any[]'],
+        ['on-change', '当前选中的值更改时触发', 'any[]'],
     ]">
 </ApiTable>
 

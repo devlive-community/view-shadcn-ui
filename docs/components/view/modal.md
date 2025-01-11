@@ -6,9 +6,9 @@ title: Shadcn Modal
 
 This document is mainly used to describe some features and usage of the ShadcnModal component.
 
-## Basic Usage
+## 用法
 
-<CodeRunner title="Basic Usage">
+<CodeRunner title="用法">
     <ShadcnButton @click="basicModal = true">Click</ShadcnButton>
     <ShadcnModal v-model="basicModal" title="Modal Title" description="This is a modal description">
         <div class="flex items-center justify-center h-32">Content</div>

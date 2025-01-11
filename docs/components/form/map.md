@@ -1,10 +1,12 @@
 ---
-title: Shadcn Map
+title: 键值对 (Map)
 ---
 
 # 介绍
 
-This document is mainly used to describe some features and usage of the ShadcnMap component.
+<br />
+
+本文档主要用于描述 `ShadcnMap` 组件的一些特性和用法。
 
 ## 用法
 
@@ -146,11 +148,11 @@ const value = ref([])
 
 :::
 
-## Form
+## 表单 (form)
 
 ::: raw
 
-<CodeRunner title="Form">
+<CodeRunner title="表单 (form)">
     <ShadcnForm ref="formRef" v-model="formState" @on-submit="console.log($event)">
       <ShadcnFormItem name="map"
                       label="Map"
@@ -188,28 +190,28 @@ const formState = ref({
 
 :::
 
-## Map Props
+## 键值对 (Map) 属性
 
-<ApiTable title="Map Props"
-    :headers="['Attribute', 'Description', 'Type', 'Default Value','List']"
+<ApiTable title="键值对 (Map) 属性"
+    :headers="['属性', '描述', '类型', '默认值','支持列表']"
     :columns="[
-        ['modelValue', 'The value of the map', 'array', '\[\]', '-'],
-        ['size', 'The size of the map', 'enum', 'default', 'small | default | large'],
-        ['type', 'The type of the map', 'enum', 'primary', 'primary | success | warning | error'],
-        ['disabled', 'Disable the map', 'boolean', 'false', '-'],
-        ['max', 'The maximum number of items', 'number', 'Infinity', '-'],
-        ['name', 'The name of the key input, support on form', 'string', '-', '-'],
+        ['modelValue', '当前选中的值', 'array', '\[\]', '-'],
+        ['size', '组件的尺寸', 'enum', 'default', 'small | default | large'],
+        ['type', '组件的类型', 'enum', 'primary', 'primary | success | warning | error'],
+        ['disabled', '是否为禁用', 'boolean', 'false', '-'],
+        ['max', '最大显示的数量', 'number', 'Infinity', '-'],
+        ['name', '表单的名称', 'string', '-', '-'],
     ]">
 </ApiTable>
 
-## Map Events
+## 键值对 (Map) 事件
 
-<ApiTable title="Events"
+<ApiTable title="键值对 (Map) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['on-add', 'Triggered when the map is added', 'object'],
-        ['on-remove', 'Triggered when the map is removed', 'object'],
-        ['on-change', 'Triggered when the map is changed', 'object[]'],
+        ['on-add', '当添加新的键值对时触发', 'object'],
+        ['on-remove', '当删除键值对时触发', 'object'],
+        ['on-change', '当键值对发生变化时触发', 'object\[\]'],
     ]">
 </ApiTable>
 

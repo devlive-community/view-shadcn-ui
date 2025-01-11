@@ -6,9 +6,9 @@ title: Shadcn Tooltip
 
 This document is mainly used to describe some features and usage of the ShadcnTooltip component.
 
-## Basic Usage
+## 用法
 
-<CodeRunner title="Basic Usage"
+<CodeRunner title="用法"
     description="Create a simple tooltip.">
     <ShadcnTooltip content="This is a tooltip">
         <ShadcnButton>Hover</ShadcnButton>

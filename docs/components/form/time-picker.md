@@ -1,10 +1,12 @@
 ---
-title: Shadcn TimePicker
+title: 时间选择器 (Time Picker)
 ---
 
 # 介绍
 
-This document describes the features and usage of the ShadcnTimePicker component.
+<br />
+
+本文档主要用于描述 `ShadcnTimePicker` 组件的一些特性和用法。
 
 ## 用法
 
@@ -90,11 +92,11 @@ This document describes the features and usage of the ShadcnTimePicker component
 
 :::
 
-## Quick times
+## 快捷时间 (quick-times)
 
 ::: raw
 
-<CodeRunner title="Quick times">
+<CodeRunner title="快捷时间 (quick-times)">
     <ShadcnTimePicker v-model="value" :quickTimes="['09:00', '12:00', '18:00']" />
 </CodeRunner>
 
@@ -135,38 +137,39 @@ This document describes the features and usage of the ShadcnTimePicker component
 ```
 
 :::
-## TimePicker Props
 
-<ApiTable title="Props"
+## 时间选择器 (Time Picker) 属性
+
+<ApiTable title="时间选择器 (Time Picker) 属性"
     :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['modelValue', 'modelValue value', 'string', '', '-'],
-        ['placeholder', 'placeholder value', 'string', '-', '-'],
-        ['disabled', 'disabled value', 'boolean', 'false', '-'],
-        ['clearable', 'clearable value', 'boolean', 'true', '-'],
-        ['quickTimes', 'see format', 'string[]', '-', '-'],
-        ['format', 'format value', 'HH:mm | HH:mm:ss | hh:mm A | hh:mm:ss A', 'HH:mm', 'HH:mm, HH:mm:ss, hh:mm A, hh:mm:ss A']
+        ['modelValue', '当前选择的时间', 'string', '', '-'],
+        ['placeholder', '占位符内容', 'string', '-', '-'],
+        ['disabled', '是否为禁用', 'boolean', 'false', '-'],
+        ['clearable', '是否显示清空按钮', 'boolean', 'true', '-'],
+        ['quickTimes', '快捷时间', 'string\[\]', '-', '-'],
+        ['format', '格式', 'HH:mm | HH:mm:ss | hh:mm A | hh:mm:ss A', 'HH:mm', 'HH:mm | HH:mm:ss | hh:mm A | hh:mm:ss A']
     ]">
 </ApiTable>
 
-## TimePicker Events
+## 时间选择器 (Time Picker) 事件
 
-<ApiTable title="Events"
+<ApiTable title="时间选择器 (Time Picker) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['update:modelValue', 'Triggered when update:modelValue', 'value: string'],
-        ['on-change', 'Triggered when on change', 'value: string'],
-        ['on-clear', 'Triggered when on clear', '-']
+        ['update:modelValue', '当时间被更新时触发', 'value: string'],
+        ['on-change', '当时间被更新时触发', 'value: string'],
+        ['on-clear', '当清空按钮被点击时触发', '-']
     ]">
 </ApiTable>
 
-## TimePicker Slots
+## 时间选择器 (Time Picker) 插槽
 
 <ApiTable title="Slots"
     :headers="['插槽', '描述']" 
     :columns="[
-        ['icon', 'Slot for icon'],
-        ['clear', 'Slot for clear']
+        ['icon', '图标插槽'],
+        ['clear', '清空按钮插槽'],
     ]">
 </ApiTable>
 

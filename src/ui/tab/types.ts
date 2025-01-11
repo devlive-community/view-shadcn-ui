@@ -23,7 +23,7 @@ export interface TabItemProps
 }
 
 export type TabEmits = {
-    'update:modelValue': (value: string) => void
-    'on-change': (value: string) => void
-    'on-tab-remove': (value: string) => void
+    (e: 'update:modelValue', value: string): void
+    (e: 'on-change', value: string): void
+    (e: 'on-tab-remove', value: string): void
 }
