@@ -167,7 +167,7 @@ const buttonProps = computed(() => ({
   ...(props.to ? { link: props.to } : { type: props.submit ? 'submit' : props.reset ? 'reset' : 'button' }),
   class: [
     'inline-flex items-center justify-center whitespace-nowrap transition-colors',
-    'w-fit',
+    props.circle ? '' : 'w-fit',
     !props.circle && ButtonSize[finalSize.value],
     props.ghost
         ? [
