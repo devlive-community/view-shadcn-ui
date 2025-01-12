@@ -1,11 +1,23 @@
-<template>
-  <div class="p-32">
-    <ShadcnDataTable :columns="columns"
-                     :data="tableData"
-                     @on-change="handleChange">
+---
+title: 数据表格 (Data Table)
+---
+
+# 介绍
+
+<br />
+
+本文档主要用于描述 `ShadcnDataTable` 组件的一些功能和用法。
+
+## 用法
+
+::: raw
+
+<CodeRunner title="用法">
+    <ShadcnDataTable :columns="columns" :data="data">
     </ShadcnDataTable>
-  </div>
-</template>
+</CodeRunner>
+
+:::
 
 <script setup lang="ts">
 import { ref } from 'vue'
@@ -16,7 +28,7 @@ const columns = ref<any[]>([
   { key: 'address', label: '地址' }
 ])
 
-const tableData = ref([
+const data = ref([
   { name: '张三', age: 18, address: '北京' },
   { name: '李四', age: 20, address: '上海' }
 ])

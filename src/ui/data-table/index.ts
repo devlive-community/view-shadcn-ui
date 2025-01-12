@@ -1,0 +1,1 @@
+export { default as ShadcnDataTable } from './ShadcnDataTable.vue'

@@ -282,6 +282,7 @@ export default {
                         {text: '数据构建 (Data Builder)', link: 'data/data-builder', icon: '/components/data/data-builder.svg', version: '2024.5.0'},
                         {text: '流程 (Workflow)', link: 'data/workflow', icon: '/components/data/workflow.svg', version: '2024.5.1'},
                         {text: '数据过滤 (Data Filter)', link: 'data/data-filter', icon: '/components/data/data-filter.svg', version: '2024.5.2'},
+                        {text: '数据表格 (Data Table)', link: 'data/data-table', icon: '/components/data/data-table.svg', version: '2025.1.1'},
                     ]
 
                     return {

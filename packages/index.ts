@@ -99,6 +99,7 @@ import { ShadcnContribution } from '@/ui/contribution'
 import { ShadcnMention } from '@/ui/mention'
 import { ShadcnImage, ShadcnImageGroup, ShadcnImageViewer } from '@/ui/image'
 import { ShadcnCarousel } from '@/ui/carousel'
+import { ShadcnDataTable } from '@/ui/data-table'
 
 let components = [
     ShadcnButton,
@@ -194,7 +195,8 @@ let components = [
     ShadcnContribution,
     ShadcnMention,
     ShadcnImage, ShadcnImageGroup, ShadcnImageViewer,
-    ShadcnCarousel
+    ShadcnCarousel,
+    ShadcnDataTable
 ]
 
 interface InstallOptions
@@ -326,6 +328,7 @@ export { ShadcnContribution } from '@/ui/contribution'
 export { ShadcnMention } from '@/ui/mention'
 export { ShadcnImage, ShadcnImageGroup, ShadcnImageViewer } from '@/ui/image'
 export { ShadcnCarousel } from '@/ui/carousel'
+export { ShadcnDataTable } from '@/ui/data-table'
 
 // Export functions
 export { fnToString, fnToFunction } from '@/utils/formatter'
