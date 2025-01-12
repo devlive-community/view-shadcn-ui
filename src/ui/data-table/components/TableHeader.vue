@@ -3,6 +3,7 @@
   <tr class="border-b bg-gray-100">
     <th v-for="col in columns"
         :key="col.key"
+        :style="col.width ? { width: calcSize(col.width) } : {}"
         :class="[ 'text-left font-medium',
             TablePaddingSize[size],
             col.sortable && 'cursor-pointer select-none'
@@ -31,6 +32,7 @@
 import type { ColumnProps } from '../types'
 import { Size, TablePaddingSize } from '@/ui/data-table/size.ts'
 import ShadcnIcon from '@/ui/icon'
+import { calcSize } from '@/utils/common.ts'
 
 withDefaults(defineProps<{
   columns: ColumnProps[],

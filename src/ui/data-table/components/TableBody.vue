@@ -7,8 +7,8 @@
       ]">
     <td v-for="col in columns"
         :key="col.key"
+        :style="col.width ? { width: calcSize(col.width) } : {}"
         :class="[ TablePaddingSize[size],
-          'min-w-[100px]',
           col.ellipsis !== false ? [ 'max-w-lg truncate whitespace-nowrap overflow-hidden' ] : [ 'break-words whitespace-normal' ]
         ]">
       {{ row[col.key] }}
@@ -21,6 +21,7 @@
 import { DataTableProps } from '../types'
 import { BaseSize } from '@/ui/common/size.ts'
 import { TablePaddingSize } from '@/ui/data-table/size.ts'
+import { calcSize } from '@/utils/common.ts'
 
 withDefaults(defineProps<DataTableProps>(), {
   size: 'default'

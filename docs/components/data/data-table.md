@@ -112,6 +112,17 @@ title: 数据表格 (Data Table)
 
 :::
 
+## 列宽度 (width)
+
+::: raw
+
+<CodeRunner title="列宽度 (width)" codeKey="width">
+    <ShadcnDataTable :columns="widthColumns" :data="data">
+    </ShadcnDataTable>
+</CodeRunner>
+
+:::
+
 ## 数据表格 (Data Table) 属性
 
 <ApiTable title="数据表格 (Data Table) 属性"
@@ -133,6 +144,7 @@ title: 数据表格 (Data Table)
         ['sort', '列的排序状态', 'enum', '-', 'asc | desc'],
         ['sortable', '列是否可排序', 'boolean', 'false', '-'],
         ['ellipsis', '列内容是否省略，超出时显示省略号', 'boolean', 'true', '-'],
+        ['width', '宽度，支持输入数字和字符串会自动计算，如果是数字的情况时，单位为 px', 'string', 'auto', '-'],
     ]">
 </ApiTable>
 
@@ -168,6 +180,14 @@ const ellipsisColumns = ref([
   { key: 'title', label: '标题' },
   { key: 'author', label: '作者' },
   { key: 'description', label: '描述', ellipsis: false },
+  { key: 'category', label: '分类' },
+  { key: 'date', label: '发布日期' }
+])
+
+const widthColumns = ref([
+  { key: 'title', label: '标题', width: 100 },
+  { key: 'author', label: '作者' },
+  { key: 'description', label: '描述', width: 500 },
   { key: 'category', label: '分类' },
   { key: 'date', label: '发布日期' }
 ])

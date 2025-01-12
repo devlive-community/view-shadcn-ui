@@ -13,7 +13,7 @@ import { ref } from 'vue'
 const columns = ref([
   { key: 'title', label: '标题' },
   { key: 'author', label: '作者', sortable: true },
-  { key: 'description', label: '描述', ellipsis: false },
+  { key: 'description', label: '描述', width: 500 },
   { key: 'category', label: '分类', sortable: true },
   { key: 'date', label: '发布日期', sortable: true }
 ])
