@@ -1,9 +1,13 @@
-import { Size } from './size'
+import { Size } from '@/ui/data-table/size.ts'
+
+export type SortOrder = 'asc' | 'desc' | null
 
 export interface ColumnProps
 {
     key: string
     label: string
+    sortable?: boolean
+    sort?: SortOrder
 }
 
 export interface DataTableProps
@@ -14,5 +18,5 @@ export interface DataTableProps
 }
 
 export type DataTableEmits = {
-    (e: 'on-change'): void
+    (e: 'on-sort', column: ColumnProps[]): void
 }

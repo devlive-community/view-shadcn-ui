@@ -90,6 +90,17 @@ title: 数据表格 (Data Table)
 
 :::
 
+## 排序 (sort)
+
+::: raw
+
+<CodeRunner title="排序 (sort)" codeKey="sort">
+    <ShadcnDataTable :columns="sortColumns" :data="data">
+    </ShadcnDataTable>
+</CodeRunner>
+
+:::
+
 ## 数据表格 (Data Table) 属性
 
 <ApiTable title="数据表格 (Data Table) 属性"
@@ -101,12 +112,39 @@ title: 数据表格 (Data Table)
     ]">
 </ApiTable>
 
+<br />
+
+<ApiTable title="数据表格列 (Data Table Column) 属性"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
+    :columns="[
+        ['key', '列的 key 值', 'string', '-', '-'],
+        ['label', '列的标签', 'string', '-', '-'],
+        ['sort', '列的排序状态', 'enum', '-', 'asc | desc'],
+        ['sortable', '列是否可排序', 'boolean', 'false', '-'],
+    ]">
+</ApiTable>
+
+## 数据表格 (Data Table) 事件
+
+<ApiTable title="数据表格 (Data Table) 事件"
+    :headers="['事件', '描述', '回调参数']"
+    :columns="[
+        ['on-sort', '当表格排序发生变化时触发', '排序列的列表'],
+    ]">
+</ApiTable>
+
 <script setup lang="ts">
 import { ref } from 'vue'
 
 const columns = ref<any[]>([
   { key: 'name', label: '姓名' },
   { key: 'age', label: '年龄' },
+  { key: 'address', label: '地址' }
+])
+
+const sortColumns = ref<any[]>([
+  { key: 'name', label: '姓名' },
+  { key: 'age', label: '年龄', sortable: true },
   { key: 'address', label: '地址' }
 ])
 
