@@ -3,7 +3,9 @@
   <tr class="border-b">
     <th v-for="col in columns"
         :key="col.key"
-        class="px-4 py-2 text-left font-medium">
+        :class="['text-left font-medium',
+          TablePaddingSize[size]
+        ]">
       {{ col.label }}
     </th>
   </tr>
@@ -12,8 +14,12 @@
 
 <script setup lang="ts">
 import type { ColumnProps } from '../types'
+import { Size, TablePaddingSize } from '@/ui/data-table/size.ts'
 
-defineProps<{
+withDefaults(defineProps<{
   columns: ColumnProps[]
-}>()
+  size: Size
+}>(), {
+  size: 'default'
+})
 </script>

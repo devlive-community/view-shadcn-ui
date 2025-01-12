@@ -1,16 +1,17 @@
 <template>
   <div class="w-full">
     <table class="w-full border-collapse">
-      <TableHeader :columns="columns"/>
-      <TableBody :columns="columns" :data="data"/>
+      <TableHeader :columns="columns" :size="size"/>
+      <TableBody :columns="columns" :data="data" :size="size"/>
     </table>
   </div>
 </template>
 
 <script setup lang="ts">
+import TableHeader from './components/TableHeader.vue'
+import TableBody from './components/TableBody.vue'
 import type { DataTableProps } from './types'
-import TableHeader from '@/ui/data-table/components/TableHeader.vue'
-import TableBody from '@/ui/data-table/components/TableBody.vue'
 
-defineProps<DataTableProps>()
-</script>
+withDefaults(defineProps<DataTableProps>(), {
+  size: 'default'
+})</script>

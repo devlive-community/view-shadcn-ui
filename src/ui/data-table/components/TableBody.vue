@@ -2,10 +2,12 @@
   <tbody>
   <tr v-for="(row, index) in data"
       :key="index"
-      class="border-b hover:bg-gray-50">
+      :class="[ 'border-b hover:bg-gray-50',
+        BaseSize[size]
+      ]">
     <td v-for="col in columns"
         :key="col.key"
-        class="px-4 py-2">
+        :class="[TablePaddingSize[size]]">
       {{ row[col.key] }}
     </td>
   </tr>
@@ -13,10 +15,11 @@
 </template>
 
 <script setup lang="ts">
-import type { ColumnProps } from '../types'
+import { DataTableProps } from '../types'
+import { BaseSize } from '@/ui/common/size.ts'
+import { TablePaddingSize } from '@/ui/data-table/size.ts'
 
-defineProps<{
-  columns: ColumnProps[]
-  data: Record<string, any>[]
-}>()
+withDefaults(defineProps<DataTableProps>(), {
+  size: 'default'
+})
 </script>

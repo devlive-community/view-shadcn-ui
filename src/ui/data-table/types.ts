@@ -1,3 +1,5 @@
+import { Size } from './size'
+
 export interface ColumnProps
 {
     key: string
@@ -8,6 +10,7 @@ export interface DataTableProps
 {
     columns: ColumnProps[]
     data: Record<string, any>[]
+    size?: Size
 }
 
 export type DataTableEmits = {
