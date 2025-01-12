@@ -7,7 +7,10 @@
       ]">
     <td v-for="col in columns"
         :key="col.key"
-        :class="[TablePaddingSize[size]]">
+        :class="[ TablePaddingSize[size],
+          'min-w-[100px]',
+          col.ellipsis !== false ? [ 'max-w-lg truncate whitespace-nowrap overflow-hidden' ] : [ 'break-words whitespace-normal' ]
+        ]">
       {{ row[col.key] }}
     </td>
   </tr>

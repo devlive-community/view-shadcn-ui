@@ -8,6 +8,7 @@ export interface ColumnProps
     label: string
     sortable?: boolean
     sort?: SortOrder
+    ellipsis?: boolean // 是否省略
 }
 
 export interface DataTableProps
