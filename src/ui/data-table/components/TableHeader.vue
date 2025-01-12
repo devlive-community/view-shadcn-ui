@@ -4,7 +4,7 @@
     <th v-for="col in columns"
         :key="col.key"
         :style="col.width ? { width: calcSize(col.width) } : {}"
-        :class="[ 'text-left font-medium',
+        :class="[ `text-${col.align || 'left'} font-medium`,
             TablePaddingSize[size],
             col.sortable && 'cursor-pointer select-none'
           ]"

@@ -116,8 +116,30 @@ title: 数据表格 (Data Table)
 
 ::: raw
 
-<CodeRunner title="列宽度 (width)" codeKey="width">
+<CodeRunner title="列宽度 (width)" codeKey="width" warning="只需要在列上添加 width 属性即可">
     <ShadcnDataTable :columns="widthColumns" :data="data">
+    </ShadcnDataTable>
+</CodeRunner>
+
+:::
+
+## 显示提示 (tooltip)
+
+::: raw
+
+<CodeRunner title="显示提示 (tooltip)" codeKey="tooltip" warning="只需要在列上添加 tooltip 属性即可">
+    <ShadcnDataTable :columns="tooltipColumns" :data="data">
+    </ShadcnDataTable>
+</CodeRunner>
+
+:::
+
+## 对齐方式 (align)
+
+::: raw
+
+<CodeRunner title="对齐方式 (align)" codeKey="align" warning="只需要在列上添加 align 属性即可">
+    <ShadcnDataTable :columns="alignColumns" :data="data">
     </ShadcnDataTable>
 </CodeRunner>
 
@@ -145,6 +167,8 @@ title: 数据表格 (Data Table)
         ['sortable', '列是否可排序', 'boolean', 'false', '-'],
         ['ellipsis', '列内容是否省略，超出时显示省略号', 'boolean', 'true', '-'],
         ['width', '宽度，支持输入数字和字符串会自动计算，如果是数字的情况时，单位为 px', 'string', 'auto', '-'],
+        ['tooltip', '列内容是否显示提示', 'boolean', 'false', '-'],
+        ['align', '对齐方式，可选值为', 'enum', 'left', 'left | right | center'],
     ]">
 </ApiTable>
 
@@ -190,6 +214,22 @@ const widthColumns = ref([
   { key: 'description', label: '描述', width: 500 },
   { key: 'category', label: '分类' },
   { key: 'date', label: '发布日期' }
+])
+
+const tooltipColumns = ref([
+  { key: 'title', label: '标题' },
+  { key: 'author', label: '作者' },
+  { key: 'description', label: '描述', tooltip: true },
+  { key: 'category', label: '分类' },
+  { key: 'date', label: '发布日期' }
+])
+
+const alignColumns = ref([
+  { key: 'title', label: '标题' },
+  { key: 'author', label: '作者' },
+  { key: 'description', label: '描述' },
+  { key: 'category', label: '分类' },
+  { key: 'date', label: '发布日期', align: 'center' }
 ])
 
 const data = ref([

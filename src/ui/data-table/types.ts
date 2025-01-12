@@ -10,6 +10,8 @@ export interface ColumnProps
     sort?: SortOrder
     ellipsis?: boolean // 是否省略
     width?: string // 宽度，支持输入数字和字符串会自动计算，如果是数字的情况时，单位为 px
+    tooltip?: string
+    align?: 'left' | 'center' | 'right'
 }
 
 export interface DataTableProps
