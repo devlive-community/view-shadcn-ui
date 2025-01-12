@@ -12,7 +12,7 @@ title: 数据表格 (Data Table)
 
 ::: raw
 
-<CodeRunner title="用法" codeKey="usage">
+<CodeRunner title="用法" codeKey="data-table-usage">
     <ShadcnDataTable :columns="columns" :data="data">
     </ShadcnDataTable>
 </CodeRunner>
@@ -34,7 +34,7 @@ title: 数据表格 (Data Table)
 
 ::: raw
 
-<CodeRunner title="尺寸 (size)" codeKey="size">
+<CodeRunner title="尺寸 (size)" codeKey="data-table-size">
   <div class="space-y-4">
     <div>
       <ShadcnDivider orientation="left">小尺寸</ShadcnDivider>
@@ -94,7 +94,7 @@ title: 数据表格 (Data Table)
 
 ::: raw
 
-<CodeRunner title="排序 (sort)" codeKey="sort" warning="只需要在列上添加 sortable 属性即可，多列排序需要按住 Shift 键">
+<CodeRunner title="排序 (sort)" codeKey="data-table-sort" warning="只需要在列上添加 sortable 属性即可，多列排序需要按住 Shift 键">
     <ShadcnDataTable :columns="sortColumns" :data="data">
     </ShadcnDataTable>
 </CodeRunner>
@@ -105,7 +105,7 @@ title: 数据表格 (Data Table)
 
 ::: raw
 
-<CodeRunner title="列省略 (ellipsis)" codeKey="ellipsis" warning="只需要在列上添加 ellipsis 属性即可，默认会显示省略号">
+<CodeRunner title="列省略 (ellipsis)" codeKey="data-table-ellipsis" warning="只需要在列上添加 ellipsis 属性即可，默认会显示省略号">
     <ShadcnDataTable :columns="ellipsisColumns" :data="data">
     </ShadcnDataTable>
 </CodeRunner>
@@ -116,7 +116,7 @@ title: 数据表格 (Data Table)
 
 ::: raw
 
-<CodeRunner title="列宽度 (width)" codeKey="width" warning="只需要在列上添加 width 属性即可">
+<CodeRunner title="列宽度 (width)" codeKey="data-table-width" warning="只需要在列上添加 width 属性即可">
     <ShadcnDataTable :columns="widthColumns" :data="data">
     </ShadcnDataTable>
 </CodeRunner>
@@ -127,7 +127,7 @@ title: 数据表格 (Data Table)
 
 ::: raw
 
-<CodeRunner title="显示提示 (tooltip)" codeKey="tooltip" warning="只需要在列上添加 tooltip 属性即可">
+<CodeRunner title="显示提示 (tooltip)" codeKey="data-table-tooltip" warning="只需要在列上添加 tooltip 属性即可">
     <ShadcnDataTable :columns="tooltipColumns" :data="data">
     </ShadcnDataTable>
 </CodeRunner>
@@ -138,7 +138,7 @@ title: 数据表格 (Data Table)
 
 ::: raw
 
-<CodeRunner title="对齐方式 (align)" codeKey="align" warning="只需要在列上添加 align 属性即可">
+<CodeRunner title="对齐方式 (align)" codeKey="data-table-align" warning="只需要在列上添加 align 属性即可">
     <ShadcnDataTable :columns="alignColumns" :data="data">
     </ShadcnDataTable>
 </CodeRunner>
@@ -178,6 +178,7 @@ title: 数据表格 (Data Table)
     :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['on-sort', '当表格排序发生变化时触发', '排序列的列表'],
+        ['on-cell-click', '当单元格被点击时触发', '行索引，列的 key 值，行数据'],
     ]">
 </ApiTable>
 

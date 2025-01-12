@@ -1,7 +1,7 @@
 <template>
   <tbody>
-  <tr v-for="(row, index) in data"
-      :key="index"
+  <tr v-for="(row, rowIndex) in data"
+      :key="rowIndex"
       :class="[ 'border-b hover:bg-gray-50',
         BaseSize[size]
       ]">
@@ -10,10 +10,12 @@
         :style="col.width ? { width: calcSize(col.width) } : {}"
         :class="[ TablePaddingSize[size],
           `text-${col.align || 'left'}`,
-          col.ellipsis !== false ? 'relative max-w-lg truncate whitespace-nowrap overflow-hidden' : 'break-words whitespace-normal'
+          col.ellipsis !== false ? 'relative max-w-lg truncate whitespace-nowrap overflow-hidden' : 'break-words whitespace-normal',
+          (selectedCell.rowIndex === rowIndex && selectedCell.col === col.key) && 'border border-blue-400'
         ]"
         @mousemove.stop.prevent="(col.ellipsis !== false && col.tooltip) && showTooltip($event, row[col.key])"
-        @mouseleave.stop.prevent="hideTooltip">
+        @mouseleave.stop.prevent="hideTooltip"
+        @click="selectCell(rowIndex, col.key, row)">
       {{ row[col.key] }}
     </td>
   </tr>
@@ -21,15 +23,30 @@
 </template>
 
 <script setup lang="ts">
-import { DataTableProps } from '../types'
+import { DataTableCellEmits, DataTableProps } from '../types'
 import { BaseSize } from '@/ui/common/size.ts'
 import { TablePaddingSize } from '@/ui/data-table/size.ts'
 import { calcSize } from '@/utils/common.ts'
-import { onBeforeUnmount, onMounted } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+
+const emits = defineEmits<DataTableCellEmits>()
 
 withDefaults(defineProps<DataTableProps>(), {
   size: 'default'
 })
+
+// 选中单元格的状态
+const selectedCell = ref<{ rowIndex: number | null; row: any; col: string | null }>({
+  rowIndex: null,
+  row: null,
+  col: null
+})
+
+const selectCell = (rowIndex: number, col: string, row: any) => {
+  selectedCell.value = { rowIndex, row, col }
+
+  emits('on-cell-click', { rowIndex, row, col })
+}
 
 let tooltipEl: HTMLElement | null = null
 

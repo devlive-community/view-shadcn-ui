@@ -4,10 +4,14 @@
       <table class="w-full border-collapse table-fixed">
         <TableHeader :columns="columns"
                      :size="size"
-                     @on-sort-change="handleSortChange"/>
+                     @on-sort-change="handleSortChange">
+        </TableHeader>
+
         <TableBody :columns="columns"
                    :data="sortedData"
-                   :size="size"/>
+                   :size="size"
+                   @on-cell-click="emits('on-cell-click', $event)">
+        </TableBody>
       </table>
     </div>
   </div>

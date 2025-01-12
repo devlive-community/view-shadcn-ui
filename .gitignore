@@ -28,3 +28,4 @@ docs/.vitepress/cache
 src/views/pages/components/ExampleHome.vue
 depcheck-output.json
 .npm
+Library

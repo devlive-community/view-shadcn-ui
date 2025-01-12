@@ -23,4 +23,9 @@ export interface DataTableProps
 
 export type DataTableEmits = {
     (e: 'on-sort', column: ColumnProps[]): void
+    (e: 'on-cell-click', payload: { rowIndex: number; col: string; row: any }): void
+}
+
+export type DataTableCellEmits = {
+    (e: 'on-cell-click', payload: { rowIndex: number; col: string; row: any }): void
 }

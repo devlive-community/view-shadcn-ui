@@ -2,7 +2,8 @@
   <div class="p-32 space-y-4">
     <ShadcnDataTable :columns="columns"
                      :data="data"
-                     size="small">
+                     size="small"
+                     @on-cell-click="handleCellClick">
     </ShadcnDataTable>
   </div>
 </template>
@@ -55,4 +56,8 @@ const data = ref([
     date: '2024-02-01'
   }
 ])
+
+const handleCellClick = (playload: { rowIndex: number; col: string; row: any }) => {
+  console.log(`点击了第 ${ playload.rowIndex + 1 } 行，${ playload.col } 列`)
+}
 </script>
