@@ -13,8 +13,8 @@ import { ref } from 'vue'
 
 const columns = ref([
   { key: 'title', label: '标题' },
-  { key: 'author', label: '作者', sortable: true },
-  { key: 'description', label: '描述', width: 500, tooltip: true },
+  { key: 'author', label: '作者', sortable: true, resizable: true },
+  { key: 'description', label: '描述', width: 500, tooltip: true, resizable: true },
   { key: 'category', label: '分类', sortable: true, align: 'center' },
   { key: 'date', label: '发布日期', sortable: true }
 ])
