@@ -1,7 +1,7 @@
 <template>
   <div class="overflow-auto">
     <div class="relative w-full" style="overflow-x: auto">
-      <div class="inline-block min-w-full bg-white">
+      <div class="inline-block min-w-full bg-white" :style="{ height: calcSize(height) }">
         <TableHeader :columns="columns"
                      :size="size"
                      @on-sort="handleSortChange"
@@ -24,9 +24,11 @@ import TableHeader from './components/TableHeader.vue'
 import TableBody from './components/TableBody.vue'
 import type { ColumnProps, DataTableEmits, DataTableProps } from './types'
 import { useSort } from './hooks/useSort'
+import { calcSize } from '@/utils/common.ts'
 
 const props = withDefaults(defineProps<DataTableProps>(), {
-  size: 'default'
+  size: 'default',
+  height: 'auto'
 })
 
 const emits = defineEmits<DataTableEmits>()

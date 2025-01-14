@@ -3,6 +3,7 @@
     <ShadcnDataTable :columns="columns"
                      :data="data"
                      size="small"
+                     height="300"
                      @on-cell-click="handleCellClick"
                      @on-resizable="handleResizable">
     </ShadcnDataTable>
@@ -57,6 +58,11 @@ const data = ref([
     date: '2024-02-01'
   }
 ])
+
+for (let i = 0; i < 1000; i++) {
+  const randomIndex = Math.floor(Math.random() * data.value.length)
+  data.value.push(data.value[randomIndex])
+}
 
 const handleCellClick = (playload: { rowIndex: number; col: string; row: any }) => {
   console.log(`点击了第 ${ playload.rowIndex + 1 } 行，${ playload.col } 列`)

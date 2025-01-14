@@ -20,6 +20,7 @@ export interface DataTableProps
     columns: ColumnProps[]
     data: Record<string, any>[]
     size?: Size
+    height?: number | string
 }
 
 export type DataTableEmits = {

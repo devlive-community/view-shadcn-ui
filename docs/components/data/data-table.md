@@ -90,11 +90,22 @@ title: 数据表格 (Data Table)
 
 :::
 
-## 排序 (sort)
+## 高度 (height)
 
 ::: raw
 
-<CodeRunner title="排序 (sort)" codeKey="data-table-sort" warning="只需要在列上添加 sortable 属性即可，多列排序需要按住 Shift 键">
+<CodeRunner title="高度 (height)" codeKey="data-table-height">
+    <ShadcnDataTable :columns="columns" :data="data" height="200">
+    </ShadcnDataTable>
+</CodeRunner>
+
+:::
+
+## 列排序 (sort)
+
+::: raw
+
+<CodeRunner title="列排序 (sort)" codeKey="data-table-sort" warning="只需要在列上添加 sortable 属性即可，多列排序需要按住 Shift 键">
     <ShadcnDataTable :columns="sortColumns" :data="data">
     </ShadcnDataTable>
 </CodeRunner>
@@ -123,33 +134,33 @@ title: 数据表格 (Data Table)
 
 :::
 
-## 显示提示 (tooltip)
+## 列提示 (tooltip)
 
 ::: raw
 
-<CodeRunner title="显示提示 (tooltip)" codeKey="data-table-tooltip" warning="只需要在列上添加 tooltip 属性即可">
+<CodeRunner title="列提示 (tooltip)" codeKey="data-table-tooltip" warning="只需要在列上添加 tooltip 属性即可">
     <ShadcnDataTable :columns="tooltipColumns" :data="data">
     </ShadcnDataTable>
 </CodeRunner>
 
 :::
 
-## 对齐方式 (align)
+## 列对齐方式 (align)
 
 ::: raw
 
-<CodeRunner title="对齐方式 (align)" codeKey="data-table-align" warning="只需要在列上添加 align 属性即可">
+<CodeRunner title="列对齐方式 (align)" codeKey="data-table-align" warning="只需要在列上添加 align 属性即可">
     <ShadcnDataTable :columns="alignColumns" :data="data">
     </ShadcnDataTable>
 </CodeRunner>
 
 :::
 
-## 重置宽度 (resizable)
+## 列宽度调整 (resizable)
 
 ::: raw
 
-<CodeRunner title="重置宽度 (resizable)" codeKey="data-table-resizable" warning="只需要在列上添加 resizable 属性即可">
+<CodeRunner title="列宽度调整 (resizable)" codeKey="data-table-resizable" warning="只需要在列上添加 resizable 属性即可">
     <ShadcnDataTable :columns="resizableColumns" :data="data">
     </ShadcnDataTable>
 </CodeRunner>
@@ -164,6 +175,7 @@ title: 数据表格 (Data Table)
         ['columns', '表格列数据', '\[\]', '\[\]', '-'],
         ['data', '表格数据', '\[\]', '\[\]', '-'],
         ['size', '表格尺寸', 'enum', 'default', 'default | small | large'],
+        ['height', '表格高度，支持输入数字和字符串会自动计算，如果是数字的情况时，单位为 px', 'string', 'auto', '-'],
     ]">
 </ApiTable>
 
