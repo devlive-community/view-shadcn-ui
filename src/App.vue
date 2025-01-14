@@ -15,6 +15,11 @@
                      @on-column-move="console.log('列移动 ' + JSON.stringify($event))"
                      @on-cell-edit="onCellEdit"
                      @on-row-edit="onRowEdit">
+      <template #contextMenu="{ selectedValue }">
+        <ShadcnContextMenuItem>
+          自定义操作 {{ selectedValue.rowIndex }}
+        </ShadcnContextMenuItem>
+      </template>
     </ShadcnDataTable>
   </div>
 </template>

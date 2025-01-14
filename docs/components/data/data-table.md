@@ -347,6 +347,7 @@ title: 数据表格 (Data Table)
     :columns="[
         ['loading', '加载中的插槽', '-'],
         ['empty', '空数据的插槽', '-'],
+        ['contextMenu', '右键菜单的插槽', '{ visible, position, selectedValue, actionsPosition }<br />{菜单是否可见, 当前位置, 选中的值, 操作菜单的位置}'],
     ]">
 </ApiTable>
 

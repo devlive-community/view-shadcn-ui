@@ -83,7 +83,15 @@
                     v-show="contextMenuState.visible.value"
                     :context-menu-state="contextMenuState"
                     :editable-state="editableState"
-                    @on-row-edit="(val) => handleSaveRowEdit(val)">>
+                    @on-row-edit="(val) => handleSaveRowEdit(val)">
+    <template #contextMenu="contextMenuProps">
+      <slot :actionsPosition="contextMenuProps.actionsPosition"
+            :position="contextMenuProps.position"
+            :selectedValue="contextMenuProps.selectedValue"
+            :visible="contextMenuProps.visible"
+            name="contextMenu">
+      </slot>
+    </template>
   </TableContextMenu>
 </template>
 

@@ -44,6 +44,15 @@
               </ShadcnEmpty>
             </slot>
           </template>
+
+          <template #contextMenu="slotProps">
+            <slot :actionsPosition="slotProps.actionsPosition"
+                  :position="slotProps.position"
+                  :selectedValue="slotProps.selectedValue"
+                  :visible="slotProps.visible"
+                  name="contextMenu">
+            </slot>
+          </template>
         </TableBody>
       </div>
     </div>

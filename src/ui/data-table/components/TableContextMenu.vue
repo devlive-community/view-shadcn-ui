@@ -8,6 +8,13 @@
     <ShadcnContextMenuItem @click="onItemClick('edit-row')">
       {{ t('dataTable.text.editRow') }}
     </ShadcnContextMenuItem>
+
+    <slot :actionsPosition="menuPosition"
+          :position="contextMenuState.position.value"
+          :selectedValue="currentValue as any"
+          :visible="localVisible"
+          name="contextMenu">
+    </slot>
   </ShadcnContextMenu>
 
   <div v-if="editableState.editingRowState.value"
@@ -37,9 +44,10 @@ import { useEditable } from '../hooks/useEditable'
 import { CellPayload } from '../types'
 import { calcSize } from '@/utils/common.ts'
 import ShadcnIcon from '@/ui/icon'
+import ShadcnButtonGroup from '@/ui/button/group'
 
 const props = defineProps<{
-  contextMenuState: ReturnType<any>
+  contextMenuState: any
   editableState: ReturnType<typeof useEditable>
 }>()
 
