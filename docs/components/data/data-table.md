@@ -293,7 +293,10 @@ title: 数据表格 (Data Table)
         ['width', '宽度，支持输入数字和字符串会自动计算，如果是数字的情况时，单位为 px', 'string | number', 'auto', '-'],
         ['tooltip', '列内容是否显示提示', 'boolean', 'false', '-'],
         ['align', '对齐方式，可选值为', 'enum', 'left', 'left | right | center'],
-        ['resizable', '列是否可调整宽度', 'boolean', 'false', '-']
+        ['resizable', '列是否可调整宽度', 'boolean', 'false', '-'],
+        ['editable', '列是否可编辑', 'boolean', 'false', '-'],
+        ['cellEditor', '单元格编辑器', 'component', '-', '-'],
+        ['cellEditorProps', '单元格编辑器的属性', 'object', '-', '-'],
     ]">
 </ApiTable>
 

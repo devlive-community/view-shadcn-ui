@@ -35,14 +35,21 @@
       </div>
 
       <template v-for="col in columns" :key="col.key">
-        <TableCell v-if="col.editable && editableState.isEditing(rowIndex, col.key)"
+        <component :is="col.cellEditor"
+                   v-if="col.cellEditor && col.editable && editableState.isEditing(rowIndex, col.key)"
+                   :align="col.align"
+                   :value="row[col.key]"
+                   :width="calcSize(col.width || 150)"
+                   v-bind="col.cellEditorProps"
+                   @cancel="editableState.stopEditing"
+                   @save="handleSaveEdit(rowIndex, col.key, $event, row)"/>
+        <TableCell v-else-if="col.editable && editableState.isEditing(rowIndex, col.key)"
                    :align="col.align"
                    :size="size"
                    :value="row[col.key]"
                    :width="calcSize(col.width || 150)"
                    @cancel="editableState.stopEditing"
                    @save="handleSaveEdit(rowIndex, col.key, $event, row)"/>
-
         <div v-else
              :class="[
                TablePaddingSize[size],

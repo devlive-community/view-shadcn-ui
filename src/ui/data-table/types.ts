@@ -1,4 +1,5 @@
 import { Size } from '@/ui/data-table/size.ts'
+import { Component } from 'vue'
 
 export type SortOrder = 'asc' | 'desc' | null
 export type RowSelectionMode = 'singleRow' | 'multipleRow'
@@ -34,6 +35,8 @@ export interface ColumnProps
     align?: TextAlign
     resizable?: boolean
     editable?: boolean
+    cellEditor?: Component
+    cellEditorProps?: Record<string, any>
 }
 
 export interface DataTableProps

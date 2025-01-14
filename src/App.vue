@@ -2,7 +2,6 @@
   <div class="p-32 space-y-4">
     <ShadcnDataTable :columns="columns"
                      :data="data"
-                     size="small"
                      height="300"
                      row-selection="multipleRow"
                      :pagination="{ size: 20, options: [5, 10, 20, 50, 100] }"
@@ -13,20 +12,31 @@
                      @on-size-change="console.log('每页条数改变' + $event)"
                      @on-row-select="console.log('选中的数据条数 ' + $event?.selectedRows.length)"
                      @on-column-move="console.log('列移动 ' + JSON.stringify($event))"
-                     @on-cell-edit="console.log('单元格编辑 ' + JSON.stringify($event))">
+                     @on-cell-edit="onCellEdit">
     </ShadcnDataTable>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { getCurrentInstance, ref } from 'vue'
 import { setLocale } from '@/utils/locale.ts'
+import SelectEditor from '@/SelectEditor.vue'
 
 setLocale('zh-CN')
 
+const { proxy } = getCurrentInstance()!
+
 const columns = ref([
   { key: 'index', label: '#', sortable: true, width: 50, align: 'center' },
-  { key: 'title', label: '标题', editable: true },
+  {
+    key: 'title', label: '标题', editable: true, cellEditor: SelectEditor,
+    cellEditorProps: {
+      options: [
+        { label: 'Active', value: 'active' },
+        { label: 'Inactive', value: 'inactive' }
+      ]
+    }
+  },
   { key: 'author', label: '作者', sortable: true, resizable: true },
   { key: 'description', label: '描述', width: 500, tooltip: true, resizable: true, editable: true },
   { key: 'category', label: '分类', sortable: true, align: 'center' },
@@ -92,4 +102,9 @@ const handleCellClick = (playload: { rowIndex: number; col: string; row: any }) 
 const handleResizable = (column: any, width: number) => {
   console.log(`调整了 ${ column.label } 列的宽度为 ${ width }`)
 }
+
+const onCellEdit = (value: any) => proxy?.$Message.success({
+  content: `编辑的列 [ ${ value.key } ] 的值为 [ ${ value.value } ]`,
+  showIcon: true
+})
 </script>
