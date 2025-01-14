@@ -1,14 +1,13 @@
 <template>
   <div class="flex border-b bg-gray-100 relative w-full sticky top-0 z-10">
-    <!-- 选择列 -->
     <div v-if="rowSelection === 'multipleRow'"
          :style="{ width: '48px', flexShrink: 0 }"
          :class="[TablePaddingSize[size]]"
          class="flex items-center justify-center">
       <input type="checkbox"
-             :checked="isAllSelected"
-             :indeterminate="isIndeterminate"
-             @change="toggleAllRows"
+             :checked="selectionState.isAllSelected.value"
+             :indeterminate="selectionState.isIndeterminate.value"
+             @change="selectionState.toggleAllRows"
              class="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"/>
     </div>
     <div v-else-if="rowSelection === 'singleRow'"
@@ -62,26 +61,17 @@ import { calcSize } from '@/utils/common'
 import { useResize } from '../hooks/useResize'
 import { useRowSelection } from '../hooks/useRowSelection'
 
-const props = withDefaults(defineProps<{
+withDefaults(defineProps<{
   columns: ColumnProps[]
   data: Record<string, any>[]
   size?: Size
   rowSelection?: RowSelectionMode
+  selectionState: ReturnType<typeof useRowSelection>
 }>(), {
   size: 'default'
 })
 
 const emits = defineEmits<DataTableHeaderEmits>()
-
-const {
-  isAllSelected,
-  isIndeterminate,
-  toggleAllRows
-} = useRowSelection(
-    props.rowSelection,
-    props.data,
-    emits
-)
 
 const handleSort = (column: ColumnProps, event: MouseEvent) => {
   event.stopPropagation()

@@ -5,8 +5,8 @@
          :class="[
            'flex border-b items-center h-full',
            BaseSize[size],
-           isRowSelected(rowIndex) && 'bg-blue-50',
-           !isRowSelected(rowIndex) && 'hover:bg-gray-50'
+           selectionState.isRowSelected(rowIndex) && 'bg-blue-50',
+           !selectionState.isRowSelected(rowIndex) && 'hover:bg-gray-50'
          ]"
          @click="handleRowClick(rowIndex, row)">
       <!-- 选择列 -->
@@ -16,8 +16,8 @@
            class="flex items-center justify-center"
            @click.stop>
         <input type="checkbox"
-               :checked="isRowSelected(rowIndex)"
-               @change="toggleRowSelection(rowIndex)"
+               :checked="selectionState.isRowSelected(rowIndex)"
+               @change="selectionState.toggleRowSelection(rowIndex)"
                class="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"/>
       </div>
       <div v-else-if="rowSelection === 'singleRow'"
@@ -26,8 +26,8 @@
            class="flex items-center justify-center"
            @click.stop>
         <input type="radio"
-               :checked="isRowSelected(rowIndex)"
-               @change="toggleRowSelection(rowIndex)"
+               :checked="selectionState.isRowSelected(rowIndex)"
+               @change="selectionState.toggleRowSelection(rowIndex)"
                :name="'row-select'"
                class="w-4 h-4 border-gray-300 text-blue-600 focus:ring-blue-500"/>
       </div>
@@ -55,35 +55,32 @@
 </template>
 
 <script setup lang="ts">
-import { CellClickPayload, DataTableBodyEmits, DataTableProps } from '../types'
+import { CellClickPayload, ColumnProps, DataTableBodyEmits, RowSelectionMode } from '../types'
 import { BaseSize } from '@/ui/common/size'
-import { TablePaddingSize } from '../size'
+import { Size, TablePaddingSize } from '../size'
 import { onMounted, onUnmounted, ref } from 'vue'
 import { useTooltip } from '../hooks/useTooltip'
 import { calcSize } from '@/utils/common'
 import { useRowSelection } from '../hooks/useRowSelection'
 
-const props = withDefaults(defineProps<DataTableProps>(), {
+const props = withDefaults(defineProps<{
+  columns: ColumnProps[]
+  data: Record<string, any>[]
+  size?: Size
+  rowSelection?: RowSelectionMode
+  selectionState: ReturnType<typeof useRowSelection>
+}>(), {
   size: 'default'
 })
 
 const emits = defineEmits<DataTableBodyEmits>()
-
-const {
-  isRowSelected,
-  toggleRowSelection
-} = useRowSelection(
-    props.rowSelection,
-    props.data,
-    emits
-)
 
 const tableRef = ref<HTMLElement | null>(null)
 const selectedCell = ref<CellClickPayload>(null)
 
 const handleRowClick = (rowIndex: number, _row: any) => {
   if (props.rowSelection) {
-    toggleRowSelection(rowIndex)
+    props.selectionState.toggleRowSelection(rowIndex)
   }
 }
 

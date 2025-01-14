@@ -6,6 +6,7 @@
                      :size="size"
                      :data="displayData"
                      :row-selection="rowSelection"
+                     :selection-state="selectionState"
                      @on-sort="handleSortChange"
                      @on-resizable="(column, _width) => emits('on-resizable', column, _width)"
                      @on-row-select="(payload) => emits('on-row-select', payload as any)">
@@ -15,6 +16,7 @@
                    :data="displayData"
                    :size="size"
                    :row-selection="rowSelection"
+                   :selection-state="selectionState"
                    @on-cell-click="(payload) => emits('on-cell-click', payload as any)"
                    @on-row-select="(payload) => emits('on-row-select', payload as any)">
         </TableBody>
@@ -42,6 +44,7 @@ import type { ColumnProps, DataTableEmits, DataTableProps } from './types'
 import { useSort } from './hooks/useSort'
 import { calcSize } from '@/utils/common'
 import { usePagination } from './hooks/usePagination'
+import { useRowSelection } from './hooks/useRowSelection'
 
 const props = withDefaults(defineProps<DataTableProps>(), {
   size: 'default',
@@ -104,4 +107,10 @@ watch(pageSize, (size) => {
 const displayData = computed(() => {
   return props.pagination ? paginatedData.value : dataSource.value
 })
+
+const selectionState = useRowSelection(
+    props.rowSelection,
+    displayData.value,
+    emits
+)
 </script>
