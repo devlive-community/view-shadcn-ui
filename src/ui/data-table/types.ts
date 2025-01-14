@@ -47,7 +47,7 @@ export type DataTableHeaderEmits = {
 }
 
 export type DataTableBodyEmits = {
-    (e: 'on-cell-click', payload: { rowIndex: number; col: string; row: any }): void
+    (e: 'on-cell-click', payload: { rowIndex: number; col: string; row: any } | undefined): void
 }
 
 export  type DataTablePaginationEmits = {
