@@ -131,7 +131,5 @@ const handleSort = (column: ColumnProps, event: MouseEvent) => {
   emits('on-sort', column, event)
 }
 
-const { handleMouseDown } = useResize((_event, column, width) => {
-  emits('on-resizable', column, width)
-})
+const { handleMouseDown } = useResize(emits)
 </script>

@@ -103,6 +103,7 @@ const handleResizable = (column: any, width: number) => {
   console.log(`调整了 ${ column.label } 列的宽度为 ${ width }`)
 }
 
+// @ts-ignore
 const onCellEdit = (value: any) => proxy?.$Message.success({
   content: `编辑的列 [ ${ value.key } ] 的值为 [ ${ value.value } ]`,
   showIcon: true

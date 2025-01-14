@@ -1,13 +1,28 @@
-import { ref } from 'vue'
-import type { ColumnProps } from '../types'
+import { ref, Ref } from 'vue'
+import type { ColumnProps, SortOrder } from '../types'
 
-export const useSort = (initialColumns: ColumnProps[]) => {
-    const columns = ref(initialColumns)
+// 定义返回类型接口
+interface UseSortReturn
+{
+    columns: Ref<ColumnProps[]>
+    toggleSort: (key: string, event?: MouseEvent) => ColumnProps[]
+    getSortedColumns: () => ColumnProps[]
+}
 
-    const toggleSort = (key: string, event?: MouseEvent) => {
+interface SortableColumnProps
+    extends ColumnProps
+{
+    sort?: SortOrder
+    sortable?: boolean
+}
+
+export const useSort = (initialColumns: ColumnProps[]): UseSortReturn => {
+    const columns = ref<SortableColumnProps[]>(initialColumns as SortableColumnProps[])
+
+    const toggleSort = (key: string, event?: MouseEvent): ColumnProps[] => {
         const column = columns.value.find(col => col.key === key)
         if (!column || !column.sortable) {
-            return
+            return []
         }
 
         // 多列排序需要按住 Shift 键
@@ -37,7 +52,7 @@ export const useSort = (initialColumns: ColumnProps[]) => {
     }
 
     // 获取当前所有排序列
-    const getSortedColumns = () => {
+    const getSortedColumns = (): ColumnProps[] => {
         return columns.value.filter(col => col.sort)
     }
 

@@ -1,8 +1,15 @@
-import { onUnmounted, ref } from 'vue'
-import type { ColumnProps } from '../types'
+import { onUnmounted, Ref, ref } from 'vue'
+import { ColumnProps, DataTableHeaderEmits } from '../types'
 import { calcSize } from '@/utils/common.ts'
 
-export function useResize(emit: (event: 'on-resizable', column: ColumnProps, width: number) => void)
+interface UseResizeReturn
+{
+    isResizing: Ref<boolean>
+    currentColumn: Ref<ColumnProps | null>
+    handleMouseDown: (e: MouseEvent, column: ColumnProps) => void
+}
+
+export function useResize(emits: DataTableHeaderEmits): UseResizeReturn
 {
     const isResizing = ref(false)
     const currentColumn = ref<ColumnProps | null>(null)
@@ -56,14 +63,14 @@ export function useResize(emit: (event: 'on-resizable', column: ColumnProps, wid
             }
 
             // 触发 on-resizable 事件
-            emit('on-resizable', currentColumn.value, newWidth)
+            emits('on-resizable', currentColumn.value, newWidth)
         }
     }
 
     const handleMouseUp = () => {
         if (currentColumn.value) {
             // 在松开鼠标时也触发一次事件，标记调整结束
-            emit('on-resizable', currentColumn.value, parseInt(currentColumn.value.width || '150'))
+            emits('on-resizable', currentColumn.value, parseInt(currentColumn.value.width || '150'))
         }
 
         isResizing.value = false
