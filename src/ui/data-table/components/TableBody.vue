@@ -37,19 +37,22 @@
       <template v-for="col in columns" :key="col.key">
         <component :is="col.cellEditor"
                    v-if="col.cellEditor && col.editable && editableState.isEditing(rowIndex, col.key)"
-                   :align="col.align"
+                   :field-key="col.key"
                    :value="row[col.key]"
                    :width="calcSize(col.width || 150)"
+                   :is-row-editing="!!editableState.editingRowState.value"
+                   :on-row-value-change="editableState.updateRowValue"
                    v-bind="col.cellEditorProps"
                    @cancel="editableState.stopEditing"
-                   @save="handleSaveEdit(rowIndex, col.key, $event, row)"/>
-        <TableCell v-else-if="col.editable && editableState.isEditing(rowIndex, col.key)"
-                   :align="col.align"
-                   :size="size"
-                   :value="row[col.key]"
-                   :width="calcSize(col.width || 150)"
-                   @cancel="editableState.stopEditing"
-                   @save="handleSaveEdit(rowIndex, col.key, $event, row)"/>
+                   @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
+        <TableCellInputEditor v-else-if="col.editable && editableState.isEditing(rowIndex, col.key)"
+                              :field-key="col.key"
+                              :is-row-editing="!!editableState.editingRowState.value"
+                              :on-row-value-change="editableState.updateRowValue"
+                              :value="row[col.key]"
+                              :width="calcSize(col.width || 150)"
+                              @cancel="editableState.stopEditing"
+                              @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
         <div v-else
              :class="[
                TablePaddingSize[size],
@@ -64,7 +67,8 @@
              @mousemove.stop.prevent="(col.ellipsis !== false && col.tooltip) && showTooltip($event, row[col.key])"
              @mouseleave.stop.prevent="hideTooltip"
              @click.stop="handleCellClick(rowIndex, col.key, row)"
-             @dblclick.stop="handleCellDblClick(rowIndex, col.key, row, col)">
+             @dblclick.stop="handleCellDblClick(rowIndex, col.key, row, col)"
+             @contextmenu.prevent="props.contextMenu && contextMenuState.show($event, rowIndex, col.key, row, col)">
           {{ row[col.key] }}
         </div>
       </template>
@@ -74,10 +78,17 @@
       <slot name="empty"/>
     </div>
   </div>
+
+  <TableContextMenu v-if="props.contextMenu"
+                    v-show="contextMenuState.visible.value"
+                    :context-menu-state="contextMenuState"
+                    :editable-state="editableState"
+                    @on-row-edit="(val) => handleSaveRowEdit(val)">>
+  </TableContextMenu>
 </template>
 
 <script setup lang="ts">
-import { CellClickPayload, ColumnProps, DataTableBodyEmits, RowSelectionMode, TextAlign } from '../types'
+import { CellClickPayload, ColumnProps, DataTableBodyEmits, RowPayload, RowSelectionMode, TextAlign } from '../types'
 import { BaseSize } from '@/ui/common/size'
 import { Size, TablePaddingSize } from '../size'
 import { onMounted, onUnmounted, ref } from 'vue'
@@ -85,7 +96,9 @@ import { useTooltip } from '../hooks/useTooltip'
 import { calcSize } from '@/utils/common'
 import { useRowSelection } from '../hooks/useRowSelection'
 import { useEditable } from '../hooks/useEditable'
-import TableCell from '@/ui/data-table/components/TableCell.vue'
+import { useContextMenu } from '../hooks/useContextMenu'
+import TableCellInputEditor from '@/ui/data-table/components/TableCellInputEditor.vue'
+import TableContextMenu from '@/ui/data-table/components/TableContextMenu.vue'
 
 const props = withDefaults(defineProps<{
   columns: ColumnProps[]
@@ -94,9 +107,11 @@ const props = withDefaults(defineProps<{
   rowSelection?: RowSelectionMode
   selectionState: ReturnType<typeof useRowSelection>
   loading?: boolean
+  contextMenu?: boolean
 }>(), {
   size: 'default',
-  loading: false
+  loading: false,
+  contextMenu: false
 })
 
 const emits = defineEmits<DataTableBodyEmits>()
@@ -105,15 +120,27 @@ const tableRef = ref<HTMLElement | null>(null)
 const selectedCell = ref<CellClickPayload>(null)
 
 const editableState = useEditable()
+const contextMenuState = useContextMenu()
 
-const handleSaveEdit = (_rowIndex: number, _key: string, value: any, row: any) => {
+const handleSaveEdit = (_rowIndex: number, _key: string, value: any, row: any, col: ColumnProps) => {
   const lastEditState = editableState.stopEditing(value)
   if (lastEditState) {
     emits('on-cell-edit', {
       rowIndex: lastEditState.rowIndex,
       key: lastEditState.key,
       value: lastEditState.value,
-      row: row
+      row: row,
+      col: col
+    })
+  }
+}
+
+const handleSaveRowEdit = (lastEditState: RowPayload) => {
+  if (lastEditState) {
+    emits('on-row-edit', {
+      rowIndex: lastEditState.rowIndex,
+      row: lastEditState.row,
+      values: lastEditState.values
     })
   }
 }
@@ -131,7 +158,7 @@ const handleCellClick = (rowIndex: number, col: string, row: any) => {
 
 const handleCellDblClick = (rowIndex: number, key: string, row: any, column: ColumnProps) => {
   if (column.editable) {
-    editableState.startEditing(rowIndex, key, row[key], column)
+    editableState.startEditing(rowIndex, key, row[key], column, column)
   }
 }
 
@@ -143,7 +170,8 @@ const clearSelectedCell = () => {
       rowIndex: lastEditState.rowIndex,
       key: lastEditState.key,
       value: lastEditState.value,
-      row: lastEditState.row
+      row: lastEditState.row,
+      col: lastEditState.col
     })
   }
 }

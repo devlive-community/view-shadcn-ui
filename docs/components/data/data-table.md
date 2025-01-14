@@ -146,6 +146,17 @@ title: 数据表格 (Data Table)
 
 :::
 
+## 右键菜单 (contextMenu)
+
+::: raw
+
+<CodeRunner title="右键菜单 (contextMenu)" codeKey="data-table-contextmenu">
+    <ShadcnDataTable :columns="editableColumns" :data="data" :context-menu="true" @on-row-edit="onRowEdit">
+    </ShadcnDataTable>
+</CodeRunner>
+
+:::
+
 ## 行选择 (selection)
 
 ::: raw
@@ -277,6 +288,7 @@ title: 数据表格 (Data Table)
         ['rowSelection', '行选择方式', 'enum', '-', 'singleRow | multipleRow'],
         ['loading', '是否显示加载中', 'boolean', 'false', '-'],
         ['columnMove', '是否允许列移动位置', 'boolean', 'false', '-'],
+        ['contextMenu', '是否允许右键菜单', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
@@ -323,6 +335,8 @@ title: 数据表格 (Data Table)
         ['on-size-change', '当分页尺寸发生变化时触发', '当前分页尺寸'],
         ['on-row-select', '当行被选中时触发', '行索引，当前行数据，是否选中，选中的行数据'],
         ['on-column-move', '当列被移动时触发', '移动后的列列表'],
+        ['on-cell-edit', '当单元格被编辑时触发', '行索引，列的 key 值，行数据'],
+        ['on-row-edit', '当行被编辑时触发', '行索引，行数据'],
     ]">
 </ApiTable>
 
@@ -459,5 +473,10 @@ const handleChange = () => {
 const onCellEdit = (value: any) => proxy?.$Message.success({
     content: `编辑的列 [ ${value.key} ] 的值为 [ ${ value.value } ]`,
     showIcon: true
+})
+
+const onRowEdit = (value: any) => proxy?.$Message.success({
+  content: `编辑的行 [ ${ value.rowIndex } ] 的值为 [ ${ JSON.stringify(value.values) } ]`,
+  showIcon: true
 })
 </script>

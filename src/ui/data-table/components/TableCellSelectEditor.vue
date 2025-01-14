@@ -7,7 +7,7 @@
     <ShadcnSelect v-model="selectValue"
                   :options="options"
                   :placeholder="placeholder"
-                  @on-change="handleBlur">
+                  @on-change="handleChange">
     </ShadcnSelect>
   </div>
 </template>
@@ -27,6 +27,9 @@ const props = defineProps<{
   width: string
   options: SelectOption[]
   placeholder?: string
+  isRowEditing?: boolean
+  fieldKey?: string
+  onRowValueChange?: (key: string, value: any) => void
 }>()
 
 const emit = defineEmits<{
@@ -41,10 +44,16 @@ watch(() => props.value, (newValue) => {
   selectValue.value = newValue
 })
 
-const handleBlur = () => {
-  if (selectValue.value !== props.value) {
-    console.log(selectValue.value)
-    emit('save', selectValue.value)
+const handleChange = () => {
+  if (props.isRowEditing && props.fieldKey && props.onRowValueChange) {
+    // 行编辑模式：更新行编辑状态
+    props.onRowValueChange(props.fieldKey, selectValue.value)
+  }
+  else {
+    // 单元格编辑模式：直接保存
+    if (selectValue.value !== props.value) {
+      emit('save', selectValue.value)
+    }
   }
 }
 </script>

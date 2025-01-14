@@ -6,7 +6,8 @@ export type RowSelectionMode = 'singleRow' | 'multipleRow'
 
 export type CellClickPayload = { rowIndex: number; col: string; row: any } | null
 export type RowSelectPayload = { rowIndex: number; row: any, selected: boolean, selectedRows: any[] } | null
-export type CellPayload = { rowIndex: number; key: string; value: any; row: any }
+export type CellPayload = { rowIndex: number; key: string; value: any; row: any, col: ColumnProps }
+export type RowPayload = { rowIndex: number, row: any, values: Record<string, any> }
 
 export enum TextAlign
 {
@@ -50,6 +51,7 @@ export interface DataTableProps
     pagination?: PaginationProps
     rowSelection?: RowSelectionMode
     columnMove?: boolean // 是否允许移动列，移动后可以调整位置
+    contextMenu?: boolean
 }
 
 export type DataTableHeaderEmits = {
@@ -68,12 +70,14 @@ export type DataTableEmits = {
     (e: 'on-row-select', payload: RowSelectPayload): void
     (e: 'on-column-move', columns: ColumnProps[]): void
     (e: 'on-cell-edit', payload: CellPayload): void
+    (e: 'on-row-edit', payload: RowPayload): void
 }
 
 export type DataTableBodyEmits = {
     (e: 'on-cell-click', payload: CellClickPayload): void
     (e: 'on-row-select', payload: RowSelectPayload): void
     (e: 'on-cell-edit', payload: CellPayload): void
+    (e: 'on-row-edit', payload: RowPayload): void
 }
 
 export  type DataTablePaginationEmits = {

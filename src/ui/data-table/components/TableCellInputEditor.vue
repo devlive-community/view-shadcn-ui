@@ -1,7 +1,7 @@
 <template>
   <div :style="{ width: calcSize(width) }">
     <ShadcnInput v-model="inputValue"
-                 @blur="handleBlur"
+                 @on-blur="handleBlur"
                  @keydown.enter="handleBlur"
                  @keydown.esc="handleCancel">
     </ShadcnInput>
@@ -9,15 +9,16 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { TextAlign } from '../types'
+import { ref, watch } from 'vue'
 import ShadcnInput from '@/ui/input'
 import { calcSize } from '@/utils/common.ts'
 
 const props = defineProps<{
   value: any
-  align?: TextAlign
   width: string
+  isRowEditing?: boolean
+  fieldKey?: string
+  onRowValueChange?: (key: string, value: any) => void
 }>()
 
 const emit = defineEmits<{
@@ -27,8 +28,19 @@ const emit = defineEmits<{
 
 const inputValue = ref(props.value)
 
+watch(() => props.value, (newValue) => {
+  inputValue.value = newValue
+})
+
 const handleBlur = () => {
-  emit('save', inputValue.value)
+  if (props.isRowEditing && props.fieldKey && props.onRowValueChange) {
+    // 行编辑模式：更新行编辑状态
+    props.onRowValueChange(props.fieldKey, inputValue.value)
+  }
+  else {
+    // 单元格编辑模式：直接保存
+    emit('save', inputValue.value)
+  }
 }
 
 const handleCancel = () => {

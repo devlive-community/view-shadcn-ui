@@ -6,13 +6,15 @@
                      row-selection="multipleRow"
                      :pagination="{ size: 20, options: [5, 10, 20, 50, 100] }"
                      :column-move="true"
+                     :context-menu="true"
                      @on-cell-click="handleCellClick"
                      @on-resizable="handleResizable"
                      @on-page-change="console.log('页码改变' + $event)"
                      @on-size-change="console.log('每页条数改变' + $event)"
                      @on-row-select="console.log('选中的数据条数 ' + $event?.selectedRows.length)"
                      @on-column-move="console.log('列移动 ' + JSON.stringify($event))"
-                     @on-cell-edit="onCellEdit">
+                     @on-cell-edit="onCellEdit"
+                     @on-row-edit="onRowEdit">
     </ShadcnDataTable>
   </div>
 </template>
@@ -20,7 +22,7 @@
 <script setup lang="ts">
 import { getCurrentInstance, ref } from 'vue'
 import { setLocale } from '@/utils/locale.ts'
-import SelectEditor from '@/SelectEditor.vue'
+import TableCellSelectEditor from '@/ui/data-table/components/TableCellSelectEditor.vue'
 
 setLocale('zh-CN')
 
@@ -29,7 +31,7 @@ const { proxy } = getCurrentInstance()!
 const columns = ref([
   { key: 'index', label: '#', sortable: true, width: 50, align: 'center' },
   {
-    key: 'title', label: '标题', editable: true, cellEditor: SelectEditor,
+    key: 'title', label: '标题', editable: true, cellEditor: TableCellSelectEditor,
     cellEditorProps: {
       options: [
         { label: 'Active', value: 'active' },
@@ -106,6 +108,12 @@ const handleResizable = (column: any, width: number) => {
 // @ts-ignore
 const onCellEdit = (value: any) => proxy?.$Message.success({
   content: `编辑的列 [ ${ value.key } ] 的值为 [ ${ value.value } ]`,
+  showIcon: true
+})
+
+// @ts-ignore
+const onRowEdit = (value: any) => proxy?.$Message.success({
+  content: `编辑的行 [ ${ value.rowIndex } ] 的值为 [ ${ JSON.stringify(value.values) } ]`,
   showIcon: true
 })
 </script>

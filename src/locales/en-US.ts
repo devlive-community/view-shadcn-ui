@@ -322,6 +322,8 @@ export default {
     dataTable: {
         text: {
             pageSize: 'Page size',
+            editCell: 'Edit cell',
+            editRow: 'Edit the entire line'
         }
     }
 }
