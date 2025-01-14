@@ -4,7 +4,7 @@
                      :data="data"
                      size="small"
                      height="300"
-                     :pagination="{ size: 7, options: [5, 10, 20, 50, 100] }"
+                     :pagination="{ size: 20, options: [5, 10, 20, 50, 100] }"
                      @on-cell-click="handleCellClick"
                      @on-resizable="handleResizable"
                      @on-page-change="console.log('页码改变' + $event)"

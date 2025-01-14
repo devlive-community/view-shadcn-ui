@@ -4,7 +4,7 @@ import { computed, ref, Ref, watch } from 'vue'
 export const usePagination = (dataSource: Ref<any[]>, options: PaginationProps = {}) => {
     const currentPage = ref(options.page || 1)
     const pageSize = ref(options.size || 100)
-    const total = computed(() => dataSource.value.length)
+    const total = computed(() => options.total || dataSource.value.length || 0)
 
     const paginatedData = computed(() => {
         const start = (currentPage.value - 1) * pageSize.value

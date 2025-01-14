@@ -1,5 +1,5 @@
 <template>
-  <div class="flex border-b bg-gray-100 relative w-full">
+  <div class="flex border-b bg-gray-100 relative w-full sticky top-0 z-10">
     <div v-for="col in columns"
          :key="col.key"
          :style="[

@@ -6,6 +6,7 @@ export interface PaginationProps
 {
     size?: number
     page?: number
+    total?: number
     options?: any
 }
 
