@@ -135,6 +135,17 @@ title: 数据表格 (Data Table)
 
 :::
 
+## 空数据 (empty)
+
+::: raw
+
+<CodeRunner title="空数据 (empty)" codeKey="data-table-empty">
+    <ShadcnDataTable :columns="columns" :data="[]">
+    </ShadcnDataTable>
+</CodeRunner>
+
+:::
+
 ## 行选择 (selection)
 
 ::: raw
@@ -297,6 +308,7 @@ title: 数据表格 (Data Table)
         ['on-page-change', '当页码发生变化时触发', '当前页码'],
         ['on-size-change', '当分页尺寸发生变化时触发', '当前分页尺寸'],
         ['on-row-select', '当行被选中时触发', '行索引，当前行数据，是否选中，选中的行数据'],
+        ['on-column-move', '当列被移动时触发', '移动后的列列表'],
     ]">
 </ApiTable>
 
@@ -306,6 +318,7 @@ title: 数据表格 (Data Table)
     :headers="['插槽', '描述', '回调参数']"
     :columns="[
         ['loading', '加载中的插槽', '-'],
+        ['empty', '空数据的插槽', '-'],
     ]">
 </ApiTable>
 

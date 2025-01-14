@@ -1,7 +1,7 @@
 <template>
   <div class="p-32 space-y-4">
     <ShadcnDataTable :columns="columns"
-                     :data="data"
+                     :data="[]"
                      size="small"
                      height="300"
                      row-selection="multipleRow"

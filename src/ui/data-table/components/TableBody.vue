@@ -4,7 +4,7 @@
       <slot name="loading"/>
     </div>
 
-    <div v-else v-for="(row, rowIndex) in data"
+    <div v-else-if="data && data.length > 0" v-for="(row, rowIndex) in data"
          :key="rowIndex"
          :class="[
            'flex border-b items-center h-full',
@@ -54,6 +54,10 @@
            @click.stop="selectCell(rowIndex, col.key, row)">
         {{ row[col.key] }}
       </div>
+    </div>
+
+    <div v-else>
+      <slot name="empty"/>
     </div>
   </div>
 </template>

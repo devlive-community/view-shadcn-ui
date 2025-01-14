@@ -31,6 +31,16 @@
               </div>
             </slot>
           </template>
+
+          <template #empty>
+            <slot name="empty">
+              <ShadcnEmpty class="mt-6">
+                <template #actions>
+                  <span></span>
+                </template>
+              </ShadcnEmpty>
+            </slot>
+          </template>
         </TableBody>
       </div>
     </div>
@@ -57,6 +67,7 @@ import { useSort } from './hooks/useSort'
 import { calcSize } from '@/utils/common'
 import { usePagination } from './hooks/usePagination'
 import { useRowSelection } from './hooks/useRowSelection'
+import { ShadcnEmpty } from '@/ui/empty'
 
 const props = withDefaults(defineProps<DataTableProps>(), {
   size: 'default',
