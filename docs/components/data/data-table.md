@@ -101,6 +101,17 @@ title: 数据表格 (Data Table)
 
 :::
 
+## 宽度 (width)
+
+::: raw
+
+<CodeRunner title="宽度 (width)" codeKey="data-table-width">
+    <ShadcnDataTable :columns="columns" :data="data" width="400">
+    </ShadcnDataTable>
+</CodeRunner>
+
+:::
+
 ## 列排序 (sort)
 
 ::: raw
@@ -175,7 +186,8 @@ title: 数据表格 (Data Table)
         ['columns', '表格列数据', '\[\]', '\[\]', '-'],
         ['data', '表格数据', '\[\]', '\[\]', '-'],
         ['size', '表格尺寸', 'enum', 'default', 'default | small | large'],
-        ['height', '表格高度，支持输入数字和字符串会自动计算，如果是数字的情况时，单位为 px', 'string', 'auto', '-'],
+        ['height', '表格高度，支持输入数字和字符串会自动计算，如果是数字的情况时，单位为 px', 'string | number', 'auto', '-'],
+        ['width', '表格宽度，支持输入数字和字符串会自动计算，如果是数字的情况时，单位为 px', 'string | number', '100%', '-'],
     ]">
 </ApiTable>
 
@@ -189,7 +201,7 @@ title: 数据表格 (Data Table)
         ['sort', '列的排序状态', 'enum', '-', 'asc | desc'],
         ['sortable', '列是否可排序', 'boolean', 'false', '-'],
         ['ellipsis', '列内容是否省略，超出时显示省略号', 'boolean', 'true', '-'],
-        ['width', '宽度，支持输入数字和字符串会自动计算，如果是数字的情况时，单位为 px', 'string', 'auto', '-'],
+        ['width', '宽度，支持输入数字和字符串会自动计算，如果是数字的情况时，单位为 px', 'string | number', 'auto', '-'],
         ['tooltip', '列内容是否显示提示', 'boolean', 'false', '-'],
         ['align', '对齐方式，可选值为', 'enum', 'left', 'left | right | center'],
         ['resizable', '列是否可调整宽度', 'boolean', 'false', '-'],

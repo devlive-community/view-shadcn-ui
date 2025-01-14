@@ -21,6 +21,7 @@ export interface DataTableProps
     data: Record<string, any>[]
     size?: Size
     height?: number | string
+    width?: number | string
 }
 
 export type DataTableEmits = {

@@ -1,11 +1,11 @@
 <template>
   <div class="overflow-auto">
-    <div class="relative w-full" style="overflow-x: auto">
-      <div class="inline-block min-w-full bg-white" :style="{ height: calcSize(height) }">
+    <div class="relative w-full" style="overflow-x: auto" :style="{ width: calcSize(width) }">
+      <div class="inline-block bg-white" :style="{ height: calcSize(height) }">
         <TableHeader :columns="columns"
                      :size="size"
                      @on-sort="handleSortChange"
-                     @on-resizable="(column, width) => emits('on-resizable', column, width)">
+                     @on-resizable="(column, _width) => emits('on-resizable', column, _width)">
         </TableHeader>
 
         <TableBody :columns="columns"
@@ -28,7 +28,8 @@ import { calcSize } from '@/utils/common.ts'
 
 const props = withDefaults(defineProps<DataTableProps>(), {
   size: 'default',
-  height: 'auto'
+  height: 'auto',
+  width: '100%'
 })
 
 const emits = defineEmits<DataTableEmits>()

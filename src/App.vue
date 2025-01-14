@@ -3,6 +3,7 @@
     <ShadcnDataTable :columns="columns"
                      :data="data"
                      size="small"
+                     width="300"
                      height="300"
                      @on-cell-click="handleCellClick"
                      @on-resizable="handleResizable">
