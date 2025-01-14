@@ -4,20 +4,9 @@
                      :data="data"
                      size="small"
                      height="300"
-                     :pagination="{ size: 20, options: [5, 10, 20, 50, 100] }"
-                     row-selection="singleRow"
-                     @on-cell-click="handleCellClick"
-                     @on-resizable="handleResizable"
-                     @on-page-change="console.log('页码改变' + $event)"
-                     @on-size-change="console.log('每页条数改变' + $event)"
-                     @on-row-select="console.log('选中的数据条数 ' + $event?.selectedRows.length)">
-    </ShadcnDataTable>
-    <ShadcnDataTable :columns="columns"
-                     :data="data"
-                     size="small"
-                     height="300"
-                     :pagination="{ size: 20, options: [5, 10, 20, 50, 100] }"
                      row-selection="multipleRow"
+                     :pagination="{ size: 20, options: [5, 10, 20, 50, 100] }"
+                     :loading="loading"
                      @on-cell-click="handleCellClick"
                      @on-resizable="handleResizable"
                      @on-page-change="console.log('页码改变' + $event)"
@@ -33,11 +22,13 @@ import { setLocale } from '@/utils/locale.ts'
 
 setLocale('zh-CN')
 
+const loading = ref(true)
+
 const columns = ref([
   { key: 'index', label: '#', sortable: true, width: 50, align: 'center' },
   { key: 'title', label: '标题' },
   { key: 'author', label: '作者', sortable: true, resizable: true },
-  { key: 'description', label: '描述', width: 100, tooltip: true, resizable: true },
+  { key: 'description', label: '描述', width: 500, tooltip: true, resizable: true },
   { key: 'category', label: '分类', sortable: true, align: 'center' },
   { key: 'date', label: '发布日期', sortable: true }
 ])

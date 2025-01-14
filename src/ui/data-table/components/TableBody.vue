@@ -1,6 +1,10 @@
 <template>
-  <div class="flex flex-col w-full" ref="tableRef" @click.stop>
-    <div v-for="(row, rowIndex) in data"
+  <div class="relative flex flex-col w-full" ref="tableRef" @click.stop>
+    <div v-if="loading" class="absolute inset-0 z-50">
+      <slot name="loading"/>
+    </div>
+
+    <div v-else v-for="(row, rowIndex) in data"
          :key="rowIndex"
          :class="[
            'flex border-b items-center h-full',
@@ -69,8 +73,10 @@ const props = withDefaults(defineProps<{
   size?: Size
   rowSelection?: RowSelectionMode
   selectionState: ReturnType<typeof useRowSelection>
+  loading?: boolean
 }>(), {
-  size: 'default'
+  size: 'default',
+  loading: false
 })
 
 const emits = defineEmits<DataTableBodyEmits>()

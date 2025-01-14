@@ -34,6 +34,7 @@ export interface DataTableProps
     size?: Size
     height?: number | string
     width?: number | string
+    loading?: boolean
     pagination?: PaginationProps
     rowSelection?: RowSelectionMode
 }

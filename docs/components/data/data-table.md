@@ -117,7 +117,19 @@ title: 数据表格 (Data Table)
 ::: raw
 
 <CodeRunner title="分页 (pagination)" codeKey="data-table-pagination">
-    <ShadcnDataTable :columns="columns" :data="longData" height="300" :pagination="{ size: 5, options: [5, 10, 20, 50, 100] }">
+    <ShadcnDataTable :columns="columns" :data="longData" height="300" :pagination="{ size: 10, options: [5, 10, 20, 50, 100] }">
+    </ShadcnDataTable>
+</CodeRunner>
+
+:::
+
+## 加载中 (loading)
+
+::: raw
+
+<CodeRunner title="加载中 (loading)" codeKey="data-table-loading">
+    <ShadcnButton @click="loading = !loading">{{ loading ? '取消加载' : '设置加载' }}</ShadcnButton>
+    <ShadcnDataTable :columns="columns" :data="data" height="300" :pagination="{ size: 5, options: [5, 10, 20, 50, 100] }" :loading="loading">
     </ShadcnDataTable>
 </CodeRunner>
 
@@ -230,6 +242,7 @@ title: 数据表格 (Data Table)
         ['width', '表格宽度，支持输入数字和字符串会自动计算，如果是数字的情况时，单位为 px', 'string | number', '100%', '-'],
         ['pagination', '是否显示分页', 'object', '-', '-'],
         ['rowSelection', '行选择方式', 'enum', '-', 'singleRow | multipleRow'],
+        ['loading', '是否显示加载中', 'boolean', 'false', '-']
     ]">
 </ApiTable>
 
@@ -246,7 +259,7 @@ title: 数据表格 (Data Table)
         ['width', '宽度，支持输入数字和字符串会自动计算，如果是数字的情况时，单位为 px', 'string | number', 'auto', '-'],
         ['tooltip', '列内容是否显示提示', 'boolean', 'false', '-'],
         ['align', '对齐方式，可选值为', 'enum', 'left', 'left | right | center'],
-        ['resizable', '列是否可调整宽度', 'boolean', 'false', '-'],
+        ['resizable', '列是否可调整宽度', 'boolean', 'false', '-']
     ]">
 </ApiTable>
 
@@ -269,6 +282,18 @@ title: 数据表格 (Data Table)
         ['on-sort', '当表格排序发生变化时触发', '排序列的列表'],
         ['on-cell-click', '当单元格被点击时触发', '行索引，列的 key 值，行数据'],
         ['on-resizable', '当列宽度发生变化时触发', '当前列的信息，调整后列的宽度'],
+        ['on-page-change', '当页码发生变化时触发', '当前页码'],
+        ['on-size-change', '当分页尺寸发生变化时触发', '当前分页尺寸'],
+        ['on-row-select', '当行被选中时触发', '行索引，当前行数据，是否选中，选中的行数据'],
+    ]">
+</ApiTable>
+
+## 数据表格 (Data Table) 插槽
+
+<ApiTable title="数据表格 (Data Table) 插槽"
+    :headers="['插槽', '描述', '回调参数']"
+    :columns="[
+        ['loading', '加载中的插槽', '-'],
     ]">
 </ApiTable>
 
@@ -376,6 +401,8 @@ for (let i = 0; i < 1000; i++) {
   item.index = data.value.length + 1
   longData.value.push(item)
 }
+
+const loading = ref(false)
 
 const handleChange = () => {
   console.log('表格数据发生变化')

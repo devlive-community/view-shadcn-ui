@@ -1,6 +1,8 @@
 <template>
   <div class="overflow-auto rounded-sm border">
-    <div :style="{ width: calcSize(width), height: calcSize(height) }" class="relative w-full" style="overflow-x: auto">
+    <div :style="{ width: calcSize(width), height: calcSize(height) }"
+         class="relative w-full"
+         style="overflow-x: auto">
       <div class="inline-block bg-white">
         <TableHeader :columns="columns"
                      :size="size"
@@ -17,8 +19,16 @@
                    :size="size"
                    :row-selection="rowSelection"
                    :selection-state="selectionState"
+                   :loading="loading"
                    @on-cell-click="(payload) => emits('on-cell-click', payload as any)"
                    @on-row-select="(payload) => emits('on-row-select', payload as any)">
+          <template #loading>
+            <slot name="loading">
+              <div class="m-6">
+                <div class="h-6 w-6 animate-spin rounded-full border-2 border-primary border-t-transparent"></div>
+              </div>
+            </slot>
+          </template>
         </TableBody>
       </div>
     </div>
@@ -49,7 +59,8 @@ import { useRowSelection } from './hooks/useRowSelection'
 const props = withDefaults(defineProps<DataTableProps>(), {
   size: 'default',
   height: 'auto',
-  width: '100%'
+  width: '100%',
+  loading: false
 })
 
 const emits = defineEmits<DataTableEmits>()
