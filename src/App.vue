@@ -3,7 +3,8 @@
     <ShadcnDataTable :columns="columns"
                      :data="data"
                      size="small"
-                     @on-cell-click="handleCellClick">
+                     @on-cell-click="handleCellClick"
+                     @on-resizable="handleResizable">
     </ShadcnDataTable>
   </div>
 </template>
@@ -59,5 +60,9 @@ const data = ref([
 
 const handleCellClick = (playload: { rowIndex: number; col: string; row: any }) => {
   console.log(`点击了第 ${ playload.rowIndex + 1 } 行，${ playload.col } 列`)
+}
+
+const handleResizable = (column: any, width: number) => {
+  console.log(`调整了 ${ column.label } 列的宽度为 ${ width }`)
 }
 </script>

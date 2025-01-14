@@ -145,6 +145,17 @@ title: 数据表格 (Data Table)
 
 :::
 
+## 重置宽度 (resizable)
+
+::: raw
+
+<CodeRunner title="重置宽度 (resizable)" codeKey="data-table-resizable" warning="只需要在列上添加 resizable 属性即可">
+    <ShadcnDataTable :columns="resizableColumns" :data="data">
+    </ShadcnDataTable>
+</CodeRunner>
+
+:::
+
 ## 数据表格 (Data Table) 属性
 
 <ApiTable title="数据表格 (Data Table) 属性"
@@ -169,6 +180,7 @@ title: 数据表格 (Data Table)
         ['width', '宽度，支持输入数字和字符串会自动计算，如果是数字的情况时，单位为 px', 'string', 'auto', '-'],
         ['tooltip', '列内容是否显示提示', 'boolean', 'false', '-'],
         ['align', '对齐方式，可选值为', 'enum', 'left', 'left | right | center'],
+        ['resizable', '列是否可调整宽度', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
@@ -179,6 +191,7 @@ title: 数据表格 (Data Table)
     :columns="[
         ['on-sort', '当表格排序发生变化时触发', '排序列的列表'],
         ['on-cell-click', '当单元格被点击时触发', '行索引，列的 key 值，行数据'],
+        ['on-resizable', '当列宽度发生变化时触发', '当前列的信息，调整后列的宽度'],
     ]">
 </ApiTable>
 
@@ -231,6 +244,14 @@ const alignColumns = ref([
   { key: 'description', label: '描述' },
   { key: 'category', label: '分类' },
   { key: 'date', label: '发布日期', align: 'center' }
+])
+
+const resizableColumns = ref([
+  { key: 'title', label: '标题' },
+  { key: 'author', label: '作者' },
+  { key: 'description', label: '描述' },
+  { key: 'category', label: '分类' },
+  { key: 'date', label: '发布日期', resizable: true }
 ])
 
 const data = ref([

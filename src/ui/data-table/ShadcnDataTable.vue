@@ -1,10 +1,11 @@
 <template>
   <div class="overflow-auto">
-    <div :style="{minWidth: 'calc(100vh)'}">
-      <table class="w-full border-collapse table-fixed">
+    <div class="relative w-full" style="overflow-x: auto">
+      <div class="inline-block min-w-full bg-white">
         <TableHeader :columns="columns"
                      :size="size"
-                     @on-sort-change="handleSortChange">
+                     @on-sort="handleSortChange"
+                     @on-resizable="(column, width) => emits('on-resizable', column, width)">
         </TableHeader>
 
         <TableBody :columns="columns"
@@ -12,7 +13,7 @@
                    :size="size"
                    @on-cell-click="emits('on-cell-click', $event)">
         </TableBody>
-      </table>
+      </div>
     </div>
   </div>
 </template>

@@ -24,9 +24,15 @@ export interface DataTableProps
 
 export type DataTableEmits = {
     (e: 'on-sort', column: ColumnProps[]): void
+    (e: 'on-resizable', column: ColumnProps, width: number): void
     (e: 'on-cell-click', payload: { rowIndex: number; col: string; row: any }): void
 }
 
-export type DataTableCellEmits = {
+export type DataTableHeaderEmits = {
+    (e: 'on-sort', column: ColumnProps, event: MouseEvent): void
+    (e: 'on-resizable', column: ColumnProps, width: number): void
+}
+
+export type DataTableBodyEmits = {
     (e: 'on-cell-click', payload: { rowIndex: number; col: string; row: any }): void
 }
