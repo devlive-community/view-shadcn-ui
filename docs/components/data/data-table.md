@@ -252,6 +252,17 @@ title: 数据表格 (Data Table)
 
 :::
 
+## 列编辑 (editable)
+
+::: raw
+
+<CodeRunner title="列编辑 (editable)" codeKey="data-table-editable" warning="只需要在列上添加 editable 属性即可">
+    <ShadcnDataTable :columns="editableColumns" :data="data" @on-cell-edit="onCellEdit($event)">
+    </ShadcnDataTable>
+</CodeRunner>   
+
+:::
+
 ## 数据表格 (Data Table) 属性
 
 <ApiTable title="数据表格 (Data Table) 属性"
@@ -323,7 +334,8 @@ title: 数据表格 (Data Table)
 </ApiTable>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, getCurrentInstance } from 'vue'
+const { proxy } = getCurrentInstance()!
 
 const columns = ref([
   { key: 'title', label: '标题' },
@@ -381,6 +393,14 @@ const resizableColumns = ref([
   { key: 'date', label: '发布日期', resizable: true }
 ])
 
+const editableColumns = ref([
+  { key: 'title', label: '标题', editable: true },
+  { key: 'author', label: '作者' },
+  { key: 'description', label: '描述' },
+  { key: 'category', label: '分类' },
+  { key: 'date', label: '发布日期' }
+])
+
 const data = ref([
   {
     title: '深入理解 Vue.js 响应式系统的原理与实现',
@@ -432,4 +452,9 @@ const loading = ref(false)
 const handleChange = () => {
   console.log('表格数据发生变化')
 }
+
+const onCellEdit = (value: any) => proxy?.$Message.success({
+    content: `编辑的列 [ ${value.key} ] 的值为 [ ${ value.value } ]`,
+    showIcon: true
+})
 </script>

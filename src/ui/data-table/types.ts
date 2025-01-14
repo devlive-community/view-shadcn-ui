@@ -5,6 +5,7 @@ export type RowSelectionMode = 'singleRow' | 'multipleRow'
 
 export type CellClickPayload = { rowIndex: number; col: string; row: any } | null
 export type RowSelectPayload = { rowIndex: number; row: any, selected: boolean, selectedRows: any[] } | null
+export type CellPayload = { rowIndex: number; key: string; value: any; row: any }
 
 export enum TextAlign
 {
@@ -32,6 +33,7 @@ export interface ColumnProps
     tooltip?: string
     align?: TextAlign
     resizable?: boolean
+    editable?: boolean
 }
 
 export interface DataTableProps
@@ -62,11 +64,13 @@ export type DataTableEmits = {
     (e: 'on-size-change', size: number): void
     (e: 'on-row-select', payload: RowSelectPayload): void
     (e: 'on-column-move', columns: ColumnProps[]): void
+    (e: 'on-cell-edit', payload: CellPayload): void
 }
 
 export type DataTableBodyEmits = {
     (e: 'on-cell-click', payload: CellClickPayload): void
     (e: 'on-row-select', payload: RowSelectPayload): void
+    (e: 'on-cell-edit', payload: CellPayload): void
 }
 
 export  type DataTablePaginationEmits = {

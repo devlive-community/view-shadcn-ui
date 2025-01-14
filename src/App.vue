@@ -1,7 +1,7 @@
 <template>
   <div class="p-32 space-y-4">
     <ShadcnDataTable :columns="columns"
-                     :data="[]"
+                     :data="data"
                      size="small"
                      height="300"
                      row-selection="multipleRow"
@@ -12,7 +12,8 @@
                      @on-page-change="console.log('页码改变' + $event)"
                      @on-size-change="console.log('每页条数改变' + $event)"
                      @on-row-select="console.log('选中的数据条数 ' + $event?.selectedRows.length)"
-                     @on-column-move="console.log('列移动 ' + JSON.stringify($event))">
+                     @on-column-move="console.log('列移动 ' + JSON.stringify($event))"
+                     @on-cell-edit="console.log('单元格编辑 ' + JSON.stringify($event))">
     </ShadcnDataTable>
   </div>
 </template>
@@ -25,9 +26,9 @@ setLocale('zh-CN')
 
 const columns = ref([
   { key: 'index', label: '#', sortable: true, width: 50, align: 'center' },
-  { key: 'title', label: '标题' },
+  { key: 'title', label: '标题', editable: true },
   { key: 'author', label: '作者', sortable: true, resizable: true },
-  { key: 'description', label: '描述', width: 500, tooltip: true, resizable: true },
+  { key: 'description', label: '描述', width: 500, tooltip: true, resizable: true, editable: true },
   { key: 'category', label: '分类', sortable: true, align: 'center' },
   { key: 'date', label: '发布日期', sortable: true }
 ])

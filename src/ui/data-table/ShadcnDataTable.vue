@@ -23,7 +23,8 @@
                    :selection-state="selectionState"
                    :loading="loading"
                    @on-cell-click="(payload) => emits('on-cell-click', payload as any)"
-                   @on-row-select="(payload) => emits('on-row-select', payload as any)">
+                   @on-row-select="(payload) => emits('on-row-select', payload as any)"
+                   @on-cell-edit="(payload) => emits('on-cell-edit', payload as any)">
           <template #loading>
             <slot name="loading">
               <div class="m-6">
