@@ -5,10 +5,24 @@
                      size="small"
                      height="300"
                      :pagination="{ size: 20, options: [5, 10, 20, 50, 100] }"
+                     row-selection="singleRow"
                      @on-cell-click="handleCellClick"
                      @on-resizable="handleResizable"
                      @on-page-change="console.log('页码改变' + $event)"
-                     @on-size-change="console.log('每页条数改变' + $event)">
+                     @on-size-change="console.log('每页条数改变' + $event)"
+                     @on-row-select="console.log('选中的数据条数 ' + $event?.selectedRows.length)">
+    </ShadcnDataTable>
+    <ShadcnDataTable :columns="columns"
+                     :data="data"
+                     size="small"
+                     height="300"
+                     :pagination="{ size: 20, options: [5, 10, 20, 50, 100] }"
+                     row-selection="multipleRow"
+                     @on-cell-click="handleCellClick"
+                     @on-resizable="handleResizable"
+                     @on-page-change="console.log('页码改变' + $event)"
+                     @on-size-change="console.log('每页条数改变' + $event)"
+                     @on-row-select="console.log('选中的数据条数 ' + $event?.selectedRows.length)">
     </ShadcnDataTable>
   </div>
 </template>
@@ -79,7 +93,9 @@ for (let i = 0; i < 1000; i++) {
 }
 
 const handleCellClick = (playload: { rowIndex: number; col: string; row: any }) => {
-  console.log(`点击了第 ${ playload.rowIndex + 1 } 行，${ playload.col } 列`)
+  if (playload) {
+    console.log(`点击了第 ${ playload.rowIndex + 1 } 行，${ playload.col } 列`)
+  }
 }
 
 const handleResizable = (column: any, width: number) => {

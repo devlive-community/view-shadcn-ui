@@ -123,6 +123,35 @@ title: 数据表格 (Data Table)
 
 :::
 
+## 行选择 (selection)
+
+::: raw
+
+<CodeRunner title="行选择 (selection)" codeKey="data-table-selection">
+    <ShadcnDataTable :columns="columns"
+                     :data="data"
+                     size="small"
+                     height="300"
+                     :pagination="{ size: 20, options: [5, 10, 20, 50, 100] }"
+                     row-selection="singleRow"
+                     @on-page-change="console.log('页码改变' + $event)"
+                     @on-size-change="console.log('每页条数改变' + $event)"
+                     @on-row-select="console.log('选中的数据条数 ' + $event?.selectedRows.length)">
+    </ShadcnDataTable>
+    <ShadcnDataTable :columns="columns"
+                     :data="data"
+                     size="small"
+                     height="300"
+                     :pagination="{ size: 20, options: [5, 10, 20, 50, 100] }"
+                     row-selection="multipleRow"
+                     @on-page-change="console.log('页码改变' + $event)"
+                     @on-size-change="console.log('每页条数改变' + $event)"
+                     @on-row-select="console.log('选中的数据条数 ' + $event?.selectedRows.length)">
+    </ShadcnDataTable>
+</CodeRunner>
+
+:::
+
 ## 列排序 (sort)
 
 ::: raw
@@ -200,6 +229,7 @@ title: 数据表格 (Data Table)
         ['height', '表格高度，支持输入数字和字符串会自动计算，如果是数字的情况时，单位为 px', 'string | number', 'auto', '-'],
         ['width', '表格宽度，支持输入数字和字符串会自动计算，如果是数字的情况时，单位为 px', 'string | number', '100%', '-'],
         ['pagination', '是否显示分页', 'object', '-', '-'],
+        ['rowSelection', '行选择方式', 'enum', '-', 'singleRow | multipleRow'],
     ]">
 </ApiTable>
 

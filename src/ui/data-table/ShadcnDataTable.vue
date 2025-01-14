@@ -4,14 +4,19 @@
       <div class="inline-block bg-white">
         <TableHeader :columns="columns"
                      :size="size"
+                     :data="displayData"
+                     :row-selection="rowSelection"
                      @on-sort="handleSortChange"
-                     @on-resizable="(column, _width) => emits('on-resizable', column, _width)">
+                     @on-resizable="(column, _width) => emits('on-resizable', column, _width)"
+                     @on-row-select="(payload) => emits('on-row-select', payload as any)">
         </TableHeader>
 
         <TableBody :columns="columns"
                    :data="displayData"
                    :size="size"
-                   @on-cell-click="emits('on-cell-click', $event)">
+                   :row-selection="rowSelection"
+                   @on-cell-click="(payload) => emits('on-cell-click', payload as any)"
+                   @on-row-select="(payload) => emits('on-row-select', payload as any)">
         </TableBody>
       </div>
     </div>

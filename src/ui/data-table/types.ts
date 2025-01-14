@@ -1,6 +1,10 @@
 import { Size } from '@/ui/data-table/size.ts'
 
 export type SortOrder = 'asc' | 'desc' | null
+export type RowSelectionMode = 'singleRow' | 'multipleRow'
+
+export type CellClickPayload = { rowIndex: number; col: string; row: any } | null
+export type RowSelectPayload = { rowIndex: number; row: any, selected: boolean, selectedRows: any[] } | null
 
 export interface PaginationProps
 {
@@ -31,6 +35,7 @@ export interface DataTableProps
     height?: number | string
     width?: number | string
     pagination?: PaginationProps
+    rowSelection?: RowSelectionMode
 }
 
 export type DataTableEmits = {
@@ -39,15 +44,18 @@ export type DataTableEmits = {
     (e: 'on-cell-click', payload: { rowIndex: number; col: string; row: any }): void
     (e: 'on-page-change', page: number): void
     (e: 'on-size-change', size: number): void
+    (e: 'on-row-select', payload: RowSelectPayload): void
 }
 
 export type DataTableHeaderEmits = {
     (e: 'on-sort', column: ColumnProps, event: MouseEvent): void
     (e: 'on-resizable', column: ColumnProps, width: number): void
+    (e: 'on-row-select', payload: RowSelectPayload): void
 }
 
 export type DataTableBodyEmits = {
-    (e: 'on-cell-click', payload: { rowIndex: number; col: string; row: any } | undefined): void
+    (e: 'on-cell-click', payload: CellClickPayload): void
+    (e: 'on-row-select', payload: RowSelectPayload): void
 }
 
 export  type DataTablePaginationEmits = {
