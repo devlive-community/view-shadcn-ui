@@ -164,6 +164,17 @@ title: 数据表格 (Data Table)
 
 :::
 
+## 列移动 (move)
+
+::: raw
+
+<CodeRunner title="列移动 (move)" codeKey="data-table-move">
+    <ShadcnDataTable :columns="columns" :data="data" :column-move="true">
+    </ShadcnDataTable>
+</CodeRunner>
+
+:::
+
 ## 列排序 (sort)
 
 ::: raw
@@ -242,7 +253,8 @@ title: 数据表格 (Data Table)
         ['width', '表格宽度，支持输入数字和字符串会自动计算，如果是数字的情况时，单位为 px', 'string | number', '100%', '-'],
         ['pagination', '是否显示分页', 'object', '-', '-'],
         ['rowSelection', '行选择方式', 'enum', '-', 'singleRow | multipleRow'],
-        ['loading', '是否显示加载中', 'boolean', 'false', '-']
+        ['loading', '是否显示加载中', 'boolean', 'false', '-'],
+        ['columnMove', '是否允许列移动位置', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 

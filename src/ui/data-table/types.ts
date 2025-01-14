@@ -6,6 +6,13 @@ export type RowSelectionMode = 'singleRow' | 'multipleRow'
 export type CellClickPayload = { rowIndex: number; col: string; row: any } | null
 export type RowSelectPayload = { rowIndex: number; row: any, selected: boolean, selectedRows: any[] } | null
 
+export enum TextAlign
+{
+    left = 'text-left',
+    center = 'text-center',
+    right = 'text-right'
+}
+
 export interface PaginationProps
 {
     size?: number
@@ -23,7 +30,7 @@ export interface ColumnProps
     ellipsis?: boolean // 是否省略
     width?: string // 宽度，支持输入数字和字符串会自动计算，如果是数字的情况时，单位为 px
     tooltip?: string
-    align?: 'left' | 'center' | 'right'
+    align?: TextAlign
     resizable?: boolean
 }
 
@@ -37,6 +44,14 @@ export interface DataTableProps
     loading?: boolean
     pagination?: PaginationProps
     rowSelection?: RowSelectionMode
+    columnMove?: boolean // 是否允许移动列，移动后可以调整位置
+}
+
+export type DataTableHeaderEmits = {
+    (e: 'on-sort', column: ColumnProps, event: MouseEvent): void
+    (e: 'on-resizable', column: ColumnProps, width: number): void
+    (e: 'on-row-select', payload: RowSelectPayload): void
+    (e: 'on-column-move', columns: ColumnProps[]): void
 }
 
 export type DataTableEmits = {
@@ -46,12 +61,7 @@ export type DataTableEmits = {
     (e: 'on-page-change', page: number): void
     (e: 'on-size-change', size: number): void
     (e: 'on-row-select', payload: RowSelectPayload): void
-}
-
-export type DataTableHeaderEmits = {
-    (e: 'on-sort', column: ColumnProps, event: MouseEvent): void
-    (e: 'on-resizable', column: ColumnProps, width: number): void
-    (e: 'on-row-select', payload: RowSelectPayload): void
+    (e: 'on-column-move', columns: ColumnProps[]): void
 }
 
 export type DataTableBodyEmits = {

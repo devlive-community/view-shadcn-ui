@@ -45,7 +45,7 @@
            }"
            :class="[
              TablePaddingSize[size],
-             `text-${col.align || 'left'}`,
+             TextAlign[col.align || 'left'],
              col.ellipsis !== false ? 'relative truncate whitespace-nowrap overflow-hidden' : 'break-words whitespace-normal',
              (selectedCell?.rowIndex === rowIndex && selectedCell?.col === col.key) && 'border border-blue-400'
            ]"
@@ -59,7 +59,7 @@
 </template>
 
 <script setup lang="ts">
-import { CellClickPayload, ColumnProps, DataTableBodyEmits, RowSelectionMode } from '../types'
+import { CellClickPayload, ColumnProps, DataTableBodyEmits, RowSelectionMode, TextAlign } from '../types'
 import { BaseSize } from '@/ui/common/size'
 import { Size, TablePaddingSize } from '../size'
 import { onMounted, onUnmounted, ref } from 'vue'

@@ -9,9 +9,11 @@
                      :data="displayData"
                      :row-selection="rowSelection"
                      :selection-state="selectionState"
+                     :column-move="columnMove"
                      @on-sort="handleSortChange"
                      @on-resizable="(column, _width) => emits('on-resizable', column, _width)"
-                     @on-row-select="(payload) => emits('on-row-select', payload as any)">
+                     @on-row-select="(payload) => emits('on-row-select', payload as any)"
+                     @on-column-move="handleColumnMove">
         </TableHeader>
 
         <TableBody :columns="columns"
@@ -124,4 +126,10 @@ const selectionState = useRowSelection(
     displayData.value,
     emits
 )
+
+const handleColumnMove = (payload: ColumnProps[]) => {
+  columns.value = payload
+
+  emits('on-column-move', payload)
+}
 </script>

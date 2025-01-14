@@ -6,12 +6,13 @@
                      height="300"
                      row-selection="multipleRow"
                      :pagination="{ size: 20, options: [5, 10, 20, 50, 100] }"
-                     :loading="loading"
+                     :column-move="true"
                      @on-cell-click="handleCellClick"
                      @on-resizable="handleResizable"
                      @on-page-change="console.log('页码改变' + $event)"
                      @on-size-change="console.log('每页条数改变' + $event)"
-                     @on-row-select="console.log('选中的数据条数 ' + $event?.selectedRows.length)">
+                     @on-row-select="console.log('选中的数据条数 ' + $event?.selectedRows.length)"
+                     @on-column-move="console.log('列移动 ' + JSON.stringify($event))">
     </ShadcnDataTable>
   </div>
 </template>
@@ -21,8 +22,6 @@ import { ref } from 'vue'
 import { setLocale } from '@/utils/locale.ts'
 
 setLocale('zh-CN')
-
-const loading = ref(true)
 
 const columns = ref([
   { key: 'index', label: '#', sortable: true, width: 50, align: 'center' },
