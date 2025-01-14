@@ -1,7 +1,7 @@
 <template>
-  <div class="overflow-auto">
-    <div class="relative w-full" style="overflow-x: auto" :style="{ width: calcSize(width) }">
-      <div class="inline-block bg-white" :style="{ height: calcSize(height) }">
+  <div class="overflow-auto rounded-sm border">
+    <div :style="{ width: calcSize(width), height: calcSize(height) }" class="relative w-full" style="overflow-x: auto">
+      <div class="inline-block bg-white">
         <TableHeader :columns="columns"
                      :size="size"
                      @on-sort="handleSortChange"
@@ -9,22 +9,34 @@
         </TableHeader>
 
         <TableBody :columns="columns"
-                   :data="sortedData"
+                   :data="displayData"
                    :size="size"
                    @on-cell-click="emits('on-cell-click', $event)">
         </TableBody>
       </div>
     </div>
+
+    <TablePagination v-if="pagination"
+                     :page="currentPage"
+                     :size="pageSize"
+                     :total="total"
+                     :options="pagination.options"
+                     :total-pages="totalPages"
+                     @on-page-change="setPage"
+                     @on-size-change="setSize">
+    </TablePagination>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 import TableHeader from './components/TableHeader.vue'
 import TableBody from './components/TableBody.vue'
+import TablePagination from './components/TablePagination.vue'
 import type { ColumnProps, DataTableEmits, DataTableProps } from './types'
 import { useSort } from './hooks/useSort'
-import { calcSize } from '@/utils/common.ts'
+import { calcSize } from '@/utils/common'
+import { usePagination } from './hooks/usePagination'
 
 const props = withDefaults(defineProps<DataTableProps>(), {
   size: 'default',
@@ -41,7 +53,7 @@ const handleSortChange = (column: ColumnProps, event: MouseEvent) => {
   emits('on-sort', getSortedColumns())
 }
 
-const sortedData = computed(() => {
+const dataSource = computed(() => {
   const sortColumns = getSortedColumns()
   if (sortColumns.length === 0) {
     return props.data
@@ -64,5 +76,27 @@ const sortedData = computed(() => {
     }
     return 0
   })
+})
+
+const {
+  currentPage,
+  pageSize,
+  total,
+  paginatedData,
+  totalPages,
+  setSize,
+  setPage
+} = usePagination(dataSource, props.pagination || {})
+
+watch(currentPage, (page) => {
+  emits('on-page-change', page)
+})
+
+watch(pageSize, (size) => {
+  emits('on-size-change', size)
+})
+
+const displayData = computed(() => {
+  return props.pagination ? paginatedData.value : dataSource.value
 })
 </script>

@@ -112,6 +112,17 @@ title: 数据表格 (Data Table)
 
 :::
 
+## 分页 (pagination)
+
+::: raw
+
+<CodeRunner title="分页 (pagination)" codeKey="data-table-pagination">
+    <ShadcnDataTable :columns="columns" :data="longData" height="300" :pagination="{ size: 5, options: [5, 10, 20, 50, 100] }">
+    </ShadcnDataTable>
+</CodeRunner>
+
+:::
+
 ## 列排序 (sort)
 
 ::: raw
@@ -188,6 +199,7 @@ title: 数据表格 (Data Table)
         ['size', '表格尺寸', 'enum', 'default', 'default | small | large'],
         ['height', '表格高度，支持输入数字和字符串会自动计算，如果是数字的情况时，单位为 px', 'string | number', 'auto', '-'],
         ['width', '表格宽度，支持输入数字和字符串会自动计算，如果是数字的情况时，单位为 px', 'string | number', '100%', '-'],
+        ['pagination', '是否显示分页', 'object', '-', '-'],
     ]">
 </ApiTable>
 
@@ -205,6 +217,17 @@ title: 数据表格 (Data Table)
         ['tooltip', '列内容是否显示提示', 'boolean', 'false', '-'],
         ['align', '对齐方式，可选值为', 'enum', 'left', 'left | right | center'],
         ['resizable', '列是否可调整宽度', 'boolean', 'false', '-'],
+    ]">
+</ApiTable>
+
+<br />
+
+<ApiTable title="数据表格分页 (Data Table Pagination) 属性"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
+    :columns="[
+        ['page', '当前页码', 'number', '1', '-'],
+        ['size', '分页尺寸', 'number', '100', '-'],
+        ['options', '分页选项', 'number\[\]', '\[10, 20, 50, 100\]', '-'],
     ]">
 </ApiTable>
 
@@ -315,6 +338,14 @@ const data = ref([
     date: '2024-02-01'
   }
 ])
+
+const longData = ref([])
+for (let i = 0; i < 1000; i++) {
+  const randomIndex = Math.floor(Math.random() * data.value.length)
+  const item = { ...data.value[randomIndex] }
+  item.index = data.value.length + 1
+  longData.value.push(item)
+}
 
 const handleChange = () => {
   console.log('表格数据发生变化')

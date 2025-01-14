@@ -318,5 +318,10 @@ export default {
             copied: 'Copied!',
             failed: 'Failed to copy!'
         }
+    },
+    dataTable: {
+        text: {
+            pageSize: 'Page size',
+        }
     }
 }

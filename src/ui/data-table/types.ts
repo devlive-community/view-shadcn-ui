@@ -2,6 +2,13 @@ import { Size } from '@/ui/data-table/size.ts'
 
 export type SortOrder = 'asc' | 'desc' | null
 
+export interface PaginationProps
+{
+    size?: number
+    page?: number
+    options?: any
+}
+
 export interface ColumnProps
 {
     key: string
@@ -22,12 +29,15 @@ export interface DataTableProps
     size?: Size
     height?: number | string
     width?: number | string
+    pagination?: PaginationProps
 }
 
 export type DataTableEmits = {
     (e: 'on-sort', column: ColumnProps[]): void
     (e: 'on-resizable', column: ColumnProps, width: number): void
     (e: 'on-cell-click', payload: { rowIndex: number; col: string; row: any }): void
+    (e: 'on-page-change', page: number): void
+    (e: 'on-size-change', size: number): void
 }
 
 export type DataTableHeaderEmits = {
@@ -37,4 +47,9 @@ export type DataTableHeaderEmits = {
 
 export type DataTableBodyEmits = {
     (e: 'on-cell-click', payload: { rowIndex: number; col: string; row: any }): void
+}
+
+export  type DataTablePaginationEmits = {
+    (e: 'on-page-change', page: number): void
+    (e: 'on-size-change', size: number): void
 }
