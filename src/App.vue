@@ -1,5 +1,7 @@
 <template>
   <div class="p-32 space-y-4">
+    <ShadcnInput v-model="input" placeholder="Input" />
+
     <ShadcnDataTable :columns="columns"
                      :data="data"
                      height="300"
@@ -32,6 +34,8 @@ import TableCellSelectEditor from '@/ui/data-table/components/TableCellSelectEdi
 setLocale('zh-CN')
 
 const { proxy } = getCurrentInstance()!
+
+const input = ref('')
 
 const columns = ref([
   { key: 'index', label: '#', sortable: true, width: 50, align: 'center' },

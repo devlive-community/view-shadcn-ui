@@ -234,6 +234,21 @@ const input = ref('Hello View Shadcn UI')
 
 :::
 
+## 表单 (form)
+
+::: raw
+
+<CodeRunner title="表单 (form)">
+    <ShadcnForm v-model="formState" @on-submit="onSubmit">
+        <ShadcnFormItem name="value" label="输入数据" :rules="[{ required: true, message: '请输入数据' }]">
+            <ShadcnInput v-model="formState.value" name="value" />
+        </ShadcnFormItem>
+        <ShadcnButton submit>提交</ShadcnButton>
+    </ShadcnForm>
+</CodeRunner>
+
+:::
+
 ## 输入框 (Input) 属性
 
 <ApiTable title="输入框 (Input) 属性"
@@ -277,7 +292,13 @@ const input = ref('Hello View Shadcn UI')
 </ApiTable>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, getCurrentInstance } from 'vue';
 
 const input = ref('Hello View Shadcn UI')
+
+const { proxy } = getCurrentInstance()! 
+const formState = ref({ value: null })
+const onSubmit = () => {
+    proxy?.$Message.info({content: `提交的数据 ${JSON.stringify(formState.value)}`})
+}
 </script>

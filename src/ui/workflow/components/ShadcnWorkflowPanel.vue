@@ -60,7 +60,7 @@
 <script setup lang="ts">
 import { t } from '@/utils/locale'
 import { WorkflowNode, WorkflowPanelEmits, WorkflowPanelProps, WorkflowPortType } from '../types'
-import ShadcnInput from '@/ui/input'
+import { ShadcnInput } from '@/ui/input'
 import { randomUUID } from '@/utils/uuid.ts'
 import { ref, watch } from 'vue'
 

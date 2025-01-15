@@ -1,19 +1,18 @@
 <template>
   <ShadcnContextMenu v-model="localVisible" :position="contextMenuState.position.value">
-    <ShadcnContextMenuItem
-        :disabled="!contextMenuState.selectedValue.value?.col.editable"
-        @click="onItemClick('edit-cell')">
-      {{ t('dataTable.text.editCell') }}
-    </ShadcnContextMenuItem>
-    <ShadcnContextMenuItem @click="onItemClick('edit-row')">
-      {{ t('dataTable.text.editRow') }}
-    </ShadcnContextMenuItem>
-
     <slot :actionsPosition="menuPosition"
           :position="contextMenuState.position.value"
           :selectedValue="currentValue as any"
           :visible="localVisible"
           name="contextMenu">
+      <ShadcnContextMenuItem
+          :disabled="!contextMenuState.selectedValue.value?.col.editable"
+          @click="onItemClick('edit-cell')">
+        {{ t('dataTable.text.editCell') }}
+      </ShadcnContextMenuItem>
+      <ShadcnContextMenuItem @click="onItemClick('edit-row')">
+        {{ t('dataTable.text.editRow') }}
+      </ShadcnContextMenuItem>
     </slot>
   </ShadcnContextMenu>
 

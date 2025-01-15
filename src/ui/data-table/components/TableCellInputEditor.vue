@@ -10,7 +10,7 @@
 
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
-import ShadcnInput from '@/ui/input'
+import { ShadcnInput } from '@/ui/input'
 import { calcSize } from '@/utils/common.ts'
 
 const props = defineProps<{
