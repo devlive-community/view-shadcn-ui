@@ -74,7 +74,7 @@ export default {
                 link: 'https://playground.view-shadcn-ui.devlive.org'
             },
             {
-                text: '2025.1.0 <span class="VPBadge danger" style="margin-left: -18px; position: absolute; bottom: 38px;">最新</span>',
+                text: '2025.1.1 <span class="VPBadge danger" style="margin-left: -18px; position: absolute; bottom: 38px;">最新</span>',
                 items: [
                     {
                         text: '贡献指南',
@@ -118,7 +118,8 @@ export default {
             '/changelog/': [
                 (() => {
                     const items = [
-                        {text: '2025.1.0 <span class="VPBadge danger" style="left: 65px; margin-top: 6px; width: 45px;">最新</span>', link: 'latest', version: '2025-01-11'},
+                        {text: '2025.1.1 <span class="VPBadge danger" style="left: 65px; margin-top: 6px; width: 45px;">最新</span>', link: 'latest', version: '2025-01-11'},
+                        {text: '2025.1.0', link: '2025.1.0', version: '2025-01-11'},
                         {text: '2024.5.4', link: '2024.5.4', version: '2024-12-30'},
                         {text: '2024.5.3', link: '2024.5.3', version: '2024-12-23'},
                         {text: '2024.5.2', link: '2024.5.2', version: '2024-12-15'},
