@@ -2,6 +2,7 @@
 HOME=$(pwd)
 
 cd $HOME/playground
+pnpm upgrade view-shadcn-ui@latest
 pnpm run build
 
 rm -rf /tmp/playground-dist

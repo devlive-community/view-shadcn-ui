@@ -31,7 +31,6 @@ import { FormItemContext } from '@/ui/form/context.ts'
 import { FormItemProps } from '@/ui/form/types.ts'
 import ShadcnTooltip from '@/ui/tooltip'
 import ShadcnIcon from '@/ui/icon'
-import { isEmpty } from 'lodash'
 
 const props = withDefaults(defineProps<FormItemProps>(), {
   validateOnBlur: true
@@ -67,6 +66,22 @@ const getValue = (obj: any, path: string) => {
   return obj[path]
 }
 
+const isEmptyValue = (value: any): boolean => {
+  if (value === null || value === undefined || value === '') {
+    return true
+  }
+  if (typeof value === 'number' && Number.isNaN(value)) {
+    return true
+  }
+  if (Array.isArray(value)) {
+    return value.length === 0
+  }
+  if (typeof value === 'object') {
+    return Object.keys(value).length === 0
+  }
+  return false
+}
+
 const validate = async (): Promise<{ isValid: boolean; errorMessage?: string }> => {
   if (!props.rules) {
     return { isValid: true }
@@ -76,7 +91,7 @@ const validate = async (): Promise<{ isValid: boolean; errorMessage?: string }> 
 
   for (const rule of props.rules) {
     // Required check
-    if (rule.required && isEmpty(value)) {
+    if (rule.required && isEmptyValue(value)) {
       return {
         isValid: false,
         errorMessage: rule.message || 'This field is required'

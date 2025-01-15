@@ -318,5 +318,12 @@ export default {
             copied: 'Copied!',
             failed: 'Failed to copy!'
         }
+    },
+    dataTable: {
+        text: {
+            pageSize: 'Page size',
+            editCell: 'Edit cell',
+            editRow: 'Edit the entire line'
+        }
     }
 }

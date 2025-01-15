@@ -318,5 +318,12 @@ export default {
             copied: '复制成功',
             failed: '复制失败'
         }
+    },
+    dataTable: {
+        text: {
+            pageSize: '每页显示',
+            editCell: '编辑单元格',
+            editRow: '编辑整行'
+        }
     }
 }

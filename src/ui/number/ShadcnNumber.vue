@@ -18,13 +18,13 @@
              :value="displayValue"
              :disabled="disabled"
              :placeholder="placeholder"
-             @input="onInput"
-             @blur="onBlur"/>
+             @input.stop="onInput"
+             @blur.stop="onBlur"/>
 
       <!-- Clear -->
       <div v-if="clearable && displayValue && hovered"
            class="flex items-center"
-           @click="onClear">
+           @click.stop="onClear">
         <slot name="clear">
           <svg viewBox="0 0 24 24"
                fill="none"
@@ -49,7 +49,7 @@
                     'cursor-not-allowed opacity-50': !validValue || Number(localValue) >= Number(props.max)
                   }
               ]"
-             @click="onAdd">
+             @click.stop="onAdd">
           <slot name="add">
             <svg viewBox="0 0 16 16"
                  fill="none"
@@ -70,7 +70,7 @@
                     'cursor-not-allowed opacity-50': !validValue || Number(localValue) <= Number(props.min)
                   }
              ]"
-             @click="onMinus">
+             @click.stop="onMinus">
           <slot name="minus">
             <svg viewBox="0 0 16 16"
                  fill="none"
@@ -126,7 +126,7 @@ const displayValue = computed(() => {
   return props.formatter ? props.formatter(Number(localValue.value)) : localValue.value
 })
 
-const formItemContext = inject<FormItemContext | null>(`form-item-${ props.name }`, null)
+const formItemContext = props.name ? inject<FormItemContext | null>(`form-item-${ props.name }`) : null
 
 watch(() => props.modelValue, (newValue) => {
   validValue.value = isNumber(newValue)

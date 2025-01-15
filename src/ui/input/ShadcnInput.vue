@@ -54,23 +54,11 @@ import { computed, inject, nextTick, onMounted, ref, watch } from 'vue'
 import { Size } from '@/ui/enum/Size.ts'
 import ShadcnIcon from '@/ui/icon'
 import { FormItemContext } from '@/ui/form/context.ts'
+import { InputEmits, InputProps } from '@/ui/input/types.ts'
 
-const emit = defineEmits(['on-change', 'on-clear', 'on-blur', 'on-prefix-click', 'on-suffix-click', 'update:modelValue'])
+const emit = defineEmits<InputEmits>()
 
-const props = withDefaults(defineProps<{
-  modelValue: string
-  placeholder?: string
-  clearable?: boolean
-  size?: keyof typeof Size
-  wordCount?: boolean
-  maxCount?: number | string
-  disabled?: boolean
-  type?: string
-  rows?: number | string
-  cols?: number | string
-  name?: string
-  readonly?: boolean
-}>(), {
+const props = withDefaults(defineProps<InputProps>(), {
   modelValue: '',
   placeholder: '',
   clearable: false,
@@ -125,7 +113,7 @@ const onInput = (event: Event) => {
   emit('on-change', newValue)
 }
 
-const formItemContext = inject<FormItemContext | null>(`form-item-${ props.name }`)
+const formItemContext = props.name ? inject<FormItemContext | null>(`form-item-${ props.name }`) : null
 
 const onBlur = (event: FocusEvent) => {
   const newValue = (event.target as HTMLInputElement).value

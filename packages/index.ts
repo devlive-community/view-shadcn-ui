@@ -9,7 +9,7 @@ import ShadcnButton from '@/ui/button'
 import ShadcnButtonGroup from '@/ui/button/group'
 import ShadcnCard from '@/ui/card'
 import { ShadcnCopy } from '@/ui/copy'
-import ShadcnInput from '@/ui/input'
+import { ShadcnInput } from '@/ui/input'
 import ShadcnIcon from '@/ui/icon'
 import ShadcnModal from '@/ui/modal'
 import ShadcnTooltip from '@/ui/tooltip'
@@ -99,6 +99,7 @@ import { ShadcnContribution } from '@/ui/contribution'
 import { ShadcnMention } from '@/ui/mention'
 import { ShadcnImage, ShadcnImageGroup, ShadcnImageViewer } from '@/ui/image'
 import { ShadcnCarousel } from '@/ui/carousel'
+import { ShadcnDataTable, TableCellInputEditor, TableCellSelectEditor } from '@/ui/data-table'
 
 let components = [
     ShadcnButton,
@@ -194,7 +195,8 @@ let components = [
     ShadcnContribution,
     ShadcnMention,
     ShadcnImage, ShadcnImageGroup, ShadcnImageViewer,
-    ShadcnCarousel
+    ShadcnCarousel,
+    ShadcnDataTable, TableCellInputEditor, TableCellSelectEditor
 ]
 
 interface InstallOptions
@@ -237,7 +239,7 @@ export { default as ShadcnButtonGroup } from '@/ui/button/group'
 export { default as ShadcnCard } from '@/ui/card'
 export { ShadcnCopy } from '@/ui/copy'
 export { ShadcnCodeEditor } from '@/ui/code-editor'
-export { default as ShadcnInput } from '@/ui/input'
+export { ShadcnInput } from '@/ui/input'
 export { default as ShadcnIcon } from '@/ui/icon'
 export { default as ShadcnModal } from '@/ui/modal'
 export { default as ShadcnTooltip } from '@/ui/tooltip'
@@ -326,6 +328,7 @@ export { ShadcnContribution } from '@/ui/contribution'
 export { ShadcnMention } from '@/ui/mention'
 export { ShadcnImage, ShadcnImageGroup, ShadcnImageViewer } from '@/ui/image'
 export { ShadcnCarousel } from '@/ui/carousel'
+export { ShadcnDataTable, TableCellInputEditor, TableCellSelectEditor } from '@/ui/data-table'
 
 // Export functions
 export { fnToString, fnToFunction } from '@/utils/formatter'
