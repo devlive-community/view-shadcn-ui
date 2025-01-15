@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- Define Gradient -->
+    <defs>
+        <linearGradient id="dataTableGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#93c5fd;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#a5b4fc;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background Circle -->
+    <circle cx="100" cy="100" r="100" fill="url(#dataTableGradient)" />
+
+    <!-- Table Header -->
+    <rect x="55" y="60" width="90" height="20" fill="white" rx="4" />
+    <rect x="60" y="65" width="80" height="10" fill="#60a5fa" rx="3" />
+
+    <!-- Table Rows -->
+    <rect x="55" y="85" width="90" height="15" fill="white" rx="4" />
+    <rect x="60" y="88" width="70" height="8" fill="#93c5fd" rx="3" />
+    <rect x="55" y="105" width="90" height="15" fill="white" rx="4" />
+    <rect x="60" y="108" width="50" height="8" fill="#a5b4fc" rx="3" />
+    <rect x="55" y="125" width="90" height="15" fill="white" rx="4" />
+    <rect x="60" y="128" width="65" height="8" fill="#93c5fd" rx="3" />
+</svg>
