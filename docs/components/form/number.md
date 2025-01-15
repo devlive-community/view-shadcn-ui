@@ -264,6 +264,21 @@ const value = ref(0)
 
 :::
 
+## 表单 (form)
+
+::: raw
+
+<CodeRunner title="表单 (form)">
+    <ShadcnForm v-model="formState" @on-submit="onSubmit">
+        <ShadcnFormItem name="value" label="输入数据" :rules="[{ required: true, message: '请输入数据' }]">
+            <ShadcnNumber v-model="formState.value" name="value" />
+        </ShadcnFormItem>
+        <ShadcnButton submit>提交</ShadcnButton>
+    </ShadcnForm>
+</CodeRunner>
+
+:::
+
 ## 数字输入框 (Number) 属性
 
 <ApiTable title="数字输入框 (Number) 属性"
@@ -304,11 +319,17 @@ const value = ref(0)
 </ApiTable>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, getCurrentInstance } from 'vue'
 
 const basicValue = ref(0)
 const placeholderValue = ref(undefined)
 const minAndMaxValue = ref(0)
 const clearableValue = ref(0)
 const controlValue = ref(null)
+
+const { proxy } = getCurrentInstance()! 
+const formState = ref({ value: null })
+const onSubmit = () => {
+    proxy?.$Message.info({content: `提交的数据 ${JSON.stringify(formState.value)}`})
+}
 </script>

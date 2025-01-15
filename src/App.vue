@@ -1,6 +1,13 @@
 <template>
   <div class="p-32 space-y-4">
-    <ShadcnInput v-model="input" placeholder="Input" />
+    {{formState}}
+    <ShadcnForm v-model="formState" @on-submit="onSubmit">
+      <ShadcnFormItem name="value" label="输入数据" :rules="[{ required: true, message: '请输入数据' }]">
+        <ShadcnNumber v-model="formState.value" name="value" />
+      </ShadcnFormItem>
+      <ShadcnButton submit>提交</ShadcnButton>
+    </ShadcnForm>
+
 
     <ShadcnDataTable :columns="columns"
                      :data="data"
@@ -35,7 +42,11 @@ setLocale('zh-CN')
 
 const { proxy } = getCurrentInstance()!
 
-const input = ref('')
+const formState = ref({ value: null })
+const onSubmit = () => {
+  // @ts-ignore
+  proxy?.$Message.info({content: `提交的数据 ${JSON.stringify(formState.value)}`})
+}
 
 const columns = ref([
   { key: 'index', label: '#', sortable: true, width: 50, align: 'center' },
