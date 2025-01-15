@@ -154,7 +154,7 @@ const handleSaveRowEdit = (lastEditState: RowPayload) => {
 }
 
 const handleRowClick = (rowIndex: number, _row: any) => {
-  if (props.rowSelection && editableState.isEditing(rowIndex, _row.key)) {
+  if (props.rowSelection && editableState.isEditing(rowIndex, _row.key) && !editableState.editingRowState.value) {
     props.selectionState.toggleRowSelection(rowIndex)
   }
 }

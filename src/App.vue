@@ -1,14 +1,5 @@
 <template>
   <div class="p-32 space-y-4">
-    {{formState}}
-    <ShadcnForm v-model="formState" @on-submit="onSubmit">
-      <ShadcnFormItem name="value" label="输入数据" :rules="[{ required: true, message: '请输入数据' }]">
-        <ShadcnNumber v-model="formState.value" name="value" />
-      </ShadcnFormItem>
-      <ShadcnButton submit>提交</ShadcnButton>
-    </ShadcnForm>
-
-
     <ShadcnDataTable :columns="columns"
                      :data="data"
                      height="300"
@@ -24,11 +15,6 @@
                      @on-column-move="console.log('列移动 ' + JSON.stringify($event))"
                      @on-cell-edit="onCellEdit"
                      @on-row-edit="onRowEdit">
-      <template #contextMenu="{ selectedValue }">
-        <ShadcnContextMenuItem>
-          自定义操作 {{ selectedValue.rowIndex }}
-        </ShadcnContextMenuItem>
-      </template>
     </ShadcnDataTable>
   </div>
 </template>
@@ -41,12 +27,6 @@ import TableCellSelectEditor from '@/ui/data-table/components/TableCellSelectEdi
 setLocale('zh-CN')
 
 const { proxy } = getCurrentInstance()!
-
-const formState = ref({ value: null })
-const onSubmit = () => {
-  // @ts-ignore
-  proxy?.$Message.info({content: `提交的数据 ${JSON.stringify(formState.value)}`})
-}
 
 const columns = ref([
   { key: 'index', label: '#', sortable: true, width: 50, align: 'center' },
