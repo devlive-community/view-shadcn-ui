@@ -1,6 +1,6 @@
 import * as monaco from 'monaco-editor'
 import { t } from '@/utils/locale'
-import { CodeEditorAutoCompleteProps } from '../types.ts'
+import { CodeEditorAutoCompleteEndpoint, CodeEditorAutoCompleteProps } from '../types.ts'
 import { createApp, h } from 'vue'
 import { debounce } from 'lodash'
 
@@ -12,6 +12,11 @@ export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEdito
     if (!config.endpoint) {
         throw new Error(t('codeEditor.validated.endpoint'))
     }
+
+    // 转换 endpoint 配置为统一格式
+    const endpoints: CodeEditorAutoCompleteEndpoint[] = Array.isArray(config.endpoint)
+        ? config.endpoint.map(ep => typeof ep === 'string' ? { url: ep } : ep)
+        : [typeof config.endpoint === 'string' ? { url: config.endpoint } : config.endpoint]
 
     if (!config.transform) {
         throw new Error(t('codeEditor.validated.transform'))
@@ -133,28 +138,98 @@ export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEdito
     let currentWord = ''
 
     // 创建防抖的请求和处理函数
+    const fetchEndpoint = async (
+        endpoint: CodeEditorAutoCompleteEndpoint,
+        context: any,
+        controller: AbortController
+    ) => {
+        let url = endpoint.url
+
+        if (config.requestParams) {
+            const params = new URLSearchParams(config.requestParams(context))
+            url = `${ url }${ url.includes('?') ? '&' : '?' }${ params.toString() }`
+        }
+
+        const options: RequestInit = {
+            method: endpoint.method || config.method || 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                ...config.headers,
+                ...endpoint.headers
+            },
+            signal: controller.signal
+        }
+
+        if (config.requestBody) {
+            options.body = JSON.stringify(config.requestBody(context))
+        }
+
+        // 检查缓存
+        const cacheKey = JSON.stringify({ url, body: options.body })
+        const cachedData = suggestionCache.get(url, cacheKey)
+        if (cachedData) {
+            return endpoint.transform ? endpoint.transform(cachedData) : cachedData
+        }
+
+        const response = await fetch(url, options)
+        const data = await response.json()
+        suggestionCache.set(url, cacheKey, data)
+        return endpoint.transform ? endpoint.transform(data) : data
+    }
+
     const debouncedFetch = debounce(async (
-        url: string,
-        options: RequestInit,
+        context: any,
         onSuccess: (data: any) => void,
         onError: (error: any) => void
     ) => {
-        try {
-            // 检查缓存
-            const cachedData = suggestionCache.get(url, options.body)
-            if (cachedData) {
-                console.debug('读取缓冲数据')
-                onSuccess(cachedData)
-                return
-            }
+        const controller = new AbortController()
+        const timeoutId = setTimeout(() => controller.abort(), config.timeout)
 
-            const response = await fetch(url, options)
-            const data = await response.json()
-            // 存入缓存
-            suggestionCache.set(url, options.body, data)
-            onSuccess(data)
+        try {
+            let hasError = false
+            const results = await Promise.all(
+                endpoints.map(endpoint =>
+                    fetchEndpoint(endpoint, context, controller)
+                        .catch(error => {
+                            hasError = true
+                            console.error(`Error fetching from ${ endpoint.url }:`, error)
+
+                            // 显示错误信息
+                            loadingContainer.style.display = 'none'
+                            if (error.name === 'AbortError') {
+                                suggestionsList.innerHTML = `<li class="px-3 py-2 text-red-500 select-none">Request timeout after ${ config.timeout }ms</li>`
+                            }
+                            else {
+                                suggestionsList.innerHTML = `<li class="px-3 py-2 text-red-500 select-none">${ error.message }</li>`
+                            }
+                            suggestionsList.style.display = 'block'
+
+                            return []
+                        })
+                )
+            )
+
+            clearTimeout(timeoutId)
+
+            // 只有在没有错误的情况下才处理结果
+            if (!hasError) {
+                const flattenedResults = results.flat()
+                const transformedResults = (config as any).transform(flattenedResults)
+                onSuccess(transformedResults)
+            }
         }
-        catch (error) {
+        catch (error: any) {
+            clearTimeout(timeoutId)
+
+            loadingContainer.style.display = 'none'
+            if (error.name === 'AbortError') {
+                suggestionsList.innerHTML = `<li class="px-3 py-2 text-red-500 select-none">Request timeout after ${ config.timeout }ms</li>`
+            }
+            else {
+                suggestionsList.innerHTML = `<li class="px-3 py-2 text-red-500 select-none">${ error.message }</li>`
+            }
+            suggestionsList.style.display = 'block'
+
             onError(error)
         }
     }, config.debounceTime || 500)
@@ -238,33 +313,11 @@ export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEdito
                     word: word.word
                 }
 
-                let url = config.endpoint
-                if (config.requestParams) {
-                    const params = new URLSearchParams(config.requestParams(context))
-                    url = `${ url }${ url.includes('?') ? '&' : '?' }${ params.toString() }`
-                }
-
-                const controller = new AbortController()
-                const timeoutId = setTimeout(() => controller.abort(), config.timeout)
-
-                const options: RequestInit = {
-                    method: config.method || 'POST',
-                    headers: { 'Content-Type': 'application/json', ...config.headers },
-                    signal: controller.signal
-                }
-
-                if (config.requestBody) {
-                    options.body = JSON.stringify(config.requestBody(context))
-                }
-
                 await new Promise((resolve, reject) => {
                     debouncedFetch(
-                        url,
-                        options,
-                        (data) => {
-                            clearTimeout(timeoutId)
-                            const suggestions = config.transform ? config.transform(data) : data
-                            const limitedSuggestions = suggestions?.slice(0, config.maxSuggestions)
+                        context,
+                        (suggestions) => {
+                            const limitedSuggestions = suggestions.slice(0, config.maxSuggestions)
 
                             // 更新建议列表
                             currentTooltipCleanups.forEach(cleanup => cleanup())
@@ -305,22 +358,9 @@ export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEdito
 
                             loadingContainer.style.display = 'none'
                             suggestionsList.style.display = 'block'
-                            resolve(data)
+                            resolve(suggestions)
                         },
                         (error) => {
-                            clearTimeout(timeoutId)
-                            if (error.name === 'AbortError') {
-                                console.error('Request timeout:', config.timeout + 'ms')
-                                loadingContainer.style.display = 'none'
-                                suggestionsList.innerHTML = `<li class="suggestion-item px-3 py-2 text-red-500 select-none">Request timeout after ${ config.timeout }ms</li>`
-                                suggestionsList.style.display = 'block'
-                            }
-                            else {
-                                loadingContainer.style.display = 'none'
-                                suggestionsList.innerHTML = `<li class="suggestion-item px-3 py-2 text-red-500 select-none">${ error.message }</li>`
-                                suggestionsList.style.display = 'block'
-                                currentTooltipCleanups.forEach(cleanup => cleanup())
-                            }
                             reject(error)
                         }
                     )
