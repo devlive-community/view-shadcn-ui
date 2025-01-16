@@ -5,6 +5,7 @@ import { createApp, h } from 'vue'
 import { debounce } from 'lodash'
 
 import ShadcnIcon from '@/ui/icon'
+import { SuggestionCache } from '@/ui/code-editor/utils/cache.ts'
 
 export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEditor, config: CodeEditorAutoCompleteProps)
 {
@@ -113,13 +114,16 @@ export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEdito
         }
     })
 
-    let isTyping = false
+    // 创建缓存实例
+    const suggestionCache = new SuggestionCache(config.cacheTime || 30000) // 默认30秒
+    // 定期清理过期缓存
+    const cleanupInterval = setInterval(() => suggestionCache.cleanup(), 60000) // 每分钟清理一次
 
+    let isTyping = false
     // 添加输入状态检查函数
     const checkInputState = debounce(() => {
         isTyping = false
     }, config.debounceTime || 500)
-
     // 添加输入事件监听
     editor.onKeyUp(() => {
         isTyping = true
@@ -136,8 +140,18 @@ export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEdito
         onError: (error: any) => void
     ) => {
         try {
+            // 检查缓存
+            const cachedData = suggestionCache.get(url, options.body)
+            if (cachedData) {
+                console.debug('读取缓冲数据')
+                onSuccess(cachedData)
+                return
+            }
+
             const response = await fetch(url, options)
             const data = await response.json()
+            // 存入缓存
+            suggestionCache.set(url, options.body, data)
             onSuccess(data)
         }
         catch (error) {
@@ -348,6 +362,7 @@ export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEdito
             disposable.dispose()
             currentTooltipCleanups.forEach(cleanup => cleanup())
             document.removeEventListener('click', handleClickOutside)
+            clearInterval(cleanupInterval) // 清理定时器
         }
     }
 }
