@@ -329,6 +329,29 @@ export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEdito
                                 limitedSuggestions.forEach((item: any, index: number) => {
                                     const { element: li, cleanup } = createSuggestionItem(item, index)
                                     currentTooltipCleanups.push(cleanup)
+
+                                    li.addEventListener('mousedown', (event) => {
+                                        event.preventDefault()
+                                        event.stopPropagation()
+
+                                        const text = item.insertText || item.label
+                                        const position = editor.getPosition()
+                                        if (position) {
+                                            editor.executeEdits('completion', [
+                                                {
+                                                    range: new monaco.Range(
+                                                        position.lineNumber,
+                                                        position.column - currentWord.length,
+                                                        position.lineNumber,
+                                                        position.column
+                                                    ),
+                                                    text: text
+                                                }
+                                            ])
+                                        }
+                                        completionContainer.style.display = 'none'
+                                    })
+
                                     suggestionsList.appendChild(li)
                                 })
                             }
