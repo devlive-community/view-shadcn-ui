@@ -38,7 +38,6 @@ yarn add view-shadcn-ui
 ```ts
 import { createApp } from 'vue'
 import App from './App.vue'
-
 import ViewShadcnUI from 'view-shadcn-ui'
 
 const app = createApp(App)
