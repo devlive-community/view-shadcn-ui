@@ -162,7 +162,9 @@ watch(() => props.selectedValues, (newValues) => {
     return isParentOfSelected(props.node, value)
   })
 
-  if (shouldExpand || props.selectedValues.includes(props.node.value)) {
+  // 不是懒加载节点才自动展开
+  if ((shouldExpand || props.selectedValues.includes(props.node.value))
+      && !(props.node.isLeaf === false && !hasChildren.value && props.loadData)) {
     isExpanded.value = true
   }
 }, { immediate: true })
