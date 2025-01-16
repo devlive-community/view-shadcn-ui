@@ -29,3 +29,5 @@ src/views/pages/components/ExampleHome.vue
 depcheck-output.json
 .npm
 Library
+package.json
+package-lock.json
