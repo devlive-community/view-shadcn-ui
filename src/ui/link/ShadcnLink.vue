@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full cursor-pointer">
+  <div class="w-fit cursor-pointer">
     <a v-if="external" class="block w-full cursor-pointer"
        :href="String(link)"
        :target="target">

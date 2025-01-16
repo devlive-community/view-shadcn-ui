@@ -1,5 +1,26 @@
 <template>
   <div class="p-32 space-y-4">
+    <ShadcnCodeEditor :auto-complete-config="{
+                          endpoint: 'http://jsonplaceholder.typicode.com/posts',
+                          method: 'GET',
+                          trigger: ['.', '@'],
+                          transform: (data: any) => {
+                            return data.map((item: any) => ({
+                              label: item.title,
+                              insertText: item.body,
+                              detail: item.title
+                            }))
+                          },
+                          // requestParams: (context) => ({
+                          //     word: context.word,
+                          //     line: context.position.lineNumber.toString()
+                          // }),
+                          // requestBody: (context) => ({
+                          //     code: context.modelValue,
+                          //     position: context.position
+                          // })
+                        }"/>
+
     <ShadcnDataTable :columns="columns"
                      :data="data"
                      height="300"

@@ -18,6 +18,8 @@ export interface CodeEditorAutoCompleteProps
     requestParams?: (context: CodeEditorAutoCompleteParams) => URLSearchParams;
     maxSuggestions?: number
     timeout?: number
+    debounceTime?: number // 访问服务的间隔时间（毫秒）
+    cacheTime?: number // 缓存时间（毫秒）
 }
 
 export interface CodeEditorContextMenuItem
