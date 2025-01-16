@@ -18,6 +18,7 @@ export interface CodeEditorAutoCompleteProps
     requestParams?: (context: CodeEditorAutoCompleteParams) => URLSearchParams;
     maxSuggestions?: number
     timeout?: number
+    debounceTime?: number
 }
 
 export interface CodeEditorContextMenuItem

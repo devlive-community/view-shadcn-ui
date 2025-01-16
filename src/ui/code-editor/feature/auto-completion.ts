@@ -2,6 +2,7 @@ import * as monaco from 'monaco-editor'
 import { t } from '@/utils/locale'
 import { CodeEditorAutoCompleteProps } from '../types.ts'
 import { createApp, h } from 'vue'
+import { debounce } from 'lodash'
 
 import ShadcnIcon from '@/ui/icon'
 
@@ -19,13 +20,11 @@ export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEdito
     config.timeout = config.timeout || 5000
 
     // 创建提示框容器
-    // Create the completion container
     const completionContainer = document.createElement('div')
     completionContainer.className = 'fixed z-50 max-w-[300px] bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden'
     completionContainer.style.display = 'none'
 
     // 创建加载状态
-    // Create the loading state
     const loadingContainer = document.createElement('div')
     loadingContainer.className = 'p-2 flex items-center gap-2'
 
@@ -40,7 +39,6 @@ export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEdito
     loadingContainer.appendChild(loadingText)
 
     // 创建建议列表容器
-    // Create the suggestions list container
     const suggestionsList = document.createElement('ul')
     suggestionsList.className = 'max-h-60 overflow-y-auto w-full'
 
@@ -50,7 +48,6 @@ export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEdito
     editor.getContainerDomNode().appendChild(completionContainer)
 
     // 处理建议项的选中状态
-    // Handle the selected state of suggestions
     let selectedIndex = 0
 
     function updateSelectedItem()
@@ -59,8 +56,6 @@ export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEdito
         items.forEach((item, index) => {
             if (index === selectedIndex) {
                 item.classList.add('bg-blue-50')
-                // 确保选中项在视图中可见
-                // Ensure selected item is visible in view
                 item.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
             }
             else {
@@ -70,11 +65,9 @@ export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEdito
     }
 
     // 保存所有提示项的清理函数
-    // Save cleanup functions for all tooltips
     let currentTooltipCleanups: (() => void)[] = []
 
     // 键盘导航处理
-    // Keyboard navigation
     editor.onKeyDown((e) => {
         if (completionContainer.style.display === 'none') {
             return
@@ -120,7 +113,37 @@ export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEdito
         }
     })
 
+    let isTyping = false
+
+    // 添加输入状态检查函数
+    const checkInputState = debounce(() => {
+        isTyping = false
+    }, config.debounceTime || 500)
+
+    // 添加输入事件监听
+    editor.onKeyUp(() => {
+        isTyping = true
+        checkInputState()
+    })
+
     let currentWord = ''
+
+    // 创建防抖的请求和处理函数
+    const debouncedFetch = debounce(async (
+        url: string,
+        options: RequestInit,
+        onSuccess: (data: any) => void,
+        onError: (error: any) => void
+    ) => {
+        try {
+            const response = await fetch(url, options)
+            const data = await response.json()
+            onSuccess(data)
+        }
+        catch (error) {
+            onError(error)
+        }
+    }, config.debounceTime || 500)
 
     const disposable = monaco.languages.registerCompletionItemProvider(editor.getModel()!.getLanguageId(), {
         triggerCharacters: config.trigger || ['.'],
@@ -128,83 +151,67 @@ export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEdito
         async provideCompletionItems(model, position)
         {
             try {
+                // 如果正在输入，直接返回空建议
+                if (isTyping) {
+                    return { suggestions: [] }
+                }
+
                 const editorDom = editor.getDomNode()
                 if (!editorDom) {
                     return { suggestions: [] }
                 }
 
                 // 显示加载状态
-                // Show loading state
                 loadingContainer.style.display = 'flex'
                 suggestionsList.style.display = 'none'
                 completionContainer.style.display = 'block'
 
                 // 获取编辑器视口和内容的信息
-                // Get editor viewport and content information
                 const editorRect = editorDom.getBoundingClientRect()
                 const viewportColumn = position.column
                 const viewportLine = position.lineNumber
 
                 // 获取光标在视口中的坐标
-                // Get cursor coordinates in viewport
                 const cursorCoords = editor.getScrolledVisiblePosition({
                     lineNumber: viewportLine,
                     column: viewportColumn
                 }) as any
 
                 // 计算容器尺寸
-                // Calculate container dimensions
                 const containerWidth = completionContainer.offsetWidth || 300
                 const containerHeight = completionContainer.offsetHeight || 200
 
                 // 基础位置计算
-                // Base position calculation
                 let leftPos = editorRect.left + cursorCoords.left
                 let topPos = editorRect.top + cursorCoords.top + 20
 
                 // 获取视窗尺寸
-                // Get viewport dimensions
                 const viewportWidth = window.innerWidth
                 const viewportHeight = window.innerHeight
 
                 // 边界检查和调整 - 水平方向
-                // Boundary check and adjustment - horizontal
                 if (leftPos + containerWidth > viewportWidth - 20) {
-                    // 如果右边超出，尝试显示在左边
-                    // If right is out of bounds, try to show it on the left
                     leftPos = leftPos - containerWidth
-                    // 如果左边也显示不下，就贴着左边缘显示
-                    // If left is also not visible, show it on the left edge
                     if (leftPos < 20) {
                         leftPos = 20
                     }
                 }
-                // 确保不会超出左边界
-                // Ensure left boundary is not exceeded
                 if (leftPos < 20) {
                     leftPos = 20
                 }
 
                 // 边界检查和调整 - 垂直方向
-                // Boundary check and adjustment - vertical
                 if (topPos + containerHeight > viewportHeight - 20) {
-                    // 如果底部超出，显示在光标上方
-                    // If bottom is out of bounds, show it above the cursor
                     topPos = editorRect.top + cursorCoords.top - containerHeight - 10
-                    // 如果上方也显示不下，就贴着顶部显示
-                    // If top is also not visible, show it at the top
                     if (topPos < 20) {
                         topPos = 20
                     }
                 }
-                // 确保不会超出顶部边界
-                // Ensure top boundary is not exceeded
                 if (topPos < 20) {
                     topPos = 20
                 }
 
                 // 应用计算后的位置
-                // Apply calculated position
                 completionContainer.style.left = `${ leftPos }px`
                 completionContainer.style.top = `${ topPos }px`
 
@@ -223,7 +230,6 @@ export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEdito
                     url = `${ url }${ url.includes('?') ? '&' : '?' }${ params.toString() }`
                 }
 
-                let data
                 const controller = new AbortController()
                 const timeoutId = setTimeout(() => controller.abort(), config.timeout)
 
@@ -237,71 +243,74 @@ export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEdito
                     options.body = JSON.stringify(config.requestBody(context))
                 }
 
-                try {
-                    const response = await fetch(url, options)
-                    clearTimeout(timeoutId)
-                    data = await response.json()
-                }
-                catch (error: any) {
-                    clearTimeout(timeoutId)
-                    if (error.name === 'AbortError') {
-                        console.error('Request timeout:', config.timeout + 'ms')
-                        loadingContainer.style.display = 'none'
-                        suggestionsList.innerHTML = `<li class="suggestion-item px-3 py-2 text-red-500 select-none">Request timeout after ${ config.timeout }ms</li>`
-                        suggestionsList.style.display = 'block'
-                        return { suggestions: [] }
-                    }
+                await new Promise((resolve, reject) => {
+                    debouncedFetch(
+                        url,
+                        options,
+                        (data) => {
+                            clearTimeout(timeoutId)
+                            const suggestions = config.transform ? config.transform(data) : data
+                            const limitedSuggestions = suggestions?.slice(0, config.maxSuggestions)
 
-                    loadingContainer.style.display = 'none'
-                    suggestionsList.innerHTML = `<li class="suggestion-item px-3 py-2 text-red-500 select-none">${ error.message }</li>`
-                    suggestionsList.style.display = 'block'
-                    currentTooltipCleanups.forEach(cleanup => cleanup())
-                    return { suggestions: [] }
-                }
+                            // 更新建议列表
+                            currentTooltipCleanups.forEach(cleanup => cleanup())
+                            currentTooltipCleanups = []
+                            suggestionsList.innerHTML = ''
+                            selectedIndex = 0
 
-                const suggestions = config.transform ? config.transform(data) : data
-                const limitedSuggestions = suggestions?.slice(0, config.maxSuggestions)
+                            if (limitedSuggestions && limitedSuggestions.length > 0) {
+                                limitedSuggestions.forEach((item: any, index: number) => {
+                                    const { element: li, cleanup } = createSuggestionItem(item, index)
+                                    currentTooltipCleanups.push(cleanup)
 
-                // 更新建议列表
-                // Update suggestions list
-                currentTooltipCleanups.forEach(cleanup => cleanup())
-                currentTooltipCleanups = []
-                suggestionsList.innerHTML = ''
-                selectedIndex = 0
+                                    li.addEventListener('mousedown', (event) => {
+                                        event.preventDefault()
+                                        event.stopPropagation()
 
-                if (limitedSuggestions && limitedSuggestions.length > 0) {
-                    limitedSuggestions.forEach((item: any, index: number) => {
-                        const { element: li, cleanup } = createSuggestionItem(item, index)
-                        currentTooltipCleanups.push(cleanup)
+                                        const text = item.insertText || item.label
+                                        const position = editor.getPosition()
+                                        if (position) {
+                                            editor.executeEdits('completion', [
+                                                {
+                                                    range: new monaco.Range(
+                                                        position.lineNumber,
+                                                        position.column - currentWord.length,
+                                                        position.lineNumber,
+                                                        position.column
+                                                    ),
+                                                    text: text
+                                                }
+                                            ])
+                                        }
+                                        completionContainer.style.display = 'none'
+                                    })
 
-                        li.addEventListener('mousedown', (event) => {
-                            event.preventDefault()
-                            event.stopPropagation()
-
-                            const text = item.insertText || item.label
-                            const position = editor.getPosition()
-                            if (position) {
-                                editor.executeEdits('completion', [
-                                    {
-                                        range: new monaco.Range(
-                                            position.lineNumber,
-                                            position.column - currentWord.length,
-                                            position.lineNumber,
-                                            position.column
-                                        ),
-                                        text: text
-                                    }
-                                ])
+                                    suggestionsList.appendChild(li)
+                                })
                             }
-                            completionContainer.style.display = 'none'
-                        })
 
-                        suggestionsList.appendChild(li)
-                    })
-                }
-
-                loadingContainer.style.display = 'none'
-                suggestionsList.style.display = 'block'
+                            loadingContainer.style.display = 'none'
+                            suggestionsList.style.display = 'block'
+                            resolve(data)
+                        },
+                        (error) => {
+                            clearTimeout(timeoutId)
+                            if (error.name === 'AbortError') {
+                                console.error('Request timeout:', config.timeout + 'ms')
+                                loadingContainer.style.display = 'none'
+                                suggestionsList.innerHTML = `<li class="suggestion-item px-3 py-2 text-red-500 select-none">Request timeout after ${ config.timeout }ms</li>`
+                                suggestionsList.style.display = 'block'
+                            }
+                            else {
+                                loadingContainer.style.display = 'none'
+                                suggestionsList.innerHTML = `<li class="suggestion-item px-3 py-2 text-red-500 select-none">${ error.message }</li>`
+                                suggestionsList.style.display = 'block'
+                                currentTooltipCleanups.forEach(cleanup => cleanup())
+                            }
+                            reject(error)
+                        }
+                    )
+                })
 
                 return { suggestions: [] }
             }
@@ -316,25 +325,17 @@ export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEdito
     })
 
     // 点击编辑器其他地方时隐藏提示框
-    // Hide the completion container when clicking elsewhere
     editor.onDidChangeCursorPosition(() => {
         completionContainer.style.display = 'none'
     })
 
     // 添加点击外部关闭事件
-    // Add click outside event to close
     const handleClickOutside = (event: MouseEvent) => {
         if (
-            // 只在提示框显示时处理
-            // Process only when the completion container is displayed
             completionContainer.style.display !== 'none' &&
-            // 点击不在提示框内
-            // Click outside the completion container
             !completionContainer.contains(event.target as Node)
         ) {
             completionContainer.style.display = 'none'
-            // 清理当前所有的 tooltips
-            // Clean up all tooltips
             currentTooltipCleanups.forEach(cleanup => cleanup())
         }
     }
@@ -345,18 +346,13 @@ export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEdito
         dispose: () => {
             completionContainer.remove()
             disposable.dispose()
-            // 清理所有 tooltips
-            // Clean up all tooltips
             currentTooltipCleanups.forEach(cleanup => cleanup())
-            // 移除点击事件监听
-            // Remove click event listener
             document.removeEventListener('click', handleClickOutside)
         }
     }
 }
 
 // 创建 tooltip
-// Create tooltip
 function createTooltip(text: string)
 {
     const tooltip = document.createElement('div')
@@ -366,7 +362,6 @@ function createTooltip(text: string)
 }
 
 // 创建图标元素
-// Create icon element
 function createIconElement(iconName: string = 'Command')
 {
     const iconContainer = document.createElement('div')
@@ -392,7 +387,6 @@ function createIconElement(iconName: string = 'Command')
 }
 
 // 创建建议项
-// Create suggestion item
 function createSuggestionItem(item: any, index: number)
 {
     const li = document.createElement('li')
@@ -402,38 +396,31 @@ function createSuggestionItem(item: any, index: number)
     }
 
     // 创建图标
-    // Create icon
     const { element: iconElement, cleanup: cleanupIcon } = createIconElement(item.icon || 'Command')
 
     // 创建内容容器
-    // Create content wrapper
     const contentWrapper = document.createElement('div')
     contentWrapper.className = 'flex-1 min-w-0'
 
     // 创建文本内容
-    // Create text content
     const content = document.createElement('span')
     content.className = 'block truncate text-sm text-gray-700'
     content.textContent = item.label
 
     // 创建 tooltip
-    // Create tooltip
     const tooltip = createTooltip(item.label)
     document.body.appendChild(tooltip)
     tooltip.className += ' transition-opacity duration-200 opacity-0'
 
     // 组装
-    // Assembly
     contentWrapper.appendChild(content)
     li.appendChild(iconElement)
     li.appendChild(contentWrapper)
 
     // 存储插入文本
-    // Store insert text
     li.dataset.insertText = item.insertText || item.label
 
     // 处理鼠标事件来定位 tooltip
-    // Handle mouse events for tooltip positioning
     li.addEventListener('mouseenter', () => {
         const liRect = li.getBoundingClientRect()
         tooltip.style.display = 'block'
