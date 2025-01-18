@@ -1,41 +1,17 @@
 <template>
   <div class="p-32">
-    <ShadcnCheckbox :modelValue="checkAll"
-                    :value="true"
-                    :indeterminate="isIndeterminate"
-                    @update:modelValue="onCheckAllChange">全选
-    </ShadcnCheckbox>
+    <ShadcnSwitch v-model="value">
+    </ShadcnSwitch>
 
-    <ShadcnDivider/>
-
-    <ShadcnCheckboxGroup v-model="checkedGroup">
-      <ShadcnCheckbox value="Vue">Vue</ShadcnCheckbox>
-      <ShadcnCheckbox value="Nuxt">Nuxt</ShadcnCheckbox>
-    </ShadcnCheckboxGroup>
+    <ShadcnSwitch v-model="value">
+      <template #open>我是左面很长的一段信息</template>
+      <template #close>我是右面很长的一段信息</template>
+    </ShadcnSwitch>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 
-// 所有选项
-const options = ['Vue', 'Nuxt']
-
-// 选中的值
-const checkedGroup = ref<string[]>([])
-
-// 全选状态
-const checkAll = computed(() => {
-  return checkedGroup.value.length === options.length
-})
-
-// 计算半选状态
-const isIndeterminate = computed(() => {
-  return checkedGroup.value.length > 0 && checkedGroup.value.length < options.length
-})
-
-// 全选/取消全选处理
-const onCheckAllChange = (checked: boolean) => {
-  checkedGroup.value = checked ? [...options] : []
-}
+const value = ref(null)
 </script>

@@ -1,6 +1,6 @@
 <template>
-  <div :class="['relative inline-flex items-center',
-                Size[size],
+  <div :class="[
+                'relative inline-flex items-center',
                 {
                   'cursor-pointer': !disabled,
                   'cursor-not-allowed opacity-50': disabled
@@ -9,45 +9,50 @@
        @click="toggleSwitch">
 
     <!-- Switch track -->
-    <div :class="['relative w-full flex items-center justify-between',
-                  Size[size]
+    <div :class="['relative flex items-center justify-between rounded-full transition-colors duration-300',
+                  {
+                    'pr-1': !isActive,
+                    'pl-1': isActive
+                  },
+                  Size[size],
+                  {
+                    'bg-blue-400': type === 'primary' && isActive,
+                    'bg-green-400': type === 'success' && isActive,
+                    'bg-yellow-400': type === 'warning' && isActive,
+                    'bg-red-400': type === 'error' && isActive,
+                    'bg-gray-300': !isActive
+                  }
                 ]">
-
-      <div v-if="$slots.close && isActive" class="absolute left-0 pl-1.5 text-white text-xs z-10">
-        <slot name="close"/>
-      </div>
-
-      <div :class="['absolute w-full h-full rounded-full transition-colors duration-300',
-                    {
-                      'bg-blue-400': type === 'primary' && isActive,
-                      'bg-green-400': type === 'success' && isActive,
-                      'bg-yellow-400': type === 'warning' && isActive,
-                      'bg-red-400': type === 'error' && isActive,
-                      'bg-gray-300': !isActive
-                    }
-                  ]">
-      </div>
-
-      <div v-if="$slots.open && !isActive" class="absolute right-0 pr-1.5 text-white text-xs">
+      <!-- Open text -->
+      <div v-if="$slots.open && !isActive"
+           class="ml-6 text-white text-xs whitespace-nowrap"
+           :class="TextSize[size]">
         <slot name="open"/>
       </div>
 
+      <!-- Close text -->
+      <div v-if="$slots.close && isActive"
+           class="mr-6 text-white text-xs whitespace-nowrap ml-auto"
+           :class="TextSize[size]">
+        <slot name="close"/>
+      </div>
+
       <!-- Switch toggle -->
-      <div :class="['absolute h-full bg-white rounded-full transition-all duration-300',
+      <div :class="['absolute bg-white rounded-full transition-all duration-300',
                     ToggleSize[size],
                     {
-                      'left-0': !isActive,
-                      'right-0': isActive
+                      'left-0.5': !isActive,
+                      'right-0.5': isActive
                     }
                   ]">
       </div>
-
-      <!-- Hidden checkbox for accessibility -->
-      <input type="checkbox"
-             class="sr-only"
-             :checked="isActive"
-             @change="onChange"/>
     </div>
+
+    <!-- Hidden checkbox for accessibility -->
+    <input type="checkbox"
+           class="sr-only"
+           :checked="isActive"
+           @change="onChange"/>
   </div>
 </template>
 
@@ -56,17 +61,22 @@ import { computed } from 'vue'
 
 const emit = defineEmits(['update:modelValue', 'on-change'])
 
-enum Size
-{
-  small = 'w-10 h-5',
-  default = 'w-14 h-6',
-  large = 'w-20 h-8'
+enum Size {
+  small = 'h-5 min-w-[2.5rem]',
+  default = 'h-6 min-w-[3.5rem]',
+  large = 'h-8 min-w-[5rem]'
 }
 
 const ToggleSize = {
-  small: 'w-5 h-4',
-  default: 'w-6 h-6',
-  large: 'w-8 h-6'
+  small: 'w-4 h-4',
+  default: 'w-5 h-5',
+  large: 'w-7 h-7'
+}
+
+const TextSize = {
+  small: 'text-xs',
+  default: 'text-sm',
+  large: 'text-base'
 }
 
 const props = withDefaults(defineProps<{
