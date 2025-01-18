@@ -1,6 +1,6 @@
 <template>
   <div :class="[
-                'inline-flex items-center',
+                'inline-flex items-center w-fit',
                 {
                   'cursor-pointer': !disabled,
                   'cursor-not-allowed opacity-50': disabled
@@ -17,13 +17,24 @@
     <div :class="['flex items-center justify-center rounded border transition-colors duration-300',
                   Size[size],
                   {
-                    'bg-blue-400': type === 'primary' && isChecked,
-                    'bg-green-400': type === 'success' && isChecked,
-                    'bg-yellow-400': type === 'warning' && isChecked,
-                    'bg-red-400': type === 'error' && isChecked,
-                    'bg-white': !isChecked
+                    'bg-blue-400': type === 'primary' && (isChecked || indeterminate),
+                    'bg-green-400': type === 'success' && (isChecked || indeterminate),
+                    'bg-yellow-400': type === 'warning' && (isChecked || indeterminate),
+                    'bg-red-400': type === 'error' && (isChecked || indeterminate),
+                    'bg-white': !isChecked && !indeterminate
                   }]">
-      <svg v-if="isChecked"
+      <svg v-if="indeterminate"
+           xmlns="http://www.w3.org/2000/svg"
+           fill="none"
+           viewBox="0 0 24 24"
+           stroke="currentColor"
+           :class="['text-white', ToggleSize[size]]">
+        <path stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 12h14"/>
+      </svg>
+      <svg v-else-if="isChecked"
            xmlns="http://www.w3.org/2000/svg"
            fill="none"
            viewBox="0 0 24 24"
@@ -70,12 +81,14 @@ const props = withDefaults(defineProps<{
   value?: any,
   disabled?: boolean,
   size?: keyof typeof Size,
-  type?: 'primary' | 'success' | 'warning' | 'error'
+  type?: 'primary' | 'success' | 'warning' | 'error',
+  indeterminate?: boolean
 }>(), {
   modelValue: null,
   disabled: false,
   size: 'default',
-  type: 'primary'
+  type: 'primary',
+  indeterminate: false
 })
 
 // Get the checkboxGroup data

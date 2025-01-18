@@ -140,20 +140,40 @@ const checkedGroup = ref(['Vue'])
 
 :::
 
+## 全选 / 半选 (indeterminate)
+
+::: raw
+
+<CodeRunner title="全选 / 半选 (indeterminate)" codeKey="checkbox-indeterminate">
+    <ShadcnCheckbox :modelValue="checkAll"
+                    :value="true"
+                    :indeterminate="isIndeterminate"
+                    @update:modelValue="onCheckAllChange">全选
+    </ShadcnCheckbox>
+    <ShadcnDivider/>
+    <ShadcnCheckboxGroup v-model="checkedGroup">
+      <ShadcnCheckbox value="Vue">Vue</ShadcnCheckbox>
+      <ShadcnCheckbox value="Nuxt">Nuxt</ShadcnCheckbox>
+    </ShadcnCheckboxGroup>
+</CodeRunner>
+
+:::
+
 ## 复选框 (Checkbox) 属性
 
 <ApiTable title="复选框 (Checkbox) 属性"
-    :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
+    :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['modelValue', '当前组件的值', 'any', '-', '-', '-'],
-        ['value', '组件项的值', 'any', '-', '-', '-'],
-        ['disabled', '是否为禁用', 'boolean', 'false', '-', '-'],
-        ['size', '组件的尺寸', 'enum', 'default', '-', 'small | default | large'],
-        ['type', '组件的类型', 'enum', 'primary', '-', 'primary | success | warning | error'],
+        ['modelValue', '当前组件的值', 'any', '-', '-'],
+        ['value', '组件项的值', 'any', '-', '-'],
+        ['disabled', '是否为禁用', 'boolean', 'false', '-'],
+        ['size', '组件的尺寸', 'enum', 'default', 'small | default | large'],
+        ['type', '组件的类型', 'enum', 'primary', 'primary | success | warning | error'],
+        ['indeterminate', '是否为半选/全选', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
-## 复选框组 (Checkbox Group) 属性
+<br />
 
 <ApiTable title="复选框组 (Checkbox Group) 属性"
     :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
@@ -171,7 +191,7 @@ const checkedGroup = ref(['Vue'])
     ]">
 </ApiTable>
 
-## 复选框组 (Checkbox Group) 事件
+<br />
 
 <ApiTable title="复选框组 (Checkbox Group) 事件"
     :headers="['事件', '描述', '回调参数']"
@@ -191,8 +211,26 @@ const checkedGroup = ref(['Vue'])
 </ApiTable>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 const checked = ref('Vue')
 const checkedGroup = ref(['Vue'])
+
+// 所有选项
+const options = ['Vue', 'Nuxt']
+
+// 全选状态
+const checkAll = computed(() => {
+  return checkedGroup.value.length === options.length
+})
+
+// 计算半选状态
+const isIndeterminate = computed(() => {
+  return checkedGroup.value.length > 0 && checkedGroup.value.length < options.length
+})
+
+// 全选/取消全选处理
+const onCheckAllChange = (checked: boolean) => {
+  checkedGroup.value = checked ? [...options] : []
+}
 </script>

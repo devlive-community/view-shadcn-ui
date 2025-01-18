@@ -87,7 +87,7 @@ const initEditor = () => {
     acceptSuggestionOnEnter: 'off',
     hover: {
       enabled: false
-    },
+    }
   }
 
   editor = monaco.editor.create(editorContainer.value, options)
