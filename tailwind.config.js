@@ -85,12 +85,16 @@ module.exports = {
                     to: {height: 0},
                 },
                 'slide-down': {
-                    '0%': { transform: 'translate(-50%, -100%)', opacity: '0' },
-                    '100%': { transform: 'translate(-50%, 0)', opacity: '1' }
+                    '0%': {transform: 'translate(-50%, -100%)', opacity: '0'},
+                    '100%': {transform: 'translate(-50%, 0)', opacity: '1'}
                 },
                 'slide-up': {
-                    '0%': { transform: 'translate(-50%, 0)', opacity: '1' },
-                    '100%': { transform: 'translate(-50%, -100%)', opacity: '0' }
+                    '0%': {transform: 'translate(-50%, 0)', opacity: '1'},
+                    '100%': {transform: 'translate(-50%, -100%)', opacity: '0'}
+                },
+                'marquee': {
+                    '0%': {transform: 'translateX(100%)'},
+                    '100%': {transform: 'translateX(-100%)'}
                 }
             },
             animation: {
@@ -99,7 +103,8 @@ module.exports = {
                 "collapsible-down": "collapsible-down 0.2s ease-in-out",
                 "collapsible-up": "collapsible-up 0.2s ease-in-out",
                 'slide-down': 'slide-down 0.3s ease-out forwards',
-                'slide-up': 'slide-up 0.3s ease-in forwards'
+                'slide-up': 'slide-up 0.3s ease-in forwards',
+                'marquee': 'marquee linear'
             },
             boxShadow: {
                 'left-side': 'inset -8px 0 6px -6px rgba(0, 0, 0, 0.15)',
