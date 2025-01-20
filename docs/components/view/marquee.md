@@ -32,12 +32,25 @@ title: 跑马灯 (Marquee)
 
 :::
 
+## 重复次数 (repeat)
+
+::: raw
+
+<CodeRunner title="重复次数 (repeat)" codeKey="marquee-repeat">
+    <ShadcnMarquee repeat="3">
+        <ShadcnText>Shadcn UI</ShadcnText>
+    </ShadcnMarquee>
+</CodeRunner>
+
+:::
+
 ## 跑马灯 (Marquee) 属性
 
 <ApiTable title="跑马灯 (Marquee) 属性"
     :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
       ['speed', '跑马灯的滚动速度', 'number', '6'],
+      ['repeat', '跑马灯的重复次数，-1 表示无限循环', 'number', '-1'],
     ]">
 </ApiTable>
 
