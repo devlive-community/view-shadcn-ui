@@ -20,6 +20,27 @@ title: 跑马灯 (Marquee)
 
 :::
 
+## 滚动速度 (speed)
+
+::: raw
+
+<CodeRunner title="滚动速度 (speed)" codeKey="marquee-speed">
+    <ShadcnMarquee speed="10">
+        <ShadcnText>Shadcn UI</ShadcnText>
+    </ShadcnMarquee>
+</CodeRunner>
+
+:::
+
+## 跑马灯 (Marquee) 属性
+
+<ApiTable title="跑马灯 (Marquee) 属性"
+    :headers="['属性', '描述', '类型', '默认值']"
+    :columns="[
+      ['speed', '跑马灯的滚动速度', 'number', '6'],
+    ]">
+</ApiTable>
+
 ## 跑马灯 (Marquee) 事件
 
 <ApiTable title="跑马灯 (Marquee) 事件"
