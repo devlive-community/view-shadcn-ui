@@ -1,6 +1,6 @@
 <template>
   <div class="p-32">
-    <ShadcnMarquee :repeat="2" @on-complete="handleComplete">
+    <ShadcnMarquee :speed="10" @on-complete="handleComplete">
       这是一个基础的跑马灯效果
     </ShadcnMarquee>
   </div>

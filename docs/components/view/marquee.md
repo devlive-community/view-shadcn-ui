@@ -49,7 +49,7 @@ title: 跑马灯 (Marquee)
 <ApiTable title="跑马灯 (Marquee) 属性"
     :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-      ['speed', '跑马灯的滚动速度', 'number', '6'],
+      ['speed', '跑马灯的滚动速度', 'number', '10'],
       ['repeat', '跑马灯的重复次数，-1 表示无限循环', 'number', '-1'],
     ]">
 </ApiTable>
