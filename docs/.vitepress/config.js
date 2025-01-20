@@ -74,7 +74,7 @@ export default {
                 link: 'https://playground.view-shadcn-ui.devlive.org'
             },
             {
-                text: '2025.1.1 <span class="VPBadge danger" style="margin-left: -18px; position: absolute; bottom: 38px;">最新</span>',
+                text: '2025.1.2 <span class="VPBadge danger" style="margin-left: -18px; position: absolute; bottom: 38px;">最新</span>',
                 items: [
                     {
                         text: '贡献指南',
@@ -221,6 +221,7 @@ export default {
                         {text: '贡献图 (Contribution)', link: 'view/contribution', icon: '/components/view/contribution.svg', version: '2024.5.4'},
                         {text: '图片 (Image)', link: 'view/image', icon: '/components/view/image.svg', version: '2025.1.0'},
                         {text: '轮播 (Carousel)', link: 'view/carousel', icon: '/components/view/carousel.svg', version: '2025.1.0'},
+                        {text: '跑马灯 (Marquee)', link: 'view/marquee', icon: '/components/view/marquee.svg', version: '2025.1.2'},
                     ]
 
                     return {

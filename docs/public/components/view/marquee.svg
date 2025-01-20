@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- Define Gradient -->
+    <defs>
+        <linearGradient id="marqueeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#93c5fd;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#a5b4fc;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background Circle -->
+    <circle cx="100" cy="100" r="80" fill="url(#marqueeGradient)" />
+
+    <!-- Marquee Frame -->
+    <rect x="50" y="70" width="100" height="60" fill="white" rx="8" />
+    <rect x="55" y="75" width="90" height="50" fill="#f3f4f6" rx="6" />
+
+    <!-- Scrolling Lines -->
+    <rect x="58" y="80" width="60" height="8" fill="#60a5fa" rx="4" />
+    <rect x="58" y="95" width="70" height="8" fill="#93c5fd" rx="4" />
+    <rect x="58" y="110" width="50" height="8" fill="#a5b4fc" rx="4" />
+</svg>

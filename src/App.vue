@@ -1,17 +1,13 @@
 <template>
   <div class="p-32">
-    <ShadcnSwitch v-model="value">
-    </ShadcnSwitch>
-
-    <ShadcnSwitch v-model="value">
-      <template #open>我是左面很长的一段信息</template>
-      <template #close>我是右面很长的一段信息</template>
-    </ShadcnSwitch>
+    <ShadcnMarquee @on-complete="handleComplete">
+      这是一个基础的跑马灯效果
+    </ShadcnMarquee>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
-const value = ref(null)
+const handleComplete = () => {
+  console.log('动画播放完成')
+}
 </script>
