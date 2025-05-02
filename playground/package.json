@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "view-shadcn-ui": "^2025.1.0",
+    "view-shadcn-ui": "^2025.1.2",
     "vue": "^3.3.4"
   },
   "devDependencies": {

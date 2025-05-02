@@ -325,5 +325,13 @@ export default {
             editCell: 'Edit cell',
             editRow: 'Edit the entire line'
         }
+    },
+    notification: {
+        text: {
+            title: 'Notification Center',
+            markAllAsRead: 'Mark All As Read',
+            clearAll: 'Clear All',
+            noData: 'No data'
+        }
     }
 }

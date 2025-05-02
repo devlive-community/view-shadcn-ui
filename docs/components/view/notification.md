@@ -1,18 +1,73 @@
-<template>
-  <div class="p-6 max-w-md mx-auto">
-    <h2 class="text-xl font-bold mb-4">通知中心示例</h2>
+---
+title: 通知中心 (Notification)
+---
 
-    <div class="mb-4">
-      <ShadcnButton @click="addRandomNotification">添加随机通知</ShadcnButton>
-    </div>
+# 介绍
 
+本文档主要用于描述 `ShadcnNotification` 组件的特性和用法。
+
+## 用法
+
+::: raw
+
+<CodeRunner title="用法" codeKey="notification-usage">
     <ShadcnNotification @on-item-click="handleNotificationClick"
                         @on-read-all="handleReadAll"
                         @on-clear-all="handleClearAll">
       <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item"/>
     </ShadcnNotification>
-  </div>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+  <ShadcnNotification @on-item-click="handleNotificationClick"
+                      @on-read-all="handleReadAll"
+                      @on-clear-all="handleClearAll">
+    <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item"/>
+  </ShadcnNotification>
 </template>
+```
+
+:::
+
+## 通知中心 (Notification) 属性
+
+<ApiTable title="通知中心子项 (Notification Item) 属性"
+    :headers="['属性', '描述', '类型', '默认值']"
+    :columns="[
+        ['id', '子项唯一标记', '字符串|数字', '-'],
+        ['title', '子项标题', '字符串', '-'],
+        ['description', '子项描述', '字符串', '-'],
+        ['icon', '子项图标', '字符串', '-'],
+        ['time', '子项时间', '字符串', '-'],
+        ['read', '子项是否已读', '布尔值', 'false'],
+    ]">
+</ApiTable>
+
+## 通知中心 (Notification) 事件
+
+<ApiTable title="通知中心 (Notification) 事件"
+    :headers="['事件', '描述', '回调参数']"
+    :columns="[
+        ['on-item-click', '点击通知中心子项', 'item: any'],
+        ['on-clear-all', '点击清空全部', '-'],
+        ['on-read-all', '点击全部已读', '-']
+    ]">
+</ApiTable>
+
+## 通知中心(Notification) 插槽
+
+<ApiTable title="通知中心子项 (Notification Item) 插槽"
+    :headers="['插槽', '描述', '回调参数']"
+    :columns="[
+        ['icon', '图标插槽', 'item: any'],
+        ['actions', '操作插槽', 'item: any'],
+    ]">
+</ApiTable>
 
 <script setup lang="ts">
 import { ref } from 'vue'

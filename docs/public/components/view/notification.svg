@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- 渐变定义 -->
+    <defs>
+        <linearGradient id="notificationGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#93c5fd;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#a5b4fc;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- 背景圆形 -->
+    <circle cx="100" cy="100" r="80" fill="url(#notificationGradient)" />
+
+    <!-- 通知铃铛主体 -->
+    <path d="M100 50
+           C85 50, 80 70, 80 90
+           C80 110, 75 120, 70 125
+           H130
+           C125 120, 120 110, 120 90
+           C120 70, 115 50, 100 50
+           Z"
+          fill="white" />
+
+    <!-- 铃铛圆球（底部小圆） -->
+    <circle cx="100" cy="135" r="6" fill="#60a5fa" />
+</svg>

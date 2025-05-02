@@ -325,5 +325,13 @@ export default {
             editCell: '编辑单元格',
             editRow: '编辑整行'
         }
+    },
+    notification: {
+        text: {
+            title: '通知中心',
+            markAllAsRead: '全部标记为已读',
+            clearAll: '全部清除',
+            noData: '暂无数据'
+        }
     }
 }
