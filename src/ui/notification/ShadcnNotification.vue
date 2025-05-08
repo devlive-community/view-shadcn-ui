@@ -3,10 +3,12 @@
     <!-- Header -->
     <div class="px-3 py-2 border-b border-gray-200 dark:border-gray-800 flex justify-between items-center">
       <h3 class="text-base font-medium text-gray-900 dark:text-gray-100">{{ t('notification.text.title') }}</h3>
-      <div class="flex gap-2">
-        <ShadcnButton @click="handleReadAll">{{ t('notification.text.markAllAsRead') }}</ShadcnButton>
-        <ShadcnButton type="error" @click="handleClearAll">{{ t('notification.text.clearAll') }}</ShadcnButton>
-      </div>
+      <slot name="actions">
+        <div class="flex gap-2">
+          <ShadcnButton @click="handleReadAll">{{ t('notification.text.markAllAsRead') }}</ShadcnButton>
+          <ShadcnButton type="error" @click="handleClearAll">{{ t('notification.text.clearAll') }}</ShadcnButton>
+        </div>
+      </slot>
     </div>
 
     <!-- Content -->
@@ -31,18 +33,6 @@ defineProps<{}>()
 
 const emit = defineEmits<NotificationEmits>()
 
-// Handle item click
-// 处理项目点击
-const handleItemClick = (item: any) => {
-  emit('on-item-click', item)
-}
-
-// Handle item action
-// 处理项目操作
-const handleItemAction = (item: any) => {
-  emit('on-item-action', item)
-}
-
 // Handle read all
 // 处理全部已读
 const handleReadAll = () => {
@@ -54,12 +44,4 @@ const handleReadAll = () => {
 const handleClearAll = () => {
   emit('on-clear-all')
 }
-
-// 向父组件暴露 handleItemClick 和 handleItemAction 方法，以便子组件可以调用
-// Expose handleItemClick and handleItemAction methods to parent component,
-// so child components can call them
-defineExpose({
-  handleItemClick,
-  handleItemAction
-})
 </script>

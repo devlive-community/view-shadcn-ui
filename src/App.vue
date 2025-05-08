@@ -9,7 +9,11 @@
     <ShadcnNotification @on-item-click="handleNotificationClick"
                         @on-read-all="handleReadAll"
                         @on-clear-all="handleClearAll">
-      <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item"/>
+      <ShadcnNotificationItem v-for="(item, index) in notifications"
+                              :key="index"
+                              :item="item"
+                              @on-click="handleNotificationClick">
+      </ShadcnNotificationItem>
     </ShadcnNotification>
   </div>
 </template>

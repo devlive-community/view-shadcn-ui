@@ -13,7 +13,6 @@ export interface NotificationItem
 // Control center component emits interface
 // 控制中心组件的事件接口
 export type NotificationEmits = {
-    (e: 'on-item-click', item: any): void
     (e: 'on-clear-all'): void
     (e: 'on-read-all'): void
 }

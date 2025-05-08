@@ -53,7 +53,6 @@ title: 通知中心 (Notification)
 <ApiTable title="通知中心 (Notification) 事件"
     :headers="['事件', '描述', '回调参数']"
     :columns="[
-        ['on-item-click', '点击通知中心子项', 'item: any'],
         ['on-clear-all', '点击清空全部', '-'],
         ['on-read-all', '点击全部已读', '-']
     ]">
@@ -64,8 +63,11 @@ title: 通知中心 (Notification)
 <ApiTable title="通知中心子项 (Notification Item) 插槽"
     :headers="['插槽', '描述', '回调参数']"
     :columns="[
-        ['icon', '图标插槽', 'item: any'],
-        ['actions', '操作插槽', 'item: any'],
+        ['icon', '通知图标的插槽', 'item: any'],
+        ['title', '通知标题的插槽', 'item: any'],
+        ['time', '通知时间的插槽', 'item: any'],
+        ['description', '通知描述内容的插槽', 'item: any'],
+        ['actions', '通知操作按钮的插槽', 'item: any']
     ]">
 </ApiTable>
 
