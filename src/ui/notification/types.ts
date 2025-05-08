@@ -1,6 +1,11 @@
+export interface NotificationProps
+{
+    trigger?: boolean
+}
+
 // Control center item interface
 // 控制中心项目接口
-export interface NotificationItem
+export interface NotificationItemProps
 {
     id: string | number
     title: string
@@ -15,6 +20,7 @@ export interface NotificationItem
 export type NotificationEmits = {
     (e: 'on-clear-all'): void
     (e: 'on-read-all'): void
+    (e: 'on-toggle', opened: boolean): void
 }
 
 export type NotificationItemEmits = {

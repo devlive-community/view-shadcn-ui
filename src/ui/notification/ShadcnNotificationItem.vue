@@ -45,10 +45,10 @@
 </template>
 
 <script lang="ts" setup>
-import { NotificationItem, NotificationItemEmits } from './types'
+import { NotificationItemProps, NotificationItemEmits } from './types'
 
 const props = defineProps<{
-  item: NotificationItem
+  item: NotificationItemProps
 }>()
 
 const emit = defineEmits<NotificationItemEmits>()

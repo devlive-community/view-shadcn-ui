@@ -6,7 +6,8 @@
       <ShadcnButton @click="addRandomNotification">添加随机通知</ShadcnButton>
     </div>
 
-    <ShadcnNotification @on-item-click="handleNotificationClick"
+    <ShadcnNotification trigger
+                        @on-item-click="handleNotificationClick"
                         @on-read-all="handleReadAll"
                         @on-clear-all="handleClearAll">
       <ShadcnNotificationItem v-for="(item, index) in notifications"

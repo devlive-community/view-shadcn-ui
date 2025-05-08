@@ -11,10 +11,8 @@ title: 通知中心 (Notification)
 ::: raw
 
 <CodeRunner title="用法" codeKey="notification-usage">
-    <ShadcnNotification @on-item-click="handleNotificationClick"
-                        @on-read-all="handleReadAll"
-                        @on-clear-all="handleClearAll">
-      <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item"/>
+    <ShadcnNotification @on-read-all="handleReadAll" @on-clear-all="handleClearAll">
+      <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick"/>
     </ShadcnNotification>
 </CodeRunner>
 
@@ -27,7 +25,31 @@ title: 通知中心 (Notification)
   <ShadcnNotification @on-item-click="handleNotificationClick"
                       @on-read-all="handleReadAll"
                       @on-clear-all="handleClearAll">
-    <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item"/>
+    <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick"/>
+  </ShadcnNotification>
+</template>
+```
+
+:::
+
+## 触发器 (trigger)
+
+::: raw
+
+<CodeRunner title="触发器" codeKey="notification-trigger">
+    <ShadcnNotification trigger>
+      <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick"/>
+    </ShadcnNotification>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+  <ShadcnNotification trigger>
+    <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick"/>
   </ShadcnNotification>
 </template>
 ```
@@ -35,6 +57,15 @@ title: 通知中心 (Notification)
 :::
 
 ## 通知中心 (Notification) 属性
+
+<ApiTable title="通知中心 (Notification) 属性"
+    :headers="['属性', '描述', '类型', '默认值']"
+    :columns="[
+        ['trigger', '是否显示触发器', '布尔值', 'false']
+    ]">
+</ApiTable>
+
+<br/>
 
 <ApiTable title="通知中心子项 (Notification Item) 属性"
     :headers="['属性', '描述', '类型', '默认值']"
@@ -59,6 +90,15 @@ title: 通知中心 (Notification)
 </ApiTable>
 
 ## 通知中心(Notification) 插槽
+
+<ApiTable title="通知中心(Notification) 插槽"
+    :headers="['插槽', '描述']"
+    :columns="[
+        ['trigger', '触发器的插槽'],
+        ['actions', '操作按钮的插槽'],
+        ['empty', '空数据的插槽']
+    ]">
+</ApiTable>
 
 <ApiTable title="通知中心子项 (Notification Item) 插槽"
     :headers="['插槽', '描述', '回调参数']"
