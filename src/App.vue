@@ -1,5 +1,5 @@
 <template>
-  <div class="p-6 max-w-md mx-auto">
+  <div class="p-6 mx-auto">
     <h2 class="text-xl font-bold mb-4">通知中心示例</h2>
 
     <div class="mb-4">
@@ -7,6 +7,7 @@
     </div>
 
     <ShadcnNotification trigger
+                        width="20%"
                         @on-item-click="handleNotificationClick"
                         @on-read-all="handleReadAll"
                         @on-clear-all="handleClearAll">

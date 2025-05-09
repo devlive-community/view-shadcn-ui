@@ -45,7 +45,7 @@
 </template>
 
 <script lang="ts" setup>
-import { NotificationItemProps, NotificationItemEmits } from './types'
+import { NotificationItemEmits, NotificationItemProps } from './types'
 
 const props = defineProps<{
   item: NotificationItemProps

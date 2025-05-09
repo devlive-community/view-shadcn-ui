@@ -20,9 +20,10 @@
                 leave-from-class="opacity-100 scale-100"
                 leave-to-class="opacity-0 scale-95">
       <div v-if="!trigger || (trigger && isOpen)"
-           :class="[{'absolute z-10': trigger}, 'mt-2 origin-top-right shadow-lg']"
-           v-click-outside="closeNotification">
-        <div class="w-full bg-white dark:bg-gray-950 rounded-lg shadow-lg overflow-hidden border border-gray-200 dark:border-gray-800">
+           :class="[{'absolute z-10': trigger}, 'mt-2 origin-top-right']"
+           v-click-outside="closeNotification"
+           :style="{width: calcSize(width)}">
+        <div class="w-full overflow-hidden overflow-x-auto bg-white dark:bg-gray-950 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800">
           <!-- Header -->
           <div class="px-3 py-2 border-b border-gray-200 dark:border-gray-800 flex justify-between items-center">
             <h3 class="text-base font-medium text-gray-900 dark:text-gray-100">{{ t('notification.text.title') }}</h3>
@@ -56,9 +57,11 @@ import { NotificationEmits, NotificationProps } from './types'
 import ShadcnNotificationEmpty from './ShadcnNotificationEmpty.vue'
 import { t } from '@/utils/locale'
 import ClickOutside from '@/directives/v-click-outside'
+import { calcSize } from '@/utils/common.ts'
 
 withDefaults(defineProps<NotificationProps>(), {
-  trigger: false
+  trigger: false,
+  width: '30%'
 })
 
 const emit = defineEmits<NotificationEmits>()
@@ -92,5 +95,6 @@ const handleClearAll = () => {
   emit('on-clear-all')
 }
 
+// 注册点击外部指令
 const vClickOutside = ClickOutside
 </script>

@@ -56,12 +56,37 @@ title: 通知中心 (Notification)
 
 :::
 
+## 宽度 (width)
+
+::: raw
+
+<CodeRunner title="宽度" codeKey="notification-width">
+    <ShadcnNotification width="50%">
+      <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick"/>
+    </ShadcnNotification>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+  <ShadcnNotification width="50%">
+    <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick"/>
+  </ShadcnNotification>
+</template>
+```
+
+:::
+
 ## 通知中心 (Notification) 属性
 
 <ApiTable title="通知中心 (Notification) 属性"
     :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['trigger', '是否显示触发器', '布尔值', 'false']
+        ['trigger', '是否显示触发器', '布尔值', 'false'],
+        ['width', '通知中心的宽度', 'number | string', '30%'],
     ]">
 </ApiTable>
 
