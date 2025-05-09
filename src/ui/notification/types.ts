@@ -2,6 +2,7 @@ export interface NotificationProps
 {
     trigger?: boolean
     width?: string | number
+    height?: string | number
 }
 
 // Control center item interface

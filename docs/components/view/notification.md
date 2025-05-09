@@ -80,6 +80,30 @@ title: 通知中心 (Notification)
 
 :::
 
+## 高度 (height)
+
+::: raw
+
+<CodeRunner title="高度" codeKey="notification-height">
+    <ShadcnNotification height="200px">
+      <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick"/>
+    </ShadcnNotification>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+  <ShadcnNotification height="200px">
+    <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick"/>
+  </ShadcnNotification>
+</template>
+```
+
+:::
+
 ## 通知中心 (Notification) 属性
 
 <ApiTable title="通知中心 (Notification) 属性"
@@ -87,6 +111,7 @@ title: 通知中心 (Notification)
     :columns="[
         ['trigger', '是否显示触发器', '布尔值', 'false'],
         ['width', '通知中心的宽度', 'number | string', '30%'],
+        ['height', '通知中心的高度', 'number | string', 'auto'],
     ]">
 </ApiTable>
 

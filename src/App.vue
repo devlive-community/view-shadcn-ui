@@ -8,6 +8,7 @@
 
     <ShadcnNotification trigger
                         width="20%"
+                        height="200px"
                         @on-item-click="handleNotificationClick"
                         @on-read-all="handleReadAll"
                         @on-clear-all="handleClearAll">
