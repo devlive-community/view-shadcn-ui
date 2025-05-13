@@ -1,0 +1,1 @@
+export { default as ShadcnTime } from './ShadcnTime.vue'
