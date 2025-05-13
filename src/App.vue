@@ -1,14 +1,33 @@
 <template>
-  <div class="p-6 mx-auto">
-    <h2 class="text-xl font-bold mb-4">通知中心示例</h2>
-
-    <div class="mb-4">
-      <ShadcnButton @click="addRandomNotification">添加随机通知</ShadcnButton>
-    </div>
-
+  <ShadcnMenu direction="horizontal">
+    <ShadcnMenuItem name="home">
+      <template #icon>
+        <ShadcnIcon icon="Home"/>
+      </template>
+      Home
+    </ShadcnMenuItem>
+    <ShadcnMenuSub name="profileSub">
+      <template #title>Profile</template>
+      <template #icon>
+        <ShadcnIcon icon="User"/>
+      </template>
+      <ShadcnMenuGroup name="settingGroup">
+        <template #title>Settings</template>
+        <ShadcnMenuItem name="username">Change Username</ShadcnMenuItem>
+        <ShadcnMenuItem name="password">Change Password</ShadcnMenuItem>
+      </ShadcnMenuGroup>
+    </ShadcnMenuSub>
+    <ShadcnMenuItem name="email">Change Email</ShadcnMenuItem>
+    <ShadcnMenuItem name="logout">
+      <template #icon>
+        <ShadcnIcon icon="LogOut"/>
+      </template>
+      Logout
+    </ShadcnMenuItem>
     <ShadcnNotification trigger
                         width="20%"
                         height="200px"
+                        position="right"
                         @on-item-click="handleNotificationClick"
                         @on-read-all="handleReadAll"
                         @on-clear-all="handleClearAll">
@@ -18,6 +37,70 @@
                               @on-click="handleNotificationClick">
       </ShadcnNotificationItem>
     </ShadcnNotification>
+  </ShadcnMenu>
+
+  <div class="p-6">
+    <h2 class="text-xl font-bold mb-4">通知中心示例</h2>
+
+    <div class="mb-4">
+      <ShadcnButton @click="addRandomNotification">添加随机通知</ShadcnButton>
+    </div>
+
+    <ShadcnNotification :trigger="false"
+                        position="left"
+                        @on-item-click="handleNotificationClick"
+                        @on-read-all="handleReadAll"
+                        @on-clear-all="handleClearAll">
+      <ShadcnNotificationItem v-for="(item, index) in notifications"
+                              :key="index"
+                              :item="item"
+                              @on-click="handleNotificationClick">
+      </ShadcnNotificationItem>
+    </ShadcnNotification>
+
+    <div class="flex space-x-96">
+      <div>
+        <ShadcnNotification trigger
+                            position="left"
+                            @on-item-click="handleNotificationClick"
+                            @on-read-all="handleReadAll"
+                            @on-clear-all="handleClearAll">
+          <ShadcnNotificationItem v-for="(item, index) in notifications"
+                                  :key="index"
+                                  :item="item"
+                                  @on-click="handleNotificationClick">
+          </ShadcnNotificationItem>
+        </ShadcnNotification>
+      </div>
+
+      <div>
+        <ShadcnNotification trigger
+                            position="center"
+                            @on-item-click="handleNotificationClick"
+                            @on-read-all="handleReadAll"
+                            @on-clear-all="handleClearAll">
+          <ShadcnNotificationItem v-for="(item, index) in notifications"
+                                  :key="index"
+                                  :item="item"
+                                  @on-click="handleNotificationClick">
+          </ShadcnNotificationItem>
+        </ShadcnNotification>
+      </div>
+
+      <div>
+        <ShadcnNotification trigger
+                            position="right"
+                            @on-item-click="handleNotificationClick"
+                            @on-read-all="handleReadAll"
+                            @on-clear-all="handleClearAll">
+          <ShadcnNotificationItem v-for="(item, index) in notifications"
+                                  :key="index"
+                                  :item="item"
+                                  @on-click="handleNotificationClick">
+          </ShadcnNotificationItem>
+        </ShadcnNotification>
+      </div>
+    </div>
   </div>
 </template>
 

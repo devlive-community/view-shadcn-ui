@@ -1,7 +1,7 @@
 <template>
-  <div class="relative">
+  <div class="relative inline-block">
     <!-- 触发器部分 -->
-    <div class="w-fit h-fit" @click.stop="toggleNotification" v-if="trigger">
+    <div class="w-fit h-fit" @click.stop="toggleNotification" v-if="trigger" ref="triggerEl">
       <slot name="trigger">
         <ShadcnButton size="small" circle type="text">
           <ShadcnIcon class="hover:cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-110 hover:rotate-12 hover:text-primary"
@@ -19,10 +19,14 @@
                 leave-active-class="transition duration-150 ease-in"
                 leave-from-class="opacity-100 scale-100"
                 leave-to-class="opacity-0 scale-95">
-      <div v-if="!trigger || (trigger && isOpen)"
-           :class="[{'absolute z-10': trigger}, 'mt-2 origin-top-right']"
+      <div v-if="(!trigger && true) || (trigger && isOpen)"
+           :class="[
+             'z-50',
+             { 'fixed': hasFixedPosition, 'static': !hasFixedPosition }
+           ]"
            v-click-outside="closeNotification"
-           :style="{width: calcSize(width)}">
+           @click.stop
+           :style="getPopoverStyle">
         <div class="w-full overflow-hidden overflow-x-auto overflow-y-auto bg-white dark:bg-gray-950 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800"
              :style="{height: calcSize(height), maxHeight: calcSize(height)}">
           <!-- Header -->
@@ -30,8 +34,8 @@
             <h3 class="text-base font-medium text-gray-900 dark:text-gray-100">{{ t('notification.text.title') }}</h3>
             <slot name="actions">
               <div class="flex gap-2">
-                <ShadcnButton @click="handleReadAll">{{ t('notification.text.markAllAsRead') }}</ShadcnButton>
-                <ShadcnButton type="error" @click="handleClearAll">{{ t('notification.text.clearAll') }}</ShadcnButton>
+                <ShadcnButton @click.stop="handleReadAll">{{ t('notification.text.markAllAsRead') }}</ShadcnButton>
+                <ShadcnButton type="error" @click.stop="handleClearAll">{{ t('notification.text.clearAll') }}</ShadcnButton>
               </div>
             </slot>
           </div>
@@ -53,27 +57,117 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { NotificationEmits, NotificationProps } from './types'
 import ShadcnNotificationEmpty from './ShadcnNotificationEmpty.vue'
 import { t } from '@/utils/locale'
 import ClickOutside from '@/directives/v-click-outside'
 import { calcSize } from '@/utils/common.ts'
 
-withDefaults(defineProps<NotificationProps>(), {
-  trigger: false,
+const props = withDefaults(defineProps<NotificationProps>(), {
+  trigger: true,
   width: '30%',
-  height: 'auto'
+  height: 'auto',
+  position: 'right'
 })
 
 const emit = defineEmits<NotificationEmits>()
 
 // 控制通知面板的显示状态
 const isOpen = ref(false)
+const triggerEl = ref<HTMLElement | null>(null)
+const panelWidth = ref(0)
+
+// 计算是否应该使用fixed定位
+const hasFixedPosition = computed(() => {
+  // 在触发模式下且打开状态，或者当没有触发器时，使用正常的fixed定位
+  return (props.trigger && isOpen.value && triggerEl.value) ||
+      (!props.trigger && false) // 非触发模式下不使用fixed定位
+})
+
+// 挂载后测量通知面板宽度
+onMounted(() => {
+  if (triggerEl.value) {
+    updatePanelWidth()
+  }
+})
+
+// 当宽度属性变化时更新测量
+watch(() => props.width, () => {
+  updatePanelWidth()
+})
+
+// 测量和更新面板宽度
+const updatePanelWidth = () => {
+  // 使用setTimeout确保在下一个DOM更新周期执行
+  setTimeout(() => {
+    // 创建一个临时元素来测量宽度
+    const tempDiv = document.createElement('div')
+    tempDiv.style.position = 'absolute'
+    tempDiv.style.visibility = 'hidden'
+    tempDiv.style.width = calcSize(props.width)
+    document.body.appendChild(tempDiv)
+    panelWidth.value = tempDiv.offsetWidth
+    document.body.removeChild(tempDiv)
+  }, 0)
+}
+
+// 获取弹出层样式
+const getPopoverStyle = computed(() => {
+  const baseStyle = {
+    width: calcSize(props.width)
+  }
+
+  // 非触发模式下或未打开状态或没有触发器元素引用时，返回基本样式
+  if (!hasFixedPosition.value) {
+    return baseStyle
+  }
+
+  const rect = triggerEl.value!.getBoundingClientRect()
+  const width = panelWidth.value || 300 // 使用测量的宽度，或回退到默认值
+
+  if (props.position === 'left') {
+    // 触发器左侧和内容框的左侧对齐
+    return {
+      ...baseStyle,
+      top: calcSize(rect.bottom),
+      left: calcSize(rect.left)
+    }
+  }
+  else if (props.position === 'center') {
+    // 触发器中心和内容框的中心对齐
+    return {
+      ...baseStyle,
+      top: calcSize(rect.bottom),
+      left: calcSize(rect.left + (rect.width / 2) - (width / 2))
+    }
+  }
+  else { // position === 'right'
+    // 触发器右侧和内容框的右侧对齐
+    return {
+      ...baseStyle,
+      top: calcSize(rect.bottom),
+      left: calcSize(rect.right - width)
+    }
+  }
+})
 
 // 切换通知面板显示状态
-const toggleNotification = () => {
+const toggleNotification = (event) => {
+  // 确保我们有触发元素的引用
+  if (event && event.currentTarget) {
+    triggerEl.value = event.currentTarget
+  }
   isOpen.value = !isOpen.value
+
+  // 当打开面板时更新宽度测量
+  if (isOpen.value) {
+    updatePanelWidth()
+  }
+
+  // 阻止事件冒泡
+  event?.stopPropagation()
+
   emit('on-toggle', isOpen.value)
 }
 

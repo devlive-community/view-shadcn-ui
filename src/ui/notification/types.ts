@@ -3,6 +3,7 @@ export interface NotificationProps
     trigger?: boolean
     width?: string | number
     height?: string | number
+    position?: 'left' | 'right' | 'center'
 }
 
 // Control center item interface
