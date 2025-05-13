@@ -28,7 +28,8 @@
            @click.stop
            :style="getPopoverStyle">
         <div class="w-full overflow-hidden overflow-x-auto overflow-y-auto bg-white dark:bg-gray-950 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800"
-             :style="{height: calcSize(height), maxHeight: calcSize(height)}">
+             :style="{height: calcSize(height), maxHeight: calcSize(height)}"
+             @scroll="handleScroll">
           <!-- Header -->
           <div class="px-3 py-2 border-b border-gray-200 dark:border-gray-800 flex justify-between items-center">
             <h3 class="text-base font-medium text-gray-900 dark:text-gray-100">{{ t('notification.text.title') }}</h3>
@@ -50,6 +51,11 @@
               </slot>
             </slot>
           </div>
+
+          <!-- 加载状态 -->
+          <div v-if="loading" class="py-2 text-center text-gray-500">
+            <ShadcnSpin type="primary" :model-value="loading"/>
+          </div>
         </div>
       </div>
     </Transition>
@@ -60,6 +66,7 @@
 import { computed, onMounted, ref, watch } from 'vue'
 import { NotificationEmits, NotificationProps } from './types'
 import ShadcnNotificationEmpty from './ShadcnNotificationEmpty.vue'
+import ShadcnSpin from '@/ui/spin/ShadcnSpin.vue'
 import { t } from '@/utils/locale'
 import ClickOutside from '@/directives/v-click-outside'
 import { calcSize } from '@/utils/common.ts'
@@ -68,7 +75,8 @@ const props = withDefaults(defineProps<NotificationProps>(), {
   trigger: true,
   width: '30%',
   height: 'auto',
-  position: 'right'
+  position: 'right',
+  loadData: undefined
 })
 
 const emit = defineEmits<NotificationEmits>()
@@ -77,6 +85,7 @@ const emit = defineEmits<NotificationEmits>()
 const isOpen = ref(false)
 const triggerEl = ref<HTMLElement | null>(null)
 const panelWidth = ref(0)
+const loading = ref(false)
 
 // 计算是否应该使用fixed定位
 const hasFixedPosition = computed(() => {
@@ -151,6 +160,43 @@ const getPopoverStyle = computed(() => {
     }
   }
 })
+
+// 检查是否达到底部
+const isBottom = (el: HTMLElement) => {
+  const { scrollHeight, scrollTop, clientHeight } = el
+  return scrollHeight <= Math.ceil(scrollTop + clientHeight) + 5 // 添加5px的容差
+}
+
+// 处理滚动事件
+const handleScroll = (e: Event) => {
+  e.stopPropagation()
+
+  if (loading.value || !props.loadData) {
+    return
+  }
+
+  const target = e.target as HTMLElement
+  if (isBottom(target)) {
+    loadMoreData()
+  }
+}
+
+// 加载更多数据
+const loadMoreData = () => {
+  if (!props.loadData || loading.value) {
+    return
+  }
+
+  loading.value = true
+  emit('on-load-data')
+
+  // 调用加载数据函数
+  props.loadData(() => {
+    loading.value = false
+    // 这里不需要处理数据，因为数据的处理应该在父组件中进行
+    // 父组件应该监听on-load-data事件，并更新自己的数据
+  })
+}
 
 // 切换通知面板显示状态
 const toggleNotification = (event) => {

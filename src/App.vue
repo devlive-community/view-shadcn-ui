@@ -28,9 +28,11 @@
                         width="20%"
                         height="200px"
                         position="right"
+                        :loadData="loadMoreNotifications"
                         @on-item-click="handleNotificationClick"
                         @on-read-all="handleReadAll"
-                        @on-clear-all="handleClearAll">
+                        @on-clear-all="handleClearAll"
+                        @on-load-data="handleLoadMoreEvent">
       <ShadcnNotificationItem v-for="(item, index) in notifications"
                               :key="index"
                               :item="item"
@@ -38,70 +40,6 @@
       </ShadcnNotificationItem>
     </ShadcnNotification>
   </ShadcnMenu>
-
-  <div class="p-6">
-    <h2 class="text-xl font-bold mb-4">通知中心示例</h2>
-
-    <div class="mb-4">
-      <ShadcnButton @click="addRandomNotification">添加随机通知</ShadcnButton>
-    </div>
-
-    <ShadcnNotification :trigger="false"
-                        position="left"
-                        @on-item-click="handleNotificationClick"
-                        @on-read-all="handleReadAll"
-                        @on-clear-all="handleClearAll">
-      <ShadcnNotificationItem v-for="(item, index) in notifications"
-                              :key="index"
-                              :item="item"
-                              @on-click="handleNotificationClick">
-      </ShadcnNotificationItem>
-    </ShadcnNotification>
-
-    <div class="flex space-x-96">
-      <div>
-        <ShadcnNotification trigger
-                            position="left"
-                            @on-item-click="handleNotificationClick"
-                            @on-read-all="handleReadAll"
-                            @on-clear-all="handleClearAll">
-          <ShadcnNotificationItem v-for="(item, index) in notifications"
-                                  :key="index"
-                                  :item="item"
-                                  @on-click="handleNotificationClick">
-          </ShadcnNotificationItem>
-        </ShadcnNotification>
-      </div>
-
-      <div>
-        <ShadcnNotification trigger
-                            position="center"
-                            @on-item-click="handleNotificationClick"
-                            @on-read-all="handleReadAll"
-                            @on-clear-all="handleClearAll">
-          <ShadcnNotificationItem v-for="(item, index) in notifications"
-                                  :key="index"
-                                  :item="item"
-                                  @on-click="handleNotificationClick">
-          </ShadcnNotificationItem>
-        </ShadcnNotification>
-      </div>
-
-      <div>
-        <ShadcnNotification trigger
-                            position="right"
-                            @on-item-click="handleNotificationClick"
-                            @on-read-all="handleReadAll"
-                            @on-clear-all="handleClearAll">
-          <ShadcnNotificationItem v-for="(item, index) in notifications"
-                                  :key="index"
-                                  :item="item"
-                                  @on-click="handleNotificationClick">
-          </ShadcnNotificationItem>
-        </ShadcnNotification>
-      </div>
-    </div>
-  </div>
 </template>
 
 <script setup lang="ts">
@@ -135,6 +73,10 @@ const notifications = ref<any[]>([
     read: true
   }
 ])
+const currentPage = ref(1)
+const pageSize = 5
+const hasMoreData = ref(true)
+const loading = ref(false)
 
 // Handle notification click
 // 处理通知点击
@@ -167,44 +109,63 @@ const handleClearAll = () => {
   notifications.value = []
 }
 
-// Generate unique ID
-// 生成唯一ID
-const generateId = () => {
-  return Date.now().toString(36) + Math.random().toString(36).substring(2)
+const generateNotifications = (page: number, size: number) => {
+  const results: any[] = []
+  const startId = (page - 1) * size + 1
+
+  // 如果超过3页，返回空数据表示没有更多
+  if (page > 3 && hasMoreData.value) {
+    hasMoreData.value = false
+    console.log(`已加载全部数据，没有更多了`)
+    return results
+  }
+
+  for (let i = 0; i < size; i++) {
+    if (!hasMoreData.value && page > 1) {
+      break
+    }
+
+    const id = startId + i
+    results.push({
+      id,
+      title: `通知 ${ id }`,
+      content: `这是通知内容示例，页码: ${ page }, ID: ${ id }`,
+      time: new Date().toLocaleString(),
+      read: false
+    })
+  }
+
+  return results
 }
 
-// Add random notification
-// 添加随机通知
-const addRandomNotification = () => {
-  const types = ['info', 'warning', 'success', 'error', 'default'] as const
-  const randomType = types[Math.floor(Math.random() * types.length)]
-
-  const titles = {
-    info: '信息通知',
-    warning: '警告信息',
-    success: '操作成功',
-    error: '错误提醒',
-    default: '系统消息'
+const loadMoreNotifications = (callback: (items: any[]) => void) => {
+  if (loading.value || !hasMoreData.value) {
+    callback([])
+    return
   }
 
-  const descriptions = {
-    info: '这是一条重要的系统信息',
-    warning: '请注意，您的操作可能存在风险',
-    success: '您的操作已成功完成',
-    error: '操作失败，请重试',
-    default: '感谢您使用我们的系统'
-  }
+  loading.value = true
+  console.log(`开始加载第 ${ currentPage.value } 页数据`)
 
-  const newNotification: any = {
-    id: generateId(),
-    title: titles[randomType],
-    description: descriptions[randomType],
-    type: randomType,
-    time: '刚刚',
-    read: false,
-    action: Math.random() > 0.5 ? { text: '了解更多' } : undefined
-  }
+  // 模拟异步加载
+  setTimeout(() => {
+    const newData = generateNotifications(currentPage.value, pageSize)
 
-  notifications.value = [newNotification, ...notifications.value]
+    // 添加到现有列表
+    notifications.value = [...notifications.value, ...newData]
+
+    // 更新页码
+    currentPage.value++
+
+    // 回调函数接收新加载的项目
+    callback(newData)
+
+    loading.value = false
+    console.log(`成功加载 ${ newData.length } 条新通知`)
+  }, 1000)
+}
+
+const handleLoadMoreEvent = () => {
+  console.log('触发 on-load-data 事件')
 }
 </script>

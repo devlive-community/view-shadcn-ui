@@ -4,6 +4,7 @@ export interface NotificationProps
     width?: string | number
     height?: string | number
     position?: 'left' | 'right' | 'center'
+    loadData?: (callback: (children: any[]) => void) => void
 }
 
 // Control center item interface
@@ -24,6 +25,7 @@ export type NotificationEmits = {
     (e: 'on-clear-all'): void
     (e: 'on-read-all'): void
     (e: 'on-toggle', opened: boolean): void
+    (e: 'on-load-data'): void
 }
 
 export type NotificationItemEmits = {
