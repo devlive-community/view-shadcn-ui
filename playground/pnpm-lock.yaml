@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       view-shadcn-ui:
-        specifier: ^2025.1.0
-        version: 2025.1.0
+        specifier: ^2025.1.2
+        version: 2025.1.2
       vue:
         specifier: ^3.3.4
         version: 3.5.13
@@ -763,8 +763,8 @@ packages:
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
-  view-shadcn-ui@2025.1.0:
-    resolution: {integrity: sha512-ogQMc2oNxI42EwU9bA85gYnUq7XY1x1eUZnZkdH898zTUFjEEXh3L4CZpmk0JjXSqM0kmpSLRMkChVW1MJvuTA==}
+  view-shadcn-ui@2025.1.2:
+    resolution: {integrity: sha512-B7AjRC2p8h62LNSCdQ18Blo8RB/oExyA/MunhSzyij0+m+dkR1cApt9h9EGPpwNwUnKvGp2wIROZ95muUxg3XA==}
 
   vite-plugin-monaco-editor@1.1.0:
     resolution: {integrity: sha512-IvtUqZotrRoVqwT0PBBDIZPNraya3BxN/bfcNfnxZ5rkJiGcNtO5eAOWWSgT7zullIAEqQwxMU83yL9J5k7gww==}
@@ -1503,7 +1503,7 @@ snapshots:
 
   util-deprecate@1.0.2: {}
 
-  view-shadcn-ui@2025.1.0:
+  view-shadcn-ui@2025.1.2:
     dependencies:
       clsx: 2.1.1
       lodash: 4.17.21
