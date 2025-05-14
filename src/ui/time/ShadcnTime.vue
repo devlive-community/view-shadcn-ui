@@ -1,24 +1,40 @@
 <template>
   <div class="inline-flex w-fit items-center justify-center rounded-md bg-background text-sm font-medium text-foreground">
-    {{ formattedTime }}
+    {{ displayTime }}
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
+import relativeTimePlugin from 'dayjs/plugin/relativeTime'
 import { TimeEmits, TimeProps } from './types'
+import { getLocale } from '@/utils/locale'
 
-// Initialize dayjs plugins
-// 初始化 dayjs 插件
+// 预加载常用语言包 - 必须放在插件扩展之前
+// Preload common locales - must be placed before plugin extension
+import 'dayjs/locale/zh-cn'
+import 'dayjs/locale/en'
+
+// Initialize dayjs plugins - 必须在导入语言包之后
+// 初始化 dayjs 插件 - must be after importing locales
 dayjs.extend(utc)
 dayjs.extend(timezone)
+dayjs.extend(relativeTimePlugin)
 
+// 立即设置初始语言 - 在组件初始化时就执行
+// Set initial locale immediately - executed during component initialization
+const initialLocale = getLocale()
+dayjs.locale(initialLocale.toLowerCase().replace('_', '-'))
+
+// 组件属性
 const props = withDefaults(defineProps<TimeProps>(), {
   format: 'HH:mm:ss',
-  timezone: undefined
+  timezone: undefined,
+  relative: false,
+  referenceTime: undefined
 })
 
 const emit = defineEmits<TimeEmits>()
@@ -27,13 +43,25 @@ const emit = defineEmits<TimeEmits>()
 // 当前时间状态
 const currentTime = ref(new Date())
 
-// Update time every second
-// 每秒更新一次时间
+// 语言监听 - 使用ref和watch代替onLocaleChange
+// Locale watching - use ref and watch instead of onLocaleChange
+const currentLocale = ref(initialLocale)
+
+// 监听语言变化并立即同步更新
+// Watch for locale changes and update synchronously
+watch(() => getLocale(), (newLocale) => {
+  currentLocale.value = newLocale
+  const normalizedLocale = newLocale.toLowerCase().replace('_', '-')
+  dayjs.locale(normalizedLocale)
+}, { immediate: true })
+
+// Update time based on interval
+// 基于间隔更新时间
 let intervalId: number | null = null
 
 onMounted(() => {
-  // Set up interval to update time every second
-  // 设置每秒更新时间的定时器
+  // 设置定时器更新时间
+  // Set timer to update time
   intervalId = window.setInterval(() => {
     currentTime.value = new Date()
     emit('on-change', currentTime.value)
@@ -48,8 +76,8 @@ onUnmounted(() => {
   }
 })
 
-// Format time using dayjs
-// 使用 dayjs 格式化时间
+// Get formatted time
+// 获取格式化的时间
 const formattedTime = computed(() => {
   const time = dayjs(currentTime.value)
 
@@ -66,5 +94,22 @@ const formattedTime = computed(() => {
   }
 
   return time.format(props.format)
+})
+
+// Get relative time - 强制依赖currentLocale以确保语言变化时重新计算
+// 获取相对时间 - Force dependency on currentLocale to ensure recalculation when language changes
+const relativeTime = computed(() => {
+  const now = dayjs(currentTime.value)
+  const reference = props.referenceTime
+      ? dayjs(props.referenceTime)
+      : dayjs()
+
+  return now.from(reference)
+})
+
+// Choose which time display to use based on props
+// 根据 props 选择使用哪种时间显示
+const displayTime = computed(() => {
+  return props.relative ? relativeTime.value : formattedTime.value
 })
 </script>

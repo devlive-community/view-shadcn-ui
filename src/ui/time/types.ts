@@ -18,6 +18,22 @@ export interface TimeProps
      * Examples: 'America/New_York', 'Europe/London', 'Asia/Tokyo'
      */
     timezone?: string
+
+    /**
+     * Show relative time instead of formatted time
+     * 显示相对时间而不是格式化时间
+     *
+     * Examples: '2 minutes ago', 'in 3 hours'
+     */
+    relative?: boolean
+
+    /**
+     * Reference time for relative time display
+     * 相对时间显示的参考时间
+     *
+     * Default is current time
+     */
+    referenceTime?: Date | string | number
 }
 
 export type TimeEmits = {
