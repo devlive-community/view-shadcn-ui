@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "clsx": "^2.1.0",
+    "dayjs": "^1.11.13",
     "lodash": "^4.17.21",
     "lucide-vue-next": "^0.360.0",
     "monaco-editor": "^0.52.2",

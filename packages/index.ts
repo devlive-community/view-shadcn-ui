@@ -102,6 +102,7 @@ import { ShadcnCarousel } from '@/ui/carousel'
 import { ShadcnDataTable, TableCellInputEditor, TableCellSelectEditor } from '@/ui/data-table'
 import { ShadcnMarquee } from '@/ui/marquee'
 import { ShadcnNotification, ShadcnNotificationItem } from '@/ui/notification'
+import { ShadcnTime } from '@/ui/time'
 
 let components = [
     ShadcnButton,
@@ -200,7 +201,8 @@ let components = [
     ShadcnCarousel,
     ShadcnDataTable, TableCellInputEditor, TableCellSelectEditor,
     ShadcnMarquee,
-    ShadcnNotification, ShadcnNotificationItem
+    ShadcnNotification, ShadcnNotificationItem,
+    ShadcnTime
 ]
 
 interface InstallOptions
@@ -335,6 +337,7 @@ export { ShadcnCarousel } from '@/ui/carousel'
 export { ShadcnDataTable, TableCellInputEditor, TableCellSelectEditor } from '@/ui/data-table'
 export { ShadcnMarquee } from '@/ui/marquee'
 export { ShadcnNotification, ShadcnNotificationItem } from '@/ui/notification'
+export { ShadcnTime } from '@/ui/time'
 
 // Export functions
 export { fnToString, fnToFunction } from '@/utils/formatter'
