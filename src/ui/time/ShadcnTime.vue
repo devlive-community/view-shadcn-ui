@@ -34,7 +34,8 @@ const props = withDefaults(defineProps<TimeProps>(), {
   format: 'HH:mm:ss',
   timezone: undefined,
   relative: false,
-  referenceTime: undefined
+  referenceTime: undefined,
+  interval: 1000
 })
 
 const emit = defineEmits<TimeEmits>()
@@ -65,7 +66,7 @@ onMounted(() => {
   intervalId = window.setInterval(() => {
     currentTime.value = new Date()
     emit('on-change', currentTime.value)
-  }, 1000)
+  }, props.interval)
 })
 
 onUnmounted(() => {

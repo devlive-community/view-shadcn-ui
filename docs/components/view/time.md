@@ -124,6 +124,46 @@ title: 时间 (Time)
 
 :::
 
+## 更新间隔 (interval)
+
+::: raw
+
+<CodeRunner title="更新间隔">
+    <p class="text-sm text-gray-500 mb-1">自定义更新间隔 (5秒):
+      <ShadcnTime relative :interval="5000" @on-change="handleIntervalChange"/>
+      <div v-if="lastIntervalChange">
+        上次更新: {{ lastIntervalChange }}
+      </div>
+    </p>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+  <p class="text-sm text-gray-500 mb-1">自定义更新间隔 (5秒):
+    <ShadcnTime relative :interval="5000" @on-change="handleIntervalChange"/>
+    <div v-if="lastIntervalChange">
+      上次更新: {{ lastIntervalChange }}
+    </div>
+  </p>
+</template>
+
+<script setup lang="ts">
+  import { ref } from 'vue'
+
+  const lastIntervalChange = ref('')
+
+  const handleIntervalChange = (time: Date) => {
+    lastIntervalChange.value = new Date(time).toLocaleTimeString()
+  }
+</script>
+```
+
+:::
+
 ## 时间 (Time) 属性
 
 <ApiTable title="时间 (Time) 属性"
@@ -132,7 +172,8 @@ title: 时间 (Time)
         ['format', '显示时间的格式字符串', 'string', 'HH:mm:ss'],
         ['timezone', '时区，格式为 America/New_York', 'string', 'undefined'],
         ['relative', '是否启用相对时间，默认是当前时间', 'boolean', 'false'],
-        ['referenceTime', '相对时间显示的参考时间，只有启用相对时间生效', 'Date | string | number', '-']
+        ['referenceTime', '相对时间显示的参考时间，只有启用相对时间生效', 'Date | string | number', '-'],
+        ['interval', '更新间隔(毫秒)', 'number', '1000']
     ]">
 </ApiTable>
 
@@ -146,7 +187,13 @@ title: 时间 (Time)
 </ApiTable>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
+
+const lastIntervalChange = ref('')
+
+const handleIntervalChange = (time: Date) => {
+lastIntervalChange.value = new Date(time).toLocaleTimeString()
+}
 
 const tenMinutesAgo = computed(() => {
   const date = new Date()

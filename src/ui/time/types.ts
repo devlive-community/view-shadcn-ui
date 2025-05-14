@@ -34,6 +34,12 @@ export interface TimeProps
      * Default is current time
      */
     referenceTime?: Date | string | number
+
+    /**
+     * Update interval in milliseconds (defaults to 1000)
+     * 更新间隔（毫秒），默认为 1000
+     */
+    interval?: number
 }
 
 export type TimeEmits = {

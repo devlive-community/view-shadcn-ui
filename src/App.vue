@@ -31,8 +31,18 @@
       </div>
 
       <div>
-        <p class="text-sm text-gray-500 mb-1">相对于过去时间 (10分钟前): <ShadcnTime relative :reference-time="tenMinutesAgo"/></p>
-        <p class="text-sm text-gray-500 mb-1">相对于未来时间 (一小时后): <ShadcnTime relative :reference-time="oneHourLater"/></p>
+        <p class="text-sm text-gray-500 mb-1">相对于过去时间 (10分钟前):
+          <ShadcnTime relative :reference-time="tenMinutesAgo"/>
+        </p>
+        <p class="text-sm text-gray-500 mb-1">相对于未来时间 (一小时后):
+          <ShadcnTime relative :reference-time="oneHourLater"/>
+        </p>
+        <p class="text-sm text-gray-500 mb-1">自定义更新间隔 (5秒):
+          <ShadcnTime relative :interval="5000" @on-change="handleIntervalChange"/>
+          <div v-if="lastIntervalChange">
+            上次更新: {{ lastIntervalChange }}
+          </div>
+        </p>
       </div>
     </div>
   </div>
@@ -42,6 +52,7 @@
 import { computed, ref } from 'vue'
 
 const lastChangeTime = ref('')
+const lastIntervalChange = ref('')
 
 const tenMinutesAgo = computed(() => {
   const date = new Date()
@@ -54,4 +65,8 @@ const oneHourLater = computed(() => {
   date.setHours(date.getHours() + 1)
   return date
 })
+
+const handleIntervalChange = (time: Date) => {
+  lastIntervalChange.value = new Date(time).toLocaleTimeString()
+}
 </script>
