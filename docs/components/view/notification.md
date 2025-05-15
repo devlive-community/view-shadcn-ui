@@ -4,6 +4,8 @@ title: 通知中心 (Notification)
 
 # 介绍
 
+<br />
+
 本文档主要用于描述 `ShadcnNotification` 组件的特性和用法。
 
 ## 用法
@@ -210,6 +212,8 @@ title: 通知中心 (Notification)
         ['empty', '空数据的插槽']
     ]">
 </ApiTable>
+
+<br />
 
 <ApiTable title="通知中心子项 (Notification Item) 插槽"
     :headers="['插槽', '描述', '回调参数']"

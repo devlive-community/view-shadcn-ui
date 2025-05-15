@@ -1,0 +1,1 @@
+export { default as ShadcnIPInput } from './ShadcnIPInput.vue'
