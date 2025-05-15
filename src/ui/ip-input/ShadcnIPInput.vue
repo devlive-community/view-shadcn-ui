@@ -4,12 +4,13 @@
       <input v-for="(part, index) in parts"
              ref="inputRefs"
              type="text"
-             class="w-12 h-10 text-center rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+             class="w-12 text-center border border-gray-300 rounded transition-colors duration-300 focus:outline-none"
              maxlength="3"
              :key="index"
              :value="part"
              :class="[{ 'opacity-50 cursor-not-allowed': props.disabled },
-                Size[size]
+                Size[size],
+                [HoverType[type]]
              ]"
              :disabled="props.disabled"
              @input="handleInput($event, index)"
@@ -24,12 +25,14 @@
 import { computed, onMounted, ref } from 'vue'
 import { IPInputEmits, IPInputProps } from './types'
 import { Size } from '@/ui/common/size.ts'
+import { HoverType } from '@/ui/common/type.ts'
 
 // Define props and emits
 // 定义属性和事件
 const props = withDefaults(defineProps<IPInputProps>(), {
   disabled: false,
-  size: 'default'
+  size: 'default',
+  type: 'primary'
 })
 const emit = defineEmits<IPInputEmits>()
 

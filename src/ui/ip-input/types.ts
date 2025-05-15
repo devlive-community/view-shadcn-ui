@@ -1,4 +1,5 @@
 import { Size } from '@/ui/common/size.ts'
+import { HoverType } from '@/ui/common/type.ts'
 
 export interface IPInputProps
 {
@@ -19,6 +20,12 @@ export interface IPInputProps
      * 输入框尺寸
      */
     size?: keyof typeof Size
+
+    /**
+     * Type of the input
+     * 输入框类型
+     */
+    type?: keyof typeof HoverType
 }
 
 export type IPInputEmits = {

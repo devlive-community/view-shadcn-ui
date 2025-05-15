@@ -72,6 +72,32 @@ title: IP输入框 (IP Input)
 
 :::
 
+## 类型 (type)
+
+::: raw
+
+<CodeRunner title="类型">
+    <ShadcnIPInput v-model="value" type="primary"/>
+    <ShadcnIPInput v-model="value" type="error"/>
+    <ShadcnIPInput v-model="value" type="success"/>
+    <ShadcnIPInput v-model="value" type="warning"/>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <ShadcnIPInput v-model="value" type="primary"/>
+    <ShadcnIPInput v-model="value" type="error"/>
+    <ShadcnIPInput v-model="value" type="success"/>
+    <ShadcnIPInput v-model="value" type="warning"/>
+</template>
+```
+
+:::
+
 ## IP输入框 (IP Input) 属性
 
 <ApiTable title="IP输入框 (IP Input) 属性"
@@ -79,7 +105,8 @@ title: IP输入框 (IP Input)
     :columns="[
         ['modelValue', '双向绑定的值', 'string', '-', '-'],
         ['disabled', '是否禁用', 'boolean', 'false', '-'],
-        ['size', '尺寸', 'string', 'default', 'small, default, large']
+        ['size', '尺寸', 'string', 'default', 'small, default, large'],
+        ['type', '类型', 'string', 'primary', 'primary, error, success, warning'],
     ]">
 </ApiTable>
 
