@@ -16,30 +16,36 @@
              @input="handleInput($event, index)"
              @keydown="handleKeyDown($event, index)"
              @paste="handlePaste"
+             @blur.stop="handleBlur"
              @focus="handleFocus($event)"/>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, inject, onMounted, ref } from 'vue'
 import { IPInputEmits, IPInputProps } from './types'
 import { Size } from '@/ui/common/size.ts'
 import { HoverType } from '@/ui/common/type.ts'
+import { FormItemContext } from '@/ui/form/context.ts'
+
+const emit = defineEmits<IPInputEmits>()
 
 // Define props and emits
 // 定义属性和事件
 const props = withDefaults(defineProps<IPInputProps>(), {
   disabled: false,
   size: 'default',
-  type: 'primary'
+  type: 'primary',
+  name: undefined
 })
-const emit = defineEmits<IPInputEmits>()
 
 // Initialize IP parts with empty strings or default value
 // 用空字符串或默认值初始化IP部分
 const parts = ref(['', '', '', ''])
 const inputRefs = ref<HTMLInputElement[]>([])
+
+const formItemContext = props.name ? inject<FormItemContext | null>(`form-item-${ props.name }`) : null
 
 // Set default value if provided
 // 如果提供了默认值，则设置
@@ -90,6 +96,16 @@ const handleInput = (event: Event, index: number) => {
   // 发送更新后的值
   emit('on-change', ipAddress.value)
   emit('update:modelValue', ipAddress.value)
+
+  if (formItemContext) {
+    formItemContext.onBlur()
+  }
+}
+
+const handleBlur = () => {
+  if (formItemContext) {
+    formItemContext.onBlur()
+  }
 }
 
 // Handle key navigation
@@ -121,6 +137,10 @@ const handleKeyDown = (event: KeyboardEvent, index: number) => {
     if (index < 3) {
       inputRefs.value[index + 1]?.focus()
     }
+  }
+
+  if (formItemContext) {
+    formItemContext.onBlur()
   }
 }
 

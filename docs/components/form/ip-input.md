@@ -98,6 +98,34 @@ title: IP输入框 (IP Input)
 
 :::
 
+## 表单 (form)
+
+::: raw
+
+<CodeRunner title="表单">
+    <ShadcnForm v-model="formState">
+      <ShadcnFormItem name="ip" label="IP 地址" :rules="[{ required: true, message: '请输入IP地址' }]">
+        <ShadcnIPInput v-model="formState.ip" name="ip"/>
+      </ShadcnFormItem>
+    </ShadcnForm>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <ShadcnForm v-model="formState">
+      <ShadcnFormItem name="ip" label="IP 地址" :rules="[{ required: true, message: '请输入IP地址' }]">
+        <ShadcnIPInput v-model="formState.ip" name="ip"/>
+      </ShadcnFormItem>
+    </ShadcnForm>
+</template>
+```
+
+:::
+
 ## IP输入框 (IP Input) 属性
 
 <ApiTable title="IP输入框 (IP Input) 属性"
@@ -107,6 +135,7 @@ title: IP输入框 (IP Input)
         ['disabled', '是否禁用', 'boolean', 'false', '-'],
         ['size', '尺寸', 'string', 'default', 'small, default, large'],
         ['type', '类型', 'string', 'primary', 'primary, error, success, warning'],
+        ['name', '输入框名称，用于表单', 'string', '-', '-']
     ]">
 </ApiTable>
 
@@ -124,4 +153,5 @@ title: IP输入框 (IP Input)
 import { ref } from 'vue';
 
 const value = ref('192.168.1.1')
+const formState = ref({ ip: null })
 </script>

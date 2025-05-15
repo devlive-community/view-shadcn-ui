@@ -26,6 +26,12 @@ export interface IPInputProps
      * 输入框类型
      */
     type?: keyof typeof HoverType
+
+    /**
+     * Name of the input
+     * 输入框名称，用于表单
+     */
+    name?: string | undefined
 }
 
 export type IPInputEmits = {

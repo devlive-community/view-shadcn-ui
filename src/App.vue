@@ -1,19 +1,15 @@
 <template>
   <div class="p-6">
-    <h2 class="text-xl font-semibold mb-4">IP地址输入组件示例</h2>
-
-    <div class="mb-6 space-y-3">
-      <ShadcnIPInput v-model="ipAddress" type="primary"/>
-      <ShadcnIPInput v-model="ipAddress" type="error"/>
-      <ShadcnIPInput v-model="ipAddress" type="success"/>
-      <ShadcnIPInput v-model="ipAddress" type="warning"/>
-      <p class="mt-2">当前IP地址: {{ ipAddress }}</p>
-    </div>
+    <ShadcnForm v-model="formState">
+      <ShadcnFormItem name="ip" label="IP 地址" :rules="[{ required: true, message: '请输入IP地址' }]">
+        <ShadcnIPInput v-model="formState.ip" name="ip"/>
+      </ShadcnFormItem>
+    </ShadcnForm>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const ipAddress = ref('192.168.1.1')
+const formState = ref({ ip: null })
 </script>
