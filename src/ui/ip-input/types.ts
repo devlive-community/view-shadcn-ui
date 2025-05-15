@@ -5,6 +5,12 @@ export interface IPInputProps
      * v-model绑定的值
      */
     modelValue?: string
+
+    /**
+     * Disables the input
+     * 禁用输入
+     */
+    disabled?: boolean
 }
 
 export type IPInputEmits = {

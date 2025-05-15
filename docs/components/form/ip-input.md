@@ -4,6 +4,8 @@ title: IP输入框 (IP Input)
 
 # 介绍
 
+<br />
+
 本文档主要用于描述 `ShadcnIPInput` 组件的特性和用法。
 
 ## 用法
@@ -26,12 +28,33 @@ title: IP输入框 (IP Input)
 
 :::
 
+## 禁用 (disabled)
+
+::: raw
+
+<CodeRunner title="禁用">
+    <ShadcnIPInput v-model="value" disabled />
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <ShadcnIPInput v-model="value" disabled />
+</template>
+```
+
+:::
+
 ## IP输入框 (IP Input) 属性
 
 <ApiTable title="IP输入框 (IP Input) 属性"
     :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
-        ['modelValue', '双向绑定的值', 'string', '-', '-']
+        ['modelValue', '双向绑定的值', 'string', '-', '-'],
+        ['disabled', '是否禁用', 'boolean', 'false', '-']
     ]">
 </ApiTable>
 

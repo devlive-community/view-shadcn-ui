@@ -4,7 +4,7 @@
 
     <div class="mb-6">
       <p class="mb-2">基本用法：</p>
-      <ShadcnIPInput v-model="ipAddress" @on-change="handleChange"/>
+      <ShadcnIPInput v-model="ipAddress" disabled @on-change="handleChange"/>
       <p class="mt-2">当前IP地址: {{ ipAddress }}</p>
     </div>
   </div>

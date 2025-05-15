@@ -265,6 +265,8 @@ title: {component_name.replace('Shadcn', 'Shadcn ')}
 
 # 介绍
 
+<br />
+
 本文档主要用于描述 {component_name} 组件的特性和用法。
 """
 

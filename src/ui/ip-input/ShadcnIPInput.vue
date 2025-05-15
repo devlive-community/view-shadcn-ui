@@ -8,6 +8,8 @@
              maxlength="3"
              :key="index"
              :value="part"
+             :class="{ 'opacity-50 cursor-not-allowed': props.disabled }"
+             :disabled="props.disabled"
              @input="handleInput($event, index)"
              @keydown="handleKeyDown($event, index)"
              @paste="handlePaste"
@@ -22,7 +24,9 @@ import { IPInputEmits, IPInputProps } from './types'
 
 // Define props and emits
 // 定义属性和事件
-const props = defineProps<IPInputProps>()
+const props = withDefaults(defineProps<IPInputProps>(), {
+  disabled: false
+})
 const emit = defineEmits<IPInputEmits>()
 
 // Initialize IP parts with empty strings or default value

@@ -4,6 +4,8 @@ title: 通知中心 (Notification)
 
 # 介绍
 
+<br />
+
 本文档主要用于描述 `ShadcnNotification` 组件的特性和用法。
 
 ## 用法
