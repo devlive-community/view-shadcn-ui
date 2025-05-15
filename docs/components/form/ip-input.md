@@ -98,6 +98,28 @@ title: IP输入框 (IP Input)
 
 :::
 
+## 分隔符 (separator)
+
+::: raw
+
+<CodeRunner title="分隔符">
+    <ShadcnIPInput v-model="value" separator="."/>
+    <ShadcnIPInput v-model="value" separator="-"/>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <ShadcnIPInput v-model="value" separator="."/>
+    <ShadcnIPInput v-model="value" separator="-"/>
+</template>
+```
+
+:::
+
 ## 表单 (form)
 
 ::: raw
@@ -135,6 +157,7 @@ title: IP输入框 (IP Input)
         ['disabled', '是否禁用', 'boolean', 'false', '-'],
         ['size', '尺寸', 'string', 'default', 'small, default, large'],
         ['type', '类型', 'string', 'primary', 'primary, error, success, warning'],
+        ['separator', '分隔符', 'string', 'undefined', '-'],
         ['name', '输入框名称，用于表单', 'string', '-', '-']
     ]">
 </ApiTable>

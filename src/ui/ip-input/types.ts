@@ -31,7 +31,13 @@ export interface IPInputProps
      * Name of the input
      * 输入框名称，用于表单
      */
-    name?: string | undefined
+    name?: string
+
+    /**
+     * Separator of the input
+     * 输入框分隔符
+     */
+    separator?: string
 }
 
 export type IPInputEmits = {

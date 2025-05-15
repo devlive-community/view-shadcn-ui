@@ -1,23 +1,24 @@
 <template>
   <div class="flex items-center">
     <div class="flex items-center space-x-2">
-      <input v-for="(part, index) in parts"
-             ref="inputRefs"
-             type="text"
-             class="w-12 text-center border border-gray-300 rounded transition-colors duration-300 focus:outline-none"
-             maxlength="3"
-             :key="index"
-             :value="part"
-             :class="[{ 'opacity-50 cursor-not-allowed': props.disabled },
-                Size[size],
-                [HoverType[type]]
-             ]"
-             :disabled="props.disabled"
-             @input="handleInput($event, index)"
-             @keydown="handleKeyDown($event, index)"
-             @paste="handlePaste"
-             @blur.stop="handleBlur"
-             @focus="handleFocus($event)"/>
+      <template v-for="(part, index) in parts" :key="index">
+        <input ref="inputRefs"
+               type="text"
+               class="w-12 text-center border border-gray-300 rounded transition-colors duration-300 focus:outline-none"
+               maxlength="3"
+               :value="part"
+               :class="[{ 'opacity-50 cursor-not-allowed': props.disabled },
+                  Size[size],
+                  [HoverType[type]]
+               ]"
+               :disabled="props.disabled"
+               @input="handleInput($event, index)"
+               @keydown="handleKeyDown($event, index)"
+               @paste="handlePaste"
+               @blur.stop="handleBlur"
+               @focus="handleFocus($event)"/>
+        <span v-if="separator && index < 3" class="text-gray-400">{{ separator }}</span>
+      </template>
     </div>
   </div>
 </template>
@@ -37,7 +38,8 @@ const props = withDefaults(defineProps<IPInputProps>(), {
   disabled: false,
   size: 'default',
   type: 'primary',
-  name: undefined
+  name: undefined,
+  separator: undefined
 })
 
 // Initialize IP parts with empty strings or default value

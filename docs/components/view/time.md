@@ -6,7 +6,7 @@ title: 时间 (Time)
 
 <br />
 
-本文档主要用于描述 `ShadcnTime` 组件的特性和用法。
+本文档主要用于描述 `ShadcnTime` 组件的特性和用法。本组件是基于 [Day.js](https://day.js.org/) 的封装,支持格式化、时区、相对时间和参考时间等功能。
 
 ## 用法
 

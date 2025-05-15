@@ -2,7 +2,7 @@
   <div class="p-6">
     <ShadcnForm v-model="formState">
       <ShadcnFormItem name="ip" label="IP 地址" :rules="[{ required: true, message: '请输入IP地址' }]">
-        <ShadcnIPInput v-model="formState.ip" name="ip"/>
+        <ShadcnIPInput v-model="formState.ip" separator="-" name="ip"/>
       </ShadcnFormItem>
     </ShadcnForm>
   </div>
