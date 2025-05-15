@@ -253,7 +253,8 @@ export default {
                         {text: '颜色选择器 (Color Picker)', link: 'form/color-picker', icon: '/components/form/color-picker.svg', version: '2024.5.3'},
                         {text: '日期选取器 (Date Picker)', link: 'form/date-picker', icon: '/components/form/date-picker.svg', version: '2024.5.3'},
                         {text: '计划任务 (Cron)', link: 'form/cron', icon: '/components/form/cron.svg', version: '2024.5.3'},
-                        {text: '提及 (Mention)', link: 'form/mention', icon: '/components/form/mention.svg', version: '2025.1.0'}
+                        {text: '提及 (Mention)', link: 'form/mention', icon: '/components/form/mention.svg', version: '2025.1.0'},
+                        {text: 'IP输入框 (IP Input)', link: 'form/ip-input', icon: '/components/form/ip-input.svg', version: '2025.1.3'}
                     ]
 
                     return {

@@ -103,6 +103,7 @@ import { ShadcnDataTable, TableCellInputEditor, TableCellSelectEditor } from '@/
 import { ShadcnMarquee } from '@/ui/marquee'
 import { ShadcnNotification, ShadcnNotificationItem } from '@/ui/notification'
 import { ShadcnTime } from '@/ui/time'
+import { ShadcnIPInput } from '@/ui/ip-input'
 
 let components = [
     ShadcnButton,
@@ -202,7 +203,8 @@ let components = [
     ShadcnDataTable, TableCellInputEditor, TableCellSelectEditor,
     ShadcnMarquee,
     ShadcnNotification, ShadcnNotificationItem,
-    ShadcnTime
+    ShadcnTime,
+    ShadcnIPInput
 ]
 
 interface InstallOptions
@@ -338,6 +340,7 @@ export { ShadcnDataTable, TableCellInputEditor, TableCellSelectEditor } from '@/
 export { ShadcnMarquee } from '@/ui/marquee'
 export { ShadcnNotification, ShadcnNotificationItem } from '@/ui/notification'
 export { ShadcnTime } from '@/ui/time'
+export { ShadcnIPInput } from '@/ui/ip-input'
 
 // Export functions
 export { fnToString, fnToFunction } from '@/utils/formatter'

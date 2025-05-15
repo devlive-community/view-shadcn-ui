@@ -265,7 +265,7 @@ title: {component_name.replace('Shadcn', 'Shadcn ')}
 
 # 介绍
 
-This document describes the features and usage of the {component_name} component.
+本文档主要用于描述 {component_name} 组件的特性和用法。
 """
 
     has_model_value = False
@@ -350,9 +350,9 @@ This document describes the features and usage of the {component_name} component
 
     # Generate Props table
     if props:
-        markdown += f"## {component_name.replace('Shadcn', '')} Props\n\n"
-        markdown += "<ApiTable title=\"Props\"\n"
-        markdown += "    :headers=\"['Attribute', 'Description', 'Type', 'Default Value', 'List']\"\n"
+        markdown += f"## {component_name.replace('Shadcn', '')} 属性\n\n"
+        markdown += "<ApiTable title=\"属性\"\n"
+        markdown += "    :headers=\"['属性', '描述', '类型', '默认值', '支持列表']\"\n"
         markdown += "    :columns=\"[\n"
 
         prop_rows = []
@@ -367,9 +367,9 @@ This document describes the features and usage of the {component_name} component
 
     # Generate Events table
     if emits:
-        markdown += f"## {component_name.replace('Shadcn', '')} Events\n\n"
-        markdown += "<ApiTable title=\"Events\"\n"
-        markdown += "    :headers=\"['Event', 'Description', 'Callback Parameters']\"\n"
+        markdown += f"## {component_name.replace('Shadcn', '')} 事件\n\n"
+        markdown += "<ApiTable title=\"事件\"\n"
+        markdown += "    :headers=\"['事件', '描述', '回调参数']\"\n"
         markdown += "    :columns=\"[\n"
 
         emit_rows = []
@@ -384,8 +384,8 @@ This document describes the features and usage of the {component_name} component
     # Generate Slots table
     if slots:
         markdown += f"## {component_name.replace('Shadcn', '')} Slots\n\n"
-        markdown += "<ApiTable title=\"Slots\"\n"
-        markdown += "    :headers=\"['Slot', 'Description']\"\n"
+        markdown += "<ApiTable title=\"插槽\"\n"
+        markdown += "    :headers=\"['插槽', '描述']\"\n"
         markdown += "    :columns=\"[\n"
 
         slot_rows = []

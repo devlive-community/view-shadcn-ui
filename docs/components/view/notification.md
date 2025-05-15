@@ -211,6 +211,8 @@ title: 通知中心 (Notification)
     ]">
 </ApiTable>
 
+<br />
+
 <ApiTable title="通知中心子项 (Notification Item) 插槽"
     :headers="['插槽', '描述', '回调参数']"
     :columns="[
