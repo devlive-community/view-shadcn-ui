@@ -2,9 +2,10 @@
   <div class="p-6">
     <h2 class="text-xl font-semibold mb-4">IP地址输入组件示例</h2>
 
-    <div class="mb-6">
-      <p class="mb-2">基本用法：</p>
-      <ShadcnIPInput v-model="ipAddress" disabled @on-change="handleChange"/>
+    <div class="mb-6 space-y-3">
+      <ShadcnIPInput v-model="ipAddress" size="small"/>
+      <ShadcnIPInput v-model="ipAddress" size="default"/>
+      <ShadcnIPInput v-model="ipAddress" size="large"/>
       <p class="mt-2">当前IP地址: {{ ipAddress }}</p>
     </div>
   </div>
@@ -14,8 +15,4 @@
 import { ref } from 'vue'
 
 const ipAddress = ref('192.168.1.1')
-
-const handleChange = (value: string) => {
-  console.log('IP地址已变更:', value)
-}
 </script>

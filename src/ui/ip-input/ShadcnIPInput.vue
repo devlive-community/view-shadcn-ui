@@ -8,7 +8,9 @@
              maxlength="3"
              :key="index"
              :value="part"
-             :class="{ 'opacity-50 cursor-not-allowed': props.disabled }"
+             :class="[{ 'opacity-50 cursor-not-allowed': props.disabled },
+                Size[size]
+             ]"
              :disabled="props.disabled"
              @input="handleInput($event, index)"
              @keydown="handleKeyDown($event, index)"
@@ -21,11 +23,13 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import { IPInputEmits, IPInputProps } from './types'
+import { Size } from '@/ui/common/size.ts'
 
 // Define props and emits
 // 定义属性和事件
 const props = withDefaults(defineProps<IPInputProps>(), {
-  disabled: false
+  disabled: false,
+  size: 'default'
 })
 const emit = defineEmits<IPInputEmits>()
 

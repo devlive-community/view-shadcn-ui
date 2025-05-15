@@ -48,13 +48,38 @@ title: IP输入框 (IP Input)
 
 :::
 
+## 尺寸 (size)
+
+::: raw
+
+<CodeRunner title="尺寸">
+    <ShadcnIPInput v-model="value" size="small" />
+    <ShadcnIPInput v-model="value" size="default" />
+    <ShadcnIPInput v-model="value" size="large" />
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <ShadcnIPInput v-model="value" size="small" />
+    <ShadcnIPInput v-model="value" size="default" />
+    <ShadcnIPInput v-model="value" size="large" />
+</template>
+```
+
+:::
+
 ## IP输入框 (IP Input) 属性
 
 <ApiTable title="IP输入框 (IP Input) 属性"
     :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['modelValue', '双向绑定的值', 'string', '-', '-'],
-        ['disabled', '是否禁用', 'boolean', 'false', '-']
+        ['disabled', '是否禁用', 'boolean', 'false', '-'],
+        ['size', '尺寸', 'string', 'default', 'small, default, large']
     ]">
 </ApiTable>
 

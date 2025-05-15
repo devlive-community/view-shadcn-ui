@@ -1,3 +1,5 @@
+import { Size } from '@/ui/common/size.ts'
+
 export interface IPInputProps
 {
     /**
@@ -11,6 +13,12 @@ export interface IPInputProps
      * 禁用输入
      */
     disabled?: boolean
+
+    /**
+     * Size of the input
+     * 输入框尺寸
+     */
+    size?: keyof typeof Size
 }
 
 export type IPInputEmits = {
