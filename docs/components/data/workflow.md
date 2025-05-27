@@ -117,6 +117,7 @@ title: 流程 (Workflow)
     - `description` ： 配置描述
     - `required` ：配置必需
     - `rules` ： 配置规则
+    - `hiddenOnUsed` ： 配置在使用时隐藏,格式为配置字段: 比如 `name` 配置了为 `hiddenOnUsed` 为 `id`, 那么在使用时 `id` 配置项会被隐藏
 - `description` ： 节点描述
 - `ports` ： 节点端口
     - `id` ： 端口 ID

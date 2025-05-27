@@ -1,87 +1,102 @@
 <template>
-  <div class="p-6 min-h-screen" style="height: 100vh">
-    <ShadcnDataBuilderEditor :items="stylePanels" :config-width="300" @update-config="console.log($event)">
-      <template #panel-label="{ item }">
-        {{ item.label }} - {{ item.type }}
-      </template>
-      <template #text="{ configure, isSelected }">
-        <ShadcnText type="h1" :class="isSelected ? 'text-blue-600' : 'text-gray-900'">
-          {{ getConfigValue(configure, 'text', 'Text Component') }}
-        </ShadcnText>
-      </template>
-    </ShadcnDataBuilderEditor>
-  </div>
+  <ShadcnWorkflowEditor v-model="workflowState"
+                        :categories="categories"
+                        :nodes="nodes"
+                        :connections="[]"/>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const getConfigValue = (configure, groupKey, label) => {
-  if (!configure) {
-    return null
-  }
-  const group = configure.find(g => g.key === groupKey)
-  if (!group) {
-    return null
-  }
-  const item = group.items?.find(item => item.label === label)
-  return item?.value
-}
-
-const stylePanels = ref([
+const categories = [
   {
-    group: 'Basic Components',
-    children: [
+    label: 'Input Node',
+    value: 'input'
+  },
+  {
+    label: 'Output Node',
+    value: 'output'
+  },
+  {
+    label: 'Transform Node',
+    value: 'transform'
+  }
+]
+const workflowState = ref({
+  nodes: [],
+  connections: []
+})
+
+const nodes: any[] = [
+  {
+    id: 'start',
+    label: 'Start',
+    category: 'input',
+    position: { x: 0, y: 0 },
+    configure: [
       {
-        type: 'text', label: 'Text', configure: [
-          {
-            group: 'Style Group',
-            key: 'style',
-            items: [
-              { type: 'text', label: 'Background Color', key: 'backgroundColor', description: 'Description', value: '#FFF333' },
-              { type: 'number', label: 'Border Radius', key: 'borderRadius', value: '12', min: 0, max: 100, formatter: (value) => `${ value }px` }
-            ]
-          },
-          {
-            group: 'Text Group',
-            key: 'text',
-            items: [
-              {
-                type: 'text',
-                label: 'Text Component',
-                description: 'This is a long description',
-                value: 'Hello, View Shadcn UI',
-                required: true
-              }
-            ]
-          }
+        field: 'id',
+        label: 'ID',
+        type: 'select',
+        options: [
+          { label: 'Option 1', value: '1' },
+          { label: 'Option 2', value: '2' },
+          { label: 'Option 3', value: '3' },
+          { label: 'Option 4', value: '4' },
+          { label: 'Option 5', value: '5' },
+          { label: 'Option 6', value: '6' },
+          { label: 'Option 7', value: '7' }
         ]
       },
       {
-        type: 'chart', label: 'Chart', configure: [
+        field: 'name1',
+        label: 'Password',
+        type: 'password',
+        rules: [
           {
-            group: 'Style Group',
-            key: 'style',
-            items: [
-              { type: 'text', label: 'Background Color', key: 'backgroundColor', description: 'Description', value: '#FFF333' },
-              { type: 'number', label: 'Border Radius', key: 'borderRadius', value: '12', min: 0, max: 100, formatter: (value) => `${ value }px` }
-            ]
-          },
-          {
-            group: 'Text Group',
-            key: 'text',
-            items: [
-              {
-                type: 'text',
-                label: 'Text Component',
-                description: 'This is a long description',
-                value: 'Hello, View Shadcn UI'
-              }
-            ]
+            required: true,
+            message: 'Please input password!'
           }
-        ]
+        ],
+        required: true,
+        hiddenOnUsed: 'id'
+      }
+    ],
+    description: 'Job start node',
+    ports: [
+      {
+        id: 'out1',
+        type: 'output',
+        label: 'Output',
+        required: true,
+        message: 'Input is required'
       }
     ]
+  },
+  {
+    id: 'end',
+    label: 'End',
+    category: 'output',
+    description: 'Job end node',
+    position: { x: 0, y: 0 },
+    data: {},
+    ports: [
+      { id: 'in1', type: 'input', label: 'Input', required: true }
+    ]
+  },
+  {
+    id: 'process',
+    label: 'Process',
+    category: 'transform',
+    description: 'Job transform node',
+    position: { x: 0, y: 0 },
+    data: {},
+    ports: [
+      { id: 'in12', type: 'input', label: 'Input 1' },
+      { id: 'in22', type: 'input', label: 'Input 2' },
+      { id: 'out1', type: 'output', label: 'Output 1' },
+      { id: 'out2', type: 'output', label: 'Output 2' }
+    ]
   }
-])
+]
 </script>

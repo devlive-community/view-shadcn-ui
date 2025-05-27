@@ -31,9 +31,9 @@
 
         <template v-if="hasConfiguration">
           <ShadcnTabItem class="space-y-3" :label="String(t('workflow.text.dataConfigure'))" value="configure">
-            <div class="overflow-y-auto max-h-[calc(100vh-80px)]">
+            <div class="overflow-y-auto" style="height: calc(100vh - 80px);">
               <div class="space-y-3 flex flex-col min-w-0">
-                <div v-for="item in selectedNode.configure" class="space-y-1.5" :key="item.label">
+                <div v-for="item in visibleConfigureItems" class="space-y-1.5" :key="item.label">
                   <div class="flex items-center justify-between">
                     <span>{{ item.label }}</span>
 
@@ -231,7 +231,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue'
 import { t } from '@/utils/locale'
 import { WorkflowConfigureEmits, WorkflowConfigureProps } from '../types'
 import { calcSize } from '@/utils/common.ts'
@@ -250,12 +250,54 @@ const componentConfig = ref({
     y: 0
   }
 })
+
 const hasConfiguration = computed(() => {
   return Boolean(props.selectedNode?.configure?.length)
 })
 
+// 计算显示的配置项（过滤掉被隐藏的项）
+const visibleConfigureItems = computed(() => {
+  if (!props.selectedNode?.configure) {
+    return []
+  }
+
+  return props.selectedNode.configure.filter(item => {
+    // 如果没有 hiddenOnUsed 字段，直接显示
+    if (!item.hiddenOnUsed) {
+      return true
+    }
+
+    // 查找 hiddenOnUsed 指向的配置项
+    const referencedItem = props.selectedNode!.configure!.find(config => config.field === item.hiddenOnUsed)
+
+    // 如果找不到引用的配置项，则显示当前项
+    if (!referencedItem) {
+      return true
+    }
+
+    // 检查引用的配置项是否有值
+    const hasValue = referencedItem.value !== undefined &&
+        referencedItem.value !== null &&
+        referencedItem.value !== ''
+
+    // 如果引用的配置项有值，则隐藏当前项；否则显示当前项
+    return !hasValue
+  })
+})
+
 const validationState = ref<Record<string, { valid: boolean; message: string }>>({})
+
 const validateField = (item: any) => {
+  // 检查当前配置项是否应该被隐藏
+  const shouldBeHidden = !visibleConfigureItems.value.some(visibleItem => visibleItem.field === item.field)
+
+  // 如果配置项被隐藏，则跳过验证并设置为有效状态
+  if (shouldBeHidden) {
+    validationState.value[item.field] = { valid: true, message: '' }
+    item.validated = { valid: true, message: '' }
+    return
+  }
+
   const rules = [
     // 如果已经在 rules 中配置了 required 规则，就不需要添加默认的
     // If the required rule is already configured in the rules, do not add the default
@@ -292,17 +334,35 @@ const validateField = (item: any) => {
   // 更新验证状态
   // Update validation state
   validationState.value[item.field] = { valid, message }
-
   item.validated = { valid, message }
 }
 
+// 验证所有字段（包括隐藏的）
+const validateAllFields = () => {
+  if (!props.selectedNode?.configure) {
+    return
+  }
+
+  props.selectedNode.configure.forEach(item => {
+    validateField(item)
+  })
+}
+
+// 使用 nextTick 避免递归更新
 watch(() => props.selectedNode?.configure, (configure) => {
   if (configure) {
-    configure.forEach(item => {
-      validateField(item)
+    nextTick(() => {
+      validateAllFields()
     })
   }
 }, { immediate: true })
+
+// 当任何配置项的值发生变化时，重新验证所有字段
+watch(() => props.selectedNode?.configure?.map(item => item.value), () => {
+  nextTick(() => {
+    validateAllFields()
+  })
+}, { deep: true })
 
 watch(() => props.selectedNode, (node) => {
   if (node) {
