@@ -61,7 +61,7 @@
 
         <!-- 标尺 -->
         <!-- Ruler -->
-        <div v-if="showRuler" class="absolute left-0 ml-0.5 top-0 w-full flex sticky">
+        <div v-if="showRuler" class="absolute left-0 ml-0.5 top-0 w-full flex sticky z-50">
           <!-- 左上角方块 -->
           <!-- Corner square -->
           <div class="w-5 h-5 bg-white border-gray-200 z-10 sticky left-0 top-0"/>
@@ -85,7 +85,7 @@
         <!-- 垂直标尺 -->
         <!-- Vertical ruler -->
         <div v-if="showRuler"
-             class="absolute left-0 top-5 w-5 bg-white border-r border-gray-200 sticky"
+             class="absolute left-0 top-5 w-5 bg-white border-r border-gray-200 sticky z-50"
              :style="{ height: calcSize(canvasSize.height) }">
           <div v-for="i in Math.ceil(canvasSize.height / 100) + (canvasSize.height % 100 === 0 ? 1 : 0)"
                class="absolute w-full"
