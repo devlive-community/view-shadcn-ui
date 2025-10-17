@@ -1,11 +1,9 @@
 <template>
   <div class="relative flex flex-col w-full" ref="tableRef" @click.stop>
-    <!-- 加载状态覆盖层 -->
     <div v-if="loading" class="absolute inset-0 z-50">
       <slot name="loading"/>
     </div>
 
-    <!-- 数据行渲染区域 -->
     <template v-else-if="data && data.length > 0">
       <div v-for="(row, rowIndex) in data"
            :key="rowIndex"
@@ -18,7 +16,6 @@
            ]"
            @click="handleRowClick(rowIndex, row)">
 
-        <!-- 行选择列 - 响应式背景色与边框 -->
         <div v-if="rowSelection === 'multipleRow'"
              :style="{ width: '48px', flexShrink: 0 }"
              :class="[
@@ -48,9 +45,7 @@
                  class="w-4 h-4 border-gray-300 text-blue-600 focus:ring-blue-500"/>
         </div>
 
-        <!-- 左侧固定列渲染 -->
         <template v-for="(col, colIndex) in fixedColumns.leftFixedColumns.value" :key="`left-${col.key}`">
-          <!-- 自定义编辑器组件 -->
           <component :is="col.cellEditor"
                      v-if="col.cellEditor && col.editable && editableState.isEditing(rowIndex, col.key)"
                      :field-key="col.key"
@@ -68,7 +63,6 @@
                      @cancel="editableState.stopEditing"
                      @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
 
-          <!-- 默认输入编辑器 -->
           <CellInputEditor v-else-if="col.editable && editableState.isEditing(rowIndex, col.key)"
                            :field-key="col.key"
                            :is-row-editing="!!editableState.editingRowState.value"
@@ -84,7 +78,6 @@
                            @cancel="editableState.stopEditing"
                            @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
 
-          <!-- 普通数据单元格 -->
           <div v-else
                :class="[
                  TablePaddingSize[size],
@@ -106,13 +99,13 @@
                @click.stop="handleCellClick(rowIndex, col.key, row)"
                @dblclick.stop="handleCellDblClick(rowIndex, col.key, row, col)"
                @contextmenu.prevent="props.contextMenu && contextMenuState.show($event, rowIndex, col.key, row, col)">
-            {{ row[col.key] }}
+            <slot :name="col.key" :row="row" :column="col" :rowIndex="rowIndex" :value="row[col.key]">
+              {{ row[col.key] }}
+            </slot>
           </div>
         </template>
 
-        <!-- 可滚动列渲染 -->
         <template v-for="col in fixedColumns.scrollableColumns.value" :key="col.key">
-          <!-- 自定义编辑器组件 -->
           <component :is="col.cellEditor"
                      v-if="col.cellEditor && col.editable && editableState.isEditing(rowIndex, col.key)"
                      :field-key="col.key"
@@ -124,7 +117,6 @@
                      @cancel="editableState.stopEditing"
                      @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
 
-          <!-- 默认输入编辑器 -->
           <CellInputEditor v-else-if="col.editable && editableState.isEditing(rowIndex, col.key)"
                            :field-key="col.key"
                            :is-row-editing="!!editableState.editingRowState.value"
@@ -134,7 +126,6 @@
                            @cancel="editableState.stopEditing"
                            @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
 
-          <!-- 普通数据单元格 -->
           <div v-else
                :class="[
                  TablePaddingSize[size],
@@ -152,13 +143,13 @@
                @click.stop="handleCellClick(rowIndex, col.key, row)"
                @dblclick.stop="handleCellDblClick(rowIndex, col.key, row, col)"
                @contextmenu.prevent="props.contextMenu && contextMenuState.show($event, rowIndex, col.key, row, col)">
-            {{ row[col.key] }}
+            <slot :name="col.key" :row="row" :column="col" :rowIndex="rowIndex" :value="row[col.key]">
+              {{ row[col.key] }}
+            </slot>
           </div>
         </template>
 
-        <!-- 右侧固定列渲染 -->
         <template v-for="(col, colIndex) in fixedColumns.rightFixedColumns.value" :key="`right-${col.key}`">
-          <!-- 自定义编辑器组件 -->
           <component :is="col.cellEditor"
                      v-if="col.cellEditor && col.editable && editableState.isEditing(rowIndex, col.key)"
                      :field-key="col.key"
@@ -176,7 +167,6 @@
                      @cancel="editableState.stopEditing"
                      @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
 
-          <!-- 默认输入编辑器 -->
           <CellInputEditor v-else-if="col.editable && editableState.isEditing(rowIndex, col.key)"
                            :field-key="col.key"
                            :is-row-editing="!!editableState.editingRowState.value"
@@ -192,7 +182,6 @@
                            @cancel="editableState.stopEditing"
                            @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
 
-          <!-- 普通数据单元格 -->
           <div v-else
                :class="[
                  TablePaddingSize[size],
@@ -214,19 +203,19 @@
                @click.stop="handleCellClick(rowIndex, col.key, row)"
                @dblclick.stop="handleCellDblClick(rowIndex, col.key, row, col)"
                @contextmenu.prevent="props.contextMenu && contextMenuState.show($event, rowIndex, col.key, row, col)">
-            {{ row[col.key] }}
+            <slot :name="col.key" :row="row" :column="col" :rowIndex="rowIndex" :value="row[col.key]">
+              {{ row[col.key] }}
+            </slot>
           </div>
         </template>
       </div>
     </template>
 
-    <!-- 空状态展示 -->
     <div v-else>
       <slot name="empty"/>
     </div>
   </div>
 
-  <!-- 右键上下文菜单 -->
   <ContextMenu v-if="props.contextMenu"
                v-show="contextMenuState.visible.value"
                :context-menu-state="contextMenuState"
@@ -244,17 +233,17 @@
 </template>
 
 <script setup lang="ts">
-import {CellClickPayload, ColumnProps, DataTableBodyEmits, RowPayload, RowSelectionMode, TextAlign} from '../types'
-import {BaseSize} from '@/ui/common/size'
-import {Size, TablePaddingSize} from '../size'
-import {onMounted, onUnmounted, ref} from 'vue'
-import {useTooltip} from '../hooks/useTooltip'
-import {calcSize} from '@/utils/common'
-import {useRowSelection} from '../hooks/useRowSelection'
-import {useEditable} from '../hooks/useEditable'
-import {useContextMenu} from '../hooks/useContextMenu'
-import {useFixedColumns} from '../hooks/useFixedColumns'
-import {UseBorderReturn} from '../hooks/useBorder'
+import { CellClickPayload, ColumnProps, DataTableBodyEmits, RowPayload, RowSelectionMode, TextAlign } from '../types'
+import { BaseSize } from '@/ui/common/size'
+import { Size, TablePaddingSize } from '../size'
+import { onMounted, onUnmounted, ref } from 'vue'
+import { useTooltip } from '../hooks/useTooltip'
+import { calcSize } from '@/utils/common'
+import { useRowSelection } from '../hooks/useRowSelection'
+import { useEditable } from '../hooks/useEditable'
+import { useContextMenu } from '../hooks/useContextMenu'
+import { useFixedColumns } from '../hooks/useFixedColumns'
+import { UseBorderReturn } from '../hooks/useBorder'
 import CellInputEditor from '@/ui/data-table/components/CellInputEditor.vue'
 import ContextMenu from '@/ui/data-table/components/ContextMenu.vue'
 
@@ -283,13 +272,7 @@ const fixedColumns = useFixedColumns(localColumns)
 const editableState = useEditable()
 const contextMenuState = useContextMenu()
 
-const handleSaveEdit = (
-    _rowIndex: number,
-    _key: string,
-    value: any,
-    row: any,
-    col: ColumnProps
-) => {
+const handleSaveEdit = (_rowIndex: number, _key: string, value: any, row: any, col: ColumnProps) => {
   const lastEditState = editableState.stopEditing(value)
   if (lastEditState) {
     emits('on-cell-edit', {
@@ -319,16 +302,11 @@ const handleRowClick = (rowIndex: number, _row: any) => {
 }
 
 const handleCellClick = (rowIndex: number, col: string, row: any) => {
-  selectedCell.value = {rowIndex, row, col}
-  emits('on-cell-click', {rowIndex, row, col})
+  selectedCell.value = { rowIndex, row, col }
+  emits('on-cell-click', { rowIndex, row, col })
 }
 
-const handleCellDblClick = (
-    rowIndex: number,
-    key: string,
-    row: any,
-    column: ColumnProps
-) => {
+const handleCellDblClick = (rowIndex: number, key: string, row: any, column: ColumnProps) => {
   if (column.editable) {
     editableState.startEditing(rowIndex, key, row[key], row, column)
   }
@@ -362,5 +340,5 @@ onUnmounted(() => {
   document.removeEventListener('click', handleClickOutside, true)
 })
 
-const {showTooltip, hideTooltip} = useTooltip()
+const { showTooltip, hideTooltip } = useTooltip()
 </script>

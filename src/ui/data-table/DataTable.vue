@@ -29,6 +29,11 @@
               @on-row-select="(payload) => emits('on-row-select', payload as any)"
               @on-cell-edit="(payload) => emits('on-cell-edit', payload as any)"
               @on-row-edit="(payload) => emits('on-row-edit', payload as any)">
+
+        <template v-for="(_, name) in $slots" v-slot:[name]="slotProps">
+          <slot :name="name" v-bind="slotProps"/>
+        </template>
+
         <template #loading>
           <slot name="loading">
             <div class="m-6">
@@ -72,17 +77,17 @@
 </template>
 
 <script setup lang="ts">
-import {computed, watch} from 'vue'
+import { computed, useSlots, watch } from 'vue'
 import Header from './components/Header.vue'
 import Body from './components/Body.vue'
 import Pagination from './components/Pagination.vue'
-import type {ColumnProps, DataTableEmits, DataTableProps} from './types'
-import {useSort} from './hooks/useSort'
-import {useBorder} from './hooks/useBorder'
-import {calcSize} from '@/utils/common'
-import {usePagination} from './hooks/usePagination'
-import {useRowSelection} from './hooks/useRowSelection'
-import {ShadcnEmpty} from '@/ui/empty'
+import type { ColumnProps, DataTableEmits, DataTableProps } from './types'
+import { useSort } from './hooks/useSort'
+import { useBorder } from './hooks/useBorder'
+import { calcSize } from '@/utils/common'
+import { usePagination } from './hooks/usePagination'
+import { useRowSelection } from './hooks/useRowSelection'
+import { ShadcnEmpty } from '@/ui/empty'
 
 const props = withDefaults(defineProps<DataTableProps>(), {
   size: 'default',
@@ -93,8 +98,9 @@ const props = withDefaults(defineProps<DataTableProps>(), {
 })
 
 const emits = defineEmits<DataTableEmits>()
+const $slots = useSlots()
 
-const {columns, toggleSort, getSortedColumns} = useSort(props.columns)
+const { columns, toggleSort, getSortedColumns } = useSort(props.columns)
 const borderConfig = useBorder(props.border)
 
 const handleSortChange = (column: ColumnProps, event: MouseEvent) => {
@@ -157,7 +163,6 @@ const selectionState = useRowSelection(
 
 const handleColumnMove = (payload: ColumnProps[]) => {
   columns.value = payload
-
   emits('on-column-move', payload)
 }
 </script>

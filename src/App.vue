@@ -2,19 +2,16 @@
   <DataTable :columns="columns"
              :data="datas"
              :height="500"
-             column-move
-             :border="{
-                  horizontal: true,
-                  vertical: true,
-                  outer: true,
-                  inner: true
-             }"
-             :pagination="{ page: 1, size: 20, options: [10, 20, 50, 100] }"
-             @on-row-edit="onRowEdit"/>
+             border
+             @on-row-edit="onRowEdit">
+    <template #id="{ row }">
+      <span class="font-bold text-blue-600">{{ row.id }}</span>
+    </template>
+  </DataTable>
 </template>
 
 <script setup lang="ts">
-import { ref, getCurrentInstance } from 'vue'
+import { getCurrentInstance, ref } from 'vue'
 import { ColumnProps } from "@/ui/data-table/types.ts";
 
 interface TableData
@@ -36,24 +33,24 @@ interface TableData
   version: string
 }
 
-const {proxy} = getCurrentInstance()!
+const { proxy } = getCurrentInstance()!
 
 const columns = ref<ColumnProps[]>([
-  {key: 'id', label: 'ID', sortable: true, resizable: true, fixed: 'left'},
-  {key: 'title', label: '标题', editable: true, tooltip: true, fixed: 'left'},
-  {key: 'author', label: '作者', editable: true, sortable: true},
-  {key: 'description', label: '描述', width: 300, editable: true, tooltip: true, ellipsis: true},
-  {key: 'category', label: '分类', sortable: true},
-  {key: 'date', label: '发布日期', sortable: true, align: 'center'},
-  {key: 'status', label: '状态', sortable: true, align: 'center'},
-  {key: 'views', label: '浏览量', sortable: true, align: 'right', fixed: 'right'},
-  {key: 'likes', label: '点赞数', sortable: true, align: 'right'},
-  {key: 'comments', label: '评论数', sortable: true, align: 'right'},
-  {key: 'tags', label: '标签', tooltip: true},
-  {key: 'rating', label: '评分', sortable: true, align: 'center'},
-  {key: 'publisher', label: '出版方', editable: true},
-  {key: 'language', label: '语言', sortable: true, align: 'center', fixed: 'right'},
-  {key: 'version', label: '版本', align: 'center', fixed: 'right'}
+  { key: 'id', label: 'ID', sortable: true, editable: true, resizable: true, fixed: 'left' },
+  { key: 'title', label: '标题', editable: true, tooltip: true, fixed: 'left' },
+  { key: 'author', label: '作者', editable: true, sortable: true },
+  { key: 'description', label: '描述', width: 300, editable: true, tooltip: true, ellipsis: true },
+  { key: 'category', label: '分类', sortable: true },
+  { key: 'date', label: '发布日期', sortable: true, align: 'center' },
+  { key: 'status', label: '状态', sortable: true, align: 'center' },
+  { key: 'views', label: '浏览量', sortable: true, align: 'right', fixed: 'right' },
+  { key: 'likes', label: '点赞数', sortable: true, align: 'right' },
+  { key: 'comments', label: '评论数', sortable: true, align: 'right' },
+  { key: 'tags', label: '标签', tooltip: true },
+  { key: 'rating', label: '评分', sortable: true, align: 'center' },
+  { key: 'publisher', label: '出版方', editable: true },
+  { key: 'language', label: '语言', sortable: true, align: 'center', fixed: 'right' },
+  { key: 'version', label: '版本', align: 'center', fixed: 'right' }
 ])
 
 const data = ref<TableData[]>([
@@ -144,7 +141,7 @@ const data = ref<TableData[]>([
   }
 ])
 
-function generateRandomData(count: number = 1000): TableData[]
+function generateRandomData(count: number = 100): TableData[]
 {
   const result: TableData[] = []
   const statusList = ['已发布', '审核中', '草稿', '已下线']
@@ -177,7 +174,7 @@ function generateRandomData(count: number = 1000): TableData[]
   return result
 }
 
-const datas = ref<TableData[]>(generateRandomData(1000))
+const datas = ref<TableData[]>(generateRandomData(100))
 
 const onRowEdit = (value: any) => {
   proxy?.$Message.success({
