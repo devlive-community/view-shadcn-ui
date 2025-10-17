@@ -1,9 +1,10 @@
-import {Size} from '@/ui/data-table/size.ts'
-import {Component} from 'vue'
+import { Size } from '@/ui/data-table/size.ts'
+import { Component } from 'vue'
 
 export type SortOrder = 'asc' | 'desc' | null
 export type RowSelectionMode = 'singleRow' | 'multipleRow'
 export type FixedType = 'left' | 'right'
+export type ConditionType = 'gt' | 'gte' | 'lt' | 'lte' | 'eq' | 'neq' | 'between' | 'in' | 'notIn'
 
 export type CellClickPayload = { rowIndex: number; col: string; row: any } | null
 export type RowSelectPayload = { rowIndex: number; row: any, selected: boolean, selectedRows: any[] } | null
@@ -17,16 +18,34 @@ export enum TextAlign
     right = 'text-right'
 }
 
-/**
- * 边框配置接口
- * 提供细粒度的边框控制能力
- */
 export interface BorderConfig
 {
     outer?: boolean      // 外边框
     inner?: boolean      // 内边框（单元格间）
     horizontal?: boolean // 水平边框
     vertical?: boolean   // 垂直边框
+}
+
+export interface GradientCondition
+{
+    type: ConditionType
+    value: number | [number, number] | string[]
+    gradient?: string
+    backgroundColor?: string
+    textColor?: string
+    borderColor?: string
+    className?: string
+}
+
+export interface CellStyleConfig
+{
+    key: string
+    field?: string
+    conditions: GradientCondition[]
+    defaultGradient?: string
+    defaultBackgroundColor?: string
+    defaultTextColor?: string
+    defaultClassName?: string
 }
 
 export interface PaginationProps
@@ -45,13 +64,14 @@ export interface ColumnProps
     sort?: SortOrder
     ellipsis?: boolean
     width?: string
-    tooltip?: string
-    align?: TextAlign
+    tooltip?: string | boolean
+    align?: TextAlign | string
     resizable?: boolean
     editable?: boolean
     cellEditor?: Component
     cellEditorProps?: Record<string, any>
     fixed?: FixedType
+    styleConfig?: CellStyleConfig
 }
 
 export interface DataTableProps

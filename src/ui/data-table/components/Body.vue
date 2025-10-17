@@ -86,13 +86,15 @@
                  ((selectedCell?.rowIndex === rowIndex && selectedCell?.col === col.key) && !editableState.isEditing(rowIndex, col.key)) && 'border border-blue-400',
                  'sticky',
                  borderConfig.getCellBorderClass(true, 'left'),
-                 selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white'
+                 selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white',
+                 cellStyleEngine.getCellStyle(row, col, rowIndex).className
                ]"
                :style="{
                  width: calcSize(col.width || 150),
                  flex: 'none',
                  left: fixedColumns.getLeftOffset(colIndex),
-                 zIndex: 15
+                 zIndex: 15,
+                 ...cellStyleEngine.getCellStyle(row, col, rowIndex)
                }"
                @mousemove.stop.prevent="(col.ellipsis !== false && col.tooltip) && showTooltip($event, row[col.key])"
                @mouseleave.stop.prevent="hideTooltip"
@@ -132,11 +134,13 @@
                  TextAlign[col.align || 'left'],
                  col.ellipsis !== false ? 'relative truncate whitespace-nowrap overflow-hidden' : 'break-words whitespace-normal',
                  ((selectedCell?.rowIndex === rowIndex && selectedCell?.col === col.key) && !editableState.isEditing(rowIndex, col.key)) && 'border border-blue-400',
-                 borderConfig.getCellBorderClass(false)
+                 borderConfig.getCellBorderClass(false),
+                 cellStyleEngine.getCellStyle(row, col, rowIndex).className
                ]"
                :style="{
                  width: calcSize(col.width || 150),
-                 flex: 'none'
+                 flex: 'none',
+                 ...cellStyleEngine.getCellStyle(row, col, rowIndex)
                }"
                @mousemove.stop.prevent="(col.ellipsis !== false && col.tooltip) && showTooltip($event, row[col.key])"
                @mouseleave.stop.prevent="hideTooltip"
@@ -190,13 +194,15 @@
                  ((selectedCell?.rowIndex === rowIndex && selectedCell?.col === col.key) && !editableState.isEditing(rowIndex, col.key)) && 'border border-blue-400',
                  'sticky',
                  borderConfig.getCellBorderClass(true, 'right'),
-                 selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white'
+                 selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white',
+                 cellStyleEngine.getCellStyle(row, col, rowIndex).className
                ]"
                :style="{
                  width: calcSize(col.width || 150),
                  flex: 'none',
                  right: fixedColumns.getRightOffset(colIndex),
-                 zIndex: 15
+                 zIndex: 15,
+                 ...cellStyleEngine.getCellStyle(row, col, rowIndex)
                }"
                @mousemove.stop.prevent="(col.ellipsis !== false && col.tooltip) && showTooltip($event, row[col.key])"
                @mouseleave.stop.prevent="hideTooltip"
@@ -244,6 +250,7 @@ import { useEditable } from '../hooks/useEditable'
 import { useContextMenu } from '../hooks/useContextMenu'
 import { useFixedColumns } from '../hooks/useFixedColumns'
 import { UseBorderReturn } from '../hooks/useBorder'
+import { useCellStyle } from '../hooks/useCellStyle'
 import CellInputEditor from '@/ui/data-table/components/CellInputEditor.vue'
 import ContextMenu from '@/ui/data-table/components/ContextMenu.vue'
 
@@ -341,4 +348,5 @@ onUnmounted(() => {
 })
 
 const { showTooltip, hideTooltip } = useTooltip()
+const cellStyleEngine = useCellStyle()
 </script>

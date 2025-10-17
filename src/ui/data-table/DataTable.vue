@@ -15,7 +15,7 @@
                 @on-resizable="(column, _width) => emits('on-resizable', column, _width)"
                 @on-row-select="(payload) => emits('on-row-select', payload as any)"
                 @on-column-move="handleColumnMove">
-          <template v-for="(_, name) in $slots" v-slot:[name]="slotProps">
+          <template v-for="(_, name) in $slots" :key="name" v-slot:[name]="slotProps">
             <slot :name="name" v-bind="slotProps"/>
           </template>
         </Header>
@@ -33,7 +33,7 @@
               @on-cell-edit="(payload) => emits('on-cell-edit', payload as any)"
               @on-row-edit="(payload) => emits('on-row-edit', payload as any)">
 
-        <template v-for="(_, name) in $slots" v-slot:[name]="slotProps">
+        <template v-for="(_, name) in $slots" :key="name" v-slot:[name]="slotProps">
           <slot :name="name" v-bind="slotProps"/>
         </template>
 
@@ -80,7 +80,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, useSlots, watch } from 'vue'
+import { computed, watch } from 'vue'
 import Header from './components/Header.vue'
 import Body from './components/Body.vue'
 import Pagination from './components/Pagination.vue'
@@ -101,7 +101,6 @@ const props = withDefaults(defineProps<DataTableProps>(), {
 })
 
 const emits = defineEmits<DataTableEmits>()
-const $slots = useSlots()
 
 const { columns, toggleSort, getSortedColumns } = useSort(props.columns)
 const borderConfig = useBorder(props.border)

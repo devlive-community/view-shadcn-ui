@@ -213,7 +213,8 @@ let components = [
     ShadcnIPInput
 ]
 
-interface InstallOptions {
+interface InstallOptions
+{
     locale?: Language
 }
 

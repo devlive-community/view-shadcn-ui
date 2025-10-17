@@ -2,8 +2,7 @@
   <DataTable :columns="columns"
              :data="datas"
              :height="500"
-             border
-             @on-row-edit="onRowEdit">
+             border>
     <template #id-header="{ column }">
       <div class="inline-flex flex-col items-center gap-2">
         <span class="font-bold">{{ column.label }}</span>
@@ -18,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { getCurrentInstance, ref } from 'vue'
+import { ref } from 'vue'
 import { ColumnProps } from "@/ui/data-table/types.ts";
 
 interface TableData
@@ -40,17 +39,41 @@ interface TableData
   version: string
 }
 
-const { proxy } = getCurrentInstance()!
-
 const columns = ref<ColumnProps[]>([
   { key: 'id', label: 'ID', sortable: true, editable: true, resizable: true, fixed: 'left' },
   { key: 'title', label: '标题', editable: true, tooltip: true, fixed: 'left' },
   { key: 'author', label: '作者', editable: true, sortable: true },
-  { key: 'description', label: '描述', width: 300, editable: true, tooltip: true, ellipsis: true },
+  { key: 'description', label: '描述', width: '300', editable: true, tooltip: true, ellipsis: true },
   { key: 'category', label: '分类', sortable: true },
   { key: 'date', label: '发布日期', sortable: true, align: 'center' },
   { key: 'status', label: '状态', sortable: true, align: 'center' },
-  { key: 'views', label: '浏览量', sortable: true, align: 'right', fixed: 'right' },
+  {
+    key: 'views', label: '浏览量', sortable: true, align: 'right',
+    styleConfig: {
+      conditions: [
+        {
+          type: 'gt' as const,
+          value: 1090,
+          gradient: 'linear-gradient(270deg, rgba(255, 239, 245, 0), rgba(255, 239, 245, 1) 100%)',
+          textColor: '#dc2626',
+          className: 'font-bold'
+        },
+        {
+          type: 'between' as const,
+          value: [120, 140],
+          backgroundColor: '#fef3c7',
+          textColor: '#d97706'
+        },
+        {
+          type: 'lte' as const,
+          value: 120,
+          backgroundColor: '#d1fae5',
+          textColor: '#059669'
+        }
+      ],
+      defaultBackgroundColor: '#f3f4f6'
+    } as any
+  },
   { key: 'likes', label: '点赞数', sortable: true, align: 'right' },
   { key: 'comments', label: '评论数', sortable: true, align: 'right' },
   { key: 'tags', label: '标签', tooltip: true },
@@ -182,11 +205,4 @@ function generateRandomData(count: number = 100): TableData[]
 }
 
 const datas = ref<TableData[]>(generateRandomData(100))
-
-const onRowEdit = (value: any) => {
-  proxy?.$Message.success({
-    content: `编辑行 [${value.rowIndex}]: ${JSON.stringify(value.values)}`,
-    showIcon: true
-  })
-}
 </script>
