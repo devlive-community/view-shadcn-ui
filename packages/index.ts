@@ -77,7 +77,13 @@ import ShadcnGradientText from '@/ui/text/gradient'
 import { ShadcnContextMenu, ShadcnContextMenuItem, ShadcnContextMenuSub } from '@/ui/contextmenu'
 import ShadcnHoverCard from '@/ui/hover-card'
 import { ShadcnToggle, ShadcnToggleGroup } from '@/ui/toggle'
-import { ShadcnDataBuilderCanvas, ShadcnDataBuilderConfigure, ShadcnDataBuilderEditor, ShadcnDataBuilderPanel, ShadcnDataBuilderView } from '@/ui/data-builder'
+import {
+    ShadcnDataBuilderCanvas,
+    ShadcnDataBuilderConfigure,
+    ShadcnDataBuilderEditor,
+    ShadcnDataBuilderPanel,
+    ShadcnDataBuilderView
+} from '@/ui/data-builder'
 import { ShadcnUpload } from '@/ui/upload'
 import { ShadcnLogger } from '@/ui/logger'
 import { ShadcnScrollbar } from '@/ui/scrollbar'
@@ -99,7 +105,7 @@ import { ShadcnContribution } from '@/ui/contribution'
 import { ShadcnMention } from '@/ui/mention'
 import { ShadcnImage, ShadcnImageGroup, ShadcnImageViewer } from '@/ui/image'
 import { ShadcnCarousel } from '@/ui/carousel'
-import { ShadcnDataTable, TableCellInputEditor, TableCellSelectEditor } from '@/ui/data-table'
+import { DataTable, CellInputEditor, CellSelectEditor } from '@/ui/data-table'
 import { ShadcnMarquee } from '@/ui/marquee'
 import { ShadcnNotification, ShadcnNotificationItem } from '@/ui/notification'
 import { ShadcnTime } from '@/ui/time'
@@ -200,15 +206,14 @@ let components = [
     ShadcnMention,
     ShadcnImage, ShadcnImageGroup, ShadcnImageViewer,
     ShadcnCarousel,
-    ShadcnDataTable, TableCellInputEditor, TableCellSelectEditor,
+    DataTable, CellInputEditor, CellSelectEditor,
     ShadcnMarquee,
     ShadcnNotification, ShadcnNotificationItem,
     ShadcnTime,
     ShadcnIPInput
 ]
 
-interface InstallOptions
-{
+interface InstallOptions {
     locale?: Language
 }
 
@@ -314,7 +319,13 @@ export { default as ShadcnGradientText } from '@/ui/text/gradient'
 export { ShadcnContextMenu, ShadcnContextMenuItem, ShadcnContextMenuSub } from '@/ui/contextmenu'
 export { default as ShadcnHoverCard } from '@/ui/hover-card'
 export { ShadcnToggle, ShadcnToggleGroup } from '@/ui/toggle'
-export { ShadcnDataBuilderPanel, ShadcnDataBuilderCanvas, ShadcnDataBuilderConfigure, ShadcnDataBuilderEditor, ShadcnDataBuilderView } from '@/ui/data-builder'
+export {
+    ShadcnDataBuilderPanel,
+    ShadcnDataBuilderCanvas,
+    ShadcnDataBuilderConfigure,
+    ShadcnDataBuilderEditor,
+    ShadcnDataBuilderView
+} from '@/ui/data-builder'
 export { ShadcnUpload } from '@/ui/upload'
 export { ShadcnLogger } from '@/ui/logger'
 export { ShadcnScrollbar } from '@/ui/scrollbar'
@@ -336,7 +347,7 @@ export { ShadcnContribution } from '@/ui/contribution'
 export { ShadcnMention } from '@/ui/mention'
 export { ShadcnImage, ShadcnImageGroup, ShadcnImageViewer } from '@/ui/image'
 export { ShadcnCarousel } from '@/ui/carousel'
-export { ShadcnDataTable, TableCellInputEditor, TableCellSelectEditor } from '@/ui/data-table'
+export { DataTable, CellInputEditor, CellSelectEditor } from '@/ui/data-table'
 export { ShadcnMarquee } from '@/ui/marquee'
 export { ShadcnNotification, ShadcnNotificationItem } from '@/ui/notification'
 export { ShadcnTime } from '@/ui/time'

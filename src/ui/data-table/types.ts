@@ -36,6 +36,7 @@ export interface ColumnProps
     align?: TextAlign
     resizable?: boolean
     editable?: boolean
+    fixed?: 'left' | 'right'
     cellEditor?: Component
     cellEditorProps?: Record<string, any>
 }
