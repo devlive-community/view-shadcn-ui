@@ -1,10 +1,16 @@
 <template>
-  <div class="flex border-b bg-gray-100 relative w-full sticky top-0 z-50">
+  <div :class="[
+    'flex bg-gray-100 relative w-full sticky top-0 z-50',
+    borderConfig.getHeaderBorderClass()
+  ]">
     <!-- 行选择列 -->
     <div v-if="rowSelection === 'multipleRow'"
          :style="{ width: '48px', flexShrink: 0 }"
-         :class="[TablePaddingSize[size]]"
-         class="flex items-center justify-center sticky left-0 z-40 bg-gray-100 border-r border-gray-300">
+         :class="[
+           TablePaddingSize[size],
+           'flex items-center justify-center sticky left-0 z-40 bg-gray-100',
+           borderConfig.getCellBorderClass(false)
+         ]">
       <input type="checkbox"
              :checked="selectionState.isAllSelected.value"
              :indeterminate="selectionState.isIndeterminate.value"
@@ -13,23 +19,26 @@
     </div>
     <div v-else-if="rowSelection === 'singleRow'"
          :style="{ width: '48px', flexShrink: 0 }"
-         class="sticky left-0 z-40 bg-gray-100 border-r border-gray-300">
+         :class="[
+           'sticky left-0 z-40 bg-gray-100',
+           borderConfig.getCellBorderClass(false)
+         ]">
     </div>
 
-    <!-- 左侧固定列区域 -->
+    <!-- 左侧固定列 -->
     <template v-for="(col, index) in fixedColumns.leftFixedColumns.value" :key="`left-${col.key}`">
       <div :style="[
              { width: calcSize(col.width || 150), left: fixedColumns.getLeftOffset(index) },
              { position: 'sticky', flexShrink: 0, zIndex: 35 }
            ]"
            :class="[
-             'font-medium bg-gray-100 border-r-2 border-gray-300',
+             'font-medium bg-gray-100',
              TextAlign[col.align || 'left'],
              TablePaddingSize[size],
+             borderConfig.getCellBorderClass(true, 'left'),
              isDragOver(col) && 'border-2 h-full w-full border-blue-500 border-dashed'
            ]">
-
-        <!-- 支持列拖拽的表头单元格 -->
+        <!-- 表头内容保持不变 -->
         <div v-if="columnMove"
              :draggable="true"
              class="h-full w-full cursor-move select-none"
@@ -55,7 +64,6 @@
           </div>
         </div>
 
-        <!-- 标准表头单元格（不支持拖拽） -->
         <div v-else class="h-full w-full" @click="col.sortable && handleSort(col, $event)">
           <span>{{ col.label }}</span>
           <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
@@ -71,7 +79,6 @@
           </div>
         </div>
 
-        <!-- 列宽调整手柄 -->
         <div v-if="col.resizable"
              data-resize-handle
              class="absolute top-0 right-0 h-full w-1 cursor-col-resize flex items-center justify-center group"
@@ -82,19 +89,20 @@
       </div>
     </template>
 
-    <!-- 可滚动列区域 -->
+    <!-- 可滚动列 -->
     <template v-for="col in fixedColumns.scrollableColumns.value" :key="col.key">
       <div :style="[
              { width: calcSize(col.width || 150) },
              { position: 'relative', flexShrink: 0 }
            ]"
-           :class="[ 'font-medium',
+           :class="[
+             'font-medium',
              TextAlign[col.align || 'left'],
              TablePaddingSize[size],
+             borderConfig.getCellBorderClass(false),
              isDragOver(col) && 'border-2 h-full w-full border-blue-500 border-dashed'
            ]">
-
-        <!-- 支持列拖拽的表头单元格 -->
+        <!-- 表头内容保持不变 -->
         <div v-if="columnMove"
              :draggable="true"
              class="h-full w-full cursor-move select-none"
@@ -120,7 +128,6 @@
           </div>
         </div>
 
-        <!-- 标准表头单元格（不支持拖拽） -->
         <div v-else class="h-full w-full" @click="col.sortable && handleSort(col, $event)">
           <span>{{ col.label }}</span>
           <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
@@ -136,7 +143,6 @@
           </div>
         </div>
 
-        <!-- 列宽调整手柄 -->
         <div v-if="col.resizable"
              data-resize-handle
              class="absolute top-0 right-0 h-full w-1 cursor-col-resize flex items-center justify-center group"
@@ -147,20 +153,20 @@
       </div>
     </template>
 
-    <!-- 右侧固定列区域 -->
+    <!-- 右侧固定列 -->
     <template v-for="(col, index) in fixedColumns.rightFixedColumns.value" :key="`right-${col.key}`">
       <div :style="[
              { width: calcSize(col.width || 150), right: fixedColumns.getRightOffset(index) },
              { position: 'sticky', flexShrink: 0, zIndex: 35 }
            ]"
            :class="[
-             'font-medium bg-gray-100 border-l-2 border-gray-300',
+             'font-medium bg-gray-100',
              TextAlign[col.align || 'left'],
              TablePaddingSize[size],
+             borderConfig.getCellBorderClass(true, 'right'),
              isDragOver(col) && 'border-2 h-full w-full border-blue-500 border-dashed'
            ]">
-
-        <!-- 支持列拖拽的表头单元格 -->
+        <!-- 表头内容保持不变 -->
         <div v-if="columnMove"
              :draggable="true"
              class="h-full w-full cursor-move select-none"
@@ -186,7 +192,6 @@
           </div>
         </div>
 
-        <!-- 标准表头单元格（不支持拖拽） -->
         <div v-else class="h-full w-full" @click="col.sortable && handleSort(col, $event)">
           <span>{{ col.label }}</span>
           <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
@@ -202,7 +207,6 @@
           </div>
         </div>
 
-        <!-- 列宽调整手柄 -->
         <div v-if="col.resizable"
              data-resize-handle
              class="absolute top-0 right-0 h-full w-1 cursor-col-resize flex items-center justify-center group"
@@ -216,15 +220,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
-import { ColumnProps, DataTableHeaderEmits, RowSelectionMode, TextAlign } from '../types'
-import { Size, TablePaddingSize } from '../size'
+import {ref, watch} from 'vue'
+import {ColumnProps, DataTableHeaderEmits, RowSelectionMode, TextAlign} from '../types'
+import {Size, TablePaddingSize} from '../size'
 import ShadcnIcon from '@/ui/icon'
-import { calcSize } from '@/utils/common'
-import { useResize } from '../hooks/useResize'
-import { useRowSelection } from '../hooks/useRowSelection'
-import { useColumnDrag } from '../hooks/useColumnDrag'
-import { useFixedColumns } from '../hooks/useFixedColumns'
+import {calcSize} from '@/utils/common'
+import {useResize} from '../hooks/useResize'
+import {useRowSelection} from '../hooks/useRowSelection'
+import {useColumnDrag} from '../hooks/useColumnDrag'
+import {useFixedColumns} from '../hooks/useFixedColumns'
+import {UseBorderReturn} from '../hooks/useBorder'
 
 const props = withDefaults(defineProps<{
   columns: ColumnProps[]
@@ -233,6 +238,7 @@ const props = withDefaults(defineProps<{
   rowSelection?: RowSelectionMode
   selectionState: ReturnType<typeof useRowSelection>
   columnMove?: boolean
+  borderConfig: UseBorderReturn
 }>(), {
   size: 'default',
   columnMove: false
@@ -244,7 +250,7 @@ const localColumns = ref<ColumnProps[]>([...props.columns])
 
 watch(() => props.columns, (newColumns) => {
   localColumns.value = [...newColumns]
-}, { deep: true })
+}, {deep: true})
 
 const fixedColumns = useFixedColumns(localColumns)
 
@@ -264,5 +270,5 @@ const handleSort = (column: ColumnProps, event: MouseEvent) => {
   emits('on-sort', column, event)
 }
 
-const { handleMouseDown } = useResize(emits)
+const {handleMouseDown} = useResize(emits)
 </script>

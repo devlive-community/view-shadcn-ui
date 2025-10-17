@@ -10,19 +10,21 @@
       <div v-for="(row, rowIndex) in data"
            :key="rowIndex"
            :class="[
-             'flex border-b items-center h-full',
+             'flex items-center h-full',
              BaseSize[size],
+             borderConfig.getRowBorderClass(),
              selectionState.isRowSelected(rowIndex) && 'bg-blue-50',
              !selectionState.isRowSelected(rowIndex) && 'hover:bg-gray-50'
            ]"
            @click="handleRowClick(rowIndex, row)">
 
-        <!-- 行选择列 - 响应式背景色 -->
+        <!-- 行选择列 - 响应式背景色与边框 -->
         <div v-if="rowSelection === 'multipleRow'"
              :style="{ width: '48px', flexShrink: 0 }"
              :class="[
                TablePaddingSize[size],
-               'flex items-center justify-center sticky left-0 z-20 border-r border-gray-200',
+               'flex items-center justify-center sticky left-0 z-20',
+               borderConfig.getCellBorderClass(false),
                selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white'
              ]"
              @click.stop>
@@ -34,7 +36,8 @@
         <div v-else-if="rowSelection === 'singleRow'"
              :style="{ width: '48px', flexShrink: 0 }"
              :class="[
-               'flex items-center justify-center sticky left-0 z-20 border-r border-gray-200',
+               'flex items-center justify-center sticky left-0 z-20',
+               borderConfig.getCellBorderClass(false),
                selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white'
              ]"
              @click.stop>
@@ -58,7 +61,8 @@
                      v-bind="col.cellEditorProps"
                      :style="{ left: fixedColumns.getLeftOffset(colIndex), zIndex: 15 }"
                      :class="[
-                       'sticky border-r-2 border-gray-300',
+                       'sticky',
+                       borderConfig.getCellBorderClass(true, 'left'),
                        selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white'
                      ]"
                      @cancel="editableState.stopEditing"
@@ -73,7 +77,8 @@
                            :width="calcSize(col.width || 150)"
                            :style="{ left: fixedColumns.getLeftOffset(colIndex), zIndex: 15 }"
                            :class="[
-                             'sticky border-r-2 border-gray-300',
+                             'sticky',
+                             borderConfig.getCellBorderClass(true, 'left'),
                              selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white'
                            ]"
                            @cancel="editableState.stopEditing"
@@ -86,7 +91,8 @@
                  TextAlign[col.align || 'left'],
                  col.ellipsis !== false ? 'relative truncate whitespace-nowrap overflow-hidden' : 'break-words whitespace-normal',
                  ((selectedCell?.rowIndex === rowIndex && selectedCell?.col === col.key) && !editableState.isEditing(rowIndex, col.key)) && 'border border-blue-400',
-                 'sticky border-r-2 border-gray-300',
+                 'sticky',
+                 borderConfig.getCellBorderClass(true, 'left'),
                  selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white'
                ]"
                :style="{
@@ -134,7 +140,8 @@
                  TablePaddingSize[size],
                  TextAlign[col.align || 'left'],
                  col.ellipsis !== false ? 'relative truncate whitespace-nowrap overflow-hidden' : 'break-words whitespace-normal',
-                 ((selectedCell?.rowIndex === rowIndex && selectedCell?.col === col.key) && !editableState.isEditing(rowIndex, col.key)) && 'border border-blue-400'
+                 ((selectedCell?.rowIndex === rowIndex && selectedCell?.col === col.key) && !editableState.isEditing(rowIndex, col.key)) && 'border border-blue-400',
+                 borderConfig.getCellBorderClass(false)
                ]"
                :style="{
                  width: calcSize(col.width || 150),
@@ -162,7 +169,8 @@
                      v-bind="col.cellEditorProps"
                      :style="{ right: fixedColumns.getRightOffset(colIndex), zIndex: 15 }"
                      :class="[
-                       'sticky border-l-2 border-gray-300',
+                       'sticky',
+                       borderConfig.getCellBorderClass(true, 'right'),
                        selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white'
                      ]"
                      @cancel="editableState.stopEditing"
@@ -177,7 +185,8 @@
                            :width="calcSize(col.width || 150)"
                            :style="{ right: fixedColumns.getRightOffset(colIndex), zIndex: 15 }"
                            :class="[
-                             'sticky border-l-2 border-gray-300',
+                             'sticky',
+                             borderConfig.getCellBorderClass(true, 'right'),
                              selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white'
                            ]"
                            @cancel="editableState.stopEditing"
@@ -190,7 +199,8 @@
                  TextAlign[col.align || 'left'],
                  col.ellipsis !== false ? 'relative truncate whitespace-nowrap overflow-hidden' : 'break-words whitespace-normal',
                  ((selectedCell?.rowIndex === rowIndex && selectedCell?.col === col.key) && !editableState.isEditing(rowIndex, col.key)) && 'border border-blue-400',
-                 'sticky border-l-2 border-gray-300',
+                 'sticky',
+                 borderConfig.getCellBorderClass(true, 'right'),
                  selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white'
                ]"
                :style="{
@@ -234,16 +244,17 @@
 </template>
 
 <script setup lang="ts">
-import { CellClickPayload, ColumnProps, DataTableBodyEmits, RowPayload, RowSelectionMode, TextAlign } from '../types'
-import { BaseSize } from '@/ui/common/size'
-import { Size, TablePaddingSize } from '../size'
-import { onMounted, onUnmounted, ref } from 'vue'
-import { useTooltip } from '../hooks/useTooltip'
-import { calcSize } from '@/utils/common'
-import { useRowSelection } from '../hooks/useRowSelection'
-import { useEditable } from '../hooks/useEditable'
-import { useContextMenu } from '../hooks/useContextMenu'
-import { useFixedColumns } from '../hooks/useFixedColumns'
+import {CellClickPayload, ColumnProps, DataTableBodyEmits, RowPayload, RowSelectionMode, TextAlign} from '../types'
+import {BaseSize} from '@/ui/common/size'
+import {Size, TablePaddingSize} from '../size'
+import {onMounted, onUnmounted, ref} from 'vue'
+import {useTooltip} from '../hooks/useTooltip'
+import {calcSize} from '@/utils/common'
+import {useRowSelection} from '../hooks/useRowSelection'
+import {useEditable} from '../hooks/useEditable'
+import {useContextMenu} from '../hooks/useContextMenu'
+import {useFixedColumns} from '../hooks/useFixedColumns'
+import {UseBorderReturn} from '../hooks/useBorder'
 import CellInputEditor from '@/ui/data-table/components/CellInputEditor.vue'
 import ContextMenu from '@/ui/data-table/components/ContextMenu.vue'
 
@@ -255,6 +266,7 @@ const props = withDefaults(defineProps<{
   selectionState: ReturnType<typeof useRowSelection>
   loading?: boolean
   contextMenu?: boolean
+  borderConfig: UseBorderReturn
 }>(), {
   size: 'default',
   loading: false,
@@ -271,7 +283,13 @@ const fixedColumns = useFixedColumns(localColumns)
 const editableState = useEditable()
 const contextMenuState = useContextMenu()
 
-const handleSaveEdit = (_rowIndex: number, _key: string, value: any, row: any, col: ColumnProps) => {
+const handleSaveEdit = (
+    _rowIndex: number,
+    _key: string,
+    value: any,
+    row: any,
+    col: ColumnProps
+) => {
   const lastEditState = editableState.stopEditing(value)
   if (lastEditState) {
     emits('on-cell-edit', {
@@ -305,7 +323,12 @@ const handleCellClick = (rowIndex: number, col: string, row: any) => {
   emits('on-cell-click', {rowIndex, row, col})
 }
 
-const handleCellDblClick = (rowIndex: number, key: string, row: any, column: ColumnProps) => {
+const handleCellDblClick = (
+    rowIndex: number,
+    key: string,
+    row: any,
+    column: ColumnProps
+) => {
   if (column.editable) {
     editableState.startEditing(rowIndex, key, row[key], row, column)
   }

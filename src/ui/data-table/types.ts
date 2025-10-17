@@ -1,8 +1,9 @@
-import { Size } from '@/ui/data-table/size.ts'
-import { Component } from 'vue'
+import {Size} from '@/ui/data-table/size.ts'
+import {Component} from 'vue'
 
 export type SortOrder = 'asc' | 'desc' | null
 export type RowSelectionMode = 'singleRow' | 'multipleRow'
+export type FixedType = 'left' | 'right'
 
 export type CellClickPayload = { rowIndex: number; col: string; row: any } | null
 export type RowSelectPayload = { rowIndex: number; row: any, selected: boolean, selectedRows: any[] } | null
@@ -14,6 +15,18 @@ export enum TextAlign
     left = 'text-left',
     center = 'text-center',
     right = 'text-right'
+}
+
+/**
+ * 边框配置接口
+ * 提供细粒度的边框控制能力
+ */
+export interface BorderConfig
+{
+    outer?: boolean      // 外边框
+    inner?: boolean      // 内边框（单元格间）
+    horizontal?: boolean // 水平边框
+    vertical?: boolean   // 垂直边框
 }
 
 export interface PaginationProps
@@ -30,15 +43,15 @@ export interface ColumnProps
     label: string
     sortable?: boolean
     sort?: SortOrder
-    ellipsis?: boolean // 是否省略
-    width?: string // 宽度，支持输入数字和字符串会自动计算，如果是数字的情况时，单位为 px
+    ellipsis?: boolean
+    width?: string
     tooltip?: string
     align?: TextAlign
     resizable?: boolean
     editable?: boolean
-    fixed?: 'left' | 'right'
     cellEditor?: Component
     cellEditorProps?: Record<string, any>
+    fixed?: FixedType
 }
 
 export interface DataTableProps
@@ -51,8 +64,9 @@ export interface DataTableProps
     loading?: boolean
     pagination?: PaginationProps
     rowSelection?: RowSelectionMode
-    columnMove?: boolean // 是否允许移动列，移动后可以调整位置
+    columnMove?: boolean
     contextMenu?: boolean
+    border?: boolean | BorderConfig  // 支持布尔值快捷配置和细粒度配置
 }
 
 export type DataTableHeaderEmits = {
@@ -81,7 +95,7 @@ export type DataTableBodyEmits = {
     (e: 'on-row-edit', payload: RowPayload): void
 }
 
-export  type DataTablePaginationEmits = {
+export type DataTablePaginationEmits = {
     (e: 'on-page-change', page: number): void
     (e: 'on-size-change', size: number): void
 }

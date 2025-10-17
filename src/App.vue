@@ -2,9 +2,13 @@
   <DataTable :columns="columns"
              :data="datas"
              :height="500"
-             :context-menu="true"
              column-move
-             row-selection="multipleRow"
+             :border="{
+                  horizontal: true,
+                  vertical: true,
+                  outer: true,
+                  inner: true
+             }"
              :pagination="{ page: 1, size: 20, options: [10, 20, 50, 100] }"
              @on-row-edit="onRowEdit"/>
 </template>
@@ -13,7 +17,8 @@
 import { ref, getCurrentInstance } from 'vue'
 import { ColumnProps } from "@/ui/data-table/types.ts";
 
-interface TableData {
+interface TableData
+{
   id: string
   title: string
   author: string
@@ -139,7 +144,8 @@ const data = ref<TableData[]>([
   }
 ])
 
-function generateRandomData(count: number = 1000): TableData[] {
+function generateRandomData(count: number = 1000): TableData[]
+{
   const result: TableData[] = []
   const statusList = ['已发布', '审核中', '草稿', '已下线']
   const categoryList = ['前端开发', '编程语言', '工程化', '架构设计', '性能优化', '算法', '数据库', '运维']

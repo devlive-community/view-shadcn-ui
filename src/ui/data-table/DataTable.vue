@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-auto rounded-sm border">
+  <div :class="['overflow-auto', borderConfig.getContainerBorderClass()]">
     <div :style="{ width: calcSize(width), height: calcSize(height) }"
          class="relative w-full"
          style="overflow-x: auto">
@@ -10,6 +10,7 @@
                 :row-selection="rowSelection"
                 :selection-state="selectionState"
                 :size="size"
+                :border-config="borderConfig"
                 @on-sort="handleSortChange"
                 @on-resizable="(column, _width) => emits('on-resizable', column, _width)"
                 @on-row-select="(payload) => emits('on-row-select', payload as any)"
@@ -23,6 +24,7 @@
               :row-selection="rowSelection"
               :selection-state="selectionState"
               :size="size"
+              :border-config="borderConfig"
               @on-cell-click="(payload) => emits('on-cell-click', payload as any)"
               @on-row-select="(payload) => emits('on-row-select', payload as any)"
               @on-cell-edit="(payload) => emits('on-cell-edit', payload as any)"
@@ -70,27 +72,30 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watch } from 'vue'
+import {computed, watch} from 'vue'
 import Header from './components/Header.vue'
 import Body from './components/Body.vue'
 import Pagination from './components/Pagination.vue'
-import type { ColumnProps, DataTableEmits, DataTableProps } from './types'
-import { useSort } from './hooks/useSort'
-import { calcSize } from '@/utils/common'
-import { usePagination } from './hooks/usePagination'
-import { useRowSelection } from './hooks/useRowSelection'
-import { ShadcnEmpty } from '@/ui/empty'
+import type {ColumnProps, DataTableEmits, DataTableProps} from './types'
+import {useSort} from './hooks/useSort'
+import {useBorder} from './hooks/useBorder'
+import {calcSize} from '@/utils/common'
+import {usePagination} from './hooks/usePagination'
+import {useRowSelection} from './hooks/useRowSelection'
+import {ShadcnEmpty} from '@/ui/empty'
 
 const props = withDefaults(defineProps<DataTableProps>(), {
   size: 'default',
   height: 'auto',
   width: '100%',
-  loading: false
+  loading: false,
+  border: false
 })
 
 const emits = defineEmits<DataTableEmits>()
 
 const {columns, toggleSort, getSortedColumns} = useSort(props.columns)
+const borderConfig = useBorder(props.border)
 
 const handleSortChange = (column: ColumnProps, event: MouseEvent) => {
   toggleSort(column.key, event)
