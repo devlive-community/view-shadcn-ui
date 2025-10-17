@@ -3,7 +3,6 @@
     'flex bg-gray-100 relative w-full sticky top-0 z-50',
     borderConfig.getHeaderBorderClass()
   ]">
-    <!-- 行选择列 -->
     <div v-if="rowSelection === 'multipleRow'"
          :style="{ width: '48px', flexShrink: 0 }"
          :class="[
@@ -25,7 +24,6 @@
          ]">
     </div>
 
-    <!-- 左侧固定列 -->
     <template v-for="(col, index) in fixedColumns.leftFixedColumns.value" :key="`left-${col.key}`">
       <div :style="[
              { width: calcSize(col.width || 150), left: fixedColumns.getLeftOffset(index) },
@@ -38,7 +36,7 @@
              borderConfig.getCellBorderClass(true, 'left'),
              isDragOver(col) && 'border-2 h-full w-full border-blue-500 border-dashed'
            ]">
-        <!-- 表头内容保持不变 -->
+
         <div v-if="columnMove"
              :draggable="true"
              class="h-full w-full cursor-move select-none"
@@ -49,7 +47,9 @@
              @drop.prevent="(e) => handleDrop(col, e)">
           <div class="inline-flex items-center flex-1 justify-inherit"
                @click="col.sortable && handleSort(col, $event)">
-            <span>{{ col.label }}</span>
+            <slot :name="`${col.key}-header`" :column="col" :columnIndex="index">
+              <span>{{ col.label }}</span>
+            </slot>
             <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
               <ShadcnIcon :class="[
                             'font-semibold transition-transform',
@@ -65,7 +65,9 @@
         </div>
 
         <div v-else class="h-full w-full" @click="col.sortable && handleSort(col, $event)">
-          <span>{{ col.label }}</span>
+          <slot :name="`${col.key}-header`" :column="col" :columnIndex="index">
+            <span>{{ col.label }}</span>
+          </slot>
           <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
             <ShadcnIcon :class="[
                           'font-semibold transition-transform',
@@ -89,7 +91,6 @@
       </div>
     </template>
 
-    <!-- 可滚动列 -->
     <template v-for="col in fixedColumns.scrollableColumns.value" :key="col.key">
       <div :style="[
              { width: calcSize(col.width || 150) },
@@ -102,7 +103,7 @@
              borderConfig.getCellBorderClass(false),
              isDragOver(col) && 'border-2 h-full w-full border-blue-500 border-dashed'
            ]">
-        <!-- 表头内容保持不变 -->
+
         <div v-if="columnMove"
              :draggable="true"
              class="h-full w-full cursor-move select-none"
@@ -113,7 +114,9 @@
              @drop.prevent="(e) => handleDrop(col, e)">
           <div class="inline-flex items-center flex-1 justify-inherit"
                @click="col.sortable && handleSort(col, $event)">
-            <span>{{ col.label }}</span>
+            <slot :name="`${col.key}-header`" :column="col">
+              <span>{{ col.label }}</span>
+            </slot>
             <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
               <ShadcnIcon :class="[
                             'font-semibold transition-transform',
@@ -129,7 +132,9 @@
         </div>
 
         <div v-else class="h-full w-full" @click="col.sortable && handleSort(col, $event)">
-          <span>{{ col.label }}</span>
+          <slot :name="`${col.key}-header`" :column="col">
+            <span>{{ col.label }}</span>
+          </slot>
           <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
             <ShadcnIcon :class="[
                           'font-semibold transition-transform',
@@ -153,7 +158,6 @@
       </div>
     </template>
 
-    <!-- 右侧固定列 -->
     <template v-for="(col, index) in fixedColumns.rightFixedColumns.value" :key="`right-${col.key}`">
       <div :style="[
              { width: calcSize(col.width || 150), right: fixedColumns.getRightOffset(index) },
@@ -166,7 +170,7 @@
              borderConfig.getCellBorderClass(true, 'right'),
              isDragOver(col) && 'border-2 h-full w-full border-blue-500 border-dashed'
            ]">
-        <!-- 表头内容保持不变 -->
+
         <div v-if="columnMove"
              :draggable="true"
              class="h-full w-full cursor-move select-none"
@@ -177,7 +181,9 @@
              @drop.prevent="(e) => handleDrop(col, e)">
           <div class="inline-flex items-center flex-1 justify-inherit"
                @click="col.sortable && handleSort(col, $event)">
-            <span>{{ col.label }}</span>
+            <slot :name="`${col.key}-header`" :column="col" :columnIndex="index">
+              <span>{{ col.label }}</span>
+            </slot>
             <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
               <ShadcnIcon :class="[
                             'font-semibold transition-transform',
@@ -193,7 +199,9 @@
         </div>
 
         <div v-else class="h-full w-full" @click="col.sortable && handleSort(col, $event)">
-          <span>{{ col.label }}</span>
+          <slot :name="`${col.key}-header`" :column="col" :columnIndex="index">
+            <span>{{ col.label }}</span>
+          </slot>
           <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
             <ShadcnIcon :class="[
                           'font-semibold transition-transform',
@@ -220,16 +228,16 @@
 </template>
 
 <script setup lang="ts">
-import {ref, watch} from 'vue'
-import {ColumnProps, DataTableHeaderEmits, RowSelectionMode, TextAlign} from '../types'
-import {Size, TablePaddingSize} from '../size'
+import { ref, watch } from 'vue'
+import { ColumnProps, DataTableHeaderEmits, RowSelectionMode, TextAlign } from '../types'
+import { Size, TablePaddingSize } from '../size'
 import ShadcnIcon from '@/ui/icon'
-import {calcSize} from '@/utils/common'
-import {useResize} from '../hooks/useResize'
-import {useRowSelection} from '../hooks/useRowSelection'
-import {useColumnDrag} from '../hooks/useColumnDrag'
-import {useFixedColumns} from '../hooks/useFixedColumns'
-import {UseBorderReturn} from '../hooks/useBorder'
+import { calcSize } from '@/utils/common'
+import { useResize } from '../hooks/useResize'
+import { useRowSelection } from '../hooks/useRowSelection'
+import { useColumnDrag } from '../hooks/useColumnDrag'
+import { useFixedColumns } from '../hooks/useFixedColumns'
+import { UseBorderReturn } from '../hooks/useBorder'
 
 const props = withDefaults(defineProps<{
   columns: ColumnProps[]
@@ -250,7 +258,7 @@ const localColumns = ref<ColumnProps[]>([...props.columns])
 
 watch(() => props.columns, (newColumns) => {
   localColumns.value = [...newColumns]
-}, {deep: true})
+}, { deep: true })
 
 const fixedColumns = useFixedColumns(localColumns)
 
@@ -270,5 +278,5 @@ const handleSort = (column: ColumnProps, event: MouseEvent) => {
   emits('on-sort', column, event)
 }
 
-const {handleMouseDown} = useResize(emits)
+const { handleMouseDown } = useResize(emits)
 </script>

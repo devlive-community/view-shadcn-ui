@@ -15,6 +15,9 @@
                 @on-resizable="(column, _width) => emits('on-resizable', column, _width)"
                 @on-row-select="(payload) => emits('on-row-select', payload as any)"
                 @on-column-move="handleColumnMove">
+          <template v-for="(_, name) in $slots" v-slot:[name]="slotProps">
+            <slot :name="name" v-bind="slotProps"/>
+          </template>
         </Header>
 
         <Body :columns="columns"

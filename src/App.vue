@@ -4,6 +4,13 @@
              :height="500"
              border
              @on-row-edit="onRowEdit">
+    <template #id-header="{ column }">
+      <div class="inline-flex flex-col items-center gap-2">
+        <span class="font-bold">{{ column.label }}</span>
+        <span>附加信息</span>
+      </div>
+    </template>
+
     <template #id="{ row }">
       <span class="font-bold text-blue-600">{{ row.id }}</span>
     </template>
