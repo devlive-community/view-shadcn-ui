@@ -3,6 +3,8 @@ import { Component } from 'vue'
 
 export type SortOrder = 'asc' | 'desc' | null
 export type RowSelectionMode = 'singleRow' | 'multipleRow'
+export type FixedType = 'left' | 'right'
+export type ConditionType = 'gt' | 'gte' | 'lt' | 'lte' | 'eq' | 'neq' | 'between' | 'in' | 'notIn'
 
 export type CellClickPayload = { rowIndex: number; col: string; row: any } | null
 export type RowSelectPayload = { rowIndex: number; row: any, selected: boolean, selectedRows: any[] } | null
@@ -14,6 +16,36 @@ export enum TextAlign
     left = 'text-left',
     center = 'text-center',
     right = 'text-right'
+}
+
+export interface BorderConfig
+{
+    outer?: boolean      // 外边框
+    inner?: boolean      // 内边框（单元格间）
+    horizontal?: boolean // 水平边框
+    vertical?: boolean   // 垂直边框
+}
+
+export interface GradientCondition
+{
+    type: ConditionType
+    value: number | [number, number] | string[]
+    gradient?: string
+    backgroundColor?: string
+    textColor?: string
+    borderColor?: string
+    className?: string
+}
+
+export interface CellStyleConfig
+{
+    key: string
+    field?: string
+    conditions: GradientCondition[]
+    defaultGradient?: string
+    defaultBackgroundColor?: string
+    defaultTextColor?: string
+    defaultClassName?: string
 }
 
 export interface PaginationProps
@@ -30,14 +62,16 @@ export interface ColumnProps
     label: string
     sortable?: boolean
     sort?: SortOrder
-    ellipsis?: boolean // 是否省略
-    width?: string // 宽度，支持输入数字和字符串会自动计算，如果是数字的情况时，单位为 px
-    tooltip?: string
-    align?: TextAlign
+    ellipsis?: boolean
+    width?: string
+    tooltip?: string | boolean
+    align?: TextAlign | string
     resizable?: boolean
     editable?: boolean
     cellEditor?: Component
     cellEditorProps?: Record<string, any>
+    fixed?: FixedType
+    styleConfig?: CellStyleConfig
 }
 
 export interface DataTableProps
@@ -50,8 +84,9 @@ export interface DataTableProps
     loading?: boolean
     pagination?: PaginationProps
     rowSelection?: RowSelectionMode
-    columnMove?: boolean // 是否允许移动列，移动后可以调整位置
+    columnMove?: boolean
     contextMenu?: boolean
+    border?: boolean | BorderConfig  // 支持布尔值快捷配置和细粒度配置
 }
 
 export type DataTableHeaderEmits = {
@@ -80,7 +115,7 @@ export type DataTableBodyEmits = {
     (e: 'on-row-edit', payload: RowPayload): void
 }
 
-export  type DataTablePaginationEmits = {
+export type DataTablePaginationEmits = {
     (e: 'on-page-change', page: number): void
     (e: 'on-size-change', size: number): void
 }
