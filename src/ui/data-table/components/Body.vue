@@ -8,7 +8,7 @@
       <div v-for="(row, rowIndex) in data"
            :key="rowIndex"
            :class="[
-             'flex items-center h-full',
+             'group flex items-center h-full',
              BaseSize[size],
              borderConfig.getRowBorderClass(),
              selectionState.isRowSelected(rowIndex) && 'bg-blue-50',
@@ -22,7 +22,7 @@
                TablePaddingSize[size],
                'flex items-center justify-center sticky left-0 z-20',
                borderConfig.getCellBorderClass(false),
-               selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white'
+               selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white group-hover:!bg-gray-50'
              ]"
              @click.stop>
           <input type="checkbox"
@@ -35,7 +35,7 @@
              :class="[
                'flex items-center justify-center sticky left-0 z-20',
                borderConfig.getCellBorderClass(false),
-               selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white'
+               selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white group-hover:!bg-gray-50'
              ]"
              @click.stop>
           <input type="radio"
@@ -58,7 +58,7 @@
                      :class="[
                        'sticky',
                        borderConfig.getCellBorderClass(true, 'left'),
-                       selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white'
+                       selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white group-hover:!bg-gray-50'
                      ]"
                      @cancel="editableState.stopEditing"
                      @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
@@ -73,7 +73,7 @@
                            :class="[
                              'sticky',
                              borderConfig.getCellBorderClass(true, 'left'),
-                             selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white'
+                             selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white group-hover:!bg-gray-50'
                            ]"
                            @cancel="editableState.stopEditing"
                            @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
@@ -86,7 +86,7 @@
                  ((selectedCell?.rowIndex === rowIndex && selectedCell?.col === col.key) && !editableState.isEditing(rowIndex, col.key)) && 'border border-blue-400',
                  'sticky',
                  borderConfig.getCellBorderClass(true, 'left'),
-                 selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white',
+                 selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white group-hover:!bg-gray-50',
                  cellStyleEngine.getCellStyle(row, col, rowIndex).className
                ]"
                :style="{
@@ -166,7 +166,7 @@
                      :class="[
                        'sticky',
                        borderConfig.getCellBorderClass(true, 'right'),
-                       selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white'
+                       selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white group-hover:!bg-gray-50'
                      ]"
                      @cancel="editableState.stopEditing"
                      @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
@@ -181,11 +181,10 @@
                            :class="[
                              'sticky',
                              borderConfig.getCellBorderClass(true, 'right'),
-                             selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white'
+                             selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white group-hover:!bg-gray-50'
                            ]"
                            @cancel="editableState.stopEditing"
                            @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
-
           <div v-else
                :class="[
                  TablePaddingSize[size],
@@ -194,7 +193,7 @@
                  ((selectedCell?.rowIndex === rowIndex && selectedCell?.col === col.key) && !editableState.isEditing(rowIndex, col.key)) && 'border border-blue-400',
                  'sticky',
                  borderConfig.getCellBorderClass(true, 'right'),
-                 selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white',
+                 selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white group-hover:!bg-gray-50',
                  cellStyleEngine.getCellStyle(row, col, rowIndex).className
                ]"
                :style="{
