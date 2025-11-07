@@ -11,12 +11,12 @@
            class="flex items-center cursor-pointer hover:text-muted-foreground"
            @click="onClear">
         <slot name="clear">
-          <ShadcnIcon icon="CircleX" size="18"/>
+          <Icon icon="CircleX" size="18"/>
         </slot>
       </div>
 
       <slot name="icon">
-        <ShadcnIcon icon="Clock" size="18"/>
+        <Icon icon="Clock" size="18"/>
       </slot>
     </div>
 

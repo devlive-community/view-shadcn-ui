@@ -5,19 +5,19 @@
     <div class="relative w-full h-full flex items-center justify-center" @click.stop>
       <button class="absolute top-4 right-4 text-white p-2 rounded-full hover:bg-gray-500 items-center flex transition-colors duration-200 z-20 focus:outline-none"
               @click.stop="handleClose">
-        <ShadcnIcon icon="X"/>
+        <Icon icon="X"/>
       </button>
 
       <button v-if="current > 0"
               class="absolute left-4 text-white p-2 rounded-full hover:bg-gray-500 items-center flex transition-colors duration-200 z-20 focus:outline-none"
               @click.stop="handlePrevious">
-        <ShadcnIcon icon="ChevronLeft"/>
+        <Icon icon="ChevronLeft"/>
       </button>
 
       <button v-if="current < images.length - 1"
               class="absolute right-4 text-white p-2 rounded-full hover:bg-gray-500 items-center flex transition-colors duration-200 z-20 focus:outline-none"
               @click.stop="handleNext">
-        <ShadcnIcon icon="ChevronRight"/>
+        <Icon icon="ChevronRight"/>
       </button>
 
       <div class="max-w-4xl max-h-full p-4" @click.stop>
@@ -51,30 +51,30 @@
           <ShadcnHoverCard :content="zoom">
             <button class="text-white p-2 rounded-full flex items-center hover:scale-150 hover:duration-300 hover:transition-transform focus:outline-none"
                     @click.stop="handleZoomIn">
-              <ShadcnIcon icon="ZoomIn"/>
+              <Icon icon="ZoomIn"/>
             </button>
           </ShadcnHoverCard>
 
           <ShadcnHoverCard :content="zoom">
             <button class="text-white p-2 rounded-full items-center flex hover:scale-150 hover:duration-300 hover:transition-transform focus:outline-none"
                     @click.stop="handleZoomOut">
-              <ShadcnIcon icon="ZoomOut"/>
+              <Icon icon="ZoomOut"/>
             </button>
           </ShadcnHoverCard>
 
           <button class="text-white p-2 rounded-full items-center flex hover:scale-150 hover:duration-300 hover:transition-transform focus:outline-none"
                   @click="handleRotateLeft">
-            <ShadcnIcon icon="RotateCcwSquare"/>
+            <Icon icon="RotateCcwSquare"/>
           </button>
 
           <button class="text-white p-2 rounded-full items-center flex hover:scale-150 hover:duration-300 hover:transition-transform focus:outline-none"
                   @click="handleRotateRight">
-            <ShadcnIcon icon="RotateCwSquare"/>
+            <Icon icon="RotateCwSquare"/>
           </button>
 
           <button class="text-white p-2 rounded-full items-center flex hover:scale-150 hover:duration-300 hover:transition-transform focus:outline-none"
                   @click="handleReset">
-            <ShadcnIcon icon="RotateCcw"/>
+            <Icon icon="RotateCcw"/>
           </button>
         </div>
       </div>

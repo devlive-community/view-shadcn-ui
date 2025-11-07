@@ -3,7 +3,7 @@
     <div :style="{ width: calcSize(width), height: calcSize(height) }"
          class="relative w-full"
          style="overflow-x: auto">
-      <div class="inline-block bg-white">
+      <div :class="['inline-block', dark ? 'bg-gray-900' : 'bg-white']">
         <Header :column-move="columnMove"
                 :columns="columns"
                 :data="displayData"
@@ -11,6 +11,7 @@
                 :selection-state="selectionState"
                 :size="size"
                 :border-config="borderConfig"
+                :dark="dark"
                 @on-sort="handleSortChange"
                 @on-resizable="(column, _width) => emits('on-resizable', column, _width)"
                 @on-row-select="(payload) => emits('on-row-select', payload as any)"
@@ -28,6 +29,7 @@
               :selection-state="selectionState"
               :size="size"
               :border-config="borderConfig"
+              :dark="dark"
               @on-cell-click="(payload) => emits('on-cell-click', payload as any)"
               @on-row-select="(payload) => emits('on-row-select', payload as any)"
               @on-cell-edit="(payload) => emits('on-cell-edit', payload as any)"
@@ -73,6 +75,7 @@
                 :size="pageSize"
                 :total="total"
                 :total-pages="totalPages"
+                :dark="dark"
                 @on-page-change="setPage"
                 @on-size-change="setSize">
     </Pagination>
@@ -97,7 +100,8 @@ const props = withDefaults(defineProps<DataTableProps>(), {
   height: 'auto',
   width: '100%',
   loading: false,
-  border: false
+  border: false,
+  dark: false
 })
 
 const emits = defineEmits<DataTableEmits>()

@@ -2,7 +2,7 @@ import * as monaco from 'monaco-editor'
 import { Selection } from 'monaco-editor'
 import { t } from '@/utils/locale'
 import { CodeEditorContextMenuItem, CodeEditorContextMenuProps } from '../types.ts'
-import ShadcnIcon from '@/ui/icon'
+import Icon from '@/ui/icon'
 import { h, render } from 'vue'
 
 export function registerContextMenu(
@@ -110,7 +110,7 @@ function renderMenuItems(
         if (item.icon) {
             const iconContainer = document.createElement('span')
             iconContainer.className = 'inline-flex items-center justify-center w-5'
-            const iconVNode = h(ShadcnIcon, {
+            const iconVNode = h(Icon, {
                 icon: item.icon,
                 class: 'w-4 h-4 flex-shrink-0'
             })

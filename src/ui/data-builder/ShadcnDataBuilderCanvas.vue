@@ -15,11 +15,11 @@
         <!-- Zoom control -->
         <div class="flex items-center space-x-2">
           <div class="p-1 hover:bg-gray-100 cursor-pointer rounded-full" @click="onZoom('out')">
-            <ShadcnIcon icon="Minus" class="h-4 w-4"/>
+            <Icon icon="Minus" class="h-4 w-4"/>
           </div>
           <span class="text-sm">{{ Math.round(scale * 100) }}%</span>
           <div class="p-1 hover:bg-gray-100 cursor-pointer rounded-full" @click="onZoom('in')">
-            <ShadcnIcon icon="Plus" class="h-4 w-4"/>
+            <Icon icon="Plus" class="h-4 w-4"/>
           </div>
         </div>
       </div>
@@ -177,7 +177,7 @@
                class="absolute -top-6 -right-4 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center cursor-pointer hover:bg-red-600 shadow-sm z-10"
                @mousedown.stop
                @click.stop="removeComponent(item)">
-            <ShadcnIcon icon="X" class="text-white" size="15"/>
+            <Icon icon="X" class="text-white" size="15"/>
           </div>
 
           <!-- Resize handles - only show for selected component -->

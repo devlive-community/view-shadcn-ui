@@ -5,7 +5,7 @@
       <slot name="title">
         <h3 class="text-sm font-medium">{{ title }}</h3>
       </slot>
-      <ShadcnIcon icon="ChevronDown"
+      <Icon icon="ChevronDown"
                   :class="['h-4 w-4 text-gray-500 transition-transform duration-200',
                       { 'transform rotate-180': isExpanded }
                   ]"/>
@@ -26,7 +26,7 @@
 
 <script setup lang="ts">
 import { computed, inject, onMounted, ref, Ref } from 'vue'
-import ShadcnIcon from '@/ui/icon'
+import Icon from '@/ui/icon'
 
 interface Props
 {

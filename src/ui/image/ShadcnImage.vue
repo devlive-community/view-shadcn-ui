@@ -20,7 +20,7 @@
 
     <div v-if="showFallback" class="absolute inset-0 flex items-center justify-center">
       <slot name="fallback">
-        <ShadcnIcon icon="ImageOff" class="text-gray-300"/>
+        <Icon icon="ImageOff" class="text-gray-300"/>
       </slot>
     </div>
   </div>

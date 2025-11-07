@@ -102,7 +102,7 @@
         </div>
 
         <div class="flex-shrink-0 pt-2">
-          <ShadcnIcon class="cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity"
+          <Icon class="cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity"
                       icon="Trash"
                       color="#ef4444"
                       size="18"
@@ -113,7 +113,7 @@
 
     <ShadcnButton type="text" @click="onAddCondition">
       <div class="flex items-center gap-2 text-blue-500 -ml-4">
-        <ShadcnIcon icon="Plus" size="16"/>
+        <Icon icon="Plus" size="16"/>
         <span>{{ t('dataFilter.text.addCondition') }}</span>
       </div>
     </ShadcnButton>

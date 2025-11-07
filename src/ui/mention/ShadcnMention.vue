@@ -63,7 +63,7 @@
           <slot name="item" :item="item" :selected="isItemSelected(item)">
             {{ item.name }}
             <span v-if="isItemSelected(item)">
-              <ShadcnIcon icon="Check"/>
+              <Icon icon="Check"/>
             </span>
           </slot>
         </div>

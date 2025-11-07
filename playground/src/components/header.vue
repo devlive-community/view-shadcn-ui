@@ -41,7 +41,7 @@
             <ShadcnTooltip content="New Example" position="bottom">
               <a href="https://github.com/devlive-community/view-shadcn-ui/issues/new" target="_blank">
                 <ShadcnButton circle type="text">
-                  <ShadcnIcon icon="Plus" size="18" class="text-black"/>
+                  <Icon icon="Plus" size="18" class="text-black"/>
                 </ShadcnButton>
               </a>
             </ShadcnTooltip>

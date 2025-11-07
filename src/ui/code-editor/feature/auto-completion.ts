@@ -4,7 +4,7 @@ import { CodeEditorAutoCompleteEndpoint, CodeEditorAutoCompleteProps } from '../
 import { createApp, h } from 'vue'
 import { debounce } from 'lodash'
 
-import ShadcnIcon from '@/ui/icon'
+import Icon from '@/ui/icon'
 import { SuggestionCache } from '@/ui/code-editor/utils/cache.ts'
 
 export function registerApiCompletion(editor: monaco.editor.IStandaloneCodeEditor, config: CodeEditorAutoCompleteProps)
@@ -425,7 +425,7 @@ function createIconElement(iconName: string = 'Command')
     const app = createApp({
         render()
         {
-            return h(ShadcnIcon, {
+            return h(Icon, {
                 icon: iconName,
                 size: 14,
                 class: 'w-4 h-4 text-gray-400'

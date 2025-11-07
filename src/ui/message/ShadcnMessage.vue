@@ -5,7 +5,7 @@
                 [findBackgroundClass()],
                 [findBorderAndTextClass()]
         ]">
-    <ShadcnIcon v-if="showIcon"
+    <Icon v-if="showIcon"
                 size="16"
                 :class="[type === 'loading' ? 'animate-spin' : '',
                         [findClass()]
@@ -17,7 +17,7 @@
     <div v-if="closable" class="ml-auto text-gray-500 hover:text-gray-700 cursor-pointer"
          @click="onClose">
       <slot v-if="$slots.close" name="close"/>
-      <ShadcnIcon v-else
+      <Icon v-else
                   size="16"
                   class="ml-10"
                   icon="X"/>
@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
 import { defineEmits, defineProps, onUnmounted, ref } from 'vue'
-import ShadcnIcon from '@/ui/icon'
+import Icon from '@/ui/icon'
 import { MessageType } from '@/ui/common/type.ts'
 
 const emit = defineEmits(['on-close'])

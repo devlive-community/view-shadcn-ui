@@ -9,7 +9,7 @@
       <button class="p-1 rounded-md items-center flex hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               @click="startEyeDropper"
               title="Color Picker">
-        <ShadcnIcon icon="Pipette" class="w-4 h-4"/>
+        <Icon icon="Pipette" class="w-4 h-4"/>
       </button>
     </div>
 

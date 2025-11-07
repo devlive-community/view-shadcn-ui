@@ -3,7 +3,7 @@
     <div v-if="$slots.icon" class="cursor-pointer" @click="onCopy">
       <slot name="icon"/>
     </div>
-    <ShadcnIcon v-else class="cursor-pointer" :icon="icon" @click="onCopy"/>
+    <Icon v-else class="cursor-pointer" :icon="icon" @click="onCopy"/>
 
     <transition v-if="tooltip" name="fade">
       <div v-if="showTooltip"
@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import ShadcnIcon from '@/ui/icon'
+import Icon from '@/ui/icon'
 import { ref } from 'vue'
 import { cn } from '@/lib/utils.ts'
 import { t } from '@/utils/locale'

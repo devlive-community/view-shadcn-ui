@@ -26,10 +26,10 @@
        class="space-x-2">
     <ShadcnButtonGroup size="small">
       <ShadcnButton type="error" circle @click="onCancelRowEdit">
-        <ShadcnIcon icon="X" size="15"/>
+        <Icon icon="X" size="15" :dark="dark"/>
       </ShadcnButton>
       <ShadcnButton type="success" circle @click="onSaveRowEdit">
-        <ShadcnIcon icon="Check" size="15"/>
+        <Icon icon="Check" size="15" :dark="dark"/>
       </ShadcnButton>
     </ShadcnButtonGroup>
   </div>
@@ -43,30 +43,31 @@ import { computed, ref, watch } from 'vue'
 import { useEditable } from '../hooks/useEditable'
 import { CellPayload } from '../types'
 import { calcSize } from '@/utils/common.ts'
-import ShadcnIcon from '@/ui/icon'
+import Icon from '@/ui/icon'
 import ShadcnButtonGroup from '@/ui/button/group'
 
 const props = defineProps<{
   contextMenuState: any
   editableState: ReturnType<typeof useEditable>
+  dark?: boolean
 }>()
 
 const emits = defineEmits(['on-row-edit'])
 
 const currentValue = ref<CellPayload | null>(null)
-const menuPosition = ref({x: 0, y: 0})
+const menuPosition = ref({ x: 0, y: 0 })
 
 watch(() => props.contextMenuState.selectedValue.value, (newVal) => {
   if (newVal) {
-    currentValue.value = {...newVal}
+    currentValue.value = { ...newVal }
   }
-}, {immediate: true})
+}, { immediate: true })
 
 watch(() => props.contextMenuState.actionsPosition.value, (newVal) => {
   if (newVal) {
-    menuPosition.value = {...newVal}
+    menuPosition.value = { ...newVal }
   }
-}, {immediate: true})
+}, { immediate: true })
 
 const localVisible = computed({
   get: () => props.contextMenuState.visible.value,
@@ -85,14 +86,14 @@ const onItemClick = (action: string) => {
 
   switch (action) {
     case 'edit-cell':
-      const {rowIndex, key, value, row, col} = selectedValue
+      const { rowIndex, key, value, row, col } = selectedValue
       props.editableState.startEditing(rowIndex, key, value, row, col)
       props.contextMenuState.hide(false)
       break
 
     case 'edit-row':
-      const {rowIndex: rowIdx, row: rowData} = selectedValue
-      props.editableState.startRowEditing(rowIdx, {...rowData})
+      const { rowIndex: rowIdx, row: rowData } = selectedValue
+      props.editableState.startRowEditing(rowIdx, { ...rowData })
       props.contextMenuState.hide(true)
       break
   }

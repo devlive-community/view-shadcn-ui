@@ -23,12 +23,12 @@
 
     <span v-if="clearable && localValue && hovered" class="absolute end-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer"
           @click="onClear">
-      <ShadcnIcon class="size-5 text-muted-foreground" icon="CircleX"/>
+      <Icon class="size-5 text-muted-foreground" icon="CircleX"/>
     </span>
 
     <span v-if="type === 'password'" class="absolute end-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer"
           @click="togglePasswordVisibility">
-      <ShadcnIcon :icon="showPassword ? 'Eye' : 'EyeOff'" class="size-5 text-muted-foreground"/>
+      <Icon :icon="showPassword ? 'Eye' : 'EyeOff'" class="size-5 text-muted-foreground"/>
     </span>
 
     <span v-if="wordCount" ref="wordCountSpan" class="absolute end-0 inset-y-0 flex items-center justify-center px-2 text-gray-400 text-xs font-thin w-auto">
@@ -52,7 +52,7 @@
 import { cn } from '@/lib/utils.ts'
 import { computed, inject, nextTick, onMounted, ref, watch } from 'vue'
 import { Size } from '@/ui/enum/Size.ts'
-import ShadcnIcon from '@/ui/icon'
+import Icon from '@/ui/icon'
 import { FormItemContext } from '@/ui/form/context.ts'
 import { InputEmits, InputProps } from '@/ui/input/types.ts'
 

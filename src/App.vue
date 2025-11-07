@@ -1,23 +1,29 @@
 <template>
-  <DataTable :columns="columns"
-             :data="datas"
-             :height="500"
-             border>
-    <template #id-header="{ column }">
-      <div class="inline-flex flex-col items-center gap-2">
-        <span class="font-bold">{{ column.label }}</span>
-        <span>附加信息</span>
-      </div>
-    </template>
+  <div class="table-container">
+    <div class="mb-4 flex justify-end">
+      <button @click="toggleDarkMode"
+              :class="[
+                'px-4 py-2 rounded-lg transition-colors',
+                isDark
+                  ? 'bg-gray-700 text-white hover:bg-gray-600'
+                  : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+              ]">
+        {{ isDark ? '🌙 暗黑模式' : '☀️ 明亮模式' }}
+      </button>
+    </div>
 
-    <template #id="{ row }">
-      <span class="font-bold text-blue-600">{{ row.id }}</span>
-    </template>
-  </DataTable>
+    <DataTable :columns="columns"
+               :data="datas"
+               :height="500"
+               :dark="isDark"
+               :pagination="{ size: 10, options: [5, 10, 20, 50, 100] }"
+               border>
+    </DataTable>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { ColumnProps } from "@/ui/data-table/types.ts";
 
 interface TableData
@@ -39,7 +45,14 @@ interface TableData
   version: string
 }
 
-const columns = ref<ColumnProps[]>([
+const isDark = ref(false)
+
+const toggleDarkMode = () => {
+  isDark.value = !isDark.value
+  document.documentElement.classList.toggle('dark', isDark.value)
+}
+
+const columns = computed<ColumnProps[]>(() => [
   { key: 'id', label: 'ID', sortable: true, editable: true, resizable: true, fixed: 'left' },
   { key: 'title', label: '标题', editable: true, tooltip: true, fixed: 'left' },
   { key: 'author', label: '作者', editable: true, sortable: true },
@@ -48,8 +61,34 @@ const columns = ref<ColumnProps[]>([
   { key: 'date', label: '发布日期', sortable: true, align: 'center' },
   { key: 'status', label: '状态', sortable: true, align: 'center' },
   {
-    key: 'views', label: '浏览量', sortable: true, align: 'right',
-    styleConfig: {
+    key: 'views',
+    label: '浏览量',
+    sortable: true,
+    align: 'right',
+    styleConfig: isDark.value ? {
+      conditions: [
+        {
+          type: 'gt' as const,
+          value: 1090,
+          gradient: 'linear-gradient(270deg, rgba(30, 41, 59, 0), rgba(30, 41, 59, 1) 100%)',
+          textColor: '#f87171',
+          className: 'font-bold'
+        },
+        {
+          type: 'between' as const,
+          value: [120, 140],
+          backgroundColor: '#422006',
+          textColor: '#fbbf24'
+        },
+        {
+          type: 'lte' as const,
+          value: 120,
+          backgroundColor: '#064e3b',
+          textColor: '#34d399'
+        }
+      ],
+      defaultBackgroundColor: '#1f2937'
+    } : {
       conditions: [
         {
           type: 'gt' as const,
@@ -206,3 +245,10 @@ function generateRandomData(count: number = 100): TableData[]
 
 const datas = ref<TableData[]>(generateRandomData(100))
 </script>
+
+<style scoped>
+.table-container {
+  padding: 20px;
+  transition: background-color 0.3s ease;
+}
+</style>

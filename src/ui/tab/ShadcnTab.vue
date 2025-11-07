@@ -16,7 +16,7 @@
                 :class="direction === 'vertical' ? 'top-0 left-1/2 -translate-x-1/2 rotate-90' : 'left-0'"
                 class="absolute z-10 flex items-center justify-center w-8 h-full bg-white/80 shadow-sm"
                 @click="scroll('prev')">
-          <ShadcnIcon class="h-4 w-4" icon="ChevronLeft"/>
+          <Icon class="h-4 w-4" icon="ChevronLeft"/>
         </button>
 
         <div ref="scrollContainer"
@@ -57,12 +57,12 @@
                       height: 'auto',
                       alignItems: 'center',
                     } : {}">
-                <ShadcnIcon v-if="tab.icon" :icon="tab.icon" size="16"/>
+                <Icon v-if="tab.icon" :icon="tab.icon" size="16"/>
                 <div class="whitespace-nowrap">
                   <component :is="tab.labelSlot" v-if="tab.labelSlot"/>
                   <template v-else>{{ tab.label }}</template>
                 </div>
-                <ShadcnIcon v-if="closable && !tab.disabled"
+                <Icon v-if="closable && !tab.disabled"
                             class="justify-center items-center opacity-70 hover:opacity-100"
                             icon="CircleX"
                             size="14"
@@ -76,7 +76,7 @@
                 :class="direction === 'vertical' ? 'bottom-0 left-1/2 -translate-x-1/2 rotate-90' : 'right-0 top-0'"
                 class="absolute z-10 flex items-center justify-center w-8 h-full bg-white/80 shadow-sm"
                 @click="scroll('next')">
-          <ShadcnIcon class="h-4 w-4" icon="ChevronRight"/>
+          <Icon class="h-4 w-4" icon="ChevronRight"/>
         </button>
       </div>
 
@@ -103,7 +103,7 @@
 import { nextTick, onBeforeUnmount, onMounted, provide, ref, watch, watchEffect } from 'vue'
 import { BorderType, HoverTextType, HoverType, TextType } from '@/ui/common/type.ts'
 import { TabSize } from '@/ui/common/size.ts'
-import ShadcnIcon from '@/ui/icon'
+import Icon from '@/ui/icon'
 import { TabEmits, TabProps } from '@/ui/tab/types.ts'
 
 interface Tab

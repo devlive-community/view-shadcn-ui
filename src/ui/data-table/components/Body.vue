@@ -11,8 +11,8 @@
              'group flex items-center h-full',
              BaseSize[size],
              borderConfig.getRowBorderClass(),
-             selectionState.isRowSelected(rowIndex) && 'bg-blue-50',
-             !selectionState.isRowSelected(rowIndex) && 'hover:bg-gray-50'
+             selectionState.isRowSelected(rowIndex) && (dark ? 'bg-blue-900/50' : 'bg-blue-50'),
+             !selectionState.isRowSelected(rowIndex) && (dark ? 'hover:bg-gray-800' : 'hover:bg-gray-50')
            ]"
            @click="handleRowClick(rowIndex, row)">
 
@@ -22,7 +22,9 @@
                TablePaddingSize[size],
                'flex items-center justify-center sticky left-0 z-20',
                borderConfig.getCellBorderClass(false),
-               selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white group-hover:!bg-gray-50'
+               selectionState.isRowSelected(rowIndex)
+                 ? (dark ? 'bg-blue-900/50' : 'bg-blue-50')
+                 : (dark ? 'bg-gray-900 group-hover:!bg-gray-800' : 'bg-white group-hover:!bg-gray-50')
              ]"
              @click.stop>
           <input type="checkbox"
@@ -35,7 +37,9 @@
              :class="[
                'flex items-center justify-center sticky left-0 z-20',
                borderConfig.getCellBorderClass(false),
-               selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white group-hover:!bg-gray-50'
+               selectionState.isRowSelected(rowIndex)
+                 ? (dark ? 'bg-blue-900/50' : 'bg-blue-50')
+                 : (dark ? 'bg-gray-900 group-hover:!bg-gray-800' : 'bg-white group-hover:!bg-gray-50')
              ]"
              @click.stop>
           <input type="radio"
@@ -58,7 +62,9 @@
                      :class="[
                        'sticky',
                        borderConfig.getCellBorderClass(true, 'left'),
-                       selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white group-hover:!bg-gray-50'
+                       selectionState.isRowSelected(rowIndex)
+                         ? (dark ? 'bg-blue-900/50' : 'bg-blue-50')
+                         : (dark ? 'bg-gray-900 group-hover:!bg-gray-800' : 'bg-white group-hover:!bg-gray-50')
                      ]"
                      @cancel="editableState.stopEditing"
                      @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
@@ -73,7 +79,9 @@
                            :class="[
                              'sticky',
                              borderConfig.getCellBorderClass(true, 'left'),
-                             selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white group-hover:!bg-gray-50'
+                             selectionState.isRowSelected(rowIndex)
+                               ? (dark ? 'bg-blue-900/50' : 'bg-blue-50')
+                               : (dark ? 'bg-gray-900 group-hover:!bg-gray-800' : 'bg-white group-hover:!bg-gray-50')
                            ]"
                            @cancel="editableState.stopEditing"
                            @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
@@ -86,7 +94,9 @@
                  ((selectedCell?.rowIndex === rowIndex && selectedCell?.col === col.key) && !editableState.isEditing(rowIndex, col.key)) && 'border border-blue-400',
                  'sticky',
                  borderConfig.getCellBorderClass(true, 'left'),
-                 selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white group-hover:!bg-gray-50',
+                 selectionState.isRowSelected(rowIndex)
+                   ? (dark ? 'bg-blue-900/50' : 'bg-blue-50')
+                   : (dark ? 'bg-gray-900 group-hover:!bg-gray-800 text-gray-200' : 'bg-white group-hover:!bg-gray-50'),
                  cellStyleEngine.getCellStyle(row, col, rowIndex).className
                ]"
                :style="{
@@ -135,6 +145,7 @@
                  col.ellipsis !== false ? 'relative truncate whitespace-nowrap overflow-hidden' : 'break-words whitespace-normal',
                  ((selectedCell?.rowIndex === rowIndex && selectedCell?.col === col.key) && !editableState.isEditing(rowIndex, col.key)) && 'border border-blue-400',
                  borderConfig.getCellBorderClass(false),
+                 dark ? 'text-gray-200' : '',
                  cellStyleEngine.getCellStyle(row, col, rowIndex).className
                ]"
                :style="{
@@ -166,7 +177,9 @@
                      :class="[
                        'sticky',
                        borderConfig.getCellBorderClass(true, 'right'),
-                       selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white group-hover:!bg-gray-50'
+                       selectionState.isRowSelected(rowIndex)
+                         ? (dark ? 'bg-blue-900/50' : 'bg-blue-50')
+                         : (dark ? 'bg-gray-900 group-hover:!bg-gray-800' : 'bg-white group-hover:!bg-gray-50')
                      ]"
                      @cancel="editableState.stopEditing"
                      @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
@@ -181,7 +194,9 @@
                            :class="[
                              'sticky',
                              borderConfig.getCellBorderClass(true, 'right'),
-                             selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white group-hover:!bg-gray-50'
+                             selectionState.isRowSelected(rowIndex)
+                               ? (dark ? 'bg-blue-900/50' : 'bg-blue-50')
+                               : (dark ? 'bg-gray-900 group-hover:!bg-gray-800' : 'bg-white group-hover:!bg-gray-50')
                            ]"
                            @cancel="editableState.stopEditing"
                            @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
@@ -193,7 +208,9 @@
                  ((selectedCell?.rowIndex === rowIndex && selectedCell?.col === col.key) && !editableState.isEditing(rowIndex, col.key)) && 'border border-blue-400',
                  'sticky',
                  borderConfig.getCellBorderClass(true, 'right'),
-                 selectionState.isRowSelected(rowIndex) ? 'bg-blue-50' : 'bg-white group-hover:!bg-gray-50',
+                 selectionState.isRowSelected(rowIndex)
+                   ? (dark ? 'bg-blue-900/50' : 'bg-blue-50')
+                   : (dark ? 'bg-gray-900 group-hover:!bg-gray-800 text-gray-200' : 'bg-white group-hover:!bg-gray-50'),
                  cellStyleEngine.getCellStyle(row, col, rowIndex).className
                ]"
                :style="{
@@ -225,6 +242,7 @@
                v-show="contextMenuState.visible.value"
                :context-menu-state="contextMenuState"
                :editable-state="editableState"
+               :dark="dark"
                @on-row-edit="(val) => handleSaveRowEdit(val)">
     <template #contextMenu="contextMenuProps">
       <slot :actionsPosition="contextMenuProps.actionsPosition"
@@ -262,10 +280,12 @@ const props = withDefaults(defineProps<{
   loading?: boolean
   contextMenu?: boolean
   borderConfig: UseBorderReturn
+  dark?: boolean
 }>(), {
   size: 'default',
   loading: false,
-  contextMenu: false
+  contextMenu: false,
+  dark: false
 })
 
 const emits = defineEmits<DataTableBodyEmits>()

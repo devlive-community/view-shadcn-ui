@@ -10,7 +10,7 @@ import ShadcnButtonGroup from '@/ui/button/group'
 import ShadcnCard from '@/ui/card'
 import { ShadcnCopy } from '@/ui/copy'
 import { ShadcnInput } from '@/ui/input'
-import ShadcnIcon from '@/ui/icon'
+import Icon from '@/ui/icon'
 import ShadcnModal from '@/ui/modal'
 import ShadcnTooltip from '@/ui/tooltip'
 import { ShadcnCodeEditor } from '@/ui/code-editor'
@@ -118,7 +118,7 @@ let components = [
     ShadcnCopy,
     ShadcnCodeEditor,
     ShadcnInput,
-    ShadcnIcon,
+    Icon,
     ShadcnModal,
     ShadcnTooltip,
     ShadcnRow,
@@ -254,7 +254,7 @@ export { default as ShadcnCard } from '@/ui/card'
 export { ShadcnCopy } from '@/ui/copy'
 export { ShadcnCodeEditor } from '@/ui/code-editor'
 export { ShadcnInput } from '@/ui/input'
-export { default as ShadcnIcon } from '@/ui/icon'
+export { default as Icon } from '@/ui/icon'
 export { default as ShadcnModal } from '@/ui/modal'
 export { default as ShadcnTooltip } from '@/ui/tooltip'
 export { default as ShadcnRow } from '@/ui/row'

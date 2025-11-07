@@ -27,8 +27,8 @@
          class="absolute top-1/2 -right-3 w-6 h-6 flex items-center justify-center bg-white border rounded-full cursor-pointer transform -translate-y-1/2 shadow-md hover:bg-gray-50"
          @click="toggleCollapse">
       <div class="flex items-center text-gray-500">
-        <ShadcnIcon v-if="collapsed" icon="ChevronRight" class="h-4 w-4"/>
-        <ShadcnIcon v-else icon="ChevronLeft" class="h-4 w-4"/>
+        <Icon v-if="collapsed" icon="ChevronRight" class="h-4 w-4"/>
+        <Icon v-else icon="ChevronLeft" class="h-4 w-4"/>
       </div>
     </div>
 
@@ -41,7 +41,7 @@
 
 <script setup lang="ts">
 import { inject, ref } from 'vue'
-import ShadcnIcon from '@/ui/icon'
+import Icon from '@/ui/icon'
 
 interface Props
 {

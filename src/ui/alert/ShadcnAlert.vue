@@ -8,7 +8,7 @@
     <div class="flex items-center gap-3">
       <!-- Icon -->
       <div v-if="!banner && showIcon" class="flex-shrink-0">
-        <ShadcnIcon :icon="IconMap[type]"
+        <Icon :icon="IconMap[type]"
                     :class="['h-5 w-5',
                             TextType[type]
                     ]"/>
@@ -34,7 +34,7 @@
            class="flex-shrink-0 mr-2 cursor-pointer text-gray-500 hover:text-gray-700"
            @click="onClose">
         <slot v-if="$slots.close" name="close"/>
-        <ShadcnIcon icon="XCircle" v-else class="h-4 w-4"/>
+        <Icon icon="XCircle" v-else class="h-4 w-4"/>
       </div>
     </div>
   </div>
@@ -43,7 +43,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { BackgroundType, BorderType, TextType } from '@/ui/common/type.ts'
-import ShadcnIcon from '@/ui/icon'
+import Icon from '@/ui/icon'
 
 const IconMap = {
   primary: 'Info',

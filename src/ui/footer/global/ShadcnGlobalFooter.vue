@@ -26,7 +26,7 @@
                           :external="link.external"
                           :target="link.target">
                 <div class="inline-flex items-center gap-2">
-                  <ShadcnIcon v-if="link.icon"
+                  <Icon v-if="link.icon"
                               class="w-5 h-5"
                               :icon="link.icon"/>
                   <span>{{ link.label }}</span>
@@ -54,7 +54,7 @@
                           external
                           target="_blank"
                           class="text-muted-foreground hover:text-foreground transition-colors">
-                <ShadcnIcon v-if="social.icon"
+                <Icon v-if="social.icon"
                             :icon="social.icon"
                             class="w-5 h-5"/>
                 <span class="sr-only">{{ social.label }}</span>
@@ -69,7 +69,7 @@
 
 <script setup lang="ts">
 import ShadcnLink from '@/ui/link'
-import ShadcnIcon from '@/ui/icon'
+import Icon from '@/ui/icon'
 
 interface LinkItem
 {

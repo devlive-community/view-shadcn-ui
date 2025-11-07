@@ -7,7 +7,7 @@
           <div class="text-sm text-gray-500">{{ item.name }}</div>
         </div>
         <span v-if="selected" class="ml-auto">
-            <ShadcnIcon icon="Check"/>
+            <Icon icon="Check"/>
           </span>
       </div>
     </template>
