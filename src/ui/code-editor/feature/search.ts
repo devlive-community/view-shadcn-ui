@@ -1,7 +1,7 @@
 import * as monaco from 'monaco-editor'
 import { h, render } from 'vue'
 import { t } from '@/utils/locale'
-import Icon from '@/ui/icon'
+import { ShadcnIcon } from '@/ui/icon'
 import { CodeEditorSearchProps } from '@/ui/code-editor/types.ts'
 
 function renderPreviewPanel()
@@ -110,7 +110,7 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
 
         const replaceIcon = document.createElement('span')
         replaceIcon.className = 'mr-2'
-        const replaceIconVNode = h(Icon, {
+        const replaceIconVNode = h(ShadcnIcon, {
             icon: 'Replace',
             size: 14,
             class: 'w-4 h-4 text-gray-400'
@@ -165,7 +165,7 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
 
                 const historyIcon = document.createElement('span')
                 historyIcon.className = 'mr-2'
-                const historyIconVNode = h(Icon, {
+                const historyIconVNode = h(ShadcnIcon, {
                     icon: 'History',
                     size: 14,
                     class: 'w-4 h-4 text-gray-400'
@@ -197,7 +197,7 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
 
         const searchIcon = document.createElement('span')
         searchIcon.className = 'mr-2'
-        const searchIconVNode = h(Icon, {
+        const searchIconVNode = h(ShadcnIcon, {
             icon: 'Search',
             size: 14,
             class: 'w-4 h-4 text-gray-400'
@@ -225,7 +225,7 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
 
         const prevButton = document.createElement('button')
         prevButton.className = 'p-1 hover:bg-gray-100 rounded'
-        const prevIconVNode = h(Icon, {
+        const prevIconVNode = h(ShadcnIcon, {
             icon: 'ArrowUp',
             size: 14,
             class: 'w-4 h-4 text-gray-600'
@@ -235,7 +235,7 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
 
         const nextButton = document.createElement('button')
         nextButton.className = 'p-1 hover:bg-gray-100 rounded'
-        const nextIconVNode = h(Icon, {
+        const nextIconVNode = h(ShadcnIcon, {
             icon: 'ArrowDown',
             size: 14,
             class: 'w-4 h-4 text-gray-600'
@@ -247,7 +247,7 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
         // Match whole word
         const matchWholeWordButton = document.createElement('button')
         matchWholeWordButton.className = 'p-1 hover:bg-gray-100 rounded'
-        const wordIconVNode = h(Icon, {
+        const wordIconVNode = h(ShadcnIcon, {
             icon: 'Text',
             size: 14,
             class: 'w-4 h-4 text-gray-600'
@@ -259,7 +259,7 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
         // Regex
         const regexButton = document.createElement('button')
         regexButton.className = 'p-1 hover:bg-gray-100 rounded'
-        const regexIconVNode = h(Icon, {
+        const regexIconVNode = h(ShadcnIcon, {
             icon: 'Code',
             size: 14,
             class: 'w-4 h-4 text-gray-600'
@@ -269,7 +269,7 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
 
         const caseButton = document.createElement('button')
         caseButton.className = 'p-1 hover:bg-gray-100 rounded'
-        const caseIconVNode = h(Icon, {
+        const caseIconVNode = h(ShadcnIcon, {
             icon: 'CaseLower',
             size: 14,
             class: 'w-4 h-4 text-gray-600'
@@ -279,7 +279,7 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
 
         const closeButton = document.createElement('button')
         closeButton.className = 'p-1 hover:bg-gray-100 rounded ml-1'
-        const closeIconVNode = h(Icon, {
+        const closeIconVNode = h(ShadcnIcon, {
             icon: 'X',
             size: 14,
             class: 'w-4 h-4 text-gray-600'
@@ -577,7 +577,7 @@ export function registerSearchPanel(editor: monaco.editor.IStandaloneCodeEditor,
 
         caseButton.onclick = () => {
             caseSensitive = !caseSensitive
-            const newIconVNode = h(Icon, {
+            const newIconVNode = h(ShadcnIcon, {
                 icon: caseSensitive ? 'CaseUpper' : 'CaseLower',
                 size: 14,
                 class: 'w-4 h-4 text-gray-600'

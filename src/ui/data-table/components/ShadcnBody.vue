@@ -69,22 +69,22 @@
                      @cancel="editableState.stopEditing"
                      @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
 
-          <CellInputEditor v-else-if="col.editable && editableState.isEditing(rowIndex, col.key)"
-                           :field-key="col.key"
-                           :is-row-editing="!!editableState.editingRowState.value"
-                           :on-row-value-change="editableState.updateRowValue"
-                           :value="row[col.key]"
-                           :width="calcSize(col.width || 150)"
-                           :style="{ left: fixedColumns.getLeftOffset(colIndex), zIndex: 15 }"
-                           :class="[
+          <ShadcnCellInputEditor v-else-if="col.editable && editableState.isEditing(rowIndex, col.key)"
+                                 :field-key="col.key"
+                                 :is-row-editing="!!editableState.editingRowState.value"
+                                 :on-row-value-change="editableState.updateRowValue"
+                                 :value="row[col.key]"
+                                 :width="calcSize(col.width || 150)"
+                                 :style="{ left: fixedColumns.getLeftOffset(colIndex), zIndex: 15 }"
+                                 :class="[
                              'sticky',
                              borderConfig.getCellBorderClass(true, 'left'),
                              selectionState.isRowSelected(rowIndex)
                                ? (dark ? 'bg-blue-900/50' : 'bg-blue-50')
                                : (dark ? 'bg-gray-900 group-hover:!bg-gray-800' : 'bg-white group-hover:!bg-gray-50')
                            ]"
-                           @cancel="editableState.stopEditing"
-                           @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
+                                 @cancel="editableState.stopEditing"
+                                 @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
 
           <div v-else
                :class="[
@@ -129,14 +129,14 @@
                      @cancel="editableState.stopEditing"
                      @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
 
-          <CellInputEditor v-else-if="col.editable && editableState.isEditing(rowIndex, col.key)"
-                           :field-key="col.key"
-                           :is-row-editing="!!editableState.editingRowState.value"
-                           :on-row-value-change="editableState.updateRowValue"
-                           :value="row[col.key]"
-                           :width="calcSize(col.width || 150)"
-                           @cancel="editableState.stopEditing"
-                           @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
+          <ShadcnCellInputEditor v-else-if="col.editable && editableState.isEditing(rowIndex, col.key)"
+                                 :field-key="col.key"
+                                 :is-row-editing="!!editableState.editingRowState.value"
+                                 :on-row-value-change="editableState.updateRowValue"
+                                 :value="row[col.key]"
+                                 :width="calcSize(col.width || 150)"
+                                 @cancel="editableState.stopEditing"
+                                 @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
 
           <div v-else
                :class="[
@@ -184,22 +184,22 @@
                      @cancel="editableState.stopEditing"
                      @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
 
-          <CellInputEditor v-else-if="col.editable && editableState.isEditing(rowIndex, col.key)"
-                           :field-key="col.key"
-                           :is-row-editing="!!editableState.editingRowState.value"
-                           :on-row-value-change="editableState.updateRowValue"
-                           :value="row[col.key]"
-                           :width="calcSize(col.width || 150)"
-                           :style="{ right: fixedColumns.getRightOffset(colIndex), zIndex: 15 }"
-                           :class="[
+          <ShadcnCellInputEditor v-else-if="col.editable && editableState.isEditing(rowIndex, col.key)"
+                                 :field-key="col.key"
+                                 :is-row-editing="!!editableState.editingRowState.value"
+                                 :on-row-value-change="editableState.updateRowValue"
+                                 :value="row[col.key]"
+                                 :width="calcSize(col.width || 150)"
+                                 :style="{ right: fixedColumns.getRightOffset(colIndex), zIndex: 15 }"
+                                 :class="[
                              'sticky',
                              borderConfig.getCellBorderClass(true, 'right'),
                              selectionState.isRowSelected(rowIndex)
                                ? (dark ? 'bg-blue-900/50' : 'bg-blue-50')
                                : (dark ? 'bg-gray-900 group-hover:!bg-gray-800' : 'bg-white group-hover:!bg-gray-50')
                            ]"
-                           @cancel="editableState.stopEditing"
-                           @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
+                                 @cancel="editableState.stopEditing"
+                                 @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
           <div v-else
                :class="[
                  TablePaddingSize[size],
@@ -238,12 +238,12 @@
     </div>
   </div>
 
-  <ContextMenu v-if="props.contextMenu"
-               v-show="contextMenuState.visible.value"
-               :context-menu-state="contextMenuState"
-               :editable-state="editableState"
-               :dark="dark"
-               @on-row-edit="(val) => handleSaveRowEdit(val)">
+  <ShadcnContextMenu v-if="props.contextMenu"
+                     v-show="contextMenuState.visible.value"
+                     :context-menu-state="contextMenuState"
+                     :editable-state="editableState"
+                     :dark="dark"
+                     @on-row-edit="(val) => handleSaveRowEdit(val)">
     <template #contextMenu="contextMenuProps">
       <slot :actionsPosition="contextMenuProps.actionsPosition"
             :position="contextMenuProps.position"
@@ -252,7 +252,7 @@
             name="contextMenu">
       </slot>
     </template>
-  </ContextMenu>
+  </ShadcnContextMenu>
 </template>
 
 <script setup lang="ts">
@@ -268,8 +268,8 @@ import { useContextMenu } from '../hooks/useContextMenu'
 import { useFixedColumns } from '../hooks/useFixedColumns'
 import { UseBorderReturn } from '../hooks/useBorder'
 import { useCellStyle } from '../hooks/useCellStyle'
-import CellInputEditor from '@/ui/data-table/components/CellInputEditor.vue'
-import ContextMenu from '@/ui/data-table/components/ContextMenu.vue'
+import ShadcnCellInputEditor from '@/ui/data-table/components/ShadcnCellInputEditor.vue'
+import ShadcnContextMenu from '@/ui/data-table/components/ShadcnContextMenu.vue'
 
 const props = withDefaults(defineProps<{
   columns: ColumnProps[]

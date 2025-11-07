@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import Icon from '@/ui/icon'
+import { ShadcnIcon } from '@/ui/icon'
 import { ref } from 'vue'
 import { cn } from '@/lib/utils.ts'
 import { t } from '@/utils/locale'

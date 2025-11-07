@@ -4,7 +4,7 @@
          class="relative w-full"
          style="overflow-x: auto">
       <div :class="['inline-block', dark ? 'bg-gray-900' : 'bg-white']">
-        <Header :column-move="columnMove"
+        <ShadcnHeader :column-move="columnMove"
                 :columns="columns"
                 :data="displayData"
                 :row-selection="rowSelection"
@@ -19,9 +19,9 @@
           <template v-for="(_, name) in $slots" :key="name" v-slot:[name]="slotProps">
             <slot :name="name" v-bind="slotProps"/>
           </template>
-        </Header>
+        </ShadcnHeader>
 
-        <Body :columns="columns"
+        <ShadcnBody :columns="columns"
               :context-menu="contextMenu"
               :data="displayData"
               :loading="loading"
@@ -65,11 +65,11 @@
                 name="contextMenu">
           </slot>
         </template>
-        </Body>
+        </ShadcnBody>
       </div>
     </div>
 
-    <Pagination v-if="pagination"
+    <ShadcnPagination v-if="pagination"
                 :options="pagination.options"
                 :page="currentPage"
                 :size="pageSize"
@@ -78,15 +78,15 @@
                 :dark="dark"
                 @on-page-change="setPage"
                 @on-size-change="setSize">
-    </Pagination>
+    </ShadcnPagination>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, watch } from 'vue'
-import Header from './components/Header.vue'
-import Body from './components/Body.vue'
-import Pagination from './components/Pagination.vue'
+import ShadcnHeader from './components/ShadcnHeader.vue'
+import ShadcnBody from './components/ShadcnBody.vue'
+import ShadcnPagination from './components/ShadcnPagination.vue'
 import type { ColumnProps, DataTableEmits, DataTableProps } from './types'
 import { useSort } from './hooks/useSort'
 import { useBorder } from './hooks/useBorder'

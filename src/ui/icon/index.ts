@@ -1,3 +1,1 @@
-import Icon from './Icon.vue'
-
-export default Icon
+export { default as ShadcnIcon } from './ShadcnIcon.vue'

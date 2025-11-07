@@ -24,12 +24,12 @@
          zIndex: 60,
        }"
        class="space-x-2">
-    <ShadcnButtonGroup size="small">
+    <ShadcnButtonGroup size="small" :dark="dark">
       <ShadcnButton type="error" circle @click="onCancelRowEdit">
-        <Icon icon="X" size="15" :dark="dark"/>
+        <ShadcnIcon :dark="dark" icon="X" size="15"/>
       </ShadcnButton>
       <ShadcnButton type="success" circle @click="onSaveRowEdit">
-        <Icon icon="Check" size="15" :dark="dark"/>
+        <ShadcnIcon :dark="dark" icon="Check" size="15"/>
       </ShadcnButton>
     </ShadcnButtonGroup>
   </div>
@@ -38,13 +38,12 @@
 <script lang="ts" setup>
 import { t } from '@/utils/locale'
 import { ShadcnContextMenu, ShadcnContextMenuItem } from '@/ui/contextmenu'
-import ShadcnButton from '@/ui/button'
+import { ShadcnButton, ShadcnButtonGroup } from '@/ui/button'
 import { computed, ref, watch } from 'vue'
 import { useEditable } from '../hooks/useEditable'
 import { CellPayload } from '../types'
 import { calcSize } from '@/utils/common.ts'
-import Icon from '@/ui/icon'
-import ShadcnButtonGroup from '@/ui/button/group'
+import { ShadcnIcon } from '@/ui/icon'
 
 const props = defineProps<{
   contextMenuState: any

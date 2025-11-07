@@ -5,12 +5,11 @@ import Spin from './setup/spin.ts'
 
 import { Language, setLocale } from '@/utils/locale.ts'
 
-import ShadcnButton from '@/ui/button'
-import ShadcnButtonGroup from '@/ui/button/group'
+import { ShadcnButton, ShadcnButtonGroup } from '@/ui/button'
 import ShadcnCard from '@/ui/card'
 import { ShadcnCopy } from '@/ui/copy'
 import { ShadcnInput } from '@/ui/input'
-import Icon from '@/ui/icon'
+import { ShadcnIcon } from '@/ui/icon'
 import ShadcnModal from '@/ui/modal'
 import ShadcnTooltip from '@/ui/tooltip'
 import { ShadcnCodeEditor } from '@/ui/code-editor'
@@ -48,7 +47,7 @@ import ShadcnMenu from '@/ui/menu'
 import ShadcnMenuItem from '@/ui/menu/item'
 import ShadcnMenuSub from '@/ui/menu/sub'
 import ShadcnMenuGroup from '@/ui/menu/group'
-import ShadcnMessage from '@/ui/message'
+import { ShadcnMessage } from '@/ui/message'
 import ShadcnTable from '@/ui/table'
 import ShadcnBreadcrumb from '@/ui/breadcrumb'
 import ShadcnBreadcrumbItem from '@/ui/breadcrumb/item'
@@ -59,7 +58,7 @@ import ShadcnFormItem from '@/ui/form/item'
 import ShadcnTimeline from '@/ui/timeline'
 import ShadcnTimelineItem from '@/ui/timeline/item'
 import ShadcnTrend from '@/ui/trend'
-import ShadcnException from '@/ui/exception'
+import { ShadcnException } from '@/ui/exception'
 import ShadcnLink from '@/ui/link'
 import ShadcnCollapse from '@/ui/collapse'
 import ShadcnCollapseItem from '@/ui/collapse/item'
@@ -77,13 +76,7 @@ import ShadcnGradientText from '@/ui/text/gradient'
 import { ShadcnContextMenu, ShadcnContextMenuItem, ShadcnContextMenuSub } from '@/ui/contextmenu'
 import ShadcnHoverCard from '@/ui/hover-card'
 import { ShadcnToggle, ShadcnToggleGroup } from '@/ui/toggle'
-import {
-    ShadcnDataBuilderCanvas,
-    ShadcnDataBuilderConfigure,
-    ShadcnDataBuilderEditor,
-    ShadcnDataBuilderPanel,
-    ShadcnDataBuilderView
-} from '@/ui/data-builder'
+import { ShadcnDataBuilderCanvas, ShadcnDataBuilderConfigure, ShadcnDataBuilderEditor, ShadcnDataBuilderPanel, ShadcnDataBuilderView } from '@/ui/data-builder'
 import { ShadcnUpload } from '@/ui/upload'
 import { ShadcnLogger } from '@/ui/logger'
 import { ShadcnScrollbar } from '@/ui/scrollbar'
@@ -105,20 +98,19 @@ import { ShadcnContribution } from '@/ui/contribution'
 import { ShadcnMention } from '@/ui/mention'
 import { ShadcnImage, ShadcnImageGroup, ShadcnImageViewer } from '@/ui/image'
 import { ShadcnCarousel } from '@/ui/carousel'
-import { DataTable, CellInputEditor, CellSelectEditor } from '@/ui/data-table'
+import { ShadcnCellInputEditor, ShadcnCellSelectEditor, ShadcnDataTable } from '@/ui/data-table'
 import { ShadcnMarquee } from '@/ui/marquee'
 import { ShadcnNotification, ShadcnNotificationItem } from '@/ui/notification'
 import { ShadcnTime } from '@/ui/time'
 import { ShadcnIPInput } from '@/ui/ip-input'
 
 let components = [
-    ShadcnButton,
-    ShadcnButtonGroup,
+    ShadcnButton, ShadcnButtonGroup,
     ShadcnCard,
     ShadcnCopy,
     ShadcnCodeEditor,
     ShadcnInput,
-    Icon,
+    ShadcnIcon,
     ShadcnModal,
     ShadcnTooltip,
     ShadcnRow,
@@ -206,7 +198,7 @@ let components = [
     ShadcnMention,
     ShadcnImage, ShadcnImageGroup, ShadcnImageViewer,
     ShadcnCarousel,
-    DataTable, CellInputEditor, CellSelectEditor,
+    ShadcnDataTable, ShadcnCellInputEditor, ShadcnCellSelectEditor,
     ShadcnMarquee,
     ShadcnNotification, ShadcnNotificationItem,
     ShadcnTime,
@@ -248,13 +240,12 @@ if (typeof window !== 'undefined') {
 }
 
 // Support on-demand import
-export { default as ShadcnButton } from '@/ui/button'
-export { default as ShadcnButtonGroup } from '@/ui/button/group'
+export { ShadcnButton, ShadcnButtonGroup } from '@/ui/button'
 export { default as ShadcnCard } from '@/ui/card'
 export { ShadcnCopy } from '@/ui/copy'
 export { ShadcnCodeEditor } from '@/ui/code-editor'
 export { ShadcnInput } from '@/ui/input'
-export { default as Icon } from '@/ui/icon'
+export { ShadcnIcon } from '@/ui/icon'
 export { default as ShadcnModal } from '@/ui/modal'
 export { default as ShadcnTooltip } from '@/ui/tooltip'
 export { default as ShadcnRow } from '@/ui/row'
@@ -291,7 +282,7 @@ export { default as ShadcnMenu } from '@/ui/menu'
 export { default as ShadcnMenuItem } from '@/ui/menu/item'
 export { default as ShadcnMenuSub } from '@/ui/menu/sub'
 export { default as ShadcnMenuGroup } from '@/ui/menu/group'
-export { default as ShadcnMessage } from '@/ui/message'
+export { ShadcnMessage } from '@/ui/message'
 export { default as ShadcnTable } from '@/ui/table'
 export { default as ShadcnBreadcrumb } from '@/ui/breadcrumb'
 export { default as ShadcnBreadcrumbItem } from '@/ui/breadcrumb/item'
@@ -302,7 +293,7 @@ export { default as ShadcnFormItem } from '@/ui/form/item'
 export { default as ShadcnTimeline } from '@/ui/timeline'
 export { default as ShadcnTimelineItem } from '@/ui/timeline/item'
 export { default as ShadcnTrend } from '@/ui/trend'
-export { default as ShadcnException } from '@/ui/exception'
+export { ShadcnException } from '@/ui/exception'
 export { default as ShadcnLink } from '@/ui/link'
 export { default as ShadcnCollapse } from '@/ui/collapse'
 export { default as ShadcnCollapseItem } from '@/ui/collapse/item'
@@ -348,7 +339,7 @@ export { ShadcnContribution } from '@/ui/contribution'
 export { ShadcnMention } from '@/ui/mention'
 export { ShadcnImage, ShadcnImageGroup, ShadcnImageViewer } from '@/ui/image'
 export { ShadcnCarousel } from '@/ui/carousel'
-export { DataTable, CellInputEditor, CellSelectEditor } from '@/ui/data-table'
+export { ShadcnDataTable, ShadcnCellInputEditor, ShadcnCellSelectEditor } from '@/ui/data-table'
 export { ShadcnMarquee } from '@/ui/marquee'
 export { ShadcnNotification, ShadcnNotificationItem } from '@/ui/notification'
 export { ShadcnTime } from '@/ui/time'

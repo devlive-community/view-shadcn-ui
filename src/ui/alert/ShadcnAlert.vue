@@ -8,7 +8,7 @@
     <div class="flex items-center gap-3">
       <!-- Icon -->
       <div v-if="!banner && showIcon" class="flex-shrink-0">
-        <Icon :icon="IconMap[type]"
+        <ShadcnIcon :icon="IconMap[type]"
                     :class="['h-5 w-5',
                             TextType[type]
                     ]"/>
@@ -43,7 +43,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { BackgroundType, BorderType, TextType } from '@/ui/common/type.ts'
-import Icon from '@/ui/icon'
+import { ShadcnIcon } from '@/ui/icon'
 
 const IconMap = {
   primary: 'Info',

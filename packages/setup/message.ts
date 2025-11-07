@@ -1,5 +1,5 @@
 import { createVNode, render } from 'vue'
-import ShadcnMessage from '../../src/ui/message'
+import { ShadcnMessage } from '../../src/ui/message'
 
 const createMessage = (options) => {
     const {

@@ -52,7 +52,7 @@
 import { cn } from '@/lib/utils.ts'
 import { computed, inject, nextTick, onMounted, ref, watch } from 'vue'
 import { Size } from '@/ui/enum/Size.ts'
-import Icon from '@/ui/icon'
+import { ShadcnIcon } from '@/ui/icon'
 import { FormItemContext } from '@/ui/form/context.ts'
 import { InputEmits, InputProps } from '@/ui/input/types.ts'
 

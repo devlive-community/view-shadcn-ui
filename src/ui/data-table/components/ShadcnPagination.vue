@@ -20,49 +20,49 @@
     </div>
 
     <div class="flex items-center space-x-4 justify-center">
-      <Icon icon="ChevronsLeft"
-            class="text-sm"
-            :class="{
+      <ShadcnIcon :class="{
                     'opacity-30 cursor-not-allowed': page === 1,
                     'cursor-pointer': page > 1
                   }"
-            :dark="dark"
-            @click="setCurrentPage(1)">
-      </Icon>
+                  :dark="dark"
+                  class="text-sm"
+                  icon="ChevronsLeft"
+                  @click="setCurrentPage(1)">
+      </ShadcnIcon>
 
-      <Icon icon="ChevronLeft"
-            class="text-sm"
-            :class="{
+      <ShadcnIcon :class="{
               'opacity-30 cursor-not-allowed': page === 1,
               'cursor-pointer': page > 1
             }"
-            :dark="dark"
-            @click="setCurrentPage(page - 1)">
-      </Icon>
+                  :dark="dark"
+                  class="text-sm"
+                  icon="ChevronLeft"
+                  @click="setCurrentPage(page - 1)">
+      </ShadcnIcon>
 
       <span :class="['text-sm flex items-center select-none', dark ? 'text-gray-300' : 'text-gray-700']">
         {{ page }} / {{ totalPages }}
       </span>
 
-      <Icon icon="ChevronRight"
-            class="text-sm"
-            :class="{
+      <ShadcnIcon :class="{
               'opacity-30 cursor-not-allowed': page === totalPages,
               'cursor-pointer': page < totalPages
             }"
-            :dark="dark"
-            @click="setCurrentPage(page + 1)">
-      </Icon>
+                  :dark="dark"
+                  class="text-sm"
+                  icon="ChevronRight"
+                  @click="setCurrentPage(page + 1)">
+      </ShadcnIcon>
 
-      <Icon icon="ChevronsRight"
-            class="text-sm"
-            :class="{
+      <ShadcnIcon :class="{
               'opacity-30 cursor-not-allowed': page === totalPages,
               'cursor-pointer': page < totalPages
             }"
-            :dark="dark"
-            @click="setCurrentPage(totalPages)">
-      </Icon>
+                  :dark="dark"
+                  class="text-sm"
+                  icon="ChevronsRight"
+                  @click="setCurrentPage(totalPages)">
+      </ShadcnIcon>
     </div>
   </div>
 </template>
@@ -71,7 +71,7 @@
 import { ref, watch } from 'vue'
 import { t } from '@/utils/locale'
 import { DataTablePaginationEmits } from '../types.ts'
-import Icon from '@/ui/icon'
+import { ShadcnIcon } from '@/ui/icon'
 
 const props = defineProps<{
   page: number

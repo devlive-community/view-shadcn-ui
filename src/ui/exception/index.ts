@@ -1,3 +1,1 @@
-import ShadcnException from './ShadcnException.vue'
-
-export default ShadcnException
+export { default as ShadcnException } from './ShadcnException.vue'

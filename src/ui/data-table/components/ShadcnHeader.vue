@@ -55,16 +55,16 @@
               <span>{{ col.label }}</span>
             </slot>
             <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
-              <Icon :class="[
+              <ShadcnIcon :class="[
                       'font-semibold transition-transform',
                       col.sort ? 'opacity-100' : 'opacity-0',
                       col.sort === 'asc' && 'text-blue-500',
                       col.sort === 'desc' && 'rotate-180 text-blue-500'
                     ]"
-                    :dark="dark"
-                    icon="MoveUp"
-                    size="16">
-              </Icon>
+                          :dark="dark"
+                          icon="MoveUp"
+                          size="16">
+              </ShadcnIcon>
             </div>
           </div>
         </div>
@@ -74,16 +74,16 @@
             <span>{{ col.label }}</span>
           </slot>
           <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
-            <Icon :class="[
+            <ShadcnIcon :class="[
                     'font-semibold transition-transform',
                     col.sort ? 'opacity-100' : 'opacity-0',
                     col.sort === 'asc' && 'text-blue-500',
                     col.sort === 'desc' && 'rotate-180 text-blue-500'
                   ]"
-                  :dark="dark"
-                  icon="MoveUp"
-                  size="16">
-            </Icon>
+                        :dark="dark"
+                        icon="MoveUp"
+                        size="16">
+            </ShadcnIcon>
           </div>
         </div>
 
@@ -125,16 +125,16 @@
               <span>{{ col.label }}</span>
             </slot>
             <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
-              <Icon :class="[
+              <ShadcnIcon :class="[
                       'font-semibold transition-transform',
                       col.sort ? 'opacity-100' : 'opacity-0',
                       col.sort === 'asc' && 'text-blue-500',
                       col.sort === 'desc' && 'rotate-180 text-blue-500'
                     ]"
-                    :dark="dark"
-                    icon="MoveUp"
-                    size="16">
-              </Icon>
+                          :dark="dark"
+                          icon="MoveUp"
+                          size="16">
+              </ShadcnIcon>
             </div>
           </div>
         </div>
@@ -144,16 +144,16 @@
             <span>{{ col.label }}</span>
           </slot>
           <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
-            <Icon :class="[
+            <ShadcnIcon :class="[
                     'font-semibold transition-transform',
                     col.sort ? 'opacity-100' : 'opacity-0',
                     col.sort === 'asc' && 'text-blue-500',
                     col.sort === 'desc' && 'rotate-180 text-blue-500'
                   ]"
-                  :dark="dark"
-                  icon="MoveUp"
-                  size="16">
-            </Icon>
+                        :dark="dark"
+                        icon="MoveUp"
+                        size="16">
+            </ShadcnIcon>
           </div>
         </div>
 
@@ -195,16 +195,16 @@
               <span>{{ col.label }}</span>
             </slot>
             <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
-              <Icon :class="[
+              <ShadcnIcon :class="[
                       'font-semibold transition-transform',
                       col.sort ? 'opacity-100' : 'opacity-0',
                       col.sort === 'asc' && 'text-blue-500',
                       col.sort === 'desc' && 'rotate-180 text-blue-500'
                     ]"
-                    :dark="dark"
-                    icon="MoveUp"
-                    size="16">
-              </Icon>
+                          :dark="dark"
+                          icon="MoveUp"
+                          size="16">
+              </ShadcnIcon>
             </div>
           </div>
         </div>
@@ -214,16 +214,16 @@
             <span>{{ col.label }}</span>
           </slot>
           <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
-            <Icon :class="[
+            <ShadcnIcon :class="[
                     'font-semibold transition-transform',
                     col.sort ? 'opacity-100' : 'opacity-0',
                     col.sort === 'asc' && 'text-blue-500',
                     col.sort === 'desc' && 'rotate-180 text-blue-500'
                   ]"
-                  :dark="dark"
-                  icon="MoveUp"
-                  size="16">
-            </Icon>
+                        :dark="dark"
+                        icon="MoveUp"
+                        size="16">
+            </ShadcnIcon>
           </div>
         </div>
 
@@ -243,7 +243,7 @@
 import { ref, watch } from 'vue'
 import { ColumnProps, DataTableHeaderEmits, RowSelectionMode, TextAlign } from '../types'
 import { Size, TablePaddingSize } from '../size'
-import Icon from '@/ui/icon'
+import { ShadcnIcon } from '@/ui/icon'
 import { calcSize } from '@/utils/common'
 import { useResize } from '../hooks/useResize'
 import { useRowSelection } from '../hooks/useRowSelection'

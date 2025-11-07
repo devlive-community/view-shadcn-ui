@@ -32,7 +32,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { t } from '@/utils/locale'
-import ShadcnButton from '@/ui/button'
+import { ShadcnButton } from '@/ui/button'
 
 interface Props
 {
