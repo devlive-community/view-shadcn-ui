@@ -1,6 +1,6 @@
 <template>
   <div :class="['min-h-screen p-8 space-y-8', isDark ? 'bg-gray-900' : 'bg-gray-50']">
-    <div class="max-w-4xl mx-auto space-y-8">
+    <div class="mx-auto space-y-8">
       <div class="flex justify-end">
         <button @click="toggleDarkMode"
                 :class="[
@@ -14,13 +14,13 @@
       </div>
     </div>
 
-    <ShadcnCard title="标题" description="描述" :dark="isDark">
-      卡片内容
-    </ShadcnCard>
+    <ShadcnAlert type="success" title="成功" :dark="isDark" show-icon>
+      操作已成功完成！
+    </ShadcnAlert>
 
-    <ShadcnCard title="标题" description="描述" :loading="!isDark" :dark="isDark">
-      卡片内容
-    </ShadcnCard>
+    <ShadcnAlert type="error" :dark="isDark" closable>
+      发生了一个错误
+    </ShadcnAlert>
   </div>
 </template>
 

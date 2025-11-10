@@ -2,15 +2,16 @@
   <div v-if="visible"
        :class="['relative w-full border py-2 px-3',
                 !banner ? 'rounded-md' : 'rounded-none',
-                BorderType[type],
-                BackgroundType[type]
+                dark ? DarkBorderType[type] : BorderType[type],
+                dark ? DarkBackgroundType[type] : BackgroundType[type]
        ]">
     <div class="flex items-center gap-3">
       <!-- Icon -->
       <div v-if="!banner && showIcon" class="flex-shrink-0">
         <ShadcnIcon :icon="IconMap[type]"
+                    :dark="dark"
                     :class="['h-5 w-5',
-                            TextType[type]
+                            dark ? DarkTextType[type] : TextType[type]
                     ]"/>
       </div>
       <div v-else-if="$slots.icon" class="flex-shrink-0">
@@ -20,21 +21,21 @@
       <!-- Content -->
       <div class="flex-1 min-w-0">
         <div v-if="!banner && (title || $slots.title)"
-             class="text-sm font-medium leading-none tracking-tight">
+             :class="['text-sm font-medium leading-none tracking-tight', dark && 'text-gray-100']">
           <span v-if="title">{{ title }}</span>
           <slot v-else-if="$slots.title" name="title"/>
         </div>
-        <div class="text-sm" :class="{ 'mt-1': title || $slots.title }">
+        <div :class="['text-sm', { 'mt-1': title || $slots.title }, dark && 'text-gray-300']">
           <slot/>
         </div>
       </div>
 
       <!-- Close the button -->
       <div v-if="closable"
-           class="flex-shrink-0 mr-2 cursor-pointer text-gray-500 hover:text-gray-700"
+           :class="['flex-shrink-0 mr-2 cursor-pointer', dark ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700']"
            @click="onClose">
         <slot v-if="$slots.close" name="close"/>
-        <Icon icon="XCircle" v-else class="h-4 w-4"/>
+        <ShadcnIcon icon="XCircle" v-else class="h-4 w-4" :dark="dark"/>
       </div>
     </div>
   </div>
@@ -52,6 +53,36 @@ const IconMap = {
   error: 'XCircle'
 }
 
+// 暗黑模式边框颜色
+const DarkBorderType = {
+  primary: 'border-blue-700',
+  success: 'border-green-700',
+  warning: 'border-yellow-700',
+  error: 'border-red-700',
+  info: 'border-blue-700',
+  default: 'border-gray-700'
+}
+
+// 暗黑模式背景颜色
+const DarkBackgroundType = {
+  primary: 'bg-blue-900/30',
+  success: 'bg-green-900/30',
+  warning: 'bg-yellow-900/30',
+  error: 'bg-red-900/30',
+  info: 'bg-blue-900/30',
+  default: 'bg-gray-800'
+}
+
+// 暗黑模式文字颜色
+const DarkTextType = {
+  primary: 'text-blue-400',
+  success: 'text-green-400',
+  warning: 'text-yellow-400',
+  error: 'text-red-400',
+  info: 'text-blue-400',
+  default: 'text-gray-300'
+}
+
 const emit = defineEmits(['on-close'])
 
 withDefaults(defineProps<{
@@ -60,9 +91,11 @@ withDefaults(defineProps<{
   showIcon?: boolean
   banner?: boolean
   closable?: boolean
+  dark?: boolean
 }>(), {
   type: 'primary',
-  closable: false
+  closable: false,
+  dark: false
 })
 
 const visible = ref(true)

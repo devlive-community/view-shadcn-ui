@@ -1,3 +1,1 @@
-import ShadcnAlert  from './ShadcnAlert.vue'
-
-export default ShadcnAlert
+export { default as ShadcnAlert }  from './ShadcnAlert.vue'
