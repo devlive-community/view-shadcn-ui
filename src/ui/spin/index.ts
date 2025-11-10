@@ -1,3 +1,1 @@
-import ShadcnSpin from './ShadcnSpin.vue'
-
-export default ShadcnSpin
+export { default as ShadcnSpin } from './ShadcnSpin.vue'

@@ -162,7 +162,7 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { t } from '@/utils/locale'
-import ShadcnCard from '@/ui/card'
+import { ShadcnCard } from '@/ui/card'
 import { CountDownEmits, CountDownProps } from '@/ui/count-down/types'
 
 const emit = defineEmits<CountDownEmits>()
