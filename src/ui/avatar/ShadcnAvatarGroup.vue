@@ -1,30 +1,34 @@
 <template>
   <div class="flex -space-x-3">
     <template v-for="(item, _index) in displayItems" :key="_index">
-      <ShadcnTooltip :content="item.name">
-        <ShadcnAvatar class="ring-2 ring-background"
+      <ShadcnTooltip :content="item.name" :dark="dark">
+        <ShadcnAvatar :class="['ring-2', dark ? 'ring-gray-800' : 'ring-background']"
                       :src="item.src"
                       :alt="item.name"
                       :size="size"
-                      :square="square"/>
+                      :square="square"
+                      :dark="dark"/>
       </ShadcnTooltip>
     </template>
-    <ShadcnAvatar v-if="remainingCount > 0" class="text-gray-500 text-sm font-thin"
+    <ShadcnAvatar v-if="remainingCount > 0"
+                  :class="['text-sm font-thin', dark ? 'text-gray-400' : 'text-gray-500']"
                   :alt="`+${remainingCount}`"
                   :size="size"
-                  :square="square"/>
+                  :square="square"
+                  :dark="dark"/>
   </div>
 </template>
 
 <script setup lang="ts">
-import ShadcnAvatar from '@/ui/avatar'
+import { ShadcnAvatar } from '@/ui/avatar'
 import { AvatarGroupProps } from '@/ui/avatar/types.ts'
 import ShadcnTooltip from '@/ui/tooltip'
 import { computed } from 'vue'
 
 const props = withDefaults(defineProps<AvatarGroupProps>(), {
   size: 'default',
-  square: false
+  square: false,
+  dark: false
 })
 
 const displayItems = computed(() => {

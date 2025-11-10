@@ -1,3 +1,2 @@
-import ShadcnAvatar from './ShadcnAvatar.vue'
-
-export default ShadcnAvatar
+export { default as ShadcnAvatar } from './ShadcnAvatar.vue'
+export { default as ShadcnAvatarGroup } from './ShadcnAvatarGroup.vue'

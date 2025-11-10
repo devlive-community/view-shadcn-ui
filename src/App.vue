@@ -14,13 +14,9 @@
       </div>
     </div>
 
-    <ShadcnAlert type="success" title="成功" :dark="isDark" show-icon>
-      操作已成功完成！
-    </ShadcnAlert>
+    <ShadcnAvatar alt="用户名" :dark="isDark"/>
 
-    <ShadcnAlert type="error" :dark="isDark" closable>
-      发生了一个错误
-    </ShadcnAlert>
+    <ShadcnAvatarGroup :items="avatars" :max="3" :dark="isDark"/>
   </div>
 </template>
 
@@ -32,4 +28,12 @@ const isDark = ref(false)
 const toggleDarkMode = () => {
   isDark.value = !isDark.value
 }
+
+const avatars = [
+  { name: '张三', src: 'https://i.pravatar.cc/150?img=3' },
+  { name: '李四', src: 'https://i.pravatar.cc/150?img=4' },
+  { name: '王五', src: 'https://i.pravatar.cc/150?img=5' },
+  { name: '赵六', src: 'https://i.pravatar.cc/150?img=6' },
+  { name: '钱七', src: 'https://i.pravatar.cc/150?img=7' }
+]
 </script>

@@ -12,6 +12,7 @@ export interface AvatarProps
     alt?: string
     size?: keyof typeof SkeletonSize
     square?: boolean
+    dark?: boolean
 }
 
 export interface AvatarGroupProps
@@ -20,6 +21,7 @@ export interface AvatarGroupProps
     size?: keyof typeof SkeletonSize
     square?: boolean
     max?: number | string
+    dark?: boolean
 }
 
 export type AvatarEmits = {
