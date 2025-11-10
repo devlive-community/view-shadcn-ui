@@ -1,22 +1,27 @@
 <template>
-  <div :class="['min-h-screen p-8 space-y-8', isDark ? 'bg-gray-900' : 'bg-gray-50']">
-    <div class="mx-auto space-y-8">
-      <div class="flex justify-end">
-        <button @click="toggleDarkMode"
-                :class="[
-                  'px-4 py-2 rounded-lg transition-colors',
-                  isDark
-                    ? 'bg-gray-700 text-white hover:bg-gray-600'
-                    : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
-                ]">
-          {{ isDark ? '🌙 暗黑模式' : '☀️ 明亮模式' }}
-        </button>
-      </div>
+  <div :class="['p-8', isDark ? 'bg-gray-900' : 'bg-gray-50']">
+    <button @click="isDark = !isDark"
+            class="mb-6 px-4 py-2 rounded bg-blue-500 text-white">
+      切换暗黑模式
+    </button>
+
+    <div class="flex gap-8 items-center">
+      <ShadcnTooltip content="顶部提示" position="top" :dark="isDark" arrow>
+        <button class="px-4 py-2 bg-blue-500 text-white rounded">顶部</button>
+      </ShadcnTooltip>
+
+      <ShadcnTooltip content="底部提示" position="bottom" :dark="isDark" arrow>
+        <button class="px-4 py-2 bg-green-500 text-white rounded">底部</button>
+      </ShadcnTooltip>
+
+      <ShadcnTooltip content="左侧提示" position="left" :dark="isDark" arrow>
+        <button class="px-4 py-2 bg-yellow-500 text-white rounded">左侧</button>
+      </ShadcnTooltip>
+
+      <ShadcnTooltip content="右侧提示" position="right" :dark="isDark" arrow>
+        <button class="px-4 py-2 bg-red-500 text-white rounded">右侧</button>
+      </ShadcnTooltip>
     </div>
-
-    <ShadcnAvatar alt="用户名" :dark="isDark"/>
-
-    <ShadcnAvatarGroup :items="avatars" :max="3" :dark="isDark"/>
   </div>
 </template>
 
@@ -24,16 +29,4 @@
 import { ref } from 'vue'
 
 const isDark = ref(false)
-
-const toggleDarkMode = () => {
-  isDark.value = !isDark.value
-}
-
-const avatars = [
-  { name: '张三', src: 'https://i.pravatar.cc/150?img=3' },
-  { name: '李四', src: 'https://i.pravatar.cc/150?img=4' },
-  { name: '王五', src: 'https://i.pravatar.cc/150?img=5' },
-  { name: '赵六', src: 'https://i.pravatar.cc/150?img=6' },
-  { name: '钱七', src: 'https://i.pravatar.cc/150?img=7' }
-]
 </script>

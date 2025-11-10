@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { cn } from '@/lib/utils.ts'
-import ShadcnTooltip from '@/ui/tooltip'
+import { ShadcnTooltip } from '@/ui/tooltip'
 import { toNumber } from 'lodash'
 import { computed, onMounted, ref } from 'vue'
 

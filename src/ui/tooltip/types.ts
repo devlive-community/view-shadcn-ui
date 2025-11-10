@@ -7,4 +7,5 @@ export interface TooltipProps
     arrow?: boolean
     delay?: number
     maxWidth?: number | string
+    dark?: boolean
 }

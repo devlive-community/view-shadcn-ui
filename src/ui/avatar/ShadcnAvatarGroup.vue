@@ -22,7 +22,7 @@
 <script setup lang="ts">
 import { ShadcnAvatar } from '@/ui/avatar'
 import { AvatarGroupProps } from '@/ui/avatar/types.ts'
-import ShadcnTooltip from '@/ui/tooltip'
+import { ShadcnTooltip } from '@/ui/tooltip'
 import { computed } from 'vue'
 
 const props = withDefaults(defineProps<AvatarGroupProps>(), {

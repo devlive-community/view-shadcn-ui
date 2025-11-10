@@ -29,7 +29,7 @@
 import { inject, onMounted, onUnmounted, provide, ref, watch } from 'vue'
 import { FormItemContext } from '@/ui/form/context.ts'
 import { FormItemProps } from '@/ui/form/types.ts'
-import ShadcnTooltip from '@/ui/tooltip'
+import { ShadcnTooltip } from '@/ui/tooltip'
 import { ShadcnIcon } from '@/ui/icon'
 
 const props = withDefaults(defineProps<FormItemProps>(), {
