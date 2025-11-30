@@ -24,8 +24,7 @@ import ShadcnProgress from '@/ui/progress'
 import ShadcnSpace from '@/ui/space'
 import ShadcnSwitch from '@/ui/switch'
 import ShadcnRadio from '@/ui/radio'
-import ShadcnCheckbox from '@/ui/checkbox'
-import ShadcnCheckboxGroup from '@/ui/checkbox/group'
+import { ShadcnCheckbox, ShadcnCheckboxGroup } from '@/ui/checkbox'
 import ShadcnRadioGroup from '@/ui/radio/group'
 import ShadcnSelect from '@/ui/select'
 import ShadcnSelectOption from '@/ui/select/option'
@@ -124,8 +123,7 @@ let components = [
     ShadcnSwitch,
     ShadcnRadio,
     ShadcnRadioGroup,
-    ShadcnCheckbox,
-    ShadcnCheckboxGroup,
+    ShadcnCheckbox, ShadcnCheckboxGroup,
     ShadcnSelect,
     ShadcnSelectOption,
     ShadcnSelectGroup,
@@ -257,8 +255,7 @@ export { default as ShadcnSpace } from '@/ui/space'
 export { default as ShadcnSwitch } from '@/ui/switch'
 export { default as ShadcnRadio } from '@/ui/radio'
 export { default as ShadcnRadioGroup } from '@/ui/radio/group'
-export { default as ShadcnCheckbox } from '@/ui/checkbox'
-export { default as ShadcnCheckboxGroup } from '@/ui/checkbox/group'
+export { ShadcnCheckbox, ShadcnCheckboxGroup } from '@/ui/checkbox'
 export { default as ShadcnSelect } from '@/ui/select'
 export { default as ShadcnSelectOption } from '@/ui/select/option'
 export { default as ShadcnSelectGroup } from '@/ui/select/group'

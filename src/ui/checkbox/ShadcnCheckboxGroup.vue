@@ -5,12 +5,15 @@
 </template>
 
 <script setup lang="ts">
-import { defineEmits, defineProps, provide, reactive, watch } from 'vue'
+import { computed, defineEmits, defineProps, provide, reactive, watch } from 'vue'
 import ShadcnSpace from '@/ui/space'
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   modelValue?: any[],
-}>()
+  dark?: boolean
+}>(), {
+  dark: false
+})
 
 const emit = defineEmits(['update:modelValue', 'on-change'])
 
@@ -47,4 +50,7 @@ provide('checkboxGroup', {
   modelValue: checkboxGroupState,
   updateModelValue
 })
+
+// Provide dark mode to child checkboxes
+provide('checkboxGroupDark', computed(() => props.dark))
 </script>

@@ -99,7 +99,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { TreeNode, TreeNodeEmits, TreeNodeProps } from './types'
-import ShadcnCheckbox from '@/ui/checkbox'
+import { ShadcnCheckbox } from '@/ui/checkbox'
 
 const emit = defineEmits<TreeNodeEmits>()
 const props = withDefaults(defineProps<TreeNodeProps>(), {

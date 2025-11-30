@@ -21,7 +21,8 @@
                     'bg-green-400': type === 'success' && (isChecked || indeterminate),
                     'bg-yellow-400': type === 'warning' && (isChecked || indeterminate),
                     'bg-red-400': type === 'error' && (isChecked || indeterminate),
-                    'bg-white': !isChecked && !indeterminate
+                    'bg-white': !isChecked && !indeterminate && !isDark,
+                    'bg-gray-800 border-gray-600': !isChecked && !indeterminate && isDark
                   }]">
       <svg v-if="indeterminate"
            xmlns="http://www.w3.org/2000/svg"
@@ -48,10 +49,10 @@
     </div>
 
     <!-- Label Slot -->
-    <div v-if="$slots.label" class="ml-2 text-sm text-nowrap">
+    <div v-if="$slots.label" :class="['ml-2 text-sm text-nowrap', isDark ? 'text-gray-200' : '']">
       <slot name="label"/>
     </div>
-    <div v-else class="ml-2 text-sm text-nowrap">
+    <div v-else :class="['ml-2 text-sm text-nowrap', isDark ? 'text-gray-200' : '']">
       <slot/>
     </div>
   </div>
@@ -82,17 +83,21 @@ const props = withDefaults(defineProps<{
   disabled?: boolean,
   size?: keyof typeof Size,
   type?: 'primary' | 'success' | 'warning' | 'error',
-  indeterminate?: boolean
+  indeterminate?: boolean,
+  dark?: boolean
 }>(), {
   modelValue: null,
   disabled: false,
   size: 'default',
   type: 'primary',
-  indeterminate: false
+  indeterminate: false,
+  dark: false
 })
 
-// Get the checkboxGroup data
+// Get the checkboxGroup data and dark mode from parent
 const checkboxGroup = inject<{ modelValue: { modelValue: any[] }, updateModelValue: Function } | null>('checkboxGroup', null)
+const groupDark = inject<any>('checkboxGroupDark', false)
+const isDark = computed(() => props.dark || (typeof groupDark === 'object' && groupDark.value !== undefined ? groupDark.value : groupDark))
 
 // Computed property to check if the checkbox is checked
 const isChecked = computed(() => {
