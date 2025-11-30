@@ -1,3 +1,2 @@
-import ShadcnBreadcrumb from './ShadcnBreadcrumb.vue'
-
-export default ShadcnBreadcrumb
+export { default as ShadcnBreadcrumb } from './ShadcnBreadcrumb.vue'
+export { default as ShadcnBreadcrumbItem } from './ShadcnBreadcrumbItem.vue'

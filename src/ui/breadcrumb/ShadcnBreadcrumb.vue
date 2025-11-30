@@ -1,6 +1,6 @@
 <template>
   <nav aria-label="breadcrumb" class="flex">
-    <div class="flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground"
+    <div class="flex flex-wrap items-center gap-1.5 break-words text-sm"
          :data-breadcrumb-id="breadcrumbId">
       <slot/>
     </div>
@@ -13,15 +13,18 @@ import { generateRandomId } from '@/utils/common.ts'
 
 const props = withDefaults(defineProps<{
   separator?: string
+  dark?: boolean
 }>(), {
-  separator: '/'
+  separator: '/',
+  dark: false
 })
 provide('breadcrumbSeparator', props.separator)
+provide('breadcrumbDark', props.dark)
 
 // Tag that a parent node exists
 provide('isBreadcrumb', true)
 
-const breadcrumbId = ref(`breadcrumb-${ generateRandomId() }`)
+const breadcrumbId = ref(`breadcrumb-${generateRandomId()}`)
 provide('breadcrumbId', breadcrumbId)
 
 // Used to calculate the index of the current subassembly
@@ -36,7 +39,7 @@ const totalItems = ref(0)
 onMounted(() => {
   const updateTotalItems = () => {
     if (typeof document !== 'undefined') {
-      totalItems.value = document.querySelectorAll(`[data-breadcrumb-parent="${ breadcrumbId.value }"]`).length
+      totalItems.value = document.querySelectorAll(`[data-breadcrumb-parent="${breadcrumbId.value}"]`).length
     }
   }
   updateTotalItems()

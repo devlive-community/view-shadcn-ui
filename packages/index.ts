@@ -48,8 +48,7 @@ import ShadcnMenuSub from '@/ui/menu/sub'
 import ShadcnMenuGroup from '@/ui/menu/group'
 import { ShadcnMessage } from '@/ui/message'
 import ShadcnTable from '@/ui/table'
-import ShadcnBreadcrumb from '@/ui/breadcrumb'
-import ShadcnBreadcrumbItem from '@/ui/breadcrumb/item'
+import { ShadcnBreadcrumb, ShadcnBreadcrumbItem } from '@/ui/breadcrumb'
 import { ShadcnSlider } from '@/ui/slider'
 import { ShadcnSpin } from '@/ui/spin'
 import ShadcnForm from '@/ui/form'
@@ -148,8 +147,7 @@ let components = [
     ShadcnMenuGroup,
     ShadcnMessage,
     ShadcnTable,
-    ShadcnBreadcrumb,
-    ShadcnBreadcrumbItem,
+    ShadcnBreadcrumb, ShadcnBreadcrumbItem,
     ShadcnSlider,
     ShadcnSpin,
     ShadcnForm,
@@ -282,8 +280,7 @@ export { default as ShadcnMenuSub } from '@/ui/menu/sub'
 export { default as ShadcnMenuGroup } from '@/ui/menu/group'
 export { ShadcnMessage } from '@/ui/message'
 export { default as ShadcnTable } from '@/ui/table'
-export { default as ShadcnBreadcrumb } from '@/ui/breadcrumb'
-export { default as ShadcnBreadcrumbItem } from '@/ui/breadcrumb/item'
+export { ShadcnBreadcrumb, ShadcnBreadcrumbItem } from '@/ui/breadcrumb'
 export { ShadcnSlider } from '@/ui/slider'
 export { ShadcnSpin } from '@/ui/spin'
 export { default as ShadcnForm } from '@/ui/form'
