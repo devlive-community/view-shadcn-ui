@@ -1,8 +1,12 @@
 <template>
   <div @click="onClick"
        :class="[
-           'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-gray-100 focus:bg-gray-100 data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
-           { 'opacity-50 cursor-not-allowed': disabled }
+           'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors',
+           {
+             'text-gray-200 hover:bg-gray-700 focus:bg-gray-700': dark,
+             'hover:bg-gray-100 focus:bg-gray-100': !dark,
+             'opacity-50 cursor-not-allowed': disabled
+           }
        ]">
     <slot/>
   </div>
@@ -10,11 +14,15 @@
 
 <script setup lang="ts">
 import { ContextMenuItemEmits, ContextMenuItemProps } from './types'
-import { inject } from 'vue'
+import { computed, inject } from 'vue'
 
 const props = withDefaults(defineProps<ContextMenuItemProps>(), {
-  disabled: false
+  disabled: false,
+  dark: false
 })
+
+const injectedDark = inject('contextMenuDark', computed(() => false))
+const dark = computed(() => props.dark || injectedDark.value)
 
 const closeMenu = inject('closeMenu') as () => void
 

@@ -6,26 +6,22 @@
 
     <div class="space-y-6 my-6">
       <div>
-        <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnColorPicker</h3>
-        <ShadcnColorPicker v-model="colorValue" :dark="isDark"/>
-      </div>
-
-      <div>
-        <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnNumber</h3>
-        <div class="space-y-4">
-          <ShadcnNumber v-model="numberValue" :dark="isDark" placeholder="请输入数字"/>
-          <ShadcnNumber v-model="numberValue2" :dark="isDark" placeholder="带清除按钮" clearable/>
-          <ShadcnNumber v-model="numberValue3" :dark="isDark" placeholder="限制范围" :min="0" :max="100"/>
-        </div>
-      </div>
-
-      <div>
-        <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnSlider</h3>
-        <div class="space-y-4">
-          <ShadcnSlider v-model="sliderValue" :dark="isDark" showTip/>
-          <ShadcnSlider v-model="sliderValue2" :dark="isDark" showTip showStep :step="10"/>
-          <ShadcnSlider v-model="sliderValue3" :dark="isDark" showTip :min="0" :max="200"/>
-        </div>
+        <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnContextMenu</h3>
+        <ShadcnContextMenu v-model="contextMenuVisible" :dark="isDark">
+          <template #trigger>
+            <div :class="['border-2 border-dashed rounded-lg p-8 text-center cursor-pointer',
+                          isDark ? 'border-gray-700 text-gray-400' : 'border-gray-300 text-gray-500'
+            ]">
+              右键点击这里
+            </div>
+          </template>
+          <ShadcnContextMenuItem @on-click="handleMenuClick('复制')">复制</ShadcnContextMenuItem>
+          <ShadcnContextMenuItem @on-click="handleMenuClick('粘贴')">粘贴</ShadcnContextMenuItem>
+          <ShadcnContextMenuSub label="更多选项">
+            <ShadcnContextMenuItem @on-click="handleMenuClick('选项1')">选项1</ShadcnContextMenuItem>
+            <ShadcnContextMenuItem @on-click="handleMenuClick('选项2')">选项2</ShadcnContextMenuItem>
+          </ShadcnContextMenuSub>
+        </ShadcnContextMenu>
       </div>
     </div>
   </div>
@@ -33,17 +29,12 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ShadcnSlider } from "@/ui/slider";
+import { ShadcnContextMenu, ShadcnContextMenuItem, ShadcnContextMenuSub } from "@/ui/contextmenu";
 
 const isDark = ref(false)
+const contextMenuVisible = ref(false)
 
-const colorValue = ref('#3b82f6')
-
-const numberValue = ref(0)
-const numberValue2 = ref(10)
-const numberValue3 = ref(50)
-
-const sliderValue = ref(50)
-const sliderValue2 = ref(30)
-const sliderValue3 = ref(100)
+const handleMenuClick = (action: string) => {
+  console.log('点击了:', action)
+}
 </script>
