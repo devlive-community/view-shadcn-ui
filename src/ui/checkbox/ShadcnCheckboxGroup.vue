@@ -1,10 +1,10 @@
 <template>
-  <ShadcnSpace wrap :size="[10, 10]">
+  <ShadcnSpace :size="[10, 10]" wrap>
     <slot/>
   </ShadcnSpace>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineEmits, defineProps, provide, reactive, watch } from 'vue'
 import ShadcnSpace from '@/ui/space'
 

@@ -133,6 +133,7 @@ export interface CodeEditorProps
     autoCompleteConfig?: CodeEditorAutoCompleteProps
     contextMenuConfig?: CodeEditorContextMenuProps
     searchConfig?: CodeEditorSearchProps
+    dark?: boolean
 }
 
 export type CodeEditorEmits = {

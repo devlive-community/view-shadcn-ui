@@ -8,10 +8,10 @@
         ]"
        @click="onChange">
     <!-- Hidden Checkbox Input -->
-    <input type="checkbox"
-           :checked="isChecked"
+    <input :checked="isChecked"
+           :value="value"
            class="sr-only"
-           :value="value"/>
+           type="checkbox"/>
 
     <!-- Custom Checkbox Style -->
     <div :class="['flex items-center justify-center rounded border transition-colors duration-300',
@@ -25,26 +25,26 @@
                     'bg-gray-800 border-gray-600': !isChecked && !indeterminate && isDark
                   }]">
       <svg v-if="indeterminate"
-           xmlns="http://www.w3.org/2000/svg"
+           :class="['text-white', ToggleSize[size]]"
            fill="none"
-           viewBox="0 0 24 24"
            stroke="currentColor"
-           :class="['text-white', ToggleSize[size]]">
-        <path stroke-linecap="round"
+           viewBox="0 0 24 24"
+           xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 12h14"
+              stroke-linecap="round"
               stroke-linejoin="round"
-              stroke-width="2"
-              d="M5 12h14"/>
+              stroke-width="2"/>
       </svg>
       <svg v-else-if="isChecked"
-           xmlns="http://www.w3.org/2000/svg"
+           :class="['text-white', ToggleSize[size]]"
            fill="none"
-           viewBox="0 0 24 24"
            stroke="currentColor"
-           :class="['text-white', ToggleSize[size]]">
-        <path stroke-linecap="round"
+           viewBox="0 0 24 24"
+           xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 13l4 4L19 7"
+              stroke-linecap="round"
               stroke-linejoin="round"
-              stroke-width="2"
-              d="M5 13l4 4L19 7"/>
+              stroke-width="2"/>
       </svg>
     </div>
 
@@ -58,7 +58,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, inject } from 'vue'
 
 enum Size
