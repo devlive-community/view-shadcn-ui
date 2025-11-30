@@ -1,5 +1,5 @@
 import { createVNode, render } from 'vue'
-import ShadcnSpin from '../../src/ui/spin'
+import { ShadcnSpin } from '../../src/ui/spin'
 
 type SpinInstance = {
     close: () => void;

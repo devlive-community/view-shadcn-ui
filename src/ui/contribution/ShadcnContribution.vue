@@ -1,7 +1,9 @@
 <template>
   <div class="flex">
     <div v-if="showWeek"
-         class="flex flex-col mt-6 justify-between mr-2 text-xs text-gray-500 text-center h-[94px] select-none"
+         :class="['flex flex-col mt-6 justify-between mr-2 text-xs text-center h-[94px] select-none',
+                  dark ? 'text-gray-400' : 'text-gray-500'
+         ]"
          :style="{
              height: `${7 * cellSize + 6 * cellGap}px`,
              marginTop: `${MONTH_LABEL_HEIGHT}px`
@@ -21,7 +23,9 @@
            :style="{ height: `${MONTH_LABEL_HEIGHT}px` }">
         <div v-for="(month, index) in monthLabels"
              :key="index"
-             class="absolute text-xs text-gray-500"
+             :class="['absolute text-xs',
+                      dark ? 'text-gray-400' : 'text-gray-500'
+             ]"
              :style="{ left: `${month.offset}px` }">
           {{ month.label }}
         </div>
@@ -50,7 +54,9 @@
                 </slot>
 
                 <div v-if="activeTooltip?.date === (item as any).date"
-                     class="absolute z-20 p-2 text-xs text-white bg-gray-800 rounded whitespace-nowrap transition-all duration-200"
+                     :class="['absolute z-20 p-2 text-xs rounded whitespace-nowrap transition-all duration-200',
+                              dark ? 'bg-gray-700 text-gray-200' : 'bg-gray-800 text-white'
+                     ]"
                      style="bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 4px;">
                   <div class="flex flex-col space-y-1">
                     <div>{{ formatDate((item as any).date) }}</div>
@@ -66,12 +72,15 @@
         </template>
       </div>
 
-      <div v-if="showLegend" class="flex items-center gap-2 mt-2 text-xs text-gray-500 justify-end">
+      <div v-if="showLegend"
+           :class="['flex items-center gap-2 mt-2 text-xs justify-end',
+                    dark ? 'text-gray-400' : 'text-gray-500'
+           ]">
         <span>{{ t('contribution.text.less') }}</span>
         <div class="flex gap-1 relative group"
              @mouseenter="showLegendTooltip"
              @mouseleave="hideLegendTooltip">
-          <div v-for="(color, index) in props.colorScheme"
+          <div v-for="(color, index) in colorScheme"
                :key="index"
                :style="{
                  backgroundColor: color,
@@ -81,14 +90,16 @@
                class="rounded-sm cursor-help">
           </div>
 
-          <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 p-2 bg-gray-800 rounded text-white whitespace-nowrap z-50 transition-opacity duration-200"
-               :class="[showLegendDetail ? 'visible opacity-100' : 'invisible opacity-0']">
+          <div :class="['absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 p-2 rounded whitespace-nowrap z-50 transition-opacity duration-200',
+                        dark ? 'bg-gray-700 text-gray-200' : 'bg-gray-800 text-white',
+                        showLegendDetail ? 'visible opacity-100' : 'invisible opacity-0'
+               ]">
             <div class="flex flex-col gap-1.5">
               <div v-for="(range, index) in contributionRanges"
                    :key="index"
                    class="flex items-center gap-1">
                 <div :style="{
-                       backgroundColor: props.colorScheme[index],
+                       backgroundColor: colorScheme[index],
                        width: `${Math.max(cellSize - 2, 8)}px`,
                        height: `${Math.max(cellSize - 2, 8)}px`
                      }"
@@ -113,13 +124,22 @@ import { type ContributionEmits, ContributionOption, type ContributionProps, Con
 defineSlots<ContributionSlots>()
 
 const props = withDefaults(defineProps<ContributionProps>(), {
-  colorScheme: () => ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39'],
   yearCount: 1,
   showLegend: true,
   showWeek: true,
   showMonth: true,
   cellSize: 16,
-  cellGap: 4
+  cellGap: 4,
+  dark: false
+})
+
+const colorScheme = computed(() => {
+  if (props.colorScheme) {
+    return props.colorScheme
+  }
+  return props.dark
+      ? ['#374151', '#9be9a8', '#40c463', '#30a14e', '#216e39']
+      : ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39']
 })
 
 const emit = defineEmits<ContributionEmits>()
@@ -243,18 +263,18 @@ const monthLabels = computed(() => {
 // Get color based on contribution count
 const getColor = (count: number | undefined) => {
   if (count === undefined || count === null || count === 0) {
-    return props.colorScheme[0]
+    return colorScheme.value[0]
   }
   if (count <= 3) {
-    return props.colorScheme[1]
+    return colorScheme.value[1]
   }
   if (count <= 6) {
-    return props.colorScheme[2]
+    return colorScheme.value[2]
   }
   if (count <= 9) {
-    return props.colorScheme[3]
+    return colorScheme.value[3]
   }
-  return props.colorScheme[4]
+  return colorScheme.value[4]
 }
 
 const onSelect = (item: ContributionOption) => {

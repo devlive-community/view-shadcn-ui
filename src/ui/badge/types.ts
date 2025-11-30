@@ -6,4 +6,5 @@ export interface BadgeProps
     type?: keyof typeof ButtonBackgroundType
     dot?: boolean
     max?: number | string
+    dark?: boolean
 }

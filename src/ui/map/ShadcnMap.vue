@@ -28,7 +28,7 @@
           </div>
         </div>
 
-        <ShadcnIcon v-if="!disabled"
+        <Icon v-if="!disabled"
                     icon="CircleX"
                     class="text-gray-400 transition-opacity duration-200"
                     :class="[Size[finalSize],
@@ -46,7 +46,7 @@
       {{ t('map.validated.duplicate') }}
     </div>
 
-    <ShadcnIcon v-if="!disabled && !isMaxReached"
+    <Icon v-if="!disabled && !isMaxReached"
                 icon="CirclePlus"
                 :class="['text-blue-600 hover:text-blue-700 focus:outline-none',
                     { 'cursor-pointer ': !Object.values(duplicateKeys).some(v => v) && !Object.values(emptyKeys).some(v => v) && !disabled },

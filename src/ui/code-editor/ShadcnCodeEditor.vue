@@ -1,6 +1,6 @@
 <template>
   <div ref="editorContainer"
-       class="border w-full overflow-hidden"
+       :class="['border w-full overflow-hidden', dark ? 'border-gray-600' : '']"
        :style="{ height: calcSize(height) }"/>
 </template>
 
@@ -29,7 +29,8 @@ const props = withDefaults(defineProps<CodeEditorProps>(), {
     matchWholeWord: false,
     useRegex: false,
     showHistory: false
-  } as any
+  } as any,
+  dark: false
 })
 
 const emit = defineEmits<CodeEditorEmits>()
@@ -54,6 +55,7 @@ const initEditor = () => {
   const options: monaco.editor.IStandaloneEditorConstructionOptions = {
     ...props.config,
     value: props.modelValue || '',
+    theme: props.dark ? 'vs-dark' : 'vs',
     contextmenu: false,
     suggest: {
       showMethods: false,
@@ -167,8 +169,17 @@ const updateEditorContent = () => {
   }
 }
 
+const updateEditorTheme = () => {
+  if (!editor) {
+    return
+  }
+
+  monaco.editor.setTheme(props.dark ? 'vs-dark' : 'vs')
+}
+
 watch(() => props.config, updateEditorOptions)
 watch(() => props.modelValue, updateEditorContent)
+watch(() => props.dark, updateEditorTheme)
 
 onMounted(() => {
   initEditor()

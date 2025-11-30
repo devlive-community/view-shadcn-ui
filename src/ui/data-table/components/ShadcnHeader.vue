@@ -1,14 +1,16 @@
 <template>
   <div :class="[
-    'flex bg-gray-100 relative w-full sticky top-0 z-50',
-    borderConfig.getHeaderBorderClass()
+    'flex relative w-full sticky top-0 z-50',
+    borderConfig.getHeaderBorderClass(),
+    dark ? 'bg-gray-800' : 'bg-gray-100'
   ]">
     <div v-if="rowSelection === 'multipleRow'"
          :style="{ width: '48px', flexShrink: 0 }"
          :class="[
            TablePaddingSize[size],
-           'flex items-center justify-center sticky left-0 z-40 bg-gray-100',
-           borderConfig.getCellBorderClass(false)
+           'flex items-center justify-center sticky left-0 z-40',
+           borderConfig.getCellBorderClass(false),
+           dark ? 'bg-gray-800' : 'bg-gray-100'
          ]">
       <input type="checkbox"
              :checked="selectionState.isAllSelected.value"
@@ -19,8 +21,9 @@
     <div v-else-if="rowSelection === 'singleRow'"
          :style="{ width: '48px', flexShrink: 0 }"
          :class="[
-           'sticky left-0 z-40 bg-gray-100',
-           borderConfig.getCellBorderClass(false)
+           'sticky left-0 z-40',
+           borderConfig.getCellBorderClass(false),
+           dark ? 'bg-gray-800' : 'bg-gray-100'
          ]">
     </div>
 
@@ -30,11 +33,12 @@
              { position: 'sticky', flexShrink: 0, zIndex: 35 }
            ]"
            :class="[
-             'font-medium bg-gray-100',
+             'font-medium',
              TextAlign[col.align || 'left'],
              TablePaddingSize[size],
              borderConfig.getCellBorderClass(true, 'left'),
-             isDragOver(col) && 'border-2 h-full w-full border-blue-500 border-dashed'
+             isDragOver(col) && 'border-2 h-full w-full border-blue-500 border-dashed',
+             dark ? 'bg-gray-800 text-gray-200' : 'bg-gray-100'
            ]">
 
         <div v-if="columnMove"
@@ -52,11 +56,12 @@
             </slot>
             <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
               <ShadcnIcon :class="[
-                            'font-semibold transition-transform',
-                            col.sort ? 'opacity-100' : 'opacity-0',
-                            col.sort === 'asc' && 'text-blue-500',
-                            col.sort === 'desc' && 'rotate-180 text-blue-500'
-                          ]"
+                      'font-semibold transition-transform',
+                      col.sort ? 'opacity-100' : 'opacity-0',
+                      col.sort === 'asc' && 'text-blue-500',
+                      col.sort === 'desc' && 'rotate-180 text-blue-500'
+                    ]"
+                          :dark="dark"
                           icon="MoveUp"
                           size="16">
               </ShadcnIcon>
@@ -70,11 +75,12 @@
           </slot>
           <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
             <ShadcnIcon :class="[
-                          'font-semibold transition-transform',
-                          col.sort ? 'opacity-100' : 'opacity-0',
-                          col.sort === 'asc' && 'text-blue-500',
-                          col.sort === 'desc' && 'rotate-180 text-blue-500'
-                        ]"
+                    'font-semibold transition-transform',
+                    col.sort ? 'opacity-100' : 'opacity-0',
+                    col.sort === 'asc' && 'text-blue-500',
+                    col.sort === 'desc' && 'rotate-180 text-blue-500'
+                  ]"
+                        :dark="dark"
                         icon="MoveUp"
                         size="16">
             </ShadcnIcon>
@@ -101,7 +107,8 @@
              TextAlign[col.align || 'left'],
              TablePaddingSize[size],
              borderConfig.getCellBorderClass(false),
-             isDragOver(col) && 'border-2 h-full w-full border-blue-500 border-dashed'
+             isDragOver(col) && 'border-2 h-full w-full border-blue-500 border-dashed',
+             dark ? 'text-gray-200' : ''
            ]">
 
         <div v-if="columnMove"
@@ -119,11 +126,12 @@
             </slot>
             <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
               <ShadcnIcon :class="[
-                            'font-semibold transition-transform',
-                            col.sort ? 'opacity-100' : 'opacity-0',
-                            col.sort === 'asc' && 'text-blue-500',
-                            col.sort === 'desc' && 'rotate-180 text-blue-500'
-                          ]"
+                      'font-semibold transition-transform',
+                      col.sort ? 'opacity-100' : 'opacity-0',
+                      col.sort === 'asc' && 'text-blue-500',
+                      col.sort === 'desc' && 'rotate-180 text-blue-500'
+                    ]"
+                          :dark="dark"
                           icon="MoveUp"
                           size="16">
               </ShadcnIcon>
@@ -137,11 +145,12 @@
           </slot>
           <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
             <ShadcnIcon :class="[
-                          'font-semibold transition-transform',
-                          col.sort ? 'opacity-100' : 'opacity-0',
-                          col.sort === 'asc' && 'text-blue-500',
-                          col.sort === 'desc' && 'rotate-180 text-blue-500'
-                        ]"
+                    'font-semibold transition-transform',
+                    col.sort ? 'opacity-100' : 'opacity-0',
+                    col.sort === 'asc' && 'text-blue-500',
+                    col.sort === 'desc' && 'rotate-180 text-blue-500'
+                  ]"
+                        :dark="dark"
                         icon="MoveUp"
                         size="16">
             </ShadcnIcon>
@@ -164,11 +173,12 @@
              { position: 'sticky', flexShrink: 0, zIndex: 35 }
            ]"
            :class="[
-             'font-medium bg-gray-100',
+             'font-medium',
              TextAlign[col.align || 'left'],
              TablePaddingSize[size],
              borderConfig.getCellBorderClass(true, 'right'),
-             isDragOver(col) && 'border-2 h-full w-full border-blue-500 border-dashed'
+             isDragOver(col) && 'border-2 h-full w-full border-blue-500 border-dashed',
+             dark ? 'bg-gray-800 text-gray-200' : 'bg-gray-100'
            ]">
 
         <div v-if="columnMove"
@@ -186,11 +196,12 @@
             </slot>
             <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
               <ShadcnIcon :class="[
-                            'font-semibold transition-transform',
-                            col.sort ? 'opacity-100' : 'opacity-0',
-                            col.sort === 'asc' && 'text-blue-500',
-                            col.sort === 'desc' && 'rotate-180 text-blue-500'
-                          ]"
+                      'font-semibold transition-transform',
+                      col.sort ? 'opacity-100' : 'opacity-0',
+                      col.sort === 'asc' && 'text-blue-500',
+                      col.sort === 'desc' && 'rotate-180 text-blue-500'
+                    ]"
+                          :dark="dark"
                           icon="MoveUp"
                           size="16">
               </ShadcnIcon>
@@ -204,11 +215,12 @@
           </slot>
           <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
             <ShadcnIcon :class="[
-                          'font-semibold transition-transform',
-                          col.sort ? 'opacity-100' : 'opacity-0',
-                          col.sort === 'asc' && 'text-blue-500',
-                          col.sort === 'desc' && 'rotate-180 text-blue-500'
-                        ]"
+                    'font-semibold transition-transform',
+                    col.sort ? 'opacity-100' : 'opacity-0',
+                    col.sort === 'asc' && 'text-blue-500',
+                    col.sort === 'desc' && 'rotate-180 text-blue-500'
+                  ]"
+                        :dark="dark"
                         icon="MoveUp"
                         size="16">
             </ShadcnIcon>
@@ -231,7 +243,7 @@
 import { ref, watch } from 'vue'
 import { ColumnProps, DataTableHeaderEmits, RowSelectionMode, TextAlign } from '../types'
 import { Size, TablePaddingSize } from '../size'
-import ShadcnIcon from '@/ui/icon'
+import { ShadcnIcon } from '@/ui/icon'
 import { calcSize } from '@/utils/common'
 import { useResize } from '../hooks/useResize'
 import { useRowSelection } from '../hooks/useRowSelection'
@@ -247,9 +259,11 @@ const props = withDefaults(defineProps<{
   selectionState: ReturnType<typeof useRowSelection>
   columnMove?: boolean
   borderConfig: UseBorderReturn
+  dark?: boolean
 }>(), {
   size: 'default',
-  columnMove: false
+  columnMove: false,
+  dark: false
 })
 
 const emits = defineEmits<DataTableHeaderEmits>()

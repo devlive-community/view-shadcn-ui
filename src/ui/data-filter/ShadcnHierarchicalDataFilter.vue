@@ -43,7 +43,7 @@
                     <ShadcnDataFilter v-model="item.value"
                                       :fields="fields"
                                       @on-validation-change="onConditionValidationChange(groupIndex, itemIndex, $event)"/>
-                    <ShadcnIcon class="cursor-pointer text-gray-400 hover:text-red-600"
+                    <Icon class="cursor-pointer text-gray-400 hover:text-red-600"
                                 icon="Trash"
                                 size="16"
                                 @click="removeCondition(groupIndex, itemIndex)"/>
@@ -57,14 +57,14 @@
         <div class="ml-5 flex items-center gap-4">
           <ShadcnButton type="text" @click="addConditionToGroup(groupIndex)">
             <div class="flex items-center gap-1 text-blue-500">
-              <ShadcnIcon icon="Plus" size="14"/>
+              <Icon icon="Plus" size="14"/>
               <span class="text-sm">{{ t('dataFilter.text.addCondition') }}</span>
             </div>
           </ShadcnButton>
 
           <ShadcnButton type="text" @click="addNestedGroup(groupIndex)">
             <div class="flex items-center gap-1 text-blue-500">
-              <ShadcnIcon icon="Plus" size="14"/>
+              <Icon icon="Plus" size="14"/>
               <span class="text-sm">{{ t('dataFilter.text.addGroup') }}</span>
             </div>
           </ShadcnButton>

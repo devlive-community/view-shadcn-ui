@@ -14,6 +14,7 @@ export interface InputProps
     cols?: number | string
     name?: string
     readonly?: boolean
+    dark?: boolean
 }
 
 export type InputEmits = {

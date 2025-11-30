@@ -53,6 +53,7 @@ interface Props
   submit?: boolean
   reset?: boolean
   to?: string
+  dark?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -61,13 +62,26 @@ const props = withDefaults(defineProps<Props>(), {
   ghost: false,
   submit: false,
   reset: false,
-  circle: false
+  circle: false,
+  dark: false
 })
 
 // Ghost button style classes
 const getBorderColorClass = computed(() => {
   if (!props.ghost) {
     return ''
+  }
+
+  if (finalDark.value) {
+    const borderColorMap = {
+      primary: 'border-blue-400',
+      success: 'border-green-400',
+      warning: 'border-yellow-400',
+      danger: 'border-red-400',
+      info: 'border-gray-400',
+      default: 'border-gray-600'
+    }
+    return borderColorMap[props.type]
   }
 
   const borderColorMap = {
@@ -87,6 +101,18 @@ const getTextColorClass = computed(() => {
     return ''
   }
 
+  if (finalDark.value) {
+    const textColorMap = {
+      primary: 'text-blue-400',
+      success: 'text-green-400',
+      warning: 'text-yellow-400',
+      danger: 'text-red-400',
+      info: 'text-gray-300',
+      default: 'text-gray-300'
+    }
+    return textColorMap[props.type]
+  }
+
   const textColorMap = {
     primary: 'text-blue-500',
     success: 'text-green-500',
@@ -102,6 +128,18 @@ const getTextColorClass = computed(() => {
 const getHoverClass = computed(() => {
   if (!props.ghost) {
     return ''
+  }
+
+  if (finalDark.value) {
+    const hoverColorMap = {
+      primary: 'hover:bg-blue-900/30 hover:border-blue-300 hover:text-blue-300',
+      success: 'hover:bg-green-900/30 hover:border-green-300 hover:text-green-300',
+      warning: 'hover:bg-yellow-900/30 hover:border-yellow-300 hover:text-yellow-300',
+      danger: 'hover:bg-red-900/30 hover:border-red-300 hover:text-red-300',
+      info: 'hover:bg-gray-800 hover:border-gray-300 hover:text-gray-200',
+      default: 'hover:bg-gray-800 hover:border-gray-500'
+    }
+    return hoverColorMap[props.type]
   }
 
   const hoverColorMap = {
@@ -120,31 +158,47 @@ const getHoverClass = computed(() => {
 const getTypeStyles = computed(() => {
   // If disabled or loading, don't include hover styles
   if (props.disabled || props.loading) {
-    return props.type === 'default'
-        ? [
-          'bg-white',
-          'border-solid border border-gray-200',
-          'text-gray-500'
-        ]
-        : [
-          ButtonBackgroundType[props.type],
-          props.type === 'text' ? 'text-gray-500' : 'text-white'
-        ]
+    if (props.type === 'default') {
+      return finalDark.value
+          ? [
+            'bg-gray-800',
+            'border-solid border border-gray-600',
+            'text-gray-400'
+          ]
+          : [
+            'bg-white',
+            'border-solid border border-gray-200',
+            'text-gray-500'
+          ]
+    }
+    return [
+      ButtonBackgroundType[props.type],
+      props.type === 'text' ? (finalDark.value ? 'text-gray-300' : 'text-gray-500') : 'text-white'
+    ]
   }
 
   // Normal state with hover effects
-  return props.type === 'default'
-      ? [
-        'bg-white',
-        'border-solid border border-gray-200',
-        'text-gray-500',
-        'hover:border-gray-300'
-      ]
-      : [
-        ButtonBackgroundType[props.type],
-        ButtonHoverType[props.type],
-        props.type === 'text' ? 'text-gray-500' : 'text-white'
-      ]
+  if (props.type === 'default') {
+    return finalDark.value
+        ? [
+          'bg-gray-800',
+          'border-solid border border-gray-600',
+          'text-gray-200',
+          'hover:bg-gray-700 hover:border-gray-500'
+        ]
+        : [
+          'bg-white',
+          'border-solid border border-gray-200',
+          'text-gray-500',
+          'hover:border-gray-300'
+        ]
+  }
+
+  return [
+    ButtonBackgroundType[props.type],
+    ButtonHoverType[props.type],
+    props.type === 'text' ? (finalDark.value ? 'text-gray-300' : 'text-gray-500') : 'text-white'
+  ]
 })
 
 const buttonGroupSize = inject<ComputedRef<keyof typeof ButtonSize> | undefined>(
@@ -152,7 +206,13 @@ const buttonGroupSize = inject<ComputedRef<keyof typeof ButtonSize> | undefined>
     undefined
 )
 
+const buttonGroupDark = inject<ComputedRef<boolean> | undefined>(
+    'buttonGroupDark',
+    undefined
+)
+
 const finalSize = computed(() => buttonGroupSize?.value || props.size)
+const finalDark = computed(() => buttonGroupDark?.value ?? props.dark)
 
 const circleClass = computed(() => {
   if (props.circle) {

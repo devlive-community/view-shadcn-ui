@@ -49,7 +49,7 @@
         <!-- Rate Component -->
         <div class="flex items-center space-x-1">
           <template v-for="i in 5" :key="i">
-            <ShadcnIcon
+            <Icon
                 icon="Star"
                 :class="i <= getConfigValue('Text Group', 'Rate Component') ? 'text-yellow-400' : 'text-gray-300'"
                 size="16"

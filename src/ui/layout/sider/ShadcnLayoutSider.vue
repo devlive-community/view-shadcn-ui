@@ -41,7 +41,7 @@
 
 <script setup lang="ts">
 import { inject, ref } from 'vue'
-import ShadcnIcon from '@/ui/icon'
+import { ShadcnIcon } from '@/ui/icon'
 
 interface Props
 {

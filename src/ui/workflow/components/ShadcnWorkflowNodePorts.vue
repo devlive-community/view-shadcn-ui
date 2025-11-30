@@ -57,7 +57,7 @@
 import { computed, watch } from 'vue'
 import { t } from '@/utils/locale'
 import { WorkflowNodePortEmits, WorkflowNodePortProps, WorkflowPort, WorkflowPortType, WorkflowPortValidatedStatus } from '../types'
-import ShadcnTooltip from '@/ui/tooltip'
+import { ShadcnTooltip } from '@/ui/tooltip'
 
 const emit = defineEmits<WorkflowNodePortEmits>()
 const props = withDefaults(defineProps<WorkflowNodePortProps>(), {

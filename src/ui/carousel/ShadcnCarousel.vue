@@ -1,6 +1,6 @@
 <template>
   <div class="relative w-full overflow-hidden"
-        :style="{ height: `${calcSize(height)}` }">
+       :style="{ height: `${calcSize(height)}` }">
     <div class="flex transition-transform duration-300 ease-in-out"
          :class="[props.direction === 'vertical' ? 'h-full flex-col' : '']"
          :style="containerStyle">
@@ -20,20 +20,22 @@
       <button v-for="(_, index) in props.items"
               :key="index"
               class="w-2 h-2 rounded-full transition-colors"
-              :class="[currentIndex === index ? 'bg-white' : 'bg-white/50']"
+              :class="[currentIndex === index ? (props.dark ? 'bg-gray-200' : 'bg-gray-700') : (props.dark ? 'bg-gray-200/50' : 'bg-gray-700/50')]"
               @click="updateIndex(index)"/>
     </div>
 
     <template v-if="props.showArrows">
-      <button class="absolute flex items-center justify-center rounded-full hover:bg-black/30 text-white w-10 h-10"
-              :class="[props.direction === 'vertical' ? 'left-1/2 top-4 -translate-x-1/2 rotate-90' : 'left-4 top-1/2 -translate-y-1/2']"
+      <button :class="['absolute flex items-center justify-center rounded-full w-10 h-10',
+                       props.dark ? 'hover:bg-gray-700/50 text-gray-200' : 'hover:bg-gray-200/30 text-gray-700',
+                       props.direction === 'vertical' ? 'left-1/2 top-4 -translate-x-1/2 rotate-90' : 'left-4 top-1/2 -translate-y-1/2']"
               @click="prev">
         <slot name="prev">
           ←
         </slot>
       </button>
-      <button class="absolute flex items-center justify-center rounded-full hover:bg-black/30 text-white w-10 h-10"
-              :class="[props.direction === 'vertical' ? 'left-1/2 bottom-4 -translate-x-1/2 rotate-90' : 'right-4 top-1/2 -translate-y-1/2']"
+      <button :class="['absolute flex items-center justify-center rounded-full w-10 h-10',
+                       props.dark ? 'hover:bg-gray-700/50 text-gray-200' : 'hover:bg-gray-200/30 text-gray-700',
+                       props.direction === 'vertical' ? 'left-1/2 bottom-4 -translate-x-1/2 rotate-90' : 'right-4 top-1/2 -translate-y-1/2']"
               @click="next">
         <slot name="next">
           →
@@ -55,7 +57,8 @@ const props = withDefaults(defineProps<CarouselProps>(), {
   showIndicators: true,
   direction: 'horizontal',
   autoPlay: true,
-  height: 300
+  height: 300,
+  dark: false
 })
 
 const emit = defineEmits<CarouselEmits>()

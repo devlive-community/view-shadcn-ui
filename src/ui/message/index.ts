@@ -1,3 +1,1 @@
-import ShadcnMessage from './ShadcnMessage.vue'
-
-export default ShadcnMessage
+export { default as ShadcnMessage } from './ShadcnMessage.vue'

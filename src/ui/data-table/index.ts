@@ -1,3 +1,3 @@
-export { default as DataTable } from './DataTable.vue'
-export { default as CellInputEditor } from './components/CellInputEditor.vue'
-export { default as CellSelectEditor } from './components/CellSelectEditor.vue'
+export { default as ShadcnDataTable } from './ShadcnDataTable.vue'
+export { default as ShadcnCellInputEditor } from './components/ShadcnCellInputEditor.vue'
+export { default as ShadcnCellSelectEditor } from './components/ShadcnCellSelectEditor.vue'

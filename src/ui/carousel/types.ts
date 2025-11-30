@@ -7,6 +7,7 @@ export interface CarouselProps
     showArrows?: boolean // 是否显示箭头
     direction?: 'horizontal' | 'vertical' // 轮播方向
     height?: number | string
+    dark?: boolean // 是否为暗黑模式
 }
 
 export type CarouselEmits = {

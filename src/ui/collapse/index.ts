@@ -1,3 +1,2 @@
-import ShadcnCollapse from './ShadcnCollapse.vue'
-
-export default ShadcnCollapse
+export { default as ShadcnCollapse } from './ShadcnCollapse.vue'
+export { default as ShadcnCollapseItem } from './ShadcnCollapseItem.vue'

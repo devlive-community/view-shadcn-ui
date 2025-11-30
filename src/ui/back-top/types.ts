@@ -4,6 +4,7 @@ export interface BackTopProps
     right?: number
     bottom?: number
     duration?: number
+    dark?: boolean
 }
 
 export type BackTopEmits = {

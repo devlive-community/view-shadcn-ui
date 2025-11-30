@@ -1,7 +1,12 @@
 <template>
   <Transition name="fade">
     <button v-show="visible"
-            :class="['fixed rounded-full p-3 bg-primary text-primary-foreground shadow-md hover:bg-primary/90 focus:outline-none z-50']"
+            :class="[
+              'fixed rounded-full p-3 shadow-md focus:outline-none z-50',
+              dark
+                ? 'bg-gray-700 text-gray-100 hover:bg-gray-600'
+                : 'bg-primary text-primary-foreground hover:bg-primary/90'
+            ]"
             :style="{
                 right: `${calcSize(props.right)}`,
                 bottom: `${calcSize(props.bottom)}`
@@ -31,7 +36,8 @@ const props = withDefaults(defineProps<BackTopProps>(), {
   visibilityHeight: 200,
   right: 40,
   bottom: 40,
-  duration: 500
+  duration: 500,
+  dark: false
 })
 
 const emit = defineEmits<BackTopEmits>()

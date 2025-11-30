@@ -2,14 +2,15 @@
   <div class="flex flex-col gap-4 p-2">
     <div v-if="showDropper" class="flex justify-between items-center select-none">
       <div class="flex items-center">
-        <div class="w-6 h-6 rounded-md border shadow-sm mr-2"
+        <div :class="['w-6 h-6 rounded-md border shadow-sm mr-2', dark ? 'border-gray-600' : '']"
              :style="{ backgroundColor: currentColor }"/>
-        <span class="text-sm font-medium">{{ currentColorHex.toUpperCase() }}</span>
+        <span :class="['text-sm font-medium', dark ? 'text-gray-200' : '']">{{ currentColorHex.toUpperCase() }}</span>
       </div>
-      <button class="p-1 rounded-md items-center flex hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+      <button :class="['p-1 rounded-md items-center flex focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500',
+                       dark ? 'hover:bg-gray-700' : 'hover:bg-gray-100']"
               @click="startEyeDropper"
               title="Color Picker">
-        <ShadcnIcon icon="Pipette" class="w-4 h-4"/>
+        <ShadcnIcon :dark="dark" class="w-4 h-4" icon="Pipette"/>
       </button>
     </div>
 
@@ -53,11 +54,15 @@
 
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import { ShadcnIcon } from "@/ui/icon";
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   modelValue: string
   showDropper?: boolean
-}>()
+  dark?: boolean
+}>(), {
+  dark: false
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void
@@ -158,7 +163,7 @@ watch(() => props.modelValue, (newColor) => {
 
 // Computed color values
 const currentColor = computed(() => {
-  return `hsl(${ hue.value }, ${ saturation.value }%, ${ value.value }%)`
+  return `hsl(${hue.value}, ${saturation.value}%, ${value.value}%)`
 })
 
 const currentColorHex = computed(() => {
@@ -197,7 +202,7 @@ const hsvToRgb = (h: number, s: number, v: number): [number, number, number] => 
 // Convert RGB to Hex
 const rgbToHex = (r: number, g: number, b: number): string => {
   const toHex = (n: number) => Math.round(n * 255).toString(16).padStart(2, '0')
-  return `#${ toHex(r) }${ toHex(g) }${ toHex(b) }`
+  return `#${toHex(r)}${toHex(g)}${toHex(b)}`
 }
 
 const updateSaturationValue = (e: MouseEvent | TouchEvent) => {

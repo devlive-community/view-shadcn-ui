@@ -46,7 +46,7 @@
                 <ShadcnTooltip :content="node.configure?.filter(c => c?.validated.valid === false)
                                                         .map(c => `${c.label}: ${c.validated.message}`)
                                                         .join('<br />')">
-                  <ShadcnIcon icon="CircleAlert"/>
+                  <Icon icon="CircleAlert"/>
                 </ShadcnTooltip>
               </div>
             </div>

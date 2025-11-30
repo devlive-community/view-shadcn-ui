@@ -39,7 +39,7 @@
 
                     <span v-if="item.description" class="cursor-pointer">
                       <ShadcnTooltip :content="item.description">
-                        <ShadcnIcon icon="CircleHelp" size="18"/>
+                        <Icon icon="CircleHelp" size="18"/>
                       </ShadcnTooltip>
                     </span>
                   </div>

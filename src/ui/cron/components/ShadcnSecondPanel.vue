@@ -2,58 +2,63 @@
   <div class="mt-4 space-y-4">
     <!-- Every Second -->
     <div class="flex items-center space-x-2">
-      <ShadcnRadio v-model="type" value="every" name="second-type">
+      <ShadcnRadio v-model="type" :dark="dark" name="second-type" value="every">
         {{ t('cron.text.everySecond') }}
       </ShadcnRadio>
     </div>
 
     <!-- Period -->
     <div class="flex items-center space-x-2 select-none">
-      <ShadcnRadio v-model="type" value="period" name="second-type">
+      <ShadcnRadio v-model="type" :dark="dark" name="second-type" value="period">
         {{ t('cron.text.periodFrom') }}
       </ShadcnRadio>
       <div class="flex items-center space-x-2">
         <ShadcnNumber v-model="periodStart"
                       class="w-16"
                       :min="0"
+                      :dark="dark"
                       :max="59"/>
-        <span>-</span>
+        <span :class="dark ? 'text-gray-200' : ''">-</span>
         <ShadcnNumber v-model="periodEnd"
                       class="w-16"
                       :min="0"
+                      :dark="dark"
                       :max="59"/>
-        <span class="text-sm">{{ t('cron.text.second') }}</span>
+        <span :class="['text-sm', dark ? 'text-gray-200' : '']">{{ t('cron.text.second') }}</span>
       </div>
     </div>
 
     <!-- Interval -->
     <div class="flex items-center space-x-2 select-none">
-      <ShadcnRadio v-model="type" value="start" name="second-type">
+      <ShadcnRadio v-model="type" :dark="dark" name="second-type" value="start">
         {{ t('cron.text.fromStart') }}
       </ShadcnRadio>
       <div class="flex items-center space-x-2">
         <ShadcnNumber v-model="start"
                       class="w-16"
                       :min="0"
+                      :dark="dark"
                       :max="59"/>
-        <span class="text-sm">{{ t('cron.text.secondStart') }}，</span>
-        <span class="text-sm">{{ t('cron.text.every') }}</span>
+        <span :class="['text-sm', dark ? 'text-gray-200' : '']">{{ t('cron.text.secondStart') }}，</span>
+        <span :class="['text-sm', dark ? 'text-gray-200' : '']">{{ t('cron.text.every') }}</span>
         <ShadcnNumber v-model="interval"
                       class="w-16"
                       :min="1"
+                      :dark="dark"
                       :max="59"/>
-        <span class="text-sm">{{ t('cron.text.secondExecute') }}</span>
+        <span :class="['text-sm', dark ? 'text-gray-200' : '']">{{ t('cron.text.secondExecute') }}</span>
       </div>
     </div>
 
     <!-- Specify -->
     <div class="flex items-center space-x-2">
-      <ShadcnRadio v-model="type" value="specify" name="second-type">
+      <ShadcnRadio v-model="type" :dark="dark" name="second-type" value="specify">
         {{ t('cron.text.specify') }}
       </ShadcnRadio>
       <ShadcnSelect v-model="specify"
                     multiple
                     :options="secondOptions"
+                    :dark="dark"
                     :placeholder="t('cron.placeholder.multiple')"/>
     </div>
   </div>
@@ -62,10 +67,14 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { t } from '@/utils/locale'
+import ShadcnRadio from "@/ui/radio";
+import { ShadcnNumber } from "@/ui/number";
+import { ShadcnSelect } from "@/ui/select";
 
 interface Props
 {
   modelValue: string
+  dark?: boolean
 }
 
 const props = defineProps<Props>()
@@ -152,12 +161,12 @@ watch(
         case 'period':
           periodStart.value = checkNumber(periodStart.value, 0, 59)
           periodEnd.value = checkNumber(periodEnd.value, 0, 59)
-          expression = `${ periodStart.value }-${ periodEnd.value }`
+          expression = `${periodStart.value}-${periodEnd.value}`
           break
         case 'start':
           start.value = checkNumber(start.value, 0, 59)
           interval.value = checkNumber(interval.value, 1, 59)
-          expression = `${ start.value }/${ interval.value }`
+          expression = `${start.value}/${interval.value}`
           break
         case 'specify':
           expression = specify.value.join(',') || '*'

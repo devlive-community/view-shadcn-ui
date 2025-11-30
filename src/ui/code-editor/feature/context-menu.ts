@@ -2,7 +2,7 @@ import * as monaco from 'monaco-editor'
 import { Selection } from 'monaco-editor'
 import { t } from '@/utils/locale'
 import { CodeEditorContextMenuItem, CodeEditorContextMenuProps } from '../types.ts'
-import ShadcnIcon from '@/ui/icon'
+import { ShadcnIcon } from '@/ui/icon'
 import { h, render } from 'vue'
 
 export function registerContextMenu(

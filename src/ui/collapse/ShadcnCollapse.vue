@@ -1,5 +1,5 @@
 <template>
-  <div class="border rounded-md border-gray-200">
+  <div :class="['border rounded-md', dark ? 'border-gray-600' : 'border-gray-200']">
     <slot/>
   </div>
 </template>
@@ -11,6 +11,7 @@ interface Props
 {
   modelValue?: string[]
   accordion?: boolean
+  dark?: boolean
 }
 
 interface Emits
@@ -22,13 +23,15 @@ interface Emits
 
 const props = withDefaults(defineProps<Props>(), {
   modelValue: () => [],
-  accordion: false
+  accordion: false,
+  dark: false
 })
 
 const emit = defineEmits<Emits>()
 
 provide('expandedItems', toRef(props, 'modelValue'))
 provide('accordion', toRef(props, 'accordion'))
+provide('collapseDark', toRef(props, 'dark'))
 
 provide('toggleItem', (name: string) => {
   const currentValue = [...props.modelValue]

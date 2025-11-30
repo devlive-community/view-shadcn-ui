@@ -1,7 +1,7 @@
 import * as monaco from 'monaco-editor'
 import { h, render } from 'vue'
 import { t } from '@/utils/locale'
-import ShadcnIcon from '@/ui/icon'
+import { ShadcnIcon } from '@/ui/icon'
 import { CodeEditorSearchProps } from '@/ui/code-editor/types.ts'
 
 function renderPreviewPanel()

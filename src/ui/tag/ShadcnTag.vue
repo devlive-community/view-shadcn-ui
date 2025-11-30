@@ -12,7 +12,7 @@
            color && border && { borderColor: getHoverColor(color) }
        ]">
     <slot>{{ text }}</slot>
-    <ShadcnIcon v-if="closable"
+    <Icon v-if="closable"
                 icon="X"
                 :class="['ml-2 h-4 w-4 cursor-pointer']"
                 @click.stop="onClose"

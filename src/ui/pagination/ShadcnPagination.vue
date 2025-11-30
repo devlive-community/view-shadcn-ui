@@ -38,6 +38,7 @@
       <slot name="sizer">
         <ShadcnSelect v-model="pageSize"
                       class="w-auto"
+                      :dark="dark"
                       :options="sizerOptions"/>
       </slot>
     </template>
@@ -47,7 +48,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { t } from '@/utils/locale'
-import ShadcnSelect from '@/ui/select'
+import { ShadcnSelect } from '@/ui/select'
 
 interface ShadcnOption
 {

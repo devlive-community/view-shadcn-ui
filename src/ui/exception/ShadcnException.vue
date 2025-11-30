@@ -50,7 +50,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { t } from '@/utils/locale'
-import ShadcnButton from '@/ui/button'
+import { ShadcnButton } from '@/ui/button'
 
 type ExceptionKey = '401' | '403' | '404' | '500'
 

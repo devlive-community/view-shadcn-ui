@@ -83,6 +83,18 @@ export enum ButtonBackgroundType
     text = 'bg-transparent'
 }
 
+export enum ButtonBackgroundTypeDark
+{
+    default = 'bg-gray-700',
+    primary = 'bg-blue-600',
+    info = 'bg-blue-600',
+    success = 'bg-green-600',
+    warning = 'bg-yellow-600',
+    error = 'bg-red-600',
+    danger = 'bg-red-600',
+    text = 'bg-transparent'
+}
+
 export enum TagBackgroundType
 {
     default = 'bg-gray-200',

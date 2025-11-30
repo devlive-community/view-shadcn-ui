@@ -10,24 +10,27 @@
                 :class="[type === 'loading' ? 'animate-spin' : '',
                         [findClass()]
                 ]"
+                :dark="dark"
                 :icon="findIcon()"/>
     <slot v-if="$slots.default"/>
     <span v-else>{{ content }}</span>
 
-    <div v-if="closable" class="ml-auto text-gray-500 hover:text-gray-700 cursor-pointer"
+    <div v-if="closable"
+         :class="['ml-auto cursor-pointer', dark ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700']"
          @click="onClose">
       <slot v-if="$slots.close" name="close"/>
       <ShadcnIcon v-else
                   size="16"
                   class="ml-10"
-                  icon="X"/>
+                  icon="X"
+                  :dark="dark"/>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { defineEmits, defineProps, onUnmounted, ref } from 'vue'
-import ShadcnIcon from '@/ui/icon'
+import { ShadcnIcon } from '@/ui/icon'
 import { MessageType } from '@/ui/common/type.ts'
 
 const emit = defineEmits(['on-close'])
@@ -40,12 +43,14 @@ const props = withDefaults(defineProps<{
   background?: boolean
   closable?: boolean
   onClose?: () => void
+  dark?: boolean
 }>(), {
   duration: 1.5,
   showIcon: false,
   type: 'info',
   background: false,
-  closable: false
+  closable: false,
+  dark: false
 })
 
 const visible = ref(true)
@@ -67,6 +72,20 @@ const findIcon = () => {
 }
 
 const findClass = () => {
+  if (props.dark) {
+    switch (props.type) {
+      case 'info':
+      case 'loading':
+        return 'text-blue-400'
+      case 'success':
+        return 'text-green-400'
+      case 'warning':
+        return 'text-yellow-400'
+      case 'error':
+        return 'text-red-400'
+    }
+  }
+
   switch (props.type) {
     case 'info':
     case 'loading':
@@ -83,6 +102,20 @@ const findClass = () => {
 // Set background color, which depends on type
 const findBackgroundClass = () => {
   if (props.background) {
+    if (props.dark) {
+      switch (props.type) {
+        case 'info':
+        case 'loading':
+          return 'bg-blue-900/30'
+        case 'success':
+          return 'bg-green-900/30'
+        case 'warning':
+          return 'bg-yellow-900/30'
+        case 'error':
+          return 'bg-red-900/30'
+      }
+    }
+
     switch (props.type) {
       case 'info':
       case 'loading':
@@ -96,13 +129,27 @@ const findBackgroundClass = () => {
     }
   }
   else {
-    return 'bg-white'
+    return props.dark ? 'bg-gray-800' : 'bg-white'
   }
 }
 
 // Set border and text color, which depends on type
 const findBorderAndTextClass = () => {
   if (props.background) {
+    if (props.dark) {
+      switch (props.type) {
+        case 'info':
+        case 'loading':
+          return 'border-blue-700 text-blue-300'
+        case 'success':
+          return 'border-green-700 text-green-300'
+        case 'warning':
+          return 'border-yellow-700 text-yellow-300'
+        case 'error':
+          return 'border-red-700 text-red-300'
+      }
+    }
+
     switch (props.type) {
       case 'info':
       case 'loading':
@@ -116,7 +163,7 @@ const findBorderAndTextClass = () => {
     }
   }
   else {
-    return 'border-gray-100 text-gray-700'
+    return props.dark ? 'border-gray-700 text-gray-200' : 'border-gray-100 text-gray-700'
   }
 }
 

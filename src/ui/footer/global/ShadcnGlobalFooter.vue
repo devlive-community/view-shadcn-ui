@@ -69,7 +69,7 @@
 
 <script setup lang="ts">
 import ShadcnLink from '@/ui/link'
-import ShadcnIcon from '@/ui/icon'
+import { ShadcnIcon } from '@/ui/icon'
 
 interface LinkItem
 {

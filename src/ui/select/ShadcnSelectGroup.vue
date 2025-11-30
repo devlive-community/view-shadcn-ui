@@ -1,6 +1,6 @@
 <template>
   <div class="select-group space-y-1 select-none">
-    <div class="px-2 py-1.5 text-sm font-medium text-gray-500">
+    <div :class="['px-2 py-1.5 text-sm font-medium', dark ? 'text-gray-400' : 'text-gray-500']">
       {{ label }}
     </div>
     <slot/>
@@ -8,10 +8,12 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, provide } from 'vue'
+import { defineProps, provide, withDefaults } from 'vue'
 import { SelectGroupProps } from '@/ui/select/types.ts'
 
-defineProps<SelectGroupProps>()
+const props = withDefaults(defineProps<SelectGroupProps>(), {
+  dark: false
+})
 
 provide('inGroup', true)
 </script>

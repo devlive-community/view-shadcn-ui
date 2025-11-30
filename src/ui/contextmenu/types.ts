@@ -17,10 +17,12 @@ export interface ContextMenuProps
 {
     modelValue: boolean
     position?: ContextMenuPosition;
+    dark?: boolean
 }
 
 export interface ContextMenuItemProps
 {
     label?: string
     disabled?: boolean
+    dark?: boolean
 }

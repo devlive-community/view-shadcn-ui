@@ -2,31 +2,33 @@
   <div class="mt-4 space-y-4">
     <!-- Not Specified -->
     <div class="flex items-center space-x-2">
-      <ShadcnRadio v-model="radioValue" :value="1" name="year-type">
+      <ShadcnRadio v-model="radioValue" :dark="dark" :value="1" name="year-type">
         {{ t('cron.text.yearNotFilled') }}
       </ShadcnRadio>
     </div>
 
     <!-- Every Year -->
     <div class="flex items-center space-x-2">
-      <ShadcnRadio v-model="radioValue" :value="2" name="year-type">
+      <ShadcnRadio v-model="radioValue" :dark="dark" :value="2" name="year-type">
         {{ t('cron.text.everyYear') }}
       </ShadcnRadio>
     </div>
 
     <!-- Period -->
     <div class="flex items-center space-x-2 select-none">
-      <ShadcnRadio v-model="radioValue" :value="3" name="year-type">
+      <ShadcnRadio v-model="radioValue" :dark="dark" :value="3" name="year-type">
         {{ t('cron.text.periodFrom') }}
       </ShadcnRadio>
       <div class="flex items-center space-x-2">
         <ShadcnNumber v-model="cycle01"
                       class="w-24"
+                      :dark="dark"
                       :min="fullYear"
                       :max="fullYear + 100"/>
-        <span>-</span>
+        <span :class="dark ? 'text-gray-200' : ''">-</span>
         <ShadcnNumber v-model="cycle02"
                       class="w-24"
+                      :dark="dark"
                       :min="fullYear"
                       :max="fullYear + 100"/>
       </div>
@@ -34,31 +36,34 @@
 
     <!-- Interval -->
     <div class="flex items-center space-x-2 select-none">
-      <ShadcnRadio v-model="radioValue" :value="4" name="year-type">
+      <ShadcnRadio v-model="radioValue" :dark="dark" :value="4" name="year-type">
         {{ t('cron.text.fromStart') }}
       </ShadcnRadio>
       <div class="flex items-center space-x-2">
         <ShadcnNumber v-model="average01"
                       class="w-24"
+                      :dark="dark"
                       :min="fullYear"
                       :max="fullYear + 100"/>
-        <span class="text-sm">{{ t('cron.text.yearStart') }}，</span>
-        <span class="text-sm">{{ t('cron.text.every') }}</span>
+        <span :class="['text-sm', dark ? 'text-gray-200' : '']">{{ t('cron.text.yearStart') }}，</span>
+        <span :class="['text-sm', dark ? 'text-gray-200' : '']">{{ t('cron.text.every') }}</span>
         <ShadcnNumber v-model="average02"
                       class="w-16"
+                      :dark="dark"
                       :min="1"
                       :max="10"/>
-        <span class="text-sm">{{ t('cron.text.yearExecute') }}</span>
+        <span :class="['text-sm', dark ? 'text-gray-200' : '']">{{ t('cron.text.yearExecute') }}</span>
       </div>
     </div>
 
     <!-- Specify -->
     <div class="flex items-center space-x-2">
-      <ShadcnRadio v-model="radioValue" :value="5" name="year-type">
+      <ShadcnRadio v-model="radioValue" :dark="dark" :value="5" name="year-type">
         {{ t('cron.text.specify') }}
       </ShadcnRadio>
       <ShadcnSelect v-model="checkboxList"
                     multiple
+                    :dark="dark"
                     :options="yearOptions"
                     :placeholder="t('cron.placeholder.multiple')"/>
     </div>
@@ -68,6 +73,9 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { t } from '@/utils/locale'
+import ShadcnRadio from "@/ui/radio";
+import { ShadcnNumber } from "@/ui/number";
+import { ShadcnSelect } from "@/ui/select";
 
 interface Props
 {
@@ -82,6 +90,7 @@ interface Props
     week?: string
     year?: string
   }
+  dark?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -163,9 +172,9 @@ const getCurrentExpression = () => {
     case 2:
       return '*'
     case 3:
-      return `${ cycle01.value }-${ cycle02.value }`
+      return `${cycle01.value}-${cycle02.value}`
     case 4:
-      return `${ average01.value }/${ average02.value }`
+      return `${average01.value}/${average02.value}`
     case 5:
       return checkboxString.value
     default:
@@ -178,7 +187,7 @@ const handleCycleChange = () => {
   if (radioValue.value === 3) {
     cycle01.value = props.checkNumber(cycle01.value, fullYear.value, fullYear.value + 100)
     cycle02.value = props.checkNumber(cycle02.value, fullYear.value + 1, fullYear.value + 101)
-    const cycleTotal = `${ cycle01.value }-${ cycle02.value }`
+    const cycleTotal = `${cycle01.value}-${cycle02.value}`
     emit('update', 'year', cycleTotal)
     emit('update:modelValue', cycleTotal)
   }
@@ -189,7 +198,7 @@ const handleAverageChange = () => {
   if (radioValue.value === 4) {
     average01.value = props.checkNumber(average01.value, fullYear.value, fullYear.value + 100)
     average02.value = props.checkNumber(average02.value, 1, 10)
-    const averageTotal = `${ average01.value }/${ average02.value }`
+    const averageTotal = `${average01.value}/${average02.value}`
     emit('update', 'year', averageTotal)
     emit('update:modelValue', averageTotal)
   }

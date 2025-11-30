@@ -103,7 +103,7 @@
 import { nextTick, onBeforeUnmount, onMounted, provide, ref, watch, watchEffect } from 'vue'
 import { BorderType, HoverTextType, HoverType, TextType } from '@/ui/common/type.ts'
 import { TabSize } from '@/ui/common/size.ts'
-import ShadcnIcon from '@/ui/icon'
+import { ShadcnIcon } from '@/ui/icon'
 import { TabEmits, TabProps } from '@/ui/tab/types.ts'
 
 interface Tab

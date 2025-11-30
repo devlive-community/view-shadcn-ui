@@ -3,8 +3,8 @@
     <component v-if="icon"
                :is="iconComponent"
                :size="size"
-               :style="color ? { color: color } : ''"
-               class="shrink-0"
+               :style="iconStyle"
+               :class="['shrink-0', dark && !color ? 'text-gray-300' : '']"
                @click="onClick"/>
     <slot v-else name="icon"/>
   </div>
@@ -19,16 +19,25 @@ const props = withDefaults(defineProps<{
   icon?: string
   size?: number | string
   color?: string
+  dark?: boolean
 }>(), {
-  size: 20
+  size: 20,
+  dark: false
 })
 
 const iconComponent = ref<any>(null)
 
 const containerStyle = computed(() => ({
-  width: typeof props.size === 'number' ? `${ props.size }px` : props.size,
-  height: typeof props.size === 'number' ? `${ props.size }px` : props.size
+  width: typeof props.size === 'number' ? `${props.size}px` : props.size,
+  height: typeof props.size === 'number' ? `${props.size}px` : props.size
 }))
+
+const iconStyle = computed(() => {
+  if (props.color) {
+    return { color: props.color }
+  }
+  return {}
+})
 
 const loadIconComponent = async (iconName: string) => {
   if (iconName) {

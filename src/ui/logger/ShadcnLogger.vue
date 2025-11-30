@@ -1,10 +1,10 @@
 <template>
   <div class="w-full font-mono text-sm">
     <div v-if="toolbar" class="flex items-center gap-2 p-2">
-      <ShadcnSelect v-model="filterLevel" class="w-32">
+      <ShadcnSelect v-model="filterLevel" :dark="dark" class="w-32">
         <template #options>
-          <ShadcnSelectOption value="" :label="t('logger.text.allLevel')"/>
-          <ShadcnSelectOption v-for="level in Object.keys(highlightConfig)" :label="level" :value="level"/>
+          <ShadcnSelectOption value="" :label="t('logger.text.allLevel')" :dark="dark"/>
+          <ShadcnSelectOption v-for="level in Object.keys(highlightConfig)" :label="level" :value="level" :dark="dark"/>
         </template>
       </ShadcnSelect>
 
@@ -48,7 +48,7 @@ import { t } from '@/utils/locale'
 import { LoggerProps } from '@/ui/logger/types.ts'
 import { formatMultipleLines } from '@/utils/logger.ts'
 import { calcSize } from '@/utils/common.ts'
-import ShadcnSelect from '@/ui/select'
+import { ShadcnSelect, ShadcnSelectOption } from '@/ui/select'
 import ShadcnHighlight from '@/ui/highlight'
 
 const props = withDefaults(defineProps<LoggerProps>(), {

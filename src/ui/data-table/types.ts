@@ -87,6 +87,7 @@ export interface DataTableProps
     columnMove?: boolean
     contextMenu?: boolean
     border?: boolean | BorderConfig  // 支持布尔值快捷配置和细粒度配置
+    dark?: boolean
 }
 
 export type DataTableHeaderEmits = {

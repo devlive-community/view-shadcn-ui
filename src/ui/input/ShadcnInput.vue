@@ -1,5 +1,6 @@
 <template>
-  <div class="relative w-full items-center border-gray-300 active:border-blue-400 hover:border-blue-400 border rounded transition-colors duration-300"
+  <div :class="['relative w-full items-center border rounded transition-colors duration-300',
+                dark ? 'border-gray-600 active:border-gray-500 hover:border-gray-500 bg-gray-800' : 'border-gray-300 active:border-blue-400 hover:border-blue-400']"
        @mouseenter="hovered = true"
        @mouseleave="hovered = false">
     <component :is="isTextarea ? 'textarea' : 'input'"
@@ -9,7 +10,8 @@
                :class="cn('w-full p-2 rounded outline-none border-none',
                         type !== 'textarea' && size && Size[size],
                         $slots.prefix && 'pl-8',
-                        $slots.suffix && 'pr-8'
+                        $slots.suffix && 'pr-8',
+                        dark ? 'bg-gray-800 text-gray-200 placeholder:text-gray-500' : ''
                )"
                :style="wordCount || maxCount ? { paddingRight: paddingRight + 'px' } : ''"
                :value="localValue"
@@ -23,25 +25,28 @@
 
     <span v-if="clearable && localValue && hovered" class="absolute end-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer"
           @click="onClear">
-      <ShadcnIcon class="size-5 text-muted-foreground" icon="CircleX"/>
+      <ShadcnIcon :class="['size-5', dark ? 'text-gray-400' : 'text-muted-foreground']" icon="CircleX"/>
     </span>
 
     <span v-if="type === 'password'" class="absolute end-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer"
           @click="togglePasswordVisibility">
-      <ShadcnIcon :icon="showPassword ? 'Eye' : 'EyeOff'" class="size-5 text-muted-foreground"/>
+      <ShadcnIcon :class="['size-5', dark ? 'text-gray-400' : 'text-muted-foreground']" :icon="showPassword ? 'Eye' : 'EyeOff'"/>
     </span>
 
-    <span v-if="wordCount" ref="wordCountSpan" class="absolute end-0 inset-y-0 flex items-center justify-center px-2 text-gray-400 text-xs font-thin w-auto">
+    <span v-if="wordCount" ref="wordCountSpan" :class="['absolute end-0 inset-y-0 flex items-center justify-center px-2 text-xs font-thin w-auto',
+                                                        dark ? 'text-gray-500' : 'text-gray-400']">
       <span v-if="maxCount">{{ textCount }} / {{ maxCount }}</span>
       <span v-else>{{ textCount }}</span>
     </span>
 
-    <span v-if="$slots.prefix" class="absolute start-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer text-gray-400"
+    <span v-if="$slots.prefix" :class="['absolute start-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer',
+                                        dark ? 'text-gray-500' : 'text-gray-400']"
           @click="onPrefixClick">
       <slot name="prefix"/>
     </span>
 
-    <span v-if="$slots.suffix" class="absolute end-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer text-gray-400"
+    <span v-if="$slots.suffix" :class="['absolute end-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer',
+                                        dark ? 'text-gray-500' : 'text-gray-400']"
           @click="onSuffixClick">
       <slot name="suffix"/>
     </span>
@@ -52,9 +57,9 @@
 import { cn } from '@/lib/utils.ts'
 import { computed, inject, nextTick, onMounted, ref, watch } from 'vue'
 import { Size } from '@/ui/enum/Size.ts'
-import ShadcnIcon from '@/ui/icon'
 import { FormItemContext } from '@/ui/form/context.ts'
 import { InputEmits, InputProps } from '@/ui/input/types.ts'
+import { ShadcnIcon } from "@/ui/icon";
 
 const emit = defineEmits<InputEmits>()
 
@@ -66,7 +71,8 @@ const props = withDefaults(defineProps<InputProps>(), {
   wordCount: false,
   type: 'text',
   rows: 3,
-  cols: 20
+  cols: 20,
+  dark: false
 })
 
 const localValue = ref(props.modelValue)
@@ -113,7 +119,7 @@ const onInput = (event: Event) => {
   emit('on-change', newValue)
 }
 
-const formItemContext = props.name ? inject<FormItemContext | null>(`form-item-${ props.name }`) : null
+const formItemContext = props.name ? inject<FormItemContext | null>(`form-item-${props.name}`) : null
 
 const onBlur = (event: FocusEvent) => {
   const newValue = (event.target as HTMLInputElement).value

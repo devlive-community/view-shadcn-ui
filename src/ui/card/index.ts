@@ -1,3 +1,1 @@
-import ShadcnCard from './ShadcnCard.vue'
-
-export default ShadcnCard
+export { default as ShadcnCard } from './ShadcnCard.vue'

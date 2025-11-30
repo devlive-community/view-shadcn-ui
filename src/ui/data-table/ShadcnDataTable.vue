@@ -3,14 +3,15 @@
     <div :style="{ width: calcSize(width), height: calcSize(height) }"
          class="relative w-full"
          style="overflow-x: auto">
-      <div class="inline-block bg-white">
-        <Header :column-move="columnMove"
+      <div :class="['inline-block', dark ? 'bg-gray-900' : 'bg-white']">
+        <ShadcnHeader :column-move="columnMove"
                 :columns="columns"
                 :data="displayData"
                 :row-selection="rowSelection"
                 :selection-state="selectionState"
                 :size="size"
                 :border-config="borderConfig"
+                :dark="dark"
                 @on-sort="handleSortChange"
                 @on-resizable="(column, _width) => emits('on-resizable', column, _width)"
                 @on-row-select="(payload) => emits('on-row-select', payload as any)"
@@ -18,9 +19,9 @@
           <template v-for="(_, name) in $slots" :key="name" v-slot:[name]="slotProps">
             <slot :name="name" v-bind="slotProps"/>
           </template>
-        </Header>
+        </ShadcnHeader>
 
-        <Body :columns="columns"
+        <ShadcnBody :columns="columns"
               :context-menu="contextMenu"
               :data="displayData"
               :loading="loading"
@@ -28,6 +29,7 @@
               :selection-state="selectionState"
               :size="size"
               :border-config="borderConfig"
+              :dark="dark"
               @on-cell-click="(payload) => emits('on-cell-click', payload as any)"
               @on-row-select="(payload) => emits('on-row-select', payload as any)"
               @on-cell-edit="(payload) => emits('on-cell-edit', payload as any)"
@@ -63,27 +65,28 @@
                 name="contextMenu">
           </slot>
         </template>
-        </Body>
+        </ShadcnBody>
       </div>
     </div>
 
-    <Pagination v-if="pagination"
+    <ShadcnPagination v-if="pagination"
                 :options="pagination.options"
                 :page="currentPage"
                 :size="pageSize"
                 :total="total"
                 :total-pages="totalPages"
+                :dark="dark"
                 @on-page-change="setPage"
                 @on-size-change="setSize">
-    </Pagination>
+    </ShadcnPagination>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, watch } from 'vue'
-import Header from './components/Header.vue'
-import Body from './components/Body.vue'
-import Pagination from './components/Pagination.vue'
+import ShadcnHeader from './components/ShadcnHeader.vue'
+import ShadcnBody from './components/ShadcnBody.vue'
+import ShadcnPagination from './components/ShadcnPagination.vue'
 import type { ColumnProps, DataTableEmits, DataTableProps } from './types'
 import { useSort } from './hooks/useSort'
 import { useBorder } from './hooks/useBorder'
@@ -97,7 +100,8 @@ const props = withDefaults(defineProps<DataTableProps>(), {
   height: 'auto',
   width: '100%',
   loading: false,
-  border: false
+  border: false,
+  dark: false
 })
 
 const emits = defineEmits<DataTableEmits>()

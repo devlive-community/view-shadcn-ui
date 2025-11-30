@@ -1,16 +1,19 @@
 <template>
   <div ref="selectRef" class="relative">
     <div v-if="loading" :class="['flex rounded-md relative',
-                  border && 'border border-gray-200',
+                  border && (dark ? 'border border-gray-600' : 'border border-gray-200'),
                   MinSize[size]
          ]">
       <ShadcnSkeleton animation :rows="1" :size="size" class="w-full"/>
     </div>
     <div v-else :class="['flex rounded-md px-2 relative',
-                  border && 'border border-gray-200 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2',
+                  border && (dark ? 'border border-gray-600 hover:border-gray-500' : 'border border-gray-200 hover:border-gray-300'),
+                  'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2',
                   {
                     'cursor-pointer': !disabled,
-                    'cursor-not-allowed opacity-50 bg-gray-50': disabled,
+                    'cursor-not-allowed opacity-50': disabled,
+                    'bg-gray-800': dark && !disabled,
+                    'bg-gray-50': !dark && disabled,
                     [HoverType[type]]: true
                   }
          ]"
@@ -22,7 +25,8 @@
           <slot name="selected">
             <template v-if="multiple && selectedLabels.length">
               <span v-for="(label, _index) in selectedLabels"
-                    class="bg-gray-100 hover:bg-gray-200 px-2 select-none text-gray-600 rounded text-sm flex items-center gap-1 transition-colors"
+                    :class="['px-2 select-none rounded text-sm flex items-center gap-1 transition-colors',
+                             dark ? 'bg-gray-700 hover:bg-gray-600 text-gray-200' : 'bg-gray-100 hover:bg-gray-200 text-gray-600']"
                     :key="_index"
                     :style="{ paddingTop: PtPbSize[size], paddingBottom: PtPbSize[size] }">
                 {{ label }}
@@ -32,7 +36,8 @@
               </span>
             </template>
             <template v-else>
-              <span class="flex items-center min-w-0 truncate select-none text-gray-600 px-2">
+              <span :class="['flex items-center min-w-0 truncate select-none px-2',
+                             dark ? 'text-gray-200' : 'text-gray-600']">
                 {{ selectedLabels[0] || placeholder }}
               </span>
             </template>
@@ -62,7 +67,8 @@
         leave-to-class="transform -translate-y-2 scale-95 opacity-0">
       <div v-show="isExpanded"
            ref="dropdownRef"
-           class="absolute z-20 w-full px-2 rounded-md border border-gray-200 bg-white shadow-lg mt-1 py-1 overflow-y-auto max-h-60"
+           :class="['absolute z-20 w-full px-2 rounded-md border shadow-lg mt-1 py-1 overflow-y-auto max-h-60',
+                    dark ? 'border-gray-600 bg-gray-800' : 'border-gray-200 bg-white']"
            @scroll="handleScroll">
         <slot name="options">
           <ShadcnSelectOption v-for="(option, index) in internalOptions"
@@ -71,6 +77,7 @@
                               :label="option.label"
                               :selected="isOptionSelected(option.value)"
                               :disabled="option.disabled"
+                              :dark="dark"
                               :type="type"/>
         </slot>
         <div v-if="isLoading" class="flex justify-center items-center py-2">
@@ -84,7 +91,7 @@
 <script setup lang="ts">
 import { computed, defineEmits, defineProps, nextTick, onMounted, onUnmounted, provide, ref, watch, withDefaults } from 'vue'
 import { t } from '@/utils/locale'
-import ShadcnSelectOption from './option/ShadcnSelectOption.vue'
+import ShadcnSelectOption from './ShadcnSelectOption.vue'
 import { MinSize, PtPbSize } from '@/ui/common/size.ts'
 import { HoverType } from '@/ui/common/type.ts'
 import { SelectEmits, SelectOptionProps, SelectProps } from '@/ui/select/types.ts'
@@ -101,7 +108,8 @@ const props = withDefaults(defineProps<SelectProps>(), {
   multiple: false,
   border: true,
   lazy: false,
-  loading: false
+  loading: false,
+  dark: false
 })
 
 const isExpanded = ref(false)
@@ -109,7 +117,7 @@ const selectedLabels = ref<string[]>([])
 const slotOptions = ref<SelectOptionProps[]>([])
 const selectRef = ref<HTMLElement | null>(null)
 const dropdownRef = ref<HTMLElement | null>(null)
-const parentName = `shadcn-select-${ generateRandomId() }`
+const parentName = `shadcn-select-${generateRandomId()}`
 const isLoading = ref(false)
 
 // Handle scroll loading
@@ -262,7 +270,8 @@ provide('selectContext', {
   selectOption,
   modelValue: computed(() => props.modelValue),
   multiple: props.multiple,
-  parentName
+  parentName,
+  dark: computed(() => props.dark)
 })
 
 onMounted(() => {
