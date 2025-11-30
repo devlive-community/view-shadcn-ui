@@ -5,14 +5,19 @@
               HoverType[type],
               {
                 'cursor-pointer': !disabled,
-                'cursor-not-allowed opacity-50 bg-gray-100': disabled
+                'cursor-not-allowed opacity-50': disabled,
+                'bg-gray-100': disabled && !dark,
+                'bg-gray-700': disabled && dark,
+                'border-gray-600 bg-gray-800': dark,
+                'hover:border-gray-500': dark && !disabled
               }
          ]"
          @mouseover="onHover"
          @mouseleave="onLeave">
       <!-- Input field for direct number entry -->
       <input :class="['w-full outline-none text-sm',
-                  (!validValue && displayValue) && 'line-through'
+                  (!validValue && displayValue) && 'line-through',
+                  dark && 'bg-gray-800 text-gray-200 placeholder:text-gray-500'
              ]"
              type="text"
              :value="displayValue"
@@ -29,7 +34,9 @@
           <svg viewBox="0 0 24 24"
                fill="none"
                xmlns="http://www.w3.org/2000/svg"
-               class="w-3 h-3 p-0.5 rounded-full bg-gray-200 text-gray-400 hover:bg-gray-300 hover:text-muted-foreground">
+               :class="['w-3 h-3 p-0.5 rounded-full',
+                        dark ? 'bg-gray-700 text-gray-400 hover:bg-gray-600' : 'bg-gray-200 text-gray-400 hover:bg-gray-300 hover:text-muted-foreground'
+               ]">
             <path d="M5 19L19 5M5 5l14 14"
                   stroke="currentColor"
                   stroke-width="2"
@@ -54,7 +61,9 @@
             <svg viewBox="0 0 16 16"
                  fill="none"
                  xmlns="http://www.w3.org/2000/svg"
-                 class="w-2.5 h-2.5 text-gray-400 hover:text-muted-foreground mt-1">
+                 :class="['w-2.5 h-2.5 mt-1',
+                          dark ? 'text-gray-400 hover:text-gray-300' : 'text-gray-400 hover:text-muted-foreground'
+                 ]">
               <path d="M13 8H3M8 3v10"
                     stroke="currentColor"
                     stroke-width="1.5"
@@ -75,7 +84,9 @@
             <svg viewBox="0 0 16 16"
                  fill="none"
                  xmlns="http://www.w3.org/2000/svg"
-                 class="w-2.5 h-2.5 text-gray-400 hover:text-muted-foreground">
+                 :class="['w-2.5 h-2.5',
+                          dark ? 'text-gray-400 hover:text-gray-300' : 'text-gray-400 hover:text-muted-foreground'
+                 ]">
               <path d="M13 8H3"
                     stroke="currentColor"
                     stroke-width="1.5"
@@ -107,7 +118,8 @@ const props = withDefaults(defineProps<NumberProps>(), {
   clearable: false,
   showControl: true,
   formatter: (value: number) => value.toString(),
-  parser: (value: string) => Number(value)
+  parser: (value: string) => Number(value),
+  dark: false
 })
 
 const localValue = ref(props.modelValue)
@@ -126,7 +138,7 @@ const displayValue = computed(() => {
   return props.formatter ? props.formatter(Number(localValue.value)) : localValue.value
 })
 
-const formItemContext = props.name ? inject<FormItemContext | null>(`form-item-${ props.name }`) : null
+const formItemContext = props.name ? inject<FormItemContext | null>(`form-item-${props.name}`) : null
 
 watch(() => props.modelValue, (newValue) => {
   validValue.value = isNumber(newValue)

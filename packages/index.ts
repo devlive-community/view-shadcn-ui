@@ -26,9 +26,7 @@ import ShadcnSwitch from '@/ui/switch'
 import ShadcnRadio from '@/ui/radio'
 import { ShadcnCheckbox, ShadcnCheckboxGroup } from '@/ui/checkbox'
 import ShadcnRadioGroup from '@/ui/radio/group'
-import ShadcnSelect from '@/ui/select'
-import ShadcnSelectOption from '@/ui/select/option'
-import ShadcnSelectGroup from '@/ui/select/group'
+import { ShadcnSelect, ShadcnSelectGroup, ShadcnSelectOption } from '@/ui/select'
 import ShadcnRate from '@/ui/rate'
 import { ShadcnTab, ShadcnTabItem } from '@/ui/tab'
 import { ShadcnSkeleton, ShadcnSkeletonItem } from '@/ui/skeleton'
@@ -65,7 +63,7 @@ import ShadcnWatermark from '@/ui/watermark'
 import ShadcnHighlight from '@/ui/highlight'
 import ShadcnDropdown from '@/ui/dropdown'
 import ShadcnDropdownItem from '@/ui/dropdown/item'
-import ShadcnNumber from '@/ui/number'
+import { ShadcnNumber } from '@/ui/number'
 import ShadcnTree from '@/ui/tree'
 import ShadcnText from '@/ui/text'
 import ShadcnGradientText from '@/ui/text/gradient'
@@ -123,9 +121,7 @@ let components = [
     ShadcnRadio,
     ShadcnRadioGroup,
     ShadcnCheckbox, ShadcnCheckboxGroup,
-    ShadcnSelect,
-    ShadcnSelectOption,
-    ShadcnSelectGroup,
+    ShadcnSelect, ShadcnSelectOption, ShadcnSelectGroup,
     ShadcnRate,
     ShadcnTab, ShadcnTabItem,
     ShadcnSkeleton, ShadcnSkeletonItem,
@@ -254,9 +250,7 @@ export { default as ShadcnSwitch } from '@/ui/switch'
 export { default as ShadcnRadio } from '@/ui/radio'
 export { default as ShadcnRadioGroup } from '@/ui/radio/group'
 export { ShadcnCheckbox, ShadcnCheckboxGroup } from '@/ui/checkbox'
-export { default as ShadcnSelect } from '@/ui/select'
-export { default as ShadcnSelectOption } from '@/ui/select/option'
-export { default as ShadcnSelectGroup } from '@/ui/select/group'
+export { ShadcnSelect, ShadcnSelectOption, ShadcnSelectGroup } from '@/ui/select'
 export { default as ShadcnRate } from '@/ui/rate'
 export { ShadcnTab, ShadcnTabItem } from '@/ui/tab'
 export { ShadcnSkeleton, ShadcnSkeletonItem } from '@/ui/skeleton'
@@ -293,7 +287,7 @@ export { default as ShadcnWatermark } from '@/ui/watermark'
 export { default as ShadcnHighlight } from '@/ui/highlight'
 export { default as ShadcnDropdown } from '@/ui/dropdown'
 export { default as ShadcnDropdownItem } from '@/ui/dropdown/item'
-export { default as ShadcnNumber } from '@/ui/number'
+export { ShadcnNumber } from '@/ui/number'
 export { default as ShadcnTree } from '@/ui/tree'
 export { default as ShadcnText } from '@/ui/text'
 export { default as ShadcnGradientText } from '@/ui/text/gradient'

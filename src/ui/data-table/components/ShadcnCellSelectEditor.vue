@@ -6,6 +6,7 @@
        @click.stop>
     <ShadcnSelect v-model="selectValue"
                   :options="options"
+                  :dark="dark"
                   :placeholder="placeholder"
                   @on-change="handleChange">
     </ShadcnSelect>
@@ -14,7 +15,7 @@
 
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
-import ShadcnSelect from '@/ui/select'
+import { ShadcnSelect } from '@/ui/select'
 
 interface SelectOption
 {

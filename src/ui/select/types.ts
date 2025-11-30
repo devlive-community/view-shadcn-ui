@@ -14,6 +14,7 @@ export interface SelectProps
     lazy?: boolean
     loading?: boolean
     loadData?: (callback: (children: SelectOptionProps[]) => void) => void
+    dark?: boolean
 }
 
 export interface SelectOptionProps
@@ -24,11 +25,13 @@ export interface SelectOptionProps
     disabled?: boolean
     type?: keyof typeof TextType
     parentName?: string
+    dark?: boolean
 }
 
 export interface SelectGroupProps
 {
     label: string
+    dark?: boolean
 }
 
 export type SelectEmits = {

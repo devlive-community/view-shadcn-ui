@@ -1,3 +1,1 @@
-import ShadcnNumber from './ShadcnNumber.vue'
-
-export default ShadcnNumber
+export { default as ShadcnNumber } from './ShadcnNumber.vue'

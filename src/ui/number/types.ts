@@ -15,6 +15,7 @@ export interface NumberProps
     showControl?: boolean,
     formatter?: (value: number) => string
     parser?: (value: string) => number
+    dark?: boolean
 }
 
 export type NumberEmits = {

@@ -10,6 +10,7 @@ export interface SliderProps
     showStep?: boolean
     disabled?: boolean
     type?: keyof typeof BaseBackgroundType
+    dark?: boolean
 }
 
 export type SliderEmits = {

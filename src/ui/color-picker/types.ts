@@ -10,6 +10,7 @@ export interface ColorPickerProps
     showDropper?: boolean
     showTransparency?: boolean
     showFormat?: boolean
+    dark?: boolean
 }
 
 export type ColorPickerEmits = {

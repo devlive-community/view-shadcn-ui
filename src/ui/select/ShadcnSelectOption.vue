@@ -1,10 +1,13 @@
 <template>
-  <div :class="['flex items-center text-sm px-2 py-1.5 my-1 hover:bg-gray-100 rounded-sm transition-colors',
+  <div :class="['flex items-center text-sm px-2 py-1.5 my-1 rounded-sm transition-colors',
+                  dark ? 'hover:bg-gray-700' : 'hover:bg-gray-100',
                   {
                     'cursor-not-allowed opacity-50': disabled,
                     'cursor-pointer': !disabled,
                     [TextType[type]]: isSelected,
-                    'bg-gray-50': isSelected
+                    'bg-gray-700': isSelected && dark,
+                    'bg-gray-50': isSelected && !dark,
+                    'text-gray-200': dark
                   },
                   inGroup && 'ml-4'
        ]"
@@ -12,8 +15,9 @@
        @click="onSelect">
     <div :class="['flex items-center gap-2 select-none']">
       <div v-if="context.multiple"
-           class="w-4 h-4 border border-gray-300 rounded flex items-center justify-center transition-colors"
-           :class="{'bg-primary-500 border-primary-500': isSelected}">
+           :class="['w-4 h-4 border rounded flex items-center justify-center transition-colors',
+                    dark ? 'border-gray-500' : 'border-gray-300',
+                    {'bg-primary-500 border-primary-500': isSelected}]">
         <svg v-if="isSelected"
              xmlns="http://www.w3.org/2000/svg"
              viewBox="0 0 24 24"
@@ -44,10 +48,12 @@ const context = inject('selectContext') as {
   modelValue: any
   multiple: boolean
   parentName: string
+  dark: any
 }
 
 const inGroup = inject('inGroup', false)
 const parentName = context.parentName
+const dark = computed(() => props.dark ?? (context.dark?.value || false))
 
 const isSelected = computed(() => {
   if (context.multiple) {

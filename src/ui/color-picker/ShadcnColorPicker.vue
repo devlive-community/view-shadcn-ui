@@ -1,14 +1,14 @@
 <template>
   <div class="inline-block relative shadcn-color-picker-container">
-    <div class="w-8 h-8 rounded-md border"
-         :class="[
+    <div :class="['w-8 h-8 rounded-md border',
              { 'cursor-pointer': !disabled && !readonly },
-             { 'cursor-not-allowed opacity-50': disabled }
-         ]"
+             { 'cursor-not-allowed opacity-50': disabled },
+             dark ? 'border-gray-600' : '']"
          :style="{ backgroundColor: displayColor }"
          @click="togglePicker"/>
     <div v-if="isOpen" class="relative">
-      <div class="absolute min-w-64 z-10 mt-0.5 p-2 bg-white rounded-lg shadow-lg border">
+      <div :class="['absolute min-w-64 z-10 mt-0.5 p-2 rounded-lg shadow-lg border',
+                    dark ? 'bg-gray-800 border-gray-600' : 'bg-white']">
         <div class="grid grid-cols-5 gap-2">
           <div v-for="color in finalPresetColors"
                class="w-6 h-6 rounded-md cursor-pointer"
@@ -19,18 +19,18 @@
         <div class="mt-2 space-y-2">
           <div v-if="showFormat" class="space-y-2">
             <div class="flex justify-between items-center">
-              <span class="text-sm text-gray-500">{{ t('colorPicker.text.format') }}</span>
-              <ShadcnSelect v-model="inputFormat">
+              <span :class="['text-sm', dark ? 'text-gray-400' : 'text-gray-500']">{{ t('colorPicker.text.format') }}</span>
+              <ShadcnSelect v-model="inputFormat" :dark="dark">
                 <template #options>
-                  <ShadcnSelectOption value="hex" label="HEX"/>
-                  <ShadcnSelectOption value="rgb" label="RGB"/>
-                  <ShadcnSelectOption value="hsl" label="HSL"/>
+                  <ShadcnSelectOption :dark="dark" label="HEX" value="hex"/>
+                  <ShadcnSelectOption :dark="dark" label="RGB" value="rgb"/>
+                  <ShadcnSelectOption :dark="dark" label="HSL" value="hsl"/>
                 </template>
               </ShadcnSelect>
             </div>
 
             <template v-if="inputFormat === 'hex'">
-              <ShadcnInput v-model="hexValue" placeholder="#000000" @on-change="onHexInput"/>
+              <ShadcnInput v-model="hexValue as any" :dark="dark" placeholder="#000000" @on-change="onHexInput"/>
             </template>
 
             <template v-if="inputFormat === 'rgb'">
@@ -39,6 +39,7 @@
                   <ShadcnNumber :model-value="value"
                                 :min="0"
                                 :max="255"
+                                :dark="dark"
                                 @on-change="onRgbInput(index, $event)"/>
                 </div>
               </div>
@@ -50,18 +51,21 @@
                   <ShadcnNumber placeholder="H" :model-value="hslValues[0]"
                                 :min="0"
                                 :max="360"
+                                :dark="dark"
                                 @on-change="onHslInput(0, $event)"/>
                 </div>
                 <div>
                   <ShadcnNumber placeholder="S" :model-value="hslValues[1]"
                                 :min="0"
                                 :max="100"
+                                :dark="dark"
                                 @on-change="onHslInput(1, $event)"/>
                 </div>
                 <div>
                   <ShadcnNumber placeholder="L" :model-value="hslValues[2]"
                                 :min="0"
                                 :max="100"
+                                :dark="dark"
                                 @on-change="onHslInput(2, $event)"/>
                 </div>
               </div>
@@ -69,15 +73,16 @@
           </div>
 
           <div v-if="showPanel" class="mt-2">
-            <ShadcnColorPanel :model-value="modelValue as string" :show-dropper="showDropper" @on-change="onColorChange"/>
+            <ShadcnColorPanel :dark="dark" :model-value="modelValue as string" :show-dropper="showDropper" @on-change="onColorChange"/>
           </div>
 
           <div v-if="showTransparency" class="flex items-center select-none">
-            <span class="text-sm text-gray-500 mr-2">{{ t('colorPicker.text.transparency') }}</span>
+            <span :class="['text-sm mr-2', dark ? 'text-gray-400' : 'text-gray-500']">{{ t('colorPicker.text.transparency') }}</span>
             <ShadcnSlider v-model="alpha"
                           class="flex-1"
                           :min="0"
                           :max="100"
+                          :dark="dark"
                           show-tip
                           @on-change="onAlphaInput"/>
           </div>
@@ -92,11 +97,16 @@ import { computed, defineEmits, defineProps, onMounted, onUnmounted, ref } from 
 import { t } from '@/utils/locale'
 import type { ColorPickerEmits, ColorPickerProps } from './types'
 import ShadcnColorPanel from './components/ShadcnColorPanel.vue'
+import { ShadcnSelect, ShadcnSelectOption } from "@/ui/select";
+import { ShadcnInput } from "@/ui/input";
+import { ShadcnNumber } from "@/ui/number";
+import { ShadcnSlider } from "@/ui/slider";
 
 const props = withDefaults(defineProps<ColorPickerProps>(), {
   disabled: false,
   readonly: false,
   format: 'auto',
+  dark: false,
   presetColors: () => ([
     '#f87171', '#fb923c', '#fbbf24', '#a3e635', '#34d399',
     '#2dd4bf', '#38bdf8', '#818cf8', '#c084fc', '#e879f9',
@@ -226,19 +236,19 @@ const hslToRgb = (h: number, s: number, l: number): [number, number, number] => 
 // 将十六进制颜色转换为 RGBA
 const hexToRgba = (hex: string, alpha: number): string => {
   const [r, g, b] = hexToRgb(hex)
-  return `rgba(${ r }, ${ g }, ${ b }, ${ alpha / 100 })`
+  return `rgba(${r}, ${g}, ${b}, ${alpha / 100})`
 }
 
 // Convert RGB to RGBA
 // 将 RGB 转换为 RGBA
 const rgbToRgba = (r: number, g: number, b: number, alpha: number): string => {
-  return `rgba(${ r }, ${ g }, ${ b }, ${ alpha / 100 })`
+  return `rgba(${r}, ${g}, ${b}, ${alpha / 100})`
 }
 
 // Convert HSL to HSLA
 // 将 HSL 转换为 HSLA
 const hslToHsla = (h: number, s: number, l: number, alpha: number): string => {
-  return `hsla(${ h }, ${ s }%, ${ l }%, ${ alpha / 100 })`
+  return `hsla(${h}, ${s}%, ${l}%, ${alpha / 100})`
 }
 
 // Extract RGB values from RGB/RGBA string

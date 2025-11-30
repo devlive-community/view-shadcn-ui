@@ -6,18 +6,26 @@
 
     <div class="space-y-6 my-6">
       <div>
-        <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnCollapse</h3>
-        <ShadcnCollapse v-model="collapseValue" :dark="isDark">
-          <ShadcnCollapseItem title="Section 1" name="1">
-            This is the content of section 1
-          </ShadcnCollapseItem>
-          <ShadcnCollapseItem title="Section 2" name="2">
-            This is the content of section 2
-          </ShadcnCollapseItem>
-          <ShadcnCollapseItem title="Section 3" name="3">
-            This is the content of section 3
-          </ShadcnCollapseItem>
-        </ShadcnCollapse>
+        <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnColorPicker</h3>
+        <ShadcnColorPicker v-model="colorValue" :dark="isDark"/>
+      </div>
+
+      <div>
+        <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnNumber</h3>
+        <div class="space-y-4">
+          <ShadcnNumber v-model="numberValue" :dark="isDark" placeholder="请输入数字"/>
+          <ShadcnNumber v-model="numberValue2" :dark="isDark" placeholder="带清除按钮" clearable/>
+          <ShadcnNumber v-model="numberValue3" :dark="isDark" placeholder="限制范围" :min="0" :max="100"/>
+        </div>
+      </div>
+
+      <div>
+        <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnSlider</h3>
+        <div class="space-y-4">
+          <ShadcnSlider v-model="sliderValue" :dark="isDark" showTip/>
+          <ShadcnSlider v-model="sliderValue2" :dark="isDark" showTip showStep :step="10"/>
+          <ShadcnSlider v-model="sliderValue3" :dark="isDark" showTip :min="0" :max="200"/>
+        </div>
       </div>
     </div>
   </div>
@@ -25,10 +33,17 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { ShadcnSlider } from "@/ui/slider";
 
 const isDark = ref(false)
 
-const codeValue = ref(`function hello() {\n  console.log('Hello World');\n}`)
+const colorValue = ref('#3b82f6')
 
-const collapseValue = ref(['1'])
+const numberValue = ref(0)
+const numberValue2 = ref(10)
+const numberValue3 = ref(50)
+
+const sliderValue = ref(50)
+const sliderValue2 = ref(30)
+const sliderValue3 = ref(100)
 </script>
