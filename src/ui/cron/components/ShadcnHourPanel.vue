@@ -2,27 +2,32 @@
   <div class="mt-4 space-y-4">
     <!-- Every Hour -->
     <div class="flex items-center space-x-2">
-      <ShadcnRadio v-model="radioValue" :value="1" name="hour-type">
+      <ShadcnRadio v-model="radioValue"
+                   :dark="dark"
+                   :value="1"
+                   name="hour-type">
         {{ t('cron.text.everyHour') }}
       </ShadcnRadio>
     </div>
 
     <!-- Period -->
     <div class="flex items-center space-x-2 select-none">
-      <ShadcnRadio v-model="radioValue" :value="2" name="hour-type">
+      <ShadcnRadio v-model="radioValue" :dark="dark" :value="2" name="hour-type">
         {{ t('cron.text.periodFrom') }}
       </ShadcnRadio>
       <div class="flex items-center space-x-2">
         <ShadcnNumber v-model="cycle01"
                       class="w-16"
                       :min="0"
+                      :dark="dark"
                       :max="23"/>
-        <span>-</span>
+        <span :class="dark ? 'text-gray-200' : ''">-</span>
         <ShadcnNumber v-model="cycle02"
                       class="w-16"
                       :min="0"
+                      :dark="dark"
                       :max="23"/>
-        <span class="text-sm">{{ t('cron.text.hour') }}</span>
+        <span :class="['text-sm', dark ? 'text-gray-200' : '']">{{ t('cron.text.hour') }}</span>
       </div>
     </div>
 
@@ -35,14 +40,16 @@
         <ShadcnNumber v-model="average01"
                       class="w-16"
                       :min="0"
+                      :dark="dark"
                       :max="23"/>
-        <span class="text-sm">{{ t('cron.text.hourStart') }}，</span>
-        <span class="text-sm">{{ t('cron.text.every') }}</span>
+        <span :class="['text-sm', dark ? 'text-gray-200' : '']">{{ t('cron.text.hourStart') }}，</span>
+        <span :class="['text-sm', dark ? 'text-gray-200' : '']">{{ t('cron.text.every') }}</span>
         <ShadcnNumber v-model="average02"
                       class="w-16"
                       :min="1"
+                      :dark="dark"
                       :max="23"/>
-        <span class="text-sm">{{ t('cron.text.hourExecute') }}</span>
+        <span :class="['text-sm', dark ? 'text-gray-200' : '']">{{ t('cron.text.hourExecute') }}</span>
       </div>
     </div>
 
@@ -54,6 +61,7 @@
       <ShadcnSelect v-model="checkboxList"
                     multiple
                     :options="hourOptions"
+                    :dark="dark"
                     :placeholder="t('cron.placeholder.multiple')"/>
     </div>
   </div>
@@ -62,6 +70,9 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { t } from '@/utils/locale'
+import ShadcnRadio from "@/ui/radio";
+import { ShadcnNumber } from "@/ui/number";
+import { ShadcnSelect } from "@/ui/select";
 
 interface Props
 {
@@ -76,6 +87,7 @@ interface Props
     week?: string
     year?: string
   }
+  dark?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -150,9 +162,9 @@ const getCurrentExpression = () => {
     case 1:
       return '*'
     case 2:
-      return `${ cycle01.value }-${ cycle02.value }`
+      return `${cycle01.value}-${cycle02.value}`
     case 3:
-      return `${ average01.value }/${ average02.value }`
+      return `${average01.value}/${average02.value}`
     case 4:
       return checkboxString.value
     default:
@@ -165,7 +177,7 @@ const handleCycleChange = () => {
   if (radioValue.value === 2) {
     cycle01.value = props.checkNumber(cycle01.value, 0, 23)
     cycle02.value = props.checkNumber(cycle02.value, 0, 23)
-    const cycleTotal = `${ cycle01.value }-${ cycle02.value }`
+    const cycleTotal = `${cycle01.value}-${cycle02.value}`
     emit('update', 'hour', cycleTotal)
     emit('update:modelValue', cycleTotal)
   }
@@ -176,7 +188,7 @@ const handleAverageChange = () => {
   if (radioValue.value === 3) {
     average01.value = props.checkNumber(average01.value, 0, 23)
     average02.value = props.checkNumber(average02.value, 1, 23)
-    const averageTotal = `${ average01.value }/${ average02.value }`
+    const averageTotal = `${average01.value}/${average02.value}`
     emit('update', 'hour', averageTotal)
     emit('update:modelValue', averageTotal)
   }

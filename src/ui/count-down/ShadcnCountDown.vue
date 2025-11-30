@@ -1,11 +1,11 @@
 <template>
   <div v-if="simple">
-    <div class="text-2xl font-bold">
-      {{ `${ padNumber(timeLeft.days) } : ${ padNumber(timeLeft.hours) } : ${ padNumber(timeLeft.minutes) } : ${ padNumber(timeLeft.seconds) }` }}
+    <div :class="['text-2xl font-bold', dark ? 'text-gray-200' : '']">
+      {{ `${padNumber(timeLeft.days)} : ${padNumber(timeLeft.hours)} : ${padNumber(timeLeft.minutes)} : ${padNumber(timeLeft.seconds)}` }}
     </div>
   </div>
 
-  <ShadcnCard v-else :border="false">
+  <ShadcnCard v-else :border="false" :dark="dark">
     <template #title>
       <slot name="title">
         <div class="mb-2">
@@ -16,11 +16,11 @@
 
     <template v-if="toolbar" #extra>
       <div class="space-x-2">
-        <ShadcnButton :type="isPaused ? 'primary' : 'warning'" @click="togglePause">
+        <ShadcnButton :dark="dark" :type="isPaused ? 'primary' : 'warning'" @click="togglePause">
           {{ isPaused ? t('countDown.text.resume') : t('countDown.text.pause') }}
         </ShadcnButton>
 
-        <ShadcnButton type="default" @click="onReset">
+        <ShadcnButton :dark="dark" type="default" @click="onReset">
           {{ t('countDown.text.reset') }}
         </ShadcnButton>
       </div>
@@ -41,11 +41,15 @@
           <div class="relative flex flex-col">
             <div :class="['text-4xl font-bold rounded-lg p-4 transition-all duration-300',
                         {
-                          'bg-slate-100': !isWarning && !isCompleted,
-                          'bg-red-50': isWarning && !isCompleted,
-                          'bg-green-50': isCompleted,
+                          'bg-slate-100': !isWarning && !isCompleted && !dark,
+                          'bg-gray-700': !isWarning && !isCompleted && dark,
+                          'bg-red-50': isWarning && !isCompleted && !dark,
+                          'bg-red-900/30': isWarning && !isCompleted && dark,
+                          'bg-green-50': isCompleted && !dark,
+                          'bg-green-900/30': isCompleted && dark,
                           'animate-pulse': isWarning && !isPaused && !isCompleted
-                        }
+                        },
+                        dark ? 'text-gray-200' : ''
                  ]">
               {{ padNumber(timeLeft.days) }}
               <span v-if="isWarning && !isCompleted" class="absolute -top-1 -right-1 flex h-3 w-3">
@@ -54,7 +58,7 @@
               </span>
             </div>
             <slot name="days-label">
-              <span class="text-sm mt-2">{{ t('countDown.text.day') }}</span>
+              <span :class="['text-sm mt-2', dark ? 'text-gray-400' : '']">{{ t('countDown.text.day') }}</span>
             </slot>
           </div>
         </slot>
@@ -68,16 +72,20 @@
           <div class="flex flex-col">
             <div :class="['text-4xl font-bold rounded-lg p-4 transition-all duration-300',
                         {
-                          'bg-slate-100': !isWarning && !isCompleted,
-                          'bg-red-50': isWarning && !isCompleted,
-                          'bg-green-50': isCompleted,
+                          'bg-slate-100': !isWarning && !isCompleted && !dark,
+                          'bg-gray-700': !isWarning && !isCompleted && dark,
+                          'bg-red-50': isWarning && !isCompleted && !dark,
+                          'bg-red-900/30': isWarning && !isCompleted && dark,
+                          'bg-green-50': isCompleted && !dark,
+                          'bg-green-900/30': isCompleted && dark,
                           'animate-pulse': isWarning && !isPaused && !isCompleted
-                        }
+                        },
+                        dark ? 'text-gray-200' : ''
                  ]">
               {{ padNumber(timeLeft.hours) }}
             </div>
             <slot name="hours-label">
-              <span class="text-sm mt-2">{{ t('countDown.text.hour') }}</span>
+              <span :class="['text-sm mt-2', dark ? 'text-gray-400' : '']">{{ t('countDown.text.hour') }}</span>
             </slot>
           </div>
         </slot>
@@ -91,16 +99,20 @@
           <div class="flex flex-col">
             <div :class="['text-4xl font-bold rounded-lg p-4 transition-all duration-300',
                         {
-                          'bg-slate-100': !isWarning && !isCompleted,
-                          'bg-red-50': isWarning && !isCompleted,
-                          'bg-green-50': isCompleted,
+                          'bg-slate-100': !isWarning && !isCompleted && !dark,
+                          'bg-gray-700': !isWarning && !isCompleted && dark,
+                          'bg-red-50': isWarning && !isCompleted && !dark,
+                          'bg-red-900/30': isWarning && !isCompleted && dark,
+                          'bg-green-50': isCompleted && !dark,
+                          'bg-green-900/30': isCompleted && dark,
                           'animate-pulse': isWarning && !isPaused && !isCompleted
-                        }
+                        },
+                        dark ? 'text-gray-200' : ''
                  ]">
               {{ padNumber(timeLeft.minutes) }}
             </div>
             <slot name="minutes-label">
-              <span class="text-sm mt-2">{{ t('countDown.text.minute') }}</span>
+              <span :class="['text-sm mt-2', dark ? 'text-gray-400' : '']">{{ t('countDown.text.minute') }}</span>
             </slot>
           </div>
         </slot>
@@ -114,16 +126,20 @@
           <div class="flex flex-col">
             <div :class="['text-4xl font-bold rounded-lg p-4 transition-all duration-300',
                       {
-                        'bg-slate-100': !isWarning && !isCompleted,
-                        'bg-red-50': isWarning && !isCompleted,
-                        'bg-green-50': isCompleted,
+                        'bg-slate-100': !isWarning && !isCompleted && !dark,
+                        'bg-gray-700': !isWarning && !isCompleted && dark,
+                        'bg-red-50': isWarning && !isCompleted && !dark,
+                        'bg-red-900/30': isWarning && !isCompleted && dark,
+                        'bg-green-50': isCompleted && !dark,
+                        'bg-green-900/30': isCompleted && dark,
                         'animate-pulse': isWarning && !isPaused && !isCompleted
-                      }
+                      },
+                      dark ? 'text-gray-200' : ''
                  ]">
               {{ padNumber(timeLeft.seconds) }}
             </div>
             <slot name="seconds-label">
-              <span class="text-sm mt-2">{{ t('countDown.text.second') }}</span>
+              <span :class="['text-sm mt-2', dark ? 'text-gray-400' : '']">{{ t('countDown.text.second') }}</span>
             </slot>
           </div>
         </slot>
@@ -131,7 +147,7 @@
     </slot>
 
     <!-- Progress bar -->
-    <div v-if="showProgress" class="mt-4 h-2 bg-gray-200 rounded-full overflow-hidden">
+    <div v-if="showProgress" :class="['mt-4 h-2 rounded-full overflow-hidden', dark ? 'bg-gray-700' : 'bg-gray-200']">
       <div :class="['h-full transition-all duration-300',
                   {
                     'bg-primary': !isWarning && !isCompleted,
@@ -147,14 +163,15 @@
     <div v-if="showProgress" class="mt-2 text-sm flex justify-between">
       <span :class="['transition-colors duration-300',
                     {
-                      'text-gray-500': !isWarning && !isCompleted,
+                      'text-gray-500': !isWarning && !isCompleted && !dark,
+                      'text-gray-400': !isWarning && !isCompleted && dark,
                       'text-red-500': isWarning && !isCompleted,
                       'text-green-500': isCompleted
                     }
             ]">
         {{ status }}
       </span>
-      <span class="text-gray-500">{{ formatProgress }}</span>
+      <span :class="dark ? 'text-gray-400' : 'text-gray-500'">{{ formatProgress }}</span>
     </div>
   </ShadcnCard>
 </template>
@@ -170,7 +187,8 @@ const props = withDefaults(defineProps<CountDownProps>(), {
   simple: false,
   toolbar: false,
   warningThreshold: 5,
-  showProgress: false
+  showProgress: false,
+  dark: false
 })
 
 const timeLeft = ref({
@@ -270,7 +288,7 @@ const progress = computed(() => {
 })
 
 const formatProgress = computed(() => {
-  return `${ progress.value.toFixed(1) }%`
+  return `${progress.value.toFixed(1)}%`
 })
 
 // Status text

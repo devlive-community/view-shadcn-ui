@@ -2,86 +2,92 @@
   <div class="mt-4 space-y-4">
     <!-- Every Day -->
     <div class="flex items-center space-x-2">
-      <ShadcnRadio v-model="radioValue" :value="1" name="day-type">
+      <ShadcnRadio v-model="radioValue" :dark="dark" :value="1" name="day-type">
         {{ t('cron.text.everyDay') }}
       </ShadcnRadio>
     </div>
 
     <!-- Not Specified -->
     <div class="flex items-center space-x-2">
-      <ShadcnRadio v-model="radioValue" :value="2" name="day-type">
+      <ShadcnRadio v-model="radioValue" :dark="dark" :value="2" name="day-type">
         {{ t('cron.text.notSpecified') }}
       </ShadcnRadio>
     </div>
 
     <!-- Period -->
     <div class="flex items-center space-x-2 select-none">
-      <ShadcnRadio v-model="radioValue" :value="3" name="day-type">
+      <ShadcnRadio v-model="radioValue" :dark="dark" :value="3" name="day-type">
         {{ t('cron.text.periodFrom') }}
       </ShadcnRadio>
       <div class="flex items-center space-x-2">
         <ShadcnNumber v-model="cycle01"
                       :max="31"
                       :min="1"
+                      :dark="dark"
                       class="w-16"/>
-        <span>-</span>
+        <span :class="dark ? 'text-gray-200' : ''">-</span>
         <ShadcnNumber v-model="cycle02"
                       :max="31"
                       :min="1"
+                      :dark="dark"
                       class="w-16"/>
-        <span class="text-sm">{{ t('cron.text.day') }}</span>
+        <span :class="['text-sm', dark ? 'text-gray-200' : '']">{{ t('cron.text.day') }}</span>
       </div>
     </div>
 
     <!-- Interval -->
     <div class="flex items-center space-x-2 select-none">
-      <ShadcnRadio v-model="radioValue" :value="4" name="day-type">
+      <ShadcnRadio v-model="radioValue" :dark="dark" :value="4" name="day-type">
         {{ t('cron.text.fromStart') }}
       </ShadcnRadio>
       <div class="flex items-center space-x-2">
         <ShadcnNumber v-model="average01"
                       :max="31"
                       :min="1"
+                      :dark="dark"
                       class="w-16"/>
-        <span class="text-sm">{{ t('cron.text.dayStart') }}，</span>
-        <span class="text-sm">{{ t('cron.text.every') }}</span>
+        <span :class="['text-sm', dark ? 'text-gray-200' : '']">{{ t('cron.text.dayStart') }}，</span>
+        <span :class="['text-sm', dark ? 'text-gray-200' : '']">{{ t('cron.text.every') }}</span>
         <ShadcnNumber v-model="average02"
                       :max="31"
                       :min="1"
+                      :dark="dark"
                       class="w-16"/>
-        <span class="text-sm">{{ t('cron.text.dayExecute') }}</span>
+        <span :class="['text-sm', dark ? 'text-gray-200' : '']">{{ t('cron.text.dayExecute') }}</span>
       </div>
     </div>
 
     <!-- Working Day -->
     <div class="flex items-center space-x-2 select-none">
-      <ShadcnRadio v-model="radioValue" :value="5" name="day-type">
+      <ShadcnRadio v-model="radioValue" :dark="dark" :value="5" name="day-type">
         {{ t('cron.text.workday') }}
       </ShadcnRadio>
       <div class="flex items-center space-x-2">
         <ShadcnNumber v-model="workday"
                       :max="31"
                       :min="1"
+                      :dark="dark"
                       class="w-16"/>
-        <span class="text-sm">{{ t('cron.text.nearestWorkday') }}</span>
+        <span :class="['text-sm', dark ? 'text-gray-200' : '']">{{ t('cron.text.nearestWorkday') }}</span>
       </div>
     </div>
 
     <!-- Last Day -->
     <div class="flex items-center space-x-2">
-      <ShadcnRadio v-model="radioValue" :value="6" name="day-type">
+      <ShadcnRadio v-model="radioValue" :dark="dark" :value="6" name="day-type">
         {{ t('cron.text.lastDayOfMonth') }}
       </ShadcnRadio>
     </div>
 
     <!-- Specify -->
     <div class="flex items-center space-x-2">
-      <ShadcnRadio v-model="radioValue" :value="7" name="day-type">
+      <ShadcnRadio v-model="radioValue" :dark="dark" :value="7" name="day-type">
         {{ t('cron.text.specify') }}
       </ShadcnRadio>
       <ShadcnSelect v-model="checkboxList"
                     :options="dayOptions"
                     :placeholder="t('cron.placeholder.multiple')"
+                    :dark="dark"
                     multiple/>
     </div>
   </div>
@@ -90,6 +96,8 @@
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue'
 import { t } from '@/utils/locale'
+import ShadcnRadio from "@/ui/radio";
+import { ShadcnNumber } from "@/ui/number";
 
 interface Props
 {
@@ -104,6 +112,7 @@ interface Props
     week?: string
     year?: string
   }
+  dark?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -185,11 +194,11 @@ const getCurrentExpression = () => {
     case 2:
       return '?'
     case 3:
-      return `${ cycle01.value }-${ cycle02.value }`
+      return `${cycle01.value}-${cycle02.value}`
     case 4:
-      return `${ average01.value }/${ average02.value }`
+      return `${average01.value}/${average02.value}`
     case 5:
-      return `${ workday.value }W`
+      return `${workday.value}W`
     case 6:
       return 'L'
     case 7:
@@ -204,7 +213,7 @@ const handleCycleChange = () => {
   if (radioValue.value === 3) {
     cycle01.value = props.checkNumber(cycle01.value, 1, 31)
     cycle02.value = props.checkNumber(cycle02.value, 1, 31)
-    const cycleTotal = `${ cycle01.value }-${ cycle02.value }`
+    const cycleTotal = `${cycle01.value}-${cycle02.value}`
     emit('update', 'day', cycleTotal)
     emit('update:modelValue', cycleTotal)
   }
@@ -215,7 +224,7 @@ const handleAverageChange = () => {
   if (radioValue.value === 4) {
     average01.value = props.checkNumber(average01.value, 1, 31)
     average02.value = props.checkNumber(average02.value, 1, 31)
-    const averageTotal = `${ average01.value }/${ average02.value }`
+    const averageTotal = `${average01.value}/${average02.value}`
     emit('update', 'day', averageTotal)
     emit('update:modelValue', averageTotal)
   }
@@ -225,7 +234,7 @@ const handleAverageChange = () => {
 const handleWorkdayChange = () => {
   if (radioValue.value === 5) {
     workday.value = props.checkNumber(workday.value, 1, 31)
-    const workdayValue = `${ workday.value }W`
+    const workdayValue = `${workday.value}W`
     emit('update', 'day', workdayValue)
     emit('update:modelValue', workdayValue)
   }

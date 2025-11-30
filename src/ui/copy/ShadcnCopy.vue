@@ -3,11 +3,12 @@
     <div v-if="$slots.icon" class="cursor-pointer" @click="onCopy">
       <slot name="icon"/>
     </div>
-    <Icon v-else class="cursor-pointer" :icon="icon" @click="onCopy"/>
+    <ShadcnIcon v-else :icon="icon" :dark="dark" class="cursor-pointer" @click="onCopy"/>
 
     <transition v-if="tooltip" name="fade">
       <div v-if="showTooltip"
-           :class="cn('absolute transform bg-gray-700 text-white text-xs rounded p-1.5',
+           :class="cn('absolute transform text-xs rounded p-1.5',
+                    dark ? 'bg-gray-700 text-gray-200' : 'bg-gray-800 text-white',
                     position === 'top' && 'bottom-full mb-2 left-1/2 -translate-x-1/2',
                     position === 'bottom' && 'top-full mt-2 left-1/2 -translate-x-1/2',
                     position === 'left' && 'right-full mr-2 top-1/2 -translate-y-1/2',
@@ -28,7 +29,8 @@ import { CopyEmits, CopyProps } from '@/ui/copy/types.ts'
 
 const props = withDefaults(defineProps<CopyProps>(), {
   tooltip: true,
-  position: 'top'
+  position: 'top',
+  dark: false
 })
 
 const emit = defineEmits<CopyEmits>()

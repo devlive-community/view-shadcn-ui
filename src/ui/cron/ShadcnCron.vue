@@ -3,46 +3,64 @@
     <div ref="inputRef" class="flex items-center space-x-2">
       <ShadcnInput v-model="localModelValue"
                    readonly
-                   class="text-sm text-gray-500"
+                   :class="['text-sm', dark ? 'text-gray-400' : 'text-gray-500']"
+                   :dark="dark"
                    @click="isOpen = !isOpen"/>
     </div>
 
     <div v-if="isOpen"
          ref="panelRef"
-         class="absolute top-full mt-1 bg-white rounded-sm shadow-lg border w-[530px] border-gray-200 p-2 z-20">
+         :class="['absolute top-full mt-1 rounded-sm shadow-lg border w-[530px] p-2 z-20',
+                  dark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+         ]">
       <div class="flex space-x-2">
-        <ShadcnTab v-model="activeTab" size="small">
-          <ShadcnTabItem v-for="tab in tabs" :label="tab.label" :value="tab.value">
-            <ShadcnSecondPanel v-if="tab.value === 'seconds'" v-model="secondExpression" @update="handleUpdate"/>
+        <ShadcnTab v-model="activeTab" :dark="dark" size="small">
+          <ShadcnTabItem v-for="tab in tabs"
+                         :dark="dark"
+                         :label="tab.label"
+                         :value="tab.value">
+            <ShadcnSecondPanel v-if="tab.value === 'seconds'"
+                               v-model="secondExpression"
+                               :dark="dark"
+                               @update="handleUpdate"/>
             <ShadcnMinutePanel v-if="tab.value === 'minutes'"
                                v-model="minuteExpression"
                                :cron="cronObject"
+                               :dark="dark"
                                @update="handleUpdate"/>
             <ShadcnHourPanel v-if="tab.value === 'hours'"
                              v-model="hourExpression"
                              :cron="cronObject"
+                             :dark="dark"
                              @update="handleUpdate"/>
             <ShadcnDayPanel v-if="tab.value === 'day'"
                             v-model="dayExpression"
                             :cron="cronObject"
+                            :dark="dark"
                             @update="handleUpdate"/>
             <ShadcnMonthPanel v-if="tab.value === 'month'"
                               v-model="monthExpression"
                               :cron="cronObject"
+                              :dark="dark"
                               @update="handleUpdate"/>
             <ShadcnWeekPanel v-if="tab.value === 'week'"
                              v-model="weekExpression"
                              :cron="cronObject"
+                             :dark="dark"
                              @update="handleUpdate"/>
             <ShadcnYearPanel v-if="tab.value === 'year'"
                              v-model="yearExpression as any"
                              :cron="cronObject"
+                             :dark="dark"
                              @update="handleUpdate"/>
           </ShadcnTabItem>
         </ShadcnTab>
       </div>
 
-      <div v-if="nextExecutionTimes.length" class="text-gray-500 space-y-1 mt-4 border-t rounded-sm p-2">
+      <div v-if="nextExecutionTimes.length"
+           :class="['space-y-1 mt-4 border-t rounded-sm p-2',
+                   dark ? 'text-gray-400 border-gray-700' : 'text-gray-500'
+           ]">
         <div class="items-center">{{ t('cron.text.nextExecutionTime') }}:</div>
         <div v-for="(time, index) in nextExecutionTimes" :key="index" class="text-xs">
           {{ t('cron.text.nextExecutionTimeAtOnN', { n: index + 1, time }) }}
@@ -62,11 +80,14 @@ import ShadcnHourPanel from './components/ShadcnHourPanel.vue'
 import ShadcnDayPanel from './components/ShadcnDayPanel.vue'
 import ShadcnMonthPanel from './components/ShadcnMonthPanel.vue'
 import ShadcnWeekPanel from './components/ShadcnWeekPanel.vue'
-import { getRecentTriggerTime } from '@/utils/cron.ts'
 import ShadcnYearPanel from '@/ui/cron/components/ShadcnYearPanel.vue'
+import { getRecentTriggerTime } from '@/utils/cron.ts'
+import { ShadcnInput } from "@/ui/input";
+import { ShadcnTab, ShadcnTabItem } from "@/ui/tab";
 
 const props = withDefaults(defineProps<CronProps>(), {
-  modelValue: '* * * * * ?'
+  modelValue: '* * * * * ?',
+  dark: false
 })
 const emit = defineEmits<CronEmits>()
 

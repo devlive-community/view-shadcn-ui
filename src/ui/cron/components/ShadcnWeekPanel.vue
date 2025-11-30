@@ -2,31 +2,33 @@
   <div class="mt-4 space-y-4">
     <!-- Every Week -->
     <div class="flex items-center space-x-2">
-      <ShadcnRadio v-model="radioValue" :value="1" name="week-type">
+      <ShadcnRadio v-model="radioValue" :dark="dark" :value="1" name="week-type">
         {{ t('cron.text.everyWeek') }}
       </ShadcnRadio>
     </div>
 
     <!-- Not Specified -->
     <div class="flex items-center space-x-2">
-      <ShadcnRadio v-model="radioValue" :value="2" name="week-type">
+      <ShadcnRadio v-model="radioValue" :dark="dark" :value="2" name="week-type">
         {{ t('cron.text.notSpecified') }}
       </ShadcnRadio>
     </div>
 
     <!-- Period -->
     <div class="flex items-center space-x-2 select-none">
-      <ShadcnRadio v-model="radioValue" :value="3" name="week-type">
+      <ShadcnRadio v-model="radioValue" :dark="dark" :value="3" name="week-type">
         {{ t('cron.text.weekPeriodFrom') }}
       </ShadcnRadio>
       <div class="flex items-center space-x-2">
         <ShadcnNumber v-model="cycle01"
                       class="w-16"
+                      :dark="dark"
                       :min="1"
                       :max="7"/>
-        <span>-</span>
+        <span :class="dark ? 'text-gray-200' : ''">-</span>
         <ShadcnNumber v-model="cycle02"
                       class="w-16"
+                      :dark="dark"
                       :min="1"
                       :max="7"/>
       </div>
@@ -34,18 +36,20 @@
 
     <!-- Specific Week -->
     <div class="flex items-center space-x-2 select-none">
-      <ShadcnRadio v-model="radioValue" :value="4" name="week-type">
+      <ShadcnRadio v-model="radioValue" :dark="dark" :value="4" name="week-type">
         {{ t('cron.text.specificWeek') }}
       </ShadcnRadio>
       <div class="flex items-center space-x-2">
-        <span class="text-sm">{{ t('cron.text.the') }}</span>
+        <span :class="['text-sm', dark ? 'text-gray-200' : '']">{{ t('cron.text.the') }}</span>
         <ShadcnNumber v-model="average01"
                       class="w-16"
+                      :dark="dark"
                       :min="1"
                       :max="4"/>
-        <span class="text-sm">{{ t('cron.text.weekOf') }}</span>
+        <span :class="['text-sm', dark ? 'text-gray-200' : '']">{{ t('cron.text.weekOf') }}</span>
         <ShadcnNumber v-model="average02"
                       class="w-16"
+                      :dark="dark"
                       :min="1"
                       :max="7"/>
       </div>
@@ -53,12 +57,13 @@
 
     <!-- Last Week -->
     <div class="flex items-center space-x-2 select-none">
-      <ShadcnRadio v-model="radioValue" :value="5" name="week-type">
+      <ShadcnRadio v-model="radioValue" :dark="dark" :value="5" name="week-type">
         {{ t('cron.text.lastWeek') }}
       </ShadcnRadio>
       <div class="flex items-center space-x-2">
         <ShadcnNumber v-model="weekday"
                       class="w-16"
+                      :dark="dark"
                       :min="1"
                       :max="7"/>
       </div>
@@ -66,11 +71,12 @@
 
     <!-- Specify -->
     <div class="flex items-center space-x-2">
-      <ShadcnRadio v-model="radioValue" :value="6" name="week-type">
+      <ShadcnRadio v-model="radioValue" :dark="dark" :value="6" name="week-type">
         {{ t('cron.text.specify') }}
       </ShadcnRadio>
       <ShadcnSelect v-model="checkboxList"
                     multiple
+                    :dark="dark"
                     :options="weekOptions"
                     :placeholder="t('cron.placeholder.multiple')"/>
     </div>
@@ -80,6 +86,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { t } from '@/utils/locale'
+import ShadcnRadio from "@/ui/radio";
 
 interface Props
 {
@@ -94,6 +101,7 @@ interface Props
     week?: string
     year?: string
   }
+  dark?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {

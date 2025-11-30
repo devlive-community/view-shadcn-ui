@@ -6,22 +6,8 @@
 
     <div class="space-y-6 my-6">
       <div>
-        <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnContextMenu</h3>
-        <ShadcnContextMenu v-model="contextMenuVisible" :dark="isDark">
-          <template #trigger>
-            <div :class="['border-2 border-dashed rounded-lg p-8 text-center cursor-pointer',
-                          isDark ? 'border-gray-700 text-gray-400' : 'border-gray-300 text-gray-500'
-            ]">
-              右键点击这里
-            </div>
-          </template>
-          <ShadcnContextMenuItem @on-click="handleMenuClick('复制')">复制</ShadcnContextMenuItem>
-          <ShadcnContextMenuItem @on-click="handleMenuClick('粘贴')">粘贴</ShadcnContextMenuItem>
-          <ShadcnContextMenuSub label="更多选项">
-            <ShadcnContextMenuItem @on-click="handleMenuClick('选项1')">选项1</ShadcnContextMenuItem>
-            <ShadcnContextMenuItem @on-click="handleMenuClick('选项2')">选项2</ShadcnContextMenuItem>
-          </ShadcnContextMenuSub>
-        </ShadcnContextMenu>
+        <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnCron</h3>
+        <ShadcnCron v-model="cronValue" :dark="isDark"/>
       </div>
     </div>
   </div>
@@ -29,12 +15,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ShadcnContextMenu, ShadcnContextMenuItem, ShadcnContextMenuSub } from "@/ui/contextmenu";
+import { ShadcnCron } from "@/ui/cron";
 
 const isDark = ref(false)
-const contextMenuVisible = ref(false)
-
-const handleMenuClick = (action: string) => {
-  console.log('点击了:', action)
-}
+const cronValue = ref('0 0 12 * * ?')
 </script>

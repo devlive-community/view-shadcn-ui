@@ -12,6 +12,7 @@ export interface TabProps
     position?: keyof typeof ArrangePosition
     direction?: keyof typeof ArrangeDirection
     showScrollButtons?: boolean
+    dark?: boolean
 }
 
 export interface TabItemProps
@@ -20,6 +21,7 @@ export interface TabItemProps
     value: string
     disabled?: boolean
     icon?: string
+    dark?: boolean
 }
 
 export type TabEmits = {

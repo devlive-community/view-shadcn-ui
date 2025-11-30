@@ -1,6 +1,7 @@
 export interface CronProps
 {
     modelValue?: string
+    dark?: boolean
 }
 
 export type CronEmits = {

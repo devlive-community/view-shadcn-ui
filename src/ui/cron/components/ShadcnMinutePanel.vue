@@ -2,58 +2,63 @@
   <div class="mt-4 space-y-4">
     <!-- Every Minute -->
     <div class="flex items-center space-x-2">
-      <ShadcnRadio v-model="type" value="every" name="minute-type">
+      <ShadcnRadio v-model="type" :dark="dark" name="minute-type" value="every">
         {{ t('cron.text.everyMinute') }}
       </ShadcnRadio>
     </div>
 
     <!-- Period -->
     <div class="flex items-center space-x-2 select-none">
-      <ShadcnRadio v-model="type" value="period" name="minute-type">
+      <ShadcnRadio v-model="type" :dark="dark" name="minute-type" value="period">
         {{ t('cron.text.periodFrom') }}
       </ShadcnRadio>
       <div class="flex items-center space-x-2">
         <ShadcnNumber v-model="periodStart"
                       class="w-16"
                       :min="0"
+                      :dark="dark"
                       :max="59"/>
-        <span>-</span>
+        <span :class="dark ? 'text-gray-200' : ''">-</span>
         <ShadcnNumber v-model="periodEnd"
                       class="w-16"
                       :min="0"
+                      :dark="dark"
                       :max="59"/>
-        <span class="text-sm">{{ t('cron.text.minute') }}</span>
+        <span :class="['text-sm', dark ? 'text-gray-200' : '']">{{ t('cron.text.minute') }}</span>
       </div>
     </div>
 
     <!-- Interval -->
     <div class="flex items-center space-x-2 select-none">
-      <ShadcnRadio v-model="type" value="start" name="minute-type">
+      <ShadcnRadio v-model="type" :dark="dark" name="minute-type" value="start">
         {{ t('cron.text.fromStart') }}
       </ShadcnRadio>
       <div class="flex items-center space-x-2">
         <ShadcnNumber v-model="start"
                       class="w-16"
                       :min="0"
+                      :dark="dark"
                       :max="59"/>
-        <span class="text-sm">{{ t('cron.text.minuteStart') }}，</span>
-        <span class="text-sm">{{ t('cron.text.every') }}</span>
+        <span :class="['text-sm', dark ? 'text-gray-200' : '']">{{ t('cron.text.minuteStart') }}，</span>
+        <span :class="['text-sm', dark ? 'text-gray-200' : '']">{{ t('cron.text.every') }}</span>
         <ShadcnNumber v-model="interval"
                       class="w-16"
                       :min="1"
+                      :dark="dark"
                       :max="59"/>
-        <span class="text-sm">{{ t('cron.text.minuteExecute') }}</span>
+        <span :class="['text-sm', dark ? 'text-gray-200' : '']">{{ t('cron.text.minuteExecute') }}</span>
       </div>
     </div>
 
     <!-- Specify -->
     <div class="flex items-center space-x-2">
-      <ShadcnRadio v-model="type" value="specify" name="minute-type">
+      <ShadcnRadio v-model="type" :dark="dark" name="minute-type" value="specify">
         {{ t('cron.text.specify') }}
       </ShadcnRadio>
       <ShadcnSelect v-model="specify"
                     multiple
                     :options="minuteOptions"
+                    :dark="dark"
                     :placeholder="t('cron.placeholder.multiple')"/>
     </div>
   </div>
@@ -75,6 +80,7 @@ interface Props
     week?: string
     year?: string
   }
+  dark?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
