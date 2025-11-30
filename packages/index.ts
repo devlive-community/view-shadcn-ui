@@ -14,7 +14,7 @@ import ShadcnModal from '@/ui/modal'
 import { ShadcnTooltip } from '@/ui/tooltip'
 import { ShadcnCodeEditor } from '@/ui/code-editor'
 import ShadcnRow from '@/ui/row'
-import ShadcnCol from '@/ui/col/ShadcnCol.vue'
+import { ShadcnCol } from '@/ui/col'
 import ShadcnDivider from '@/ui/divider'
 import ShadcnEllipsis from '@/ui/ellipsis'
 import { ShadcnAvatar, ShadcnAvatarGroup } from '@/ui/avatar'
@@ -57,8 +57,7 @@ import ShadcnTimelineItem from '@/ui/timeline/item'
 import ShadcnTrend from '@/ui/trend'
 import { ShadcnException } from '@/ui/exception'
 import ShadcnLink from '@/ui/link'
-import ShadcnCollapse from '@/ui/collapse'
-import ShadcnCollapseItem from '@/ui/collapse/item'
+import { ShadcnCollapse, ShadcnCollapseItem } from '@/ui/collapse'
 import ShadcnTag from '@/ui/tag'
 import ShadcnGlobalFooter from '@/ui/footer/global'
 import ShadcnToolbarFooter from '@/ui/footer/toolbar'
@@ -155,8 +154,7 @@ let components = [
     ShadcnTrend,
     ShadcnException,
     ShadcnLink,
-    ShadcnCollapse,
-    ShadcnCollapseItem,
+    ShadcnCollapse, ShadcnCollapseItem,
     ShadcnTag,
     ShadcnGlobalFooter,
     ShadcnToolbarFooter,
@@ -244,7 +242,7 @@ export { ShadcnIcon } from '@/ui/icon'
 export { default as ShadcnModal } from '@/ui/modal'
 export { ShadcnTooltip } from '@/ui/tooltip'
 export { default as ShadcnRow } from '@/ui/row'
-export { default as ShadcnCol } from '@/ui/col'
+export { ShadcnCol } from '@/ui/col'
 export { default as ShadcnDivider } from '@/ui/divider'
 export { default as ShadcnEllipsis } from '@/ui/ellipsis'
 export { ShadcnAvatar, ShadcnAvatarGroup } from '@/ui/avatar'
@@ -287,8 +285,7 @@ export { default as ShadcnTimelineItem } from '@/ui/timeline/item'
 export { default as ShadcnTrend } from '@/ui/trend'
 export { ShadcnException } from '@/ui/exception'
 export { default as ShadcnLink } from '@/ui/link'
-export { default as ShadcnCollapse } from '@/ui/collapse'
-export { default as ShadcnCollapseItem } from '@/ui/collapse/item'
+export { ShadcnCollapse, ShadcnCollapseItem } from '@/ui/collapse'
 export { default as ShadcnTag } from '@/ui/tag'
 export { default as ShadcnGlobalFooter } from '@/ui/footer/global'
 export { default as ShadcnToolbarFooter } from '@/ui/footer/toolbar'

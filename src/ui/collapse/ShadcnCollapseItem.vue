@@ -1,12 +1,14 @@
 <template>
-  <div class="collapse-item border-b last:border-b-0 border-gray-200">
-    <div :class="['flex justify-between items-center px-4 py-2 cursor-pointer hover:bg-gray-50 bg-gray-50']"
+  <div :class="['collapse-item border-b last:border-b-0', dark ? 'border-gray-600' : 'border-gray-200']">
+    <div :class="['flex justify-between items-center px-4 py-2 cursor-pointer',
+                  dark ? 'bg-gray-800 hover:bg-gray-700' : 'bg-gray-50 hover:bg-gray-50']"
          @click="handleClick">
       <slot name="title">
-        <h3 class="text-sm font-medium">{{ title }}</h3>
+        <h3 :class="['text-sm font-medium', dark ? 'text-gray-200' : '']">{{ title }}</h3>
       </slot>
       <ShadcnIcon icon="ChevronDown"
-                  :class="['h-4 w-4 text-gray-500 transition-transform duration-200',
+                  :class="['h-4 w-4 transition-transform duration-200',
+                      dark ? 'text-gray-400' : 'text-gray-500',
                       { 'transform rotate-180': isExpanded }
                   ]"/>
     </div>
@@ -17,7 +19,7 @@
                 leave-active-class="transition duration-200 ease-out"
                 leave-from-class="transform scale-y-100 opacity-100"
                 leave-to-class="transform scale-y-95 opacity-0">
-      <div v-show="isExpanded" class="px-4 py-2 text-sm text-gray-600">
+      <div v-show="isExpanded" :class="['px-4 py-2 text-sm', dark ? 'text-gray-300' : 'text-gray-600']">
         <slot/>
       </div>
     </Transition>
@@ -38,6 +40,7 @@ const props = defineProps<Props>()
 
 const expandedItems = inject<Ref<string[]>>('expandedItems')
 const toggleItem = inject<(name: string) => void>('toggleItem')
+const dark = inject<Ref<boolean>>('collapseDark', ref(false))
 const parentExists = ref(false)
 
 onMounted(() => {

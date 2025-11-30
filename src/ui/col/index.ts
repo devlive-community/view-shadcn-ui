@@ -1,3 +1,1 @@
-import ShadcnCol from './ShadcnCol.vue'
-
-export default ShadcnCol
+export { default as ShadcnCol } from './ShadcnCol.vue'
