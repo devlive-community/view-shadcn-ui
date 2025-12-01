@@ -5,79 +5,79 @@
          style="overflow-x: auto">
       <div :class="['inline-block', dark ? 'bg-gray-900' : 'bg-white']">
         <ShadcnHeader :column-move="columnMove"
-                :columns="columns"
-                :data="displayData"
-                :row-selection="rowSelection"
-                :selection-state="selectionState"
-                :size="size"
-                :border-config="borderConfig"
-                :dark="dark"
-                @on-sort="handleSortChange"
-                @on-resizable="(column, _width) => emits('on-resizable', column, _width)"
-                @on-row-select="(payload) => emits('on-row-select', payload as any)"
-                @on-column-move="handleColumnMove">
+                      :columns="columns"
+                      :data="displayData"
+                      :row-selection="rowSelection"
+                      :selection-state="selectionState"
+                      :size="size"
+                      :border-config="borderConfig"
+                      :dark="dark"
+                      @on-sort="handleSortChange"
+                      @on-resizable="(column, _width) => emits('on-resizable', column, _width)"
+                      @on-row-select="(payload) => emits('on-row-select', payload as any)"
+                      @on-column-move="handleColumnMove">
           <template v-for="(_, name) in $slots" :key="name" v-slot:[name]="slotProps">
             <slot :name="name" v-bind="slotProps"/>
           </template>
         </ShadcnHeader>
 
         <ShadcnBody :columns="columns"
-              :context-menu="contextMenu"
-              :data="displayData"
-              :loading="loading"
-              :row-selection="rowSelection"
-              :selection-state="selectionState"
-              :size="size"
-              :border-config="borderConfig"
-              :dark="dark"
-              @on-cell-click="(payload) => emits('on-cell-click', payload as any)"
-              @on-row-select="(payload) => emits('on-row-select', payload as any)"
-              @on-cell-edit="(payload) => emits('on-cell-edit', payload as any)"
-              @on-row-edit="(payload) => emits('on-row-edit', payload as any)">
+                    :context-menu="contextMenu"
+                    :data="displayData"
+                    :loading="loading"
+                    :row-selection="rowSelection"
+                    :selection-state="selectionState"
+                    :size="size"
+                    :border-config="borderConfig"
+                    :dark="dark"
+                    @on-cell-click="(payload) => emits('on-cell-click', payload as any)"
+                    @on-row-select="(payload) => emits('on-row-select', payload as any)"
+                    @on-cell-edit="(payload) => emits('on-cell-edit', payload as any)"
+                    @on-row-edit="(payload) => emits('on-row-edit', payload as any)">
 
-        <template v-for="(_, name) in $slots" :key="name" v-slot:[name]="slotProps">
-          <slot :name="name" v-bind="slotProps"/>
-        </template>
+          <template v-for="(_, name) in $slots" :key="name" v-slot:[name]="slotProps">
+            <slot :name="name" v-bind="slotProps"/>
+          </template>
 
-        <template #loading>
-          <slot name="loading">
-            <div class="m-6">
-              <div class="h-6 w-6 animate-spin rounded-full border-2 border-primary border-t-transparent"></div>
-            </div>
-          </slot>
-        </template>
+          <template #loading>
+            <slot name="loading">
+              <div class="m-6">
+                <div class="h-6 w-6 animate-spin rounded-full border-2 border-primary border-t-transparent"></div>
+              </div>
+            </slot>
+          </template>
 
-        <template #empty>
-          <slot name="empty">
-            <ShadcnEmpty class="mt-6">
-              <template #actions>
-                <span></span>
-              </template>
-            </ShadcnEmpty>
-          </slot>
-        </template>
+          <template #empty>
+            <slot name="empty">
+              <ShadcnEmpty :dark="dark" class="mt-6">
+                <template #actions>
+                  <span></span>
+                </template>
+              </ShadcnEmpty>
+            </slot>
+          </template>
 
-        <template #contextMenu="slotProps">
-          <slot :actionsPosition="slotProps.actionsPosition"
-                :position="slotProps.position"
-                :selectedValue="slotProps.selectedValue"
-                :visible="slotProps.visible"
-                name="contextMenu">
-          </slot>
-        </template>
+          <template #contextMenu="slotProps">
+            <slot :actionsPosition="slotProps.actionsPosition"
+                  :position="slotProps.position"
+                  :selectedValue="slotProps.selectedValue"
+                  :visible="slotProps.visible"
+                  name="contextMenu">
+            </slot>
+          </template>
         </ShadcnBody>
       </div>
     </div>
 
     <ShadcnPagination v-if="pagination"
-                :options="pagination.options"
-                :page="currentPage"
-                :size="pageSize"
-                :total="total"
-                :total-pages="totalPages"
-                :dark="dark"
-                @on-page-change="setPage"
-                @on-size-change="setSize">
+                      :options="pagination.options"
+                      :page="currentPage"
+                      :size="pageSize"
+                      :total="total"
+                      :total-pages="totalPages"
+                      :dark="dark"
+                      @on-page-change="setPage"
+                      @on-size-change="setSize">
     </ShadcnPagination>
   </div>
 </template>

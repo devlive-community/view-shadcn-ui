@@ -1,3 +1,1 @@
-import ShadcnHighlight from './ShadcnHighlight.vue'
-
-export default ShadcnHighlight
+export { default as ShadcnHighlight } from './ShadcnHighlight.vue'

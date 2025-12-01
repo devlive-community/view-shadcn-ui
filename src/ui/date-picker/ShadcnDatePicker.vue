@@ -6,6 +6,7 @@
                    :disabled="disabled"
                    :readonly="true"
                    :clearable="clearable"
+                   :dark="dark"
                    @click="toggleCalendar"
                    @on-clear="clearValue">
       </ShadcnInput>
@@ -13,26 +14,29 @@
 
     <!-- Calendar Popup -->
     <div v-if="showCalendar"
-         class="absolute z-20 mt-1 bg-white rounded-lg shadow-lg border border-gray-200 p-4"
-         :class="{'w-64': type === 'date', 'w-auto': type === 'range'}">
+         :class="[
+           'absolute z-20 mt-1 rounded-lg shadow-lg border p-4',
+           dark ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-200',
+           {'w-64': type === 'date', 'w-auto': type === 'range'}
+         ]">
       <div class="flex" :class="{'space-x-4': type === 'range'}">
         <!-- Start/Single Calendar -->
         <div class="w-50">
           <!-- Calendar Header -->
-          <div class="flex justify-between items-center mb-4 text-sm">
-            <button class="p-1 hover:bg-gray-100 rounded-full" @click="previousYear('start')">
+          <div :class="['flex justify-between items-center mb-4 text-sm', dark ? 'text-gray-200' : '']">
+            <button :class="['p-1 rounded-full', dark ? 'hover:bg-gray-700' : 'hover:bg-gray-100']" @click="previousYear('start')">
               <ChevronsLeft class="w-4 h-4"/>
             </button>
-            <button class="p-1 hover:bg-gray-100 rounded-full" @click="previousMonth('start')">
+            <button :class="['p-1 rounded-full', dark ? 'hover:bg-gray-700' : 'hover:bg-gray-100']" @click="previousMonth('start')">
               <ChevronLeft class="w-4 h-4"/>
             </button>
             <div class="flex items-center gap-2">
               <span class="font-medium">{{ currentMonthYear }}</span>
             </div>
-            <button class="p-1 hover:bg-gray-100 rounded-full" @click="nextMonth('start')">
+            <button :class="['p-1 rounded-full', dark ? 'hover:bg-gray-700' : 'hover:bg-gray-100']" @click="nextMonth('start')">
               <ChevronRight class="w-4 h-4"/>
             </button>
-            <button class="p-1 hover:bg-gray-100 rounded-full" @click="nextYear('start')">
+            <button :class="['p-1 rounded-full', dark ? 'hover:bg-gray-700' : 'hover:bg-gray-100']" @click="nextYear('start')">
               <ChevronsRight class="w-4 h-4"/>
             </button>
           </div>
@@ -41,7 +45,7 @@
           <div class="grid grid-cols-7 gap-1 mb-2">
             <span v-for="day in weekDays"
                   :key="day"
-                  class="text-xs text-gray-500">
+                  :class="['text-xs', dark ? 'text-gray-400' : 'text-gray-500']">
               {{ day }}
             </span>
           </div>
@@ -49,16 +53,24 @@
           <!-- Calendar Days -->
           <div class="grid grid-cols-7 gap-1">
             <button v-for="date in calendarDays"
-                    class="w-6 h-6 text-xs text-center rounded-sm relative"
                     :key="date.date"
-                    :class="{
+                    :class="[
+                      'w-6 h-6 text-xs text-center rounded-sm relative',
+                      {
                         'bg-blue-500 text-white hover:bg-blue-500': isSelected(date.date),
-                        'text-gray-400': !date.currentMonth,
-                        'hover:bg-gray-100': !isSelected(date.date),
+                        'text-gray-400': !date.currentMonth && !dark,
+                        'text-gray-600': !date.currentMonth && dark,
+                        'text-gray-900': date.currentMonth && !dark && !isSelected(date.date),
+                        'text-gray-200': date.currentMonth && dark && !isSelected(date.date),
+                        'hover:bg-gray-100': !isSelected(date.date) && !dark,
+                        'hover:bg-gray-700': !isSelected(date.date) && dark,
                         'bg-blue-500': type === 'range' && isInRange(date.date),
-                        'bg-blue-100': type === 'range' && isInHoverRange(date.date) && !isSelected(date.date),
-                        'hover:bg-blue-200': type === 'range' && selectedStartDate && !selectedEndDate
-                    }"
+                        'bg-blue-100': type === 'range' && isInHoverRange(date.date) && !isSelected(date.date) && !dark,
+                        'bg-blue-900/30': type === 'range' && isInHoverRange(date.date) && !isSelected(date.date) && dark,
+                        'hover:bg-blue-200': type === 'range' && selectedStartDate && !selectedEndDate && !dark,
+                        'hover:bg-blue-800': type === 'range' && selectedStartDate && !selectedEndDate && dark
+                      }
+                    ]"
                     @click="selectDate(date.date, 'start')"
                     @mouseenter="type === 'range' && (hoverDate = date.date)"
                     @mouseleave="type === 'range' && (hoverDate = '')">
@@ -72,20 +84,20 @@
 
         <!-- End Calendar (Only for range mode) -->
         <div v-if="type === 'range'" class="w-50">
-          <div class="flex justify-between items-center mb-4 text-sm">
-            <button class="p-1 hover:bg-gray-100 rounded-full" @click="previousYear('end')">
+          <div :class="['flex justify-between items-center mb-4 text-sm', dark ? 'text-gray-200' : '']">
+            <button :class="['p-1 rounded-full', dark ? 'hover:bg-gray-700' : 'hover:bg-gray-100']" @click="previousYear('end')">
               <ChevronsLeft class="w-4 h-4"/>
             </button>
-            <button class="p-1 hover:bg-gray-100 rounded-full" @click="previousMonth('end')">
+            <button :class="['p-1 rounded-full', dark ? 'hover:bg-gray-700' : 'hover:bg-gray-100']" @click="previousMonth('end')">
               <ChevronLeft class="w-4 h-4"/>
             </button>
             <div class="flex items-center gap-2">
               <span class="font-medium">{{ endMonthYear }}</span>
             </div>
-            <button class="p-1 hover:bg-gray-100 rounded-full" @click="nextMonth('end')">
+            <button :class="['p-1 rounded-full', dark ? 'hover:bg-gray-700' : 'hover:bg-gray-100']" @click="nextMonth('end')">
               <ChevronRight class="w-4 h-4"/>
             </button>
-            <button class="p-1 hover:bg-gray-100 rounded-full" @click="nextYear('end')">
+            <button :class="['p-1 rounded-full', dark ? 'hover:bg-gray-700' : 'hover:bg-gray-100']" @click="nextYear('end')">
               <ChevronsRight class="w-4 h-4"/>
             </button>
           </div>
@@ -94,7 +106,7 @@
           <div class="grid grid-cols-7 gap-1 mb-2">
             <span v-for="day in weekDays"
                   :key="day"
-                  class="text-xs text-gray-500">
+                  :class="['text-xs', dark ? 'text-gray-400' : 'text-gray-500']">
               {{ day }}
             </span>
           </div>
@@ -102,16 +114,24 @@
           <!-- End Calendar Days -->
           <div class="grid grid-cols-7 gap-1">
             <button v-for="date in endCalendarDays"
-                    class="w-6 h-6 text-xs text-center rounded-sm relative"
                     :key="date.date"
-                    :class="{
+                    :class="[
+                      'w-6 h-6 text-xs text-center rounded-sm relative',
+                      {
                         'bg-blue-500 text-white hover:bg-blue-500': isSelected(date.date),
-                        'text-gray-400': !date.currentMonth,
-                        'hover:bg-gray-100': !isSelected(date.date),
+                        'text-gray-400': !date.currentMonth && !dark,
+                        'text-gray-600': !date.currentMonth && dark,
+                        'text-gray-900': date.currentMonth && !dark && !isSelected(date.date),
+                        'text-gray-200': date.currentMonth && dark && !isSelected(date.date),
+                        'hover:bg-gray-100': !isSelected(date.date) && !dark,
+                        'hover:bg-gray-700': !isSelected(date.date) && dark,
                         'bg-blue-500': type === 'range' && isInRange(date.date),
-                        'bg-blue-100': type === 'range' && isInHoverRange(date.date) && !isSelected(date.date),
-                        'hover:bg-blue-200': type === 'range' && selectedStartDate && !selectedEndDate
-                    }"
+                        'bg-blue-100': type === 'range' && isInHoverRange(date.date) && !isSelected(date.date) && !dark,
+                        'bg-blue-900/30': type === 'range' && isInHoverRange(date.date) && !isSelected(date.date) && dark,
+                        'hover:bg-blue-200': type === 'range' && selectedStartDate && !selectedEndDate && !dark,
+                        'hover:bg-blue-800': type === 'range' && selectedStartDate && !selectedEndDate && dark
+                      }
+                    ]"
                     @click="selectDate(date.date, 'end')"
                     @mouseenter="type === 'range' && (hoverDate = date.date)"
                     @mouseleave="type === 'range' && (hoverDate = '')">
@@ -126,13 +146,19 @@
 
       <!-- Shortcuts -->
       <div v-if="showShortcuts"
-           class="mt-3 pt-2 border-t border-gray-100"
-           :class="{
-             'grid grid-cols-3 gap-1': type === 'date',
-             'grid grid-cols-5 gap-1 w-50': type === 'range'
-           }">
+           :class="[
+             'mt-3 pt-2 border-t',
+             dark ? 'border-gray-600' : 'border-gray-100',
+             {
+               'grid grid-cols-3 gap-1': type === 'date',
+               'grid grid-cols-5 gap-1 w-50': type === 'range'
+             }
+           ]">
         <button v-for="shortcut in shortcuts"
-                class="text-xs py-1 px-1 rounded-md hover:bg-gray-100"
+                :class="[
+                  'text-xs py-1 px-1 rounded-md',
+                  dark ? 'hover:bg-gray-700 text-gray-300' : 'hover:bg-gray-100'
+                ]"
                 :key="shortcut.label"
                 @click="handleShortcutClick(shortcut.value)">
           {{ shortcut.label }}
@@ -156,7 +182,8 @@ const props = withDefaults(defineProps<DatePickerProps>(), {
   format: 'YYYY-MM-DD',
   clearable: true,
   showShortcuts: true,
-  type: 'date'
+  type: 'date',
+  dark: false
 })
 
 const emit = defineEmits<DatePickerEmits>()

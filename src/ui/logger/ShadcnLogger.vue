@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full font-mono text-sm">
-    <div v-if="toolbar" class="flex items-center gap-2 p-2">
+  <div :class="['w-full font-mono text-sm', dark ? 'text-gray-200' : '']">
+    <div v-if="toolbar" :class="['flex items-center gap-2 p-2', dark ? 'bg-gray-800 border-b border-gray-600' : 'bg-gray-50 border-b border-gray-200']">
       <ShadcnSelect v-model="filterLevel" :dark="dark" class="w-32">
         <template #options>
           <ShadcnSelectOption value="" :label="t('logger.text.allLevel')" :dark="dark"/>
@@ -8,31 +8,31 @@
         </template>
       </ShadcnSelect>
 
-      <ShadcnInput v-model="searchText" class="flex-1" :placeholder="t('logger.placeholder.search')"/>
+      <ShadcnInput v-model="searchText" :dark="dark" :placeholder="t('logger.placeholder.search')" class="flex-1"/>
     </div>
 
-    <div class="overflow-y-auto" :style="{ height: `${calcSize(height)}`, maxHeight: `${calcSize(height)}` }">
+    <div :class="['overflow-y-auto', dark ? 'bg-gray-900' : 'bg-white']" :style="{ height: `${calcSize(height)}`, maxHeight: `${calcSize(height)}` }">
       <div class="min-w-full inline-block">
-        <div v-for="(content, index) in filteredItems" class="whitespace-pre py-1 hover:bg-gray-100 w-full block" :key="index">
+        <div v-for="(content, index) in filteredItems" :key="index" :class="['whitespace-pre py-1 w-full block', dark ? 'hover:bg-gray-800' : 'hover:bg-gray-100']">
           <div class="inline-block min-w-full px-4 space-x-2">
             <slot name="content" :item="content">
               <span v-if="content.timestamp">
-                <ShadcnHighlight :case-sensitive="caseSensitive" :text="content.timestamp" :highlight="searchText"/>
+                <ShadcnHighlight :case-sensitive="caseSensitive" :dark="dark" :highlight="searchText" :text="content.timestamp"/>
               </span>
               <span v-if="content.level" :style="{ color: highlightConfig[content.level] }">
-                <ShadcnHighlight :case-sensitive="caseSensitive" :text="content.level" :highlight="searchText"/>
+                <ShadcnHighlight :case-sensitive="caseSensitive" :dark="dark" :highlight="searchText" :text="content.level"/>
               </span>
-              <span v-if="content.thread" class="text-gray-500">
-                [<ShadcnHighlight :case-sensitive="caseSensitive" :text="content.thread" :highlight="searchText"/>]
+              <span v-if="content.thread" :class="[dark ? 'text-gray-400' : 'text-gray-500']">
+                [<ShadcnHighlight :case-sensitive="caseSensitive" :dark="dark" :highlight="searchText" :text="content.thread"/>]
               </span>
-              <span v-if="content.logger" class="text-gray-700">
-                <ShadcnHighlight :case-sensitive="caseSensitive" :text="content.logger" :highlight="searchText"/>
+              <span v-if="content.logger" :class="[dark ? 'text-gray-300' : 'text-gray-700']">
+                <ShadcnHighlight :case-sensitive="caseSensitive" :dark="dark" :highlight="searchText" :text="content.logger"/>
               </span>
-              <span v-if="content.file" class="text-gray-500">
-                [<ShadcnHighlight :case-sensitive="caseSensitive" :text="content.file" :highlight="searchText"/>]
+              <span v-if="content.file" :class="[dark ? 'text-gray-400' : 'text-gray-500']">
+                [<ShadcnHighlight :case-sensitive="caseSensitive" :dark="dark" :highlight="searchText" :text="content.file"/>]
               </span>
               <span v-if="content.message">
-                <ShadcnHighlight :case-sensitive="caseSensitive" :text="content.message" :highlight="searchText"/>
+                <ShadcnHighlight :case-sensitive="caseSensitive" :dark="dark" :highlight="searchText" :text="content.message"/>
               </span>
             </slot>
           </div>
@@ -49,7 +49,8 @@ import { LoggerProps } from '@/ui/logger/types.ts'
 import { formatMultipleLines } from '@/utils/logger.ts'
 import { calcSize } from '@/utils/common.ts'
 import { ShadcnSelect, ShadcnSelectOption } from '@/ui/select'
-import ShadcnHighlight from '@/ui/highlight'
+import { ShadcnHighlight } from '@/ui/highlight'
+import { ShadcnInput } from "@/ui/input";
 
 const props = withDefaults(defineProps<LoggerProps>(), {
   items: () => [],
@@ -62,7 +63,8 @@ const props = withDefaults(defineProps<LoggerProps>(), {
   height: 200,
   toolbar: false,
   caseSensitive: false,
-  customPatterns: undefined
+  customPatterns: undefined,
+  dark: false
 })
 
 const filterLevel = ref('')

@@ -1,25 +1,30 @@
 <template>
   <div class="flex items-center justify-center space-x-2">
-    <div v-if="showTotal || $slots.showTotal" class="text-sm text-gray-600">
+    <div v-if="showTotal || $slots.showTotal" :class="['text-sm', dark ? 'text-gray-400' : 'text-gray-600']">
       <slot name="showTotal">
         {{ t('pagination.text.total', { total }) }}
       </slot>
     </div>
 
     <button @click="onPrevPage"
-            :class="['px-2 py-1 text-xs h-8 bg-gray-100 rounded',
-                    currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''
+            :class="[
+              'px-2 py-1 text-xs h-8 rounded transition-colors',
+              dark ? 'bg-gray-700 text-gray-200 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200',
+              currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''
             ]"
             :disabled="currentPage === 1">
       {{ prevText }}
     </button>
 
     <template v-for="item in displayPages" :key="item">
-      <span v-if="item === '...'" class="px-2 py-1">...</span>
+      <span v-if="item === '...'" :class="['px-2 py-1', dark ? 'text-gray-400' : 'text-gray-600']">...</span>
       <button v-else
               @click="goToPage(Number(item))"
-              :class="['px-2 py-1 text-xs rounded w-8 h-8 flex items-center justify-center',
-                      item === currentPage ? 'bg-blue-400 text-white cursor-not-allowed' : 'bg-gray-100'
+              :class="[
+                'px-2 py-1 text-xs rounded w-8 h-8 flex items-center justify-center transition-colors',
+                item === currentPage
+                  ? 'bg-blue-500 text-white cursor-not-allowed'
+                  : (dark ? 'bg-gray-700 text-gray-200 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200')
               ]"
               :disabled="item === currentPage">
         {{ item }}
@@ -27,8 +32,10 @@
     </template>
 
     <button @click="onNextPage"
-            :class="['px-2 py-1 text-xs h-8 bg-gray-100 rounded',
-                    currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''
+            :class="[
+              'px-2 py-1 text-xs h-8 rounded transition-colors',
+              dark ? 'bg-gray-700 text-gray-200 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200',
+              currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''
             ]"
             :disabled="currentPage === totalPages">
       {{ nextText }}
@@ -68,6 +75,7 @@ const props = withDefaults(defineProps<{
   showTotal?: boolean
   showSizer?: boolean
   sizerOptions?: (number | string)[]
+  dark?: boolean
 }>(), {
   total: 100,
   pageSize: 10,
@@ -76,7 +84,8 @@ const props = withDefaults(defineProps<{
   nextText: String(t('pagination.text.next')),
   showTotal: false,
   showSizer: false,
-  sizerOptions: () => [10, 20, 50, 100]
+  sizerOptions: () => [10, 20, 50, 100],
+  dark: false
 })
 
 const currentPage = ref(Number(props.modelValue))

@@ -15,11 +15,11 @@
         <!-- Zoom control -->
         <div class="flex items-center space-x-2">
           <div class="p-1 hover:bg-gray-100 cursor-pointer rounded-full" @click="onZoom('out')">
-            <Icon icon="Minus" class="h-4 w-4"/>
+            <ShadcnIcon icon="Minus" class="h-4 w-4"/>
           </div>
           <span class="text-sm">{{ Math.round(scale * 100) }}%</span>
           <div class="p-1 hover:bg-gray-100 cursor-pointer rounded-full" @click="onZoom('in')">
-            <Icon icon="Plus" class="h-4 w-4"/>
+            <ShadcnIcon icon="Plus" class="h-4 w-4"/>
           </div>
         </div>
       </div>
@@ -177,7 +177,7 @@
                class="absolute -top-6 -right-4 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center cursor-pointer hover:bg-red-600 shadow-sm z-10"
                @mousedown.stop
                @click.stop="removeComponent(item)">
-            <Icon icon="X" class="text-white" size="15"/>
+            <ShadcnIcon icon="X" class="text-white" size="15"/>
           </div>
 
           <!-- Resize handles - only show for selected component -->
@@ -226,6 +226,9 @@ import { t } from '@/utils/locale'
 import { calcSize } from '@/utils/common'
 import { ShadcnDataBuilderCanvasEmits, ShadcnDataBuilderCanvasProps, ShadcnDataBuilderPanelChildProps } from './types'
 import ShadcnDataBuilderRenderer from './ShadcnDataBuilderRenderer.vue'
+import { ShadcnNumber } from "@/ui/number";
+import { ShadcnIcon } from "@/ui/icon";
+import { ShadcnCheckbox } from "@/ui/checkbox";
 
 const emit = defineEmits<ShadcnDataBuilderCanvasEmits>()
 const props = withDefaults(defineProps<ShadcnDataBuilderCanvasProps>(), {
@@ -293,9 +296,9 @@ const selectedComponent = computed(() => {
 const canvasStyle = computed(() => {
   const rulerOffset = showRuler.value ? 20 : 0
   return {
-    width: `${ canvasSize.value.width + rulerOffset }px`,  // Add ruler width
-    height: `${ canvasSize.value.height + rulerOffset }px`, // Add a ruler height
-    transform: `scale(${ scale.value })`,
+    width: `${canvasSize.value.width + rulerOffset}px`,  // Add ruler width
+    height: `${canvasSize.value.height + rulerOffset}px`, // Add a ruler height
+    transform: `scale(${scale.value})`,
     transformOrigin: '0 0'
   }
 })
@@ -306,7 +309,7 @@ const canvasBackgroundStyle = computed(() => {
   const { backgroundColor, backgroundImage, opacity } = props.canvasStyle || {}
   return {
     backgroundColor: backgroundColor || '#ffffff',
-    backgroundImage: backgroundImage ? `url(${ backgroundImage })` : 'none',
+    backgroundImage: backgroundImage ? `url(${backgroundImage})` : 'none',
     opacity: opacity || 1
   } as any
 })
@@ -317,13 +320,13 @@ const gridStyle = computed(() => {
   const rulerOffset = showRuler.value ? 20 : 0
   return {
     display: showGrid.value ? 'block' : 'none',
-    backgroundSize: `${ gridSize.value }px ${ gridSize.value }px`,
+    backgroundSize: `${gridSize.value}px ${gridSize.value}px`,
     backgroundImage: 'linear-gradient(#f0f0f0 1px, transparent 1px), linear-gradient(90deg, #f0f0f0 1px, transparent 1px)',
     backgroundPosition: '0 0',
-    left: `${ rulerOffset }px`,
-    top: `${ rulerOffset }px`,
-    width: `${ canvasSize.value.width }px`,
-    height: `${ canvasSize.value.height }px`,
+    left: `${rulerOffset}px`,
+    top: `${rulerOffset}px`,
+    width: `${canvasSize.value.width}px`,
+    height: `${canvasSize.value.height}px`,
     position: 'absolute' as const
   }
 })
@@ -349,8 +352,8 @@ watch(() => props.gridSize, (newSize) => {
 const getComponentStyle = (component) => {
   const rulerOffset = showRuler.value ? 20 : 0
   const baseStyle = {
-    left: `${ rulerOffset + component.x }px`,
-    top: `${ rulerOffset + component.y }px`,
+    left: `${rulerOffset + component.x}px`,
+    top: `${rulerOffset + component.y}px`,
     width: calcSize(component.width),
     height: calcSize(component.height),
     zIndex: component.zIndex || 1
@@ -619,7 +622,7 @@ const onCanvasClick = (e: MouseEvent) => {
   // Check if the clicked target is a component
   const target = e.target as HTMLElement
   const isComponent = components.value.some(component => {
-    const componentElement = target.closest(`[data-component-id="${ component.id }"]`)
+    const componentElement = target.closest(`[data-component-id="${component.id}"]`)
     return !!componentElement
   })
 

@@ -1,3 +1,1 @@
-import ShadcnDrawer from './ShadcnDrawer.vue'
-
-export default ShadcnDrawer
+export { default as ShadcnDrawer } from './ShadcnDrawer.vue'

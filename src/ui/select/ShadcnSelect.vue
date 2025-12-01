@@ -47,7 +47,7 @@
 
       <div :class="['flex items-center ml-1 flex-shrink-0']">
         <svg class="w-4 h-4 transition-transform duration-200"
-             :class="{ 'rotate-180': isExpanded }"
+             :class="[ isExpanded ? 'rotate-180' : '', dark ? 'text-gray-200' : 'text-gray-600' ]"
              fill="currentColor"
              viewBox="0 0 20 20"
              xmlns="http://www.w3.org/2000/svg">

@@ -1,3 +1,1 @@
-import ShadcnPagination from './ShadcnPagination.vue'
-
-export default ShadcnPagination
+export { default as ShadcnPagination } from './ShadcnPagination.vue'

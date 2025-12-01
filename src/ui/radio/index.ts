@@ -1,3 +1,2 @@
-import ShadcnRadio from './ShadcnRadio.vue'
-
-export default ShadcnRadio
+export { default as ShadcnRadio } from './ShadcnRadio.vue'
+export { default as ShadcnRadioGroup } from './ShadcnRadioGroup.vue'
