@@ -9,7 +9,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { defineProps } from 'vue'
 import { ScrollbarProps } from '@/ui/scrollbar/types.ts'
 import { calcSize } from '@/utils/common.ts'

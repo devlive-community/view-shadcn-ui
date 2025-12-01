@@ -1,3 +1,1 @@
-import ShadcnTag from './ShadcnTag.vue'
-
-export default ShadcnTag
+export { default as ShadcnTag } from './ShadcnTag.vue'

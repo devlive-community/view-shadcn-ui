@@ -1,6 +1,7 @@
 <template>
-  <div :class="cn('relative w-full bg-gray-200 rounded-lg',
-                  size && Size[size])">
+  <div :class="cn('relative w-full rounded-lg',
+                  size && Size[size],
+                  dark ? 'bg-gray-700' : 'bg-gray-200')">
     <div :class="cn('h-full rounded-lg transition-all',
                     status && Status[status])"
          :style="{ width: localValue + '%' }">
@@ -34,9 +35,11 @@ const props = withDefaults(defineProps<{
   status?: keyof typeof Status
   size?: keyof typeof Size
   showLabel?: boolean
+  dark?: boolean
 }>(), {
   status: 'info',
-  size: 'default'
+  size: 'default',
+  dark: false
 })
 
 const applyValue = (value: number) => {

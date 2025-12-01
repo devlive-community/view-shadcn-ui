@@ -38,6 +38,12 @@ export interface IPInputProps
      * 输入框分隔符
      */
     separator?: string
+
+    /**
+     * Dark mode
+     * 暗黑模式
+     */
+    dark?: boolean
 }
 
 export type IPInputEmits = {

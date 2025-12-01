@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import { computed, defineEmits, defineProps, provide, reactive, watch } from 'vue'
-import ShadcnSpace from '@/ui/space'
+import { ShadcnSpace } from '@/ui/space'
 
 const props = withDefaults(defineProps<{
   modelValue?: any

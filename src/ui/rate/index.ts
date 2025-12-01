@@ -1,3 +1,1 @@
-import ShadcnRate from './ShadcnRate.vue'
-
-export default ShadcnRate
+export { default as ShadcnRate } from './ShadcnRate.vue'

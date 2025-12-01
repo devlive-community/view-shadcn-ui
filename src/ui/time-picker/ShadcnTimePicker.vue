@@ -4,6 +4,7 @@
                  :model-value="displayValue"
                  :placeholder="placeholder"
                  :disabled="disabled"
+                 :dark="dark"
                  @click="togglePopover"/>
 
     <div class="absolute right-2 top-0 h-full flex items-center gap-2 text-gray-400">
@@ -11,17 +12,20 @@
            class="flex items-center cursor-pointer hover:text-muted-foreground"
            @click="onClear">
         <slot name="clear">
-          <Icon icon="CircleX" size="18"/>
+          <ShadcnIcon :dark="dark" icon="CircleX" size="18"/>
         </slot>
       </div>
 
       <slot name="icon">
-        <Icon icon="Clock" size="18"/>
+        <ShadcnIcon :dark="dark" icon="Clock" size="18"/>
       </slot>
     </div>
 
     <div v-if="isOpen"
-         class="absolute mt-1 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 p-2 z-10 space-y-2 w-fit">
+         :class="[
+           'absolute mt-1 rounded-md shadow-lg ring-1 p-2 z-10 space-y-2 w-fit',
+           dark ? 'bg-gray-800 ring-gray-700' : 'bg-white ring-black ring-opacity-5'
+         ]">
       <div class="flex justify-between items-center gap-3">
         <div class="flex space-x-2">
           <ShadcnNumber v-model="hoursNumber"
@@ -30,25 +34,28 @@
                         :max="is12Hours ? 12 : 23"
                         :formatter="zeroPadFormatter"
                         :parser="parseNumber"
+                        :dark="dark"
                         @focus="isOpen = true"
                         @on-change="onTimeChange"/>
-          <span class="text-xl select-none">:</span>
+          <span :class="['text-xl select-none', dark ? 'text-gray-300' : '']">:</span>
           <ShadcnNumber v-model="minutesNumber"
                         class="w-14"
                         :min="0"
                         :max="59"
                         :formatter="zeroPadFormatter"
                         :parser="parseNumber"
+                        :dark="dark"
                         @focus="isOpen = true"
                         @on-change="onTimeChange"/>
           <template v-if="hasSeconds">
-            <span class="text-xl select-none">:</span>
+            <span :class="['text-xl select-none', dark ? 'text-gray-300' : '']">:</span>
             <ShadcnNumber v-model="secondsNumber"
                           class="w-14"
                           :max="59"
                           :min="0"
                           :formatter="zeroPadFormatter"
                           :parser="parseNumber"
+                          :dark="dark"
                           @focus="isOpen = true"
                           @on-change="onTimeChange"/>
           </template>
@@ -58,6 +65,7 @@
           <ShadcnToggleGroup v-model="period"
                              class="space-x-1"
                              type="single"
+                             :dark="dark"
                              @on-change="handlePeriodChange">
             <ShadcnToggle value="AM">
               {{ t('timePicker.text.am') }}
@@ -72,7 +80,10 @@
       <div v-if="quickTimes?.length" class="grid grid-cols-3 gap-2 mt-2">
         <button v-for="time in quickTimes"
                 :key="time"
-                class="px-2 py-1 text-sm rounded-md hover:bg-gray-100 select-none active:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                :class="[
+                  'px-2 py-1 text-sm rounded-md select-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary',
+                  dark ? 'hover:bg-gray-700 active:bg-gray-600' : 'hover:bg-gray-100 active:bg-gray-200'
+                ]"
                 @click="selectQuickTime(time)">
           {{ time }}
         </button>
@@ -85,6 +96,10 @@
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { TimePickerEmits, TimePickerProps, TimePickerSlots } from './types'
 import { t } from '@/utils/locale'
+import { ShadcnIcon } from "@/ui/icon";
+import { ShadcnInput } from "@/ui/input";
+import { ShadcnNumber } from "@/ui/number";
+import { ShadcnToggle, ShadcnToggleGroup } from "@/ui/toggle";
 
 defineSlots<TimePickerSlots>()
 
@@ -93,7 +108,8 @@ const props = withDefaults(defineProps<TimePickerProps>(), {
   placeholder: t('timePicker.placeholder.time'),
   disabled: false,
   clearable: true,
-  format: 'HH:mm'
+  format: 'HH:mm',
+  dark: false
 })
 
 const emit = defineEmits<TimePickerEmits>()
@@ -127,7 +143,7 @@ const displayValue = computed(() => {
   const hour24 = parseInt(hours, 10)
   const hour12 = hour24 % 12 || 12
 
-  return `${ padNumberToString(hour12) }:${ rest.join(':') } ${ periodPart }`
+  return `${padNumberToString(hour12)}:${rest.join(':')} ${periodPart}`
 })
 
 watch(() => props.modelValue, (newValue) => {
@@ -192,15 +208,15 @@ const onTimeChange = () => {
 
   const h = padNumberToString(hours)
   const m = padNumberToString(minutesNumber.value)
-  let timeString = `${ h }:${ m }`
+  let timeString = `${h}:${m}`
 
   if (hasSeconds.value) {
     const s = padNumberToString(secondsNumber.value)
-    timeString = `${ timeString }:${ s }`
+    timeString = `${timeString}:${s}`
   }
 
   if (is12Hours.value) {
-    timeString = `${ timeString } ${ period.value }`
+    timeString = `${timeString} ${period.value}`
   }
 
   emit('update:modelValue', timeString)

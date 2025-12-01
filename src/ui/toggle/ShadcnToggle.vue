@@ -3,9 +3,9 @@
           :data-state="isSelected ? 'checked' : 'unchecked'"
           :disabled="isDisabled"
           :class="[
-              'inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+              'inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
               'px-2 py-1 w-fit',
-              isSelected && 'bg-accent text-accent-foreground',
+              finalDark ? (isSelected ? 'bg-gray-600 text-gray-100' : 'text-gray-200 hover:bg-gray-700 hover:text-gray-200') : (isSelected ? 'bg-accent text-accent-foreground' : 'hover:bg-muted hover:text-muted-foreground'),
               {
                 'cursor-pointer': !isDisabled,
                 'cursor-not-allowed opacity-50': isDisabled
@@ -24,7 +24,8 @@ import { WrapperSize } from '@/ui/common/size.ts'
 
 const props = withDefaults(defineProps<ToggleProps>(), {
   disabled: false,
-  size: 'default'
+  size: 'default',
+  dark: false
 })
 const emit = defineEmits<ToggleEmits>()
 
@@ -32,6 +33,7 @@ const group = inject<ToggleGroupContext | null>('toggleGroup', null)
 
 const finalSize = computed(() => group?.size.value ?? props.size)
 const isDisabled = computed(() => group?.disabled.value ?? props.disabled)
+const finalDark = computed(() => group?.dark.value ?? props.dark)
 
 const isSelected = computed(() => {
   if (group) {

@@ -1,3 +1,1 @@
-import ShadcnProgress from './ShadcnProgress.vue'
-
-export default ShadcnProgress
+export { default as ShadcnProgress } from './ShadcnProgress.vue'

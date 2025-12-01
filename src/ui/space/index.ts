@@ -1,3 +1,1 @@
-import ShadcnSpace from './ShadcnSpace.vue'
-
-export default ShadcnSpace
+export { default as ShadcnSpace } from './ShadcnSpace.vue'

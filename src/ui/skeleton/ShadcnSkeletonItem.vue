@@ -1,12 +1,15 @@
 <template>
   <div class="relative">
     <div :class="[animation ? 'animate-pulse' : '', skeletonClass]">
-      <div class="bg-gray-200 flex justify-center items-center"
-           :class="skeletonShapeClass"
+      <div :class="[
+             'flex justify-center items-center',
+             dark ? 'bg-gray-700' : 'bg-gray-200',
+             skeletonShapeClass
+           ]"
            :style="{ width }">
         <template v-if="props.type === 'image'">
           <svg xmlns="http://www.w3.org/2000/svg" width="50%" height="50%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-               stroke-linejoin="round" class="text-gray-400">
+               :class="dark ? 'text-gray-500' : 'text-gray-400'" stroke-linejoin="round">
             <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
             <circle cx="9" cy="9" r="2"/>
             <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
@@ -25,7 +28,8 @@ import { SkeletonItemProps } from '@/ui/skeleton/types.ts'
 const props = withDefaults(defineProps<SkeletonItemProps>(), {
   animation: false,
   type: 'rect',
-  size: 'default'
+  size: 'default',
+  dark: false
 })
 
 const skeletonShapeClass = computed(() => {
