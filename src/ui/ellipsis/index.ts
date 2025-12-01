@@ -1,3 +1,1 @@
-import ShadcnEllipsis from './ShadcnEllipsis.vue'
-
-export default ShadcnEllipsis
+export { default as ShadcnEllipsis } from './ShadcnEllipsis.vue'

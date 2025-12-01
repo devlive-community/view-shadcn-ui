@@ -1,3 +1,1 @@
-import ShadcnSwitch from './ShadcnSwitch.vue'
-
-export default ShadcnSwitch
+export { default as ShadcnSwitch } from './ShadcnSwitch.vue'

@@ -9,6 +9,7 @@ export interface ModalProps
     cancelText?: string
     closable?: boolean
     maskClosable?: boolean
+    dark?: boolean
 }
 
 export type ModalEmits = {

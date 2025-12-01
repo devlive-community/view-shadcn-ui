@@ -3,7 +3,8 @@
        :class="[
            Size[finalSize],
            [HoverType[type]],
-           { 'cursor-not-allowed opacity-50 bg-gray-100': disabled }
+           dark ? 'border-gray-600 bg-gray-800' : 'border-gray-300',
+           { 'cursor-not-allowed opacity-50': disabled, 'bg-gray-100': disabled && !dark, 'bg-gray-700': disabled && dark }
        ]">
     <div class="flex gap-2 w-full overflow-x-auto py-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
          ref="containerRef">
@@ -11,8 +12,10 @@
            :class="[
              'flex items-center gap-1 px-1 py-0.5 text-sm rounded-md whitespace-nowrap transition-colors duration-300',
              {
-               'bg-primary/10 text-primary': !isHighlighted(tag),
-               'bg-red-100 text-red-600 animate-pulse': isHighlighted(tag)
+               'bg-primary/10 text-primary': !isHighlighted(tag) && !dark,
+               'bg-gray-600/50 text-gray-300': !isHighlighted(tag) && dark,
+               'bg-red-100 text-red-600 animate-pulse': isHighlighted(tag) && !dark,
+               'bg-red-900/50 text-red-400 animate-pulse': isHighlighted(tag) && dark
              }
            ]"
            :key="tag">
@@ -21,8 +24,10 @@
                 :class="[
                   'hover:text-primary/80 focus:outline-none',
                   {
-                    'text-primary': !isHighlighted(tag),
-                    'text-red-600': isHighlighted(tag)
+                    'text-primary': !isHighlighted(tag) && !dark,
+                    'text-gray-300': !isHighlighted(tag) && dark,
+                    'text-red-600': isHighlighted(tag) && !dark,
+                    'text-red-400': isHighlighted(tag) && dark
                   }
                 ]"
                 :disabled="disabled"
@@ -44,8 +49,11 @@
 
       <input v-model="inputValue"
              ref="inputRef"
-             class="flex-1 min-w-[100px] bg-transparent border-none focus:outline-none text-sm"
-             :class="{ 'cursor-not-allowed opacity-50 bg-gray-100': disabled }"
+             :class="[
+               'flex-1 min-w-[100px] bg-transparent border-none focus:outline-none text-sm',
+               dark ? 'text-gray-200 placeholder:text-gray-500' : 'text-gray-900 placeholder:text-gray-400',
+               { 'cursor-not-allowed opacity-50': disabled, 'bg-gray-100': disabled && !dark, 'bg-gray-700': disabled && dark }
+             ]"
              type="text"
              :placeholder="modelValue.length === 0 ? placeholder : ''"
              :disabled="disabled || modelValue.length >= max"
@@ -73,7 +81,8 @@ const props = withDefaults(defineProps<InputTagProps>(), {
   disabled: false,
   size: 'default',
   type: 'primary',
-  max: Infinity
+  max: Infinity,
+  dark: false
 })
 
 const finalSize = computed(() => props.size)
@@ -82,7 +91,7 @@ const inputRef = ref<HTMLElement | null>(null)
 const inputValue = ref('')
 const highlightedTag = ref<string | null>(null)
 
-const formItemContext = props.name ? inject<FormItemContext | null>(`form-item-${ props.name }`) : null
+const formItemContext = props.name ? inject<FormItemContext | null>(`form-item-${props.name}`) : null
 
 // 判断标签是否需要高亮显示
 // Check if the tag needs to be highlighted
