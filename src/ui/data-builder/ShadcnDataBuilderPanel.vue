@@ -1,10 +1,10 @@
 <template>
-  <div class="bg-white border-r border-gray-200" :style="{ width: calcSize(width) }">
+  <div :class="['border-r', dark ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-200']" :style="{ width: calcSize(width) }">
     <div v-for="item in items" class="text-lg font-medium mb-4">
-      <ShadcnCard class="rounded-none" :border="false" :title="item.group">
+      <ShadcnCard :border="false" :dark="dark" :title="item.group" class="rounded-none">
         <div class="space-y-2 px-5 py-2">
           <div v-for="value in item.children"
-               class="p-3 bg-gray-50 border border-gray-200 rounded cursor-move text-center hover:bg-gray-100 transition-colors"
+               :class="['p-3 border rounded cursor-move text-center transition-colors', dark ? 'bg-gray-700 border-gray-500 hover:bg-gray-600 text-white' : 'bg-gray-50 border-gray-200 hover:bg-gray-100']"
                draggable="true"
                :key="value.type"
                @dragstart="onDragStart($event, value)">
@@ -21,6 +21,7 @@
 <script setup lang="ts">
 import { ShadcnDataBuilderPanelItemProps, ShadcnDataBuilderPanelProps } from './types'
 import { calcSize } from '@/utils/common.ts'
+import { ShadcnCard } from "@/ui/card";
 
 declare global
 {
@@ -32,7 +33,8 @@ declare global
 
 withDefaults(defineProps<ShadcnDataBuilderPanelProps>(), {
   width: 200,
-  items: () => [] as ShadcnDataBuilderPanelItemProps[]
+  items: () => [] as ShadcnDataBuilderPanelItemProps[],
+  dark: false
 })
 
 const onDragStart = (e, component) => {

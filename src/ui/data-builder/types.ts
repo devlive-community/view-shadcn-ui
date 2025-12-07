@@ -19,6 +19,7 @@ export interface ShadcnDataBuilderPanelProps
 {
     width?: number | string
     items: Array<ShadcnDataBuilderPanelItemProps>
+    dark?: boolean
 }
 
 export interface ShadcnDataBuilderPanelItemProps
@@ -54,6 +55,7 @@ export interface ShadcnDataBuilderBaseProps
     resize?: boolean
     canvasStyle?: ShadcnDataBuilderCanvasStyle
     showGuidelines?: boolean
+    dark?: boolean
 }
 
 export interface ShadcnDataBuilderCanvasProps
@@ -79,6 +81,7 @@ export interface ShadcnDataBuilderConfigureProps
     canvasStyle: ShadcnDataBuilderCanvasStyle
     gridSize: number
     snapToGrid?: boolean
+    dark?: boolean
 }
 
 export interface ShadcnDataBuilderViewProps
@@ -87,6 +90,7 @@ export interface ShadcnDataBuilderViewProps
     height?: number
     canvasStyle: ShadcnDataBuilderCanvasStyle
     items: Array<ShadcnDataBuilderPanelChildProps>
+    dark?: boolean
 }
 
 // 画布样式

@@ -1,12 +1,12 @@
 <template>
-  <div class="relative bg-white shadow-md" :style="containerStyle">
+  <div :class="['relative shadow-md', dark ? 'bg-gray-800' : 'bg-white']" :style="containerStyle">
     <!-- Static components -->
     <div v-for="item in items"
-         class="absolute bg-white border-2 border-gray-200 flex items-center justify-center"
+         :class="['absolute border-2 flex items-center justify-center', dark ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-200']"
          :key="item.id"
          :style="getComponentStyle(item)">
       <slot :name="item.type" :component="item" :configure="item.configure">
-        <ShadcnDataBuilderRenderer :type="item.type" :configure="item.configure"/>
+        <ShadcnDataBuilderRenderer :configure="item.configure" :dark="dark" :type="item.type"/>
       </slot>
     </div>
   </div>
@@ -22,7 +22,8 @@ const props = withDefaults(defineProps<ShadcnDataBuilderViewProps>(), {
   width: 1920,
   height: 1080,
   items: () => [],
-  canvasStyle: () => ({})
+  canvasStyle: () => ({}),
+  dark: false
 })
 
 const containerStyle = computed(() => {

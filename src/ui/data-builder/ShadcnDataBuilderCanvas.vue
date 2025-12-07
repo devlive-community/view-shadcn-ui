@@ -1,25 +1,26 @@
 <template>
   <div class="flex-1 relative flex flex-col">
     <!-- 工具栏 -->
-    <div v-if="showToolbar" class="h-12 border-b border-gray-200 bg-white px-4 flex items-center justify-between shrink-0 select-none">
+    <div v-if="showToolbar"
+         :class="['h-12 border-b px-4 flex items-center justify-between shrink-0 select-none', dark ? 'border-gray-600 bg-gray-800' : 'border-gray-200 bg-white']">
       <div class="flex items-center space-x-4">
         <!-- 画布尺寸调整 -->
         <!-- Canvas size adjustment -->
         <div class="flex items-center space-x-2">
-          <ShadcnNumber v-model="canvasSize.width" class="w-32" :placeholder="t('dataBuilder.placeholder.width')"/>
-          <span class="text-gray-400">x</span>
-          <ShadcnNumber v-model="canvasSize.height" class="w-32" :placeholder="t('dataBuilder.placeholder.height')"/>
+          <ShadcnNumber v-model="canvasSize.width" :dark="dark" :placeholder="t('dataBuilder.placeholder.width')" class="w-32"/>
+          <span :class="dark ? 'text-gray-500' : 'text-gray-400'">x</span>
+          <ShadcnNumber v-model="canvasSize.height" :dark="dark" :placeholder="t('dataBuilder.placeholder.height')" class="w-32"/>
         </div>
 
         <!-- 缩放控制 -->
         <!-- Zoom control -->
         <div class="flex items-center space-x-2">
-          <div class="p-1 hover:bg-gray-100 cursor-pointer rounded-full" @click="onZoom('out')">
-            <ShadcnIcon icon="Minus" class="h-4 w-4"/>
+          <div :class="['p-1 cursor-pointer rounded-full', dark ? 'hover:bg-gray-700' : 'hover:bg-gray-100']" @click="onZoom('out')">
+            <ShadcnIcon :dark="dark" class="h-4 w-4" icon="Minus"/>
           </div>
-          <span class="text-sm">{{ Math.round(scale * 100) }}%</span>
-          <div class="p-1 hover:bg-gray-100 cursor-pointer rounded-full" @click="onZoom('in')">
-            <ShadcnIcon icon="Plus" class="h-4 w-4"/>
+          <span :class="['text-sm', dark ? 'text-white' : '']">{{ Math.round(scale * 100) }}%</span>
+          <div :class="['p-1 cursor-pointer rounded-full', dark ? 'hover:bg-gray-700' : 'hover:bg-gray-100']" @click="onZoom('in')">
+            <ShadcnIcon :dark="dark" class="h-4 w-4" icon="Plus"/>
           </div>
         </div>
       </div>
@@ -27,31 +28,30 @@
       <div class="flex items-center space-x-4">
         <!-- 网格控制 -->
         <!-- Grid control -->
-        <ShadcnCheckbox v-model="showGrid" :value="true">{{ t('dataBuilder.text.showGrid') }}</ShadcnCheckbox>
-        <ShadcnCheckbox v-model="snapToGrid" :value="true">{{ t('dataBuilder.text.snapToGrid') }}</ShadcnCheckbox>
+        <ShadcnCheckbox v-model="showGrid" :dark="dark" :value="true">{{ t('dataBuilder.text.showGrid') }}</ShadcnCheckbox>
+        <ShadcnCheckbox v-model="snapToGrid" :dark="dark" :value="true">{{ t('dataBuilder.text.snapToGrid') }}</ShadcnCheckbox>
 
         <!-- 组件控制 -->
         <!-- Component control -->
-        <ShadcnCheckbox v-model="showRuler" :value="true">{{ t('dataBuilder.text.showRuler') }}</ShadcnCheckbox>
-        <ShadcnCheckbox v-model="resize" :value="true">{{ t('dataBuilder.text.dragResize') }}</ShadcnCheckbox>
+        <ShadcnCheckbox v-model="showRuler" :dark="dark" :value="true">{{ t('dataBuilder.text.showRuler') }}</ShadcnCheckbox>
+        <ShadcnCheckbox v-model="resize" :dark="dark" :value="true">{{ t('dataBuilder.text.dragResize') }}</ShadcnCheckbox>
 
         <!-- 辅助线控制 -->
         <!-- Helper line control -->
-        <ShadcnCheckbox v-model="showGuidelines" :value="true">{{ t('dataBuilder.text.showGuidelines') }}</ShadcnCheckbox>
+        <ShadcnCheckbox v-model="showGuidelines" :dark="dark" :value="true">{{ t('dataBuilder.text.showGuidelines') }}</ShadcnCheckbox>
       </div>
     </div>
 
     <!-- 画布容器 -->
     <!-- Canvas container -->
     <div ref="containerRef"
-         class="flex-1 overflow-auto bg-gray-50 relative"
+         :class="['flex-1 overflow-auto relative', dark ? 'bg-gray-900' : 'bg-gray-50']"
          @wheel.ctrl.prevent="onWheel">
       <!-- 画布区域 -->
       <!-- Canvas area -->
       <div ref="canvasRef"
-           class="absolute bg-white shadow-md"
+           :class="['absolute shadow-md', dark ? 'bg-gray-800' : 'bg-white', showGrid && (dark ? 'border border-gray-600' : 'border border-gray-200')]"
            :style="[canvasStyle, canvasBackgroundStyle]"
-           :class="{'border border-gray-200': showGrid}"
            @dragover.prevent
            @drop="onDrop"
            @click="onCanvasClick">
@@ -64,20 +64,20 @@
         <div v-if="showRuler" class="absolute left-0 ml-0.5 top-0 w-full flex sticky z-50">
           <!-- 左上角方块 -->
           <!-- Corner square -->
-          <div class="w-5 h-5 bg-white border-gray-200 z-10 sticky left-0 top-0"/>
+          <div :class="['w-5 h-5 z-10 sticky left-0 top-0', dark ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-200']"/>
           <!-- 水平标尺刻度 -->
           <!-- Horizontal ruler scale -->
-          <div class="h-5 bg-white border-b border-gray-200 flex-1 relative sticky top-0 z-10">
+          <div :class="['h-5 border-b flex-1 relative sticky top-0 z-10', dark ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-200']">
             <div v-for="i in Math.ceil(canvasSize.width / 100) + (canvasSize.width % 100 === 0 ? 1 : 0)"
                  class="absolute h-full"
                  :key="i"
                  :style="{ left: `${(i-1) * 100}px` }">
               <div class="relative h-full">
-                <span class="absolute text-xs text-gray-400 bottom-0.5"
-                      :class="[i === Math.ceil(canvasSize.width / 100) + (canvasSize.width % 100 === 0 ? 1 : 0) ? 'right-1 translate-x-0' : 'left-1/2 -translate-x-1/2']">
+                <span
+                    :class="['absolute text-xs bottom-0.5', dark ? 'text-gray-400' : 'text-gray-400', i === Math.ceil(canvasSize.width / 100) + (canvasSize.width % 100 === 0 ? 1 : 0) ? 'right-1 translate-x-0' : 'left-1/2 -translate-x-1/2']">
                   {{ (i - 1) * 100 }}
                 </span>
-                <div class="absolute bottom-0 w-px h-2 bg-gray-300 right-0.5"/>
+                <div :class="['absolute bottom-0 w-px h-2 right-0.5', dark ? 'bg-gray-500' : 'bg-gray-300']"/>
               </div>
             </div>
           </div>
@@ -85,18 +85,18 @@
         <!-- 垂直标尺 -->
         <!-- Vertical ruler -->
         <div v-if="showRuler"
-             class="absolute left-0 top-5 w-5 bg-white border-r border-gray-200 sticky z-50"
+             :class="['absolute left-0 top-5 w-5 border-r sticky z-50', dark ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-200']"
              :style="{ height: calcSize(canvasSize.height) }">
           <div v-for="i in Math.ceil(canvasSize.height / 100) + (canvasSize.height % 100 === 0 ? 1 : 0)"
                class="absolute w-full"
                :key="i"
                :style="{ top: `${(i-1) * 100}px` }">
             <div class="relative w-full">
-              <div class="absolute text-xs text-gray-400 left-0.5 transform"
-                   :class="[i === Math.ceil(canvasSize.height / 100) + (canvasSize.height % 100 === 0 ? 1 : 0) ? 'bottom-0 translate-y-0' : 'top-1/2 -translate-y-1/2']">
+              <div
+                  :class="['absolute text-xs left-0.5 transform', dark ? 'text-gray-400' : 'text-gray-400', i === Math.ceil(canvasSize.height / 100) + (canvasSize.height % 100 === 0 ? 1 : 0) ? 'bottom-0 translate-y-0' : 'top-1/2 -translate-y-1/2']">
                 <span style="writing-mode: vertical-rl; text-orientation: upright;">{{ (i - 1) * 100 }}</span>
               </div>
-              <div v-if="i !== 1" class="absolute right-0 top-1/2 transform -translate-y-1/2 h-px w-2 bg-gray-300"></div>
+              <div v-if="i !== 1" :class="['absolute right-0 top-1/2 transform -translate-y-1/2 h-px w-2', dark ? 'bg-gray-500' : 'bg-gray-300']"></div>
             </div>
           </div>
         </div>
@@ -107,44 +107,44 @@
           <!-- 垂直辅助线 -->
           <!-- Vertical reference line -->
           <div v-if="dragTarget"
-               class="absolute top-0 w-px bg-blue-500 pointer-events-none"
+               :class="['absolute top-0 w-px pointer-events-none', dark ? 'bg-blue-400' : 'bg-blue-500']"
                :style="{
                  left: `${dragTarget.x}px`,
                  height: `${props.height}px`,
-                 opacity: 0.5,
+                 opacity: 0.7,
                  zIndex: 1000
                }"/>
 
           <!-- 垂直辅助线（右侧） -->
           <!-- Vertical reference line (right) -->
           <div v-if="dragTarget && selectedComponent"
-               class="absolute top-0 w-px bg-blue-500 pointer-events-none"
+               :class="['absolute top-0 w-px pointer-events-none', dark ? 'bg-blue-400' : 'bg-blue-500']"
                :style="{
                  left: `${dragTarget.x + selectedComponent.width}px`,
                  height: `${props.height}px`,
-                 opacity: 0.5,
+                 opacity: 0.7,
                  zIndex: 1000
                }"/>
 
           <!-- 水平辅助线 -->
           <!-- Horizontal reference line -->
           <div v-if="dragTarget"
-               class="absolute left-0 h-px bg-blue-500 pointer-events-none"
+               :class="['absolute left-0 h-px pointer-events-none', dark ? 'bg-blue-400' : 'bg-blue-500']"
                :style="{
                  top: `${dragTarget.y}px`,
                  width: '100%',
-                 opacity: 0.5,
+                 opacity: 0.7,
                  zIndex: 1000
                }"/>
 
           <!-- 水平辅助线（底部） -->
           <!-- Horizontal reference line (bottom) -->
           <div v-if="dragTarget && selectedComponent"
-               class="absolute left-0 h-px bg-blue-500 pointer-events-none"
+               :class="['absolute left-0 h-px pointer-events-none', dark ? 'bg-blue-400' : 'bg-blue-500']"
                :style="{
                  top: `${dragTarget.y + selectedComponent.height}px`,
                  width: '100%',
-                 opacity: 0.5,
+                 opacity: 0.7,
                  zIndex: 1000
                }"/>
         </template>
@@ -152,13 +152,9 @@
         <!-- 组件 -->
         <!-- Components with resize handles -->
         <div v-for="item in components"
-             class="absolute bg-white border-2 flex items-center justify-center select-none group"
+             :class="['absolute border-2 flex items-center justify-center select-none group', dark ? 'bg-gray-700' : 'bg-white', selectedIdRef === item.id ? 'border-blue-500 shadow-lg' : (dark ? 'border-gray-600 hover:border-gray-500' : 'border-gray-200 hover:border-gray-300'), isDragging ? 'cursor-move' : 'cursor-default']"
              :key="item.id"
              :data-component-id="item.id"
-             :class="[
-                 selectedIdRef === item.id ? 'border-blue-500 shadow-lg' : 'border-gray-200 hover:border-gray-300',
-                 isDragging ? 'cursor-move' : 'cursor-default'
-             ]"
              :style="getComponentStyle(item)"
              @mousedown="onComponentMouseDown($event, item)">
           <!-- 使用命名插槽进行自定义渲染 -->
@@ -169,7 +165,7 @@
                 :is-selected="selectedIdRef === item.id">
             <!-- 默认渲染 -->
             <!-- Default rendering -->
-            <ShadcnDataBuilderRenderer :type="item.type" :configure="item.configure"/>
+            <ShadcnDataBuilderRenderer :configure="item.configure" :dark="dark" :type="item.type"/>
           </slot>
 
           <!-- Delete button - only show for selected component -->
@@ -246,7 +242,8 @@ const props = withDefaults(defineProps<ShadcnDataBuilderCanvasProps>(), {
     backgroundImage: '',
     opacity: 1
   }),
-  showGuidelines: false
+  showGuidelines: false,
+  dark: false
 })
 
 // 画布状态
@@ -318,10 +315,11 @@ const canvasBackgroundStyle = computed(() => {
 // Calculate grid style
 const gridStyle = computed(() => {
   const rulerOffset = showRuler.value ? 20 : 0
+  const gridColor = props.dark ? '#4b5563' : '#f0f0f0'
   return {
     display: showGrid.value ? 'block' : 'none',
     backgroundSize: `${gridSize.value}px ${gridSize.value}px`,
-    backgroundImage: 'linear-gradient(#f0f0f0 1px, transparent 1px), linear-gradient(90deg, #f0f0f0 1px, transparent 1px)',
+    backgroundImage: `linear-gradient(${gridColor} 1px, transparent 1px), linear-gradient(90deg, ${gridColor} 1px, transparent 1px)`,
     backgroundPosition: '0 0',
     left: `${rulerOffset}px`,
     top: `${rulerOffset}px`,
