@@ -1,6 +1,6 @@
 <template>
   <!-- 每个组件的渲染容器 -->
-  <div class="w-full h-full flex items-center justify-center">
+  <div :class="['w-full h-full flex items-center justify-center', dark ? 'bg-gray-600 text-white' : 'bg-gray-50']">
     <!-- 根据组件类型渲染不同内容 -->
     <!-- Render different content based on component type -->
     <template v-if="type === 'text'">
@@ -75,6 +75,7 @@ import type { ItemConfigureGroupProps } from './types'
 const props = defineProps<{
   type: string
   configure?: ItemConfigureGroupProps[]
+  dark?: boolean
 }>()
 
 // 获取指定分组和标签的配置值

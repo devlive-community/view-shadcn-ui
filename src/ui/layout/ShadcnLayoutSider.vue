@@ -1,6 +1,6 @@
 <template>
   <div v-if="isInLayout"
-       class="shadcn-layout-sider relative flex flex-col transition-all duration-300 ease-in-out"
+       :class="['shadcn-layout-sider relative flex flex-col transition-all duration-300 ease-in-out', dark ? 'bg-gray-800 border-r border-gray-700' : 'bg-gray-50 border-r border-gray-200']"
        :style="{ width: collapsed ? `${collapsedWidth}px` : `${width}px` }">
     <!-- Sider content wrapper -->
     <div class="flex-1 overflow-hidden">
@@ -24,11 +24,11 @@
 
     <!-- Trigger -->
     <div v-if="collapsible && trigger"
-         class="absolute top-1/2 -right-3 w-6 h-6 flex items-center justify-center bg-white border rounded-full cursor-pointer transform -translate-y-1/2 shadow-md hover:bg-gray-50"
+         :class="['absolute top-1/2 -right-3 w-6 h-6 flex items-center justify-center border rounded-full cursor-pointer transform -translate-y-1/2 shadow-md', dark ? 'bg-gray-700 border-gray-600 hover:bg-gray-600' : 'bg-white border-gray-200 hover:bg-gray-50']"
          @click="toggleCollapse">
-      <div class="flex items-center text-gray-500">
-        <ShadcnIcon v-if="collapsed" icon="ChevronRight" class="h-4 w-4"/>
-        <ShadcnIcon v-else icon="ChevronLeft" class="h-4 w-4"/>
+      <div :class="['flex items-center', dark ? 'text-gray-300' : 'text-gray-500']">
+        <ShadcnIcon v-if="collapsed" :dark="dark" class="h-4 w-4" icon="ChevronRight"/>
+        <ShadcnIcon v-else :dark="dark" class="h-4 w-4" icon="ChevronLeft"/>
       </div>
     </div>
 
@@ -63,6 +63,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const isInLayout = inject('isInLayout', false)
+const dark = inject('dark', false)
 const collapsed = ref(props.defaultCollapsed)
 
 const toggleCollapse = () => {

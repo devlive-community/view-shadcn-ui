@@ -1,26 +1,28 @@
 <template>
-  <div class="bg-white border-l border-gray-200 py-4 pl-4 select-none" :style="{ width: calcSize(width) }">
-    <div class="text-sm font-medium mb-2">{{ t('dataBuilder.text.configureCenter') }}</div>
-    <ShadcnTab direction="vertical" position="right">
+  <div :class="['border-l py-4 pl-4 select-none', dark ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-200']" :style="{ width: calcSize(width) }">
+    <div :class="['text-sm font-medium mb-2', dark ? 'text-gray-200' : '']">{{ t('dataBuilder.text.configureCenter') }}</div>
+    <ShadcnTab :dark="dark" direction="vertical" position="right">
       <template v-if="selectedComponent">
-        <ShadcnTabItem :label="t('dataBuilder.text.basicConfigure')" value="basic_configure">
+        <ShadcnTabItem :dark="dark" :label="t('dataBuilder.text.basicConfigure')" value="basic_configure">
           <ShadcnRow :gutter="10">
             <!-- 位置配置 -->
             <!-- Position configuration -->
             <ShadcnCol span="6" class="my-2">
-              <ShadcnFormItem :label="t('dataBuilder.text.xCoordinate')" name="x">
+              <ShadcnFormItem :dark="dark" :label="t('dataBuilder.text.xCoordinate')" name="x">
                 <ShadcnNumber v-model="componentConfig.x"
                               :min="0"
                               :max="maxX"
+                              :dark="dark"
                               @on-change="onPositionUpdate"/>
               </ShadcnFormItem>
             </ShadcnCol>
 
             <ShadcnCol span="6" class="my-2">
-              <ShadcnFormItem :label="t('dataBuilder.text.yCoordinate')" name="y">
+              <ShadcnFormItem :dark="dark" :label="t('dataBuilder.text.yCoordinate')" name="y">
                 <ShadcnNumber v-model="componentConfig.y"
                               :min="0"
                               :max="maxY"
+                              :dark="dark"
                               @on-change="onPositionUpdate"/>
               </ShadcnFormItem>
             </ShadcnCol>
@@ -28,19 +30,21 @@
             <!-- 大小配置 -->
             <!-- Size configuration -->
             <ShadcnCol span="6" class="my-2">
-              <ShadcnFormItem :label="t('dataBuilder.text.width')" name="width">
+              <ShadcnFormItem :dark="dark" :label="t('dataBuilder.text.width')" name="width">
                 <ShadcnNumber v-model="componentConfig.width"
                               :min="minWidth"
                               :max="maxWidth"
+                              :dark="dark"
                               @on-change="onSizeUpdate"/>
               </ShadcnFormItem>
             </ShadcnCol>
 
             <ShadcnCol span="6" class="my-2">
-              <ShadcnFormItem :label="t('dataBuilder.text.height')" name="height">
+              <ShadcnFormItem :dark="dark" :label="t('dataBuilder.text.height')" name="height">
                 <ShadcnNumber v-model="componentConfig.height"
                               :min="minHeight"
                               :max="maxHeight"
+                              :dark="dark"
                               @on-change="onSizeUpdate"/>
               </ShadcnFormItem>
             </ShadcnCol>
@@ -51,12 +55,14 @@
                        v-for="configure in selectedComponent.configure"
                        :key="configure.group"
                        :label="configure.group"
+                       :dark="dark"
                        :value="`${configure.group}_configure`">
           <ShadcnFormItem v-for="item in configure.items"
                           class="my-4"
                           :key="item.label"
                           :name="item.label"
                           :description="item.description"
+                          :dark="dark"
                           :label="item.label">
             <ShadcnNumber v-if="item.type === 'number'"
                           v-model="item.value"
@@ -66,6 +72,7 @@
                           :max="item.max"
                           :clearable="item.clearable"
                           :min="item.min"
+                          :dark="dark"
                           @on-change="onPositionUpdate"/>
 
             <ShadcnInput v-else-if="item.type === 'textarea'"
@@ -76,6 +83,7 @@
                          :max-count="item.maxCount"
                          :placeholder="item.placeholder"
                          :name="item.label"
+                         :dark="dark"
                          @on-change="onPositionUpdate"/>
 
             <ShadcnInput v-else-if="item.type === 'password'"
@@ -84,6 +92,7 @@
                          :disabled="item.disabled"
                          :placeholder="item.placeholder"
                          :name="item.label"
+                         :dark="dark"
                          @on-change="onPositionUpdate"/>
 
             <ShadcnSwitch v-else-if="item.type === 'switch'"
@@ -92,12 +101,14 @@
                           :true-value="item.trueValue"
                           :false-value="item.falseValue"
                           :name="item.label"
+                          :dark="dark"
                           @on-change="onPositionUpdate"/>
 
-            <ShadcnRadioGroup v-else-if="item.type === 'radio'" v-model="item.value" @on-change="onPositionUpdate">
+            <ShadcnRadioGroup v-else-if="item.type === 'radio'" v-model="item.value" :dark="dark" @on-change="onPositionUpdate">
               <ShadcnRadio v-for="option in item.options"
                            :key="option"
                            :value="option.value"
+                           :dark="dark"
                            :disabled="option.disabled">
                 {{ option.label }}
               </ShadcnRadio>
@@ -107,6 +118,7 @@
               <ShadcnCheckbox v-for="option in item.options"
                               :key="option"
                               :value="option.value"
+                              :dark="dark"
                               :disabled="option.disabled">
                 {{ option.label }}
               </ShadcnCheckbox>
@@ -116,6 +128,7 @@
                           :disabled="item.disabled"
                           :placeholder="item.placeholder"
                           :name="item.label"
+                          :dark="dark"
                           @on-change="onPositionUpdate">
               <template #options>
                 <ShadcnSelectOption v-for="option in item.options"
@@ -134,6 +147,7 @@
                           :show-step="item.showStep"
                           :show-tip="item.showTip"
                           :step="item.step"
+                          :dark="dark"
                           @on-change="onPositionUpdate"/>
 
             <ShadcnRate v-else-if="item.type === 'rate'"
@@ -143,6 +157,7 @@
                         :min="item.min"
                         :allow-half="item.allowHalf"
                         :show-text="item.showText"
+                        :dark="dark"
                         @on-change="onPositionUpdate"/>
 
             <ShadcnInput v-else
@@ -150,26 +165,27 @@
                          :disabled="item.disabled"
                          :placeholder="item.placeholder"
                          :name="item.label"
+                         :dark="dark"
                          @on-change="onPositionUpdate"/>
           </ShadcnFormItem>
         </ShadcnTabItem>
       </template>
 
       <div v-else>
-        <ShadcnTabItem :label="t('dataBuilder.text.basicConfigure')" value="basic_configure">
+        <ShadcnTabItem :dark="dark" :label="t('dataBuilder.text.basicConfigure')" value="basic_configure">
           <!-- 画布样式配置部分 -->
           <!-- Canvas style configuration section -->
           <ShadcnRow :gutter="10">
             <!-- 背景颜色 -->
             <!-- Background color -->
             <ShadcnCol span="12" class="my-2">
-              <ShadcnFormItem :label="t('dataBuilder.text.backgroundColor')" name="backgroundColor">
+              <ShadcnFormItem :dark="dark" :label="t('dataBuilder.text.backgroundColor')" name="backgroundColor">
                 <div class="flex items-center space-x-2">
                   <input type="color"
-                         class="p-0 border border-gray-200 rounded cursor-pointer"
+                         :class="['p-0 border rounded cursor-pointer', dark ? 'border-gray-600 bg-gray-600' : 'border-gray-200']"
                          v-model="canvasConfig.backgroundColor"
                          @change="onCanvasStyleUpdate"/>
-                  <ShadcnInput v-model="canvasConfig.backgroundColor" size="small" @on-change="onCanvasStyleUpdate"/>
+                  <ShadcnInput v-model="canvasConfig.backgroundColor" :dark="dark" size="small" @on-change="onCanvasStyleUpdate"/>
                 </div>
               </ShadcnFormItem>
             </ShadcnCol>
@@ -177,23 +193,24 @@
             <!-- 背景图片 -->
             <!-- Background image -->
             <ShadcnCol span="12" class="my-2">
-              <ShadcnFormItem :label="t('dataBuilder.text.backgroundImage')" name="backgroundImage">
-                <ShadcnInput v-model="canvasConfig.backgroundImage" :placeholder="t('dataBuilder.placeholder.backgroundImage')" @on-change="onCanvasStyleUpdate"/>
+              <ShadcnFormItem :dark="dark" :label="t('dataBuilder.text.backgroundImage')" name="backgroundImage">
+                <ShadcnInput v-model="canvasConfig.backgroundImage" :dark="dark" :placeholder="t('dataBuilder.placeholder.backgroundImage')" @on-change="onCanvasStyleUpdate"/>
               </ShadcnFormItem>
             </ShadcnCol>
 
             <!-- 透明度 -->
             <!-- Transparency -->
             <ShadcnCol span="12" class="my-2">
-              <ShadcnFormItem :label="t('dataBuilder.text.opacity')" name="opacity">
+              <ShadcnFormItem :dark="dark" :label="t('dataBuilder.text.opacity')" name="opacity">
                 <div class="flex items-center space-x-2">
                   <ShadcnSlider v-model="canvasConfig.opacity"
                                 class="mr-1"
-                                min="0"
-                                max="1"
-                                step="0.1"
+                                :dark="dark"
+                                :max="1"
+                                :min="0"
+                                :step="0.1"
                                 @on-change="onCanvasStyleUpdate"/>
-                  <div class="text-xs text-right">{{ Math.round(canvasConfig.opacity * 100) }}%</div>
+                  <div :class="['text-xs text-right', dark ? 'text-gray-300' : '']">{{ Math.round(canvasConfig.opacity * 100) }}%</div>
                 </div>
               </ShadcnFormItem>
             </ShadcnCol>
@@ -209,6 +226,18 @@ import { computed, ref, watch } from 'vue'
 import { t } from '@/utils/locale'
 import { ShadcnDataBuilderConfigureProps } from './types'
 import { calcSize } from '@/utils/common.ts'
+import { ShadcnFormItem } from "@/ui/form";
+import { ShadcnNumber } from "@/ui/number";
+import { ShadcnCol } from "@/ui/col";
+import { ShadcnTab, ShadcnTabItem } from "@/ui/tab";
+import { ShadcnInput } from "@/ui/input";
+import { ShadcnSwitch } from "@/ui/switch";
+import { ShadcnRadio, ShadcnRadioGroup } from "@/ui/radio";
+import { ShadcnCheckbox, ShadcnCheckboxGroup } from "@/ui/checkbox";
+import { ShadcnSelect, ShadcnSelectOption } from "@/ui/select";
+import { ShadcnSlider } from "@/ui/slider";
+import { ShadcnRate } from "@/ui/rate";
+import { ShadcnRow } from "@/ui/row";
 
 const emit = defineEmits(['update'])
 const props = withDefaults(defineProps<ShadcnDataBuilderConfigureProps>(), {
@@ -222,7 +251,8 @@ const props = withDefaults(defineProps<ShadcnDataBuilderConfigureProps>(), {
     backgroundColor: '#ffffff',
     backgroundImage: '',
     opacity: 1
-  } as any
+  } as any,
+  dark: false
 })
 
 // 组件配置

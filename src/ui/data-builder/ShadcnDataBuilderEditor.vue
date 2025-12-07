@@ -1,7 +1,7 @@
 <template>
   <div class="flex w-full h-full">
     <!-- Left Panel -->
-    <ShadcnDataBuilderPanel :width="panelWidth" :items="items">
+    <ShadcnDataBuilderPanel :dark="dark" :items="items" :width="panelWidth">
       <template #label="slotData">
         <slot name="panel-label" v-bind="slotData"/>
       </template>
@@ -22,6 +22,7 @@
                              :resize="resize"
                              :canvas-style="canvasStyle"
                              :show-guidelines="showGuidelines"
+                             :dark="dark"
                              @select="onSelect"
                              @update:selected-id="selectedId = $event"
                              @update:components="onComponentsUpdate">
@@ -39,6 +40,7 @@
                                 :canvas-style="canvasStyle"
                                 :width="configWidth"
                                 :snap-to-grid="snapToGrid"
+                                :dark="dark"
                                 @update="onConfigUpdate"/>
   </div>
 </template>
@@ -65,7 +67,8 @@ const props = withDefaults(defineProps<ShadcnDataBuilderEditorProps>(), {
   isCenter: false,
   resize: true,
   canvasStyle: () => ({}),
-  showGuidelines: false
+  showGuidelines: false,
+  dark: false
 })
 
 const components = ref<ShadcnDataBuilderPanelChildProps[]>([])
