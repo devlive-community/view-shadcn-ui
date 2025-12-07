@@ -77,12 +77,13 @@
                                  :width="calcSize(col.width || 150)"
                                  :style="{ left: fixedColumns.getLeftOffset(colIndex), zIndex: 15 }"
                                  :class="[
-                             'sticky',
-                             borderConfig.getCellBorderClass(true, 'left'),
-                             selectionState.isRowSelected(rowIndex)
-                               ? (dark ? 'bg-blue-900/50' : 'bg-blue-50')
-                               : (dark ? 'bg-gray-900 group-hover:!bg-gray-800' : 'bg-white group-hover:!bg-gray-50')
-                           ]"
+                                   'sticky',
+                                   borderConfig.getCellBorderClass(true, 'left'),
+                                   selectionState.isRowSelected(rowIndex)
+                                     ? (dark ? 'bg-blue-900/50' : 'bg-blue-50')
+                                     : (dark ? 'bg-gray-900 group-hover:!bg-gray-800' : 'bg-white group-hover:!bg-gray-50')
+                                 ]"
+                                 :dark="dark"
                                  @cancel="editableState.stopEditing"
                                  @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
 
@@ -130,6 +131,7 @@
                      @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
 
           <ShadcnCellInputEditor v-else-if="col.editable && editableState.isEditing(rowIndex, col.key)"
+                                 :dark="dark"
                                  :field-key="col.key"
                                  :is-row-editing="!!editableState.editingRowState.value"
                                  :on-row-value-change="editableState.updateRowValue"
@@ -185,6 +187,7 @@
                      @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
 
           <ShadcnCellInputEditor v-else-if="col.editable && editableState.isEditing(rowIndex, col.key)"
+                                 :dark="dark"
                                  :field-key="col.key"
                                  :is-row-editing="!!editableState.editingRowState.value"
                                  :on-row-value-change="editableState.updateRowValue"
@@ -192,12 +195,12 @@
                                  :width="calcSize(col.width || 150)"
                                  :style="{ right: fixedColumns.getRightOffset(colIndex), zIndex: 15 }"
                                  :class="[
-                             'sticky',
-                             borderConfig.getCellBorderClass(true, 'right'),
-                             selectionState.isRowSelected(rowIndex)
-                               ? (dark ? 'bg-blue-900/50' : 'bg-blue-50')
-                               : (dark ? 'bg-gray-900 group-hover:!bg-gray-800' : 'bg-white group-hover:!bg-gray-50')
-                           ]"
+                                   'sticky',
+                                   borderConfig.getCellBorderClass(true, 'right'),
+                                   selectionState.isRowSelected(rowIndex)
+                                     ? (dark ? 'bg-blue-900/50' : 'bg-blue-50')
+                                     : (dark ? 'bg-gray-900 group-hover:!bg-gray-800' : 'bg-white group-hover:!bg-gray-50')
+                                 ]"
                                  @cancel="editableState.stopEditing"
                                  @save="handleSaveEdit(rowIndex, col.key, $event, row, col)"/>
           <div v-else

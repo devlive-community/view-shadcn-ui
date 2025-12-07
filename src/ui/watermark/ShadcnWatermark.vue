@@ -41,6 +41,8 @@ interface Props
   zIndex?: number
   // Enable fullscreen mode
   fullscreen?: boolean
+  // Dark mode
+  dark?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -51,13 +53,20 @@ const props = withDefaults(defineProps<Props>(), {
   gapY: 100,
   rotate: -22,
   fontSize: 8,
-  fontColor: 'rgba(0, 0, 0, 0.15)',
   fontFamily: 'sans-serif',
   opacity: 1,
   antiTamperLayers: 2,
   fontWeight: 400,
   zIndex: 9,
-  fullscreen: false
+  fullscreen: false,
+  dark: false
+})
+
+const finalFontColor = computed(() => {
+  if (props.fontColor) {
+    return props.fontColor
+  }
+  return props.dark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)'
 })
 
 // Calculate SVG content
@@ -66,18 +75,18 @@ const svgContent = computed(() => {
   const texts = contents.map((text, index) => {
     const y = props.height / 2 + (index - (contents.length - 1) / 2) * props.fontSize * 1.5
     return `<text x="50%"
-              y="${ y }"
+              y="${y}"
               dy=".5em"
               text-anchor="middle"
-              fill="${ props.fontColor }"
-              style="font-size: ${ props.fontSize }px; font-family: ${ props.fontFamily }; font-weight: ${ props.fontWeight }"
-            >${ text }</text>`
+              fill="${finalFontColor.value}"
+              style="font-size: ${props.fontSize}px; font-family: ${props.fontFamily}; font-weight: ${props.fontWeight}"
+            >${text}</text>`
   }).join('')
 
   return `
-    <svg viewBox="0 0 ${ props.width } ${ props.height }" xmlns="http://www.w3.org/2000/svg">
-      <g transform="rotate(${ props.rotate }, ${ props.width / 2 }, ${ props.height / 2 })">
-        ${ texts }
+    <svg viewBox="0 0 ${props.width} ${props.height}" xmlns="http://www.w3.org/2000/svg">
+      <g transform="rotate(${props.rotate}, ${props.width / 2}, ${props.height / 2})">
+        ${texts}
       </g>
     </svg>
   `
@@ -96,9 +105,9 @@ const WatermarkLayer = defineComponent({
       h('div', {
         class: 'absolute inset-0',
         style: {
-          backgroundImage: `url('data:image/svg+xml,${ encodeURIComponent(svgContent.value) }')`,
+          backgroundImage: `url('data:image/svg+xml,${encodeURIComponent(svgContent.value)}')`,
           backgroundRepeat: 'repeat',
-          backgroundSize: `${ props.gapX + props.width }px ${ props.gapY + props.height }px`
+          backgroundSize: `${props.gapX + props.width}px ${props.gapY + props.height}px`
         }
       }),
       // Anti-Tamper Layers
@@ -107,10 +116,10 @@ const WatermarkLayer = defineComponent({
             key: index,
             class: 'absolute inset-0',
             style: {
-              backgroundImage: `url('data:image/svg+xml,${ encodeURIComponent(svgContent.value) }')`,
+              backgroundImage: `url('data:image/svg+xml,${encodeURIComponent(svgContent.value)}')`,
               backgroundRepeat: 'repeat',
-              backgroundSize: `${ props.gapX + props.width }px ${ props.gapY + props.height }px`,
-              transform: `translate(${ index * 0.1 }px, ${ index * 0.1 }px)`
+              backgroundSize: `${props.gapX + props.width}px ${props.gapY + props.height}px`,
+              transform: `translate(${index * 0.1}px, ${index * 0.1}px)`
             }
           })
       )

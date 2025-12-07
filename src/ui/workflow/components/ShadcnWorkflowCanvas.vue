@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-full overflow-auto outline-none" tabindex="0" @keydown="handleKeyDown">
     <div ref="canvasRef"
-         class="relative bg-gray-50"
+         :class="['relative', dark ? 'bg-gray-900' : 'bg-gray-50']"
          :style="{
                width: calcSize(canvas.width),
                height: calcSize(canvas.height),
@@ -16,8 +16,8 @@
            class="absolute inset-0"
            :style="{
                    backgroundImage: `
-                     linear-gradient(to right, ${canvas.gridColor} 1px, transparent 1px),
-                     linear-gradient(to bottom, ${canvas.gridColor} 1px, transparent 1px)
+                     linear-gradient(to right, ${dark ? 'rgba(255, 255, 255, 0.1)' : canvas.gridColor} 1px, transparent 1px),
+                     linear-gradient(to bottom, ${dark ? 'rgba(255, 255, 255, 0.1)' : canvas.gridColor} 1px, transparent 1px)
                    `,
                    backgroundSize: `${calcSize(canvas.gridSize)} ${calcSize(canvas.gridSize)}`,
                    opacity: canvas.gridOpacity
@@ -25,14 +25,17 @@
       </div>
 
       <div v-for="node in nodes"
-           class="absolute bg-white rounded-lg shadow-md border"
            :key="node.id"
+           :class="[
+                  'absolute rounded-lg shadow-md border',
+                  dark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200',
+                  {
+                    'ring-2 ring-blue-500': selectedNodeId === node.id,
+                    'cursor-move': !isConnecting,
+                    'before:absolute before:inset-[0px] before:rounded-lg before:ring-2 before:ring-red-500 before:animate-pulse': node?.ports.some(port => port?.validated?.valid === false)
+                  }
+           ]"
            :data-node-id="node.id"
-           :class="{
-                  'ring-2 ring-blue-500': selectedNodeId === node.id,
-                  'cursor-move': !isConnecting,
-                  'before:absolute before:inset-[0px] before:rounded-lg before:ring-2 before:ring-red-500 before:animate-pulse': node?.ports.some(port => port?.validated?.valid === false)
-           }"
            :style="{
                 transform: `translate(${calcSize(node.position?.x)}, ${calcSize(node.position?.y)})`
            }"
@@ -40,13 +43,13 @@
            @mousedown="startDragging(node, $event)">
         <div class="px-2 pt-1.5 pb-1.5">
           <slot name="node" :node="node">
-            <div class="w-full flex items-center justify-between border-b">
-              <div class="w-full text-xs text-gray-500 py-1.5">{{ node.label }}</div>
+            <div :class="['w-full flex items-center justify-between border-b', dark ? 'border-gray-700' : '']">
+              <div :class="['w-full text-xs py-1.5', dark ? 'text-gray-300' : 'text-gray-500']">{{ node.label }}</div>
               <div v-if="node.configure?.some(c => c?.validated?.valid === false)" class="text-red-400 animate-bounce">
                 <ShadcnTooltip :content="node.configure?.filter(c => c?.validated.valid === false)
                                                         .map(c => `${c.label}: ${c.validated.message}`)
-                                                        .join('<br />')">
-                  <Icon icon="CircleAlert"/>
+                                                        .join('<br />')" :dark="dark">
+                  <ShadcnIcon :dark="dark" icon="CircleAlert"/>
                 </ShadcnTooltip>
               </div>
             </div>
@@ -55,6 +58,7 @@
           <ShadcnWorkflowNodePorts :node="node"
                                    :disabled="isNodeDragging"
                                    :connections="connections"
+                                   :dark="dark"
                                    @on-connection-start="(event, port) => handleConnectionStart(event, port, node)"
                                    @on-connection-end="(event, port) => handleConnectionEnd(event, port, node)"
                                    @on-validation-change="handleNodeValidationChange"/>
@@ -98,7 +102,7 @@
             <path fill="none"
                   stroke-width="2"
                   :d="getConnectionPath(connection)"
-                  :class="selectedConnectionId === connection.id ? 'stroke-blue-500' : 'stroke-gray-400'"/>
+                  :class="selectedConnectionId === connection.id ? 'stroke-blue-500' : (dark ? 'stroke-gray-600' : 'stroke-gray-400')"/>
           </g>
         </g>
       </svg>
@@ -113,6 +117,8 @@ import { WorkflowCanvasEmits, WorkflowCanvasProps, WorkflowConnection, WorkflowN
 import ShadcnWorkflowNodePorts from './ShadcnWorkflowNodePorts.vue'
 import { calcSize } from '@/utils/common.ts'
 import { randomUUID } from '@/utils/uuid.ts'
+import { ShadcnTooltip } from "@/ui/tooltip";
+import { ShadcnIcon } from "@/ui/icon";
 
 const emit = defineEmits<WorkflowCanvasEmits>()
 const props = withDefaults(defineProps<WorkflowCanvasProps>(), {
@@ -125,7 +131,8 @@ const props = withDefaults(defineProps<WorkflowCanvasProps>(), {
     pattern: 'grid',
     width: 1920,
     height: 1080
-  })
+  }),
+  dark: false
 })
 
 const canvasRef = ref<HTMLElement | null>(null)
@@ -146,7 +153,7 @@ const selectedConnectionId = ref<string | null>(null)
 // Get the actual position of the port
 // @ts-ignore
 const getPortPosition = (node: WorkflowNode, portId: string): { x: number; y: number } => {
-  const portElement = document.querySelector(`[data-port-id="${ portId }"]`) as HTMLElement
+  const portElement = document.querySelector(`[data-port-id="${portId}"]`) as HTMLElement
   if (!portElement) {
     return { x: 0, y: 0 }
   }
@@ -309,7 +316,7 @@ const handleConnectionEnd = (event: MouseEvent, targetPort: WorkflowPort, target
 }
 
 const getNodeSize = (nodeId: string) => {
-  const nodeElement = document.querySelector(`[data-node-id="${ nodeId }"]`) as HTMLElement
+  const nodeElement = document.querySelector(`[data-node-id="${nodeId}"]`) as HTMLElement
   if (!nodeElement) {
     return { width: 0, height: 0 }
   }
@@ -373,7 +380,7 @@ const getActiveConnectionPath = () => {
   const { sourcePortPosition, mousePosition } = activeConnection.value
   const controls = getControlPoints(sourcePortPosition, mousePosition)
 
-  return `M ${ sourcePortPosition.x } ${ sourcePortPosition.y } C ${ controls.c1.x } ${ controls.c1.y } ${ controls.c2.x } ${ controls.c2.y } ${ mousePosition.x } ${ mousePosition.y }`
+  return `M ${sourcePortPosition.x} ${sourcePortPosition.y} C ${controls.c1.x} ${controls.c1.y} ${controls.c2.x} ${controls.c2.y} ${mousePosition.x} ${mousePosition.y}`
 }
 
 // 获取已建立连接的路径
@@ -402,7 +409,7 @@ const getConnectionPath = (connection: WorkflowConnection) => {
       { x: endX, y: targetPosition.y }       // 使用新的终点 | Use new end
   )
 
-  return `M ${ startX } ${ sourcePosition.y } C ${ controls.c1.x } ${ controls.c1.y } ${ controls.c2.x } ${ controls.c2.y } ${ endX } ${ targetPosition.y }`
+  return `M ${startX} ${sourcePosition.y} C ${controls.c1.x} ${controls.c1.y} ${controls.c2.x} ${controls.c2.y} ${endX} ${targetPosition.y}`
 }
 
 // 开始拖拽节点

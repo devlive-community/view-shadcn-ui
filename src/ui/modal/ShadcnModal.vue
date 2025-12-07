@@ -7,25 +7,28 @@
            @click="onMaskClick"/>
 
       <!-- Dialog -->
-      <div class="'relative bg-white z-50 flex flex-col animate-in fade-in-0 zoom-in-95 w-full max-w-lg mx-auto rounded-sm"
+      <div :class="[
+                  'relative z-50 flex flex-col animate-in fade-in-0 zoom-in-95 w-full max-w-lg mx-auto rounded-sm',
+                  dark ? 'bg-gray-800' : 'bg-white'
+           ]"
            :style="[
                { width: calcSize(width), minWidth: calcSize(width), maxWidth: calcSize(width) },
                { height: calcSize(height), minHeight: calcSize(height), maxHeight: calcSize(height) }
            ]">
         <!-- Header -->
         <div v-if="$slots.title || title"
-             class="border-b p-2">
+             :class="['border-b p-2', dark ? 'border-gray-600' : '']">
           <div class="flex justify-between">
             <div>
               <!-- Title -->
-              <h2 class="text-lg font-semibold">
+              <h2 :class="['text-lg font-semibold', dark ? 'text-gray-200' : '']">
                 <span v-if="title">{{ title }}</span>
                 <slot v-else name="title"/>
               </h2>
 
               <!-- Description -->
               <p v-if="$slots.description || description"
-                 class="text-sm text-muted-foreground">
+                 :class="['text-sm', dark ? 'text-gray-400' : 'text-muted-foreground']">
                 <span v-if="description">{{ description }}</span>
                 <slot v-else name="description"/>
               </p>
@@ -39,7 +42,7 @@
                      viewBox="0 0 24 24"
                      stroke-width="1.5"
                      stroke="currentColor"
-                     class="w-5 h-5 text-gray-400 hover:text-muted-foreground">
+                     :class="['w-5 h-5', dark ? 'text-gray-400 hover:text-gray-300' : 'text-gray-400 hover:text-muted-foreground']">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
                 </svg>
               </slot>
@@ -48,13 +51,13 @@
         </div>
 
         <!-- Content -->
-        <div class="p-2 flex-1 overflow-auto">
+        <div :class="['p-2 flex-1 overflow-auto', dark ? 'text-gray-200' : '']">
           <slot v-if="$slots.content" name="content"/>
           <slot v-else/>
         </div>
 
         <!-- Footer -->
-        <div v-if="$slots.footer" class="border-t p-2 flex justify-end">
+        <div v-if="$slots.footer" :class="['border-t p-2 flex justify-end', dark ? 'border-gray-600' : '']">
           <slot name="footer"/>
         </div>
       </div>
@@ -75,7 +78,8 @@ const props = withDefaults(defineProps<ModalProps>(), {
   closable: true,
   width: '30%',
   height: 'auto',
-  maskClosable: true
+  maskClosable: true,
+  dark: false
 })
 
 const onMaskClick = () => {

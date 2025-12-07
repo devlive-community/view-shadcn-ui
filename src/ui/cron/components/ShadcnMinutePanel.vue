@@ -67,6 +67,9 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { t } from '@/utils/locale'
+import { ShadcnRadio } from "@/ui/radio";
+import { ShadcnNumber } from "@/ui/number";
+import { ShadcnSelect } from "@/ui/select";
 
 interface Props
 {
@@ -188,12 +191,12 @@ watch(
         case 'period':
           periodStart.value = checkNumber(periodStart.value, 0, 59)
           periodEnd.value = checkNumber(periodEnd.value, 0, 59)
-          expression = `${ periodStart.value }-${ periodEnd.value }`
+          expression = `${periodStart.value}-${periodEnd.value}`
           break
         case 'start':
           start.value = checkNumber(start.value, 0, 59)
           interval.value = checkNumber(interval.value, 1, 59)
-          expression = `${ start.value }/${ interval.value }`
+          expression = `${start.value}/${interval.value}`
           break
         case 'specify':
           expression = specify.value.join(',') || '*'

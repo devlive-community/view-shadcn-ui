@@ -1,3 +1,1 @@
-import ShadcnWatermark from './ShadcnWatermark.vue'
-
-export default ShadcnWatermark
+export { default as ShadcnWatermark } from './ShadcnWatermark.vue'

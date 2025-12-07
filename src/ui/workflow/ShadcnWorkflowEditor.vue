@@ -1,9 +1,10 @@
 <template>
-  <div class="flex w-full h-screen">
+  <div :class="['flex w-full h-screen', dark ? 'bg-gray-900' : '']">
     <ShadcnWorkflowPanel class="border-r"
                          :categories="props.categories"
                          :nodes="props.nodes"
                          :search-text="props.searchText"
+                         :dark="props.dark"
                          :style="{ width: calcSize(panelWidth) }"
                          @update:search-text="(text: string) => emit('update:searchText', text)">
       <template #search>
@@ -27,6 +28,7 @@
                           :nodes="localNodes"
                           :connections="localConnections"
                           :selected-node-id="selectedNode?.id"
+                          :dark="props.dark"
                           @on-node-moved="handleNodeMoved"
                           @on-node-added="handleNodeAdded"
                           @on-node-selected="handleNodeSelected"
@@ -42,6 +44,7 @@
     <ShadcnWorkflowConfigure class="border-l"
                              :selected-node="selectedNode"
                              :width="configureWidth"
+                             :dark="props.dark"
                              :style="{ width: calcSize(configureWidth) }"
                              @update:node="handleNodeUpdated">
       <template v-for="(_, name) in $slots" :key="name" #[name]="slotProps">
@@ -67,7 +70,8 @@ const props = withDefaults(defineProps<WorkflowProps>(), {
   modelValue: () => ({ nodes: [], connections: [] }),
   searchText: '',
   panelWidth: 250,
-  configureWidth: 300
+  configureWidth: 300,
+  dark: false
 })
 
 const localNodes = ref<WorkflowNode[]>([])

@@ -8,6 +8,7 @@ export interface TimePickerProps
     clearable?: boolean
     quickTimes?: string[] // see format
     format?: 'HH:mm' | 'HH:mm:ss' | 'hh:mm A' | 'hh:mm:ss A'
+    dark?: boolean
 }
 
 export type TimePickerEmits = {

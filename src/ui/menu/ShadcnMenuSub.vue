@@ -1,9 +1,11 @@
 <template>
   <div :class="[isHorizontal ? 'inline-block relative' : 'block']">
     <div :class="[
-          'px-3 py-2 text-sm rounded-md hover:bg-gray-100 focus:outline-none focus:bg-gray-100 cursor-pointer',
+          'px-3 py-2 text-sm rounded-md focus:outline-none cursor-pointer',
           'flex items-center justify-between gap-2',
-          { 'bg-gray-100': isExpanded || hasActiveChild }
+          dark ? 'hover:bg-gray-700 focus:bg-gray-700' : 'hover:bg-gray-100 focus:bg-gray-100',
+          (isExpanded || hasActiveChild) ? (dark ? 'bg-gray-700' : 'bg-gray-100') : '',
+          dark ? 'text-gray-200' : ''
         ]"
          @click="toggleExpand">
       <div class="flex items-center gap-2">
@@ -32,7 +34,7 @@
       <div v-show="isExpanded"
            :class="[
             'space-y-1',
-            isHorizontal ? 'absolute left-0 mt-2.5 bg-white w-fit shadow-lg px-2 py-2 z-20' : 'pl-4 mt-1'
+            isHorizontal ? (dark ? 'absolute left-0 mt-2.5 bg-gray-800 w-fit shadow-lg px-2 py-2 z-20' : 'absolute left-0 mt-2.5 bg-white w-fit shadow-lg px-2 py-2 z-20') : 'pl-4 mt-1'
           ]">
         <slot/>
       </div>
@@ -52,6 +54,7 @@ const menuContext = inject('menuContext') as {
   expandedKey: { value: string | null }
   activeKey: { value: string | null }
   setExpandedKey: (key: string | null) => void
+  dark?: boolean
 }
 
 provide('menuContext', {
@@ -61,6 +64,7 @@ provide('menuContext', {
 
 const isHorizontal = computed(() => menuContext.direction === 'horizontal')
 const isExpanded = computed(() => menuContext.expandedKey.value === props.name)
+const dark = computed(() => menuContext.dark || false)
 
 const hasActiveChild = ref(false)
 

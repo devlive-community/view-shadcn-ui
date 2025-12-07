@@ -20,8 +20,8 @@
                     'bg-green-400': type === 'success' && isActive,
                     'bg-yellow-400': type === 'warning' && isActive,
                     'bg-red-400': type === 'error' && isActive,
-                    'bg-gray-300': !isActive
-                  }
+                  },
+                  !isActive ? (dark ? 'bg-gray-600' : 'bg-gray-300') : ''
                 ]">
       <!-- Open text -->
       <div v-if="$slots.open && !isActive"
@@ -38,7 +38,9 @@
       </div>
 
       <!-- Switch toggle -->
-      <div :class="['absolute bg-white rounded-full transition-all duration-300',
+      <div :class="[
+                    'absolute rounded-full transition-all duration-300',
+                    dark ? 'bg-gray-200' : 'bg-white',
                     ToggleSize[size],
                     {
                       'left-0.5': !isActive,
@@ -61,7 +63,8 @@ import { computed } from 'vue'
 
 const emit = defineEmits(['update:modelValue', 'on-change'])
 
-enum Size {
+enum Size
+{
   small = 'h-5 min-w-[2.5rem]',
   default = 'h-6 min-w-[3.5rem]',
   large = 'h-8 min-w-[5rem]'
@@ -86,12 +89,14 @@ const props = withDefaults(defineProps<{
   disabled?: boolean
   trueValue?: any
   falseValue?: any
+  dark?: boolean
 }>(), {
   modelValue: false,
   type: 'primary',
   size: 'default',
   trueValue: true,
-  falseValue: false
+  falseValue: false,
+  dark: false
 })
 
 const isActive = computed(() => props.modelValue === props.trueValue)

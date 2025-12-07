@@ -1,5 +1,8 @@
 <template>
-  <div class="inline-flex w-fit items-center justify-center rounded-md bg-background text-sm font-medium text-foreground">
+  <div :class="[
+         'inline-flex w-fit items-center justify-center rounded-md text-sm font-medium',
+         dark ? 'bg-gray-800 text-gray-200' : 'bg-background text-foreground'
+       ]">
     {{ displayTime }}
   </div>
 </template>
@@ -35,7 +38,8 @@ const props = withDefaults(defineProps<TimeProps>(), {
   timezone: undefined,
   relative: false,
   referenceTime: undefined,
-  interval: 1000
+  interval: 1000,
+  dark: false
 })
 
 const emit = defineEmits<TimeEmits>()

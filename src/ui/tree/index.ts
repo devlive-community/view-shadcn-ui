@@ -1,3 +1,1 @@
-import ShadcnTree from './ShadcnTree.vue'
-
-export default ShadcnTree
+export { default as ShadcnTree } from './ShadcnTree.vue'

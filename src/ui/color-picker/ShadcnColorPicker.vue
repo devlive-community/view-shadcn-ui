@@ -84,7 +84,7 @@
                           :max="100"
                           :dark="dark"
                           show-tip
-                          @on-change="onAlphaInput"/>
+                          @on-change="onAlphaInput as any"/>
           </div>
         </div>
       </div>

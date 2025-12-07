@@ -2,9 +2,10 @@
   <div ref="ellipsisContent"
        :class="cn('max-w-full',
                   isMultiLine ? 'overflow-hidden' : 'whitespace-nowrap overflow-ellipsis',
-                  length ? 'whitespace-normal' : 'overflow-hidden')"
+                  length ? 'whitespace-normal' : 'overflow-hidden',
+                  dark ? 'text-gray-200' : 'text-gray-900')"
        :style="isMultiLine ? { '-webkit-line-clamp': line, '-webkit-box-orient': 'vertical', display: '-webkit-box' } : {}">
-    <ShadcnTooltip v-if="tooltip" :content="text">
+    <ShadcnTooltip v-if="tooltip" :content="text" :dark="dark">
       <template v-if="text">{{ displayedText }}</template>
       <slot v-else/>
     </ShadcnTooltip>
@@ -26,8 +27,10 @@ const props = withDefaults(defineProps<{
   line?: number | string
   tooltip?: boolean
   length?: number | string
+  dark?: boolean
 }>(), {
-  line: 1
+  line: 1,
+  dark: false
 })
 
 const isMultiLine = computed(() => toNumber(props.line) > 1)

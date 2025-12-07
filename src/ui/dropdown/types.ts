@@ -6,6 +6,7 @@ export interface DropdownProps
 {
     trigger?: DropdownTrigger
     position?: ArrangePosition
+    dark?: boolean
 }
 
 export interface DropdownItemProps
@@ -14,6 +15,7 @@ export interface DropdownItemProps
     disabled?: boolean
     active?: boolean
     divided?: boolean
+    dark?: boolean
 }
 
 export type DropdownEmits = {

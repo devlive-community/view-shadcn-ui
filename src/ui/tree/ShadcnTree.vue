@@ -8,6 +8,7 @@
                     :checkable="checkable"
                     :cascade="cascade"
                     :show-line="showLine"
+                    :dark="dark"
                     :loadData="loadData"
                     @on-expand="onExpand"
                     @on-node-click="onNodeClick">
@@ -39,6 +40,7 @@ const props = withDefaults(defineProps<TreeProps>(), {
   checkable: false,
   cascade: false,
   showLine: false,
+  dark: false,
   loadData: undefined
 })
 

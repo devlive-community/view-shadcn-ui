@@ -10,6 +10,7 @@ export interface QrCodeProps
     background?: string
     foreground?: string
     rounded?: boolean
+    dark?: boolean
 }
 
 export type QrCodeEmits = {

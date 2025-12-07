@@ -1,8 +1,9 @@
 export interface DataFilterProps
 {
     modelValue: FilterCondition[]
-    operators: Operator[]
+    operators?: Operator[]
     fields: Field[]
+    dark?: boolean
 }
 
 export interface FilterCondition
@@ -65,6 +66,7 @@ export interface HierarchicalDataFilterProps
 {
     modelValue: FilterGroup[]
     fields: Field[]
+    dark?: boolean
 }
 
 export type HierarchicalDataFilterEmits = {

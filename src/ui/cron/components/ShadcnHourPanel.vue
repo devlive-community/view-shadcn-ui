@@ -33,7 +33,7 @@
 
     <!-- Interval -->
     <div class="flex items-center space-x-2 select-none">
-      <ShadcnRadio v-model="radioValue" :value="3" name="hour-type">
+      <ShadcnRadio v-model="radioValue" :dark="dark" :value="3" name="hour-type">
         {{ t('cron.text.fromStart') }}
       </ShadcnRadio>
       <div class="flex items-center space-x-2">
@@ -55,7 +55,7 @@
 
     <!-- Specify -->
     <div class="flex items-center space-x-2">
-      <ShadcnRadio v-model="radioValue" :value="4" name="hour-type">
+      <ShadcnRadio v-model="radioValue" :dark="dark" :value="4" name="hour-type">
         {{ t('cron.text.specify') }}
       </ShadcnRadio>
       <ShadcnSelect v-model="checkboxList"
@@ -70,7 +70,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { t } from '@/utils/locale'
-import ShadcnRadio from "@/ui/radio";
+import { ShadcnRadio } from "@/ui/radio";
 import { ShadcnNumber } from "@/ui/number";
 import { ShadcnSelect } from "@/ui/select";
 

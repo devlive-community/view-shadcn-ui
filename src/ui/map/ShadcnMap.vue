@@ -7,8 +7,11 @@
                :class="[Size[finalSize], HoverType[type], { 'border-red-500 animate-pulse': duplicateKeys[index] || emptyKeys[index] }]">
             <input v-model="item.key"
                    type="text"
-                   class="w-full h-full bg-transparent border-none focus:outline-none px-2"
-                   :class="{ 'cursor-not-allowed opacity-50 bg-gray-100': disabled }"
+                   :class="['w-full h-full bg-transparent border-none focus:outline-none px-2',
+                            { 'cursor-not-allowed opacity-50': disabled },
+                            disabled && (dark ? 'bg-gray-700' : 'bg-gray-100'),
+                            dark ? 'text-gray-200' : ''
+                   ]"
                    :placeholder="t('map.placeholder.key')"
                    :disabled="disabled"
                    :name="name"
@@ -20,20 +23,23 @@
                :class="[Size[finalSize], HoverType[type]]">
             <input v-model="item.value"
                    type="text"
-                   class="w-full h-full bg-transparent border-none focus:outline-none px-2"
-                   :class="{ 'cursor-not-allowed opacity-50 bg-gray-100': disabled }"
+                   :class="['w-full h-full bg-transparent border-none focus:outline-none px-2',
+                            { 'cursor-not-allowed opacity-50': disabled },
+                            disabled && (dark ? 'bg-gray-700' : 'bg-gray-100'),
+                            dark ? 'text-gray-200' : ''
+                   ]"
                    :disabled="disabled"
                    :placeholder="t('map.placeholder.value')"
                    @input="updateValue(index, 'value', $event)">
           </div>
         </div>
 
-        <Icon v-if="!disabled"
+        <ShadcnIcon v-if="!disabled"
                     icon="CircleX"
-                    class="text-gray-400 transition-opacity duration-200"
                     :class="[Size[finalSize],
-                        'cursor-pointer hover:text-red-500 opacity-0 group-hover:opacity-100'
+                        'transition-opacity duration-200 cursor-pointer hover:text-red-500 opacity-0 group-hover:opacity-100'
                     ]"
+                    :dark="dark"
                     @click="onRemoveItem(index)"/>
       </div>
     </div>
@@ -46,12 +52,13 @@
       {{ t('map.validated.duplicate') }}
     </div>
 
-    <Icon v-if="!disabled && !isMaxReached"
+    <ShadcnIcon v-if="!disabled && !isMaxReached"
                 icon="CirclePlus"
-                :class="['text-blue-600 hover:text-blue-700 focus:outline-none',
+                :class="['focus:outline-none',
                     { 'cursor-pointer ': !Object.values(duplicateKeys).some(v => v) && !Object.values(emptyKeys).some(v => v) && !disabled },
-                    { 'cursor-not-allowed opacity-50 text-gray-100': Object.values(duplicateKeys).some(v => v) || Object.values(emptyKeys).some(v => v) || disabled }
+                    { 'cursor-not-allowed opacity-50': Object.values(duplicateKeys).some(v => v) || Object.values(emptyKeys).some(v => v) || disabled }
                 ]"
+                :dark="dark"
                 @click="(!Object.values(duplicateKeys).some(v => v) && !Object.values(emptyKeys).some(v => v)) && onAddItem()"/>
   </div>
 </template>
@@ -63,6 +70,7 @@ import { Size } from '@/ui/common/size.ts'
 import { HoverType } from '@/ui/common/type.ts'
 import { MapEmits, MapProps } from '@/ui/map/types.ts'
 import { FormItemContext } from '@/ui/form/context.ts'
+import { ShadcnIcon } from "@/ui/icon";
 
 const emit = defineEmits<MapEmits>()
 const props = withDefaults(defineProps<MapProps>(), {
@@ -71,7 +79,8 @@ const props = withDefaults(defineProps<MapProps>(), {
   type: 'primary',
   disabled: false,
   max: Infinity,
-  name: undefined
+  name: undefined,
+  dark: false
 })
 
 const finalSize = computed(() => props.size)

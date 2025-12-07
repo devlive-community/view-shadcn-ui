@@ -1,6 +1,7 @@
 <template>
   <div :style="{ width: calcSize(width) }">
     <ShadcnInput v-model="inputValue"
+                 :dark="dark"
                  @on-blur="handleBlur"
                  @keydown.enter="handleBlur"
                  @keydown.esc="handleCancel">
@@ -18,6 +19,7 @@ const props = defineProps<{
   width: string
   isRowEditing?: boolean
   fieldKey?: string
+  dark?: boolean
   onRowValueChange?: (key: string, value: any) => void
 }>()
 

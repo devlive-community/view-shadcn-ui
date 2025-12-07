@@ -1,6 +1,7 @@
 <template>
   <footer v-if="isVisible"
-          :class="['fixed bottom-0 left-0 right-0 z-50 border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60',
+          :class="['fixed bottom-0 left-0 right-0 z-50 border-t backdrop-blur supports-[backdrop-filter]:bg-background/60',
+              dark ? 'bg-gray-800/95 border-gray-700' : 'bg-background/95 border-gray-200',
               'transform transition-transform duration-200 ease-in-out',
               isVisible ? 'translate-y-0' : 'translate-y-full'
           ]">
@@ -16,10 +17,12 @@
       <div class="flex items-center gap-2">
         <slot name="right">
           <ShadcnButton type="danger"
+                        :dark="dark"
                         @click="onCancel">
             {{ t('toolbar.text.cancel') }}
           </ShadcnButton>
           <ShadcnButton type="primary"
+                        :dark="dark"
                         @click="onOk">
             {{ t('toolbar.text.ok') }}
           </ShadcnButton>
@@ -60,6 +63,10 @@ interface Props
    * Enables full width
    */
   fullWidth?: boolean
+  /**
+   * Enables dark mode
+   */
+  dark?: boolean
 }
 
 const emit = defineEmits<{
@@ -74,7 +81,8 @@ const props = withDefaults(defineProps<Props>(), {
   autoHideDelay: 3000,
   hideOnScroll: true,
   scrollStopDelay: 600,
-  fullWidth: false
+  fullWidth: false,
+  dark: false
 })
 
 const isVisible = ref(props.modelValue)

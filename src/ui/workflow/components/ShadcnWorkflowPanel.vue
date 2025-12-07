@@ -3,8 +3,8 @@
     <!-- 搜索框 slot -->
     <!-- Search box slot -->
     <slot name="search">
-      <div class="p-4 border-b border-gray-200">
-        <ShadcnInput v-model="searchText" :placeholder="String(t('workflow.placeholder.search'))"/>
+      <div :class="['p-4 border-b', dark ? 'border-gray-600' : 'border-gray-200']">
+        <ShadcnInput v-model="searchText" :dark="dark" :placeholder="String(t('workflow.placeholder.search'))"/>
       </div>
     </slot>
 
@@ -15,7 +15,7 @@
         <!-- 分类标题 slot -->
         <!-- Category title slot -->
         <slot :category="category" name="category-header">
-          <div class="px-4 py-2 font-medium text-gray-600 bg-gray-50">{{ category.label }}</div>
+          <div :class="['px-4 py-2 font-medium', dark ? 'text-gray-300 bg-gray-800' : 'text-gray-600 bg-gray-50']">{{ category.label }}</div>
         </slot>
 
         <!-- 节点列表 -->
@@ -25,18 +25,18 @@
             <!-- 节点内容 slot -->
             <!-- Node content slot -->
             <slot :node="node" :onDragStart="handleDragStart" name="node">
-              <div class="p-3 mb-2 border border-gray-200 rounded-lg shadow-sm cursor-move hover:border-blue-500"
+              <div :class="['p-3 mb-2 border rounded-lg shadow-sm cursor-move hover:border-blue-500', dark ? 'border-gray-600 bg-gray-800' : 'border-gray-200 bg-white']"
                    draggable="true"
                    @dragstart="handleDragStart(node, $event)">
-                <div class="font-medium text-sm">{{ node.label }}</div>
+                <div :class="['font-medium text-sm', dark ? 'text-gray-200' : '']">{{ node.label }}</div>
 
-                <div class="text-xs text-gray-500 mt-1">
+                <div :class="['text-xs mt-1', dark ? 'text-gray-400' : 'text-gray-500']">
                   {{ node.description }}
                 </div>
 
                 <!-- 端口预览 -->
                 <!-- Port preview -->
-                <div class="mt-2 flex justify-between text-xs text-gray-400">
+                <div :class="['mt-2 flex justify-between text-xs', dark ? 'text-gray-500' : 'text-gray-400']">
                   <div v-if="node.ports.some(p => p.type === WorkflowPortType.input)">
                     {{ t('workflow.text.input') }}: {{ node.ports.filter(p => p.type === WorkflowPortType.input).length }}
                   </div>
@@ -66,7 +66,8 @@ import { ref, watch } from 'vue'
 
 const emit = defineEmits<WorkflowPanelEmits>()
 const props = withDefaults(defineProps<WorkflowPanelProps>(), {
-  searchText: ''
+  searchText: '',
+  dark: false
 })
 
 const searchText = ref(props.searchText)
@@ -104,7 +105,7 @@ const handleDragStart = (node: WorkflowNode, event: DragEvent) => {
     event.dataTransfer.effectAllowed = 'copy'
 
     const preview = document.createElement('div')
-    preview.className = 'bg-white border border-gray-200 rounded-lg p-2 shadow-lg'
+    preview.className = props.dark ? 'bg-gray-800 border border-gray-600 rounded-lg p-2 shadow-lg text-gray-200' : 'bg-white border border-gray-200 rounded-lg p-2 shadow-lg'
     preview.textContent = node.category
     preview.style.position = 'absolute'
     preview.style.left = '-1000px'

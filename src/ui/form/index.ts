@@ -1,3 +1,2 @@
-import ShadcnForm from './ShadcnForm.vue'
-
-export default ShadcnForm
+export { default as ShadcnForm } from './ShadcnForm.vue'
+export { default as ShadcnFormItem } from './ShadcnFormItem.vue'

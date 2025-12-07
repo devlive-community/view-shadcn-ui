@@ -1,3 +1,1 @@
-import ShadcnRow from './ShadcnRow.vue'
-
-export default ShadcnRow
+export { default as ShadcnRow } from './ShadcnRow.vue'

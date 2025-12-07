@@ -4,20 +4,24 @@
       <template v-for="(part, index) in parts" :key="index">
         <input ref="inputRefs"
                type="text"
-               class="w-12 text-center border border-gray-300 rounded transition-colors duration-300 focus:outline-none"
+               :class="[
+                 { 'opacity-50 cursor-not-allowed': props.disabled },
+                 Size[size],
+                 [HoverType[type]],
+                 props.dark
+                   ? 'border border-gray-600 bg-gray-700 text-gray-100'
+                   : 'border border-gray-300 bg-white text-gray-900'
+               ]"
+               class="w-12 text-center rounded transition-colors duration-300 focus:outline-none"
                maxlength="3"
                :value="part"
-               :class="[{ 'opacity-50 cursor-not-allowed': props.disabled },
-                  Size[size],
-                  [HoverType[type]]
-               ]"
                :disabled="props.disabled"
                @input="handleInput($event, index)"
                @keydown="handleKeyDown($event, index)"
                @paste="handlePaste"
                @blur.stop="handleBlur"
                @focus="handleFocus($event)"/>
-        <span v-if="separator && index < 3" class="text-gray-400">{{ separator }}</span>
+        <span v-if="separator && index < 3" :class="props.dark ? 'text-gray-400' : 'text-gray-400'">{{ separator }}</span>
       </template>
     </div>
   </div>
@@ -39,7 +43,8 @@ const props = withDefaults(defineProps<IPInputProps>(), {
   size: 'default',
   type: 'primary',
   name: undefined,
-  separator: undefined
+  separator: undefined,
+  dark: false
 })
 
 // Initialize IP parts with empty strings or default value

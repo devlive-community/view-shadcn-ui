@@ -4,4 +4,5 @@ export interface TimelineContext
     removeItem: (id: symbol) => void
     items: Set<symbol>
     split: boolean
+    dark: boolean
 }

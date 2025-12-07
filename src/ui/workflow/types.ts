@@ -83,6 +83,7 @@ export interface WorkflowNodePortProps
     disabled?: boolean
     selected?: boolean
     connections?: WorkflowConnection[]
+    dark?: boolean
 }
 
 export type WorkflowNodePortEmits = {
@@ -97,6 +98,7 @@ export interface WorkflowPanelProps
     nodes: WorkflowNode[]
     categories: WorkflowCategory[]
     searchText: string
+    dark?: boolean
 }
 
 export type WorkflowPanelEmits = {
@@ -110,6 +112,7 @@ export interface WorkflowCanvasProps
     connections: WorkflowConnection[]
     selectedNodeId?: string,
     canvas?: WorkflowCanvasConfigure
+    dark?: boolean
 }
 
 export type WorkflowCanvasEmits = {
@@ -141,6 +144,7 @@ export interface WorkflowProps
     searchText?: string
     panelWidth?: number | string
     configureWidth?: number | string
+    dark?: boolean
 }
 
 export type WorkflowEmits = {
@@ -158,6 +162,7 @@ export interface WorkflowConfigureProps
 {
     selectedNode?: WorkflowNode
     width?: number | string
+    dark?: boolean
 }
 
 export type WorkflowConfigureEmits = {
@@ -175,4 +180,5 @@ export interface WorkflowViewProps
     nodes: WorkflowNode[]
     data: WorkflowData
     canvas?: WorkflowCanvasConfigure
+    dark?: boolean
 }

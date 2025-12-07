@@ -56,11 +56,11 @@
             </slot>
             <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
               <ShadcnIcon :class="[
-                      'font-semibold transition-transform',
-                      col.sort ? 'opacity-100' : 'opacity-0',
-                      col.sort === 'asc' && 'text-blue-500',
-                      col.sort === 'desc' && 'rotate-180 text-blue-500'
-                    ]"
+                            'font-semibold transition-transform',
+                            col.sort ? 'opacity-100' : 'opacity-0',
+                            col.sort === 'asc' && 'text-blue-500',
+                            col.sort === 'desc' && 'rotate-180 text-blue-500'
+                          ]"
                           :dark="dark"
                           icon="MoveUp"
                           size="16">
@@ -75,11 +75,11 @@
           </slot>
           <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
             <ShadcnIcon :class="[
-                    'font-semibold transition-transform',
-                    col.sort ? 'opacity-100' : 'opacity-0',
-                    col.sort === 'asc' && 'text-blue-500',
-                    col.sort === 'desc' && 'rotate-180 text-blue-500'
-                  ]"
+                          'font-semibold transition-transform',
+                          col.sort ? 'opacity-100' : 'opacity-0',
+                          col.sort === 'asc' && 'text-blue-500',
+                          col.sort === 'desc' && 'rotate-180 text-blue-500'
+                        ]"
                         :dark="dark"
                         icon="MoveUp"
                         size="16">
@@ -126,11 +126,11 @@
             </slot>
             <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
               <ShadcnIcon :class="[
-                      'font-semibold transition-transform',
-                      col.sort ? 'opacity-100' : 'opacity-0',
-                      col.sort === 'asc' && 'text-blue-500',
-                      col.sort === 'desc' && 'rotate-180 text-blue-500'
-                    ]"
+                            'font-semibold transition-transform',
+                            col.sort ? 'opacity-100' : 'opacity-0',
+                            col.sort === 'asc' && 'text-blue-500',
+                            col.sort === 'desc' && 'rotate-180 text-blue-500'
+                          ]"
                           :dark="dark"
                           icon="MoveUp"
                           size="16">
@@ -145,11 +145,11 @@
           </slot>
           <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
             <ShadcnIcon :class="[
-                    'font-semibold transition-transform',
-                    col.sort ? 'opacity-100' : 'opacity-0',
-                    col.sort === 'asc' && 'text-blue-500',
-                    col.sort === 'desc' && 'rotate-180 text-blue-500'
-                  ]"
+                          'font-semibold transition-transform',
+                          col.sort ? 'opacity-100' : 'opacity-0',
+                          col.sort === 'asc' && 'text-blue-500',
+                          col.sort === 'desc' && 'rotate-180 text-blue-500'
+                        ]"
                         :dark="dark"
                         icon="MoveUp"
                         size="16">
@@ -196,11 +196,11 @@
             </slot>
             <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
               <ShadcnIcon :class="[
-                      'font-semibold transition-transform',
-                      col.sort ? 'opacity-100' : 'opacity-0',
-                      col.sort === 'asc' && 'text-blue-500',
-                      col.sort === 'desc' && 'rotate-180 text-blue-500'
-                    ]"
+                            'font-semibold transition-transform',
+                            col.sort ? 'opacity-100' : 'opacity-0',
+                            col.sort === 'asc' && 'text-blue-500',
+                            col.sort === 'desc' && 'rotate-180 text-blue-500'
+                          ]"
                           :dark="dark"
                           icon="MoveUp"
                           size="16">
@@ -215,11 +215,11 @@
           </slot>
           <div v-if="col.sortable" class="inline-flex items-center ml-2 min-w-[1em]">
             <ShadcnIcon :class="[
-                    'font-semibold transition-transform',
-                    col.sort ? 'opacity-100' : 'opacity-0',
-                    col.sort === 'asc' && 'text-blue-500',
-                    col.sort === 'desc' && 'rotate-180 text-blue-500'
-                  ]"
+                          'font-semibold transition-transform',
+                          col.sort ? 'opacity-100' : 'opacity-0',
+                          col.sort === 'asc' && 'text-blue-500',
+                          col.sort === 'desc' && 'rotate-180 text-blue-500'
+                        ]"
                         :dark="dark"
                         icon="MoveUp"
                         size="16">

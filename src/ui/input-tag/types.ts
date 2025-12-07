@@ -9,6 +9,7 @@ export type InputTagProps = {
     size?: keyof typeof Size
     type?: keyof typeof HoverType
     max?: number
+    dark?: boolean
 }
 
 export type InputTagEmits = {

@@ -17,7 +17,8 @@
                      :height="image.height"
                      :fit="image.fit"
                      :lazy="image.lazy"
-                     :border="image.border">
+                     :border="image.border"
+                     :dark="dark">
         </ShadcnImage>
       </div>
     </div>
@@ -25,6 +26,7 @@
     <ShadcnImageViewer v-if="preview"
                        v-model:visible="previewVisible"
                        v-model:current="currentIndex"
+                       :dark="dark"
                        :images="images">
     </ShadcnImageViewer>
   </div>
@@ -39,7 +41,8 @@ import ShadcnImageViewer from './ShadcnImageViewer.vue'
 const props = withDefaults(defineProps<ImageGroupProps>(), {
   columns: 6,
   gap: 2,
-  preview: false
+  preview: false,
+  dark: false
 })
 
 const previewVisible = ref(false)

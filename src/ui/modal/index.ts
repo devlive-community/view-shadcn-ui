@@ -1,3 +1,1 @@
-import ShadcnModal from './ShadcnModal.vue'
-
-export default ShadcnModal
+export { default as ShadcnModal } from './ShadcnModal.vue'

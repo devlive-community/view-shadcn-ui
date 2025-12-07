@@ -47,6 +47,15 @@ export enum TextType
     error = 'text-red-400'
 }
 
+export enum TextTypeDark
+{
+    default = 'text-gray-200',
+    primary = 'text-blue-400',
+    success = 'text-green-400',
+    warning = 'text-yellow-400',
+    error = 'text-red-400'
+}
+
 export enum BorderType
 {
     primary = 'border-blue-400',

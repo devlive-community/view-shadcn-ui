@@ -4,7 +4,7 @@
     <!-- Input Ports -->
     <div class="flex flex-col gap-3">
       <div v-for="port in inputPorts" class="flex items-center gap-1.5 justify-start select-none" :key="port.id">
-        <ShadcnTooltip :content="String(port.validated ? port.validated.message : port.label)">
+        <ShadcnTooltip :content="String(port.validated ? port.validated.message : port.label)" :dark="dark">
           <div class="w-3 h-3 rounded-full cursor-pointer transition-colors"
                :class="{
                    'bg-blue-500 hover:bg-blue-600': !port.validated,
@@ -17,7 +17,7 @@
                @mousedown="handlePortMouseDown($event, port)"
                @mouseup="handlePortMouseUp($event, port)"/>
         </ShadcnTooltip>
-        <span class="text-xs text-gray-600">{{ port.label }}</span>
+        <span :class="['text-xs', dark ? 'text-gray-300' : 'text-gray-600']">{{ port.label }}</span>
       </div>
     </div>
 
@@ -25,8 +25,8 @@
     <!-- Node content slot -->
     <slot>
       <div class="px-2 py-1 flex flex-col items-center select-none">
-        <div class="font-medium text-sm">{{ node.label }}</div>
-        <div class="text-xs text-gray-500">{{ node.description }}</div>
+        <div :class="['font-medium text-sm', dark ? 'text-gray-200' : '']">{{ node.label }}</div>
+        <div :class="['text-xs', dark ? 'text-gray-400' : 'text-gray-500']">{{ node.description }}</div>
       </div>
     </slot>
 
@@ -34,8 +34,8 @@
     <!-- Output Ports -->
     <div class="flex flex-col gap-3">
       <div v-for="port in outputPorts" class="flex items-center gap-1.5 justify-end select-none" :key="port.id">
-        <span class="text-xs text-gray-600">{{ port.label }}</span>
-        <ShadcnTooltip :content="String(port.validated ? port.validated.message : port.label)">
+        <span :class="['text-xs', dark ? 'text-gray-300' : 'text-gray-600']">{{ port.label }}</span>
+        <ShadcnTooltip :content="String(port.validated ? port.validated.message : port.label)" :dark="dark">
           <div class="w-3 h-3 rounded-full cursor-pointer transition-colors"
                :class="{
                    'bg-gray-500 hover:bg-gray-600': !port.validated,
@@ -63,7 +63,8 @@ const emit = defineEmits<WorkflowNodePortEmits>()
 const props = withDefaults(defineProps<WorkflowNodePortProps>(), {
   disabled: false,
   selected: false,
-  connections: () => []
+  connections: () => [],
+  dark: false
 })
 
 const inputPorts = computed(() => {

@@ -31,9 +31,9 @@
       </ShadcnIcon>
 
       <ShadcnIcon :class="{
-              'opacity-30 cursor-not-allowed': page === 1,
-              'cursor-pointer': page > 1
-            }"
+                    'opacity-30 cursor-not-allowed': page === 1,
+                    'cursor-pointer': page > 1
+                  }"
                   :dark="dark"
                   class="text-sm"
                   icon="ChevronLeft"
@@ -45,9 +45,9 @@
       </span>
 
       <ShadcnIcon :class="{
-              'opacity-30 cursor-not-allowed': page === totalPages,
-              'cursor-pointer': page < totalPages
-            }"
+                    'opacity-30 cursor-not-allowed': page === totalPages,
+                    'cursor-pointer': page < totalPages
+                  }"
                   :dark="dark"
                   class="text-sm"
                   icon="ChevronRight"
@@ -55,9 +55,9 @@
       </ShadcnIcon>
 
       <ShadcnIcon :class="{
-              'opacity-30 cursor-not-allowed': page === totalPages,
-              'cursor-pointer': page < totalPages
-            }"
+                    'opacity-30 cursor-not-allowed': page === totalPages,
+                    'cursor-pointer': page < totalPages
+                  }"
                   :dark="dark"
                   class="text-sm"
                   icon="ChevronsRight"

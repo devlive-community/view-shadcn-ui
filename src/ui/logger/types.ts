@@ -8,4 +8,5 @@ export interface LoggerProps
     toolbar?: boolean
     caseSensitive?: boolean,
     customPatterns?: LoggerPattern
+    dark?: boolean
 }

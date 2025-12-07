@@ -1,20 +1,20 @@
 <template>
-  <ShadcnContextMenu v-model="localVisible" :position="contextMenuState.position.value">
+  <ContextMenu v-model="localVisible" :dark="dark" :position="contextMenuState.position.value">
     <slot :actionsPosition="menuPosition"
           :position="contextMenuState.position.value"
           :selectedValue="currentValue as any"
           :visible="localVisible"
           name="contextMenu">
-      <ShadcnContextMenuItem
-          :disabled="!contextMenuState.selectedValue.value?.col.editable"
-          @click="onItemClick('edit-cell')">
+      <ShadcnContextMenuItem :dark="dark"
+                             :disabled="!contextMenuState.selectedValue.value?.col.editable"
+                             @click="onItemClick('edit-cell')">
         {{ t('dataTable.text.editCell') }}
       </ShadcnContextMenuItem>
-      <ShadcnContextMenuItem @click="onItemClick('edit-row')">
+      <ShadcnContextMenuItem :dark="dark" @click="onItemClick('edit-row')">
         {{ t('dataTable.text.editRow') }}
       </ShadcnContextMenuItem>
     </slot>
-  </ShadcnContextMenu>
+  </ContextMenu>
 
   <div v-if="editableState.editingRowState.value"
        :style="{
@@ -25,10 +25,10 @@
        }"
        class="space-x-2">
     <ShadcnButtonGroup size="small" :dark="dark">
-      <ShadcnButton type="error" circle @click="onCancelRowEdit">
+      <ShadcnButton type="error" :dark="dark" circle @click="onCancelRowEdit">
         <ShadcnIcon :dark="dark" icon="X" size="15"/>
       </ShadcnButton>
-      <ShadcnButton type="success" circle @click="onSaveRowEdit">
+      <ShadcnButton type="success" :dark="dark" circle @click="onSaveRowEdit">
         <ShadcnIcon :dark="dark" icon="Check" size="15"/>
       </ShadcnButton>
     </ShadcnButtonGroup>
@@ -37,7 +37,7 @@
 
 <script lang="ts" setup>
 import { t } from '@/utils/locale'
-import { ShadcnContextMenu, ShadcnContextMenuItem } from '@/ui/contextmenu'
+import { ShadcnContextMenu as ContextMenu, ShadcnContextMenuItem } from '@/ui/contextmenu'
 import { ShadcnButton, ShadcnButtonGroup } from '@/ui/button'
 import { computed, ref, watch } from 'vue'
 import { useEditable } from '../hooks/useEditable'

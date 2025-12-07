@@ -40,6 +40,12 @@ export interface TimeProps
      * 更新间隔（毫秒），默认为 1000
      */
     interval?: number
+
+    /**
+     * Dark mode
+     * 暗黑模式
+     */
+    dark?: boolean
 }
 
 export type TimeEmits = {

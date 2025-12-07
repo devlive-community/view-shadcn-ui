@@ -5,7 +5,8 @@
                           :key="index"
                           :width="width"
                           :size="size"
-                          :animation="animation"/>
+                          :animation="animation"
+                          :dark="dark"/>
     </slot>
   </div>
 </template>
@@ -19,7 +20,8 @@ const props = withDefaults(defineProps<SkeletonProps>(), {
   cols: 1,
   rows: 4,
   animation: false,
-  size: 'mini'
+  size: 'mini',
+  dark: false
 })
 
 const addPxIfNumber = (value: number | string): string => {

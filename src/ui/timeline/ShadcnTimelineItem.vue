@@ -2,7 +2,7 @@
   <div :class="['relative flex', itemClass]">
     <!-- Content left -->
     <div v-if="timelineContext.split" class="w-1/2">
-      <div v-if="currentIndex % 2 === 0" class="pr-4 text-right">
+      <div v-if="currentIndex % 2 === 0" :class="['pr-4 text-right', timelineContext.dark ? 'text-gray-200' : '']">
         <slot/>
       </div>
     </div>
@@ -12,7 +12,7 @@
       <div class="flex items-center" :class="dotClass">
         <slot name="dot">
           <div class="w-4 h-4 rounded-full bg-blue-400 relative">
-            <div class="absolute w-3 h-3 rounded-full top-0.5 left-0.5 bg-white"/>
+            <div :class="['absolute w-3 h-3 rounded-full top-0.5 left-0.5', timelineContext.dark ? 'bg-gray-800' : 'bg-white']"/>
           </div>
         </slot>
       </div>
@@ -22,13 +22,13 @@
 
     <!-- Content right -->
     <div v-if="timelineContext.split" class="w-1/2">
-      <div v-if="currentIndex % 2 !== 0" class="pl-4 text-left">
+      <div v-if="currentIndex % 2 !== 0" :class="['pl-4 text-left', timelineContext.dark ? 'text-gray-200' : '']">
         <slot/>
       </div>
     </div>
 
     <!-- Default Content without split -->
-    <div v-if="!timelineContext.split" :class="['pl-8', contentClass]">
+    <div v-if="!timelineContext.split" :class="['pl-8', contentClass, timelineContext.dark ? 'text-gray-200' : '']">
       <slot/>
     </div>
   </div>
@@ -36,15 +36,16 @@
 
 <script setup lang="ts">
 import { computed, inject, onMounted, onUnmounted } from 'vue'
-import type { TimelineContext } from '../timeline.ts'
+import type { TimelineContext } from './timeline.ts'
 import { generateRandomId } from '@/utils/common.ts'
 
-const id = Symbol(`timeline-item-${ generateRandomId() }`)
+const id = Symbol(`timeline-item-${generateRandomId()}`)
 const timelineContext = inject<TimelineContext>('timelineContext', {
   items: new Set<symbol>(),
   addItem: () => void 0,
   removeItem: () => void 0,
-  split: false
+  split: false,
+  dark: false
 })
 
 if (!timelineContext) {

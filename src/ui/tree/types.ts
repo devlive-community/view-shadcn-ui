@@ -16,6 +16,7 @@ export interface TreeProps
     checkable?: boolean
     cascade?: boolean
     showLine?: boolean
+    dark?: boolean
     loadData?: (node: TreeNode) => Promise<TreeNode[]>
 }
 
@@ -27,6 +28,7 @@ export interface TreeNodeProps
     checkable?: boolean
     cascade?: boolean
     showLine?: boolean
+    dark?: boolean
     loadData?: (node: TreeNode, callback: (children: TreeNode[]) => void) => void
 }
 

@@ -1,9 +1,10 @@
 <template>
-  <th :class="['text-left text-xs font-medium text-gray-500 tracking-wider whitespace-nowrap break-words relative',
+  <th :class="['text-left text-xs font-medium tracking-wider whitespace-nowrap break-words relative',
+                dark ? 'text-gray-300' : 'text-gray-500',
                 TableCellSize[size],
                 fixed && 'sticky',
                 fixed === 'left' && [
-                  'bg-gray-50 z-10',
+                  dark ? 'bg-gray-700 z-10' : 'bg-gray-50 z-10',
                   // The last left fixed column adds a special right border and shadow
                   isLastLeftFixed && [
                     border && [
@@ -16,7 +17,7 @@
                   !isLastLeftFixed && 'after:absolute after:inset-y-0 after:border-r-gray-200 after:right-0 after:w-[1px]'
                 ],
                 fixed === 'right' && [
-                  'bg-gray-50 z-10',
+                  dark ? 'bg-gray-700 z-10' : 'bg-gray-50 z-10',
                   // The first right fixed column adds a special left border and shadow
                   isFirstRightFixed && [
                       border && [
@@ -28,8 +29,8 @@
                   // The other right pinned columns only have a right border
                   !isFirstRightFixed && 'after:absolute after:inset-y-0 after:border-r-gray-200 after:right-0 after:w-[1px]'
                 ],
-                border ? 'border-r border-r-gray-200' : 'border-b border-b-gray-200',
-                'group-hover:bg-gray-50'
+                border ? (dark ? 'border-r border-r-gray-600' : 'border-r border-r-gray-200') : (dark ? 'border-b border-b-gray-600' : 'border-b border-b-gray-200'),
+                dark ? 'group-hover:bg-gray-700' : 'group-hover:bg-gray-50'
       ]"
       :style="{
               width: calcSize(width),
@@ -54,6 +55,7 @@ withDefaults(defineProps<ColumnProps>(), {
   width: 'auto',
   isLastLeftFixed: false,
   isFirstRightFixed: false,
-  size: 'default'
+  size: 'default',
+  dark: false
 })
 </script>

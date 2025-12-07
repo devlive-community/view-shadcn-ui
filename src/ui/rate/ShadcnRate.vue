@@ -20,7 +20,7 @@
             <slot name="character">★</slot>
           </span>
           <!-- Right -->
-          <span :class="disabled ? 'text-gray-400' : 'text-gray-300'">
+          <span :class="disabled ? (dark ? 'text-gray-600' : 'text-gray-400') : (dark ? 'text-gray-600' : 'text-gray-300')">
             <slot name="character">★</slot>
           </span>
         </span>
@@ -41,7 +41,7 @@
 <script setup lang="ts">
 import { defineEmits, defineProps, ref, watch } from 'vue'
 import { toNumber } from 'lodash'
-import ShadcnSpace from '@/ui/space'
+import { ShadcnSpace } from '@/ui/space'
 import { TextType } from '@/ui/common/type.ts'
 
 const props = withDefaults(defineProps<{
@@ -51,12 +51,14 @@ const props = withDefaults(defineProps<{
   type?: keyof typeof TextType
   disabled?: boolean
   showText?: boolean
+  dark?: boolean
 }>(), {
   max: 5,
   allowHalf: false,
   type: 'primary',
   disabled: false,
-  showText: false
+  showText: false,
+  dark: false
 })
 
 const emit = defineEmits(['update:modelValue', 'on-change'])
@@ -116,7 +118,7 @@ const getStarClass = (index: number, isLeft: boolean) => {
 
   return [
     'transition-all duration-150',
-    (isFull || isHalf) ? TextType[props.type] : 'text-gray-300'
+    (isFull || isHalf) ? TextType[props.type] : (props.dark ? 'text-gray-600' : 'text-gray-300')
   ]
 }
 </script>

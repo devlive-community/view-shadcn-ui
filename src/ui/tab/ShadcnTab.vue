@@ -7,14 +7,17 @@
        }">
     <div :class="[
           direction !== 'vertical' ? '' : '',
-          direction === 'vertical' ? 'border-b-0 border-r border-slate-200 flex-col' : 'flex justify-between'
+          direction === 'vertical' ? (dark ? 'border-b-0 border-r border-gray-600 flex-col' : 'border-b-0 border-r border-slate-200 flex-col') : 'flex justify-between'
         ]"
          :style="{ width: direction === 'vertical' ? 'auto' : '100%' }">
       <div :class="direction === 'vertical' ? 'h-full' : 'w-full'" class="relative">
         <!-- Scroll buttons -->
         <button v-if="showScrollButtons && canScrollPrev"
-                :class="direction === 'vertical' ? 'top-0 left-1/2 -translate-x-1/2 rotate-90' : 'left-0'"
-                class="absolute z-10 flex items-center justify-center w-8 h-full bg-white/80 shadow-sm"
+                :class="[
+                  direction === 'vertical' ? 'top-0 left-1/2 -translate-x-1/2 rotate-90' : 'left-0',
+                  dark ? 'bg-gray-800/80' : 'bg-white/80'
+                ]"
+                class="absolute z-10 flex items-center justify-center w-8 h-full shadow-sm"
                 @click="scroll('prev')">
           <ShadcnIcon class="h-4 w-4" icon="ChevronLeft"/>
         </button>
@@ -24,7 +27,7 @@
              class="overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           <div ref="tabsWrapper"
                :class="[
-                 direction === 'vertical' ? 'flex flex-col' : line ? 'flex inline-flex' : 'flex bg-slate-100 p-1 rounded-lg inline-flex',
+                 direction === 'vertical' ? 'flex flex-col' : line ? 'flex inline-flex' : (dark ? 'flex bg-gray-700 p-1 rounded-lg inline-flex' : 'flex bg-slate-100 p-1 rounded-lg inline-flex'),
                  'transition-transform duration-300 ease-in-out'
                ]"
                :style="scrollStyle">
@@ -34,14 +37,19 @@
                     'inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-all cursor-pointer',
                     direction === 'vertical' ? 'py-2 px-2' : line ? 'px-3 py-1.5' : 'px-3 py-1.5 rounded-md',
                     direction === 'horizontal' ? [TabSize[size]] : '',
+                    dark && activeTab !== tab.value && !tab.disabled ? 'text-gray-300' : '',
                     {
-                      'bg-white cursor-pointer shadow-sm': activeTab === tab.value && !tab.disabled && direction !== 'vertical' && !line,
+                      'cursor-pointer shadow-sm': activeTab === tab.value && !tab.disabled && direction !== 'vertical' && !line,
+                      'bg-white': activeTab === tab.value && !tab.disabled && direction !== 'vertical' && !line && !dark,
+                      'bg-gray-800': activeTab === tab.value && !tab.disabled && direction !== 'vertical' && !line && dark,
                       'border-b-2 cursor-pointer -mb-px': activeTab === tab.value && !tab.disabled && direction !== 'vertical' && line,
                       [BorderType[type]]: activeTab === tab.value && !tab.disabled && (direction === 'vertical' || line),
                       'border-r-2 cursor-pointer': activeTab === tab.value && !tab.disabled && direction === 'vertical',
                       [TextType[type]]: activeTab === tab.value && !tab.disabled,
-                      'hover:text-slate-900': activeTab !== tab.value && !tab.disabled && direction !== 'vertical',
-                      'text-gray-600 hover:border-r-2 hover:cursor-pointer': activeTab !== tab.value && !tab.disabled && direction === 'vertical',
+                      'hover:text-slate-900': activeTab !== tab.value && !tab.disabled && direction !== 'vertical' && !dark,
+                      'hover:text-gray-200': activeTab !== tab.value && !tab.disabled && direction !== 'vertical' && dark,
+                      'text-gray-600 hover:border-r-2 hover:cursor-pointer': activeTab !== tab.value && !tab.disabled && direction === 'vertical' && !dark,
+                      'text-gray-300 hover:border-r-2 hover:cursor-pointer': activeTab !== tab.value && !tab.disabled && direction === 'vertical' && dark,
                       [HoverTextType[type]]: activeTab !== tab.value && !tab.disabled,
                       [HoverType[type]]: activeTab !== tab.value && !tab.disabled && direction === 'vertical',
                       'text-gray-400 cursor-not-allowed opacity-50': tab.disabled
@@ -73,8 +81,11 @@
         </div>
 
         <button v-if="showScrollButtons && canScrollNext"
-                :class="direction === 'vertical' ? 'bottom-0 left-1/2 -translate-x-1/2 rotate-90' : 'right-0 top-0'"
-                class="absolute z-10 flex items-center justify-center w-8 h-full bg-white/80 shadow-sm"
+                :class="[
+                  direction === 'vertical' ? 'bottom-0 left-1/2 -translate-x-1/2 rotate-90' : 'right-0 top-0',
+                  dark ? 'bg-gray-800/80' : 'bg-white/80'
+                ]"
+                class="absolute z-10 flex items-center justify-center w-8 h-full shadow-sm"
                 @click="scroll('next')">
           <ShadcnIcon class="h-4 w-4" icon="ChevronRight"/>
         </button>
@@ -125,7 +136,8 @@ const props = withDefaults(defineProps<TabProps>(), {
   closable: false,
   position: 'left',
   direction: 'horizontal',
-  showScrollButtons: true
+  showScrollButtons: true,
+  dark: false
 })
 
 const activeTab = ref('')

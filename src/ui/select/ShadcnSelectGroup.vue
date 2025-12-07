@@ -11,7 +11,7 @@
 import { defineProps, provide, withDefaults } from 'vue'
 import { SelectGroupProps } from '@/ui/select/types.ts'
 
-const props = withDefaults(defineProps<SelectGroupProps>(), {
+withDefaults(defineProps<SelectGroupProps>(), {
   dark: false
 })
 

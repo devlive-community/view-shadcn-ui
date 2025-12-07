@@ -15,6 +15,7 @@ export interface MapProps
     disabled?: boolean
     max?: number
     name?: string
+    dark?: boolean
 }
 
 export type MapEmits = {

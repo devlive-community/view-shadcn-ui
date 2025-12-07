@@ -16,7 +16,9 @@
       <div class="fixed inset-0 bg-black bg-opacity-50" @click="handleMaskClick"/>
 
       <!-- Drawer body -->
-      <div :class="['bg-white shadow-lg flex flex-col transform transition-transform duration-300',
+      <div :class="[
+                  'shadow-lg flex flex-col transform transition-transform duration-300',
+                  dark ? 'bg-gray-800' : 'bg-white',
                   {
                     'h-full': position === 'left' || position === 'right',
                     'w-full': position === 'top' || position === 'bottom',
@@ -34,9 +36,9 @@
             }">
 
         <!-- Drawer header -->
-        <div class="p-2 border-b flex justify-between">
+        <div :class="['p-2 border-b flex justify-between', dark ? 'border-gray-600' : '']">
           <slot name="header">
-            <div class="text-lg font-bold">{{ title }}</div>
+            <div :class="['text-lg font-bold', dark ? 'text-gray-200' : '']">{{ title }}</div>
           </slot>
 
           <div v-if="closable" class="flex items-center cursor-pointer" @click="onClose">
@@ -46,7 +48,7 @@
                    viewBox="0 0 24 24"
                    stroke-width="1.5"
                    stroke="currentColor"
-                   class="w-5 h-5 text-gray-400 hover:text-muted-foreground">
+                   :class="['w-5 h-5', dark ? 'text-gray-400 hover:text-gray-300' : 'text-gray-400 hover:text-muted-foreground']">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
               </svg>
             </slot>
@@ -54,12 +56,12 @@
         </div>
 
         <!-- Drawer body -->
-        <div class="flex-grow p-4 overflow-y-auto">
+        <div :class="['flex-grow p-4 overflow-y-auto', dark ? 'text-gray-200' : '']">
           <slot/>
         </div>
 
         <!-- Drawer footer -->
-        <footer v-if="$slots.footer" class="p-2 border-t">
+        <footer v-if="$slots.footer" :class="['p-2 border-t', dark ? 'border-gray-600' : '']">
           <slot name="footer"/>
         </footer>
       </div>
@@ -81,12 +83,14 @@ const props = withDefaults(defineProps<{
   position?: 'top' | 'right' | 'bottom' | 'left'
   width?: string | number
   height?: string | number
+  dark?: boolean
 }>(), {
   closable: true,
   maskClosable: false,
   position: 'right',
   width: 300,
-  height: 300
+  height: 300,
+  dark: false
 })
 
 const isVisible = ref(props.modelValue)

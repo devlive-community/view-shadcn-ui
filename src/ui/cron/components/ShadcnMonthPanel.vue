@@ -67,7 +67,8 @@
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue'
 import { t } from '@/utils/locale'
-import ShadcnRadio from "@/ui/radio";
+import { ShadcnRadio } from "@/ui/radio";
+import { ShadcnSelect } from "@/ui/select";
 
 interface Props
 {

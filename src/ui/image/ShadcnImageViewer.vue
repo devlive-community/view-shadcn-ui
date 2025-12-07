@@ -1,23 +1,31 @@
 <template>
   <div v-if="visible"
-       class="fixed inset-0 z-50 flex items-center justify-center bg-black/75 select-none transition-opacity duration-300"
+       :class="['fixed inset-0 z-50 flex items-center justify-center select-none transition-opacity duration-300',
+                dark ? 'bg-gray-900/90' : 'bg-black/75'
+       ]"
        @click.self="handleClose">
     <div class="relative w-full h-full flex items-center justify-center" @click.stop>
-      <button class="absolute top-4 right-4 text-white p-2 rounded-full hover:bg-gray-500 items-center flex transition-colors duration-200 z-20 focus:outline-none"
+      <button :class="['absolute top-4 right-4 p-2 rounded-full items-center flex transition-colors duration-200 z-20 focus:outline-none',
+                       dark ? 'text-gray-200 hover:bg-gray-700' : 'text-white hover:bg-gray-500'
+              ]"
               @click.stop="handleClose">
-        <Icon icon="X"/>
+        <ShadcnIcon :dark="dark" icon="X"/>
       </button>
 
       <button v-if="current > 0"
-              class="absolute left-4 text-white p-2 rounded-full hover:bg-gray-500 items-center flex transition-colors duration-200 z-20 focus:outline-none"
+              :class="['absolute left-4 p-2 rounded-full items-center flex transition-colors duration-200 z-20 focus:outline-none',
+                       dark ? 'text-gray-200 hover:bg-gray-700' : 'text-white hover:bg-gray-500'
+              ]"
               @click.stop="handlePrevious">
-        <Icon icon="ChevronLeft"/>
+        <ShadcnIcon :dark="dark" icon="ChevronLeft"/>
       </button>
 
       <button v-if="current < images.length - 1"
-              class="absolute right-4 text-white p-2 rounded-full hover:bg-gray-500 items-center flex transition-colors duration-200 z-20 focus:outline-none"
+              :class="['absolute right-4 p-2 rounded-full items-center flex transition-colors duration-200 z-20 focus:outline-none',
+                       dark ? 'text-gray-200 hover:bg-gray-700' : 'text-white hover:bg-gray-500'
+              ]"
               @click.stop="handleNext">
-        <Icon icon="ChevronRight"/>
+        <ShadcnIcon :dark="dark" icon="ChevronRight"/>
       </button>
 
       <div class="max-w-4xl max-h-full p-4" @click.stop>
@@ -42,39 +50,54 @@
         </div>
       </div>
 
-      <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white flex flex-col space-y-4 items-center z-20" @click.stop>
+      <div :class="['absolute bottom-6 left-1/2 transform -translate-x-1/2 flex flex-col space-y-4 items-center z-20',
+                    dark ? 'text-gray-200' : 'text-white'
+           ]"
+           @click.stop>
         <div>
           <span>{{ current + 1 }} / {{ images.length }}</span>
         </div>
 
-        <div class="flex items-center space-x-4 bg-black/30 py-1 px-4 rounded border border-gray-600">
-          <ShadcnHoverCard :content="zoom">
-            <button class="text-white p-2 rounded-full flex items-center hover:scale-150 hover:duration-300 hover:transition-transform focus:outline-none"
+        <div :class="['flex items-center space-x-4 py-1 px-4 rounded border',
+                      dark ? 'bg-gray-800/50 border-gray-600' : 'bg-black/30 border-gray-600'
+             ]">
+          <ShadcnHoverCard :content="zoom as any" :dark="dark">
+            <button :class="['p-2 rounded-full flex items-center hover:scale-150 hover:duration-300 hover:transition-transform focus:outline-none',
+                             dark ? 'text-gray-200' : 'text-white'
+                    ]"
                     @click.stop="handleZoomIn">
-              <Icon icon="ZoomIn"/>
+              <ShadcnIcon :dark="dark" icon="ZoomIn"/>
             </button>
           </ShadcnHoverCard>
 
-          <ShadcnHoverCard :content="zoom">
-            <button class="text-white p-2 rounded-full items-center flex hover:scale-150 hover:duration-300 hover:transition-transform focus:outline-none"
+          <ShadcnHoverCard :content="zoom as any" :dark="dark">
+            <button :class="['p-2 rounded-full items-center flex hover:scale-150 hover:duration-300 hover:transition-transform focus:outline-none',
+                             dark ? 'text-gray-200' : 'text-white'
+                    ]"
                     @click.stop="handleZoomOut">
-              <Icon icon="ZoomOut"/>
+              <ShadcnIcon :dark="dark" icon="ZoomOut"/>
             </button>
           </ShadcnHoverCard>
 
-          <button class="text-white p-2 rounded-full items-center flex hover:scale-150 hover:duration-300 hover:transition-transform focus:outline-none"
+          <button :class="['p-2 rounded-full items-center flex hover:scale-150 hover:duration-300 hover:transition-transform focus:outline-none',
+                           dark ? 'text-gray-200' : 'text-white'
+                  ]"
                   @click="handleRotateLeft">
-            <Icon icon="RotateCcwSquare"/>
+            <ShadcnIcon :dark="dark" icon="RotateCcwSquare"/>
           </button>
 
-          <button class="text-white p-2 rounded-full items-center flex hover:scale-150 hover:duration-300 hover:transition-transform focus:outline-none"
+          <button :class="['p-2 rounded-full items-center flex hover:scale-150 hover:duration-300 hover:transition-transform focus:outline-none',
+                           dark ? 'text-gray-200' : 'text-white'
+                  ]"
                   @click="handleRotateRight">
-            <Icon icon="RotateCwSquare"/>
+            <ShadcnIcon :dark="dark" icon="RotateCwSquare"/>
           </button>
 
-          <button class="text-white p-2 rounded-full items-center flex hover:scale-150 hover:duration-300 hover:transition-transform focus:outline-none"
+          <button :class="['p-2 rounded-full items-center flex hover:scale-150 hover:duration-300 hover:transition-transform focus:outline-none',
+                           dark ? 'text-gray-200' : 'text-white'
+                  ]"
                   @click="handleReset">
-            <Icon icon="RotateCcw"/>
+            <ShadcnIcon :dark="dark" icon="RotateCcw"/>
           </button>
         </div>
       </div>
@@ -85,8 +108,12 @@
 <script setup lang="ts">
 import { ImagePreviewEmits, ImagePreviewProps } from './types'
 import { onUnmounted, ref, watchEffect } from 'vue'
+import { ShadcnIcon } from "@/ui/icon";
+import { ShadcnHoverCard } from "@/ui/hover-card";
 
-const props = defineProps<ImagePreviewProps>()
+const props = withDefaults(defineProps<ImagePreviewProps>(), {
+  dark: false
+})
 const emit = defineEmits<ImagePreviewEmits>()
 
 const zoom = ref(1)

@@ -27,12 +27,17 @@
            v-click-outside="closeNotification"
            @click.stop
            :style="getPopoverStyle">
-        <div class="w-full overflow-hidden overflow-x-auto overflow-y-auto bg-white dark:bg-gray-950 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800"
+        <div :class="[
+               dark ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-200'
+             ]"
+             class="w-full overflow-hidden overflow-x-auto overflow-y-auto rounded-lg shadow-lg border"
              :style="{height: calcSize(height), maxHeight: calcSize(height)}"
              @scroll="handleScroll">
           <!-- Header -->
-          <div class="px-3 py-2 border-b border-gray-200 dark:border-gray-800 flex justify-between items-center">
-            <h3 class="text-base font-medium text-gray-900 dark:text-gray-100">{{ t('notification.text.title') }}</h3>
+          <div :class="dark ? 'border-gray-600' : 'border-gray-200'"
+               class="px-3 py-2 border-b flex justify-between items-center">
+            <h3 :class="dark ? 'text-gray-200' : 'text-gray-900'"
+                class="text-base font-medium">{{ t('notification.text.title') }}</h3>
             <slot name="actions">
               <div class="flex gap-2">
                 <ShadcnButton @click.stop="handleReadAll">{{ t('notification.text.markAllAsRead') }}</ShadcnButton>
@@ -43,7 +48,7 @@
 
           <!-- Content -->
           <div>
-            <slot>
+            <slot :dark="dark">
               <!-- 默认内容，当没有提供插槽内容时显示 -->
               <!-- Default content, displayed when no slot content is provided -->
               <slot name="empty">
@@ -53,7 +58,8 @@
           </div>
 
           <!-- 加载状态 -->
-          <div v-if="loading" class="py-2 text-center text-gray-500">
+          <div v-if="loading" :class="dark ? 'text-gray-400' : 'text-gray-500'"
+               class="py-2 text-center">
             <ShadcnSpin type="primary" :model-value="loading"/>
           </div>
         </div>
@@ -76,7 +82,8 @@ const props = withDefaults(defineProps<NotificationProps>(), {
   width: '30%',
   height: 'auto',
   position: 'right',
-  loadData: undefined
+  loadData: undefined,
+  dark: false
 })
 
 const emit = defineEmits<NotificationEmits>()

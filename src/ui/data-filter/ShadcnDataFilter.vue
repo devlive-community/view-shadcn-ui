@@ -5,10 +5,12 @@
         <div class="flex-shrink-0">
           <ShadcnSelect v-model="condition.field"
                         class="min-w-48"
+                        :dark="dark"
                         :class="{'border border-red-500 rounded': hasError(index, 'field')}">
             <template #options>
               <ShadcnSelectOption v-for="field in fields"
                                   :key="field.value"
+                                  :dark="dark"
                                   :value="field.value"
                                   :label="field.label"/>
             </template>
@@ -22,6 +24,7 @@
         <div class="flex-shrink-0">
           <ShadcnSelect v-model="condition.operator"
                         class="min-w-48"
+                        :dark="dark"
                         :class="{'border border-red-500 rounded': hasError(index, 'operator')}"
                         :disabled="!condition.field"
                         @change="onChange">
@@ -29,6 +32,7 @@
               <ShadcnSelectOption v-for="op in getOperatorsByField(condition.field)"
                                   :key="op.value"
                                   :value="op.value"
+                                  :dark="dark"
                                   :label="op.label"/>
             </template>
           </ShadcnSelect>
@@ -42,6 +46,7 @@
           <div class="condition-value">
             <template v-if="getFieldType(condition.field) === 'number' && !['in', 'notIn', 'between', 'notBetween'].includes(condition.operator ?? '')">
               <ShadcnNumber v-model="condition.value"
+                            :dark="dark"
                             :class="{'border border-red-500 rounded.validated': hasError(index, 'value')}"
                             :placeholder="t('dataFilter.placeholder.value')"
                             @on-change="onChange"/>
@@ -49,12 +54,14 @@
             <template v-else-if="getFieldType(condition.field) === 'boolean'">
               <div class="h-10 flex items-center">
                 <ShadcnSwitch v-model="condition.value"
+                              :dark="dark"
                               :class="{'border border-red-500 rounded.validated': hasError(index, 'value')}"
                               @on-change="onChange"/>
               </div>
             </template>
             <template v-else-if="['string', 'number', 'date'].includes(getFieldType(condition.field) ?? '') && ['in', 'notIn'].includes(condition.operator ?? '')">
               <ShadcnInputTag v-model="condition.value"
+                              :dark="dark"
                               :placeholder="t('dataFilter.placeholder.values')"
                               :class="{'border border-red-500 rounded.validated': hasError(index, 'value')}"
                               @on-change="onChange"/>
@@ -62,11 +69,13 @@
             <template v-else-if="getFieldType(condition.field) === 'number' && ['between', 'notBetween'].includes(condition.operator ?? '')">
               <div class="flex items-center gap-2">
                 <ShadcnNumber v-model="condition.value[0]"
+                              :dark="dark"
                               :placeholder="t('dataFilter.placeholder.minNumber')"
                               :class="{'border border-red-500 rounded.validated': hasError(index, 'value')}"
                               @on-change="onBetweenChange(condition, 0)"/>
-                <span>...</span>
+                <span :class="dark ? 'text-gray-400' : ''">...</span>
                 <ShadcnNumber v-model="condition.value[1]"
+                              :dark="dark"
                               :placeholder="t('dataFilter.placeholder.maxNumber')"
                               :class="{'border border-red-500 rounded.validated': hasError(index, 'value')}"
                               @on-change="onBetweenChange(condition, 1)"/>
@@ -75,12 +84,14 @@
             <template v-else-if="getFieldType(condition.field) === 'date' && ['between', 'notBetween'].includes(condition.operator ?? '')">
               <div class="flex items-center gap-2">
                 <ShadcnInput v-model="condition.value[0]"
+                             :dark="dark"
                              type="date"
                              :placeholder="t('dataFilter.placeholder.startDate')"
                              :class="{'border border-red-500 rounded.validated': hasError(index, 'value')}"
                              @on-change="onBetweenChange(condition, 0)"/>
-                <span>...</span>
+                <span :class="dark ? 'text-gray-400' : ''">...</span>
                 <ShadcnInput v-model="condition.value[1]"
+                             :dark="dark"
                              type="date"
                              :placeholder="t('dataFilter.placeholder.endDate')"
                              :class="{'border border-red-500 rounded.validated': hasError(index, 'value')}"
@@ -89,6 +100,7 @@
             </template>
             <template v-else>
               <ShadcnInput v-model="condition.value"
+                           :dark="dark"
                            :placeholder="t('dataFilter.placeholder.value')"
                            :class="{'border border-red-500 rounded.validated': hasError(index, 'value')}"
                            :type="getFieldType(condition.field) === 'date' ? 'date' : 'text'"
@@ -102,18 +114,19 @@
         </div>
 
         <div class="flex-shrink-0 pt-2">
-          <Icon class="cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity"
+          <ShadcnIcon :dark="dark"
                       icon="Trash"
                       color="#ef4444"
                       size="18"
+                      class="cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity"
                       @click="onRemoveCondition(index)"/>
         </div>
       </div>
     </div>
 
-    <ShadcnButton type="text" @click="onAddCondition">
-      <div class="flex items-center gap-2 text-blue-500 -ml-4">
-        <Icon icon="Plus" size="16"/>
+    <ShadcnButton :dark="dark" type="text" @click="onAddCondition">
+      <div :class="['flex items-center gap-2 -ml-4', dark ? 'text-blue-400' : 'text-blue-500']">
+        <ShadcnIcon :dark="dark" icon="Plus" size="16"/>
         <span>{{ t('dataFilter.text.addCondition') }}</span>
       </div>
     </ShadcnButton>
@@ -124,11 +137,19 @@
 import { computed, onMounted, ref, watch } from 'vue'
 import { t } from '@/utils/locale'
 import { DataFilterEmits, DataFilterProps, FilterCondition, Operator, ValidationError, ValidationResult } from './types'
+import { ShadcnSelect, ShadcnSelectOption } from "@/ui/select";
+import { ShadcnNumber } from "@/ui/number";
+import { ShadcnSwitch } from "@/ui/switch";
+import { ShadcnInputTag } from "@/ui/input-tag";
+import { ShadcnInput } from "@/ui/input";
+import { ShadcnIcon } from "@/ui/icon";
+import { ShadcnButton } from "@/ui/button";
 
 const emit = defineEmits<DataFilterEmits>()
 const props = withDefaults(defineProps<DataFilterProps>(), {
   operators: () => [],
-  fields: () => []
+  fields: () => [],
+  dark: false
 })
 
 const validationErrors = ref<ValidationError[]>([])

@@ -4,4 +4,5 @@ export interface DividerProps
     type?: 'horizontal' | 'vertical'
     orientation?: 'left' | 'center' | 'right'
     dashed?: boolean
+    dark?: boolean
 }

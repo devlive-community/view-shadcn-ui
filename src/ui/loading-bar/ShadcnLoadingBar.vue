@@ -1,5 +1,7 @@
 <template>
-  <div class="w-full bg-gray-200 overflow-hidden">
+  <div :class="['w-full overflow-hidden',
+                dark ? 'bg-gray-700' : 'bg-gray-200'
+       ]">
     <div role="progressbar"
          aria-valuemin="0"
          aria-valuemax="100"
@@ -22,7 +24,8 @@ const props = withDefaults(defineProps<LoadingBarProps>(), {
   color: '#2563eb',
   duration: 300,
   animate: true,
-  status: 'default'
+  status: 'default',
+  dark: false
 })
 
 const getStatusColor = (status: LoadingBarProps['status']) => {

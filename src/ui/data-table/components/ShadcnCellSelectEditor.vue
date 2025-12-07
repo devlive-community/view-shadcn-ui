@@ -30,6 +30,7 @@ const props = defineProps<{
   placeholder?: string
   isRowEditing?: boolean
   fieldKey?: string
+  dark?: boolean
   onRowValueChange?: (key: string, value: any) => void
 }>()
 

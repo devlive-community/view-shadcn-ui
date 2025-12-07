@@ -1,3 +1,1 @@
-import ShadcnDivider from './ShadcnDivider.vue'
-
-export default ShadcnDivider
+export { default as ShadcnDivider } from './ShadcnDivider.vue'

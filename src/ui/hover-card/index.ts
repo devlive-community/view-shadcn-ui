@@ -1,3 +1,1 @@
-import ShadcnHoverCard from './ShadcnHoverCard.vue'
-
-export default ShadcnHoverCard
+export { default as ShadcnHoverCard } from './ShadcnHoverCard.vue'

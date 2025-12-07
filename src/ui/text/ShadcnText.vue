@@ -1,6 +1,6 @@
 <template>
   <div :class="['inline-flex',
-              !color && TextType[colorType],
+              !color && (dark ? TextTypeDark[colorType] : TextType[colorType]),
               strong && 'font-semibold',
               italic && 'italic',
               underline && 'underline',
@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import { TextMode, TextProps } from '@/ui/text/types.ts'
-import { TextType } from '@/ui/common/type.ts'
+import { TextType, TextTypeDark } from '@/ui/common/type.ts'
 
 withDefaults(defineProps<TextProps>(), {
   type: 'p',
@@ -24,6 +24,7 @@ withDefaults(defineProps<TextProps>(), {
   strong: false,
   italic: false,
   underline: false,
-  deleted: false
+  deleted: false,
+  dark: false
 })
 </script>

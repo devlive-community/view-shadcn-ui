@@ -22,19 +22,21 @@
                     'bg-green-400': type === 'success' && isChecked,
                     'bg-yellow-400': type === 'warning' && isChecked,
                     'bg-red-400': type === 'error' && isChecked,
-                    'bg-white': !isChecked
+                    'bg-white': !isChecked && !finalDark,
+                    'bg-gray-700 border-gray-500': !isChecked && finalDark
                   }]">
       <div v-if="isChecked"
-           :class="['bg-white rounded-full',
+           :class="['rounded-full',
                     ToggleSize[size],
+                    finalDark ? 'bg-gray-900' : 'bg-white'
             ]"/>
     </div>
 
     <!-- Label Slot -->
-    <div v-if="$slots.label" class="ml-2 text-sm">
+    <div v-if="$slots.label" :class="['ml-2 text-sm', finalDark ? 'text-gray-200' : '']">
       <slot name="label"/>
     </div>
-    <div v-else class="ml-2 text-sm">
+    <div v-else :class="['ml-2 text-sm', finalDark ? 'text-gray-200' : '']">
       <slot/>
     </div>
   </div>
@@ -65,13 +67,17 @@ const props = withDefaults(defineProps<{
   disabled?: boolean
   size?: keyof typeof Size
   type?: 'primary' | 'success' | 'warning' | 'error'
+  dark?: boolean
 }>(), {
   disabled: false,
   size: 'default',
-  type: 'primary'
+  type: 'primary',
+  dark: false
 })
 
-const radioGroup = inject<{ modelValue: { modelValue: any }, updateModelValue: Function } | null>('radioGroup', null)
+const radioGroup = inject<{ modelValue: { modelValue: any }, updateModelValue: Function, dark?: { value: boolean } } | null>('radioGroup', null)
+
+const finalDark = computed(() => radioGroup?.dark?.value ?? props.dark)
 
 const isChecked = computed(() => {
   if (radioGroup) {

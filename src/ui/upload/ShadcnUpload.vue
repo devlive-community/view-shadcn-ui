@@ -5,7 +5,7 @@
     <div :class="[
             'w-full rounded-lg border border-dashed p-4',
             'flex flex-col items-center justify-center gap-4',
-            isDragging ? 'border-blue-500 bg-blue-50' : 'border-gray-200',
+            isDragging ? (dark ? 'border-blue-400 bg-blue-950' : 'border-blue-500 bg-blue-50') : (dark ? 'border-gray-600' : 'border-gray-200'),
             disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
         ]"
          @dragover.prevent="handleDragOver"
@@ -25,8 +25,8 @@
 
       <!-- Upload Icon -->
       <!-- 上传图标 -->
-      <div class="rounded-full bg-gray-100 p-3">
-        <svg class="h-6 w-6 text-gray-600"
+      <div :class="['rounded-full p-3', dark ? 'bg-gray-700' : 'bg-gray-100']">
+        <svg :class="['h-6 w-6', dark ? 'text-gray-300' : 'text-gray-600']"
              xmlns="http://www.w3.org/2000/svg"
              fill="none"
              viewBox="0 0 24 24"
@@ -41,8 +41,8 @@
       <!-- Upload Text -->
       <!-- 上传文本 -->
       <div class="text-center">
-        <p class="text-sm font-medium text-gray-600" v-html="t('upload.text.placeholder')"/>
-        <p class="mt-1 text-xs text-gray-500">
+        <p :class="['text-sm font-medium', dark ? 'text-gray-300' : 'text-gray-600']" v-html="t('upload.text.placeholder')"/>
+        <p :class="['mt-1 text-xs', dark ? 'text-gray-400' : 'text-gray-500']">
           {{ description || t('upload.text.description') }}
         </p>
       </div>
@@ -52,7 +52,7 @@
     <!-- 文件列表 -->
     <div v-if="fileList.length > 0" class="mt-4 space-y-2">
       <div v-for="file in fileList"
-           class="flex items-center justify-between rounded-md border p-3"
+           :class="['flex items-center justify-between rounded-md border p-3', dark ? 'border-gray-600 bg-gray-800' : 'border-gray-200 bg-white']"
            :key="file.uid">
         <div class="flex items-center gap-2 flex-1">
           <svg v-if="file.status === 'uploading'" class="h-5 w-5 text-blue-500 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -75,18 +75,18 @@
 
           <div class="flex-1">
             <div class="flex items-center justify-between">
-              <p class="text-sm font-medium text-gray-700">{{ file.name }}</p>
-              <p class="text-xs text-gray-500">{{ formatFileSize(file.size) }}</p>
+              <p :class="['text-sm font-medium', dark ? 'text-gray-200' : 'text-gray-700']">{{ file.name }}</p>
+              <p :class="['text-xs', dark ? 'text-gray-400' : 'text-gray-500']">{{ formatFileSize(file.size) }}</p>
             </div>
 
             <!-- Progress Bar -->
             <div v-if="file.status === 'uploading'" class="w-full mt-2">
-              <div class="w-full bg-gray-200 rounded-full h-1.5">
+              <div :class="['w-full rounded-full h-1.5', dark ? 'bg-gray-700' : 'bg-gray-200']">
                 <div class="bg-blue-600 h-1.5 rounded-full transition-all duration-300"
                      :style="{ width: `${file.percent}%` }">
                 </div>
               </div>
-              <span class="text-xs text-gray-500">{{ file.percent }}%</span>
+              <span :class="['text-xs', dark ? 'text-gray-400' : 'text-gray-500']">{{ file.percent }}%</span>
             </div>
 
             <!-- Status Messages -->
@@ -99,7 +99,7 @@
           </div>
         </div>
 
-        <button class="text-gray-500 hover:text-gray-700 ml-3"
+        <button :class="['ml-3', dark ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700']"
                 :disabled="disabled"
                 @click.stop="removeFile(file)">
           <svg class="h-5 w-5"
@@ -130,7 +130,8 @@ const props = withDefaults(defineProps<UploadProps>(), {
   multiple: false,
   disabled: false,
   name: 'file',
-  withCredentials: false
+  withCredentials: false,
+  dark: false
 })
 
 // Emits

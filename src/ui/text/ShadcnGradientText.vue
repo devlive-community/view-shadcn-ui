@@ -13,6 +13,7 @@ import { GradientTextProps } from '@/ui/text/types.ts'
 withDefaults(defineProps<GradientTextProps>(), {
   from: 'red',
   to: 'blue',
-  deg: 100
+  deg: 100,
+  dark: false
 })
 </script>
