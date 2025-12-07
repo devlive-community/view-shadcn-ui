@@ -16,6 +16,7 @@ export interface ImageProps
     fit?: keyof typeof ImageFit
     lazy?: boolean
     border?: boolean
+    dark?: boolean
 }
 
 export interface ImageGroupProps
@@ -24,6 +25,7 @@ export interface ImageGroupProps
     columns?: number
     gap?: number
     preview?: boolean
+    dark?: boolean
 }
 
 export interface ImagePreviewProps
@@ -31,6 +33,7 @@ export interface ImagePreviewProps
     visible: boolean
     images: Array<ImageProps>
     current: number
+    dark?: boolean
 }
 
 export type ImagePreviewEmits = {

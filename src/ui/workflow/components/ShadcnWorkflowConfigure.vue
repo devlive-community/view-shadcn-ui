@@ -1,14 +1,14 @@
 <template>
   <div class="py-4 pl-4">
     <div v-if="selectedNode" class="space-y-4">
-      <h3 class="text-lg font-medium">{{ t('dataBuilder.text.configureCenter') }}</h3>
+      <h3 :class="['text-lg font-medium', dark ? 'text-gray-200' : '']">{{ t('dataBuilder.text.configureCenter') }}</h3>
 
-      <ShadcnTab v-model="activeTab" direction="vertical" position="right">
+      <ShadcnTab v-model="activeTab" :dark="dark" direction="vertical" position="right">
         <ShadcnTabItem :label="String(t('workflow.text.nodeConfigure'))" value="basic">
           <ShadcnRow :gutter="10">
             <ShadcnCol span="12">
               <ShadcnFormItem :label="String(t('workflow.text.nodeId'))" name="nodeId">
-                <ShadcnInput v-model="selectedNode.id" disabled/>
+                <ShadcnInput v-model="selectedNode.id" :dark="dark" disabled/>
               </ShadcnFormItem>
             </ShadcnCol>
 
@@ -16,13 +16,13 @@
             <ShadcnCol class="my-2" span="6">
               <ShadcnFormItem :label="String(t('dataBuilder.text.xCoordinate'))" name="x">
                 <ShadcnNumber v-model="componentConfig.position.x" :min="0"
-                              @on-change="onPositionUpdate"/>
+                              :dark="dark" @on-change="onPositionUpdate"/>
               </ShadcnFormItem>
             </ShadcnCol>
 
             <ShadcnCol class="my-2" span="6">
               <ShadcnFormItem :label="String(t('dataBuilder.text.yCoordinate'))" name="y">
-                <ShadcnNumber v-model="componentConfig.position.y" :min="0"
+                <ShadcnNumber v-model="componentConfig.position.y" :dark="dark" :min="0"
                               @on-change="onPositionUpdate"/>
               </ShadcnFormItem>
             </ShadcnCol>
@@ -39,7 +39,7 @@
 
                     <span v-if="item.description" class="cursor-pointer">
                       <ShadcnTooltip :content="item.description">
-                        <Icon icon="CircleHelp" size="18"/>
+                        <ShadcnIcon :dark="dark" icon="CircleHelp" size="18"/>
                       </ShadcnTooltip>
                     </span>
                   </div>
@@ -59,6 +59,7 @@
                                   :max="item.max"
                                   :min="item.min"
                                   :name="item.label"
+                                  :dark="dark"
                                   :placeholder="item.placeholder"
                                   @on-change="() => {
                                       validateField(item)
@@ -73,6 +74,7 @@
                                  :name="item.label"
                                  :placeholder="item.placeholder"
                                  :word-count="item.wordCount"
+                                 :dark="dark"
                                  type="textarea"
                                  @on-change="() => {
                                       validateField(item)
@@ -85,6 +87,7 @@
                                  :disabled="item.disabled"
                                  :name="item.label"
                                  :placeholder="item.placeholder"
+                                 :dark="dark"
                                  type="password"
                                  @on-change="() => {
                                     validateField(item)
@@ -97,6 +100,7 @@
                                   :disabled="item.disabled"
                                   :false-value="item.falseValue"
                                   :name="item.label"
+                                  :dark="dark"
                                   :true-value="item.trueValue"
                                   @on-change="() => {
                                       validateField(item)
@@ -106,6 +110,7 @@
                     <ShadcnRadioGroup v-else-if="item.type === 'radio'"
                                       v-model="item.value"
                                       :class="{ 'border-red-500': !validationState[item.field]?.valid }"
+                                      :dark="dark"
                                       @on-change="() => {
                                           validateField(item)
                                           onPositionUpdate()
@@ -121,12 +126,14 @@
                     <ShadcnCheckboxGroup v-else-if="item.type === 'checkbox'"
                                          v-model="item.value"
                                          :class="{ 'border-red-500': !validationState[item.field]?.valid }"
+                                         :dark="dark"
                                          @on-change="() => {
                                             validateField(item)
                                             onPositionUpdate()
                                          }">
                       <ShadcnCheckbox v-for="option in item.options"
                                       :key="option"
+                                      :dark="dark"
                                       :disabled="option.disabled"
                                       :value="option.value">
                         {{ option.label }}
@@ -138,6 +145,7 @@
                                   :disabled="item.disabled"
                                   :name="item.label"
                                   :placeholder="item.placeholder"
+                                  :dark="dark"
                                   @on-change="() => {
                                         validateField(item)
                                         onPositionUpdate()
@@ -147,6 +155,7 @@
                                             :key="option.value"
                                             :disabled="option.disabled"
                                             :label="option.label"
+                                            :dark="dark"
                                             :value="option.value"/>
                       </template>
                     </ShadcnSelect>
@@ -157,6 +166,7 @@
                                   :disabled="item.disabled"
                                   :max="item.max"
                                   :min="item.min"
+                                  :dark="dark"
                                   :show-step="item.showStep"
                                   :show-tip="item.showTip"
                                   :step="item.step"
@@ -172,6 +182,7 @@
                                 :disabled="item.disabled"
                                 :max="item.max"
                                 :min="item.min"
+                                :dark="dark"
                                 :show-text="item.showText"
                                 @on-change="() => {
                                     validateField(item)
@@ -185,6 +196,7 @@
                                     :name="item.label"
                                     :placeholder="item.placeholder"
                                     :style="{ width: `${calcSize(Number(width) - 60)}` }"
+                                    :dark="dark"
                                     @on-change="() => {
                                         validateField(item)
                                         onPositionUpdate()
@@ -195,6 +207,7 @@
                                :class="{ 'border-red-500': !validationState[item.field]?.valid }"
                                :disabled="item.disabled"
                                :name="item.label"
+                               :dark="dark"
                                :placeholder="item.placeholder"
                                @on-change="() => {
                                    validateField(item)
@@ -206,6 +219,7 @@
                                  :class="{ 'border-red-500': !validationState[item.field]?.valid }"
                                  :disabled="item.disabled"
                                  :name="item.label"
+                                 :dark="dark"
                                  :placeholder="item.placeholder"
                                  @on-change="() => {
                                     validateField(item)
@@ -224,7 +238,7 @@
       </ShadcnTab>
     </div>
 
-    <div v-else class="text-center text-gray-500">
+    <div v-else :class="['text-center', dark ? 'text-gray-400' : 'text-gray-500']">
       {{ t('workflow.placeholder.selectNode') }}
     </div>
   </div>
@@ -236,10 +250,25 @@ import { t } from '@/utils/locale'
 import { WorkflowConfigureEmits, WorkflowConfigureProps } from '../types'
 import { calcSize } from '@/utils/common.ts'
 import { ShadcnMap } from '@/ui/map'
+import { ShadcnTab, ShadcnTabItem } from "@/ui/tab";
+import { ShadcnTooltip } from "@/ui/tooltip";
+import { ShadcnCol } from "@/ui/col";
+import { ShadcnRow } from "@/ui/row";
+import { ShadcnInput } from "@/ui/input";
+import { ShadcnFormItem } from "@/ui/form";
+import { ShadcnNumber } from "@/ui/number";
+import { ShadcnSwitch } from "@/ui/switch";
+import { ShadcnRadio, ShadcnRadioGroup } from "@/ui/radio";
+import { ShadcnCheckbox, ShadcnCheckboxGroup } from "@/ui/checkbox";
+import { ShadcnSelect, ShadcnSelectOption } from "@/ui/select";
+import { ShadcnSlider } from "@/ui/slider";
+import { ShadcnRate } from "@/ui/rate";
+import { ShadcnInputTag } from "@/ui/input-tag";
 
 const emit = defineEmits<WorkflowConfigureEmits>()
 const props = withDefaults(defineProps<WorkflowConfigureProps>(), {
-  width: 300
+  width: 300,
+  dark: false
 })
 
 const nodeData = ref('')

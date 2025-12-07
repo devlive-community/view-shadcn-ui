@@ -10,8 +10,10 @@ import { TimelineContext } from './timeline.ts'
 
 const props = withDefaults(defineProps<{
   split?: boolean
+  dark?: boolean
 }>(), {
-  split: false
+  split: false,
+  dark: false
 })
 
 const timelineItems = ref<Set<symbol>>(new Set())
@@ -34,6 +36,7 @@ provide<TimelineContext>('timelineContext', {
   addItem,
   removeItem,
   items: timelineItems.value,
-  split: props.split
+  split: props.split,
+  dark: props.dark
 })
 </script>

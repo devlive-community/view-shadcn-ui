@@ -66,7 +66,7 @@
                              class="space-x-1"
                              type="single"
                              :dark="dark"
-                             @on-change="handlePeriodChange">
+                             @on-change="handlePeriodChange as any">
             <ShadcnToggle value="AM">
               {{ t('timePicker.text.am') }}
             </ShadcnToggle>

@@ -5,13 +5,13 @@
                width: calcSize(canvas.width),
                height: calcSize(canvas.height),
          }"
-         class="relative bg-gray-50">
+         :class="['relative', dark ? 'bg-gray-900' : 'bg-gray-50']">
       <!-- Background Grid Pattern -->
       <div v-if="canvas.showGrid"
            :style="{
                    backgroundImage: `
-                     linear-gradient(to right, ${canvas.gridColor} 1px, transparent 1px),
-                     linear-gradient(to bottom, ${canvas.gridColor} 1px, transparent 1px)
+                     linear-gradient(to right, ${dark ? 'rgba(255, 255, 255, 0.1)' : canvas.gridColor} 1px, transparent 1px),
+                     linear-gradient(to bottom, ${dark ? 'rgba(255, 255, 255, 0.1)' : canvas.gridColor} 1px, transparent 1px)
                    `,
                    backgroundSize: `${calcSize(canvas.gridSize)} ${calcSize(canvas.gridSize)}`,
                    opacity: canvas.gridOpacity
@@ -25,15 +25,15 @@
            :style="{
                 transform: `translate(${calcSize(node.position?.x)}, ${calcSize(node.position?.y)})`
            }"
-           class="absolute bg-white rounded-lg shadow-md border">
+           :class="['absolute rounded-lg shadow-md border', dark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200']">
         <div class="px-2 pt-1.5 pb-1.5">
           <slot :node="node" name="node">
-            <div class="w-full flex items-center justify-between border-b">
-              <div class="w-full text-xs text-gray-500 py-1.5">{{ node.label }}</div>
+            <div :class="['w-full flex items-center justify-between border-b', dark ? 'border-gray-700' : '']">
+              <div :class="['w-full text-xs py-1.5', dark ? 'text-gray-300' : 'text-gray-500']">{{ node.label }}</div>
             </div>
           </slot>
 
-          <ShadcnWorkflowNodePorts :connections="mergeNodes.connections" :disabled="true" :node="node"/>
+          <ShadcnWorkflowNodePorts :connections="mergeNodes.connections" :dark="dark" :disabled="true" :node="node"/>
         </div>
       </div>
 
@@ -50,7 +50,7 @@
           <g v-for="connection in data.connections" :key="connection.id">
             <!-- 实际显示的连接线 -->
             <!-- Actual connection line -->
-            <path :d="pathData[connection.id]" class="stroke-gray-400" fill="none" stroke-width="2"/>
+            <path :class="dark ? 'stroke-gray-600' : 'stroke-gray-400'" :d="pathData[connection.id]" fill="none" stroke-width="2"/>
           </g>
         </g>
       </svg>
@@ -78,7 +78,8 @@ const props = withDefaults(defineProps<WorkflowViewProps>(), {
     pattern: 'grid',
     width: 1920,
     height: 1080
-  })
+  }),
+  dark: false
 })
 
 const canvasRef = ref<HTMLElement | null>(null)

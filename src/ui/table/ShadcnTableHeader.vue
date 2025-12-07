@@ -1,11 +1,15 @@
 <template>
-  <thead class="bg-gray-50">
+  <thead :class="dark ? 'bg-gray-700' : 'bg-gray-50'">
     <slot />
   </thead>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { inject, provide } from 'vue'
+
+defineProps<{
+  dark?: boolean
+}>()
 
 const isTable = inject('ShadcnTable', false)
 if (!isTable) {

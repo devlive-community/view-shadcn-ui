@@ -37,7 +37,7 @@ import { computed, ComputedRef, inject } from 'vue'
 import { Loader2 } from 'lucide-vue-next'
 import { ButtonBackgroundType, ButtonHoverType } from '@/ui/common/type.ts'
 import { ButtonRoundedSize, ButtonSize } from '@/ui/common/size.ts'
-import ShadcnLink from '@/ui/link'
+import { ShadcnLink } from '@/ui/link'
 
 interface Props
 {

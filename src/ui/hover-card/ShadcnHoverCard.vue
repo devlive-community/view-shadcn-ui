@@ -15,12 +15,17 @@
                   leave-to-class="transform scale-95 opacity-0">
         <div v-if="isVisible"
              ref="tooltipContent"
-             class="fixed z-[100] text-sm text-black rounded border border-gray-200 bg-white shadow-lg"
+             :class="['fixed z-[100] text-sm rounded border shadow-lg',
+                      dark ? 'bg-gray-700 border-gray-600 text-gray-200' : 'bg-white border-gray-200 text-black'
+             ]"
              :style="[tooltipStyle, { maxWidth: computedMaxWidth }]"
              @mouseenter="handleContentEnter"
              @mouseleave="handleContentLeave">
 
-          <div v-if="$slots.title" class="text-lg font-semibold leading-none tracking-tight border-b px-3 py-2">
+          <div v-if="$slots.title"
+               :class="['text-lg font-semibold leading-none tracking-tight border-b px-3 py-2',
+                        dark ? 'border-gray-600' : ''
+               ]">
             <slot name="title"/>
           </div>
 
@@ -30,13 +35,17 @@
             </div>
           </slot>
 
-          <div v-if="$slots.footer" class="border-t px-3 py-2">
+          <div v-if="$slots.footer"
+               :class="['border-t px-3 py-2',
+                        dark ? 'border-gray-600' : ''
+               ]">
             <slot name="footer"/>
           </div>
 
           <div v-if="arrow"
-               :class="['absolute w-2.5 h-2.5 bg-white border-inherit',
-                      arrowPositionClass
+               :class="['absolute w-2.5 h-2.5 border-inherit',
+                        dark ? 'bg-gray-700' : 'bg-white',
+                        arrowPositionClass
                ]"
                :style="arrowStyle"/>
         </div>
@@ -55,7 +64,8 @@ const props = withDefaults(defineProps<HoverCardProps>(), {
   position: 'top',
   arrow: true,
   maxWidth: '250px',
-  delay: 0
+  delay: 0,
+  dark: false
 })
 
 const isVisible = ref(false)

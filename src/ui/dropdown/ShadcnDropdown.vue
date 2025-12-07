@@ -21,7 +21,8 @@
              ref="menuRef"
              @mouseenter="trigger === 'hover' && onMenuMouseEnter()"
              @mouseleave="trigger === 'hover' && onMenuMouseLeave()"
-             :class="['fixed z-50 min-w-[8rem] rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none',
+             :class="['fixed z-50 min-w-[8rem] rounded-md shadow-lg ring-1 focus:outline-none',
+                 dark ? 'bg-gray-700 ring-gray-600' : 'bg-white ring-black ring-opacity-5',
                  positionClasses
             ]"
              :style="dropdownStyle">
@@ -38,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, onMounted, onUnmounted, provide, ref } from 'vue'
+import { computed, nextTick, onMounted, onUnmounted, provide, ref, toRef } from 'vue'
 import type { DropdownEmits, DropdownProps } from './types'
 import { ArrangePosition } from '@/ui/common/position.ts'
 
@@ -46,7 +47,8 @@ const emit = defineEmits<DropdownEmits>()
 
 const props = withDefaults(defineProps<DropdownProps>(), {
   trigger: 'click',
-  position: ArrangePosition.left
+  position: ArrangePosition.left,
+  dark: false
 })
 
 const isOpen = ref(false)
@@ -153,6 +155,7 @@ const onClickOutside = (event: MouseEvent) => {
 }
 
 provide('closeDropdown', onClose)
+provide('dropdownDark', toRef(props, 'dark'))
 
 onMounted(() => {
   document.addEventListener('click', onClickOutside)

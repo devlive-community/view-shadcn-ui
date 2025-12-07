@@ -1,3 +1,1 @@
-import ShadcnLink from './ShadcnLink.vue'
-
-export default ShadcnLink
+export { default as ShadcnLink } from './ShadcnLink.vue'

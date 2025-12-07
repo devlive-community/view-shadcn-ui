@@ -1,3 +1,2 @@
-import ShadcnTimeline from './ShadcnTimeline.vue'
-
-export default ShadcnTimeline
+export { default as ShadcnTimeline } from './ShadcnTimeline.vue'
+export { default as ShadcnTimelineItem } from './ShadcnTimelineItem.vue'

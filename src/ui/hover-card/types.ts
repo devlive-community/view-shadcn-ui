@@ -7,4 +7,5 @@ export interface HoverCardProps
     arrow?: boolean
     delay?: number
     maxWidth?: number | string
+    dark?: boolean
 }

@@ -8,6 +8,7 @@ export interface LoadingBarProps
     duration?: number | string
     animate?: boolean
     status?: LoadingBarStatus
+    dark?: boolean
 }
 
 export type LoadingBarEmits = {

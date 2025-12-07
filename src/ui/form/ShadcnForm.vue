@@ -23,7 +23,10 @@ interface FormItemInstance
 }
 
 // Props and emits
-const props = defineProps<{ modelValue: Record<string, any> }>()
+const props = defineProps<{
+  modelValue: Record<string, any>
+  dark?: boolean
+}>()
 const emit = defineEmits<{
   'update:modelValue': [value: Record<string, any>]
   'on-submit': [value: Record<string, any>]
@@ -91,6 +94,7 @@ const reset = () => {
 provide('formContext', {
   model: formState.model,
   errors: formState.errors,
+  dark: props.dark,
   updateModel: (name: string, value: any) => {
     formState.model[name] = value
     emit('update:modelValue', { ...formState.model })

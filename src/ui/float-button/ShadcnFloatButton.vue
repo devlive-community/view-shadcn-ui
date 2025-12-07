@@ -2,6 +2,7 @@
   <div class="relative">
     <button :class="[
                 'fixed flex items-center justify-center p-2 border shadow-md transition-all duration-300 hover:scale-105',
+                dark ? 'bg-gray-700 border-gray-600 text-gray-200' : 'bg-white border-gray-200 text-gray-900',
                 circle && 'rounded-full'
             ]"
             :style="positionStyle"
@@ -21,7 +22,8 @@
         leave-to-class="transform opacity-0 scale-95">
       <div v-if="isMenuVisible && $slots.menu"
            :class="[
-                'fixed z-50 bg-white border rounded shadow-lg',
+                'fixed z-50 border rounded shadow-lg',
+                dark ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-200',
                 getMenuPositionClasses
            ]"
            :style="menuStyle"
@@ -45,7 +47,8 @@ const props = withDefaults(defineProps<FloatButtonProps>(), {
   left: 40,
   right: 40,
   bottom: 40,
-  trigger: 'hover'
+  trigger: 'hover',
+  dark: false
 })
 
 const emit = defineEmits<FloatButtonEmits>()

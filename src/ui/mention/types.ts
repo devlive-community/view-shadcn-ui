@@ -20,6 +20,7 @@ export interface MentionProps
     loadData?: (callback: (children: MentionOption[]) => void) => void
     max?: number
     name?: string
+    dark?: boolean
 }
 
 export type MentionEmits = {

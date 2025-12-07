@@ -2,15 +2,17 @@
   <div class="space-y-2">
     <div class="flex items-center">
       <label v-if="label"
-             class="text-sm text-gray-500 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+             :class="['text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
+                      isDark ? 'text-gray-400' : 'text-gray-500'
+             ]"
              :for="name">
         {{ label }}
       </label>
 
       <div v-if="description" class="ml-auto">
         <p class="text-sm text-muted-foreground">
-          <ShadcnTooltip :content="description">
-            <ShadcnIcon icon="HelpCircle"/>
+          <ShadcnTooltip :content="description" :dark="isDark">
+            <ShadcnIcon :dark="isDark" icon="HelpCircle"/>
           </ShadcnTooltip>
         </p>
       </div>
@@ -26,18 +28,20 @@
 </template>
 
 <script setup lang="ts">
-import { inject, onMounted, onUnmounted, provide, ref, watch } from 'vue'
+import { computed, inject, onMounted, onUnmounted, provide, ref, watch } from 'vue'
 import { FormItemContext } from '@/ui/form/context.ts'
 import { FormItemProps } from '@/ui/form/types.ts'
 import { ShadcnTooltip } from '@/ui/tooltip'
 import { ShadcnIcon } from '@/ui/icon'
 
 const props = withDefaults(defineProps<FormItemProps>(), {
-  validateOnBlur: true
+  validateOnBlur: true,
+  dark: false
 })
 const errorMessage = ref<string>('')
 
 const formContext = inject('formContext') as any
+const isDark = computed(() => props.dark || formContext?.dark)
 
 // Check from nested object
 const getValue = (obj: any, path: string) => {
@@ -107,7 +111,7 @@ const validate = async (): Promise<{ isValid: boolean; errorMessage?: string }> 
     if (rule.min !== undefined && length < rule.min) {
       return {
         isValid: false,
-        errorMessage: rule.message || `Minimum length is ${ rule.min }`
+        errorMessage: rule.message || `Minimum length is ${rule.min}`
       }
     }
 
@@ -115,7 +119,7 @@ const validate = async (): Promise<{ isValid: boolean; errorMessage?: string }> 
     if (rule.max !== undefined && length > rule.max) {
       return {
         isValid: false,
-        errorMessage: rule.message || `Maximum length is ${ rule.max }`
+        errorMessage: rule.message || `Maximum length is ${rule.max}`
       }
     }
 
@@ -162,7 +166,7 @@ const onBlur = async () => {
   }
 }
 
-provide<FormItemContext>(`form-item-${ props.name }`, {
+provide<FormItemContext>(`form-item-${props.name}`, {
   onBlur,
   name: props.name
 })

@@ -1,14 +1,15 @@
 <template>
-  <td :class="['text-sm text-gray-500 whitespace-normal break-words relative',
+  <td :class="['text-sm whitespace-normal break-words relative',
+              dark ? 'text-gray-300' : 'text-gray-500',
               TableCellSize[size],
               fixed && 'sticky',
               fixed === 'left' && [
-                stripe ? 'bg-gray-50' : 'bg-white',
+                stripe ? (dark ? 'bg-gray-700' : 'bg-gray-50') : (dark ? 'bg-gray-800' : 'bg-white'),
                 border && 'border-b',
                 !border && 'border-b',
                 'z-10',
                 'transition-colors duration-200',
-                'group-hover:bg-gray-100',
+                dark ? 'group-hover:bg-gray-600' : 'group-hover:bg-gray-100',
                 // The last left fixed column adds a special right border and shadow
                 isLastLeftFixed && [
                   border && [
@@ -23,12 +24,12 @@
                 ]
               ],
               fixed === 'right' && [
-                stripe ? 'bg-gray-50' : 'bg-white',
+                stripe ? (dark ? 'bg-gray-700' : 'bg-gray-50') : (dark ? 'bg-gray-800' : 'bg-white'),
                 border && 'border-b',
                 !border && 'border-b',
                 'z-10',
                 'transition-colors duration-200',
-                'group-hover:bg-gray-100',
+                dark ? 'group-hover:bg-gray-600' : 'group-hover:bg-gray-100',
                 // The first right fixed column adds a special left border and shadow
                 isFirstRightFixed && [
                   border && [
@@ -45,9 +46,9 @@
               !fixed && [
                 !border && 'border-b',
                 border && 'border-b border-l',
-                stripe ? 'bg-gray-50' : 'bg-white',
+                stripe ? (dark ? 'bg-gray-700' : 'bg-gray-50') : (dark ? 'bg-gray-800' : 'bg-white'),
                 'transition-colors duration-200',
-                'group-hover:bg-gray-100'
+                dark ? 'group-hover:bg-gray-600' : 'group-hover:bg-gray-100'
               ]
       ]"
       :style="{
@@ -73,7 +74,8 @@ withDefaults(defineProps<ColumnProps>(), {
   width: 'auto',
   isLastLeftFixed: false,
   isFirstRightFixed: false,
-  size: 'default'
+  size: 'default',
+  dark: false
 })
 
 const isTable = inject('ShadcnTable', false)

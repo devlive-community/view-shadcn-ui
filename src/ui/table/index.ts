@@ -1,3 +1,1 @@
-import ShadcnTable from './ShadcnTable.vue'
-
-export default ShadcnTable
+export { default as ShadcnTable } from './ShadcnTable.vue'

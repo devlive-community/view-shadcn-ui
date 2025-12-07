@@ -1,3 +1,7 @@
-import ShadcnLayout from './ShadcnLayout.vue'
-
-export default ShadcnLayout
+export { default as ShadcnLayout } from './ShadcnLayout.vue'
+export { default as ShadcnLayoutHeader } from './ShadcnLayoutHeader.vue'
+export { default as ShadcnLayoutContent } from './ShadcnLayoutContent.vue'
+export { default as ShadcnLayoutSider } from './ShadcnLayoutSider.vue'
+export { default as ShadcnLayoutFooter } from './ShadcnLayoutFooter.vue'
+export { default as ShadcnLayoutWrapper } from './ShadcnLayoutWrapper.vue'
+export { default as ShadcnLayoutMain } from './ShadcnLayoutMain.vue'

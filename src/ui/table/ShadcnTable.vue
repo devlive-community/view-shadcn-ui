@@ -1,12 +1,12 @@
 <template>
-  <div :class="['w-full border-gray-200 relative', border && 'border']"
+  <div :class="['w-full relative', dark ? 'border-gray-600' : 'border-gray-200', border && 'border']"
        :style="{ width: calcSize(width), height: calcSize(height), minHeight: calcSize(minHeight) }">
     <div class="overflow-auto relative h-full">
       <div class="min-w-full inline-block align-middle">
-        <table class="min-w-full divide-y divide-gray-200">
+        <table :class="['min-w-full divide-y', dark ? 'divide-gray-600' : 'divide-gray-200']">
           <slot>
-            <ShadcnTableHeader>
-              <ShadcnTableRow>
+            <ShadcnTableHeader :dark="dark">
+              <ShadcnTableRow :dark="dark">
                 <ShadcnTableColumn v-for="(c, index) in reorderedColumns"
                                    :key="c.key"
                                    :label="c.label"
@@ -17,6 +17,7 @@
                                    :right-offset="getRightOffset(index)"
                                    :isLastLeftFixed="isLastLeftFixed(index)"
                                    :isFirstRightFixed="isFirstRightFixed(index)"
+                                   :dark="dark"
                                    :size="size"/>
               </ShadcnTableRow>
             </ShadcnTableHeader>
@@ -25,6 +26,7 @@
               <ShadcnTableRow v-for="(row, rowIndex) in data"
                               :key="String(rowIndex)"
                               :stripe="(stripe && rowIndex % 2 === 1)"
+                              :dark="dark"
                               @click="onRowClick(row, rowIndex)">
                 <template v-for="(col, colIndex) in reorderedColumns" :key="col.key">
                   <ShadcnTableCell :border="border"
@@ -35,6 +37,7 @@
                                    :right-offset="getRightOffset(colIndex)"
                                    :isLastLeftFixed="isLastLeftFixed(colIndex)"
                                    :isFirstRightFixed="isFirstRightFixed(colIndex)"
+                                   :dark="dark"
                                    :size="size">
                     <template v-if="col.slot">
                       <template v-if="hasSlot(col.slot)">
@@ -81,7 +84,8 @@ const props = withDefaults(defineProps<TableProps>(), {
   width: '100%',
   height: 'auto',
   minHeight: 300,
-  size: 'default'
+  size: 'default',
+  dark: false
 })
 
 const slots = useSlots()

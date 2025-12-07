@@ -12,6 +12,7 @@ export interface ColumnProps
     isFirstRightFixed?: boolean
     leftOffset?: number
     rightOffset?: number
+    dark?: boolean
 }
 
 export interface TableProps
@@ -24,6 +25,7 @@ export interface TableProps
     height?: string | number
     minHeight?: string | number
     size?: keyof typeof TableCellSize
+    dark?: boolean
 }
 
 export enum TableCellSize

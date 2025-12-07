@@ -29,45 +29,31 @@ import { ShadcnSelect, ShadcnSelectGroup, ShadcnSelectOption } from '@/ui/select
 import { ShadcnRate } from '@/ui/rate'
 import { ShadcnTab, ShadcnTabItem } from '@/ui/tab'
 import { ShadcnSkeleton, ShadcnSkeletonItem } from '@/ui/skeleton'
-import ShadcnLayout from '@/ui/layout'
-import ShadcnLayoutHeader from '@/ui/layout/header'
-import ShadcnLayoutContent from '@/ui/layout/content'
-import ShadcnLayoutSider from '@/ui/layout/sider'
-import ShadcnLayoutFooter from '@/ui/layout/footer'
-import ShadcnLayoutWrapper from '@/ui/layout/wrapper'
-import ShadcnLayoutMain from '@/ui/layout/main'
+import { ShadcnLayout, ShadcnLayoutContent, ShadcnLayoutFooter, ShadcnLayoutHeader, ShadcnLayoutMain, ShadcnLayoutSider, ShadcnLayoutWrapper } from '@/ui/layout'
 import { ShadcnPagination } from '@/ui/pagination'
 import { ShadcnDrawer } from '@/ui/drawer'
-import ShadcnMenu from '@/ui/menu'
-import ShadcnMenuItem from '@/ui/menu/item'
-import ShadcnMenuSub from '@/ui/menu/sub'
-import ShadcnMenuGroup from '@/ui/menu/group'
+import { ShadcnMenu, ShadcnMenuGroup, ShadcnMenuItem, ShadcnMenuSub } from '@/ui/menu'
 import { ShadcnMessage } from '@/ui/message'
-import ShadcnTable from '@/ui/table'
+import { ShadcnTable } from '@/ui/table'
 import { ShadcnBreadcrumb, ShadcnBreadcrumbItem } from '@/ui/breadcrumb'
 import { ShadcnSlider } from '@/ui/slider'
 import { ShadcnSpin } from '@/ui/spin'
-import ShadcnForm from '@/ui/form'
-import ShadcnFormItem from '@/ui/form/item'
-import ShadcnTimeline from '@/ui/timeline'
-import ShadcnTimelineItem from '@/ui/timeline/item'
-import ShadcnTrend from '@/ui/trend'
+import { ShadcnForm, ShadcnFormItem } from '@/ui/form'
+import { ShadcnTimeline, ShadcnTimelineItem } from '@/ui/timeline'
+import { ShadcnTrend } from '@/ui/trend'
 import { ShadcnException } from '@/ui/exception'
-import ShadcnLink from '@/ui/link'
+import { ShadcnLink } from '@/ui/link'
 import { ShadcnCollapse, ShadcnCollapseItem } from '@/ui/collapse'
 import { ShadcnTag } from '@/ui/tag'
-import ShadcnGlobalFooter from '@/ui/footer/global'
-import ShadcnToolbarFooter from '@/ui/footer/toolbar'
+import { ShadcnGlobalFooter, ShadcnToolbarFooter } from '@/ui/footer'
 import { ShadcnWatermark } from '@/ui/watermark'
 import { ShadcnHighlight } from '@/ui/highlight'
-import ShadcnDropdown from '@/ui/dropdown'
-import ShadcnDropdownItem from '@/ui/dropdown/item'
+import { ShadcnDropdown, ShadcnDropdownItem } from '@/ui/dropdown'
 import { ShadcnNumber } from '@/ui/number'
-import ShadcnTree from '@/ui/tree'
-import ShadcnText from '@/ui/text'
-import ShadcnGradientText from '@/ui/text/gradient'
+import { ShadcnTree } from '@/ui/tree'
+import { ShadcnGradientText, ShadcnText } from '@/ui/text'
 import { ShadcnContextMenu, ShadcnContextMenuItem, ShadcnContextMenuSub } from '@/ui/contextmenu'
-import ShadcnHoverCard from '@/ui/hover-card'
+import { ShadcnHoverCard } from '@/ui/hover-card'
 import { ShadcnToggle, ShadcnToggleGroup } from '@/ui/toggle'
 import { ShadcnDataBuilderCanvas, ShadcnDataBuilderConfigure, ShadcnDataBuilderEditor, ShadcnDataBuilderPanel, ShadcnDataBuilderView } from '@/ui/data-builder'
 import { ShadcnUpload } from '@/ui/upload'
@@ -82,7 +68,7 @@ import { ShadcnMap } from '@/ui/map'
 import { ShadcnLoadingBar } from '@/ui/loading-bar'
 import { ShadcnFloatButton } from '@/ui/float-button'
 import { ShadcnDataFilter, ShadcnHierarchicalDataFilter } from '@/ui/data-filter'
-import ShadcnQrCode from '@/ui/qrcode/ShadcnQrCode.vue'
+import { ShadcnQrCode } from '@/ui/qrcode'
 import { ShadcnTimePicker } from '@/ui/time-picker'
 import { ShadcnColorPicker } from '@/ui/color-picker'
 import { ShadcnDatePicker } from '@/ui/date-picker'
@@ -123,43 +109,29 @@ let components = [
     ShadcnRate,
     ShadcnTab, ShadcnTabItem,
     ShadcnSkeleton, ShadcnSkeletonItem,
-    ShadcnLayout,
-    ShadcnLayoutHeader,
-    ShadcnLayoutContent,
-    ShadcnLayoutSider,
-    ShadcnLayoutFooter,
-    ShadcnLayoutWrapper,
-    ShadcnLayoutMain,
+    ShadcnLayout, ShadcnLayoutHeader, ShadcnLayoutContent, ShadcnLayoutSider, ShadcnLayoutFooter, ShadcnLayoutWrapper, ShadcnLayoutMain,
     ShadcnPagination,
     ShadcnDrawer,
-    ShadcnMenu,
-    ShadcnMenuItem,
-    ShadcnMenuSub,
-    ShadcnMenuGroup,
+    ShadcnMenu, ShadcnMenuItem, ShadcnMenuSub, ShadcnMenuGroup,
     ShadcnMessage,
     ShadcnTable,
     ShadcnBreadcrumb, ShadcnBreadcrumbItem,
     ShadcnSlider,
     ShadcnSpin,
-    ShadcnForm,
-    ShadcnFormItem,
-    ShadcnTimeline,
-    ShadcnTimelineItem,
+    ShadcnForm, ShadcnFormItem,
+    ShadcnTimeline, ShadcnTimelineItem,
     ShadcnTrend,
     ShadcnException,
     ShadcnLink,
     ShadcnCollapse, ShadcnCollapseItem,
     ShadcnTag,
-    ShadcnGlobalFooter,
-    ShadcnToolbarFooter,
+    ShadcnGlobalFooter, ShadcnToolbarFooter,
     ShadcnWatermark,
     ShadcnHighlight,
-    ShadcnDropdown,
-    ShadcnDropdownItem,
+    ShadcnDropdown, ShadcnDropdownItem,
     ShadcnNumber,
     ShadcnTree,
-    ShadcnText,
-    ShadcnGradientText,
+    ShadcnText, ShadcnGradientText,
     ShadcnContextMenu, ShadcnContextMenuItem, ShadcnContextMenuSub,
     ShadcnHoverCard,
     ShadcnToggle, ShadcnToggleGroup,
@@ -251,53 +223,33 @@ export { ShadcnSelect, ShadcnSelectOption, ShadcnSelectGroup } from '@/ui/select
 export { ShadcnRate } from '@/ui/rate'
 export { ShadcnTab, ShadcnTabItem } from '@/ui/tab'
 export { ShadcnSkeleton, ShadcnSkeletonItem } from '@/ui/skeleton'
-export { default as ShadcnLayout } from '@/ui/layout'
-export { default as ShadcnLayoutHeader } from '@/ui/layout/header'
-export { default as ShadcnLayoutContent } from '@/ui/layout/content'
-export { default as ShadcnLayoutSider } from '@/ui/layout/sider'
-export { default as ShadcnLayoutFooter } from '@/ui/layout/footer'
-export { default as ShadcnLayoutWrapper } from '@/ui/layout/wrapper'
-export { default as ShadcnLayoutMain } from '@/ui/layout/main'
+export { ShadcnLayout, ShadcnLayoutContent, ShadcnLayoutFooter, ShadcnLayoutHeader, ShadcnLayoutMain, ShadcnLayoutSider, ShadcnLayoutWrapper } from '@/ui/layout'
 export { ShadcnPagination } from '@/ui/pagination'
 export { ShadcnDrawer } from '@/ui/drawer'
-export { default as ShadcnMenu } from '@/ui/menu'
-export { default as ShadcnMenuItem } from '@/ui/menu/item'
-export { default as ShadcnMenuSub } from '@/ui/menu/sub'
-export { default as ShadcnMenuGroup } from '@/ui/menu/group'
+export { ShadcnMenu, ShadcnMenuItem, ShadcnMenuSub, ShadcnMenuGroup } from '@/ui/menu'
 export { ShadcnMessage } from '@/ui/message'
-export { default as ShadcnTable } from '@/ui/table'
+export { ShadcnTable } from '@/ui/table'
 export { ShadcnBreadcrumb, ShadcnBreadcrumbItem } from '@/ui/breadcrumb'
 export { ShadcnSlider } from '@/ui/slider'
 export { ShadcnSpin } from '@/ui/spin'
-export { default as ShadcnForm } from '@/ui/form'
-export { default as ShadcnFormItem } from '@/ui/form/item'
-export { default as ShadcnTimeline } from '@/ui/timeline'
-export { default as ShadcnTimelineItem } from '@/ui/timeline/item'
-export { default as ShadcnTrend } from '@/ui/trend'
+export { ShadcnForm, ShadcnFormItem } from '@/ui/form'
+export { ShadcnTimeline, ShadcnTimelineItem } from '@/ui/timeline'
+export { ShadcnTrend } from '@/ui/trend'
 export { ShadcnException } from '@/ui/exception'
-export { default as ShadcnLink } from '@/ui/link'
+export { ShadcnLink } from '@/ui/link'
 export { ShadcnCollapse, ShadcnCollapseItem } from '@/ui/collapse'
 export { ShadcnTag } from '@/ui/tag'
-export { default as ShadcnGlobalFooter } from '@/ui/footer/global'
-export { default as ShadcnToolbarFooter } from '@/ui/footer/toolbar'
+export { ShadcnGlobalFooter, ShadcnToolbarFooter } from '@/ui/footer'
 export { ShadcnWatermark } from '@/ui/watermark'
 export { ShadcnHighlight } from '@/ui/highlight'
-export { default as ShadcnDropdown } from '@/ui/dropdown'
-export { default as ShadcnDropdownItem } from '@/ui/dropdown/item'
+export { ShadcnDropdown, ShadcnDropdownItem } from '@/ui/dropdown'
 export { ShadcnNumber } from '@/ui/number'
-export { default as ShadcnTree } from '@/ui/tree'
-export { default as ShadcnText } from '@/ui/text'
-export { default as ShadcnGradientText } from '@/ui/text/gradient'
+export { ShadcnTree } from '@/ui/tree'
+export { ShadcnText, ShadcnGradientText } from '@/ui/text'
 export { ShadcnContextMenu, ShadcnContextMenuItem, ShadcnContextMenuSub } from '@/ui/contextmenu'
-export { default as ShadcnHoverCard } from '@/ui/hover-card'
+export { ShadcnHoverCard } from '@/ui/hover-card'
 export { ShadcnToggle, ShadcnToggleGroup } from '@/ui/toggle'
-export {
-    ShadcnDataBuilderPanel,
-    ShadcnDataBuilderCanvas,
-    ShadcnDataBuilderConfigure,
-    ShadcnDataBuilderEditor,
-    ShadcnDataBuilderView
-} from '@/ui/data-builder'
+export { ShadcnDataBuilderPanel, ShadcnDataBuilderCanvas, ShadcnDataBuilderConfigure, ShadcnDataBuilderEditor, ShadcnDataBuilderView } from '@/ui/data-builder'
 export { ShadcnUpload } from '@/ui/upload'
 export { ShadcnLogger } from '@/ui/logger'
 export { ShadcnScrollbar } from '@/ui/scrollbar'

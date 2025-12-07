@@ -7,6 +7,7 @@ export interface FloatButtonProps
     bottom?: number | string
     left?: number | string
     trigger?: 'click' | 'hover'
+    dark?: boolean
 }
 
 export type FloatButtonEmits = {

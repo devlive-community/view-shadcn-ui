@@ -5,6 +5,7 @@ export interface NotificationProps
     height?: string | number
     position?: 'left' | 'right' | 'center'
     loadData?: (callback: (children: any[]) => void) => void
+    dark?: boolean
 }
 
 // Control center item interface
@@ -17,6 +18,7 @@ export interface NotificationItemProps
     time?: string
     read?: boolean
     description?: string
+    dark?: boolean
 }
 
 // Control center component emits interface

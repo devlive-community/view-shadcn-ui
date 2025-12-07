@@ -1,5 +1,5 @@
 <template>
-  <footer class="w-full bg-background border-t">
+  <footer :class="['w-full border-t', dark ? 'bg-gray-800 border-gray-700' : 'bg-background border-gray-200']">
     <!-- Main Footer Content -->
     <div class="container mx-auto px-4 py-8">
       <!-- Top Section with Links -->
@@ -9,19 +9,19 @@
           <div class="flex items-center gap-2 mb-4">
             <!-- Logo slot -->
             <slot name="logo">
-              <div class="w-8 h-8 bg-gray-200 rounded-md"></div>
+              <div :class="['w-8 h-8 rounded-md', dark ? 'bg-gray-600' : 'bg-gray-200']"></div>
             </slot>
-            <span class="text-lg font-semibold">{{ company }}</span>
+            <span :class="['text-lg font-semibold', dark ? 'text-gray-200' : '']">{{ company }}</span>
           </div>
-          <p class="text-sm text-muted-foreground">{{ description }}</p>
+          <p :class="['text-sm', dark ? 'text-gray-400' : 'text-muted-foreground']">{{ description }}</p>
         </div>
 
         <!-- Link Groups -->
         <template v-for="(group, _index) in links" :key="`group-${_index}`">
           <div class="flex flex-col gap-2">
-            <h3 class="font-semibold mb-2">{{ group.title }}</h3>
+            <h3 :class="['font-semibold mb-2', dark ? 'text-gray-200' : '']">{{ group.title }}</h3>
             <template v-for="(link, _linkIndex) in group.links" :key="`group-${_index}-link-${_linkIndex}`">
-              <ShadcnLink class="text-sm text-muted-foreground transition-colors flex items-center gap-2"
+              <ShadcnLink :class="['text-sm transition-colors flex items-center gap-2', dark ? 'text-gray-400' : 'text-muted-foreground']"
                           :link="link.href"
                           :external="link.external"
                           :target="link.target">
@@ -38,10 +38,10 @@
       </div>
 
       <!-- Bottom Section -->
-      <div class="pt-8 border-t">
+      <div :class="['pt-8 border-t', dark ? 'border-gray-700' : '']">
         <div class="flex flex-col md:flex-row justify-between items-center gap-4">
           <!-- Copyright -->
-          <div class="text-sm text-muted-foreground">
+          <div :class="['text-sm', dark ? 'text-gray-400' : 'text-muted-foreground']">
             <slot name="copyright">
               © {{ new Date().getFullYear() }} {{ company }}. All rights reserved.
             </slot>
@@ -53,9 +53,11 @@
               <ShadcnLink :link="social.href"
                           external
                           target="_blank"
-                          class="text-muted-foreground hover:text-foreground transition-colors">
+                          :dark="dark"
+                          :class="['transition-colors', dark ? 'text-gray-400 hover:text-gray-200' : 'text-muted-foreground hover:text-foreground']">
                 <ShadcnIcon v-if="social.icon"
                             :icon="social.icon"
+                            :dark="dark"
                             class="w-5 h-5"/>
                 <span class="sr-only">{{ social.label }}</span>
               </ShadcnLink>
@@ -68,7 +70,7 @@
 </template>
 
 <script setup lang="ts">
-import ShadcnLink from '@/ui/link'
+import { ShadcnLink } from '@/ui/link'
 import { ShadcnIcon } from '@/ui/icon'
 
 interface LinkItem
@@ -92,12 +94,14 @@ interface Props
   description?: string
   links?: LinkGroup[]
   socials?: LinkItem[]
+  dark?: boolean
 }
 
 withDefaults(defineProps<Props>(), {
   company: 'Devlive Community',
   description: 'The Devlive Software Foundation is a community of developers who are passionate about creating innovative software solutions.',
   links: () => [] as LinkGroup[],
-  socials: () => [] as LinkItem[]
+  socials: () => [] as LinkItem[],
+  dark: false
 })
 </script>

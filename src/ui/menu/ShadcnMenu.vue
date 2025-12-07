@@ -1,5 +1,6 @@
 <template>
-  <div class="bg-white p-2"
+  <div :class="dark ? 'bg-gray-800' : 'bg-white'"
+       class="p-2"
        :style="{ width: direction === 'vertical' ? calcSize(props.width) : '100%' }">
     <div :class="['flex', directionClass]">
       <slot/>
@@ -15,9 +16,11 @@ const props = withDefaults(defineProps<{
   modelValue?: string
   width?: number | string
   direction?: 'horizontal' | 'vertical'
+  dark?: boolean
 }>(), {
   width: 200,
-  direction: 'vertical'
+  direction: 'vertical',
+  dark: false
 })
 
 const emit = defineEmits(['update:modelValue'])
@@ -41,6 +44,7 @@ provide('menuContext', {
   expandedKey,
   setExpandedKey: (key: string | null) => {
     expandedKey.value = key
-  }
+  },
+  dark: computed(() => props.dark)
 })
 </script>

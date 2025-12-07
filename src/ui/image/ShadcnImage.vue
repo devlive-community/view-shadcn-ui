@@ -1,8 +1,11 @@
 <template>
   <div class="relative inline-block"
-       :class="[ border && 'border border-gray-200 border-dashed rounded-md' ]"
+       :class="[
+         border && 'border border-dashed rounded-md',
+         border && (dark ? 'border-gray-600' : 'border-gray-200')
+       ]"
        :style="{ width: `${calcSize(width)}`, height: `${calcSize(height)}` }">
-    <ShadcnSpin v-model="localLoading" fixed/>
+    <ShadcnSpin v-model="localLoading" :dark="dark" fixed/>
 
     <img class="w-full h-full"
          v-show="!showFallback"
@@ -20,7 +23,7 @@
 
     <div v-if="showFallback" class="absolute inset-0 flex items-center justify-center">
       <slot name="fallback">
-        <Icon icon="ImageOff" class="text-gray-300"/>
+        <Icon :class="dark ? 'text-gray-600' : 'text-gray-300'" icon="ImageOff"/>
       </slot>
     </div>
   </div>
@@ -38,7 +41,8 @@ const props = withDefaults(defineProps<ImageProps>(), {
   height: 200,
   fit: 'cover',
   lazy: false,
-  border: false
+  border: false,
+  dark: false
 })
 
 const emit = defineEmits<ImageEmits>()

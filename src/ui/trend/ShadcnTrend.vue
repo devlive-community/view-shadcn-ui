@@ -3,7 +3,7 @@
     <div :class="['text-xs',
                   textColor ? [
                       isPositive ? 'text-red-500' : 'text-green-500'
-                  ] : 'text-gray-500'
+                  ] : dark ? 'text-gray-400' : 'text-gray-500'
           ]">
       <slot>{{ value }}</slot>
     </div>
@@ -40,10 +40,12 @@ const props = withDefaults(defineProps<{
   value?: number
   reverse?: boolean
   textColor?: boolean
+  dark?: boolean
 }>(), {
   value: 0,
   reverse: false,
-  textColor: false
+  textColor: false,
+  dark: false
 })
 
 const isPositive = computed(() => props.reverse ? props.value < 0 : props.value > 0)

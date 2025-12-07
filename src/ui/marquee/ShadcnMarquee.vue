@@ -5,7 +5,9 @@
            transform: `translateX(${currentPosition}px)`,
            transition: isAnimating ? `transform ${remainingTime}s linear` : 'none',
          }"
-         class="whitespace-nowrap inline-block"
+         :class="['whitespace-nowrap inline-block',
+                  dark ? 'text-gray-200' : ''
+         ]"
          @transitionend.stop="handleTransitionEnd"
          @mouseenter.stop="handleMouseEnter"
          @mouseleave.stop="handleMouseLeave">
@@ -20,7 +22,8 @@ import type { MarqueeEmits, MarqueeProps } from './types'
 
 const props = withDefaults(defineProps<MarqueeProps>(), {
   speed: 10,
-  repeat: -1
+  repeat: -1,
+  dark: false
 })
 
 const emit = defineEmits<MarqueeEmits>()

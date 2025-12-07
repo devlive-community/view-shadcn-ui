@@ -7,16 +7,19 @@
             <div v-if="hasMultipleConditions(item)" class="absolute left-[42px] -top-2 h-full border-l-2 border-emerald-500">
               <div class="absolute -left-12 top-1/2 -translate-y-1/2">
                 <ShadcnToggleGroup :model-value="getItemOperator(item)"
+                                   :dark="dark"
                                    size="small"
                                    class="border rounded"
                                    orientation="vertical"
-                                   @on-change="(value) => onItemOperatorChange(groupIndex, itemIndex, value)">
+                                   @on-change="(value) => onItemOperatorChange(groupIndex, itemIndex, value as any)">
                   <ShadcnToggle value="and"
+                                :dark="dark"
                                 class="px-2 py-0.5 text-xs rounded-none"
                                 :class="{ 'bg-emerald-500 text-white': getItemOperator(item) === 'and' }">
                     {{ t('dataFilter.text.and') }}
                   </ShadcnToggle>
                   <ShadcnToggle value="or"
+                                :dark="dark"
                                 class="px-2 py-0.5 text-xs rounded-none w-full"
                                 :class="{ 'bg-emerald-500 text-white': getItemOperator(item) === 'or' }">
                     {{ t('dataFilter.text.or') }}
@@ -34,6 +37,7 @@
                     <ShadcnHierarchicalDataFilter
                         v-model="item.value"
                         :fields="fields"
+                        :dark="dark"
                         @on-validation-change="onNestedValidationChange(groupIndex, itemIndex, $event)"/>
                   </div>
                 </template>
@@ -41,11 +45,14 @@
                 <template v-else>
                   <div class="flex items-center gap-2 w-full">
                     <ShadcnDataFilter v-model="item.value"
-                                      :fields="fields"
+                                      :fields="fields as any"
+                                      :dark="dark"
                                       @on-validation-change="onConditionValidationChange(groupIndex, itemIndex, $event)"/>
-                    <Icon class="cursor-pointer text-gray-400 hover:text-red-600"
+                    <ShadcnIcon :class="dark ? 'text-gray-500' : 'text-gray-400'"
+                                class="cursor-pointer hover:text-red-600"
                                 icon="Trash"
                                 size="16"
+                                :dark="dark"
                                 @click="removeCondition(groupIndex, itemIndex)"/>
                   </div>
                 </template>
@@ -55,16 +62,16 @@
         </template>
 
         <div class="ml-5 flex items-center gap-4">
-          <ShadcnButton type="text" @click="addConditionToGroup(groupIndex)">
-            <div class="flex items-center gap-1 text-blue-500">
-              <Icon icon="Plus" size="14"/>
+          <ShadcnButton :dark="dark" type="text" @click="addConditionToGroup(groupIndex)">
+            <div :class="['flex items-center gap-1', dark ? 'text-blue-400' : 'text-blue-500']">
+              <ShadcnIcon :dark="dark" icon="Plus" size="14"/>
               <span class="text-sm">{{ t('dataFilter.text.addCondition') }}</span>
             </div>
           </ShadcnButton>
 
-          <ShadcnButton type="text" @click="addNestedGroup(groupIndex)">
-            <div class="flex items-center gap-1 text-blue-500">
-              <Icon icon="Plus" size="14"/>
+          <ShadcnButton :dark="dark" type="text" @click="addNestedGroup(groupIndex)">
+            <div :class="['flex items-center gap-1', dark ? 'text-blue-400' : 'text-blue-500']">
+              <ShadcnIcon :dark="dark" icon="Plus" size="14"/>
               <span class="text-sm">{{ t('dataFilter.text.addGroup') }}</span>
             </div>
           </ShadcnButton>
@@ -78,11 +85,16 @@
 import { ref, watch } from 'vue'
 import { t } from '@/utils/locale'
 import { FilterGroup, FilterItem, HierarchicalDataFilterEmits, HierarchicalDataFilterProps, ValidationResult } from './types.ts'
+import { ShadcnToggle, ShadcnToggleGroup } from "@/ui/toggle";
+import ShadcnDataFilter from "@/ui/data-filter/ShadcnDataFilter.vue";
+import { ShadcnIcon } from "@/ui/icon";
+import { ShadcnButton } from "@/ui/button";
 
 const emit = defineEmits<HierarchicalDataFilterEmits>()
 const props = withDefaults(defineProps<HierarchicalDataFilterProps>(), {
   modelValue: () => [],
-  fields: () => []
+  fields: () => [],
+  dark: false
 })
 
 const filterGroups = ref<FilterGroup[]>([

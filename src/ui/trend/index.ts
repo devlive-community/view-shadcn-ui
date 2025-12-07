@@ -1,3 +1,1 @@
-import ShadcnTrend from './ShadcnTrend.vue'
-
-export default ShadcnTrend
+export { default as ShadcnTrend } from './ShadcnTrend.vue'

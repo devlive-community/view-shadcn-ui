@@ -4,7 +4,9 @@
          :class="[
              Size[finalSize],
              [HoverType[type]],
-             { 'cursor-not-allowed opacity-50 bg-gray-100': disabled }
+             { 'cursor-not-allowed opacity-50': disabled },
+             disabled ? (dark ? 'bg-gray-800' : 'bg-gray-100') : '',
+             dark ? 'border-gray-600 bg-gray-800 text-gray-200' : 'bg-white'
          ]">
       <div class="w-full px-1 flex flex-nowrap gap-1 overflow-x-auto items-center min-h-full"
            style="scrollbar-width: none;">
@@ -22,7 +24,11 @@
         <input ref="inputRef"
                type="text"
                class="flex-1 outline-none bg-transparent min-w-[60px]"
-               :class="{ 'cursor-not-allowed opacity-50 bg-gray-100': disabled }"
+               :class="[
+                   { 'cursor-not-allowed opacity-50': disabled },
+                   disabled ? (dark ? 'bg-gray-800' : 'bg-gray-100') : '',
+                   dark ? 'text-gray-200 placeholder:text-gray-500' : ''
+               ]"
                :disabled="disabled"
                :placeholder="selectedTags.length ? '' : placeholder"
                :value="inputValue"
@@ -46,18 +52,20 @@
         leave-to-class="opacity-0 translate-y-1">
       <div v-if="showItems && filteredItems.length > 0"
            ref="dropdownRef"
-           class="absolute z-50 w-full max-h-[200px] mt-1 overflow-auto bg-white border rounded-md shadow-lg space-y-1 px-2 py-2"
+           :class="dark ? 'bg-gray-800 border-gray-600' : 'bg-white'"
+           class="absolute z-50 w-full max-h-[200px] mt-1 overflow-auto border rounded-md shadow-lg space-y-1 px-2 py-2"
            @scroll="handleScroll">
         <div v-for="(item, index) in filteredItems"
              :key="item.id"
              class="p-2 justify-between items-center flex rounded-md"
-             :class="{
-                 'bg-gray-100': selectedIndex === index,
-                 'cursor-not-allowed opacity-50 bg-gray-100': isItemSelected(item) || item.disabled,
-                 'cursor-pointer': !isItemSelected(item) && !item.disabled,
-                 [BaseTextType[type]]: isItemSelected(item),
-                 [HoverType[type]]: !item.disabled && !isItemSelected(item)
-             }"
+             :class="[
+                 selectedIndex === index ? (dark ? 'bg-gray-700' : 'bg-gray-100') : '',
+                 (isItemSelected(item) || item.disabled) ? (dark ? 'cursor-not-allowed opacity-50 bg-gray-700' : 'cursor-not-allowed opacity-50 bg-gray-100') : '',
+                 !isItemSelected(item) && !item.disabled ? 'cursor-pointer' : '',
+                 isItemSelected(item) ? [BaseTextType[type]] : '',
+                 !item.disabled && !isItemSelected(item) ? [HoverType[type]] : '',
+                 dark ? 'text-gray-200' : ''
+             ]"
              @click.stop="(event) => handleItemClick(item, event)"
              @mouseenter="() => handleItemHover(index, item)">
           <slot name="item" :item="item" :selected="isItemSelected(item)">
@@ -68,8 +76,7 @@
           </slot>
         </div>
 
-        <!-- 加载状态 -->
-        <div v-if="loading" class="py-2 text-center text-gray-500">
+        <div v-if="loading" :class="dark ? 'text-gray-400' : 'text-gray-500'" class="py-2 text-center">
           <ShadcnSpin :type="type" :model-value="loading"/>
         </div>
       </div>
@@ -92,7 +99,8 @@ const props = withDefaults(defineProps<MentionProps>(), {
   disabled: false,
   trigger: '@',
   loadData: undefined,
-  max: Infinity
+  max: Infinity,
+  dark: false
 })
 
 const emit = defineEmits<MentionEmits>()

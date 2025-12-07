@@ -7,4 +7,5 @@ export interface FormItemProps
     description?: string
     rules?: Rule[]
     validateOnBlur?: boolean
+    dark?: boolean
 }

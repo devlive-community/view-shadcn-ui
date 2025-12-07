@@ -1,6 +1,9 @@
 <template>
-  <div :class="{ 'bg-gray-50 dark:bg-gray-800/30': !item.read }"
-       class="flex p-4 border-b border-gray-100 dark:border-gray-800 cursor-pointer transition-colors hover:bg-gray-50 dark:hover:bg-gray-800/50"
+  <div :class="[
+         !item.read ? (item.dark ? 'bg-gray-700/30' : 'bg-gray-50') : '',
+         item.dark ? 'border-gray-600 hover:bg-gray-700/50' : 'border-gray-100 hover:bg-gray-50',
+         'flex p-4 border-b cursor-pointer transition-colors'
+       ]"
        @click="handleItemClick">
     <!-- Icon Section -->
     <div v-if="item?.icon || $slots.icon" class="flex-shrink-0 mr-4">
@@ -15,14 +18,16 @@
     <div class="flex-1 min-w-0">
       <div class="flex justify-between items-start">
         <!-- Title Slot with fallback -->
-        <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
+        <h4 :class="item.dark ? 'text-gray-200' : 'text-gray-900'"
+            class="text-sm font-medium truncate">
           <slot name="title">
             {{ item.title }}
           </slot>
         </h4>
 
         <!-- Time Slot with fallback -->
-        <span v-if="item.time || $slots.time" class="text-xs text-gray-500 dark:text-gray-400 ml-2">
+        <span v-if="item.time || $slots.time" :class="item.dark ? 'text-gray-400' : 'text-gray-500'"
+              class="text-xs ml-2">
           <slot name="time">
             {{ item.time }}
           </slot>
@@ -30,7 +35,8 @@
       </div>
 
       <!-- Description Slot with fallback -->
-      <p v-if="item.description || $slots.description" class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+      <p v-if="item.description || $slots.description" :class="item.dark ? 'text-gray-400' : 'text-gray-500'"
+         class="text-sm mt-1">
         <slot name="description">
           {{ item.description }}
         </slot>

@@ -3,20 +3,22 @@
        :style="level > 0 ? { paddingLeft: '1.5em' } : undefined">
 
     <div v-if="showLine">
-      <div v-if="level > 0" class="absolute top-0 left-0 bottom-0 bg-gray-200" :style="{ left: '0.75em', width: '1px' }"/>
-      <div v-if="level > 0 && !hasChildren" class="absolute top-0 left-0 bottom-0 bg-gray-200" :style="{ left: '2.3em', width: '1px' }"/>
-      <div v-if="level > 0 && !hasChildren" class="absolute top-1/2 left-0 bg-gray-200" :style="{ left: '2.35em', width: '0.8em', height: '1px' }"/>
+      <div v-if="level > 0" :class="['absolute top-0 left-0 bottom-0', dark ? 'bg-gray-600' : 'bg-gray-200']" :style="{ left: '0.75em', width: '1px' }"/>
+      <div v-if="level > 0 && !hasChildren" :class="['absolute top-0 left-0 bottom-0', dark ? 'bg-gray-600' : 'bg-gray-200']" :style="{ left: '2.3em', width: '1px' }"/>
+      <div v-if="level > 0 && !hasChildren" :class="['absolute top-1/2 left-0', dark ? 'bg-gray-600' : 'bg-gray-200']" :style="{ left: '2.35em', width: '0.8em', height: '1px' }"/>
     </div>
 
     <div :class="['inline-flex items-center py-0.5 px-1.5 rounded-sm whitespace-nowrap',
-              { 'bg-gray-200': isSelected && !showLine },
-              { 'hover:bg-gray-100': !isSelected && !showLine },
+              { 'bg-gray-200': isSelected && !showLine && !dark },
+              { 'bg-gray-700': isSelected && !showLine && dark },
+              { 'hover:bg-gray-100': !isSelected && !showLine && !dark },
+              { 'hover:bg-gray-700': !isSelected && !showLine && dark },
               { 'cursor-not-allowed': node.disabled },
               { 'cursor-pointer': !node.disabled }
          ]"
          @click="onNodeClick">
       <button v-if="showExpandIcon"
-              class="inline-flex w-4 h-4 items-center justify-center mr-2 text-gray-500 hover:text-gray-700"
+              :class="['inline-flex w-4 h-4 items-center justify-center mr-2', dark ? 'text-gray-400 hover:text-gray-300' : 'text-gray-500 hover:text-gray-700']"
               @click.stop="onExpand">
         <!-- Loading spinner -->
         <svg v-if="loading"
@@ -51,6 +53,7 @@
                       class="inline-block"
                       :value="node.value"
                       :disabled="node.disabled"
+                      :dark="dark"
                       :indeterminate="cascade && isIndeterminate"/>
 
       <slot name="label"
@@ -58,10 +61,15 @@
             :level="level"
             :is-selected="isSelected">
         <span :class="['inline-block text-sm whitespace-nowrap',
-                      { 'hover:bg-gray-100 px-2 py-0.5 hover:rounded-sm': showLine && !node.disabled },
-                      { 'text-gray-500 px-2': node.disabled && showLine },
-                      { 'text-gray-500': node.disabled && !showLine },
-                      { 'bg-gray-100 rounded-sm': isSelected && showLine }
+                      { 'hover:bg-gray-100 px-2 py-0.5 hover:rounded-sm': showLine && !node.disabled && !dark },
+                      { 'hover:bg-gray-700 px-2 py-0.5 hover:rounded-sm': showLine && !node.disabled && dark },
+                      { 'text-gray-500 px-2': node.disabled && showLine && !dark },
+                      { 'text-gray-500': node.disabled && !showLine && !dark },
+                      { 'text-gray-400 px-2': node.disabled && showLine && dark },
+                      { 'text-gray-400': node.disabled && !showLine && dark },
+                      { 'text-gray-200': !node.disabled && dark },
+                      { 'bg-gray-100 rounded-sm': isSelected && showLine && !dark },
+                      { 'bg-gray-700 rounded-sm': isSelected && showLine && dark }
               ]">
           {{ node.label }}
         </span>
@@ -77,6 +85,7 @@
                       :checkable="checkable"
                       :cascade="cascade"
                       :show-line="showLine"
+                      :dark="dark"
                       :load-data="loadData"
                       @on-expand="onChildExpand"
                       @on-node-click="onChildNodeClick">
@@ -107,6 +116,7 @@ const props = withDefaults(defineProps<TreeNodeProps>(), {
   checkable: false,
   cascade: false,
   isLastNode: false,
+  dark: false,
   loadData: undefined
 })
 
