@@ -176,5 +176,5 @@ import { useData } from 'vitepress'
 import { computed } from 'vue'
 
 const { isDark } = useData()
-const darkMode = computed(() => isDark.value)</>
+const darkMode = computed(() => isDark.value)
 </script>

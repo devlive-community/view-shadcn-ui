@@ -471,7 +471,13 @@ const rowClick = (row: any, index: number) => {
     ]">
 </ApiTable>
 
-<script lang="ts">
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 const columns = [
   { 'label': 'Name', 'key': 'name' },
   { 'label': 'Age', 'key': 'age' },
@@ -514,30 +520,8 @@ const data = [
   { 'name': 'Joe Black', 'age': 30, 'address': 'Sydney No. 1 Lake Park', 'province': 'Australian', 'city': 'Sydney', 'zip': 100000 },
   { 'name': 'Jon Snow', 'age': 26, 'address': 'Ottawa No. 2 Lake Park', 'province': 'Canada', 'city': 'Ottawa', 'zip': 100000 }
 ]
-import { useData } from 'vitepress'
-import { computed } from 'vue'
 
-const { isDark } = useData()
-const darkMode = computed(() => isDark.value)
-
-export default {
-    data() {
-      return {
-        columns,
-        slotColumns,
-        fixedColumns,
-        widthColumns,
-        fixedMultiColumns,
-        data,
-        darkMode
-      }
-    },
-    methods: {
-      click(row: any, index: number) {
-        this.$Message.info({
-          content: `Click [ ${row.name} ] - [ ${index} ]`,
-        })
-      }
-    }
+const click = (row: any, index: number) => {
+  console.log(`Click [ ${row.name} ] - [ ${index} ]`)
 }
 </script>
