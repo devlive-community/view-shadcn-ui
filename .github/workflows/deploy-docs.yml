@@ -20,7 +20,9 @@ jobs:
           node-version: '18.x'
           cache: 'pnpm'
       - run: pnpm install
-      - name: Build
+      - name: Build package
+        run: pnpm run build
+      - name: Build docs
         run: pnpm run docs:build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
