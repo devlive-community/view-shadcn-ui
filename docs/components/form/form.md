@@ -16,7 +16,7 @@ title: 表单 (Form)
     <ShadcnForm ref="formRef"
                 v-model="formData"
                 @on-submit="onSubmit"
-                @on-error="onError">
+                @on-error="onError" :dark="darkMode">
       <ShadcnFormItem name="username"
                       label="Username"
                       description="Username must be at least 3 characters and cannot exceed 20 characters."
@@ -24,8 +24,8 @@ title: 表单 (Form)
                         { required: true, message: 'Please input username!' },
                         { min: 3, message: 'Username must be at least 3 characters' },
                         { max: 20, message: 'Username cannot exceed 20 characters' }
-                      ]">
-        <ShadcnInput v-model="formData.username"/>
+                      ]" :dark="darkMode">
+        <ShadcnInput v-model="formData.username" :dark="darkMode" />
       </ShadcnFormItem>
       <ShadcnFormItem name="username"
                       label="Username"
@@ -33,16 +33,16 @@ title: 表单 (Form)
                         { required: true, message: 'Please input username!' },
                         { min: 3, message: 'Username must be at least 3 characters' },
                         { max: 20, message: 'Username cannot exceed 20 characters' }
-                      ]">
-        <ShadcnInput v-model="formData.username"/>
+                      ]" :dark="darkMode">
+        <ShadcnInput v-model="formData.username" :dark="darkMode" />
       </ShadcnFormItem>
       <ShadcnFormItem name="email"
                       label="Email"
                       :rules="[
                         { required: true, message: 'Please input email!' },
                         { pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Please enter a valid email!' }
-                      ]">
-        <ShadcnInput v-model="formData.email"/>
+                      ]" :dark="darkMode">
+        <ShadcnInput v-model="formData.email" :dark="darkMode" />
       </ShadcnFormItem>
       <ShadcnFormItem name="password"
                       label="Password"
@@ -50,28 +50,28 @@ title: 表单 (Form)
                         { required: true, message: 'Please input password!' },
                         { min: 6, message: 'Password must be at least 6 characters' },
                         { validator: validatePassword }
-                      ]">
-        <ShadcnInput type="password" v-model="formData.password"/>
+                      ]" :dark="darkMode">
+        <ShadcnInput type="password" v-model="formData.password" :dark="darkMode" />
       </ShadcnFormItem>
       <ShadcnFormItem name="confirmPassword"
                       label="Confirm Password"
                       :rules="[
                         { required: true, message: 'Please confirm your password!' },
                         { validator: validateConfirmPassword }
-                      ]">
-        <ShadcnInput type="password" v-model="formData.confirmPassword"/>
+                      ]" :dark="darkMode">
+        <ShadcnInput type="password" v-model="formData.confirmPassword" :dark="darkMode" />
       </ShadcnFormItem>
       <ShadcnFormItem name="role"
                       label="Role"
-                      :rules="[{ required: true, message: 'Please select a role!' }]">
-        <ShadcnSelect v-model="formData.role">
+                      :rules="[{ required: true, message: 'Please select a role!' }]" :dark="darkMode">
+        <ShadcnSelect v-model="formData.role" :dark="darkMode">
           <template #options>
             <ShadcnSelectOption v-for="i in 10"
                                 :key="i"
                                 :selected="formData.role === `Value ${i}`"
                                 :disabled="i % 2 === 0"
                                 :value="`Value ${i}`"
-                                :label="`Option ${i}`"/>
+                                :label="`Option ${i}`" :dark="darkMode" />
           </template>
         </ShadcnSelect>
       </ShadcnFormItem>
@@ -80,14 +80,14 @@ title: 表单 (Form)
                       :rules="[
                         { required: true, message: 'Please input nickname!' },
                         { validator: validateNicknameAsync }
-                      ]">
-        <ShadcnInput v-model="formData.nickname"/>
+                      ]" :dark="darkMode">
+        <ShadcnInput v-model="formData.nickname" :dark="darkMode" />
       </ShadcnFormItem>
       <div class="flex justify-end space-x-2 mt-6">
-        <ShadcnButton reset @click="resetForm">
+        <ShadcnButton reset @click="resetForm" :dark="darkMode">
           Reset
         </ShadcnButton>
-        <ShadcnButton submit>
+        <ShadcnButton submit :dark="darkMode">
           Submit
         </ShadcnButton>
       </div>
@@ -104,7 +104,7 @@ title: 表单 (Form)
     <ShadcnForm ref="formRef"
                 v-model="formData"
                 @on-submit="onSubmit"
-                @on-error="onError">
+                @on-error="onError" :dark="darkMode">
       <ShadcnFormItem name="username"
                       label="Username"
                       description="Username must be at least 3 characters and cannot exceed 20 characters."
@@ -112,8 +112,8 @@ title: 表单 (Form)
                         { required: true, message: 'Please input username!' },
                         { min: 3, message: 'Username must be at least 3 characters' },
                         { max: 20, message: 'Username cannot exceed 20 characters' }
-                      ]">
-        <ShadcnInput v-model="formData.username"/>
+                      ]" :dark="darkMode">
+        <ShadcnInput v-model="formData.username" :dark="darkMode" />
       </ShadcnFormItem>
       <ShadcnFormItem name="username"
                       label="Username"
@@ -121,8 +121,8 @@ title: 表单 (Form)
                         { required: true, message: 'Please input username!' },
                         { min: 3, message: 'Username must be at least 3 characters' },
                         { max: 20, message: 'Username cannot exceed 20 characters' }
-                      ]">
-        <ShadcnInput v-model="formData.username"/>
+                      ]" :dark="darkMode">
+        <ShadcnInput v-model="formData.username" :dark="darkMode" />
       </ShadcnFormItem>
 
       <ShadcnFormItem name="email"
@@ -130,8 +130,8 @@ title: 表单 (Form)
                       :rules="[
                         { required: true, message: 'Please input email!' },
                         { pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Please enter a valid email!' }
-                      ]">
-        <ShadcnInput v-model="formData.email"/>
+                      ]" :dark="darkMode">
+        <ShadcnInput v-model="formData.email" :dark="darkMode" />
       </ShadcnFormItem>
 
       <ShadcnFormItem name="password"
@@ -140,8 +140,8 @@ title: 表单 (Form)
                         { required: true, message: 'Please input password!' },
                         { min: 6, message: 'Password must be at least 6 characters' },
                         { validator: validatePassword }
-                      ]">
-        <ShadcnInput type="password" v-model="formData.password"/>
+                      ]" :dark="darkMode">
+        <ShadcnInput type="password" v-model="formData.password" :dark="darkMode" />
       </ShadcnFormItem>
 
       <ShadcnFormItem name="confirmPassword"
@@ -149,22 +149,22 @@ title: 表单 (Form)
                       :rules="[
                         { required: true, message: 'Please confirm your password!' },
                         { validator: validateConfirmPassword }
-                      ]">
-        <ShadcnInput type="password" v-model="formData.confirmPassword"/>
+                      ]" :dark="darkMode">
+        <ShadcnInput type="password" v-model="formData.confirmPassword" :dark="darkMode" />
       </ShadcnFormItem>
 
       <ShadcnFormItem name="role"
                       label="Role"
-                      :rules="[{ required: true, message: 'Please select a role!' }]">
+                      :rules="[{ required: true, message: 'Please select a role!' }]" :dark="darkMode">
 
-        <ShadcnSelect v-model="formData.role">
+        <ShadcnSelect v-model="formData.role" :dark="darkMode">
           <template #options>
             <ShadcnSelectOption v-for="i in 10"
                                 :key="i"
                                 :selected="formData.role === `Value ${i}`"
                                 :disabled="i % 2 === 0"
                                 :value="`Value ${i}`"
-                                :label="`Option ${i}`"/>
+                                :label="`Option ${i}`" :dark="darkMode" />
           </template>
         </ShadcnSelect>
       </ShadcnFormItem>
@@ -174,15 +174,15 @@ title: 表单 (Form)
                       :rules="[
                         { required: true, message: 'Please input nickname!' },
                         { validator: validateNicknameAsync }
-                      ]">
-        <ShadcnInput v-model="formData.nickname"/>
+                      ]" :dark="darkMode">
+        <ShadcnInput v-model="formData.nickname" :dark="darkMode" />
       </ShadcnFormItem>
 
       <div class="flex justify-end space-x-2 mt-6">
-        <ShadcnButton reset @click="resetForm">
+        <ShadcnButton reset @click="resetForm" :dark="darkMode">
           Reset
         </ShadcnButton>
-        <ShadcnButton submit>
+        <ShadcnButton submit :dark="darkMode">
           Submit
         </ShadcnButton>
       </div>
@@ -191,7 +191,12 @@ title: 表单 (Form)
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 
 const formRef = ref()
 
@@ -254,19 +259,19 @@ const resetForm = () => {
 ::: raw
 
 <CodeRunner title="动态表单 (dynamic)">
-    <ShadcnButton @click="onAdd">Add Column</ShadcnButton>
-    <ShadcnForm v-model="formState" class="mt-2" @on-submit="onSubmit2">
+    <ShadcnButton @click="onAdd" :dark="darkMode">Add Column</ShadcnButton>
+    <ShadcnForm v-model="formState" class="mt-2" @on-submit="onSubmit2" :dark="darkMode">
       <ShadcnFormItem v-for="(item, index) in formState.columns"
                       :name="`columns[${index}].name`"
                       :key="`column-${index}`"
                       :label="`Column ${index + 1}`"
-                      :rules="[{ required: true, message: 'Please input column name!' }]">
-        <ShadcnSpace class="items-center">
-          <ShadcnInput v-model="formState.columns[index].name" :name="`columns[${index}].name`"/>
-          <ShadcnIcon icon="MinusCircle" class="cursor-pointer" color="#f43f5e" @click="onRemove(index)"/>
+                      :rules="[{ required: true, message: 'Please input column name!' }]" :dark="darkMode">
+        <ShadcnSpace class="items-center" :dark="darkMode">
+          <ShadcnInput v-model="formState.columns[index].name" :name="`columns[${index}].name`" :dark="darkMode" />
+          <ShadcnIcon icon="MinusCircle" class="cursor-pointer" color="#f43f5e" @click="onRemove(index)" :dark="darkMode" />
         </ShadcnSpace>
       </ShadcnFormItem>
-      <ShadcnButton submit>Submit</ShadcnButton>
+      <ShadcnButton submit :dark="darkMode">Submit</ShadcnButton>
     </ShadcnForm>
 </CodeRunner>
 
@@ -277,21 +282,21 @@ const resetForm = () => {
 ```vue
 <template>
   <div class="p-32">
-    <ShadcnButton @click="onAdd">Add Column</ShadcnButton>
+    <ShadcnButton @click="onAdd" :dark="darkMode">Add Column</ShadcnButton>
 
-    <ShadcnForm v-model="formState" class="mt-2" @on-submit="onSubmit">
+    <ShadcnForm v-model="formState" class="mt-2" @on-submit="onSubmit" :dark="darkMode">
       <ShadcnFormItem v-for="(item, index) in formState.columns"
                       :name="`columns[${index}].name`"
                       :key="`column-${index}`"
                       :label="`Column ${index + 1}`"
-                      :rules="[{ required: true, message: 'Please input column name!' }]">
-        <ShadcnSpace class="items-center">
-          <ShadcnInput v-model="formState.columns[index].name" :name="`column-${index}`"/>
-          <ShadcnIcon icon="MinusCircle" class="cursor-pointer" color="#f43f5e" @click="onRemove(index)"/>
+                      :rules="[{ required: true, message: 'Please input column name!' }]" :dark="darkMode">
+        <ShadcnSpace class="items-center" :dark="darkMode">
+          <ShadcnInput v-model="formState.columns[index].name" :name="`column-${index}`" :dark="darkMode" />
+          <ShadcnIcon icon="MinusCircle" class="cursor-pointer" color="#f43f5e" @click="onRemove(index)" :dark="darkMode" />
         </ShadcnSpace>
       </ShadcnFormItem>
 
-      <ShadcnButton submit>Submit</ShadcnButton>
+      <ShadcnButton submit :dark="darkMode">Submit</ShadcnButton>
     </ShadcnForm>
   </div>
 </template>
@@ -356,6 +361,10 @@ onMounted(() => onAdd())
 
 <script setup lang="ts">
 import { ref, onMounted, getCurrentInstance } from 'vue'
+import { useData } from 'vitepress' 
+import { computed } from 'vue' 
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
 
 const formRef = ref()
 

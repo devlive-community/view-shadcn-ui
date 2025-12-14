@@ -11,7 +11,7 @@ title: 头像 (Avatar)
 ## 用法
 
 <CodeRunner title="用法">
-    <ShadcnAvatar src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png"/>
+    <ShadcnAvatar :dark="darkMode" src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png"/>
 </CodeRunner>
 
 ::: details 查看代码
@@ -30,7 +30,7 @@ title: 头像 (Avatar)
 ## 替换文本 (alt)
 
 <CodeRunner title="替换文本 (alt)">
-    <ShadcnAvatar src="" alt="UI" />
+    <ShadcnAvatar :dark="darkMode" src="" alt="UI" />
 </CodeRunner>
 
 ::: details 查看代码
@@ -49,9 +49,9 @@ title: 头像 (Avatar)
 ## 尺寸 (size)
 
 <CodeRunner title="尺寸 (size)">
-    <ShadcnAvatar src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png" size="large" />
-    <ShadcnAvatar src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png" size="default" />
-    <ShadcnAvatar src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png" size="small" />
+    <ShadcnAvatar :dark="darkMode" src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png" size="large" />
+    <ShadcnAvatar :dark="darkMode" src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png" size="default" />
+    <ShadcnAvatar :dark="darkMode" src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png" size="small" />
 </CodeRunner>
 
 ::: details 查看代码
@@ -72,7 +72,7 @@ title: 头像 (Avatar)
 ## 方形 (square)
 
 <CodeRunner title="方形 (square)">
-    <ShadcnAvatar src="" square />
+    <ShadcnAvatar :dark="darkMode" src="" square />
 </CodeRunner>
 
 ::: details 查看代码
@@ -93,11 +93,11 @@ title: 头像 (Avatar)
 ::: raw
 
 <CodeRunner title="组 (group)">
-    <ShadcnAvatarGroup :items="items" />
-    <ShadcnAvatarGroup :items="items" size="small"/>
-    <ShadcnAvatarGroup :items="items" size="large"/>
-    <ShadcnAvatarGroup :items="items" square/>
-    <ShadcnAvatarGroup :items="items" max="2"/>
+    <ShadcnAvatarGroup :dark="darkMode" :items="items" />
+    <ShadcnAvatarGroup :dark="darkMode" :items="items" size="small"/>
+    <ShadcnAvatarGroup :dark="darkMode" :items="items" size="large"/>
+    <ShadcnAvatarGroup :dark="darkMode" :items="items" square/>
+    <ShadcnAvatarGroup :dark="darkMode" :items="items" max="2"/>
 </CodeRunner>
 
 :::
@@ -161,6 +161,12 @@ const items = [
 </ApiTable>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 const items = [
   { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 1' },
   { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 2' },

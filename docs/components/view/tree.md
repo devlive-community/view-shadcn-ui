@@ -16,6 +16,7 @@ title: 树 (Tree)
     值: {{ basicValue }}
     <ShadcnTree v-model="basicValue"
                 :data="data"
+                :dark="darkMode"
                 @on-expand="onExpand"
                 @on-node-click="onNodeClick"/>
 </CodeRunner>
@@ -38,7 +39,7 @@ title: 树 (Tree)
 
 <CodeRunner title="多选 (multiple)">
     值: {{ multipleValue }}
-    <ShadcnTree v-model="multipleValue" multiple :data="data"/>
+    <ShadcnTree v-model="multipleValue" multiple :data="data" :dark="darkMode"/>
 </CodeRunner>
 
 :::
@@ -59,7 +60,7 @@ title: 树 (Tree)
 
 <CodeRunner title="选择框 (checkable)">
     值: {{ checkableValue }}
-    <ShadcnTree v-model="checkableValue" multiple checkable :data="data"/>
+    <ShadcnTree v-model="checkableValue" multiple checkable :data="data" :dark="darkMode"/>
 </CodeRunner>
 
 :::
@@ -80,7 +81,7 @@ title: 树 (Tree)
 
 <CodeRunner title="级联选择 (cascade)">
     值: {{ cascadeValue }}
-    <ShadcnTree v-model="cascadeValue" checkable cascade :data="data"/>
+    <ShadcnTree v-model="cascadeValue" checkable cascade :data="data" :dark="darkMode"/>
 </CodeRunner>
 
 :::
@@ -101,7 +102,7 @@ title: 树 (Tree)
 
 <CodeRunner title="懒加载 (lazy)">
     值: {{ lazyValue }}
-    <ShadcnTree v-model="lazyValue" checkable cascade :data="lazyData" :loadData="loadNodeData"/>
+    <ShadcnTree v-model="lazyValue" checkable cascade :data="lazyData" :loadData="loadNodeData" :dark="darkMode"/>
 </CodeRunner>
 
 :::
@@ -166,7 +167,7 @@ const loadNodeData = (item: any, callback: (children: any[]) => void) => {
 
 <CodeRunner title="禁用 (disabled)">
     值: {{ disabledValue }}
-    <ShadcnTree v-model="disabledValue" :data="disabledData"/>
+    <ShadcnTree v-model="disabledValue" :data="disabledData" :dark="darkMode"/>
 </CodeRunner>
 
 :::
@@ -216,7 +217,7 @@ const data = reactive([
 
 <CodeRunner title="显示线 (show-line)">
     值: {{ basicValue }}
-    <ShadcnTree v-model="basicValue" show-line checkable :data="data"/>
+    <ShadcnTree v-model="basicValue" show-line checkable :data="data" :dark="darkMode"/>
 </CodeRunner>
 
 :::
@@ -240,7 +241,8 @@ const data = reactive([
       <ShadcnTree v-model="customValue"
                   checkable
                   cascade
-                  :data="data">
+                  :data="data"
+                  :dark="darkMode">
         <template #label="{ node }">
           <div class="flex items-center gap-2">
             <span class="text-sm font-medium">{{ node.label }}</span>
@@ -305,7 +307,7 @@ const data = [
 ::: raw
 
 <CodeRunner title="自定义 Expand/Collapse 插槽">
-    <ShadcnTree v-model="value" :data="data">
+    <ShadcnTree v-model="value" :data="data" :dark="darkMode">
         <template #expand>O</template>
         <template #collapse>C</template>
     </ShadcnTree>
@@ -406,6 +408,8 @@ const data = [
 
 <script lang="ts">
 import { reactive, ref } from 'vue'
+import { useData } from 'vitepress'
+import { computed } from 'vue'
 
 export default {
     setup() {
@@ -447,10 +451,13 @@ export default {
               callback(children)
             }, 1000)
         }
+        const { isDark } = useData()
+        const darkMode = computed(() => isDark.value)
 
         return {
             lazyData,
-            loadNodeData
+            loadNodeData,
+            darkMode
         }
     },
     data() {

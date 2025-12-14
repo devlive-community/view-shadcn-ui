@@ -13,7 +13,7 @@ title: 链接 (Link)
 ::: raw
 
 <CodeRunner title="用法" warning="必须使用 vue-router">
-  <ShadcnLink link="/link">Router Link</ShadcnLink>
+  <ShadcnLink link="/link" :dark="darkMode">Router Link</ShadcnLink>
 </CodeRunner>
 
 :::
@@ -36,7 +36,7 @@ title: 链接 (Link)
 ::: raw
 
 <CodeRunner title="外部链接 (external)">
-  <ShadcnLink link="https://github.com/devlive-community/view-shadcn-ui" external>External Link</ShadcnLink>
+  <ShadcnLink link="https://github.com/devlive-community/view-shadcn-ui" external :dark="darkMode">External Link</ShadcnLink>
 </CodeRunner>
 
 :::
@@ -59,7 +59,7 @@ title: 链接 (Link)
 ::: raw
 
 <CodeRunner title="打开方式 (target)">
-  <ShadcnLink link="https://github.com/devlive-community/view-shadcn-ui" external target="_blank">Router Link</ShadcnLink>
+  <ShadcnLink link="https://github.com/devlive-community/view-shadcn-ui" external target="_blank" :dark="darkMode">Router Link</ShadcnLink>
 </CodeRunner>
 
 :::
@@ -87,3 +87,11 @@ title: 链接 (Link)
         ['target', '打开方式', 'string', '_self', '_self | _blank | _parent | _top']
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>

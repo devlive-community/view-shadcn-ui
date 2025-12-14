@@ -13,7 +13,7 @@ title: 数字输入框 (Number)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnNumber v-model="basicValue" />
+    <ShadcnNumber v-model="basicValue"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -22,11 +22,16 @@ title: 数字输入框 (Number)
 
 ```vue
 <template>
-    <ShadcnNumber v-model="value" />
+    <ShadcnNumber v-model="value"  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 
 const value = ref(0)
 </script>
@@ -40,9 +45,9 @@ const value = ref(0)
 
 <CodeRunner title="尺寸 (size)">
     <div class="space-y-2">
-        <ShadcnNumber v-model="basicValue" size="small" />
-        <ShadcnNumber v-model="basicValue" size="default" />
-        <ShadcnNumber v-model="basicValue" size="large" />
+        <ShadcnNumber v-model="basicValue" size="small"  :dark="darkMode" />
+        <ShadcnNumber v-model="basicValue" size="default"  :dark="darkMode" />
+        <ShadcnNumber v-model="basicValue" size="large"  :dark="darkMode" />
     </div>
 </CodeRunner>
 
@@ -52,9 +57,9 @@ const value = ref(0)
 
 ```vue
 <template>
-    <ShadcnNumber v-model="value" size="small" />
-    <ShadcnNumber v-model="value" size="default" />
-    <ShadcnNumber v-model="value" size="large" />
+    <ShadcnNumber v-model="value" size="small"  :dark="darkMode" />
+    <ShadcnNumber v-model="value" size="default"  :dark="darkMode" />
+    <ShadcnNumber v-model="value" size="large"  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
@@ -72,10 +77,10 @@ const value = ref(0)
 
 <CodeRunner title="类型 (type)">
     <div class="space-y-2">
-        <ShadcnNumber v-model="value" size="small" type="primary"/>
-        <ShadcnNumber v-model="value" size="default" type="warning"/>
-        <ShadcnNumber v-model="value" size="large" type="success"/>
-        <ShadcnNumber v-model="value" size="large" type="error"/>
+        <ShadcnNumber v-model="value" size="small" type="primary" :dark="darkMode" />
+        <ShadcnNumber v-model="value" size="default" type="warning" :dark="darkMode" />
+        <ShadcnNumber v-model="value" size="large" type="success" :dark="darkMode" />
+        <ShadcnNumber v-model="value" size="large" type="error" :dark="darkMode" />
     </div>
 </CodeRunner>
 
@@ -85,10 +90,10 @@ const value = ref(0)
 
 ```vue
 <template>
-    <ShadcnNumber v-model="value" size="small" type="primary"/>
-    <ShadcnNumber v-model="value" size="default" type="warning"/>
-    <ShadcnNumber v-model="value" size="large" type="success"/>
-    <ShadcnNumber v-model="value" size="large" type="error"/>
+    <ShadcnNumber v-model="value" size="small" type="primary" :dark="darkMode" />
+    <ShadcnNumber v-model="value" size="default" type="warning" :dark="darkMode" />
+    <ShadcnNumber v-model="value" size="large" type="success" :dark="darkMode" />
+    <ShadcnNumber v-model="value" size="large" type="error" :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
@@ -106,8 +111,8 @@ const value = ref(0)
 
 <CodeRunner title="禁用 (disabled)">
     <div class="space-y-2">
-        <ShadcnNumber v-model="basicValue"/>
-        <ShadcnNumber v-model="basicValue" disabled />
+        <ShadcnNumber v-model="basicValue" :dark="darkMode" />
+        <ShadcnNumber v-model="basicValue" disabled  :dark="darkMode" />
     </div>
 </CodeRunner>
 
@@ -117,8 +122,8 @@ const value = ref(0)
 
 ```vue
 <template>
-    <ShadcnNumber v-model="value"/>
-    <ShadcnNumber v-model="value" disabled />
+    <ShadcnNumber v-model="value" :dark="darkMode" />
+    <ShadcnNumber v-model="value" disabled  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
@@ -135,7 +140,7 @@ const value = ref(0)
 ::: raw
 
 <CodeRunner title="占位符 (placeholder)">
-    <ShadcnNumber v-model="placeholderValue" placeholder="Enter Number"/>
+    <ShadcnNumber v-model="placeholderValue" placeholder="Enter Number" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -144,7 +149,7 @@ const value = ref(0)
 
 ```vue
 <template>
-    <ShadcnNumber v-model="value" placeholder="Enter Number"/>
+    <ShadcnNumber v-model="value" placeholder="Enter Number" :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
@@ -161,7 +166,7 @@ const value = ref(0)
 ::: raw
 
 <CodeRunner title="最小值 (min) & 最大值 (max)">
-    <ShadcnNumber v-model="minAndMaxValue" min="0" max="10"/>
+    <ShadcnNumber v-model="minAndMaxValue" min="0" max="10" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -170,7 +175,7 @@ const value = ref(0)
 
 ```vue
 <template>
-    <ShadcnNumber v-model="value" min="0" max="10"/>
+    <ShadcnNumber v-model="value" min="0" max="10" :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
@@ -188,8 +193,8 @@ const value = ref(0)
 
 <CodeRunner title="清空 (clearable)">
     <div class="space-y-2">
-    <ShadcnNumber v-model="clearableValue" clearable placeholder="Enter Number"/>
-    <ShadcnNumber v-model="clearableValue" clearable placeholder="Enter Number">
+    <ShadcnNumber v-model="clearableValue" clearable placeholder="Enter Number" :dark="darkMode" />
+    <ShadcnNumber v-model="clearableValue" clearable placeholder="Enter Number" :dark="darkMode">
       <template #clear>
         <div class="h-4 w-4 p-2 flex items-center justify-center bg-gray-200 rounded-full text-sm text-gray-400 hover:bg-gray-300 hover:text-muted-foreground">X</div>
       </template>
@@ -203,8 +208,8 @@ const value = ref(0)
 
 ```vue
 <template>
-    <ShadcnNumber v-model="value" clearable placeholder="Enter Number"/>
-    <ShadcnNumber v-model="value" clearable placeholder="Enter Number">
+    <ShadcnNumber v-model="value" clearable placeholder="Enter Number" :dark="darkMode" />
+    <ShadcnNumber v-model="value" clearable placeholder="Enter Number" :dark="darkMode">
       <template #clear>
         <div class="h-4 w-4 p-2 flex items-center justify-center bg-gray-200 rounded-full text-sm text-gray-400 hover:bg-gray-300 hover:text-muted-foreground">X</div>
       </template>
@@ -226,8 +231,8 @@ const value = ref(0)
 
 <CodeRunner title="显示控制器 (control)">
     <div class="space-y-2">
-        <ShadcnNumber v-model="controlValue" placeholder="Enter Number"/>
-        <ShadcnNumber v-model="controlValue" placeholder="Enter Number">
+        <ShadcnNumber v-model="controlValue" placeholder="Enter Number" :dark="darkMode" />
+        <ShadcnNumber v-model="controlValue" placeholder="Enter Number" :dark="darkMode">
           <template #add>
             <div class="text-gray-300 w-4 h-4 m-1 flex items-center justify-center">A</div>
           </template>
@@ -244,8 +249,8 @@ const value = ref(0)
 
 ```vue
 <template>
-    <ShadcnNumber v-model="value" placeholder="Enter Number"/>
-    <ShadcnNumber v-model="value" placeholder="Enter Number">
+    <ShadcnNumber v-model="value" placeholder="Enter Number" :dark="darkMode" />
+    <ShadcnNumber v-model="value" placeholder="Enter Number" :dark="darkMode">
       <template #add>
         <div class="text-gray-300 w-4 h-4 m-1 flex items-center justify-center">A</div>
       </template>
@@ -269,11 +274,11 @@ const value = ref(0)
 ::: raw
 
 <CodeRunner title="表单 (form)">
-    <ShadcnForm v-model="formState" @on-submit="onSubmit">
-        <ShadcnFormItem name="value" label="输入数据" :rules="[{ required: true, message: '请输入数据' }]">
-            <ShadcnNumber v-model="formState.value" name="value" />
+    <ShadcnForm v-model="formState" @on-submit="onSubmit" :dark="darkMode">
+        <ShadcnFormItem name="value" label="输入数据" :rules="[{ required: true, message: '请输入数据' }]" :dark="darkMode">
+            <ShadcnNumber v-model="formState.value" name="value"  :dark="darkMode" />
         </ShadcnFormItem>
-        <ShadcnButton submit>提交</ShadcnButton>
+        <ShadcnButton submit :dark="darkMode">提交</ShadcnButton>
     </ShadcnForm>
 </CodeRunner>
 
@@ -320,6 +325,10 @@ const value = ref(0)
 
 <script setup lang="ts">
 import { ref, getCurrentInstance } from 'vue'
+import { useData } from 'vitepress' 
+import { computed } from 'vue' 
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
 
 const basicValue = ref(0)
 const placeholderValue = ref(undefined)

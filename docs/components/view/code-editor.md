@@ -13,7 +13,7 @@ title: 代码编辑器 (Code Editor)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnCodeEditor v-model="value" />
+    <ShadcnCodeEditor v-model="value" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -33,7 +33,7 @@ title: 代码编辑器 (Code Editor)
 ::: raw
 
 <CodeRunner title="高度 (height)">
-    <ShadcnCodeEditor v-model="value" :height="216" />
+    <ShadcnCodeEditor v-model="value" :height="216" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -53,7 +53,7 @@ title: 代码编辑器 (Code Editor)
 ::: raw
 
 <CodeRunner title="配置 (config)">
-    <ShadcnCodeEditor v-model="value" :config="{language: 'javascript'}" />
+    <ShadcnCodeEditor v-model="value" :config="{language: 'javascript'}" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -193,32 +193,37 @@ title: 代码编辑器 (Code Editor)
 ## 代码编辑器 (Code Editor) 属性
 
 <ApiTable title="代码编辑器 (Code Editor) 属性"
-    :headers="['属性', '描述', '类型', '默认值']"
-    :columns="[
-        ['modelValue', '组件的值', 'string', '-'],
-        ['height', '组件的高度', 'number', '300'],
-        ['config', '参考 monaco.editor.IStandaloneEditorConstructionOptions', 'any', '{}'],
-        ['autoCompleteConfig', '参考 CodeEditorAutoCompleteProps', 'any', '{}'],
-        ['contextMenuConfig', '参考 CodeEditorContextMenuProps', 'any', '{}'],
-        ['searchConfig', '参考 CodeEditorSearchProps', 'any', '{}'],
-    ]">
+:headers="['属性', '描述', '类型', '默认值']"
+:columns="[
+['modelValue', '组件的值', 'string', '-'],
+['height', '组件的高度', 'number', '300'],
+['config', '参考 monaco.editor.IStandaloneEditorConstructionOptions', 'any', '{}'],
+['autoCompleteConfig', '参考 CodeEditorAutoCompleteProps', 'any', '{}'],
+['contextMenuConfig', '参考 CodeEditorContextMenuProps', 'any', '{}'],
+['searchConfig', '参考 CodeEditorSearchProps', 'any', '{}'],
+]">
 </ApiTable>
 
 ## 代码编辑器 (Code Editor) 事件
 
 <ApiTable title="代码编辑器 (Code Editor) 事件"
-    :headers="['事件', '描述', '回调参数']"
-    :columns="[
-        ['update:modelValue', '数据更新后触发', 'string'],
-        ['on-change', '数据更新后触发', 'string'],
-        ['on-created', '编辑器创建后触发', 'monaco.editor.IStandaloneCodeEditor'],
-        ['on-focus', '编辑器聚焦后触发', 'monaco.editor.IStandaloneCodeEditor'],
-        ['on-blur', '编辑器失焦后触发', 'monaco.editor.IStandaloneCodeEditor']
-    ]">
+:headers="['事件', '描述', '回调参数']"
+:columns="[
+['update:modelValue', '数据更新后触发', 'string'],
+['on-change', '数据更新后触发', 'string'],
+['on-created', '编辑器创建后触发', 'monaco.editor.IStandaloneCodeEditor'],
+['on-focus', '编辑器聚焦后触发', 'monaco.editor.IStandaloneCodeEditor'],
+['on-blur', '编辑器失焦后触发', 'monaco.editor.IStandaloneCodeEditor']
+]">
 </ApiTable>
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
 
 const value = ref('Hello View Shadcn UI')
 </script>

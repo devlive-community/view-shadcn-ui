@@ -13,7 +13,7 @@ title: 水印 (Watermark)
 ::: raw
 
 <CodeRunner title="用法">
-  <ShadcnWatermark>
+  <ShadcnWatermark :dark="darkMode">
     <div style="height: 24rem;"/>
   </ShadcnWatermark>
 </CodeRunner>
@@ -37,7 +37,7 @@ title: 水印 (Watermark)
 ::: raw
 
 <CodeRunner title="内容">
-  <ShadcnWatermark :content="['Company', 'Name', 'Time']">
+  <ShadcnWatermark :content="['Company', 'Name', 'Time']" :dark="darkMode">
     <div style="height: 24rem;"/>
   </ShadcnWatermark>
 </CodeRunner>
@@ -61,8 +61,8 @@ title: 水印 (Watermark)
 ::: raw
 
 <CodeRunner title="全屏">
-  <ShadcnWatermark :content="['Company', 'Name', 'Time']" :fullscreen="fullScreen"/>
-  <ShadcnButton @click="fullScreen = !fullScreen">全屏 {{ fullScreen ? '[ 关闭 ]' : '[ 打开 ]' }}</ShadcnButton>
+  <ShadcnWatermark :content="['Company', 'Name', 'Time']" :fullscreen="fullScreen" :dark="darkMode"/>
+  <ShadcnButton @click="fullScreen = !fullScreen" :dark="darkMode">全屏 {{ fullScreen ? '[ 关闭 ]' : '[ 打开 ]' }}</ShadcnButton>
 </CodeRunner>
 
 :::
@@ -107,7 +107,11 @@ const fullScreen = ref(false)
 </ApiTable>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { useData } from 'vitepress'
+import { computed, ref } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
 
 const fullScreen = ref(false)
 </script>

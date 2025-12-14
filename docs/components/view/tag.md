@@ -13,9 +13,9 @@ title: 标签 (Tag)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnSpace wrap>
-      <ShadcnTag text="Text"/>
-      <ShadcnTag>Slot</ShadcnTag>
+    <ShadcnSpace wrap :dark="darkMode">
+      <ShadcnTag text="Text" :dark="darkMode" />
+      <ShadcnTag :dark="darkMode">Slot</ShadcnTag>
     </ShadcnSpace>
 </CodeRunner>
 
@@ -25,13 +25,19 @@ title: 标签 (Tag)
 
 ```vue
 <template>
-  <ShadcnSpace wrap>
-    <ShadcnTag text="Text"/>
-    <ShadcnTag>Slot</ShadcnTag>
+  <ShadcnSpace wrap :dark="darkMode">
+    <ShadcnTag text="Text" :dark="darkMode" />
+    <ShadcnTag :dark="darkMode">Slot</ShadcnTag>
   </ShadcnSpace>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -42,12 +48,12 @@ title: 标签 (Tag)
 ::: raw
 
 <CodeRunner title="类型 (type)">
-    <ShadcnSpace wrap>
-      <ShadcnTag text="Text"/>
-      <ShadcnTag text="Text" type="primary"/>
-      <ShadcnTag text="Text" type="success"/>
-      <ShadcnTag text="Text" type="warning"/>
-      <ShadcnTag text="Text" type="error"/>
+    <ShadcnSpace wrap :dark="darkMode">
+      <ShadcnTag text="Text" :dark="darkMode" />
+      <ShadcnTag text="Text" type="primary" :dark="darkMode" />
+      <ShadcnTag text="Text" type="success" :dark="darkMode" />
+      <ShadcnTag text="Text" type="warning" :dark="darkMode" />
+      <ShadcnTag text="Text" type="error" :dark="darkMode" />
     </ShadcnSpace>
 </CodeRunner>
 
@@ -57,16 +63,22 @@ title: 标签 (Tag)
 
 ```vue
 <template>
-    <ShadcnSpace wrap>
-      <ShadcnTag text="Text"/>
-      <ShadcnTag text="Text" type="primary"/>
-      <ShadcnTag text="Text" type="success"/>
-      <ShadcnTag text="Text" type="warning"/>
-      <ShadcnTag text="Text" type="error"/>
+    <ShadcnSpace wrap :dark="darkMode">
+      <ShadcnTag text="Text" :dark="darkMode" />
+      <ShadcnTag text="Text" type="primary" :dark="darkMode" />
+      <ShadcnTag text="Text" type="success" :dark="darkMode" />
+      <ShadcnTag text="Text" type="warning" :dark="darkMode" />
+      <ShadcnTag text="Text" type="error" :dark="darkMode" />
     </ShadcnSpace>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -77,12 +89,12 @@ title: 标签 (Tag)
 ::: raw
 
 <CodeRunner title="边框 (border)">
-    <ShadcnSpace wrap>
-      <ShadcnTag text="Text" border/>
-      <ShadcnTag text="Text" type="primary" border/>
-      <ShadcnTag text="Text" type="success" border/>
-      <ShadcnTag text="Text" type="warning" border/>
-      <ShadcnTag text="Text" type="error" border/>
+    <ShadcnSpace wrap :dark="darkMode">
+      <ShadcnTag text="Text" border :dark="darkMode" />
+      <ShadcnTag text="Text" type="primary" border :dark="darkMode" />
+      <ShadcnTag text="Text" type="success" border :dark="darkMode" />
+      <ShadcnTag text="Text" type="warning" border :dark="darkMode" />
+      <ShadcnTag text="Text" type="error" border :dark="darkMode" />
     </ShadcnSpace>
 </CodeRunner>
 
@@ -92,16 +104,22 @@ title: 标签 (Tag)
 
 ```vue
 <template>
-    <ShadcnSpace wrap>
-      <ShadcnTag text="Text" border/>
-      <ShadcnTag text="Text" type="primary" border/>
-      <ShadcnTag text="Text" type="success" border/>
-      <ShadcnTag text="Text" type="warning" border/>
-      <ShadcnTag text="Text" type="error" border/>
+    <ShadcnSpace wrap :dark="darkMode">
+      <ShadcnTag text="Text" border :dark="darkMode" />
+      <ShadcnTag text="Text" type="primary" border :dark="darkMode" />
+      <ShadcnTag text="Text" type="success" border :dark="darkMode" />
+      <ShadcnTag text="Text" type="warning" border :dark="darkMode" />
+      <ShadcnTag text="Text" type="error" border :dark="darkMode" />
     </ShadcnSpace>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -112,10 +130,10 @@ title: 标签 (Tag)
 ::: raw
 
 <CodeRunner title="尺寸 (size)">
-    <ShadcnSpace wrap>
-      <ShadcnTag text="Default Tag" size="default"/>
-      <ShadcnTag text="Medium Tag" size="medium"/>
-      <ShadcnTag text="Large Tag Width" size="large"/>
+    <ShadcnSpace wrap :dark="darkMode">
+      <ShadcnTag text="Default Tag" size="default" :dark="darkMode" />
+      <ShadcnTag text="Medium Tag" size="medium" :dark="darkMode" />
+      <ShadcnTag text="Large Tag Width" size="large" :dark="darkMode" />
     </ShadcnSpace>
 </CodeRunner>
 
@@ -125,14 +143,20 @@ title: 标签 (Tag)
 
 ```vue
 <template>
-    <ShadcnSpace wrap>
-      <ShadcnTag text="Default Tag" size="default"/>
-      <ShadcnTag text="Medium Tag" size="medium"/>
-      <ShadcnTag text="Large Tag Width" size="large"/>
+    <ShadcnSpace wrap :dark="darkMode">
+      <ShadcnTag text="Default Tag" size="default" :dark="darkMode" />
+      <ShadcnTag text="Medium Tag" size="medium" :dark="darkMode" />
+      <ShadcnTag text="Large Tag Width" size="large" :dark="darkMode" />
     </ShadcnSpace>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -143,10 +167,10 @@ title: 标签 (Tag)
 ::: raw
 
 <CodeRunner title="可关闭 (closeable)">
-    <ShadcnSpace wrap>
-      <ShadcnTag text="Default Tag" size="default" closable @on-close="console.log('on-close')"/>
-      <ShadcnTag text="Medium Tag" size="medium" closable/>
-      <ShadcnTag text="Large Tag Width" size="large" closable/>
+    <ShadcnSpace wrap :dark="darkMode">
+      <ShadcnTag text="Default Tag" size="default" closable @on-close="console.log('on-close')" :dark="darkMode" />
+      <ShadcnTag text="Medium Tag" size="medium" closable :dark="darkMode" />
+      <ShadcnTag text="Large Tag Width" size="large" closable :dark="darkMode" />
     </ShadcnSpace>
 </CodeRunner>
 
@@ -156,14 +180,20 @@ title: 标签 (Tag)
 
 ```vue
 <template>
-    <ShadcnSpace wrap>
-        <ShadcnTag text="Default Tag" size="default" closable @on-close="console.log('on-close')"/>
-        <ShadcnTag text="Medium Tag" size="medium" closable/>
-        <ShadcnTag text="Large Tag Width" size="large" closable/>
+    <ShadcnSpace wrap :dark="darkMode">
+        <ShadcnTag text="Default Tag" size="default" closable @on-close="console.log('on-close')" :dark="darkMode" />
+        <ShadcnTag text="Medium Tag" size="medium" closable :dark="darkMode" />
+        <ShadcnTag text="Large Tag Width" size="large" closable :dark="darkMode" />
     </ShadcnSpace>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -174,10 +204,10 @@ title: 标签 (Tag)
 ::: raw
 
 <CodeRunner title="颜色 (color)">
-    <ShadcnSpace wrap>
-        <ShadcnTag text="Default Tag" border color="#D35DD4"/>
-        <ShadcnTag text="Medium Tag" border color="#39604B"/>
-        <ShadcnTag text="Large Tag Width" border color="#301A65"/>
+    <ShadcnSpace wrap :dark="darkMode">
+        <ShadcnTag text="Default Tag" border color="#D35DD4" :dark="darkMode" />
+        <ShadcnTag text="Medium Tag" border color="#39604B" :dark="darkMode" />
+        <ShadcnTag text="Large Tag Width" border color="#301A65" :dark="darkMode" />
     </ShadcnSpace>
 </CodeRunner>
 
@@ -187,14 +217,20 @@ title: 标签 (Tag)
 
 ```vue
 <template>
-    <ShadcnSpace wrap>
-        <ShadcnTag text="Default Tag" border color="#D35DD4"/>
-        <ShadcnTag text="Medium Tag" border color="#39604B"/>
-        <ShadcnTag text="Large Tag Width" border color="#301A65"/>
+    <ShadcnSpace wrap :dark="darkMode">
+        <ShadcnTag text="Default Tag" border color="#D35DD4" :dark="darkMode" />
+        <ShadcnTag text="Medium Tag" border color="#39604B" :dark="darkMode" />
+        <ShadcnTag text="Large Tag Width" border color="#301A65" :dark="darkMode" />
     </ShadcnSpace>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -232,3 +268,11 @@ title: 标签 (Tag)
         ['on-close', '关闭时触发', 'event'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>

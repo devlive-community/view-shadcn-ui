@@ -11,7 +11,7 @@ title: 徽章 (Badge)
 ## 用法
 
 <CodeRunner title="用法">
-    <ShadcnBadge text="Badge">Badge</ShadcnBadge>
+    <ShadcnBadge text="Badge" :dark="darkMode">Badge</ShadcnBadge>
 </CodeRunner>
 
 ::: details 查看代码
@@ -30,10 +30,10 @@ title: 徽章 (Badge)
 ## 类型 (type)
 
 <CodeRunner title="类型 (type)">
-    <ShadcnBadge type="primary" text="Badge">Primary</ShadcnBadge>
-    <ShadcnBadge type="success" text="Badge">Success</ShadcnBadge>
-    <ShadcnBadge type="warning" text="Badge">Warning</ShadcnBadge>
-    <ShadcnBadge type="danger" text="Badge">Danger</ShadcnBadge>
+    <ShadcnBadge type="primary" text="Badge" :dark="darkMode">Primary</ShadcnBadge>
+    <ShadcnBadge type="success" text="Badge" :dark="darkMode">Success</ShadcnBadge>
+    <ShadcnBadge type="warning" text="Badge" :dark="darkMode">Warning</ShadcnBadge>
+    <ShadcnBadge type="danger" text="Badge" :dark="darkMode">Danger</ShadcnBadge>
 </CodeRunner>
 
 ::: details 查看代码
@@ -55,7 +55,7 @@ title: 徽章 (Badge)
 ## 文本 (text)
 
 <CodeRunner title="文本 (text)">
-    <ShadcnBadge text="Text">Badge</ShadcnBadge>
+    <ShadcnBadge text="Text" :dark="darkMode">Badge</ShadcnBadge>
 </CodeRunner>
 
 ::: details 查看代码
@@ -74,7 +74,7 @@ title: 徽章 (Badge)
 ## 点 (dot)
 
 <CodeRunner title="点 (dot)">
-    <ShadcnBadge dot>Badge</ShadcnBadge>
+    <ShadcnBadge dot :dark="darkMode">Badge</ShadcnBadge>
 </CodeRunner>
 
 ::: details 查看代码
@@ -93,7 +93,7 @@ title: 徽章 (Badge)
 ## 最大值 (max)
 
 <CodeRunner title="最大值 (max)">
-    <ShadcnBadge text="10" max="5">Badge</ShadcnBadge>
+    <ShadcnBadge text="10" max="5" :dark="darkMode">Badge</ShadcnBadge>
 </CodeRunner>
 
 ::: details 查看代码
@@ -130,3 +130,11 @@ title: 徽章 (Badge)
         ['text', '文本插槽'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>

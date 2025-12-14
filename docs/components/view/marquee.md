@@ -13,8 +13,8 @@ title: 跑马灯 (Marquee)
 ::: raw
 
 <CodeRunner title="用法" codeKey="marquee-usage">
-    <ShadcnMarquee>
-        <ShadcnText>Shadcn UI</ShadcnText>
+    <ShadcnMarquee :dark="darkMode">
+        <ShadcnText :dark="darkMode">Shadcn UI</ShadcnText>
     </ShadcnMarquee>
 </CodeRunner>
 
@@ -25,8 +25,8 @@ title: 跑马灯 (Marquee)
 ::: raw
 
 <CodeRunner title="滚动速度 (speed)" codeKey="marquee-speed">
-    <ShadcnMarquee speed="10">
-        <ShadcnText>Shadcn UI</ShadcnText>
+    <ShadcnMarquee speed="10" :dark="darkMode">
+        <ShadcnText :dark="darkMode">Shadcn UI</ShadcnText>
     </ShadcnMarquee>
 </CodeRunner>
 
@@ -37,8 +37,8 @@ title: 跑马灯 (Marquee)
 ::: raw
 
 <CodeRunner title="重复次数 (repeat)" codeKey="marquee-repeat">
-    <ShadcnMarquee repeat="3">
-        <ShadcnText>Shadcn UI</ShadcnText>
+    <ShadcnMarquee repeat="3" :dark="darkMode">
+        <ShadcnText :dark="darkMode">Shadcn UI</ShadcnText>
     </ShadcnMarquee>
 </CodeRunner>
 
@@ -62,3 +62,11 @@ title: 跑马灯 (Marquee)
       ['on-complete', '跑马灯完成时触发', '-'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>

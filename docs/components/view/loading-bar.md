@@ -13,7 +13,7 @@ title: 加载条 (Loading Bar)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnLoadingBar v-model="progress"/>
+    <ShadcnLoadingBar v-model="progress" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -22,10 +22,16 @@ title: 加载条 (Loading Bar)
 
 ```vue
 <template>
-    <ShadcnLoadingBar v-model="progress"/>
+    <ShadcnLoadingBar v-model="progress" :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import {ref} from "vue"
 
 const progress = ref(50)
@@ -40,11 +46,11 @@ const progress = ref(50)
 
 <CodeRunner title="状态 (status)">
     Default
-    <ShadcnLoadingBar v-model="progress" :duration="500"/>
+    <ShadcnLoadingBar v-model="progress" :duration="500" :dark="darkMode" />
     Error
-    <ShadcnLoadingBar v-model="progress" :duration="500" status="error"/>
+    <ShadcnLoadingBar v-model="progress" :duration="500" status="error" :dark="darkMode" />
     Success
-    <ShadcnLoadingBar v-model="progress" :duration="500" status="success"/>
+    <ShadcnLoadingBar v-model="progress" :duration="500" status="success" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -53,11 +59,17 @@ const progress = ref(50)
 
 ```vue
 <template>
-    <ShadcnLoadingBar v-model="progress" :duration="500" status="error"/>
-    <ShadcnLoadingBar v-model="progress" :duration="500" status="success"/>
+    <ShadcnLoadingBar v-model="progress" :duration="500" status="error" :dark="darkMode" />
+    <ShadcnLoadingBar v-model="progress" :duration="500" status="success" :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import {ref} from "vue"
 
 const progress = ref(50)
@@ -72,10 +84,10 @@ const progress = ref(50)
 
 <CodeRunner title="服务调用 (service)">
   <div class="space-x-4">
-    <ShadcnButton @click="LoadingBar?.start">Start</ShadcnButton>
-    <ShadcnButton @click="LoadingBar?.done">Done</ShadcnButton>
-    <ShadcnButton type="success" @click="LoadingBar?.success()">Success</ShadcnButton>
-    <ShadcnButton type="error" @click="LoadingBar?.error()">Error</ShadcnButton>
+    <ShadcnButton @click="LoadingBar?.start" :dark="darkMode">Start</ShadcnButton>
+    <ShadcnButton @click="LoadingBar?.done" :dark="darkMode">Done</ShadcnButton>
+    <ShadcnButton type="success" @click="LoadingBar?.success()" :dark="darkMode">Success</ShadcnButton>
+    <ShadcnButton type="error" @click="LoadingBar?.error()" :dark="darkMode">Error</ShadcnButton>
   </div>
 </CodeRunner>
 
@@ -86,14 +98,20 @@ const progress = ref(50)
 ```vue
 <template>
   <div class="space-x-4">
-    <ShadcnButton @click="LoadingBar.start">Start</ShadcnButton>
-    <ShadcnButton @click="LoadingBar.done">Done</ShadcnButton>
-    <ShadcnButton type="success" @click="LoadingBar.success()">Success</ShadcnButton>
-    <ShadcnButton type="error" @click="LoadingBar.error()">Error</ShadcnButton>
+    <ShadcnButton @click="LoadingBar.start" :dark="darkMode">Start</ShadcnButton>
+    <ShadcnButton @click="LoadingBar.done" :dark="darkMode">Done</ShadcnButton>
+    <ShadcnButton type="success" @click="LoadingBar.success()" :dark="darkMode">Success</ShadcnButton>
+    <ShadcnButton type="error" @click="LoadingBar.error()" :dark="darkMode">Error</ShadcnButton>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
   import { LoadingBar } from 'view-shadcn-ui'
 </script>
 ```
@@ -137,6 +155,12 @@ const progress = ref(50)
 </ApiTable>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { ref, onMounted, onBeforeUnmount, shallowRef } from "vue"
 
 const progress = ref(50)

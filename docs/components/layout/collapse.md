@@ -13,7 +13,7 @@ title: 折叠 (Collapse)
 :::raw
 
 <CodeRunner title="用法">
-    <ShadcnCollapse class="w-full" v-model="expandedItems">
+    <ShadcnCollapse class="w-full" v-model="expandedItems" :dark="darkMode">
       <ShadcnCollapseItem title="Section 1" name="1">
         Content for section 1
       </ShadcnCollapseItem>
@@ -53,7 +53,7 @@ const expandedItems = ref<string[]>([])
 :::raw
 
 <CodeRunner title="手风琴 (accordion)">
-    <ShadcnCollapse class="w-full" v-model="expandedItems" accordion>
+    <ShadcnCollapse class="w-full" v-model="expandedItems" accordion :dark="darkMode">
       <ShadcnCollapseItem title="Section 1" name="1">
         Content for section 1
       </ShadcnCollapseItem>
@@ -130,4 +130,10 @@ const expandedItems = ref<string[]>([])
 import { ref } from 'vue'
 
 const expandedItems = ref<string[]>([])
+
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
 </script>

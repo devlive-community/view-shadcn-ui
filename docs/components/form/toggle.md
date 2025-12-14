@@ -14,7 +14,7 @@ title: 切换 (Toggle)
 
 <CodeRunner title="用法">
     <p>Default Value: {{ defaultValue }}</p>
-    <ShadcnToggle v-model="defaultValue" value="B">B</ShadcnToggle>
+    <ShadcnToggle v-model="defaultValue" value="B" :dark="darkMode">B</ShadcnToggle>
 </CodeRunner>
 
 :::
@@ -24,11 +24,16 @@ title: 切换 (Toggle)
 ```vue
 <template>
     <p>Default Value: {{ defaultValue }}</p>
-    <ShadcnToggle v-model="defaultValue" value="B">B</ShadcnToggle>
+    <ShadcnToggle v-model="defaultValue" value="B" :dark="darkMode">B</ShadcnToggle>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 
 const defaultValue = ref(null)
 </script>
@@ -41,8 +46,8 @@ const defaultValue = ref(null)
 ::: raw
 
 <CodeRunner title="禁用 (disabled)">
-    <ShadcnToggle v-model="defaultValue" value="B">B</ShadcnToggle>
-    <ShadcnToggle v-model="disabledValue" disabled value="D">D</ShadcnToggle>
+    <ShadcnToggle v-model="defaultValue" value="B" :dark="darkMode">B</ShadcnToggle>
+    <ShadcnToggle v-model="disabledValue" disabled value="D" :dark="darkMode">D</ShadcnToggle>
 </CodeRunner>
 
 :::
@@ -51,8 +56,8 @@ const defaultValue = ref(null)
 
 ```vue
 <template>
-    <ShadcnToggle value="B">B</ShadcnToggle>
-    <ShadcnToggle disabled value="D">D</ShadcnToggle>
+    <ShadcnToggle value="B" :dark="darkMode">B</ShadcnToggle>
+    <ShadcnToggle disabled value="D" :dark="darkMode">D</ShadcnToggle>
 </template>
 ```
 
@@ -63,10 +68,10 @@ const defaultValue = ref(null)
 ::: raw
 
 <CodeRunner title="尺寸 (size)">
-    <ShadcnSpace>
-      <ShadcnToggle v-model="defaultValue" size="small" value="S">S</ShadcnToggle>
-      <ShadcnToggle v-model="defaultValue" size="default" value="D">D</ShadcnToggle>
-      <ShadcnToggle v-model="defaultValue" size="large" value="L">L</ShadcnToggle>
+    <ShadcnSpace :dark="darkMode">
+      <ShadcnToggle v-model="defaultValue" size="small" value="S" :dark="darkMode">S</ShadcnToggle>
+      <ShadcnToggle v-model="defaultValue" size="default" value="D" :dark="darkMode">D</ShadcnToggle>
+      <ShadcnToggle v-model="defaultValue" size="large" value="L" :dark="darkMode">L</ShadcnToggle>
     </ShadcnSpace>
 </CodeRunner>
 
@@ -76,10 +81,10 @@ const defaultValue = ref(null)
 
 ```vue
 <template>
-    <ShadcnSpace>
-      <ShadcnToggle v-model="defaultValue" size="small" value="S">S</ShadcnToggle>
-      <ShadcnToggle v-model="defaultValue" size="default" value="D">D</ShadcnToggle>
-      <ShadcnToggle v-model="defaultValue" size="large" value="L">L</ShadcnToggle>
+    <ShadcnSpace :dark="darkMode">
+      <ShadcnToggle v-model="defaultValue" size="small" value="S" :dark="darkMode">S</ShadcnToggle>
+      <ShadcnToggle v-model="defaultValue" size="default" value="D" :dark="darkMode">D</ShadcnToggle>
+      <ShadcnToggle v-model="defaultValue" size="large" value="L" :dark="darkMode">L</ShadcnToggle>
     </ShadcnSpace>
 </template>
 ```
@@ -93,17 +98,17 @@ const defaultValue = ref(null)
 <CodeRunner title="组 (group)">
   <div class="space-y-2">
     <p>Default Value: {{ defaultValue }}</p>
-    <ShadcnToggleGroup v-model="defaultValue" size="small">
-      <ShadcnToggle value="1">O1</ShadcnToggle>
-      <ShadcnToggle value="2">O2</ShadcnToggle>
+    <ShadcnToggleGroup v-model="defaultValue" size="small" :dark="darkMode">
+      <ShadcnToggle value="1" :dark="darkMode">O1</ShadcnToggle>
+      <ShadcnToggle value="2" :dark="darkMode">O2</ShadcnToggle>
     </ShadcnToggleGroup>
-    <ShadcnToggleGroup v-model="defaultValue" size="default">
-      <ShadcnToggle value="1">O1</ShadcnToggle>
-      <ShadcnToggle value="2">O2</ShadcnToggle>
+    <ShadcnToggleGroup v-model="defaultValue" size="default" :dark="darkMode">
+      <ShadcnToggle value="1" :dark="darkMode">O1</ShadcnToggle>
+      <ShadcnToggle value="2" :dark="darkMode">O2</ShadcnToggle>
     </ShadcnToggleGroup>
-    <ShadcnToggleGroup v-model="defaultValue" size="large">
-      <ShadcnToggle value="1">O1</ShadcnToggle>
-      <ShadcnToggle value="2">O2</ShadcnToggle>
+    <ShadcnToggleGroup v-model="defaultValue" size="large" :dark="darkMode">
+      <ShadcnToggle value="1" :dark="darkMode">O1</ShadcnToggle>
+      <ShadcnToggle value="2" :dark="darkMode">O2</ShadcnToggle>
     </ShadcnToggleGroup>
   </div>
 </CodeRunner>
@@ -116,17 +121,17 @@ const defaultValue = ref(null)
 <template>
   <div class="space-y-2">
     <p>Default Value: {{ selected }}</p>
-    <ShadcnToggleGroup v-model="defaultValue" size="small">
-      <ShadcnToggle value="1">O1</ShadcnToggle>
-      <ShadcnToggle value="2">O2</ShadcnToggle>
+    <ShadcnToggleGroup v-model="defaultValue" size="small" :dark="darkMode">
+      <ShadcnToggle value="1" :dark="darkMode">O1</ShadcnToggle>
+      <ShadcnToggle value="2" :dark="darkMode">O2</ShadcnToggle>
     </ShadcnToggleGroup>
-    <ShadcnToggleGroup v-model="defaultValue" size="default">
-      <ShadcnToggle value="1">O1</ShadcnToggle>
-      <ShadcnToggle value="2">O2</ShadcnToggle>
+    <ShadcnToggleGroup v-model="defaultValue" size="default" :dark="darkMode">
+      <ShadcnToggle value="1" :dark="darkMode">O1</ShadcnToggle>
+      <ShadcnToggle value="2" :dark="darkMode">O2</ShadcnToggle>
     </ShadcnToggleGroup>
-    <ShadcnToggleGroup v-model="defaultValue" size="large">
-      <ShadcnToggle value="1">O1</ShadcnToggle>
-      <ShadcnToggle value="2">O2</ShadcnToggle>
+    <ShadcnToggleGroup v-model="defaultValue" size="large" :dark="darkMode">
+      <ShadcnToggle value="1" :dark="darkMode">O1</ShadcnToggle>
+      <ShadcnToggle value="2" :dark="darkMode">O2</ShadcnToggle>
     </ShadcnToggleGroup>
   </div>
 </template>
@@ -140,11 +145,11 @@ const defaultValue = ref(null)
 
 <CodeRunner title="多选 (multiple)">
     <p>Default Value: {{ defaultValue }}</p>
-    <ShadcnToggleGroup v-model="defaultValue" multiple>
-      <ShadcnToggle value="1">O1</ShadcnToggle>
-      <ShadcnToggle value="2">O2</ShadcnToggle>
-      <ShadcnToggle value="3">O3</ShadcnToggle>
-      <ShadcnToggle value="4">O4</ShadcnToggle>
+    <ShadcnToggleGroup v-model="defaultValue" multiple :dark="darkMode">
+      <ShadcnToggle value="1" :dark="darkMode">O1</ShadcnToggle>
+      <ShadcnToggle value="2" :dark="darkMode">O2</ShadcnToggle>
+      <ShadcnToggle value="3" :dark="darkMode">O3</ShadcnToggle>
+      <ShadcnToggle value="4" :dark="darkMode">O4</ShadcnToggle>
     </ShadcnToggleGroup>
 </CodeRunner>
 
@@ -155,11 +160,11 @@ const defaultValue = ref(null)
 ```vue
 <template>
     <p>Default Value: {{ defaultValue }}</p>
-    <ShadcnToggleGroup v-model="defaultValue" multiple>
-      <ShadcnToggle value="1">O1</ShadcnToggle>
-      <ShadcnToggle value="2">O2</ShadcnToggle>
-      <ShadcnToggle value="3">O3</ShadcnToggle>
-      <ShadcnToggle value="4">O4</ShadcnToggle>
+    <ShadcnToggleGroup v-model="defaultValue" multiple :dark="darkMode">
+      <ShadcnToggle value="1" :dark="darkMode">O1</ShadcnToggle>
+      <ShadcnToggle value="2" :dark="darkMode">O2</ShadcnToggle>
+      <ShadcnToggle value="3" :dark="darkMode">O3</ShadcnToggle>
+      <ShadcnToggle value="4" :dark="darkMode">O4</ShadcnToggle>
     </ShadcnToggleGroup>
 </template>
 ```
@@ -171,11 +176,11 @@ const defaultValue = ref(null)
 ::: raw
 
 <CodeRunner title="自定义图片 (image)">
-    <ShadcnToggleGroup v-model="defaultValue" multiple>
-      <ShadcnToggle class="w-20 h-20 px-1 py-1" value="1">
+    <ShadcnToggleGroup v-model="defaultValue" multiple :dark="darkMode">
+      <ShadcnToggle class="w-20 h-20 px-1 py-1" value="1" :dark="darkMode">
         <img src="https://www.vectorlogo.zone/logos/java/java-icon.svg">
       </ShadcnToggle>
-      <ShadcnToggle class="w-20 h-20 px-1 py-1" value="2">
+      <ShadcnToggle class="w-20 h-20 px-1 py-1" value="2" :dark="darkMode">
         <img src="https://www.vectorlogo.zone/logos/python/python-icon.svg">
       </ShadcnToggle>
     </ShadcnToggleGroup>
@@ -187,11 +192,11 @@ const defaultValue = ref(null)
 
 ```vue
 <template>
-    <ShadcnToggleGroup v-model="defaultValue" multiple>
-      <ShadcnToggle class="w-20 h-20 px-1 py-1" value="1">
+    <ShadcnToggleGroup v-model="defaultValue" multiple :dark="darkMode">
+      <ShadcnToggle class="w-20 h-20 px-1 py-1" value="1" :dark="darkMode">
         <img src="https://www.vectorlogo.zone/logos/java/java-icon.svg">
       </ShadcnToggle>
-      <ShadcnToggle class="w-20 h-20 px-1 py-1" value="2">
+      <ShadcnToggle class="w-20 h-20 px-1 py-1" value="2" :dark="darkMode">
         <img src="https://www.vectorlogo.zone/logos/python/python-icon.svg">
       </ShadcnToggle>
     </ShadcnToggleGroup>
@@ -247,6 +252,10 @@ const defaultValue = ref(null)
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useData } from 'vitepress' 
+import { computed } from 'vue' 
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
 
 const defaultValue = ref(null)
 const disabledValue = ref(null)

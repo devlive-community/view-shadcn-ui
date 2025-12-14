@@ -11,8 +11,8 @@ title: 模态框 (Modal)
 ## 用法
 
 <CodeRunner title="用法">
-    <ShadcnButton @click="basicModal = true">Click</ShadcnButton>
-    <ShadcnModal v-model="basicModal" title="Modal Title" description="This is a modal description">
+    <ShadcnButton @click="basicModal = true" :dark="darkMode">Click</ShadcnButton>
+    <ShadcnModal v-model="basicModal" title="Modal Title" description="This is a modal description" :dark="darkMode">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnModal>
 </CodeRunner>
@@ -21,13 +21,19 @@ title: 模态框 (Modal)
 
 ```vue
 <template>
-    <ShadcnButton @click="modal = true">Click</ShadcnButton>
-    <ShadcnModal v-model="modal" title="Modal Title" description="This is a modal description">
+    <ShadcnButton @click="modal = true" :dark="darkMode">Click</ShadcnButton>
+    <ShadcnModal v-model="modal" title="Modal Title" description="This is a modal description" :dark="darkMode">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnModal>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { ref } from 'vue';
 
 const modal = ref(false);
@@ -39,8 +45,8 @@ const modal = ref(false);
 ## 无标题 (no-title)
 
 <CodeRunner title="无标题 (no-title)">
-    <ShadcnButton @click="noTitleModal = true">Click</ShadcnButton>
-    <ShadcnModal v-model="noTitleModal">
+    <ShadcnButton @click="noTitleModal = true" :dark="darkMode">Click</ShadcnButton>
+    <ShadcnModal v-model="noTitleModal" :dark="darkMode">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnModal>
 </CodeRunner>
@@ -49,13 +55,19 @@ const modal = ref(false);
 
 ```vue
 <template>
-    <ShadcnButton @click="modal = true">Click</ShadcnButton>
-    <ShadcnModal v-model="modal">
+    <ShadcnButton @click="modal = true" :dark="darkMode">Click</ShadcnButton>
+    <ShadcnModal v-model="modal" :dark="darkMode">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnModal>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { ref } from 'vue';
 
 const modal = ref(false);
@@ -67,8 +79,8 @@ const modal = ref(false);
 ## 标题 (title)
 
 <CodeRunner title="标题 (title)">
-    <ShadcnButton @click="customTitleModal = true">Click</ShadcnButton>
-    <ShadcnModal v-model="customTitleModal">
+    <ShadcnButton @click="customTitleModal = true" :dark="darkMode">Click</ShadcnButton>
+    <ShadcnModal v-model="customTitleModal" :dark="darkMode">
         <template #title>Custom Title</template>
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnModal>
@@ -78,14 +90,20 @@ const modal = ref(false);
 
 ```vue
 <template>
-    <ShadcnButton @click="modal = true">Click</ShadcnButton>
-    <ShadcnModal v-model="modal">
+    <ShadcnButton @click="modal = true" :dark="darkMode">Click</ShadcnButton>
+    <ShadcnModal v-model="modal" :dark="darkMode">
         <template #title>Custom Title</template>
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnModal>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { ref } from 'vue';
 
 const modal = ref(false);
@@ -97,8 +115,8 @@ const modal = ref(false);
 ## 底部 (footer)
 
 <CodeRunner title="底部 (footer)">
-    <ShadcnButton @click="customFooterModal = true">Click</ShadcnButton>
-    <ShadcnModal v-model="customFooterModal" title="Custom Footer">
+    <ShadcnButton @click="customFooterModal = true" :dark="darkMode">Click</ShadcnButton>
+    <ShadcnModal v-model="customFooterModal" title="Custom Footer" :dark="darkMode">
         <div class="flex items-center justify-center h-32">Content</div>
         <template #footer>This is a footer</template>
     </ShadcnModal>
@@ -108,14 +126,20 @@ const modal = ref(false);
 
 ```vue
 <template>
-    <ShadcnButton @click="modal = true">Click</ShadcnButton>
-    <ShadcnModal v-model="modal" title="Custom Footer">
+    <ShadcnButton @click="modal = true" :dark="darkMode">Click</ShadcnButton>
+    <ShadcnModal v-model="modal" title="Custom Footer" :dark="darkMode">
         <div class="flex items-center justify-center h-32">Content</div>
         <template #footer>This is a footer</template>
     </ShadcnModal>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { ref } from 'vue';
 
 const modal = ref(false);
@@ -127,8 +151,8 @@ const modal = ref(false);
 ## 内容 (content)
 
 <CodeRunner title="内容 (content)">
-    <ShadcnButton @click="customContentModal = true">Click</ShadcnButton>
-    <ShadcnModal v-model="customContentModal" title="Custom Content">
+    <ShadcnButton @click="customContentModal = true" :dark="darkMode">Click</ShadcnButton>
+    <ShadcnModal v-model="customContentModal" title="Custom Content" :dark="darkMode">
         <template #content>Custom Content</template>
     </ShadcnModal>
 </CodeRunner>
@@ -137,13 +161,19 @@ const modal = ref(false);
 
 ```vue
 <template>
-    <ShadcnButton @click="modal = true">Click</ShadcnButton>
-    <ShadcnModal v-model="modal" title="Custom Content">
+    <ShadcnButton @click="modal = true" :dark="darkMode">Click</ShadcnButton>
+    <ShadcnModal v-model="modal" title="Custom Content" :dark="darkMode">
         <template #content>Custom Content</template>
     </ShadcnModal>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { ref } from 'vue';
 
 const modal = ref(false);
@@ -155,8 +185,8 @@ const modal = ref(false);
 ## 宽度 (width)
 
 <CodeRunner title="宽度 (width)">
-    <ShadcnButton @click="customWidthModal = true">Click</ShadcnButton>
-    <ShadcnModal v-model="customWidthModal" title="Custom Width" width="200">
+    <ShadcnButton @click="customWidthModal = true" :dark="darkMode">Click</ShadcnButton>
+    <ShadcnModal v-model="customWidthModal" title="Custom Width" width="200" :dark="darkMode">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnModal>
 </CodeRunner>
@@ -165,13 +195,19 @@ const modal = ref(false);
 
 ```vue
 <template>
-    <ShadcnButton @click="modal = true">Click</ShadcnButton>
-    <ShadcnModal v-model="modal" title="Custom Width" width="200">
+    <ShadcnButton @click="modal = true" :dark="darkMode">Click</ShadcnButton>
+    <ShadcnModal v-model="modal" title="Custom Width" width="200" :dark="darkMode">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnModal>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { ref } from 'vue';
 
 const modal = ref(false);
@@ -183,8 +219,8 @@ const modal = ref(false);
 ## 高度 (height)
 
 <CodeRunner title="高度 (height)">
-    <ShadcnButton @click="customHeightModal = true">Click</ShadcnButton>
-    <ShadcnModal v-model="customHeightModal" title="Custom Height" height="200">
+    <ShadcnButton @click="customHeightModal = true" :dark="darkMode">Click</ShadcnButton>
+    <ShadcnModal v-model="customHeightModal" title="Custom Height" height="200" :dark="darkMode">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnModal>
 </CodeRunner>
@@ -193,13 +229,19 @@ const modal = ref(false);
 
 ```vue
 <template>
-    <ShadcnButton @click="modal = true">Click</ShadcnButton>
-    <ShadcnModal v-model="modal" title="Custom Height" height="200">
+    <ShadcnButton @click="modal = true" :dark="darkMode">Click</ShadcnButton>
+    <ShadcnModal v-model="modal" title="Custom Height" height="200" :dark="darkMode">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnModal>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { ref } from 'vue';
 
 const modal = ref(false);
@@ -213,16 +255,16 @@ const modal = ref(false);
 ::: raw
 
 <CodeRunner title="可关闭 (closeable)">
-    <ShadcnButton @click="closeableModal = true">Closeable</ShadcnButton>
-    <ShadcnModal v-model="closeableModal" title="Closeable" closable>
+    <ShadcnButton @click="closeableModal = true" :dark="darkMode">Closeable</ShadcnButton>
+    <ShadcnModal v-model="closeableModal" title="Closeable" closable :dark="darkMode">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnModal>
-    <ShadcnButton @click="noClosableModal = true">No Closeable</ShadcnButton>
-    <ShadcnModal v-model="noClosableModal" title="Not Closeable" :closable="false">
+    <ShadcnButton @click="noClosableModal = true" :dark="darkMode">No Closeable</ShadcnButton>
+    <ShadcnModal v-model="noClosableModal" title="Not Closeable" :closable="false" :dark="darkMode">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnModal>
-    <ShadcnButton @click="customClosableModal = true">Custom Closable</ShadcnButton>
-    <ShadcnModal v-model="customClosableModal" title="Custom Closable">
+    <ShadcnButton @click="customClosableModal = true" :dark="darkMode">Custom Closable</ShadcnButton>
+    <ShadcnModal v-model="customClosableModal" title="Custom Closable" :dark="darkMode">
         <template #close>Custom Close</template>
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnModal>
@@ -234,22 +276,28 @@ const modal = ref(false);
 
 ```vue
 <template>
-    <ShadcnButton @click="closeableModal = true">Closeable</ShadcnButton>
-    <ShadcnModal v-model="closeableModal" title="Closeable" closable>
+    <ShadcnButton @click="closeableModal = true" :dark="darkMode">Closeable</ShadcnButton>
+    <ShadcnModal v-model="closeableModal" title="Closeable" closable :dark="darkMode">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnModal>
-    <ShadcnButton @click="noClosableModal = true">No Closeable</ShadcnButton>
-    <ShadcnModal v-model="noClosableModal" title="Not Closeable" :closable="false">
+    <ShadcnButton @click="noClosableModal = true" :dark="darkMode">No Closeable</ShadcnButton>
+    <ShadcnModal v-model="noClosableModal" title="Not Closeable" :closable="false" :dark="darkMode">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnModal>
-    <ShadcnButton @click="customClosableModal = true">Custom Closable</ShadcnButton>
-    <ShadcnModal v-model="customClosableModal" title="Custom Closable">
+    <ShadcnButton @click="customClosableModal = true" :dark="darkMode">Custom Closable</ShadcnButton>
+    <ShadcnModal v-model="customClosableModal" title="Custom Closable" :dark="darkMode">
         <template #close>Custom Close</template>
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnModal>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { ref } from 'vue';
 
 const closeableModal = ref(false);
@@ -265,8 +313,8 @@ const customClosableModal = ref(false);
 ::: raw
 
 <CodeRunner title="背景关闭 (mask-closable)">
-    <ShadcnButton @click="customClosableModal = true">Mask Closable</ShadcnButton>
-    <ShadcnModal v-model="customClosableModal" title="Mask Closable" :mask-closable="false">
+    <ShadcnButton @click="customClosableModal = true" :dark="darkMode">Mask Closable</ShadcnButton>
+    <ShadcnModal v-model="customClosableModal" title="Mask Closable" :mask-closable="false" :dark="darkMode">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnModal>
 </CodeRunner>
@@ -277,13 +325,19 @@ const customClosableModal = ref(false);
 
 ```vue
 <template>
-    <ShadcnButton @click="value = true">Mask Closable</ShadcnButton>
-    <ShadcnModal v-model="value" title="Mask Closable" :mask-closable="false">
+    <ShadcnButton @click="value = true" :dark="darkMode">Mask Closable</ShadcnButton>
+    <ShadcnModal v-model="value" title="Mask Closable" :mask-closable="false" :dark="darkMode">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnModal>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { ref } from 'vue';
 
 const value = ref(false);
@@ -333,6 +387,12 @@ const value = ref(false);
 </ApiTable>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { ref } from 'vue';
 
 const basicModal = ref(false);

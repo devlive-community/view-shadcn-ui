@@ -13,7 +13,7 @@ title: 数据过滤 (Data Filter)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnDataFilter v-model="value" :fields="fields" />
+    <ShadcnDataFilter v-model="value" :fields="fields" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -45,7 +45,7 @@ title: 数据过滤 (Data Filter)
 ::: raw
 
 <CodeRunner title="分层数据过滤器 (Hierarchical Data Filter)">
-    <ShadcnHierarchicalDataFilter v-model="hValue" :fields="fields" />
+    <ShadcnHierarchicalDataFilter v-model="hValue" :fields="fields" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -192,7 +192,11 @@ title: 数据过滤 (Data Filter)
 </ApiTable>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useData } from 'vitepress'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
 
 const value = ref([])
 const hValue = ref([])

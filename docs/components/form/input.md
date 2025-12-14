@@ -11,18 +11,23 @@ title: 输入框 (Input)
 ## 用法
 
 <CodeRunner title="用法">
-    <ShadcnInput placeholder="Input" />
+    <ShadcnInput placeholder="Input"  :dark="darkMode" />
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnInput v-model="input" placeholder="Input" />
+    <ShadcnInput v-model="input" placeholder="Input"  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 
 const input = ref('')
 </script>
@@ -33,14 +38,14 @@ const input = ref('')
 ## 清空 (clearable)
 
 <CodeRunner title="清空 (clearable)">
-    <ShadcnInput placeholder="Input" v-model="input" clearable />
+    <ShadcnInput placeholder="Input" v-model="input" clearable  :dark="darkMode" />
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnInput v-model="input" placeholder="Input" clearable />
+    <ShadcnInput v-model="input" placeholder="Input" clearable  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
@@ -56,9 +61,9 @@ const input = ref('Hello View Shadcn UI')
 
 <CodeRunner title="尺寸 (size)">
     <div class="space-y-2">
-        <ShadcnInput placeholder="Input" v-model="input" size="small" />
-        <ShadcnInput placeholder="Input" v-model="input" size="default"/>
-        <ShadcnInput placeholder="Input" v-model="input" size="large" />
+        <ShadcnInput placeholder="Input" v-model="input" size="small"  :dark="darkMode" />
+        <ShadcnInput placeholder="Input" v-model="input" size="default" :dark="darkMode" />
+        <ShadcnInput placeholder="Input" v-model="input" size="large"  :dark="darkMode" />
     </div>
 </CodeRunner>
 
@@ -66,9 +71,9 @@ const input = ref('Hello View Shadcn UI')
 
 ```vue
 <template>
-    <ShadcnInput v-model="input" placeholder="Input" size="small" />
-    <ShadcnInput v-model="input" placeholder="Input" size="default"/>
-    <ShadcnInput v-model="input" placeholder="Input" size="large" />
+    <ShadcnInput v-model="input" placeholder="Input" size="small"  :dark="darkMode" />
+    <ShadcnInput v-model="input" placeholder="Input" size="default" :dark="darkMode" />
+    <ShadcnInput v-model="input" placeholder="Input" size="large"  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
@@ -83,14 +88,14 @@ const input = ref('Hello View Shadcn UI')
 ## 字数统计 (word-count)
 
 <CodeRunner title="字数统计 (word-count)">
-    <ShadcnInput placeholder="Input" v-model="input" word-count />
+    <ShadcnInput placeholder="Input" v-model="input" word-count  :dark="darkMode" />
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnInput v-model="input" placeholder="Input" word-count />
+    <ShadcnInput v-model="input" placeholder="Input" word-count  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
@@ -105,14 +110,14 @@ const input = ref('Hello View Shadcn UI')
 ## 最大统计值 (max-count)
 
 <CodeRunner title="最大统计值 (max-count)">
-    <ShadcnInput placeholder="Input" v-model="input" word-count :max-count="100" />
+    <ShadcnInput placeholder="Input" v-model="input" word-count :max-count="100"  :dark="darkMode" />
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnInput v-model="input" placeholder="Input" word-count :max-count="100" />
+    <ShadcnInput v-model="input" placeholder="Input" word-count :max-count="100"  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
@@ -127,7 +132,7 @@ const input = ref('Hello View Shadcn UI')
 ## 前缀 & 后缀 (prefix & suffix)
 
 <CodeRunner title="前缀 & 后缀 (prefix & suffix)">
-    <ShadcnInput placeholder="Input" v-model="input">
+    <ShadcnInput placeholder="Input" v-model="input" :dark="darkMode">
         <template #prefix>
             <span class="text-xs text-gray-300">P</span>
         </template>
@@ -141,7 +146,7 @@ const input = ref('Hello View Shadcn UI')
 
 ```vue
 <template>
-    <ShadcnInput v-model="input" placeholder="Input">
+    <ShadcnInput v-model="input" placeholder="Input" :dark="darkMode">
         <template #prefix>
             <span class="text-xs text-gray-300">P</span>
         </template>
@@ -165,7 +170,7 @@ const input = ref('Hello View Shadcn UI')
 ::: raw
 
 <CodeRunner title="禁用 (disabled)">
-    <ShadcnInput placeholder="Input" v-model="input" disabled />
+    <ShadcnInput placeholder="Input" v-model="input" disabled  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -174,7 +179,7 @@ const input = ref('Hello View Shadcn UI')
 
 ```vue
 <template>
-    <ShadcnInput v-model="input" placeholder="Input" disabled />
+    <ShadcnInput v-model="input" placeholder="Input" disabled  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
@@ -189,14 +194,14 @@ const input = ref('Hello View Shadcn UI')
 ## 密码 (password)
 
 <CodeRunner title="密码 (password)">
-    <ShadcnInput placeholder="Input" v-model="input" type="password" />
+    <ShadcnInput placeholder="Input" v-model="input" type="password"  :dark="darkMode" />
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnInput v-model="input" placeholder="Input" type="password" />
+    <ShadcnInput v-model="input" placeholder="Input" type="password"  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
@@ -213,7 +218,7 @@ const input = ref('Hello View Shadcn UI')
 ::: raw
 
 <CodeRunner title="多行文本 (textarea)">
-    <ShadcnInput placeholder="Input" v-model="input" type="textarea" />
+    <ShadcnInput placeholder="Input" v-model="input" type="textarea"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -222,7 +227,7 @@ const input = ref('Hello View Shadcn UI')
 
 ```vue
 <template>
-    <ShadcnInput v-model="input" placeholder="Input" type="textarea" />
+    <ShadcnInput v-model="input" placeholder="Input" type="textarea"  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
@@ -239,11 +244,11 @@ const input = ref('Hello View Shadcn UI')
 ::: raw
 
 <CodeRunner title="表单 (form)">
-    <ShadcnForm v-model="formState" @on-submit="onSubmit">
-        <ShadcnFormItem name="value" label="输入数据" :rules="[{ required: true, message: '请输入数据' }]">
-            <ShadcnInput v-model="formState.value" name="value" />
+    <ShadcnForm v-model="formState" @on-submit="onSubmit" :dark="darkMode">
+        <ShadcnFormItem name="value" label="输入数据" :rules="[{ required: true, message: '请输入数据' }]" :dark="darkMode">
+            <ShadcnInput v-model="formState.value" name="value"  :dark="darkMode" />
         </ShadcnFormItem>
-        <ShadcnButton submit>提交</ShadcnButton>
+        <ShadcnButton submit :dark="darkMode">提交</ShadcnButton>
     </ShadcnForm>
 </CodeRunner>
 
@@ -293,6 +298,10 @@ const input = ref('Hello View Shadcn UI')
 
 <script setup lang="ts">
 import { ref, getCurrentInstance } from 'vue';
+import { useData } from 'vitepress' 
+import { computed } from 'vue' 
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
 
 const input = ref('Hello View Shadcn UI')
 

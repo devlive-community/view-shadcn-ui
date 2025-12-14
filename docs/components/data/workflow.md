@@ -17,7 +17,8 @@ title: 流程 (Workflow)
     <ShadcnWorkflowEditor v-model="workflowState"
                             :categories="categories"
                             :nodes="nodes"
-                            :connections="[]"/> 
+                            :connections="[]"
+                            :dark="darkMode"/>
   </div>
 </CodeRunner>
 
@@ -44,7 +45,7 @@ title: 流程 (Workflow)
 
 <CodeRunner title="视图">
   <div style="width: 1080px">
-    <ShadcnWorkflowView :nodes="nodes" :data="data"/>
+    <ShadcnWorkflowView :nodes="nodes" :data="data" :dark="darkMode"/>
   </div>
 </CodeRunner>
 
@@ -251,7 +252,11 @@ title: 流程 (Workflow)
 </ApiTable>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useData } from 'vitepress'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
 
 const categories = [
   {

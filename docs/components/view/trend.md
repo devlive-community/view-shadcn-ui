@@ -13,8 +13,8 @@ title: 趋势 (Trend)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnTrend :value="10" />
-    <ShadcnTrend :value="-10" />
+    <ShadcnTrend :value="10"  :dark="darkMode" />
+    <ShadcnTrend :value="-10"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -23,11 +23,17 @@ title: 趋势 (Trend)
 
 ```vue
 <template>
-    <ShadcnTrend :value="10" />
-    <ShadcnTrend :value="-10" />
+    <ShadcnTrend :value="10"  :dark="darkMode" />
+    <ShadcnTrend :value="-10"  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -38,8 +44,8 @@ title: 趋势 (Trend)
 ::: raw
 
 <CodeRunner title="反转 (reverse)">
-    <ShadcnTrend :value="10" reverse />
-    <ShadcnTrend :value="-10" reverse />
+    <ShadcnTrend :value="10" reverse  :dark="darkMode" />
+    <ShadcnTrend :value="-10" reverse  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -48,11 +54,17 @@ title: 趋势 (Trend)
 
 ```vue
 <template>
-    <ShadcnTrend :value="10" reverse />
-    <ShadcnTrend :value="-10" reverse />
+    <ShadcnTrend :value="10" reverse  :dark="darkMode" />
+    <ShadcnTrend :value="-10" reverse  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -63,8 +75,8 @@ title: 趋势 (Trend)
 ::: raw
 
 <CodeRunner title="文本颜色 (text-color)">
-    <ShadcnTrend :value="10" text-color/>
-    <ShadcnTrend :value="-10" text-color/>
+    <ShadcnTrend :value="10" text-color :dark="darkMode" />
+    <ShadcnTrend :value="-10" text-color :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -73,11 +85,17 @@ title: 趋势 (Trend)
 
 ```vue
 <template>
-    <ShadcnTrend :value="10" text-color/>
-    <ShadcnTrend :value="-10" text-color/>
+    <ShadcnTrend :value="10" text-color :dark="darkMode" />
+    <ShadcnTrend :value="-10" text-color :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -104,3 +122,11 @@ title: 趋势 (Trend)
         ['descend', '下降趋势'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>

@@ -13,7 +13,7 @@ title: 时间 (Time)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnTime />
+    <ShadcnTime  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -22,7 +22,7 @@ title: 时间 (Time)
 
 ```vue
 <template>
-    <ShadcnTime />
+    <ShadcnTime  :dark="darkMode" />
 </template>
 ```
 
@@ -33,7 +33,7 @@ title: 时间 (Time)
 ::: raw
 
 <CodeRunner title="格式化">
-    <ShadcnTime format="YYYY-MM-DD" />
+    <ShadcnTime format="YYYY-MM-DD"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -42,7 +42,7 @@ title: 时间 (Time)
 
 ```vue
 <template>
-  <ShadcnTime format="YYYY-MM-DD" />
+  <ShadcnTime format="YYYY-MM-DD"  :dark="darkMode" />
 </template>
 ```
 
@@ -53,7 +53,7 @@ title: 时间 (Time)
 ::: raw
 
 <CodeRunner title="时区">
-    <ShadcnTime timezone="America/New_York" />
+    <ShadcnTime timezone="America/New_York"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -62,7 +62,7 @@ title: 时间 (Time)
 
 ```vue
 <template>
-  <ShadcnTime timezone="America/New_York" />
+  <ShadcnTime timezone="America/New_York"  :dark="darkMode" />
 </template>
 ```
 
@@ -73,7 +73,7 @@ title: 时间 (Time)
 ::: raw
 
 <CodeRunner title="相对时间">
-    <ShadcnTime relative />
+    <ShadcnTime relative  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -82,7 +82,7 @@ title: 时间 (Time)
 
 ```vue
 <template>
-    <ShadcnTime relative />
+    <ShadcnTime relative  :dark="darkMode" />
 </template>
 ```
 
@@ -93,8 +93,8 @@ title: 时间 (Time)
 ::: raw
 
 <CodeRunner title="参考时间">
-    <p class="text-sm text-gray-500 mb-1">相对于过去时间 (10分钟前): <ShadcnTime relative :reference-time="tenMinutesAgo"/></p>
-    <p class="text-sm text-gray-500 mb-1">相对于未来时间 (一小时后): <ShadcnTime relative :reference-time="oneHourLater"/></p>
+    <p class="text-sm text-gray-500 mb-1">相对于过去时间 (10分钟前): <ShadcnTime relative :reference-time="tenMinutesAgo" :dark="darkMode" /></p>
+    <p class="text-sm text-gray-500 mb-1">相对于未来时间 (一小时后): <ShadcnTime relative :reference-time="oneHourLater" :dark="darkMode" /></p>
 </CodeRunner>
 
 :::
@@ -103,11 +103,17 @@ title: 时间 (Time)
 
 ```vue
 <template>
-  <ShadcnTime relative :reference-time="tenMinutesAgo"/>
-  <ShadcnTime relative :reference-time="oneHourLater"/>
+  <ShadcnTime relative :reference-time="tenMinutesAgo" :dark="darkMode" />
+  <ShadcnTime relative :reference-time="oneHourLater" :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
   import { computed } from 'vue'
 
   const tenMinutesAgo = computed(() => {
@@ -132,7 +138,7 @@ title: 时间 (Time)
 
 <CodeRunner title="更新间隔">
     <p class="text-sm text-gray-500 mb-1">自定义更新间隔 (5秒):
-      <ShadcnTime relative :interval="5000" @on-change="handleIntervalChange"/>
+      <ShadcnTime relative :interval="5000" @on-change="handleIntervalChange" :dark="darkMode" />
       <div v-if="lastIntervalChange">
         上次更新: {{ lastIntervalChange }}
       </div>
@@ -146,7 +152,7 @@ title: 时间 (Time)
 ```vue
 <template>
   <p class="text-sm text-gray-500 mb-1">自定义更新间隔 (5秒):
-    <ShadcnTime relative :interval="5000" @on-change="handleIntervalChange"/>
+    <ShadcnTime relative :interval="5000" @on-change="handleIntervalChange" :dark="darkMode" />
     <div v-if="lastIntervalChange">
       上次更新: {{ lastIntervalChange }}
     </div>
@@ -154,6 +160,12 @@ title: 时间 (Time)
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
   import { ref } from 'vue'
 
   const lastIntervalChange = ref('')
@@ -189,6 +201,12 @@ title: 时间 (Time)
 </ApiTable>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { computed, ref } from 'vue'
 
 const lastIntervalChange = ref('')

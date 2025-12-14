@@ -13,7 +13,7 @@ title: 面包屑 (Breadcrumb)
 ::: raw
 
 <CodeRunner title="用法">
-  <ShadcnBreadcrumb>
+  <ShadcnBreadcrumb :dark="darkMode">
     <ShadcnBreadcrumbItem href="#">Home</ShadcnBreadcrumbItem>
     <ShadcnBreadcrumbItem href="#">Products</ShadcnBreadcrumbItem>
     <ShadcnBreadcrumbItem>Summary</ShadcnBreadcrumbItem>
@@ -44,7 +44,7 @@ title: 面包屑 (Breadcrumb)
 ::: raw
 
 <CodeRunner title="分隔符 (separator)">
-  <ShadcnBreadcrumb separator="&">
+  <ShadcnBreadcrumb separator="&" :dark="darkMode">
     <ShadcnBreadcrumbItem href="#">Home</ShadcnBreadcrumbItem>
     <ShadcnBreadcrumbItem href="#">Products</ShadcnBreadcrumbItem>
     <ShadcnBreadcrumbItem>Summary</ShadcnBreadcrumbItem>
@@ -92,8 +92,16 @@ title: 面包屑 (Breadcrumb)
 ## 面包屑项目 (Breadcrumb Item) 插槽
 
 <ApiTable title="面包屑项目 (Breadcrumb Item) 插槽"
-    :headers="['插槽', '描述']" 
+    :headers="['插槽', '描述']"
     :columns="[
         ['default', '面包屑项目的内容'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>

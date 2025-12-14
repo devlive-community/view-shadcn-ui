@@ -12,18 +12,23 @@ title: 评分 (Rate)
 
 <CodeRunner title="用法">
     Rate Value: {{ rate }}
-    <ShadcnRate v-model="rate" />
+    <ShadcnRate v-model="rate"  :dark="darkMode" />
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnRate v-model="rate" />
+    <ShadcnRate v-model="rate"  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 
 const rate = ref(1)
 </script>
@@ -35,14 +40,14 @@ const rate = ref(1)
 
 <CodeRunner title="最大值 (max)">
     Rate Value: {{ rate }}
-    <ShadcnRate v-model="rate" max="10" />
+    <ShadcnRate v-model="rate" max="10"  :dark="darkMode" />
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnRate v-model="rate" max="10" />
+    <ShadcnRate v-model="rate" max="10"  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
@@ -58,9 +63,9 @@ const rate = ref(1)
 
 <CodeRunner title="允许半选 (allow-half)">
     Rate Value: {{ rate }}
-    <ShadcnRate v-model="rate" allow-half />
+    <ShadcnRate v-model="rate" allow-half  :dark="darkMode" />
     <p>Custom Character</p>
-    <ShadcnRate v-model="rate" allow-half>
+    <ShadcnRate v-model="rate" allow-half :dark="darkMode">
         <template #character>Love</template>
     </ShadcnRate>
 </CodeRunner>
@@ -69,8 +74,8 @@ const rate = ref(1)
 
 ```vue
 <template>
-    <ShadcnRate v-model="rate" allow-half />
-    <ShadcnRate v-model="rate" allow-half>
+    <ShadcnRate v-model="rate" allow-half  :dark="darkMode" />
+    <ShadcnRate v-model="rate" allow-half :dark="darkMode">
         <template #character>Love</template>
     </ShadcnRate>
 </template>
@@ -88,11 +93,11 @@ const rate = ref(1)
 
 <CodeRunner title="类型 (type)">
     Rate Value: {{ rate }}
-    <ShadcnSpace wrap>
-        <ShadcnRate v-model="rate" max="10" type="primary"/>
-        <ShadcnRate v-model="rate" max="10" type="success"/>
-        <ShadcnRate v-model="rate" max="10" type="warning"/>
-        <ShadcnRate v-model="rate" max="10" allow-half type="error"/>
+    <ShadcnSpace wrap :dark="darkMode">
+        <ShadcnRate v-model="rate" max="10" type="primary" :dark="darkMode" />
+        <ShadcnRate v-model="rate" max="10" type="success" :dark="darkMode" />
+        <ShadcnRate v-model="rate" max="10" type="warning" :dark="darkMode" />
+        <ShadcnRate v-model="rate" max="10" allow-half type="error" :dark="darkMode" />
     </ShadcnSpace>
 </CodeRunner>
 
@@ -100,10 +105,10 @@ const rate = ref(1)
 
 ```vue
 <template>
-    <ShadcnRate v-model="rate" max="10" type="primary"/>
-    <ShadcnRate v-model="rate" max="10" type="success"/>
-    <ShadcnRate v-model="rate" max="10" type="warning"/>
-    <ShadcnRate v-model="rate" max="10" allow-half type="error"/>
+    <ShadcnRate v-model="rate" max="10" type="primary" :dark="darkMode" />
+    <ShadcnRate v-model="rate" max="10" type="success" :dark="darkMode" />
+    <ShadcnRate v-model="rate" max="10" type="warning" :dark="darkMode" />
+    <ShadcnRate v-model="rate" max="10" allow-half type="error" :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
@@ -119,14 +124,14 @@ const rate = ref(1)
 
 <CodeRunner title="禁用 (disabled)">
     Rate Value: {{ rate }}
-    <ShadcnRate v-model="rate" disabled />
+    <ShadcnRate v-model="rate" disabled  :dark="darkMode" />
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnRate v-model="rate" disabled />
+    <ShadcnRate v-model="rate" disabled  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
@@ -142,9 +147,9 @@ const rate = ref(1)
 
 <CodeRunner title="Show Text">
     Rate Value: {{ rate }}
-    <ShadcnRate v-model="rate" show-text />
+    <ShadcnRate v-model="rate" show-text  :dark="darkMode" />
     <p>Custom Text</p>
-    <ShadcnRate v-model="rate" show-text>
+    <ShadcnRate v-model="rate" show-text :dark="darkMode">
         <template #text>Love</template>
     </ShadcnRate>
 </CodeRunner>
@@ -153,8 +158,8 @@ const rate = ref(1)
 
 ```vue
 <template>
-    <ShadcnRate v-model="rate" show-text />
-    <ShadcnRate v-model="rate" show-text>
+    <ShadcnRate v-model="rate" show-text  :dark="darkMode" />
+    <ShadcnRate v-model="rate" show-text :dark="darkMode">
         <template #text>Love</template>
     </ShadcnRate>
 </template>
@@ -194,6 +199,10 @@ const rate = ref(1)
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useData } from 'vitepress' 
+import { computed } from 'vue' 
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
 
 const rate = ref(1)
 </script>

@@ -15,7 +15,7 @@ title: 图标 (Icon)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnIcon icon="Save"/>
+    <ShadcnIcon icon="Save" :dark="darkMode"/>
 </CodeRunner>
 
 :::
@@ -38,9 +38,9 @@ title: 图标 (Icon)
 ::: raw
 
 <CodeRunner title="图标尺寸">
-    <ShadcnIcon icon="Save"/>
-    <ShadcnIcon icon="Save" :size="30"/>
-    <ShadcnIcon icon="Save" :size="40"/>
+    <ShadcnIcon icon="Save" :dark="darkMode"/>
+    <ShadcnIcon icon="Save" :size="30" :dark="darkMode"/>
+    <ShadcnIcon icon="Save" :size="40" :dark="darkMode"/>
 </CodeRunner>
 
 :::
@@ -65,7 +65,7 @@ title: 图标 (Icon)
 ::: raw
 
 <CodeRunner title="图标颜色">
-    <ShadcnIcon icon="Save" color="red"/>
+    <ShadcnIcon icon="Save" color="red" :dark="darkMode"/>
 </CodeRunner>
 
 :::
@@ -106,8 +106,16 @@ title: 图标 (Icon)
 ## 图标 (Icon) 插槽
 
 <ApiTable title="图标 (Icon) 插槽"
-    :headers="['插槽', '描述']" 
+    :headers="['插槽', '描述']"
     :columns="[
         ['icon', '图标插槽'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>

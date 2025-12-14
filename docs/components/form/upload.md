@@ -13,7 +13,7 @@ title: 上传 (Upload)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnUpload action="//jsonplaceholder.typicode.com/posts/" />
+    <ShadcnUpload action="//jsonplaceholder.typicode.com/posts/"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -22,7 +22,7 @@ title: 上传 (Upload)
 
 ```vue
 <template>
-    <ShadcnUpload action="//jsonplaceholder.typicode.com/posts/" />
+    <ShadcnUpload action="//jsonplaceholder.typicode.com/posts/"  :dark="darkMode" />
 </template>
 ```
 
@@ -33,7 +33,7 @@ title: 上传 (Upload)
 ::: raw
 
 <CodeRunner title="多选 (multiple)">
-    <ShadcnUpload action="//jsonplaceholder.typicode.com/posts/" multiple />
+    <ShadcnUpload action="//jsonplaceholder.typicode.com/posts/" multiple  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -42,7 +42,7 @@ title: 上传 (Upload)
 
 ```vue
 <template>
-    <ShadcnUpload action="//jsonplaceholder.typicode.com/posts/" multiple />
+    <ShadcnUpload action="//jsonplaceholder.typicode.com/posts/" multiple  :dark="darkMode" />
 </template>
 ```
 
@@ -53,7 +53,7 @@ title: 上传 (Upload)
 ::: raw
 
 <CodeRunner title="禁用 (disabled)">
-    <ShadcnUpload action="//jsonplaceholder.typicode.com/posts/" disabled />
+    <ShadcnUpload action="//jsonplaceholder.typicode.com/posts/" disabled  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -62,7 +62,7 @@ title: 上传 (Upload)
 
 ```vue
 <template>
-    <ShadcnUpload action="//jsonplaceholder.typicode.com/posts/" disabled />
+    <ShadcnUpload action="//jsonplaceholder.typicode.com/posts/" disabled  :dark="darkMode" />
 </template>
 ```
 
@@ -108,3 +108,11 @@ title: 上传 (Upload)
         ['on-progress', '文件上传时触发(上传进度)', 'ProgressEvent, File'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>

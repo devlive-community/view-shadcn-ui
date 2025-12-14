@@ -13,7 +13,7 @@ title: 滚动条 (Scroll Bar)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnScrollbar>
+    <ShadcnScrollbar :dark="darkMode">
       <div class="space-y-4">
         <p v-for="i in 100">This is a scrollbar component example index {{ i }}</p>
       </div>
@@ -26,7 +26,7 @@ title: 滚动条 (Scroll Bar)
 
 ```vue
 <template>
-  <ShadcnScrollbar>
+  <ShadcnScrollbar :dark="darkMode">
     <div class="space-y-4">
       <p v-for="i in 100">This is a scrollbar component example index {{ i }}</p>
     </div>
@@ -41,7 +41,7 @@ title: 滚动条 (Scroll Bar)
 ::: raw
 
 <CodeRunner title="高度 (height)">
-    <ShadcnScrollbar height="100">
+    <ShadcnScrollbar height="100" :dark="darkMode">
       <div class="space-y-4">
         <p v-for="i in 100">This is a scrollbar component example index {{ i }}</p>
       </div>
@@ -54,7 +54,7 @@ title: 滚动条 (Scroll Bar)
 
 ```vue
 <template>
-  <ShadcnScrollbar height="100">
+  <ShadcnScrollbar height="100" :dark="darkMode">
     <div class="space-y-4">
       <p v-for="i in 100">This is a scrollbar component example index {{ i }}</p>
     </div>
@@ -69,7 +69,7 @@ title: 滚动条 (Scroll Bar)
 ::: raw
 
 <CodeRunner title="位置 (position)">
-    <ShadcnScrollbar position="left">
+    <ShadcnScrollbar position="left" :dark="darkMode">
       <div class="space-y-4">
         <p v-for="i in 100">This is a scrollbar component example index {{ i }}</p>
       </div>
@@ -82,7 +82,7 @@ title: 滚动条 (Scroll Bar)
 
 ```vue
 <template>
-  <ShadcnScrollbar position="left">
+  <ShadcnScrollbar position="left" :dark="darkMode">
     <div class="space-y-4">
       <p v-for="i in 100">This is a scrollbar component example index {{ i }}</p>
     </div>
@@ -97,7 +97,7 @@ title: 滚动条 (Scroll Bar)
 ::: raw
 
 <CodeRunner title="自定义滚动条 (scrollbar)">
-    <ShadcnScrollbar class="custom-scrollbar">
+    <ShadcnScrollbar class="custom-scrollbar" :dark="darkMode">
       <div class="space-y-4">
         <p v-for="i in 100">This is a scrollbar component example index {{ i }}</p>
       </div>
@@ -110,7 +110,7 @@ title: 滚动条 (Scroll Bar)
 
 ```vue
 <template>
-  <ShadcnScrollbar class="custom-scrollbar">
+  <ShadcnScrollbar class="custom-scrollbar" :dark="darkMode">
     <div class="space-y-4">
       <p v-for="i in 100">This is a scrollbar component example index {{ i }}</p>
     </div>
@@ -169,3 +169,10 @@ title: 滚动条 (Scroll Bar)
   background: #555;
 }
 </style>
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>

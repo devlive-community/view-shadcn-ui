@@ -14,10 +14,10 @@ title: 高亮 (Highlight)
 
 <CodeRunner title="用法">
   <ShadcnHighlight text="Vue3 is an awesome framework for building user interfaces"
-      :highlight="['Vue3', 'awesome']"/>
+      :highlight="['Vue3', 'awesome']" :dark="darkMode"/>
   <br/>
   <ShadcnHighlight text="The quick brown fox jumps over the lazy dog"
-                   highlight="the" />
+                   highlight="the" :dark="darkMode"/>
 </CodeRunner>
 
 :::
@@ -46,7 +46,7 @@ title: 高亮 (Highlight)
 <CodeRunner title="区分大小写">
   <ShadcnHighlight text="The quick brown fox jumps over the lazy dog"
                    case-sensitive
-                   highlight="the" />
+                   highlight="the" :dark="darkMode"/>
 </CodeRunner>
 
 :::
@@ -76,3 +76,11 @@ title: 高亮 (Highlight)
         ['case-sensitive', '高亮显示是否区分大小写', 'boolean', 'false'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>

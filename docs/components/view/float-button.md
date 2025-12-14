@@ -13,8 +13,8 @@ title: 浮动按钮 (Float Button)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnFloatButton circle>
-        <ShadcnIcon icon="Save" />
+    <ShadcnFloatButton circle :dark="darkMode">
+        <ShadcnIcon icon="Save" :dark="darkMode" />
     </ShadcnFloatButton>
 </CodeRunner>
 
@@ -24,8 +24,8 @@ title: 浮动按钮 (Float Button)
 
 ```vue
 <template>
-    <ShadcnFloatButton circle>
-        <ShadcnIcon icon="Save" />
+    <ShadcnFloatButton circle :dark="darkMode">
+        <ShadcnIcon icon="Save" :dark="darkMode" />
     </ShadcnFloatButton>
 </template>
 ```
@@ -37,7 +37,7 @@ title: 浮动按钮 (Float Button)
 ::: raw
 
 <CodeRunner title="菜单 (menu)">
-    <ShadcnFloatButton circle right="120">
+    <ShadcnFloatButton circle right="120" :dark="darkMode">
         Hover Menu
         <template #menu>
             <div class="p-2">
@@ -55,8 +55,8 @@ title: 浮动按钮 (Float Button)
 
 ```vue
 <template>
-    <ShadcnFloatButton circle right="120">
-        <ShadcnIcon icon="Save" />
+    <ShadcnFloatButton circle right="120" :dark="darkMode">
+        <ShadcnIcon icon="Save" :dark="darkMode" />
         <template #menu>
             <div class="p-2">
               <div class="py-1 px-2 hover:bg-gray-100 cursor-pointer">Menu 1</div>
@@ -103,3 +103,11 @@ title: 浮动按钮 (Float Button)
         ['on-menu-visible', '菜单是否可见时触发', 'boolean'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>

@@ -13,13 +13,13 @@ title: 按钮 (Button)
 ::: raw
 
 <CodeRunner title="按钮类型">
-    <ShadcnButton type="primary">Primary</ShadcnButton>
-    <ShadcnButton type="success">Success</ShadcnButton>
-    <ShadcnButton type="warning">Warning</ShadcnButton>
-    <ShadcnButton type="danger">Danger</ShadcnButton>
-    <ShadcnButton type="info">Info</ShadcnButton>
-    <ShadcnButton type="text">Text</ShadcnButton>
-    <ShadcnButton type="default">Default</ShadcnButton>
+    <ShadcnButton type="primary" :dark="darkMode">Primary</ShadcnButton>
+    <ShadcnButton type="success" :dark="darkMode">Success</ShadcnButton>
+    <ShadcnButton type="warning" :dark="darkMode">Warning</ShadcnButton>
+    <ShadcnButton type="danger" :dark="darkMode">Danger</ShadcnButton>
+    <ShadcnButton type="info" :dark="darkMode">Info</ShadcnButton>
+    <ShadcnButton type="text" :dark="darkMode">Text</ShadcnButton>
+    <ShadcnButton type="default" :dark="darkMode">Default</ShadcnButton>
 </CodeRunner>
 
 :::
@@ -48,9 +48,9 @@ title: 按钮 (Button)
 ::: raw
 
 <CodeRunner title="按钮尺寸">
-    <ShadcnButton size="small">Small</ShadcnButton>
-    <ShadcnButton size="default">Default</ShadcnButton>
-    <ShadcnButton size="large">Large</ShadcnButton>
+    <ShadcnButton size="small" :dark="darkMode">Small</ShadcnButton>
+    <ShadcnButton size="default" :dark="darkMode">Default</ShadcnButton>
+    <ShadcnButton size="large" :dark="darkMode">Large</ShadcnButton>
 </CodeRunner>
 
 :::
@@ -75,19 +75,19 @@ title: 按钮 (Button)
 ::: raw
 
 <CodeRunner title="图标按钮">
-    <ShadcnButton>
+    <ShadcnButton :dark="darkMode">
         <template #icon>
             <ShadcnIcon icon="Save"/>
         </template>
         Icon
     </ShadcnButton>
-    <ShadcnButton type="success">
+    <ShadcnButton type="success" :dark="darkMode">
         <template #icon>
             <ShadcnIcon icon="Save"/>
         </template>
         Icon + Type
     </ShadcnButton>
-    <ShadcnButton type="success" size="small">
+    <ShadcnButton type="success" size="small" :dark="darkMode">
         <template #icon>
             <ShadcnIcon icon="Save"/>
         </template>
@@ -132,9 +132,9 @@ title: 按钮 (Button)
 ::: raw
 
 <CodeRunner title="圆角按钮">
-    <ShadcnButton round>Round</ShadcnButton>
-    <ShadcnButton type="danger" round>Round + Type</ShadcnButton>
-    <ShadcnButton type="success" size="small" round>Round + Type + Size</ShadcnButton>
+    <ShadcnButton round :dark="darkMode">Round</ShadcnButton>
+    <ShadcnButton type="danger" round :dark="darkMode">Round + Type</ShadcnButton>
+    <ShadcnButton type="success" size="small" round :dark="darkMode">Round + Type + Size</ShadcnButton>
 </CodeRunner> 
 
 :::
@@ -159,9 +159,9 @@ title: 按钮 (Button)
 ::: raw
 
 <CodeRunner title="禁用按钮">
-    <ShadcnButton disabled>Disabled</ShadcnButton>
-    <ShadcnButton type="danger" disabled>Disabled + Type</ShadcnButton>
-    <ShadcnButton type="success" size="small" disabled>Disabled + Type + Size</ShadcnButton>
+    <ShadcnButton disabled :dark="darkMode">Disabled</ShadcnButton>
+    <ShadcnButton type="danger" disabled :dark="darkMode">Disabled + Type</ShadcnButton>
+    <ShadcnButton type="success" size="small" disabled :dark="darkMode">Disabled + Type + Size</ShadcnButton>
 </CodeRunner> 
 
 :::
@@ -186,9 +186,9 @@ title: 按钮 (Button)
 ::: raw
 
 <CodeRunner title="圆形按钮">
-    <ShadcnButton circle size="large"></ShadcnButton>
-    <ShadcnButton type="danger" circle></ShadcnButton>
-    <ShadcnButton type="success" size="small" circle></ShadcnButton>
+    <ShadcnButton circle size="large" :dark="darkMode"></ShadcnButton>
+    <ShadcnButton type="danger" circle :dark="darkMode"></ShadcnButton>
+    <ShadcnButton type="success" size="small" circle :dark="darkMode"></ShadcnButton>
 </CodeRunner> 
 
 :::
@@ -213,9 +213,9 @@ title: 按钮 (Button)
 ::: raw
 
 <CodeRunner title="加载按钮">
-    <ShadcnButton loading>Loading</ShadcnButton>    
-    <ShadcnButton type="success" loading>Loading + Type</ShadcnButton>
-    <ShadcnButton type="success" size="small" loading>Loading + Type + Size</ShadcnButton>
+    <ShadcnButton loading :dark="darkMode">Loading</ShadcnButton>
+    <ShadcnButton type="success" loading :dark="darkMode">Loading + Type</ShadcnButton>
+    <ShadcnButton type="success" size="small" loading :dark="darkMode">Loading + Type + Size</ShadcnButton>
 </CodeRunner> 
 
 :::
@@ -240,9 +240,9 @@ title: 按钮 (Button)
 ::: raw
 
 <CodeRunner title="自定义颜色">
-    <ShadcnButton color="red">Red</ShadcnButton>
-    <ShadcnButton type="danger" color="red">Red + Type</ShadcnButton>
-    <ShadcnButton type="success" size="small" color="red">Red + Type + Size</ShadcnButton>
+    <ShadcnButton color="red" :dark="darkMode">Red</ShadcnButton>
+    <ShadcnButton type="danger" color="red" :dark="darkMode">Red + Type</ShadcnButton>
+    <ShadcnButton type="success" size="small" color="red" :dark="darkMode">Red + Type + Size</ShadcnButton>
 </CodeRunner> 
 
 :::
@@ -267,13 +267,13 @@ title: 按钮 (Button)
 ::: raw
 
 <CodeRunner title="幽灵按钮">
-    <ShadcnButton type="primary" ghost>Primary</ShadcnButton>
-    <ShadcnButton type="success" ghost>Success</ShadcnButton>
-    <ShadcnButton type="warning" ghost>Warning</ShadcnButton>
-    <ShadcnButton type="danger" ghost>Danger</ShadcnButton>
-    <ShadcnButton type="info" ghost>Info</ShadcnButton>
-    <ShadcnButton type="text" ghost>Text</ShadcnButton>
-    <ShadcnButton type="default" ghost>Default</ShadcnButton>
+    <ShadcnButton type="primary" ghost :dark="darkMode">Primary</ShadcnButton>
+    <ShadcnButton type="success" ghost :dark="darkMode">Success</ShadcnButton>
+    <ShadcnButton type="warning" ghost :dark="darkMode">Warning</ShadcnButton>
+    <ShadcnButton type="danger" ghost :dark="darkMode">Danger</ShadcnButton>
+    <ShadcnButton type="info" ghost :dark="darkMode">Info</ShadcnButton>
+    <ShadcnButton type="text" ghost :dark="darkMode">Text</ShadcnButton>
+    <ShadcnButton type="default" ghost :dark="darkMode">Default</ShadcnButton>
 </CodeRunner>
 
 :::
@@ -302,7 +302,7 @@ title: 按钮 (Button)
 ::: raw
 
 <CodeRunner title="按钮组">
-    <ShadcnButtonGroup>
+    <ShadcnButtonGroup :dark="darkMode">
       <ShadcnButton>Left</ShadcnButton>
       <ShadcnButton>Middle</ShadcnButton>
       <ShadcnButton>Right</ShadcnButton>
@@ -333,7 +333,7 @@ title: 按钮 (Button)
 ::: raw
 
 <CodeRunner title="按钮组方向">
-    <ShadcnButtonGroup direction="vertical">
+    <ShadcnButtonGroup direction="vertical" :dark="darkMode">
         <ShadcnButton type="primary">T</ShadcnButton>
         <ShadcnButton type="primary">C</ShadcnButton>
         <ShadcnButton type="primary">B</ShadcnButton>
@@ -400,11 +400,19 @@ title: 按钮 (Button)
 
 ## 按钮 (Button) 插槽
 
-<ApiTable title="按钮 (Button) 插槽" 
-            :headers="['插槽', '描述']" 
+<ApiTable title="按钮 (Button) 插槽"
+            :headers="['插槽', '描述']"
             :columns="[
                 ['default', '默认插槽'],
                 ['icon', '图标插槽'],
                 ['loading', '加载状态插槽'],
             ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>

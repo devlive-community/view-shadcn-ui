@@ -11,17 +11,23 @@ title: 消息 (Message)
 ## 用法
 
 <CodeRunner title="用法">
-    <ShadcnButton @click="info(false)">Show Message</ShadcnButton>
+    <ShadcnButton @click="info(false)" :dark="darkMode">Show Message</ShadcnButton>
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnButton @click="handleClick">Show Message</ShadcnButton>
+    <ShadcnButton @click="handleClick" :dark="darkMode">Show Message</ShadcnButton>
 </template>
 
 <script lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -41,17 +47,23 @@ export default defineComponent({
 ## 显示图标 (show-icon)
 
 <CodeRunner title="显示图标 (show-icon)">
-    <ShadcnButton @click="info(false)">Show Message</ShadcnButton>
+    <ShadcnButton @click="info(false)" :dark="darkMode">Show Message</ShadcnButton>
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnButton @click="handleClick">Show Message</ShadcnButton>
+    <ShadcnButton @click="handleClick" :dark="darkMode">Show Message</ShadcnButton>
 </template>
 
 <script lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -71,12 +83,12 @@ export default defineComponent({
 ## 类型 (type)
 
 <CodeRunner title="类型 (type)">
-  <ShadcnSpace wrap>
-    <ShadcnButton @click="info(false)">Info</ShadcnButton>
-    <ShadcnButton @click="success(false)">Success</ShadcnButton>
-    <ShadcnButton @click="warning(false)">Warning</ShadcnButton>
-    <ShadcnButton @click="error(false)">Error</ShadcnButton>
-    <ShadcnButton @click="loading(false)">Loading</ShadcnButton>
+  <ShadcnSpace wrap :dark="darkMode">
+    <ShadcnButton @click="info(false)" :dark="darkMode">Info</ShadcnButton>
+    <ShadcnButton @click="success(false)" :dark="darkMode">Success</ShadcnButton>
+    <ShadcnButton @click="warning(false)" :dark="darkMode">Warning</ShadcnButton>
+    <ShadcnButton @click="error(false)" :dark="darkMode">Error</ShadcnButton>
+    <ShadcnButton @click="loading(false)" :dark="darkMode">Loading</ShadcnButton>
   </ShadcnSpace>
 </CodeRunner>
 
@@ -84,12 +96,12 @@ export default defineComponent({
 
 ```vue
 <template>
-  <ShadcnSpace wrap>
-    <ShadcnButton @click="info">Info</ShadcnButton>
-    <ShadcnButton @click="success">Success</ShadcnButton>
-    <ShadcnButton @click="warning">Warning</ShadcnButton>
-    <ShadcnButton @click="error">Error</ShadcnButton>
-    <ShadcnButton @click="loading">Loading</ShadcnButton>
+  <ShadcnSpace wrap :dark="darkMode">
+    <ShadcnButton @click="info" :dark="darkMode">Info</ShadcnButton>
+    <ShadcnButton @click="success" :dark="darkMode">Success</ShadcnButton>
+    <ShadcnButton @click="warning" :dark="darkMode">Warning</ShadcnButton>
+    <ShadcnButton @click="error" :dark="darkMode">Error</ShadcnButton>
+    <ShadcnButton @click="loading" :dark="darkMode">Loading</ShadcnButton>
   </ShadcnSpace>
 </template>
 
@@ -141,12 +153,12 @@ export default {
 ## 背景色 (background)
 
 <CodeRunner title="背景色 (background)">
-  <ShadcnSpace wrap>
-    <ShadcnButton @click="info(true)">Info</ShadcnButton>
-    <ShadcnButton @click="success(true)">Success</ShadcnButton>
-    <ShadcnButton @click="warning(true)">Warning</ShadcnButton>
-    <ShadcnButton @click="error(true)">Error</ShadcnButton>
-    <ShadcnButton @click="loading(true)">Loading</ShadcnButton>
+  <ShadcnSpace wrap :dark="darkMode">
+    <ShadcnButton @click="info(true)" :dark="darkMode">Info</ShadcnButton>
+    <ShadcnButton @click="success(true)" :dark="darkMode">Success</ShadcnButton>
+    <ShadcnButton @click="warning(true)" :dark="darkMode">Warning</ShadcnButton>
+    <ShadcnButton @click="error(true)" :dark="darkMode">Error</ShadcnButton>
+    <ShadcnButton @click="loading(true)" :dark="darkMode">Loading</ShadcnButton>
   </ShadcnSpace>
 </CodeRunner>
 
@@ -154,12 +166,12 @@ export default {
 
 ```vue
 <template>
-  <ShadcnSpace wrap>
-    <ShadcnButton @click="info">Info</ShadcnButton>
-    <ShadcnButton @click="success">Success</ShadcnButton>
-    <ShadcnButton @click="warning">Warning</ShadcnButton>
-    <ShadcnButton @click="error">Error</ShadcnButton>
-    <ShadcnButton @click="loading">Loading</ShadcnButton>
+  <ShadcnSpace wrap :dark="darkMode">
+    <ShadcnButton @click="info" :dark="darkMode">Info</ShadcnButton>
+    <ShadcnButton @click="success" :dark="darkMode">Success</ShadcnButton>
+    <ShadcnButton @click="warning" :dark="darkMode">Warning</ShadcnButton>
+    <ShadcnButton @click="error" :dark="darkMode">Error</ShadcnButton>
+    <ShadcnButton @click="loading" :dark="darkMode">Loading</ShadcnButton>
   </ShadcnSpace>
 </template>
 
@@ -216,14 +228,14 @@ export default {
 ## 可关闭 (closable)
 
 <CodeRunner title="可关闭 (closable)">
-    <ShadcnButton @click="closable">Closable</ShadcnButton>
+    <ShadcnButton @click="closable" :dark="darkMode">Closable</ShadcnButton>
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnButton @click="closable">Show Message</ShadcnButton>
+    <ShadcnButton @click="closable" :dark="darkMode">Show Message</ShadcnButton>
 </template>
 
 <script>
@@ -278,7 +290,15 @@ export default {
 </ApiTable>
 
 <script>
-export default {
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+export default { 
+setup() {
+        const { isDark } = useData()
+        const darkMode = computed(() => isDark.value)
+
+return {darkMode}
+},
   methods: {
     info(background = false) {
       this.$Message.info({

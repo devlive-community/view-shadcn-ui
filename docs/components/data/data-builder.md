@@ -13,7 +13,7 @@ title: 数据构建 (Data Builder)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnDataBuilderEditor :items="panels"/>
+    <ShadcnDataBuilderEditor :items="panels" :dark="darkMode"/>
 </CodeRunner>
 
 :::
@@ -47,7 +47,7 @@ const items = ref([
 ::: raw
 
 <CodeRunner title="宽高">
-    <ShadcnDataBuilderEditor :items="panels" :width="800" :height="600"/>
+    <ShadcnDataBuilderEditor :items="panels" :width="800" :height="600" :dark="darkMode"/>
 </CodeRunner>
 
 :::
@@ -67,7 +67,7 @@ const items = ref([
 ::: raw
 
 <CodeRunner title="工具栏">
-    <ShadcnDataBuilderEditor :items="panels" :show-toolbar="false" :width="800" :height="600" />
+    <ShadcnDataBuilderEditor :items="panels" :show-toolbar="false" :width="800" :height="600" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -87,7 +87,7 @@ const items = ref([
 ::: raw
 
 <CodeRunner title="显示网格">
-    <ShadcnDataBuilderEditor :items="panels" :show-grid="false" :width="800" :height="600" />
+    <ShadcnDataBuilderEditor :items="panels" :show-grid="false" :width="800" :height="600" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -107,7 +107,7 @@ const items = ref([
 ::: raw
 
 <CodeRunner title="对齐网格">
-    <ShadcnDataBuilderEditor :items="panels" :snap-to-grid="false" :width="800" :height="600" />
+    <ShadcnDataBuilderEditor :items="panels" :snap-to-grid="false" :width="800" :height="600" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -127,7 +127,7 @@ const items = ref([
 ::: raw
 
 <CodeRunner title="居中">
-    <ShadcnDataBuilderEditor :items="panels" is-center />
+    <ShadcnDataBuilderEditor :items="panels" is-center :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -147,7 +147,7 @@ const items = ref([
 ::: raw
 
 <CodeRunner title="重置尺寸">
-    <ShadcnDataBuilderEditor :items="panels" :resize="false" />
+    <ShadcnDataBuilderEditor :items="panels" :resize="false" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -167,7 +167,7 @@ const items = ref([
 ::: raw
 
 <CodeRunner title="画布样式">
-    <ShadcnDataBuilderEditor :items="panels" :canvas-style="{backgroundColor: '#e01a1a'}" />
+    <ShadcnDataBuilderEditor :items="panels" :canvas-style="{backgroundColor: '#e01a1a'}" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -187,7 +187,7 @@ const items = ref([
 ::: raw
 
 <CodeRunner title="辅助线">
-    <ShadcnDataBuilderEditor :items="panels" show-guidelines />
+    <ShadcnDataBuilderEditor :items="panels" show-guidelines :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -207,12 +207,12 @@ const items = ref([
 ::: raw
 
 <CodeRunner title="自定义面板插槽">
-    <ShadcnDataBuilderEditor :items="panels2" :config-width="300" :height="300" :width="1080" @update-config="console.log($event)">
+    <ShadcnDataBuilderEditor :items="panels2" :config-width="300" :height="300" :width="1080" :dark="darkMode" @update-config="console.log($event)">
         <template #panel-label="{ item }">
           {{ item.label }} - {{ item.type }}
         </template>
         <template #text="{ configure, isSelected }">
-            <ShadcnText type="h1" :class="isSelected ? 'text-blue-600' : 'text-gray-900'">
+            <ShadcnText type="h1" :class="isSelected ? 'text-blue-600' : 'text-gray-900'" :dark="darkMode">
               {{ getConfigValue(configure, 'text', 'Text Component') }}
             </ShadcnText>
         </template>
@@ -260,12 +260,12 @@ const items = ref([
 ::: raw
 
 <CodeRunner title="自定义面板样式">
-    <ShadcnDataBuilderEditor :items="stylePanels" :config-width="300" :height="300" :width="1080" @update-config="console.log($event)">
+    <ShadcnDataBuilderEditor :items="stylePanels" :config-width="300" :height="300" :width="1080" :dark="darkMode" @update-config="console.log($event)">
         <template #panel-label="{ item }">
           {{ item.label }} - {{ item.type }}
         </template>
         <template #text="{ configure, isSelected }">
-            <ShadcnText type="h1" :class="isSelected ? 'text-blue-600' : 'text-gray-900'">
+            <ShadcnText type="h1" :class="isSelected ? 'text-blue-600' : 'text-gray-900'" :dark="darkMode">
               {{ getConfigValue(configure, 'text', 'Text Component') }}
             </ShadcnText>
         </template>
@@ -313,9 +313,9 @@ const items = ref([
 ::: raw
 
 <CodeRunner title="数据构建视图">
-  <ShadcnDataBuilderView :width="style.width" :height="style.height" :items="items" :canvas-style="style.canvasStyle">
+  <ShadcnDataBuilderView :width="style.width" :height="style.height" :items="items" :canvas-style="style.canvasStyle" :dark="darkMode">
     <template #text="{ configure, isSelected }">
-      <ShadcnText type="h1" :class="isSelected ? 'text-blue-600' : 'text-gray-900'">
+      <ShadcnText type="h1" :class="isSelected ? 'text-blue-600' : 'text-gray-900'" :dark="darkMode">
         {{ getConfigValue(configure, 'text', 'Text Component') }}
       </ShadcnText>
     </template>
@@ -555,6 +555,10 @@ const items = ref([
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { useData } from 'vitepress'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
 
 const panels = ref([
   {

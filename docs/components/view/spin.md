@@ -13,7 +13,7 @@ title: 旋转加载 (Spin)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnSpin />
+    <ShadcnSpin  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -22,10 +22,16 @@ title: 旋转加载 (Spin)
 
 ```vue
 <template>
-    <ShadcnSpin v-model="value" />
+    <ShadcnSpin v-model="value"  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { ref } from 'vue';
 
 const value = ref(false);
@@ -39,10 +45,10 @@ const value = ref(false);
 ::: raw
 
 <CodeRunner title="类型 (type)">
-    <ShadcnSpin type="primary"/>
-    <ShadcnSpin type="success"/>
-    <ShadcnSpin type="error"/>
-    <ShadcnSpin type="warning"/>
+    <ShadcnSpin type="primary" :dark="darkMode" />
+    <ShadcnSpin type="success" :dark="darkMode" />
+    <ShadcnSpin type="error" :dark="darkMode" />
+    <ShadcnSpin type="warning" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -51,13 +57,19 @@ const value = ref(false);
 
 ```vue
 <template>
-    <ShadcnSpin type="primary"/>
-    <ShadcnSpin type="success"/>
-    <ShadcnSpin type="error"/>
-    <ShadcnSpin type="warning"/>
+    <ShadcnSpin type="primary" :dark="darkMode" />
+    <ShadcnSpin type="success" :dark="darkMode" />
+    <ShadcnSpin type="error" :dark="darkMode" />
+    <ShadcnSpin type="warning" :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -68,9 +80,9 @@ const value = ref(false);
 ::: raw
 
 <CodeRunner title="尺寸 (size)">
-    <ShadcnSpin type="primary" size="small"/>
-    <ShadcnSpin type="success" size="default"/>
-    <ShadcnSpin type="error" size="large"/>
+    <ShadcnSpin type="primary" size="small" :dark="darkMode" />
+    <ShadcnSpin type="success" size="default" :dark="darkMode" />
+    <ShadcnSpin type="error" size="large" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -79,12 +91,18 @@ const value = ref(false);
 
 ```vue
 <template>
-    <ShadcnSpin type="primary" size="small"/>
-    <ShadcnSpin type="success" size="default"/>
-    <ShadcnSpin type="error" size="large"/>
+    <ShadcnSpin type="primary" size="small" :dark="darkMode" />
+    <ShadcnSpin type="success" size="default" :dark="darkMode" />
+    <ShadcnSpin type="error" size="large" :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -95,9 +113,9 @@ const value = ref(false);
 ::: raw
 
 <CodeRunner title="固定 (fixed)" warning="如果设置了 fixed，则父组件必须使用 position:relative">
-    <ShadcnCard title="Spin">
+    <ShadcnCard title="Spin" :dark="darkMode">
       <div class="relative h-32">
-        <ShadcnSpin fixed/>
+        <ShadcnSpin fixed :dark="darkMode" />
       </div>
     </ShadcnCard>
 </CodeRunner>
@@ -108,14 +126,20 @@ const value = ref(false);
 
 ```vue
 <template>
-    <ShadcnCard title="Spin">
+    <ShadcnCard title="Spin" :dark="darkMode">
       <div class="relative min-h-[200px]">
-        <ShadcnSpin fixed/>
+        <ShadcnSpin fixed :dark="darkMode" />
       </div>
     </ShadcnCard>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -126,7 +150,7 @@ const value = ref(false);
 ::: raw
 
 <CodeRunner title="服务 ($Spin)">
-    <ShadcnButton @click="showSpin">Show Spin</ShadcnButton>
+    <ShadcnButton @click="showSpin" :dark="darkMode">Show Spin</ShadcnButton>
 </CodeRunner>
 
 :::
@@ -135,7 +159,7 @@ const value = ref(false);
 
 ```vue
 <template>
-    <ShadcnButton @click="showSpin">Show Spin</ShadcnButton>
+    <ShadcnButton @click="showSpin" :dark="darkMode">Show Spin</ShadcnButton>
 </template>
 
 <script lang="ts">
@@ -186,7 +210,15 @@ export default {
 </ApiTable>
 
 <script lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
 export default {
+    setup() {
+        const { isDark } = useData()
+        const darkMode = computed(() => isDark.value)
+
+return {darkMode}
+    },
     methods: {
           showSpin()
           {

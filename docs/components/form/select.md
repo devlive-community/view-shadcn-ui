@@ -11,18 +11,23 @@ title: 选择器 (Select)
 ## 用法
 
 <CodeRunner title="用法">
-    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" />
+    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions"  :dark="darkMode" />
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" />
+    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions"  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 
 const defaultSelect = ref('')
 const defaultSelectOptions = [
@@ -38,14 +43,14 @@ const defaultSelectOptions = [
 ## 禁用 (disabled)
 
 <CodeRunner title="禁用 (disabled)">
-    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" disabled />
+    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" disabled  :dark="darkMode" />
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" disabled />
+    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" disabled  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
@@ -66,9 +71,9 @@ const defaultSelectOptions = [
 
 <CodeRunner title="尺寸 (size)">
     <div class="space-y-2">
-        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" size="small" />
-        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" size="default" />
-        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" size="large" />
+        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" size="small"  :dark="darkMode" />
+        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" size="default"  :dark="darkMode" />
+        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" size="large"  :dark="darkMode" />
     </div>
 </CodeRunner>
 
@@ -77,9 +82,9 @@ const defaultSelectOptions = [
 ```vue
 <template>
     <p>Select Value: {{ defaultSelect }}</p>
-    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" size="small" />
-    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" size="default" />
-    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" size="large" />
+    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" size="small"  :dark="darkMode" />
+    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" size="default"  :dark="darkMode" />
+    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" size="large"  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
@@ -100,10 +105,10 @@ const defaultSelectOptions = [
 
 <CodeRunner title="类型 (type)">
     <div class="space-y-2">
-        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" type="primary" />
-        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" type="success" />
-        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" type="warning" />
-        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" type="error" />
+        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" type="primary"  :dark="darkMode" />
+        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" type="success"  :dark="darkMode" />
+        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" type="warning"  :dark="darkMode" />
+        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" type="error"  :dark="darkMode" />
     </div>
 </CodeRunner>
 
@@ -112,10 +117,10 @@ const defaultSelectOptions = [
 ```vue
 <template>
     <p>Select Value: {{ defaultSelect }}</p>
-    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" type="primary" />
-    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" type="success" />
-    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" type="warning" />
-    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" type="error" />
+    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" type="primary"  :dark="darkMode" />
+    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" type="success"  :dark="darkMode" />
+    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" type="warning"  :dark="darkMode" />
+    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" type="error"  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
@@ -138,8 +143,8 @@ const defaultSelectOptions = [
 
 <CodeRunner title="边框 (border)">
     <div class="space-y-2">
-        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" />
-        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" :border="false" />
+        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions"  :dark="darkMode" />
+        <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" :border="false"  :dark="darkMode" />
     </div>
 </CodeRunner>
 
@@ -150,8 +155,8 @@ const defaultSelectOptions = [
 ```vue
 <template>
     <p>Select Value: {{ defaultSelect }}</p>
-    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" />
-    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" :border="false" />
+    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions"  :dark="darkMode" />
+    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" :border="false"  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
@@ -173,18 +178,18 @@ const defaultSelectOptions = [
 ::: raw
 
 <CodeRunner title="组 (group)">
-    <ShadcnSelect v-model="defaultSelect">
+    <ShadcnSelect v-model="defaultSelect" :dark="darkMode">
       <template #options>
-        <ShadcnSelectGroup label="Group 1">
+        <ShadcnSelectGroup label="Group 1" :dark="darkMode">
           <ShadcnSelectOption v-for="i in 2"
             :key="i"
             :label="`Option ${i}`"
-            :value="`Value ${i}`"/>
+            :value="`Value ${i}`" :dark="darkMode" />
         </ShadcnSelectGroup>
         <ShadcnSelectOption v-for="i in 2"
                             :key="i"
                             :label="`Option ${i}`"
-                            :value="`Value ${i}`"/>
+                            :value="`Value ${i}`" :dark="darkMode" />
       </template>
     </ShadcnSelect>
 </CodeRunner>
@@ -195,18 +200,18 @@ const defaultSelectOptions = [
 
 ```vue
 <template>
-    <ShadcnSelect v-model="defaultSelect">
+    <ShadcnSelect v-model="defaultSelect" :dark="darkMode">
       <template #options>
-        <ShadcnSelectGroup label="Group 1">
+        <ShadcnSelectGroup label="Group 1" :dark="darkMode">
           <ShadcnSelectOption v-for="i in 2"
             :key="i"
             :label="`Option ${i}`"
-            :value="`Value ${i}`"/>
+            :value="`Value ${i}`" :dark="darkMode" />
         </ShadcnSelectGroup>
         <ShadcnSelectOption v-for="i in 2"
                             :key="i"
                             :label="`Option ${i}`"
-                            :value="`Value ${i}`"/>
+                            :value="`Value ${i}`" :dark="darkMode" />
       </template>    
     </ShadcnSelect>
 </template>
@@ -225,7 +230,7 @@ const defaultSelect = ref('')
 ::: raw
 
 <CodeRunner title="多选 (multiple)">
-    <ShadcnSelect v-model="defaultSelect" multiple :options="defaultSelectOptions" />
+    <ShadcnSelect v-model="defaultSelect" multiple :options="defaultSelectOptions"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -234,7 +239,7 @@ const defaultSelect = ref('')
 
 ```vue
 <template>
-    <ShadcnSelect v-model="defaultSelect" multiple :options="defaultSelectOptions" />
+    <ShadcnSelect v-model="defaultSelect" multiple :options="defaultSelectOptions"  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
@@ -256,8 +261,8 @@ const defaultSelectOptions = [
 ::: raw
 
 <CodeRunner title="加载 (loading)">
-    <ShadcnButton @click="onClick">{{ !loading ? '显示 Loading' : '隐藏 Loading' }}</ShadcnButton>
-    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" :loading="loading" />
+    <ShadcnButton @click="onClick" :dark="darkMode">{{ !loading ? '显示 Loading' : '隐藏 Loading' }}</ShadcnButton>
+    <ShadcnSelect v-model="defaultSelect" :options="defaultSelectOptions" :loading="loading"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -271,7 +276,7 @@ const defaultSelectOptions = [
                 lazy
                 :options="options"
                 :load-data="loadMoreData"
-                @update:options="handleOptionsUpdate"/>
+                @update:options="handleOptionsUpdate" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -284,7 +289,7 @@ const defaultSelectOptions = [
                 lazy
                 :options="options"
                 :load-data="loadMoreData"
-                @update:options="handleOptionsUpdate"/>
+                @update:options="handleOptionsUpdate" :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
@@ -331,7 +336,7 @@ loadMoreData((children) => {
                 v-model:options="options"
                 lazy
                 :options="options"
-                :load-data="loadMoreData"/>
+                :load-data="loadMoreData" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -344,7 +349,7 @@ loadMoreData((children) => {
                 v-model:options="options"
                 lazy
                 :options="options"
-                :load-data="loadMoreData"/>
+                :load-data="loadMoreData" :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
@@ -441,6 +446,10 @@ loadMoreData((children) => {
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useData } from 'vitepress' 
+import { computed } from 'vue' 
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
 
 const loading = ref(false)
 const defaultSelect = ref('Value 1')

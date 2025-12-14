@@ -13,7 +13,7 @@ title: 倒计时 (Count Down)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnCountDown :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)" />
+    <ShadcnCountDown :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -22,7 +22,7 @@ title: 倒计时 (Count Down)
 
 ```vue
 <template>
-  <ShadcnCountDown :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)" />
+  <ShadcnCountDown :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)"  :dark="darkMode" />
 </template>
 ```
 
@@ -33,7 +33,7 @@ title: 倒计时 (Count Down)
 ::: raw
 
 <CodeRunner title="简洁 (simple)">
-    <ShadcnCountDown :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)" simple />
+    <ShadcnCountDown :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)" simple  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -42,7 +42,7 @@ title: 倒计时 (Count Down)
 
 ```vue
 <template>
-  <ShadcnCountDown :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)" simple />
+  <ShadcnCountDown :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)" simple  :dark="darkMode" />
 </template>
 ```
 
@@ -53,7 +53,7 @@ title: 倒计时 (Count Down)
 ::: raw
 
 <CodeRunner title="标题 (title)">
-    <ShadcnCountDown :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)" title="Count Down" />
+    <ShadcnCountDown :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)" title="Count Down"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -62,7 +62,7 @@ title: 倒计时 (Count Down)
 
 ```vue
 <template>
-  <ShadcnCountDown :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)" title="Count Down" />
+  <ShadcnCountDown :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)" title="Count Down"  :dark="darkMode" />
 </template>
 ```
 
@@ -73,7 +73,7 @@ title: 倒计时 (Count Down)
 ::: raw
 
 <CodeRunner title="工具栏 (toolbar)">
-    <ShadcnCountDown title="Count Down" toolbar :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)"/>
+    <ShadcnCountDown title="Count Down" toolbar :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -82,7 +82,7 @@ title: 倒计时 (Count Down)
 
 ```vue
 <template>
-  <ShadcnCountDown title="Count Down" toolbar :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)"/>
+  <ShadcnCountDown title="Count Down" toolbar :time="new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)" :dark="darkMode" />
 </template>
 ```
 
@@ -93,7 +93,7 @@ title: 倒计时 (Count Down)
 ::: raw
 
 <CodeRunner title="预警阈值 (warning-threshold)">
-    <ShadcnCountDown :time="new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)" warning-threshold="2" />
+    <ShadcnCountDown :time="new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)" warning-threshold="2"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -102,7 +102,7 @@ title: 倒计时 (Count Down)
 
 ```vue
 <template>
-  <ShadcnCountDown :time="new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)" warning-threshold="2" />
+  <ShadcnCountDown :time="new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)" warning-threshold="2"  :dark="darkMode" />
 </template>
 ```
 
@@ -113,7 +113,7 @@ title: 倒计时 (Count Down)
 ::: raw
 
 <CodeRunner title="显示进度 (show-progress)">
-    <ShadcnCountDown :time="new Date(Date.now() + 20 * 1000)" show-progress />
+    <ShadcnCountDown :time="new Date(Date.now() + 20 * 1000)" show-progress  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -122,7 +122,7 @@ title: 倒计时 (Count Down)
 
 ```vue
 <template>
-  <ShadcnCountDown :time="new Date(Date.now() + 20 * 1000)" show-progress />
+  <ShadcnCountDown :time="new Date(Date.now() + 20 * 1000)" show-progress  :dark="darkMode" />
 </template>
 ```
 
@@ -134,8 +134,8 @@ title: 倒计时 (Count Down)
 
 <CodeRunner title="自定义 (slots)">
   <div class="space-y-2">
-    <ShadcnCard title="Custom Time Block">
-      <ShadcnCountDown title="Activity events" :time="new Date(Date.now() + 6 * 1000)">
+    <ShadcnCard title="Custom Time Block" :dark="darkMode">
+      <ShadcnCountDown title="Activity events" :time="new Date(Date.now() + 6 * 1000)" :dark="darkMode">
         <template #days="{ value, isWarning }">
           <div class="flex flex-col items-center">
             <div class="text-5xl font-bold" :class="{ 'text-red-500': isWarning }">
@@ -146,15 +146,15 @@ title: 倒计时 (Count Down)
         </template>
       </ShadcnCountDown>
     </ShadcnCard>
-    <ShadcnCard title="Custom Label">
-      <ShadcnCountDown title="Activity events" :time="new Date(Date.now() + 6 * 1000)">
+    <ShadcnCard title="Custom Label" :dark="darkMode">
+      <ShadcnCountDown title="Activity events" :time="new Date(Date.now() + 6 * 1000)" :dark="darkMode">
         <template #days-label>
           <span class="text-sm mt-2 text-blue-500">DAYS</span>
         </template>
       </ShadcnCountDown>
     </ShadcnCard>
-    <ShadcnCard title="Custom Full">
-      <ShadcnCountDown :time="new Date(Date.now() + 6 * 1000)">
+    <ShadcnCard title="Custom Full" :dark="darkMode">
+      <ShadcnCountDown :time="new Date(Date.now() + 6 * 1000)" :dark="darkMode">
         <template #blocks="{ timeLeft, isWarning }">
           <div class="flex flex-col gap-2">
             <div class="text-2xl" :class="{ 'text-red-500': isWarning }">
@@ -179,8 +179,8 @@ title: 倒计时 (Count Down)
 ```vue
 <template>
   <div class="space-y-2">
-    <ShadcnCard title="Custom Time Block">
-      <ShadcnCountDown title="Activity events" :time="new Date(Date.now() + 6 * 1000)">
+    <ShadcnCard title="Custom Time Block" :dark="darkMode">
+      <ShadcnCountDown title="Activity events" :time="new Date(Date.now() + 6 * 1000)" :dark="darkMode">
         <template #days="{ value, isWarning }">
           <div class="flex flex-col items-center">
             <div class="text-5xl font-bold" :class="{ 'text-red-500': isWarning }">
@@ -192,16 +192,16 @@ title: 倒计时 (Count Down)
       </ShadcnCountDown>
     </ShadcnCard>
 
-    <ShadcnCard title="Custom Label">
-      <ShadcnCountDown title="Activity events" :time="new Date(Date.now() + 6 * 1000)">
+    <ShadcnCard title="Custom Label" :dark="darkMode">
+      <ShadcnCountDown title="Activity events" :time="new Date(Date.now() + 6 * 1000)" :dark="darkMode">
         <template #days-label>
           <span class="text-sm mt-2 text-blue-500">DAYS</span>
         </template>
       </ShadcnCountDown>
     </ShadcnCard>
 
-    <ShadcnCard title="Custom Full">
-      <ShadcnCountDown :time="new Date(Date.now() + 6 * 1000)">
+    <ShadcnCard title="Custom Full" :dark="darkMode">
+      <ShadcnCountDown :time="new Date(Date.now() + 6 * 1000)" :dark="darkMode">
         <template #blocks="{ timeLeft, isWarning }">
           <div class="flex flex-col gap-2">
             <div class="text-2xl" :class="{ 'text-red-500': isWarning }">
@@ -263,3 +263,11 @@ title: 倒计时 (Count Down)
         ['on-complete', '倒计时完成时触发', 'void'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>

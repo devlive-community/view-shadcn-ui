@@ -12,20 +12,25 @@ title: 复选框 (Checkbox)
 
 <CodeRunner title="用法">
     <p>Checkbox Value: {{ checked }}</p>
-    <ShadcnCheckbox v-model="checked" value="Vue">Vue</ShadcnCheckbox>
-    <ShadcnCheckbox v-model="checked" value="Nuxt">Nuxt</ShadcnCheckbox>
+    <ShadcnCheckbox v-model="checked" value="Vue" :dark="darkMode">Vue</ShadcnCheckbox>
+    <ShadcnCheckbox v-model="checked" value="Nuxt" :dark="darkMode">Nuxt</ShadcnCheckbox>
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-  <ShadcnCheckbox v-model="checked" value="Vue">Vue</ShadcnCheckbox>
-  <ShadcnCheckbox v-model="checked" value="Nuxt">Nuxt</ShadcnCheckbox>
+  <ShadcnCheckbox v-model="checked" value="Vue" :dark="darkMode">Vue</ShadcnCheckbox>
+  <ShadcnCheckbox v-model="checked" value="Nuxt" :dark="darkMode">Nuxt</ShadcnCheckbox>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 
 const checked = ref('Vue')
 </script>
@@ -36,16 +41,16 @@ const checked = ref('Vue')
 ## 禁用 (disabled)
 
 <CodeRunner title="禁用 (disabled)">
-    <ShadcnCheckbox v-model="checked" value="Vue" disabled>Vue</ShadcnCheckbox>
-    <ShadcnCheckbox v-model="checked" value="Nuxt">Nuxt</ShadcnCheckbox>
+    <ShadcnCheckbox v-model="checked" value="Vue" disabled :dark="darkMode">Vue</ShadcnCheckbox>
+    <ShadcnCheckbox v-model="checked" value="Nuxt" :dark="darkMode">Nuxt</ShadcnCheckbox>
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-  <ShadcnCheckbox v-model="checked" value="Vue" disabled>Vue</ShadcnCheckbox>
-  <ShadcnCheckbox v-model="checked" value="Nuxt">Nuxt</ShadcnCheckbox>
+  <ShadcnCheckbox v-model="checked" value="Vue" disabled :dark="darkMode">Vue</ShadcnCheckbox>
+  <ShadcnCheckbox v-model="checked" value="Nuxt" :dark="darkMode">Nuxt</ShadcnCheckbox>
 </template>
 
 <script setup lang="ts">
@@ -60,18 +65,18 @@ const checked = ref('Vue')
 ## 尺寸 (size)
 
 <CodeRunner title="尺寸 (size)">
-    <ShadcnCheckbox v-model="checked" value="Default" size="default" @on-change="onChange">Default</ShadcnCheckbox>
-    <ShadcnCheckbox v-model="checked" value="Small" size="small" @on-change="onChange">Small</ShadcnCheckbox>
-    <ShadcnCheckbox v-model="checked" value="Large" size="large" @on-change="onChange">Large</ShadcnCheckbox>
+    <ShadcnCheckbox v-model="checked" value="Default" size="default" @on-change="onChange" :dark="darkMode">Default</ShadcnCheckbox>
+    <ShadcnCheckbox v-model="checked" value="Small" size="small" @on-change="onChange" :dark="darkMode">Small</ShadcnCheckbox>
+    <ShadcnCheckbox v-model="checked" value="Large" size="large" @on-change="onChange" :dark="darkMode">Large</ShadcnCheckbox>
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-  <ShadcnCheckbox v-model="checked" value="Default" size="default" @on-change="onChange">Default</ShadcnCheckbox>
-  <ShadcnCheckbox v-model="checked" value="Small" size="small" @on-change="onChange">Small</ShadcnCheckbox>
-  <ShadcnCheckbox v-model="checked" value="Large" size="large" @on-change="onChange">Large</ShadcnCheckbox>
+  <ShadcnCheckbox v-model="checked" value="Default" size="default" @on-change="onChange" :dark="darkMode">Default</ShadcnCheckbox>
+  <ShadcnCheckbox v-model="checked" value="Small" size="small" @on-change="onChange" :dark="darkMode">Small</ShadcnCheckbox>
+  <ShadcnCheckbox v-model="checked" value="Large" size="large" @on-change="onChange" :dark="darkMode">Large</ShadcnCheckbox>
 </template>
 
 <script setup lang="ts">
@@ -86,20 +91,20 @@ const checked = ref('Default')
 ## 类型 (type)
 
 <CodeRunner title="类型 (type)">
-    <ShadcnCheckbox v-model="checked" value="Primary" type="primary">Primary</ShadcnCheckbox>
-    <ShadcnCheckbox v-model="checked" value="Success" type="success">Success</ShadcnCheckbox>
-    <ShadcnCheckbox v-model="checked" value="Warning" type="warning">Warning</ShadcnCheckbox>
-    <ShadcnCheckbox v-model="checked" value="Error" type="error">Error</ShadcnCheckbox>
+    <ShadcnCheckbox v-model="checked" value="Primary" type="primary" :dark="darkMode">Primary</ShadcnCheckbox>
+    <ShadcnCheckbox v-model="checked" value="Success" type="success" :dark="darkMode">Success</ShadcnCheckbox>
+    <ShadcnCheckbox v-model="checked" value="Warning" type="warning" :dark="darkMode">Warning</ShadcnCheckbox>
+    <ShadcnCheckbox v-model="checked" value="Error" type="error" :dark="darkMode">Error</ShadcnCheckbox>
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-  <ShadcnCheckbox v-model="checked" value="Primary" type="primary">Primary</ShadcnCheckbox>
-  <ShadcnCheckbox v-model="checked" value="Success" type="success">Success</ShadcnCheckbox>
-  <ShadcnCheckbox v-model="checked" value="Warning" type="warning">Warning</ShadcnCheckbox>
-  <ShadcnCheckbox v-model="checked" value="Error" type="error">Error</ShadcnCheckbox>
+  <ShadcnCheckbox v-model="checked" value="Primary" type="primary" :dark="darkMode">Primary</ShadcnCheckbox>
+  <ShadcnCheckbox v-model="checked" value="Success" type="success" :dark="darkMode">Success</ShadcnCheckbox>
+  <ShadcnCheckbox v-model="checked" value="Warning" type="warning" :dark="darkMode">Warning</ShadcnCheckbox>
+  <ShadcnCheckbox v-model="checked" value="Error" type="error" :dark="darkMode">Error</ShadcnCheckbox>
 </template>
 
 <script setup lang="ts">
@@ -115,9 +120,9 @@ const checked = ref('Primary')
 
 <CodeRunner title="组 (group)">
     Checkbox Group Value: {{ checkedGroup }}
-    <ShadcnCheckboxGroup v-model="checkedGroup">
-        <ShadcnCheckbox value="Vue">Vue</ShadcnCheckbox>
-        <ShadcnCheckbox value="Nuxt">Nuxt</ShadcnCheckbox>
+    <ShadcnCheckboxGroup v-model="checkedGroup" :dark="darkMode">
+        <ShadcnCheckbox value="Vue" :dark="darkMode">Vue</ShadcnCheckbox>
+        <ShadcnCheckbox value="Nuxt" :dark="darkMode">Nuxt</ShadcnCheckbox>
     </ShadcnCheckboxGroup>
 </CodeRunner>
 
@@ -125,9 +130,9 @@ const checked = ref('Primary')
 
 ```vue
 <template>
-  <ShadcnCheckboxGroup v-model="checkedGroup">
-    <ShadcnCheckbox value="Vue">Vue</ShadcnCheckbox>
-    <ShadcnCheckbox value="Nuxt">Nuxt</ShadcnCheckbox>
+  <ShadcnCheckboxGroup v-model="checkedGroup" :dark="darkMode">
+    <ShadcnCheckbox value="Vue" :dark="darkMode">Vue</ShadcnCheckbox>
+    <ShadcnCheckbox value="Nuxt" :dark="darkMode">Nuxt</ShadcnCheckbox>
   </ShadcnCheckboxGroup>
 </template>
 
@@ -148,12 +153,12 @@ const checkedGroup = ref(['Vue'])
     <ShadcnCheckbox :modelValue="checkAll"
                     :value="true"
                     :indeterminate="isIndeterminate"
-                    @update:modelValue="onCheckAllChange">全选
+                    @update:modelValue="onCheckAllChange" :dark="darkMode">全选
     </ShadcnCheckbox>
-    <ShadcnDivider/>
-    <ShadcnCheckboxGroup v-model="checkedGroup">
-      <ShadcnCheckbox value="Vue">Vue</ShadcnCheckbox>
-      <ShadcnCheckbox value="Nuxt">Nuxt</ShadcnCheckbox>
+    <ShadcnDivider :dark="darkMode" />
+    <ShadcnCheckboxGroup v-model="checkedGroup" :dark="darkMode">
+      <ShadcnCheckbox value="Vue" :dark="darkMode">Vue</ShadcnCheckbox>
+      <ShadcnCheckbox value="Nuxt" :dark="darkMode">Nuxt</ShadcnCheckbox>
     </ShadcnCheckboxGroup>
 </CodeRunner>
 
@@ -212,7 +217,9 @@ const checkedGroup = ref(['Vue'])
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-
+const { isDark } = useData()
+import { useData } from 'vitepress'
+const darkMode = computed(() => isDark.value)
 const checked = ref('Vue')
 const checkedGroup = ref(['Vue'])
 

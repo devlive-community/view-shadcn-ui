@@ -13,7 +13,7 @@ title: 键值对 (Map)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnMap v-model="value"/>
+    <ShadcnMap v-model="value" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -22,10 +22,16 @@ title: 键值对 (Map)
 
 ```vue
 <template>
-    <ShadcnMap v-model="value"/>
+    <ShadcnMap v-model="value" :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import {ref} from "vue"
 
 const value = ref([])
@@ -39,9 +45,9 @@ const value = ref([])
 ::: raw
 
 <CodeRunner title="尺寸 (size)">
-    <ShadcnMap v-model="value" size="small"/>
-    <ShadcnMap v-model="value" size="default"/>
-    <ShadcnMap v-model="value" size="large"/>
+    <ShadcnMap v-model="value" size="small" :dark="darkMode" />
+    <ShadcnMap v-model="value" size="default" :dark="darkMode" />
+    <ShadcnMap v-model="value" size="large" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -50,12 +56,18 @@ const value = ref([])
 
 ```vue
 <template>
-    <ShadcnMap v-model="value" size="small"/>
-    <ShadcnMap v-model="value" size="default"/>
-    <ShadcnMap v-model="value" size="large"/>
+    <ShadcnMap v-model="value" size="small" :dark="darkMode" />
+    <ShadcnMap v-model="value" size="default" :dark="darkMode" />
+    <ShadcnMap v-model="value" size="large" :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import {ref} from "vue"
 
 const value = ref([])
@@ -69,10 +81,10 @@ const value = ref([])
 ::: raw
 
 <CodeRunner title="类型 (type)">
-    <ShadcnMap v-model="value" type="primary"/>
-    <ShadcnMap v-model="value" type="success"/>
-    <ShadcnMap v-model="value" type="warning"/>
-    <ShadcnMap v-model="value" type="error"/>
+    <ShadcnMap v-model="value" type="primary" :dark="darkMode" />
+    <ShadcnMap v-model="value" type="success" :dark="darkMode" />
+    <ShadcnMap v-model="value" type="warning" :dark="darkMode" />
+    <ShadcnMap v-model="value" type="error" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -81,13 +93,19 @@ const value = ref([])
 
 ```vue
 <template>
-    <ShadcnMap v-model="value" type="primary"/>
-    <ShadcnMap v-model="value" type="success"/>
-    <ShadcnMap v-model="value" type="warning"/>
-    <ShadcnMap v-model="value" type="error"/>
+    <ShadcnMap v-model="value" type="primary" :dark="darkMode" />
+    <ShadcnMap v-model="value" type="success" :dark="darkMode" />
+    <ShadcnMap v-model="value" type="warning" :dark="darkMode" />
+    <ShadcnMap v-model="value" type="error" :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import {ref} from "vue"
 
 const value = ref([])
@@ -101,7 +119,7 @@ const value = ref([])
 ::: raw
 
 <CodeRunner title="禁用 (disabled)">
-    <ShadcnMap v-model="value" disabled/>
+    <ShadcnMap v-model="value" disabled :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -110,10 +128,16 @@ const value = ref([])
 
 ```vue
 <template>
-    <ShadcnMap v-model="value" disabled/>
+    <ShadcnMap v-model="value" disabled :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import {ref} from "vue"
 
 const value = ref([])
@@ -127,7 +151,7 @@ const value = ref([])
 ::: raw
 
 <CodeRunner title="最大值 (max)">
-    <ShadcnMap v-model="value" max="2"/>
+    <ShadcnMap v-model="value" max="2" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -136,10 +160,16 @@ const value = ref([])
 
 ```vue
 <template>
-    <ShadcnMap v-model="value" max="2"/>
+    <ShadcnMap v-model="value" max="2" :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import {ref} from "vue"
 
 const value = ref([])
@@ -153,13 +183,13 @@ const value = ref([])
 ::: raw
 
 <CodeRunner title="表单 (form)">
-    <ShadcnForm ref="formRef" v-model="formState" @on-submit="console.log($event)">
+    <ShadcnForm ref="formRef" v-model="formState" @on-submit="console.log($event)" :dark="darkMode">
       <ShadcnFormItem name="map"
                       label="Map"
-                      :rules="[ { required: true, message: 'Please add map!' } ]">
-        <ShadcnMap v-model="formState.value" :max="3" name="map"/>
+                      :rules="[ { required: true, message: 'Please add map!' } ]" :dark="darkMode">
+        <ShadcnMap v-model="formState.value" :max="3" name="map" :dark="darkMode" />
       </ShadcnFormItem>
-      <ShadcnButton submit>Submit</ShadcnButton>
+      <ShadcnButton submit :dark="darkMode">Submit</ShadcnButton>
     </ShadcnForm>
 </CodeRunner>
 
@@ -169,13 +199,13 @@ const value = ref([])
 
 ```vue
 <template>
-    <ShadcnForm ref="formRef" v-model="formState" @on-submit="console.log($event)">
+    <ShadcnForm ref="formRef" v-model="formState" @on-submit="console.log($event)" :dark="darkMode">
       <ShadcnFormItem name="map"
                       label="Map"
-                      :rules="[ { required: true, message: 'Please add map!' } ]">
-        <ShadcnMap v-model="formState.value" :max="3" name="map"/>
+                      :rules="[ { required: true, message: 'Please add map!' } ]" :dark="darkMode">
+        <ShadcnMap v-model="formState.value" :max="3" name="map" :dark="darkMode" />
       </ShadcnFormItem>
-      <ShadcnButton submit>Submit</ShadcnButton>
+      <ShadcnButton submit :dark="darkMode">Submit</ShadcnButton>
     </ShadcnForm>
 </template>
 

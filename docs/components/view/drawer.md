@@ -13,8 +13,8 @@ title: 抽屉 (Drawer)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnButton @click="defaultValue = !defaultValue">Open</ShadcnButton>
-    <ShadcnDrawer v-model="defaultValue" title="Title">Content</ShadcnDrawer>
+    <ShadcnButton @click="defaultValue = !defaultValue" :dark="darkMode">Open</ShadcnButton>
+    <ShadcnDrawer v-model="defaultValue" title="Title" :dark="darkMode">Content</ShadcnDrawer>
 </CodeRunner>
 
 :::
@@ -23,11 +23,17 @@ title: 抽屉 (Drawer)
 
 ```vue
 <template>
-  <ShadcnButton @click="defaultValue = !defaultValue">Open</ShadcnButton>
-  <ShadcnDrawer v-model="defaultValue" title="Title">Content</ShadcnDrawer>
+  <ShadcnButton @click="defaultValue = !defaultValue" :dark="darkMode">Open</ShadcnButton>
+  <ShadcnDrawer v-model="defaultValue" title="Title" :dark="darkMode">Content</ShadcnDrawer>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { ref } from 'vue'
 
 const defaultValue = ref(false)
@@ -39,18 +45,24 @@ const defaultValue = ref(false)
 ## 可关闭 (closeable)
 
 <CodeRunner title="可关闭 (closeable)">
-    <ShadcnButton @click="closableValue = !closableValue">Open</ShadcnButton>
-    <ShadcnDrawer v-model="closableValue" closable title="Title">Content</ShadcnDrawer>
+    <ShadcnButton @click="closableValue = !closableValue" :dark="darkMode">Open</ShadcnButton>
+    <ShadcnDrawer v-model="closableValue" closable title="Title" :dark="darkMode">Content</ShadcnDrawer>
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-  <ShadcnDrawer closable title="Title">Content</ShadcnDrawer>
+  <ShadcnDrawer closable title="Title" :dark="darkMode">Content</ShadcnDrawer>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { ref } from 'vue'
 
 const defaultValue = ref(false)
@@ -62,18 +74,24 @@ const defaultValue = ref(false)
 ## 背景关闭 (mask-closable)
 
 <CodeRunner title="背景关闭 (mask-closable)">
-    <ShadcnButton @click="maskClosableValue = !maskClosableValue">Open</ShadcnButton>
-    <ShadcnDrawer v-model="maskClosableValue" mask-closable title="Title">Content</ShadcnDrawer>
+    <ShadcnButton @click="maskClosableValue = !maskClosableValue" :dark="darkMode">Open</ShadcnButton>
+    <ShadcnDrawer v-model="maskClosableValue" mask-closable title="Title" :dark="darkMode">Content</ShadcnDrawer>
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-  <ShadcnDrawer v-model="defaultValue" mask-closable title="Title">Content</ShadcnDrawer>
+  <ShadcnDrawer v-model="defaultValue" mask-closable title="Title" :dark="darkMode">Content</ShadcnDrawer>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { ref } from 'vue'
 
 const defaultValue = ref(false)
@@ -85,35 +103,41 @@ const defaultValue = ref(false)
 ## 位置 (position)
 
 <CodeRunner title="位置 (position)">
-        <ShadcnSpace>
-      <ShadcnButton @click="topValue = !topValue">Top</ShadcnButton>
-      <ShadcnButton @click="buttomValue = !buttomValue">Buttom</ShadcnButton>
-      <ShadcnButton @click="leftValue = !leftValue">Left</ShadcnButton>
-      <ShadcnButton @click="rightValue = !rightValue">Right</ShadcnButton>
+        <ShadcnSpace :dark="darkMode">
+      <ShadcnButton @click="topValue = !topValue" :dark="darkMode">Top</ShadcnButton>
+      <ShadcnButton @click="buttomValue = !buttomValue" :dark="darkMode">Buttom</ShadcnButton>
+      <ShadcnButton @click="leftValue = !leftValue" :dark="darkMode">Left</ShadcnButton>
+      <ShadcnButton @click="rightValue = !rightValue" :dark="darkMode">Right</ShadcnButton>
     </ShadcnSpace>
-    <ShadcnDrawer v-model="topValue" title="Top" position="top"/>
-    <ShadcnDrawer v-model="buttomValue" title="Buttom" position="bottom"/>
-    <ShadcnDrawer v-model="leftValue" title="Left" position="left"/>
-    <ShadcnDrawer v-model="rightValue" title="Right" position="right"/>
+    <ShadcnDrawer v-model="topValue" title="Top" position="top" :dark="darkMode" />
+    <ShadcnDrawer v-model="buttomValue" title="Buttom" position="bottom" :dark="darkMode" />
+    <ShadcnDrawer v-model="leftValue" title="Left" position="left" :dark="darkMode" />
+    <ShadcnDrawer v-model="rightValue" title="Right" position="right" :dark="darkMode" />
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-  <ShadcnSpace>
-    <ShadcnButton @click="topValue = !topValue">Top</ShadcnButton>
-    <ShadcnButton @click="buttomValue = !buttomValue">Buttom</ShadcnButton>
-    <ShadcnButton @click="leftValue = !leftValue">Left</ShadcnButton>
-    <ShadcnButton @click="rightValue = !rightValue">Right</ShadcnButton>
+  <ShadcnSpace :dark="darkMode">
+    <ShadcnButton @click="topValue = !topValue" :dark="darkMode">Top</ShadcnButton>
+    <ShadcnButton @click="buttomValue = !buttomValue" :dark="darkMode">Buttom</ShadcnButton>
+    <ShadcnButton @click="leftValue = !leftValue" :dark="darkMode">Left</ShadcnButton>
+    <ShadcnButton @click="rightValue = !rightValue" :dark="darkMode">Right</ShadcnButton>
   </ShadcnSpace>
-  <ShadcnDrawer v-model="topValue" title="Top" position="top"/>
-  <ShadcnDrawer v-model="buttomValue" title="Buttom" position="bottom"/>
-  <ShadcnDrawer v-model="leftValue" title="Left" position="left"/>
-  <ShadcnDrawer v-model="rightValue" title="Right" position="right"/>
+  <ShadcnDrawer v-model="topValue" title="Top" position="top" :dark="darkMode" />
+  <ShadcnDrawer v-model="buttomValue" title="Buttom" position="bottom" :dark="darkMode" />
+  <ShadcnDrawer v-model="leftValue" title="Left" position="left" :dark="darkMode" />
+  <ShadcnDrawer v-model="rightValue" title="Right" position="right" :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { ref } from 'vue'
 
 const topValue = ref(false)
@@ -128,23 +152,29 @@ const rightValue = ref(false)
 ## 宽度 (width) & 高度 (height)
 
 <CodeRunner title="宽度 (width) & 高度 (height)">
-    <ShadcnButton @click="widthValue = !widthValue">Width 400</ShadcnButton>
-    <ShadcnButton @click="heightValue = !heightValue">Height 400</ShadcnButton>
-    <ShadcnDrawer v-model="widthValue" title="Width 400" width="400"/>
-    <ShadcnDrawer v-model="heightValue" title="Height 400" position="top" height="400"/>
+    <ShadcnButton @click="widthValue = !widthValue" :dark="darkMode">Width 400</ShadcnButton>
+    <ShadcnButton @click="heightValue = !heightValue" :dark="darkMode">Height 400</ShadcnButton>
+    <ShadcnDrawer v-model="widthValue" title="Width 400" width="400" :dark="darkMode" />
+    <ShadcnDrawer v-model="heightValue" title="Height 400" position="top" height="400" :dark="darkMode" />
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-  <ShadcnButton @click="widthValue = !widthValue">Width 400</ShadcnButton>
-  <ShadcnButton @click="heightValue = !heightValue">Height 400</ShadcnButton>
-  <ShadcnDrawer v-model="widthValue" title="Width 400" width="400"/>
-  <ShadcnDrawer v-model="heightValue" title="Height 400" position="top" height="400"/>
+  <ShadcnButton @click="widthValue = !widthValue" :dark="darkMode">Width 400</ShadcnButton>
+  <ShadcnButton @click="heightValue = !heightValue" :dark="darkMode">Height 400</ShadcnButton>
+  <ShadcnDrawer v-model="widthValue" title="Width 400" width="400" :dark="darkMode" />
+  <ShadcnDrawer v-model="heightValue" title="Height 400" position="top" height="400" :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { ref } from 'vue'
 
 const widthValue = ref(false)
@@ -190,6 +220,12 @@ const heightValue = ref(false)
 </ApiTable>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { ref } from 'vue'
 
 const defaultValue = ref(false)

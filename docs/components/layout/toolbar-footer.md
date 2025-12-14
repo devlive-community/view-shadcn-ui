@@ -13,7 +13,7 @@ title: 工具栏页脚 (Toolbar Footer)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnToolbarFooter>
+    <ShadcnToolbarFooter :dark="darkMode">
       <template #left>Basic</template>
     </ShadcnToolbarFooter>
 </CodeRunner>
@@ -40,7 +40,7 @@ title: 工具栏页脚 (Toolbar Footer)
 ::: raw
 
 <CodeRunner title="自动隐藏 (auto-hide)">
-    <ShadcnToolbarFooter auto-hide>
+    <ShadcnToolbarFooter auto-hide :dark="darkMode">
         <template #left>Auto Hide</template> 
     </ShadcnToolbarFooter>
 </CodeRunner>
@@ -67,7 +67,7 @@ title: 工具栏页脚 (Toolbar Footer)
 ::: raw
 
 <CodeRunner title="自动隐藏延迟 (auto-hide-delay)">
-    <ShadcnToolbarFooter auto-hide auto-hide-delay="2000">
+    <ShadcnToolbarFooter auto-hide auto-hide-delay="2000" :dark="darkMode">
         <template #left>Auto Hide Delay</template>
     </ShadcnToolbarFooter>
 </CodeRunner>
@@ -94,7 +94,7 @@ title: 工具栏页脚 (Toolbar Footer)
 ::: raw
 
 <CodeRunner title="全宽 (full-width)">
-    <ShadcnToolbarFooter v-model="defaultValue" full-width>
+    <ShadcnToolbarFooter v-model="defaultValue" full-width :dark="darkMode">
       <template #left>Full Width</template>
     </ShadcnToolbarFooter>
 </CodeRunner>

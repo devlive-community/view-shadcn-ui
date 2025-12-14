@@ -13,10 +13,10 @@ title: 时间线 (Timeline)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnTimeline>
-        <ShadcnTimelineItem title="Title 1">Content 1</ShadcnTimelineItem>
-        <ShadcnTimelineItem title="Title 2">Content 2</ShadcnTimelineItem>
-        <ShadcnTimelineItem title="Title 3">Content 3</ShadcnTimelineItem>
+    <ShadcnTimeline :dark="darkMode">
+        <ShadcnTimelineItem title="Title 1" :dark="darkMode">Content 1</ShadcnTimelineItem>
+        <ShadcnTimelineItem title="Title 2" :dark="darkMode">Content 2</ShadcnTimelineItem>
+        <ShadcnTimelineItem title="Title 3" :dark="darkMode">Content 3</ShadcnTimelineItem>
     </ShadcnTimeline>
 </CodeRunner>
 
@@ -26,14 +26,20 @@ title: 时间线 (Timeline)
 
 ```vue
 <template>
-    <ShadcnTimeline>
-        <ShadcnTimelineItem title="Title 1">Content 1</ShadcnTimelineItem>
-        <ShadcnTimelineItem title="Title 2">Content 2</ShadcnTimelineItem>
-        <ShadcnTimelineItem title="Title 3">Content 3</ShadcnTimelineItem>
+    <ShadcnTimeline :dark="darkMode">
+        <ShadcnTimelineItem title="Title 1" :dark="darkMode">Content 1</ShadcnTimelineItem>
+        <ShadcnTimelineItem title="Title 2" :dark="darkMode">Content 2</ShadcnTimelineItem>
+        <ShadcnTimelineItem title="Title 3" :dark="darkMode">Content 3</ShadcnTimelineItem>
     </ShadcnTimeline>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -44,8 +50,8 @@ title: 时间线 (Timeline)
 ::: raw
 
 <CodeRunner title="讨论布局 (discussion)">
-    <ShadcnTimeline>
-      <ShadcnTimelineItem>
+    <ShadcnTimeline :dark="darkMode">
+      <ShadcnTimelineItem :dark="darkMode">
         <template #dot>
           <div class="flex items-center justify-center rounded-full bg-white shadow md:order-1">
             <svg class="fill-emerald-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16">
@@ -63,7 +69,7 @@ title: 时间线 (Timeline)
           This is a opened step, you can add more information here.
         </div>
       </ShadcnTimelineItem>
-      <ShadcnTimelineItem>
+      <ShadcnTimelineItem :dark="darkMode">
         <template #dot>
           <div class="flex items-center justify-center rounded-full bg-white">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
@@ -84,7 +90,7 @@ title: 时间线 (Timeline)
           This is a completed step, you can add more information here.
         </div>
       </ShadcnTimelineItem>
-      <ShadcnTimelineItem>
+      <ShadcnTimelineItem :dark="darkMode">
         <template #dot>
           <div class="flex items-center justify-center rounded-full bg-white shadow md:order-1">
             <svg class="fill-red-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16">
@@ -111,8 +117,8 @@ title: 时间线 (Timeline)
 
 ```vue
 <template>
-    <ShadcnTimeline>
-      <ShadcnTimelineItem>
+    <ShadcnTimeline :dark="darkMode">
+      <ShadcnTimelineItem :dark="darkMode">
         <template #dot>
           <div class="flex items-center justify-center rounded-full bg-white shadow md:order-1">
             <svg class="fill-emerald-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16">
@@ -130,7 +136,7 @@ title: 时间线 (Timeline)
           This is a opened step, you can add more information here.
         </div>
       </ShadcnTimelineItem>
-      <ShadcnTimelineItem>
+      <ShadcnTimelineItem :dark="darkMode">
         <template #dot>
           <div class="flex items-center justify-center rounded-full bg-white">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
@@ -151,7 +157,7 @@ title: 时间线 (Timeline)
           This is a completed step, you can add more information here.
         </div>
       </ShadcnTimelineItem>
-      <ShadcnTimelineItem>
+      <ShadcnTimelineItem :dark="darkMode">
         <template #dot>
           <div class="flex items-center justify-center rounded-full bg-white shadow md:order-1">
             <svg class="fill-red-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16">
@@ -173,6 +179,12 @@ title: 时间线 (Timeline)
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -183,8 +195,8 @@ title: 时间线 (Timeline)
 ::: raw
 
 <CodeRunner title="拆分 (split)">
-    <ShadcnTimeline split>
-      <ShadcnTimelineItem>
+    <ShadcnTimeline split :dark="darkMode">
+      <ShadcnTimelineItem :dark="darkMode">
         <template #dot>
           <div class="flex items-center justify-center rounded-full bg-white shadow md:order-1">
             <svg class="fill-emerald-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16">
@@ -202,7 +214,7 @@ title: 时间线 (Timeline)
           This is a opened step, you can add more information here.
         </div>
       </ShadcnTimelineItem>
-      <ShadcnTimelineItem>
+      <ShadcnTimelineItem :dark="darkMode">
         <template #dot>
           <div class="flex items-center justify-center rounded-full bg-white">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
@@ -223,7 +235,7 @@ title: 时间线 (Timeline)
           This is a completed step, you can add more information here.
         </div>
       </ShadcnTimelineItem>
-      <ShadcnTimelineItem>
+      <ShadcnTimelineItem :dark="darkMode">
         <template #dot>
           <div class="flex items-center justify-center rounded-full bg-white shadow md:order-1">
             <svg class="fill-red-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16">
@@ -250,8 +262,8 @@ title: 时间线 (Timeline)
 
 ```vue
 <template>
-    <ShadcnTimeline split>
-      <ShadcnTimelineItem>
+    <ShadcnTimeline split :dark="darkMode">
+      <ShadcnTimelineItem :dark="darkMode">
         <template #dot>
           <div class="flex items-center justify-center rounded-full bg-white shadow md:order-1">
             <svg class="fill-emerald-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16">
@@ -269,7 +281,7 @@ title: 时间线 (Timeline)
           This is a opened step, you can add more information here.
         </div>
       </ShadcnTimelineItem>
-      <ShadcnTimelineItem>
+      <ShadcnTimelineItem :dark="darkMode">
         <template #dot>
           <div class="flex items-center justify-center rounded-full bg-white">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
@@ -290,7 +302,7 @@ title: 时间线 (Timeline)
           This is a completed step, you can add more information here.
         </div>
       </ShadcnTimelineItem>
-      <ShadcnTimelineItem>
+      <ShadcnTimelineItem :dark="darkMode">
         <template #dot>
           <div class="flex items-center justify-center rounded-full bg-white shadow md:order-1">
             <svg class="fill-red-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16">
@@ -312,6 +324,12 @@ title: 时间线 (Timeline)
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -325,3 +343,11 @@ title: 时间线 (Timeline)
         ['split', '是否拆分，拆分后将分为左右两列', 'boolean', 'false'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>

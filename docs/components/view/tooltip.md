@@ -11,8 +11,8 @@ title: 提示 (Tooltip)
 ## 用法
 
 <CodeRunner title="用法">
-    <ShadcnTooltip content="This is a tooltip">
-        <ShadcnButton>Hover</ShadcnButton>
+    <ShadcnTooltip content="This is a tooltip" :dark="darkMode">
+        <ShadcnButton :dark="darkMode">Hover</ShadcnButton>
     </ShadcnTooltip>
 </CodeRunner>
 
@@ -20,12 +20,18 @@ title: 提示 (Tooltip)
 
 ```vue
 <template>
-    <ShadcnTooltip content="This is a tooltip">
-        <ShadcnButton>Hover</ShadcnButton>
+    <ShadcnTooltip content="This is a tooltip" :dark="darkMode">
+        <ShadcnButton :dark="darkMode">Hover</ShadcnButton>
     </ShadcnTooltip>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -34,8 +40,8 @@ title: 提示 (Tooltip)
 ## 延迟 (delay)
 
 <CodeRunner title="延迟 (delay)">
-    <ShadcnTooltip content="This is a tooltip" :delay="500">
-        <ShadcnButton>Hover</ShadcnButton>
+    <ShadcnTooltip content="This is a tooltip" :delay="500" :dark="darkMode">
+        <ShadcnButton :dark="darkMode">Hover</ShadcnButton>
     </ShadcnTooltip>
 </CodeRunner>
 
@@ -43,12 +49,18 @@ title: 提示 (Tooltip)
 
 ```vue
 <template>
-    <ShadcnTooltip content="This is a tooltip" :delay="500">
-        <ShadcnButton>Hover</ShadcnButton>
+    <ShadcnTooltip content="This is a tooltip" :delay="500" :dark="darkMode">
+        <ShadcnButton :dark="darkMode">Hover</ShadcnButton>
     </ShadcnTooltip>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -57,17 +69,17 @@ title: 提示 (Tooltip)
 ## 位置 (position)
 
 <CodeRunner title="位置 (position)">
-    <ShadcnTooltip content="Position" position="top">
-        <ShadcnButton>Top</ShadcnButton>
+    <ShadcnTooltip content="Position" position="top" :dark="darkMode">
+        <ShadcnButton :dark="darkMode">Top</ShadcnButton>
     </ShadcnTooltip>
-    <ShadcnTooltip content="Position" position="bottom">
-        <ShadcnButton>Bottom</ShadcnButton>
+    <ShadcnTooltip content="Position" position="bottom" :dark="darkMode">
+        <ShadcnButton :dark="darkMode">Bottom</ShadcnButton>
     </ShadcnTooltip>
-    <ShadcnTooltip content="Position" position="left">
-        <ShadcnButton>Left</ShadcnButton>
+    <ShadcnTooltip content="Position" position="left" :dark="darkMode">
+        <ShadcnButton :dark="darkMode">Left</ShadcnButton>
     </ShadcnTooltip>
-    <ShadcnTooltip content="Position" position="right">
-        <ShadcnButton>Right</ShadcnButton>
+    <ShadcnTooltip content="Position" position="right" :dark="darkMode">
+        <ShadcnButton :dark="darkMode">Right</ShadcnButton>
     </ShadcnTooltip>
 </CodeRunner>
 
@@ -75,21 +87,27 @@ title: 提示 (Tooltip)
 
 ```vue
 <template>
-    <ShadcnTooltip content="Position" position="top">
-        <ShadcnButton>Top</ShadcnButton>
+    <ShadcnTooltip content="Position" position="top" :dark="darkMode">
+        <ShadcnButton :dark="darkMode">Top</ShadcnButton>
     </ShadcnTooltip>
-    <ShadcnTooltip content="Position" position="bottom">
-        <ShadcnButton>Bottom</ShadcnButton>
+    <ShadcnTooltip content="Position" position="bottom" :dark="darkMode">
+        <ShadcnButton :dark="darkMode">Bottom</ShadcnButton>
     </ShadcnTooltip>
-    <ShadcnTooltip content="Position" position="left">
-        <ShadcnButton>Left</ShadcnButton>
+    <ShadcnTooltip content="Position" position="left" :dark="darkMode">
+        <ShadcnButton :dark="darkMode">Left</ShadcnButton>
     </ShadcnTooltip>
-    <ShadcnTooltip content="Position" position="right">
-        <ShadcnButton>Right</ShadcnButton>
+    <ShadcnTooltip content="Position" position="right" :dark="darkMode">
+        <ShadcnButton :dark="darkMode">Right</ShadcnButton>
     </ShadcnTooltip>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -98,11 +116,11 @@ title: 提示 (Tooltip)
 ## 箭头 (arrow)
 
 <CodeRunner title="箭头 (arrow)">
-    <ShadcnTooltip content="Hello Shadcn UI" arrow>
-        <ShadcnButton>Arrow</ShadcnButton>
+    <ShadcnTooltip content="Hello Shadcn UI" arrow :dark="darkMode">
+        <ShadcnButton :dark="darkMode">Arrow</ShadcnButton>
     </ShadcnTooltip>
-    <ShadcnTooltip content="Hello Shadcn UI" :arrow="false">
-        <ShadcnButton>No Arrow</ShadcnButton>
+    <ShadcnTooltip content="Hello Shadcn UI" :arrow="false" :dark="darkMode">
+        <ShadcnButton :dark="darkMode">No Arrow</ShadcnButton>
     </ShadcnTooltip>
 </CodeRunner>
 
@@ -110,15 +128,21 @@ title: 提示 (Tooltip)
 
 ```vue
 <template>
-    <ShadcnTooltip content="Hello Shadcn UI" arrow>
-        <ShadcnButton>Arrow</ShadcnButton>
+    <ShadcnTooltip content="Hello Shadcn UI" arrow :dark="darkMode">
+        <ShadcnButton :dark="darkMode">Arrow</ShadcnButton>
     </ShadcnTooltip>
-    <ShadcnTooltip content="Hello Shadcn UI" :arrow="false">
-        <ShadcnButton>No Arrow</ShadcnButton>
+    <ShadcnTooltip content="Hello Shadcn UI" :arrow="false" :dark="darkMode">
+        <ShadcnButton :dark="darkMode">No Arrow</ShadcnButton>
     </ShadcnTooltip>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -127,8 +151,8 @@ title: 提示 (Tooltip)
 ## 宽度 (width)
 
 <CodeRunner title="宽度 (width)">
-    <ShadcnTooltip content="Steve Jobs (English: Steve Jobs) is an American entrepreneur, marketer and inventor. He is one of the co-founders of Apple and has served as chairman and CEO. He is also the founder and CEO of NeXT and the founder and former CEO of Pixar Animation. He was a member of the board of directors of the Walt Disney Company in 2006. The place where Apple's press conference was held in September 2017 was named Steve Jobs Theater after him." width="200">
-        <ShadcnButton>Hover</ShadcnButton>
+    <ShadcnTooltip content="Steve Jobs (English: Steve Jobs) is an American entrepreneur, marketer and inventor. He is one of the co-founders of Apple and has served as chairman and CEO. He is also the founder and CEO of NeXT and the founder and former CEO of Pixar Animation. He was a member of the board of directors of the Walt Disney Company in 2006. The place where Apple's press conference was held in September 2017 was named Steve Jobs Theater after him." width="200" :dark="darkMode">
+        <ShadcnButton :dark="darkMode">Hover</ShadcnButton>
     </ShadcnTooltip>
 </CodeRunner>
 
@@ -136,12 +160,18 @@ title: 提示 (Tooltip)
 
 ```vue
 <template>
-    <ShadcnTooltip content="Steve Jobs (English: Steve Jobs) is an American entrepreneur, marketer and inventor. He is one of the co-founders of Apple and has served as chairman and CEO. He is also the founder and CEO of NeXT and the founder and former CEO of Pixar Animation. He was a member of the board of directors of the Walt Disney Company in 2006. The place where Apple's press conference was held in September 2017 was named Steve Jobs Theater after him." width="200">
-        <ShadcnButton>Hover</ShadcnButton>
+    <ShadcnTooltip content="Steve Jobs (English: Steve Jobs) is an American entrepreneur, marketer and inventor. He is one of the co-founders of Apple and has served as chairman and CEO. He is also the founder and CEO of NeXT and the founder and former CEO of Pixar Animation. He was a member of the board of directors of the Walt Disney Company in 2006. The place where Apple's press conference was held in September 2017 was named Steve Jobs Theater after him." width="200" :dark="darkMode">
+        <ShadcnButton :dark="darkMode">Hover</ShadcnButton>
     </ShadcnTooltip>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -169,3 +199,11 @@ title: 提示 (Tooltip)
         ['content', '提示内容区域'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>

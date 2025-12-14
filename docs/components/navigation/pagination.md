@@ -12,7 +12,7 @@ title: 分页 (Pagination)
 
 <CodeRunner title="用法">
     数据值 : {{defaultValue}}
-    <ShadcnPagination v-model="defaultValue" total="100"/>
+    <ShadcnPagination v-model="defaultValue" total="100" :dark="darkMode"/>
 </CodeRunner>
 
 ::: details 查看代码
@@ -35,7 +35,7 @@ const defaultValue = ref(1)
 
 <CodeRunner title="每页大小 (page-size)">
     数据值 : {{defaultValue}}
-    <ShadcnPagination v-model="defaultValue" total="100" page-size="20"/>
+    <ShadcnPagination v-model="defaultValue" total="100" page-size="20" :dark="darkMode"/>
 </CodeRunner>
 
 ::: details 查看代码
@@ -58,7 +58,7 @@ const defaultValue = ref(1)
 
 <CodeRunner title="上下页文本 (prev-text, next-text)">
     数据值 : {{defaultValue}}
-    <ShadcnPagination v-model="defaultValue" total="100" prev-text="P" next-text="N"/>
+    <ShadcnPagination v-model="defaultValue" total="100" prev-text="P" next-text="N" :dark="darkMode"/>
 </CodeRunner>
 
 ::: details 查看代码
@@ -81,7 +81,7 @@ const defaultValue = ref(1)
 
 <CodeRunner title="最大页数 (max-show-page)">
     数据值 : {{defaultValue}}
-    <ShadcnPagination v-model="defaultValue" total="100" max-show-page="8"/>
+    <ShadcnPagination v-model="defaultValue" total="100" max-show-page="8" :dark="darkMode"/>
 </CodeRunner>
 
 ::: details 查看代码
@@ -104,7 +104,7 @@ const defaultValue = ref(1)
 
 <CodeRunner title="显示总数 (show-total)">
     数据值 : {{defaultValue}}
-    <ShadcnPagination v-model="defaultValue" total="100" show-total/>
+    <ShadcnPagination v-model="defaultValue" total="100" show-total :dark="darkMode"/>
 </CodeRunner>
 
 ::: details 查看代码
@@ -127,9 +127,9 @@ const defaultValue = ref(1)
 
 <CodeRunner title="页数选择器 (show-sizer)">
     数据值 : {{defaultValue}}
-    <ShadcnPagination v-model="defaultValue" total="100" show-sizer/>
+    <ShadcnPagination v-model="defaultValue" total="100" show-sizer :dark="darkMode"/>
     自定义
-    <ShadcnPagination v-model="defaultValue" total="100" show-sizer :sizer-options="[5, 10, 20]"/>
+    <ShadcnPagination v-model="defaultValue" total="100" show-sizer :sizer-options="[5, 10, 20]" :dark="darkMode"/>
 </CodeRunner>
 
 ::: details 查看代码
@@ -189,7 +189,11 @@ const defaultValue = ref(1)
 </ApiTable>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { useData } from 'vitepress'
+import { ref, computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
 
 const defaultValue = ref(1)
 </script>

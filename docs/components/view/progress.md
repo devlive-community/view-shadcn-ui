@@ -11,17 +11,23 @@ title: 进度条 (Progress)
 ## 用法
 
 <CodeRunner title="用法">
-    <ShadcnProgress v-model="value">Progress</ShadcnProgress>
+    <ShadcnProgress v-model="value" :dark="darkMode">Progress</ShadcnProgress>
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnProgress v-model="value">Progress</ShadcnProgress>
+    <ShadcnProgress v-model="value" :dark="darkMode">Progress</ShadcnProgress>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { ref } from 'vue'
 
 const value = ref(10)
@@ -34,10 +40,10 @@ const value = ref(10)
 
 <CodeRunner title="状态 (status)">
     <div class="space-y-2">
-        <ShadcnProgress v-model="value" status="success">Success</ShadcnProgress>
-        <ShadcnProgress v-model="value" status="error">Error</ShadcnProgress>
-        <ShadcnProgress v-model="value" status="warning">Warning</ShadcnProgress>
-        <ShadcnProgress v-model="value" status="info">Info</ShadcnProgress>
+        <ShadcnProgress v-model="value" status="success" :dark="darkMode">Success</ShadcnProgress>
+        <ShadcnProgress v-model="value" status="error" :dark="darkMode">Error</ShadcnProgress>
+        <ShadcnProgress v-model="value" status="warning" :dark="darkMode">Warning</ShadcnProgress>
+        <ShadcnProgress v-model="value" status="info" :dark="darkMode">Info</ShadcnProgress>
     </div>
 </CodeRunner>
 
@@ -45,13 +51,19 @@ const value = ref(10)
 
 ```vue
 <template>
-    <ShadcnProgress v-model="value" status="success">Success</ShadcnProgress>
-    <ShadcnProgress v-model="value" status="error">Error</ShadcnProgress>
-    <ShadcnProgress v-model="value" status="warning">Warning</ShadcnProgress>
-    <ShadcnProgress v-model="value" status="info">Info</ShadcnProgress>
+    <ShadcnProgress v-model="value" status="success" :dark="darkMode">Success</ShadcnProgress>
+    <ShadcnProgress v-model="value" status="error" :dark="darkMode">Error</ShadcnProgress>
+    <ShadcnProgress v-model="value" status="warning" :dark="darkMode">Warning</ShadcnProgress>
+    <ShadcnProgress v-model="value" status="info" :dark="darkMode">Info</ShadcnProgress>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { ref } from 'vue'
 
 const value = ref(10)
@@ -64,8 +76,8 @@ const value = ref(10)
 
 <CodeRunner title="尺寸 (size)">
     <div class="space-y-2">
-        <ShadcnProgress v-model="value" size="default">Default</ShadcnProgress>
-        <ShadcnProgress v-model="value" size="large">Large</ShadcnProgress>
+        <ShadcnProgress v-model="value" size="default" :dark="darkMode">Default</ShadcnProgress>
+        <ShadcnProgress v-model="value" size="large" :dark="darkMode">Large</ShadcnProgress>
     </div>
 </CodeRunner>
 
@@ -73,11 +85,17 @@ const value = ref(10)
 
 ```vue
 <template>
-    <ShadcnProgress v-model="value" size="default">Default</ShadcnProgress>
-    <ShadcnProgress v-model="value" size="large">Large</ShadcnProgress>
+    <ShadcnProgress v-model="value" size="default" :dark="darkMode">Default</ShadcnProgress>
+    <ShadcnProgress v-model="value" size="large" :dark="darkMode">Large</ShadcnProgress>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { ref } from 'vue'
 
 const value = ref(10)
@@ -89,17 +107,23 @@ const value = ref(10)
 ## 显示标签 (show-label)
 
 <CodeRunner title="显示标签 (show-label)">
-    <ShadcnProgress v-model="value" size="large" show-label>Progress</ShadcnProgress>
+    <ShadcnProgress v-model="value" size="large" show-label :dark="darkMode">Progress</ShadcnProgress>
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnProgress v-model="value" size="large" show-label>Progress</ShadcnProgress>
+    <ShadcnProgress v-model="value" size="large" show-label :dark="darkMode">Progress</ShadcnProgress>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { ref } from 'vue'
 
 const value = ref(10)
@@ -109,6 +133,12 @@ const value = ref(10)
 :::
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { ref } from 'vue';
 
 const value = ref(10)

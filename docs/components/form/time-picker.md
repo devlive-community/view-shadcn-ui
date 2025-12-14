@@ -13,7 +13,7 @@ title: 时间选择器 (Time Picker)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnTimePicker v-model="value" />
+    <ShadcnTimePicker v-model="value"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -22,7 +22,7 @@ title: 时间选择器 (Time Picker)
 
 ```vue
 <template>
-    <ShadcnTimePicker v-model="value" />
+    <ShadcnTimePicker v-model="value"  :dark="darkMode" />
 </template>
 ```
 
@@ -33,7 +33,7 @@ title: 时间选择器 (Time Picker)
 ::: raw
 
 <CodeRunner title="占位符 (placeholder)">
-    <ShadcnTimePicker v-model="value" placeholder="Enter string" />
+    <ShadcnTimePicker v-model="value" placeholder="Enter string"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -42,7 +42,7 @@ title: 时间选择器 (Time Picker)
 
 ```vue
 <template>
-    <ShadcnTimePicker v-model="value" placeholder="Enter string" />
+    <ShadcnTimePicker v-model="value" placeholder="Enter string"  :dark="darkMode" />
 </template>
 ```
 
@@ -53,8 +53,8 @@ title: 时间选择器 (Time Picker)
 ::: raw
 
 <CodeRunner title="禁用 (disabled)">
-    <ShadcnTimePicker v-model="value" disabled />
-    <ShadcnTimePicker v-model="value" :disabled="false" />
+    <ShadcnTimePicker v-model="value" disabled  :dark="darkMode" />
+    <ShadcnTimePicker v-model="value" :disabled="false"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -63,8 +63,8 @@ title: 时间选择器 (Time Picker)
 
 ```vue
 <template>
-    <ShadcnTimePicker v-model="value" disabled />
-    <ShadcnTimePicker v-model="value" :disabled="false" />
+    <ShadcnTimePicker v-model="value" disabled  :dark="darkMode" />
+    <ShadcnTimePicker v-model="value" :disabled="false"  :dark="darkMode" />
 </template>
 ```
 
@@ -75,8 +75,8 @@ title: 时间选择器 (Time Picker)
 ::: raw
 
 <CodeRunner title="清空 (clearable)">
-    <ShadcnTimePicker v-model="value" clearable />
-    <ShadcnTimePicker v-model="value" :clearable="false" />
+    <ShadcnTimePicker v-model="value" clearable  :dark="darkMode" />
+    <ShadcnTimePicker v-model="value" :clearable="false"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -85,8 +85,8 @@ title: 时间选择器 (Time Picker)
 
 ```vue
 <template>
-    <ShadcnTimePicker v-model="value" clearable />
-    <ShadcnTimePicker v-model="value" :clearable="false" />
+    <ShadcnTimePicker v-model="value" clearable  :dark="darkMode" />
+    <ShadcnTimePicker v-model="value" :clearable="false"  :dark="darkMode" />
 </template>
 ```
 
@@ -97,7 +97,7 @@ title: 时间选择器 (Time Picker)
 ::: raw
 
 <CodeRunner title="快捷时间 (quick-times)">
-    <ShadcnTimePicker v-model="value" :quickTimes="['09:00', '12:00', '18:00']" />
+    <ShadcnTimePicker v-model="value" :quickTimes="['09:00', '12:00', '18:00']"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -106,7 +106,7 @@ title: 时间选择器 (Time Picker)
 
 ```vue
 <template>
-    <ShadcnTimePicker v-model="value" :quickTimes="['09:00', '12:00', '18:00']" />
+    <ShadcnTimePicker v-model="value" :quickTimes="['09:00', '12:00', '18:00']"  :dark="darkMode" />
 </template>
 ```
 
@@ -117,10 +117,10 @@ title: 时间选择器 (Time Picker)
 ::: raw
 
 <CodeRunner title="格式 (format)">
-    <ShadcnTimePicker v-model="value" format="HH:mm" />
-    <ShadcnTimePicker v-model="value" format="HH:mm:ss" />
-    <ShadcnTimePicker v-model="value" format="hh:mm A" />
-    <ShadcnTimePicker v-model="value" format="hh:mm:ss A" />
+    <ShadcnTimePicker v-model="value" format="HH:mm"  :dark="darkMode" />
+    <ShadcnTimePicker v-model="value" format="HH:mm:ss"  :dark="darkMode" />
+    <ShadcnTimePicker v-model="value" format="hh:mm A"  :dark="darkMode" />
+    <ShadcnTimePicker v-model="value" format="hh:mm:ss A"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -129,10 +129,10 @@ title: 时间选择器 (Time Picker)
 
 ```vue
 <template>
-    <ShadcnTimePicker v-model="value" format="HH:mm" />
-    <ShadcnTimePicker v-model="value" format="HH:mm:ss" />
-    <ShadcnTimePicker v-model="value" format="hh:mm A" />
-    <ShadcnTimePicker v-model="value" format="hh:mm:ss A" />
+    <ShadcnTimePicker v-model="value" format="HH:mm"  :dark="darkMode" />
+    <ShadcnTimePicker v-model="value" format="HH:mm:ss"  :dark="darkMode" />
+    <ShadcnTimePicker v-model="value" format="hh:mm A"  :dark="darkMode" />
+    <ShadcnTimePicker v-model="value" format="hh:mm:ss A"  :dark="darkMode" />
 </template>
 ```
 
@@ -174,7 +174,13 @@ title: 时间选择器 (Time Picker)
 </ApiTable>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
+import { ref , computed } from 'vue';
 
 const value = ref('')
 </script>

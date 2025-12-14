@@ -11,7 +11,7 @@ title: 布局 (Layout)
 ## 用法
 
 <CodeRunner title="用法">
-    <ShadcnLayout>
+    <ShadcnLayout :dark="darkMode">
         <ShadcnLayoutHeader class="bg-blue-100 h-12">Header</ShadcnLayoutHeader>
         <ShadcnLayoutContent class="bg-blue-500 h-32">Content</ShadcnLayoutContent>
         <ShadcnLayoutFooter class="bg-blue-400 h-20">Footer</ShadcnLayoutFooter>
@@ -38,7 +38,7 @@ title: 布局 (Layout)
 ## 侧边栏 (sider)
 
 <CodeRunner title="侧边栏 (sider)">
-    <ShadcnLayout>
+    <ShadcnLayout :dark="darkMode">
         <ShadcnLayoutWrapper>
             <ShadcnLayoutSider class="w-48 bg-blue-100">Sider</ShadcnLayoutSider>
             <ShadcnLayoutMain>
@@ -76,13 +76,13 @@ title: 布局 (Layout)
 
 <CodeRunner title="布局示例 (layout)">
     <div class="my-4 ml-2">Header + Content + Footer</div>
-    <ShadcnLayout>
+    <ShadcnLayout :dark="darkMode">
       <ShadcnLayoutHeader class="bg-blue-100 h-12">Header</ShadcnLayoutHeader>
       <ShadcnLayoutContent class="bg-blue-500 h-32">Content</ShadcnLayoutContent>
       <ShadcnLayoutFooter class="bg-blue-400 h-20">Footer</ShadcnLayoutFooter>
     </ShadcnLayout>
     <div class="my-4">Sider + (Header + Content + Footer)</div>
-    <ShadcnLayout>
+    <ShadcnLayout :dark="darkMode">
       <ShadcnLayoutWrapper>
         <ShadcnLayoutSider class="w-48 bg-blue-100">Sider</ShadcnLayoutSider>
         <ShadcnLayoutMain>
@@ -93,7 +93,7 @@ title: 布局 (Layout)
       </ShadcnLayoutWrapper>
     </ShadcnLayout>
     <div class="my-4">(Header + Content + Footer) + Sider</div>
-    <ShadcnLayout>
+    <ShadcnLayout :dark="darkMode">
       <ShadcnLayoutWrapper>
         <ShadcnLayoutMain>
           <ShadcnLayoutHeader class="bg-blue-100 h-12">Header</ShadcnLayoutHeader>
@@ -104,7 +104,7 @@ title: 布局 (Layout)
       </ShadcnLayoutWrapper>
     </ShadcnLayout>
     <div class="my-4">Header + (Sider + Content) + Footer</div>
-    <ShadcnLayout>
+    <ShadcnLayout :dark="darkMode">
       <ShadcnLayoutHeader class="bg-blue-100 h-12">Header</ShadcnLayoutHeader>
       <ShadcnLayoutWrapper>
         <ShadcnLayoutSider class="w-48 bg-blue-100">Sider</ShadcnLayoutSider>
@@ -113,7 +113,7 @@ title: 布局 (Layout)
       <ShadcnLayoutFooter class="bg-blue-400 h-20">Footer</ShadcnLayoutFooter>
     </ShadcnLayout>
     <div class="my-4">Header + (Content + Sider) + Footer</div>
-    <ShadcnLayout>
+    <ShadcnLayout :dark="darkMode">
       <ShadcnLayoutHeader class="bg-blue-100 h-12">Header</ShadcnLayoutHeader>
       <ShadcnLayoutWrapper>
         <ShadcnLayoutContent class="bg-blue-500 h-32">Content</ShadcnLayoutContent>
@@ -184,7 +184,7 @@ title: 布局 (Layout)
 ## 自定义触发器 (trigger)
 
 <CodeRunner title="自定义触发器 (trigger)">
-    <ShadcnLayout>
+    <ShadcnLayout :dark="darkMode">
       <ShadcnLayoutWrapper>
         <ShadcnLayoutSider class="bg-blue-100" collapsible :defaultCollapsed="false" trigger>
           <div class="space-y-4">
@@ -277,3 +277,11 @@ title: 布局 (Layout)
         ['trigger', '自定义触发器'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>

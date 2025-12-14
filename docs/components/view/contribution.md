@@ -13,7 +13,7 @@ title: 贡献图 (Contribution)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnContribution :data="data" />
+    <ShadcnContribution :data="data" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -33,7 +33,7 @@ title: 贡献图 (Contribution)
 ::: raw
 
 <CodeRunner title="颜色 (color-scheme)">
-    <ShadcnContribution :data="data" :colorScheme="colorScheme" />
+    <ShadcnContribution :data="data" :colorScheme="colorScheme" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -53,7 +53,7 @@ title: 贡献图 (Contribution)
 ::: raw
 
 <CodeRunner title="统计的年数 (year-count)">
-    <ShadcnContribution :data="data" :yearCount="1" />
+    <ShadcnContribution :data="data" :yearCount="1" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -73,8 +73,8 @@ title: 贡献图 (Contribution)
 ::: raw
 
 <CodeRunner title="显示图例 (show-legend)">
-    <ShadcnContribution :data="data" showLegend />
-    <ShadcnContribution :data="data" :showLegend="false" />
+    <ShadcnContribution :data="data" showLegend :dark="darkMode" />
+    <ShadcnContribution :data="data" :showLegend="false" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -95,8 +95,8 @@ title: 贡献图 (Contribution)
 ::: raw
 
 <CodeRunner title="显示周 (show-week)">
-    <ShadcnContribution :data="data" showWeek />
-    <ShadcnContribution :data="data" :showWeek="false" />
+    <ShadcnContribution :data="data" showWeek :dark="darkMode" />
+    <ShadcnContribution :data="data" :showWeek="false" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -117,8 +117,8 @@ title: 贡献图 (Contribution)
 ::: raw
 
 <CodeRunner title="显示月 (show-month)">
-    <ShadcnContribution :data="data" showMonth />
-    <ShadcnContribution :data="data" :showMonth="false" />
+    <ShadcnContribution :data="data" showMonth :dark="darkMode" />
+    <ShadcnContribution :data="data" :showMonth="false" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -139,7 +139,7 @@ title: 贡献图 (Contribution)
 ::: raw
 
 <CodeRunner title="单元格尺寸 (cell-size)">
-    <ShadcnContribution :data="data" :cellSize="15" />
+    <ShadcnContribution :data="data" :cellSize="15" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -159,7 +159,7 @@ title: 贡献图 (Contribution)
 ::: raw
 
 <CodeRunner title="单元格间距 (cell-gap)">
-    <ShadcnContribution :data="data" :cellGap="4" />
+    <ShadcnContribution :data="data" :cellGap="4" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -179,7 +179,7 @@ title: 贡献图 (Contribution)
 ::: raw
 
 <CodeRunner title="年 (year)">
-    <ShadcnContribution :data="data" :year="2023" />
+    <ShadcnContribution :data="data" :year="2023" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -231,6 +231,11 @@ title: 贡献图 (Contribution)
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
 
 const data = ref([
   { date: '2024-01-01', count: 2 },
