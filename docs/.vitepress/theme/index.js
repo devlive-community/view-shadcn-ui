@@ -1,6 +1,5 @@
 import DefaultTheme from 'vitepress/theme'
-import { h, onMounted, watch } from 'vue'
-import { useData } from 'vitepress'
+import { h } from 'vue'
 
 import CodeRunner from './components/CodeRunner.vue'
 import ApiTable from './components/ApiTable.vue'
@@ -21,19 +20,5 @@ export default {
 
         app.component('CodeRunner', CodeRunner)
         app.component('ApiTable', ApiTable)
-    },
-    setup() {
-        const { isDark } = useData()
-
-        onMounted(() => {
-            watch(isDark, (dark) => {
-                if (dark) {
-                    document.documentElement.classList.add('dark')
-                }
-                else {
-                    document.documentElement.classList.remove('dark')
-                }
-            }, { immediate: true })
-        })
     }
 }
