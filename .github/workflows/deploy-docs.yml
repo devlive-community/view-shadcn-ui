@@ -1,0 +1,70 @@
+name: Deploy docs
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  deploy-gh-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v2
+        with:
+          version: latest
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+          cache: 'pnpm'
+      - run: pnpm install
+      - name: Build
+        run: pnpm run docs:build
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          publish_dir: docs/.vitepress/dist
+
+  deploy-playground:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: latest
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: |
+          cd playground
+          pnpm install
+
+      - name: Build
+        run: |
+          cd playground
+          pnpm run build
+
+      - name: Deploy to GitHub Pages
+        run: |
+          rm -rf /tmp/playground-dist
+          mkdir -p /tmp/playground-dist
+          cp -r playground/dist/* /tmp/playground-dist
+          cd /tmp/playground-dist
+
+          echo 'playground.view-shadcn-ui.devlive.org' > CNAME
+
+          git init
+          git config --global user.name "${GITHUB_ACTOR}"
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git remote add origin "https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/devlive-community/playground.view-shadcn-ui.devlive.org.git"
+
+          git add .
+          git commit -m "deploy: playground on $(date '+%Y-%m-%d %H:%M:%S')"
+          git checkout -b dev
+          git push -u --force origin dev
