@@ -13,11 +13,11 @@ title: 文本 (Text)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnText color-type="default">Default</ShadcnText>
-    <ShadcnText color-type="primary">Primary</ShadcnText>
-    <ShadcnText color-type="success">Success</ShadcnText>
-    <ShadcnText color-type="warning">Warning</ShadcnText>
-    <ShadcnText color-type="error">Error</ShadcnText>
+    <ShadcnText color-type="default" :dark="darkMode">Default</ShadcnText>
+    <ShadcnText color-type="primary" :dark="darkMode">Primary</ShadcnText>
+    <ShadcnText color-type="success" :dark="darkMode">Success</ShadcnText>
+    <ShadcnText color-type="warning" :dark="darkMode">Warning</ShadcnText>
+    <ShadcnText color-type="error" :dark="darkMode">Error</ShadcnText>
 </CodeRunner>
 
 :::
@@ -41,15 +41,15 @@ title: 文本 (Text)
 ::: raw
 
 <CodeRunner title="颜色">
-      <ShadcnText color="#18A058">#18A058</ShadcnText>
-      <ShadcnText color="#F59E0B">#F59E0B</ShadcnText>
-      <ShadcnText color="#EF4444">#EF4444</ShadcnText>
-      <ShadcnText color="rgba(43, 79, 81, 1)">rgba(43, 79, 81, 1)</ShadcnText>
-      <ShadcnText color="rgba(43, 79, 81, 0.5)">rgba(43, 79, 81, 0.5)</ShadcnText>
-      <ShadcnText color="rgba(43, 22, 81, 0.5)">rgba(43, 22, 81, 0.5)</ShadcnText>
-      <ShadcnText color="red">red</ShadcnText>
-      <ShadcnText color="blue">blue</ShadcnText>
-      <ShadcnText color="green">green</ShadcnText>
+      <ShadcnText color="#18A058" :dark="darkMode">#18A058</ShadcnText>
+      <ShadcnText color="#F59E0B" :dark="darkMode">#F59E0B</ShadcnText>
+      <ShadcnText color="#EF4444" :dark="darkMode">#EF4444</ShadcnText>
+      <ShadcnText color="rgba(43, 79, 81, 1)" :dark="darkMode">rgba(43, 79, 81, 1)</ShadcnText>
+      <ShadcnText color="rgba(43, 79, 81, 0.5)" :dark="darkMode">rgba(43, 79, 81, 0.5)</ShadcnText>
+      <ShadcnText color="rgba(43, 22, 81, 0.5)" :dark="darkMode">rgba(43, 22, 81, 0.5)</ShadcnText>
+      <ShadcnText color="red" :dark="darkMode">red</ShadcnText>
+      <ShadcnText color="blue" :dark="darkMode">blue</ShadcnText>
+      <ShadcnText color="green" :dark="darkMode">green</ShadcnText>
 </CodeRunner>
 
 :::
@@ -77,9 +77,9 @@ title: 文本 (Text)
 ::: raw
 
 <CodeRunner title="粗体">
-      <ShadcnText strong color="#18A058">#18A058</ShadcnText>
-      <ShadcnText strong color="#F59E0B">#F59E0B</ShadcnText>
-      <ShadcnText strong color="#EF4444">#EF4444</ShadcnText>
+      <ShadcnText strong color="#18A058" :dark="darkMode">#18A058</ShadcnText>
+      <ShadcnText strong color="#F59E0B" :dark="darkMode">#F59E0B</ShadcnText>
+      <ShadcnText strong color="#EF4444" :dark="darkMode">#EF4444</ShadcnText>
 </CodeRunner>
 
 :::
@@ -101,9 +101,9 @@ title: 文本 (Text)
 ::: raw
 
 <CodeRunner title="斜体">
-      <ShadcnText italic color="#18A058">#18A058</ShadcnText>
-      <ShadcnText italic color="#F59E0B">#F59E0B</ShadcnText>
-      <ShadcnText italic color="#EF4444">#EF4444</ShadcnText>
+      <ShadcnText italic color="#18A058" :dark="darkMode">#18A058</ShadcnText>
+      <ShadcnText italic color="#F59E0B" :dark="darkMode">#F59E0B</ShadcnText>
+      <ShadcnText italic color="#EF4444" :dark="darkMode">#EF4444</ShadcnText>
 </CodeRunner>
 
 :::
@@ -125,9 +125,9 @@ title: 文本 (Text)
 ::: raw
 
 <CodeRunner title="下划线">
-      <ShadcnText underline color="#18A058">#18A058</ShadcnText>
-      <ShadcnText underline color="#F59E0B">#F59E0B</ShadcnText>
-      <ShadcnText underline color="#EF4444">#EF4444</ShadcnText>
+      <ShadcnText underline color="#18A058" :dark="darkMode">#18A058</ShadcnText>
+      <ShadcnText underline color="#F59E0B" :dark="darkMode">#F59E0B</ShadcnText>
+      <ShadcnText underline color="#EF4444" :dark="darkMode">#EF4444</ShadcnText>
 </CodeRunner>
 
 :::
@@ -149,9 +149,9 @@ title: 文本 (Text)
 ::: raw
 
 <CodeRunner title="删除线">
-      <ShadcnText deleted color="#18A058">#18A058</ShadcnText>
-      <ShadcnText deleted color="#F59E0B">#F59E0B</ShadcnText>
-      <ShadcnText deleted color="#EF4444">#EF4444</ShadcnText>
+      <ShadcnText deleted color="#18A058" :dark="darkMode">#18A058</ShadcnText>
+      <ShadcnText deleted color="#F59E0B" :dark="darkMode">#F59E0B</ShadcnText>
+      <ShadcnText deleted color="#EF4444" :dark="darkMode">#EF4444</ShadcnText>
 </CodeRunner>
 
 :::
@@ -174,18 +174,18 @@ title: 文本 (Text)
 
 <CodeRunner title="类型">
     <div class="space-x-2">
-        <ShadcnText type="code">Code</ShadcnText>
-        <ShadcnText type="pre">Pre</ShadcnText>
-        <ShadcnText type="p">P</ShadcnText>
-        <ShadcnText type="small">Small</ShadcnText>
-        <ShadcnText type="h1">H1</ShadcnText>
-        <ShadcnText type="h2">H2</ShadcnText>
-        <ShadcnText type="h3">H3</ShadcnText>
-        <ShadcnText type="h4">H4</ShadcnText>
-        <ShadcnText type="h5">H5</ShadcnText>
-        <ShadcnText type="h6">H6</ShadcnText>
-        <ShadcnText type="label">Label</ShadcnText>
-        <ShadcnText type="span">Span</ShadcnText>
+        <ShadcnText type="code" :dark="darkMode">Code</ShadcnText>
+        <ShadcnText type="pre" :dark="darkMode">Pre</ShadcnText>
+        <ShadcnText type="p" :dark="darkMode">P</ShadcnText>
+        <ShadcnText type="small" :dark="darkMode">Small</ShadcnText>
+        <ShadcnText type="h1" :dark="darkMode">H1</ShadcnText>
+        <ShadcnText type="h2" :dark="darkMode">H2</ShadcnText>
+        <ShadcnText type="h3" :dark="darkMode">H3</ShadcnText>
+        <ShadcnText type="h4" :dark="darkMode">H4</ShadcnText>
+        <ShadcnText type="h5" :dark="darkMode">H5</ShadcnText>
+        <ShadcnText type="h6" :dark="darkMode">H6</ShadcnText>
+        <ShadcnText type="label" :dark="darkMode">Label</ShadcnText>
+        <ShadcnText type="span" :dark="darkMode">Span</ShadcnText>
     </div>
 </CodeRunner>
 
@@ -232,8 +232,16 @@ title: 文本 (Text)
 ## 文本 (Text) 插槽
 
 <ApiTable title="文本 (Text) 插槽"
-    :headers="['插槽', '描述']" 
-    :columns="[ 
+    :headers="['插槽', '描述']"
+    :columns="[
         ['default', '文本插槽'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>

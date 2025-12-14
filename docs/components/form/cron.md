@@ -15,7 +15,7 @@ title: 计划任务 (Cron)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnCron v-model="value" />
+    <ShadcnCron v-model="value" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -41,7 +41,11 @@ title: 计划任务 (Cron)
 
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { useData } from 'vitepress'
+import { ref, computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
 
 const value = ref('')
 </script>

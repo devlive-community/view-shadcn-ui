@@ -13,7 +13,7 @@ title: 二维码 (Qr Code)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnQrCode v-model="value" />
+    <ShadcnQrCode v-model="value" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -22,7 +22,7 @@ title: 二维码 (Qr Code)
 
 ```vue
 <template>
-    <ShadcnQrCode v-model="value" />
+    <ShadcnQrCode v-model="value" :dark="darkMode" />
 </template>
 ```
 
@@ -33,7 +33,7 @@ title: 二维码 (Qr Code)
 ::: raw
 
 <CodeRunner title="尺寸 (size)">
-    <ShadcnQrCode v-model="value" :size="177" />
+    <ShadcnQrCode v-model="value" :size="177" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -42,7 +42,7 @@ title: 二维码 (Qr Code)
 
 ```vue
 <template>
-    <ShadcnQrCode v-model="value" :size="177" />
+    <ShadcnQrCode v-model="value" :size="177" :dark="darkMode" />
 </template>
 ```
 
@@ -53,7 +53,7 @@ title: 二维码 (Qr Code)
 ::: raw
 
 <CodeRunner title="填充 (padding)">
-    <ShadcnQrCode v-model="value" :padding="86" />
+    <ShadcnQrCode v-model="value" :padding="86" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -62,7 +62,7 @@ title: 二维码 (Qr Code)
 
 ```vue
 <template>
-    <ShadcnQrCode v-model="value" :padding="86" />
+    <ShadcnQrCode v-model="value" :padding="86" :dark="darkMode" />
 </template>
 ```
 
@@ -73,7 +73,7 @@ title: 二维码 (Qr Code)
 ::: raw
 
 <CodeRunner title="边距 (margin)">
-    <ShadcnQrCode v-model="value" :margin="79" />
+    <ShadcnQrCode v-model="value" :margin="79" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -82,7 +82,7 @@ title: 二维码 (Qr Code)
 
 ```vue
 <template>
-    <ShadcnQrCode v-model="value" :margin="79" />
+    <ShadcnQrCode v-model="value" :margin="79" :dark="darkMode" />
 </template>
 ```
 
@@ -93,10 +93,10 @@ title: 二维码 (Qr Code)
 ::: raw
 
 <CodeRunner title="等级 (level)">
-    <ShadcnQrCode v-model="value" level="L" />
-    <ShadcnQrCode v-model="value" level="M" />
-    <ShadcnQrCode v-model="value" level="Q" />
-    <ShadcnQrCode v-model="value" level="H" />
+    <ShadcnQrCode v-model="value" level="L" :dark="darkMode" />
+    <ShadcnQrCode v-model="value" level="M" :dark="darkMode" />
+    <ShadcnQrCode v-model="value" level="Q" :dark="darkMode" />
+    <ShadcnQrCode v-model="value" level="H" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -105,10 +105,10 @@ title: 二维码 (Qr Code)
 
 ```vue
 <template>
-    <ShadcnQrCode v-model="value" level="L" />
-    <ShadcnQrCode v-model="value" level="M" />
-    <ShadcnQrCode v-model="value" level="Q" />
-    <ShadcnQrCode v-model="value" level="H" />
+    <ShadcnQrCode v-model="value" level="L" :dark="darkMode" />
+    <ShadcnQrCode v-model="value" level="M" :dark="darkMode" />
+    <ShadcnQrCode v-model="value" level="Q" :dark="darkMode" />
+    <ShadcnQrCode v-model="value" level="H" :dark="darkMode" />
 </template>
 ```
 
@@ -119,7 +119,7 @@ title: 二维码 (Qr Code)
 ::: raw
 
 <CodeRunner title="背景 (background)">
-    <ShadcnQrCode v-model="value" background="#adaaff" />
+    <ShadcnQrCode v-model="value" background="#adaaff" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -128,7 +128,7 @@ title: 二维码 (Qr Code)
 
 ```vue
 <template>
-    <ShadcnQrCode v-model="value" background="#adaaff" />
+    <ShadcnQrCode v-model="value" background="#adaaff" :dark="darkMode" />
 </template>
 ```
 
@@ -139,7 +139,7 @@ title: 二维码 (Qr Code)
 ::: raw
 
 <CodeRunner title="前景 (foreground)">
-    <ShadcnQrCode v-model="value" foreground="#450827" />
+    <ShadcnQrCode v-model="value" foreground="#450827" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -148,7 +148,7 @@ title: 二维码 (Qr Code)
 
 ```vue
 <template>
-    <ShadcnQrCode v-model="value" foreground="#450827" />
+    <ShadcnQrCode v-model="value" foreground="#450827" :dark="darkMode" />
 </template>
 ```
 
@@ -159,7 +159,7 @@ title: 二维码 (Qr Code)
 ::: raw
 
 <CodeRunner title="圆角 (rounded)">
-    <ShadcnQrCode v-model="value" rounded="false" />
+    <ShadcnQrCode v-model="value" rounded="false" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -168,7 +168,7 @@ title: 二维码 (Qr Code)
 
 ```vue
 <template>
-    <ShadcnQrCode v-model="value" rounded="false" />
+    <ShadcnQrCode v-model="value" rounded="false" :dark="darkMode" />
 </template>
 ```
 
@@ -209,6 +209,12 @@ title: 二维码 (Qr Code)
 </ApiTable>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { ref } from 'vue';
 
 const value = ref('Hello View Shadcn UI')

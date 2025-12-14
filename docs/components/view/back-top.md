@@ -19,7 +19,7 @@ title: 返回顶部 (Back Top)
       <p>This is test content。</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     </div>
-    <ShadcnBackTop />
+    <ShadcnBackTop  :dark="darkMode"/>
   </div>
 </CodeRunner>
 
@@ -36,7 +36,7 @@ title: 返回顶部 (Back Top)
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     </div>
     
-    <ShadcnBackTop />
+    <ShadcnBackTop  :dark="darkMode"/>
   </div>
 </template>
 ```
@@ -63,3 +63,11 @@ title: 返回顶部 (Back Top)
         ['click', '组件点击事件', 'event'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>

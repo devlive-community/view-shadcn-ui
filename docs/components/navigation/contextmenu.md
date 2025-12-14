@@ -13,9 +13,9 @@ title: 右键菜单 (Contextmenu)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnContextMenu v-model="showMenu">
+    <ShadcnContextMenu v-model="showMenu" :dark="darkMode">
       <template #trigger>
-        <div class="w-full h-32 bg-gray-100 rounded-lg flex items-center justify-center">
+        <div :class="['w-full h-32 bg-gray-100 rounded-lg flex items-center justify-center', darkMode ? 'bg-gray-800' : 'bg-gray-100' ]">
           Right click in this area to show menu
         </div>
       </template>
@@ -70,9 +70,9 @@ const onItemClick = (action) => console.log(`Clicked: ${action}`)
 ::: raw
 
 <CodeRunner title="子菜单 (Sub menu)">
-  <ShadcnContextMenu v-model="subMenu">
+  <ShadcnContextMenu v-model="subMenu" :dark="darkMode">
     <template #trigger>
-      <div class="w-full h-32 bg-gray-100 rounded-lg flex items-center justify-center">
+        <div :class="['w-full h-32 bg-gray-100 rounded-lg flex items-center justify-center', darkMode ? 'bg-gray-800' : 'bg-gray-100' ]">
         Right click in this area to show menu
       </div>
     </template>
@@ -144,9 +144,9 @@ const onItemClick = (action) => console.log(`Clicked: ${action}`)
 ::: raw
 
 <CodeRunner title="禁用 (disabled)">
-  <ShadcnContextMenu v-model="disabledMenu">
+  <ShadcnContextMenu v-model="disabledMenu" :dark="darkMode">
     <template #trigger>
-      <div class="w-full h-32 bg-gray-100 rounded-lg flex items-center justify-center">
+      <div :class="['w-full h-32 bg-gray-100 rounded-lg flex items-center justify-center', darkMode ? 'bg-gray-800' : 'bg-gray-100' ]">
         Right click in this area to show menu
       </div>
     </template>
@@ -258,7 +258,11 @@ const onItemClick = (action) => console.log(`Clicked: ${action}`)
 </ApiTable>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { useData } from 'vitepress'
+import { ref, computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
 
 const showMenu = ref(false)
 const subMenu = ref(false)

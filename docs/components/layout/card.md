@@ -11,7 +11,7 @@ title: 卡片 (Card)
 ## 用法
 
 <CodeRunner title="用法">
-    <ShadcnCard title="用法">
+    <ShadcnCard title="用法" :dark="darkMode">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnCard>
 </CodeRunner>
@@ -34,7 +34,7 @@ title: 卡片 (Card)
 ## 描述 (description)
 
 <CodeRunner title="描述 (description)">
-    <ShadcnCard title="Title" description="Description">
+    <ShadcnCard title="Title" description="Description" :dark="darkMode">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnCard>
 </CodeRunner>
@@ -58,9 +58,9 @@ title: 卡片 (Card)
 
 <CodeRunner title="阴影 (shadow)">
     <div class="space-y-4">
-        <ShadcnCard title="Shadow Never" shadow="never"/>
-        <ShadcnCard title="Shadow Always" shadow="always"/>
-        <ShadcnCard title="Shadow Hover" shadow="hover"/>
+        <ShadcnCard title="Shadow Never" shadow="never" :dark="darkMode"/>
+        <ShadcnCard title="Shadow Always" shadow="always" :dark="darkMode"/>
+        <ShadcnCard title="Shadow Hover" shadow="hover" :dark="darkMode"/>
     </div>
 </CodeRunner>
 
@@ -86,10 +86,10 @@ title: 卡片 (Card)
 ::: raw
 
 <CodeRunner title="加载 (loading)">
-    <ShadcnCard title="Loading" :loading="true">
+    <ShadcnCard title="Loading" :loading="true" :dark="darkMode">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnCard>
-    <ShadcnCard title="Only Content Loading" :loading="true" only-content-loading>
+    <ShadcnCard title="Only Content Loading" :loading="true" only-content-loading :dark="darkMode">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnCard>
 </CodeRunner>
@@ -118,10 +118,10 @@ title: 卡片 (Card)
 ## 边框 (border)
 
 <CodeRunner title="边框 (border)">
-    <ShadcnCard title="Border" border>
+    <ShadcnCard title="Border" border :dark="darkMode">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnCard>
-    <ShadcnCard title="No Border" :border="false">
+    <ShadcnCard title="No Border" :border="false" :dark="darkMode">
         <div class="flex items-center justify-center h-32">Content</div>
     </ShadcnCard>
 </CodeRunner>
@@ -170,3 +170,11 @@ title: 卡片 (Card)
         ['footer', '卡片底部插槽'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)</>
+</script>

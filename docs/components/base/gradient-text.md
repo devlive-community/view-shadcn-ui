@@ -13,9 +13,9 @@ tite: 渐变文本 (Gradient Text)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnGradientText>This is a gradient text</ShadcnGradientText>
+    <ShadcnGradientText :dark="darkMode">This is a gradient text</ShadcnGradientText>
     <br/>
-    <ShadcnGradientText from="red" to="blue" deg="200">This is a gradient text</ShadcnGradientText>
+    <ShadcnGradientText from="red" to="blue" deg="200" :dark="darkMode">This is a gradient text</ShadcnGradientText>
 </CodeRunner>
 
 :::
@@ -37,7 +37,7 @@ tite: 渐变文本 (Gradient Text)
 ::: raw
 
 <CodeRunner title="配置">
-    <ShadcnGradientText options="45deg, red 0 50%, blue 50% 100%">This is a gradient text</ShadcnGradientText>
+    <ShadcnGradientText options="45deg, red 0 50%, blue 50% 100%" :dark="darkMode">This is a gradient text</ShadcnGradientText>
 </CodeRunner>
 
 :::
@@ -67,8 +67,16 @@ tite: 渐变文本 (Gradient Text)
 ## 渐变文本 (Gradient Text) 插槽
 
 <ApiTable title="渐变文本 (Gradient Text) 插槽"
-    :headers="['插槽', '描述']" 
+    :headers="['插槽', '描述']"
     :columns="[
         ['default', '文本插槽'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>

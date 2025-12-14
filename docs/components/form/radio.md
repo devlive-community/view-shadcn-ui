@@ -11,20 +11,25 @@ title: 单选框 (Radio)
 ## 用法
 
 <CodeRunner title="用法">
-    <ShadcnRadio v-model="checked" value="ON">ON</ShadcnRadio>
-    <ShadcnRadio v-model="checked" value="OFF">OFF</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="ON" :dark="darkMode">ON</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="OFF" :dark="darkMode">OFF</ShadcnRadio>
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnRadio v-model="checked" value="ON">ON</ShadcnRadio>
-    <ShadcnRadio v-model="checked" value="OFF">OFF</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="ON" :dark="darkMode">ON</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="OFF" :dark="darkMode">OFF</ShadcnRadio>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 
 const checked = ref('ON')
 </script>
@@ -35,16 +40,16 @@ const checked = ref('ON')
 ## 禁用 (disabled)
 
 <CodeRunner title="禁用 (disabled)">
-    <ShadcnRadio v-model="checked" value="ON" disabled>ON</ShadcnRadio>
-    <ShadcnRadio v-model="checked" value="OFF">OFF</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="ON" disabled :dark="darkMode">ON</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="OFF" :dark="darkMode">OFF</ShadcnRadio>
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnRadio v-model="checked" value="ON" disabled>ON</ShadcnRadio>
-    <ShadcnRadio v-model="checked" value="OFF">OFF</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="ON" disabled :dark="darkMode">ON</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="OFF" :dark="darkMode">OFF</ShadcnRadio>
 </template>
 
 <script setup lang="ts">
@@ -59,18 +64,18 @@ const checked = ref('ON')
 ## 尺寸 (size)
 
 <CodeRunner title="尺寸 (size)">
-    <ShadcnRadio v-model="checked" value="Default" size="default">Default</ShadcnRadio>
-    <ShadcnRadio v-model="checked" value="Small" size="small">Small</ShadcnRadio>
-    <ShadcnRadio v-model="checked" value="Large" size="large">Large</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="Default" size="default" :dark="darkMode">Default</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="Small" size="small" :dark="darkMode">Small</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="Large" size="large" :dark="darkMode">Large</ShadcnRadio>
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnRadio v-model="checked" value="Default" size="default">Default</ShadcnRadio>
-    <ShadcnRadio v-model="checked" value="Small" size="small">Small</ShadcnRadio>
-    <ShadcnRadio v-model="checked" value="Large" size="large">Large</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="Default" size="default" :dark="darkMode">Default</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="Small" size="small" :dark="darkMode">Small</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="Large" size="large" :dark="darkMode">Large</ShadcnRadio>
 </template>
 
 <script setup lang="ts">
@@ -85,20 +90,20 @@ const checked = ref('Default')
 ## 类型 (type)
 
 <CodeRunner title="类型 (type)">
-    <ShadcnRadio v-model="checked" value="Primary" type="primary">Primary</ShadcnRadio>
-    <ShadcnRadio v-model="checked" value="Success" type="success">Success</ShadcnRadio>
-    <ShadcnRadio v-model="checked" value="Warning" type="warning">Warning</ShadcnRadio>
-    <ShadcnRadio v-model="checked" value="Error" type="error">Error</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="Primary" type="primary" :dark="darkMode">Primary</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="Success" type="success" :dark="darkMode">Success</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="Warning" type="warning" :dark="darkMode">Warning</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="Error" type="error" :dark="darkMode">Error</ShadcnRadio>
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnRadio v-model="checked" value="Primary" type="primary">Primary</ShadcnRadio>
-    <ShadcnRadio v-model="checked" value="Success" type="success">Success</ShadcnRadio>
-    <ShadcnRadio v-model="checked" value="Warning" type="warning">Warning</ShadcnRadio>
-    <ShadcnRadio v-model="checked" value="Error" type="error">Error</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="Primary" type="primary" :dark="darkMode">Primary</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="Success" type="success" :dark="darkMode">Success</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="Warning" type="warning" :dark="darkMode">Warning</ShadcnRadio>
+    <ShadcnRadio v-model="checked" value="Error" type="error" :dark="darkMode">Error</ShadcnRadio>
 </template>
 
 <script setup lang="ts">
@@ -114,10 +119,10 @@ const checked = ref('Primary')
 
 <CodeRunner title="组 (group)">
     Checkbox Group Value: {{ checkedGroup }}
-    <ShadcnRadioGroup v-model="checkedGroup">
-        <ShadcnRadio value="ON">ON</ShadcnRadio>
-        <ShadcnRadio value="OFF">OFF</ShadcnRadio>
-        <ShadcnRadio value="Disabled" disabled>Disabled</ShadcnRadio>
+    <ShadcnRadioGroup v-model="checkedGroup" :dark="darkMode">
+        <ShadcnRadio value="ON" :dark="darkMode">ON</ShadcnRadio>
+        <ShadcnRadio value="OFF" :dark="darkMode">OFF</ShadcnRadio>
+        <ShadcnRadio value="Disabled" disabled :dark="darkMode">Disabled</ShadcnRadio>
     </ShadcnRadioGroup>
 </CodeRunner>
 
@@ -125,10 +130,10 @@ const checked = ref('Primary')
 
 ```vue
 <template>
-    <ShadcnRadioGroup v-model="checkedGroup">
-        <ShadcnRadio value="ON">ON</ShadcnRadio>
-        <ShadcnRadio value="OFF">OFF</ShadcnRadio>
-        <ShadcnRadio value="Disabled" disabled>Disabled</ShadcnRadio>
+    <ShadcnRadioGroup v-model="checkedGroup" :dark="darkMode">
+        <ShadcnRadio value="ON" :dark="darkMode">ON</ShadcnRadio>
+        <ShadcnRadio value="OFF" :dark="darkMode">OFF</ShadcnRadio>
+        <ShadcnRadio value="Disabled" disabled :dark="darkMode">Disabled</ShadcnRadio>
     </ShadcnRadioGroup>
 </template>
 
@@ -193,6 +198,11 @@ const checkedGroup = ref('ON')
 
 <script setup lang="ts">
 import { ref } from 'vue'
+
+import { useData } from 'vitepress' 
+import { computed } from 'vue' 
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
 
 const checked = ref('ON')
 const checkedGroup = ref('ON')

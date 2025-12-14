@@ -13,11 +13,11 @@ title: 通知中心 (Notification)
 ::: raw
 
 <CodeRunner title="用法" codeKey="notification-usage">
-        <ShadcnNotification trigger @on-read-all="handleReadAll" @on-clear-all="handleClearAll">
+        <ShadcnNotification trigger @on-read-all="handleReadAll" @on-clear-all="handleClearAll" :dark="darkMode">
           <ShadcnNotificationItem v-for="(item, index) in notifications"
                                   :key="index"
                                   :item="item"
-                                  @on-click="handleNotificationClick">
+                                  @on-click="handleNotificationClick" :dark="darkMode">
           </ShadcnNotificationItem>
         </ShadcnNotification>
 </CodeRunner>
@@ -30,8 +30,8 @@ title: 通知中心 (Notification)
 <template>
   <ShadcnNotification @on-item-click="handleNotificationClick"
                       @on-read-all="handleReadAll"
-                      @on-clear-all="handleClearAll">
-    <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick"/>
+                      @on-clear-all="handleClearAll" :dark="darkMode">
+    <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick" :dark="darkMode" />
   </ShadcnNotification>
 </template>
 ```
@@ -43,8 +43,8 @@ title: 通知中心 (Notification)
 ::: raw
 
 <CodeRunner title="触发器" codeKey="notification-trigger">
-    <ShadcnNotification trigger>
-      <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick"/>
+    <ShadcnNotification trigger :dark="darkMode">
+      <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick" :dark="darkMode" />
     </ShadcnNotification>
 </CodeRunner>
 
@@ -54,8 +54,8 @@ title: 通知中心 (Notification)
 
 ```vue
 <template>
-  <ShadcnNotification trigger>
-    <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick"/>
+  <ShadcnNotification trigger :dark="darkMode">
+    <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick" :dark="darkMode" />
   </ShadcnNotification>
 </template>
 ```
@@ -67,8 +67,8 @@ title: 通知中心 (Notification)
 ::: raw
 
 <CodeRunner title="宽度" codeKey="notification-width">
-    <ShadcnNotification trigger width="20%">
-      <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick"/>
+    <ShadcnNotification trigger width="20%" :dark="darkMode">
+      <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick" :dark="darkMode" />
     </ShadcnNotification>
 </CodeRunner>
 
@@ -78,8 +78,8 @@ title: 通知中心 (Notification)
 
 ```vue
 <template>
-  <ShadcnNotification trigger width="50%">
-    <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick"/>
+  <ShadcnNotification trigger width="50%" :dark="darkMode">
+    <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick" :dark="darkMode" />
   </ShadcnNotification>
 </template>
 ```
@@ -91,8 +91,8 @@ title: 通知中心 (Notification)
 ::: raw
 
 <CodeRunner title="高度" codeKey="notification-height">
-    <ShadcnNotification trigger height="200px">
-      <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick"/>
+    <ShadcnNotification trigger height="200px" :dark="darkMode">
+      <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick" :dark="darkMode" />
     </ShadcnNotification>
 </CodeRunner>
 
@@ -102,8 +102,8 @@ title: 通知中心 (Notification)
 
 ```vue
 <template>
-  <ShadcnNotification trigger height="200px">
-    <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick"/>
+  <ShadcnNotification trigger height="200px" :dark="darkMode">
+    <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick" :dark="darkMode" />
   </ShadcnNotification>
 </template>
 ```
@@ -115,14 +115,14 @@ title: 通知中心 (Notification)
 ::: raw
 
 <CodeRunner title="位置" warning="位置顺序为左中右" codeKey="notification-position">
-    <ShadcnNotification position="left" height="200px">
-      <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick"/>
+    <ShadcnNotification position="left" height="200px" :dark="darkMode">
+      <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick" :dark="darkMode" />
     </ShadcnNotification>
-    <ShadcnNotification position="center" height="200px">
-      <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick"/>
+    <ShadcnNotification position="center" height="200px" :dark="darkMode">
+      <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick" :dark="darkMode" />
     </ShadcnNotification>
-    <ShadcnNotification position="right" height="200px">
-      <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick"/>
+    <ShadcnNotification position="right" height="200px" :dark="darkMode">
+      <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick" :dark="darkMode" />
     </ShadcnNotification>
 </CodeRunner>
 
@@ -132,8 +132,8 @@ title: 通知中心 (Notification)
 
 ```vue
 <template>
-  <ShadcnNotification position="center" height="200px">
-    <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick"/>
+  <ShadcnNotification position="center" height="200px" :dark="darkMode">
+    <ShadcnNotificationItem v-for="(item, index) in notifications" :key="index" :item="item" @on-click="handleNotificationClick" :dark="darkMode" />
   </ShadcnNotification>
 </template>
 ```
@@ -153,11 +153,11 @@ title: 通知中心 (Notification)
                         @on-item-click="handleNotificationClick"
                         @on-read-all="handleReadAll"
                         @on-clear-all="handleClearAll"
-                        @on-load-data="handleLoadMoreEvent">
+                        @on-load-data="handleLoadMoreEvent" :dark="darkMode">
       <ShadcnNotificationItem v-for="(item, index) in notifications"
                               :key="index"
                               :item="item"
-                              @on-click="handleNotificationClick">
+                              @on-click="handleNotificationClick" :dark="darkMode">
       </ShadcnNotificationItem>
     </ShadcnNotification>
 </CodeRunner>
@@ -227,6 +227,12 @@ title: 通知中心 (Notification)
 </ApiTable>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 import { ref } from 'vue'
 
 const currentPage = ref(1)

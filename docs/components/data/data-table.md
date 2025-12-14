@@ -13,7 +13,7 @@ title: 数据表格 (Data Table)
 ::: raw
 
 <CodeRunner title="用法" codeKey="data-table-usage">
-    <ShadcnDataTable :columns="columns" :data="data">
+    <ShadcnDataTable :columns="columns" :data="data" :dark="darkMode">
     </ShadcnDataTable>
 </CodeRunner>
 
@@ -37,21 +37,23 @@ title: 数据表格 (Data Table)
 <CodeRunner title="尺寸 (size)" codeKey="data-table-size">
   <div class="space-y-4">
     <div>
-      <ShadcnDivider orientation="left">小尺寸</ShadcnDivider>
+      <ShadcnDivider orientation="left" :dark="darkMode">小尺寸</ShadcnDivider>
       <ShadcnDataTable :columns="columns"
                        :data="data"
+                       :dark="darkMode"
                        size="small">
       </ShadcnDataTable>
     </div>
     <div>
-      <ShadcnDivider orientation="left">默认尺寸</ShadcnDivider>
-      <ShadcnDataTable :columns="columns" :data="data">
+      <ShadcnDivider orientation="left" :dark="darkMode">默认尺寸</ShadcnDivider>
+      <ShadcnDataTable :columns="columns" :data="data" :dark="darkMode">
       </ShadcnDataTable>
     </div>
     <div>
-      <ShadcnDivider orientation="left">大尺寸</ShadcnDivider>
+      <ShadcnDivider orientation="left" :dark="darkMode">大尺寸</ShadcnDivider>
       <ShadcnDataTable :columns="columns"
                        :data="data" 
+                       :dark="darkMode"
                        size="large">
       </ShadcnDataTable>
     </div>
@@ -95,7 +97,7 @@ title: 数据表格 (Data Table)
 ::: raw
 
 <CodeRunner title="高度 (height)" codeKey="data-table-height">
-    <ShadcnDataTable :columns="columns" :data="data" height="200">
+    <ShadcnDataTable :columns="columns" :data="data" height="200" :dark="darkMode">
     </ShadcnDataTable>
 </CodeRunner>
 
@@ -106,7 +108,7 @@ title: 数据表格 (Data Table)
 ::: raw
 
 <CodeRunner title="宽度 (width)" codeKey="data-table-width">
-    <ShadcnDataTable :columns="columns" :data="data" width="400">
+    <ShadcnDataTable :columns="columns" :data="data" width="400" :dark="darkMode">
     </ShadcnDataTable>
 </CodeRunner>
 
@@ -117,7 +119,7 @@ title: 数据表格 (Data Table)
 ::: raw
 
 <CodeRunner title="分页 (pagination)" codeKey="data-table-pagination">
-    <ShadcnDataTable :columns="columns" :data="longData" height="300" :pagination="{ size: 10, options: [5, 10, 20, 50, 100] }">
+    <ShadcnDataTable :columns="columns" :data="longData" height="300" :dark="darkMode" :pagination="{ size: 10, options: [5, 10, 20, 50, 100] }">
     </ShadcnDataTable>
 </CodeRunner>
 
@@ -128,8 +130,8 @@ title: 数据表格 (Data Table)
 ::: raw
 
 <CodeRunner title="加载中 (loading)" codeKey="data-table-loading">
-    <ShadcnButton @click="loading = !loading">{{ loading ? '取消加载' : '设置加载' }}</ShadcnButton>
-    <ShadcnDataTable :columns="columns" :data="data" height="300" :pagination="{ size: 5, options: [5, 10, 20, 50, 100] }" :loading="loading">
+    <ShadcnButton @click="loading = !loading" :dark="darkMode">{{ loading ? '取消加载' : '设置加载' }}</ShadcnButton>
+    <ShadcnDataTable :columns="columns" :dark="darkMode" :data="data" height="300" :pagination="{ size: 5, options: [5, 10, 20, 50, 100] }" :loading="loading">
     </ShadcnDataTable>
 </CodeRunner>
 
@@ -140,7 +142,7 @@ title: 数据表格 (Data Table)
 ::: raw
 
 <CodeRunner title="空数据 (empty)" codeKey="data-table-empty">
-    <ShadcnDataTable :columns="columns" :data="[]">
+    <ShadcnDataTable :columns="columns" :data="[]" :dark="darkMode">
     </ShadcnDataTable>
 </CodeRunner>
 
@@ -151,7 +153,7 @@ title: 数据表格 (Data Table)
 ::: raw
 
 <CodeRunner title="右键菜单 (contextMenu)" codeKey="data-table-contextmenu">
-    <ShadcnDataTable :columns="editableColumns" :data="data" :context-menu="true" @on-row-edit="onRowEdit">
+    <ShadcnDataTable :columns="editableColumns" :data="data" :dark="darkMode" :context-menu="true" @on-row-edit="onRowEdit">
     </ShadcnDataTable>
 </CodeRunner>
 
@@ -162,7 +164,7 @@ title: 数据表格 (Data Table)
 ::: raw
 
 <CodeRunner title="行选择 (selection)" codeKey="data-table-selection">
-    <ShadcnDataTable :columns="columns"
+    <ShadcnDataTable :columns="columns" :dark="darkMode"
                      :data="data"
                      size="small"
                      height="300"
@@ -172,7 +174,7 @@ title: 数据表格 (Data Table)
                      @on-size-change="console.log('每页条数改变' + $event)"
                      @on-row-select="console.log('选中的数据条数 ' + $event?.selectedRows.length)">
     </ShadcnDataTable>
-    <ShadcnDataTable :columns="columns"
+    <ShadcnDataTable :columns="columns" :dark="darkMode"
                      :data="data"
                      size="small"
                      height="300"
@@ -191,7 +193,7 @@ title: 数据表格 (Data Table)
 ::: raw
 
 <CodeRunner title="列移动 (move)" codeKey="data-table-move">
-    <ShadcnDataTable :columns="columns" :data="data" :column-move="true">
+    <ShadcnDataTable :columns="columns" :data="data" :column-move="true" :dark="darkMode">
     </ShadcnDataTable>
 </CodeRunner>
 
@@ -202,7 +204,7 @@ title: 数据表格 (Data Table)
 ::: raw
 
 <CodeRunner title="列排序 (sort)" codeKey="data-table-sort" warning="只需要在列上添加 sortable 属性即可，多列排序需要按住 Shift 键">
-    <ShadcnDataTable :columns="sortColumns" :data="data">
+    <ShadcnDataTable :columns="sortColumns" :dark="darkMode" :data="data">
     </ShadcnDataTable>
 </CodeRunner>
 
@@ -213,7 +215,7 @@ title: 数据表格 (Data Table)
 ::: raw
 
 <CodeRunner title="列省略 (ellipsis)" codeKey="data-table-ellipsis" warning="只需要在列上添加 ellipsis 属性即可，默认会显示省略号">
-    <ShadcnDataTable :columns="ellipsisColumns" :data="data">
+    <ShadcnDataTable :columns="ellipsisColumns" :data="data" :dark="darkMode">
     </ShadcnDataTable>
 </CodeRunner>
 
@@ -224,7 +226,7 @@ title: 数据表格 (Data Table)
 ::: raw
 
 <CodeRunner title="列宽度 (width)" codeKey="data-table-width" warning="只需要在列上添加 width 属性即可">
-    <ShadcnDataTable :columns="widthColumns" :data="data">
+    <ShadcnDataTable :columns="widthColumns" :data="data" :dark="darkMode">
     </ShadcnDataTable>
 </CodeRunner>
 
@@ -235,7 +237,7 @@ title: 数据表格 (Data Table)
 ::: raw
 
 <CodeRunner title="列提示 (tooltip)" codeKey="data-table-tooltip" warning="只需要在列上添加 tooltip 属性即可">
-    <ShadcnDataTable :columns="tooltipColumns" :data="data">
+    <ShadcnDataTable :columns="tooltipColumns" :data="data" :dark="darkMode">
     </ShadcnDataTable>
 </CodeRunner>
 
@@ -246,7 +248,7 @@ title: 数据表格 (Data Table)
 ::: raw
 
 <CodeRunner title="列对齐方式 (align)" codeKey="data-table-align" warning="只需要在列上添加 align 属性即可">
-    <ShadcnDataTable :columns="alignColumns" :data="data">
+    <ShadcnDataTable :columns="alignColumns" :data="data" :dark="darkMode">
     </ShadcnDataTable>
 </CodeRunner>
 
@@ -257,7 +259,7 @@ title: 数据表格 (Data Table)
 ::: raw
 
 <CodeRunner title="列宽度调整 (resizable)" codeKey="data-table-resizable" warning="只需要在列上添加 resizable 属性即可">
-    <ShadcnDataTable :columns="resizableColumns" :data="data">
+    <ShadcnDataTable :columns="resizableColumns" :data="data" :dark="darkMode">
     </ShadcnDataTable>
 </CodeRunner>
 
@@ -268,7 +270,7 @@ title: 数据表格 (Data Table)
 ::: raw
 
 <CodeRunner title="列编辑 (editable)" codeKey="data-table-editable" warning="只需要在列上添加 editable 属性即可">
-    <ShadcnDataTable :columns="editableColumns" :data="data" @on-cell-edit="onCellEdit($event)">
+    <ShadcnDataTable :columns="editableColumns" :data="data" @on-cell-edit="onCellEdit($event)" :dark="darkMode">
     </ShadcnDataTable>
 </CodeRunner>   
 
@@ -354,6 +356,11 @@ title: 数据表格 (Data Table)
 <script setup lang="ts">
 import { ref, getCurrentInstance } from 'vue'
 const { proxy } = getCurrentInstance()!
+import { useData } from "vitepress";
+import { computed } from "vue";
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
 
 const columns = ref([
   { key: 'title', label: '标题' },

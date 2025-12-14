@@ -13,7 +13,7 @@ title: 轮播 (Carousel)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnCarousel :items="items" />
+    <ShadcnCarousel :items="items" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -33,7 +33,7 @@ title: 轮播 (Carousel)
 ::: raw
 
 <CodeRunner title="播放间隔 (interval)">
-    <ShadcnCarousel :items="items" :interval="405" />
+    <ShadcnCarousel :items="items" :interval="405" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -54,9 +54,9 @@ title: 轮播 (Carousel)
 
 <CodeRunner title="显示箭头 (show-arrows)">
     显示箭头
-    <ShadcnCarousel :items="items" showArrows />
+    <ShadcnCarousel :items="items" showArrows :dark="darkMode" />
     不显示箭头
-    <ShadcnCarousel :items="items" :showArrows="false" />
+    <ShadcnCarousel :items="items" :showArrows="false" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -78,9 +78,9 @@ title: 轮播 (Carousel)
 
 <CodeRunner title="显示指示器 (show-indicators)">
     显示指示器
-    <ShadcnCarousel :items="items" showIndicators />
+    <ShadcnCarousel :items="items" showIndicators :dark="darkMode" />
     不显示指示器
-    <ShadcnCarousel :items="items" :showIndicators="false" />
+    <ShadcnCarousel :items="items" :showIndicators="false" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -101,7 +101,7 @@ title: 轮播 (Carousel)
 ::: raw
 
 <CodeRunner title="轮播方向 (direction)">
-    <ShadcnCarousel :items="items" direction="vertical" />
+    <ShadcnCarousel :items="items" direction="vertical" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -121,7 +121,7 @@ title: 轮播 (Carousel)
 ::: raw
 
 <CodeRunner title="自动播放 (auto-play)">
-    <ShadcnCarousel :items="items" :auto-play="false" />
+    <ShadcnCarousel :items="items" :auto-play="false" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -141,7 +141,7 @@ title: 轮播 (Carousel)
 ::: raw
 
 <CodeRunner title="高度 (height)">
-    <ShadcnCarousel :items="items" height="200px" />
+    <ShadcnCarousel :items="items" height="200px" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -192,6 +192,12 @@ title: 轮播 (Carousel)
 </ApiTable>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 const items = [
   { text: 'Slide 1', src: 'https://picsum.photos/800/400' },
   { text: 'Slide 2', src: 'https://picsum.photos/800/400' },

@@ -13,7 +13,7 @@ title: 日志 (Logger)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnLogger :items="generateMockLogs(10)"/>
+    <ShadcnLogger :items="generateMockLogs(10)" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -22,7 +22,7 @@ title: 日志 (Logger)
 
 ```vue
 <template>
-    <ShadcnLogger :items="items"/>
+    <ShadcnLogger :items="items" :dark="darkMode" />
 </template>
 ```
 
@@ -33,7 +33,7 @@ title: 日志 (Logger)
 ::: raw
 
 <CodeRunner title="高亮 (highlight)">
-    <ShadcnLogger :items="generateMockLogs(10)" :highlight-config="{ INFO: 'green', WARN: 'yellow', ERROR: 'red', DEBUG: 'blue', TRACE: 'cyan', FATAL: 'red' }"/>
+    <ShadcnLogger :items="generateMockLogs(10)" :highlight-config="{ INFO: 'green', WARN: 'yellow', ERROR: 'red', DEBUG: 'blue', TRACE: 'cyan', FATAL: 'red' }" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -42,7 +42,7 @@ title: 日志 (Logger)
 
 ```vue
 <template>
-    <ShadcnLogger :items="items" :highlight-config="{ INFO: 'green', WARN: 'yellow', ERROR: 'red', DEBUG: 'blue', TRACE: 'cyan', FATAL: 'red' }"/>
+    <ShadcnLogger :items="items" :highlight-config="{ INFO: 'green', WARN: 'yellow', ERROR: 'red', DEBUG: 'blue', TRACE: 'cyan', FATAL: 'red' }" :dark="darkMode" />
 </template>
 ```
 
@@ -53,7 +53,7 @@ title: 日志 (Logger)
 ::: raw
 
 <CodeRunner title="高度 (height)">
-    <ShadcnLogger :items="generateMockLogs(10)" :height="300"/>
+    <ShadcnLogger :items="generateMockLogs(10)" :height="300" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -62,7 +62,7 @@ title: 日志 (Logger)
 
 ```vue
 <template>
-    <ShadcnLogger :items="items" :height="200"/>
+    <ShadcnLogger :items="items" :height="200" :dark="darkMode" />
 </template>
 ```
 
@@ -73,7 +73,7 @@ title: 日志 (Logger)
 ::: raw
 
 <CodeRunner title="工具栏 (toolbar)">
-    <ShadcnLogger :items="generateMockLogs(10)" toolbar/>
+    <ShadcnLogger :items="generateMockLogs(10)" toolbar :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -82,7 +82,7 @@ title: 日志 (Logger)
 
 ```vue
 <template>
-    <ShadcnLogger :items="items" toolbar/>
+    <ShadcnLogger :items="items" toolbar :dark="darkMode" />
 </template>
 ```
 
@@ -93,7 +93,7 @@ title: 日志 (Logger)
 ::: raw
 
 <CodeRunner title="忽略大小写 (case-sensitive)">
-    <ShadcnLogger :items="generateMockLogs(10)" toolbar case-sensitive />
+    <ShadcnLogger :items="generateMockLogs(10)" toolbar case-sensitive  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -102,7 +102,7 @@ title: 日志 (Logger)
 
 ```vue
 <template>
-    <ShadcnLogger :items="items" toolbar case-sensitive/>
+    <ShadcnLogger :items="items" toolbar case-sensitive :dark="darkMode" />
 </template>
 ```
 
@@ -132,6 +132,12 @@ title: 日志 (Logger)
 </ApiTable>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 const generateMockLogs = (count: number = 100): string[] => {
   const generateTimestamp = (i: number) => {
     const date = new Date('2024-12-04T23:14:24.742Z')

@@ -13,7 +13,7 @@ title: 全局页脚 (Global Footer)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnGlobalFooter :links="links" :socials="socials"/>
+    <ShadcnGlobalFooter :links="links" :socials="socials" :dark="darkMode"/>
 </CodeRunner>
 
 :::
@@ -108,4 +108,10 @@ const links = [
 const socials = [
   { icon: 'Github', href: 'https://github.com/devlive-community', label: 'GitHub' }
 ]
+
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
 </script>

@@ -13,7 +13,7 @@ title: 复制 (Copy)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnCopy text="Hello Shadcn UI"/>
+    <ShadcnCopy text="Hello Shadcn UI" :dark="darkMode"/>
 </CodeRunner>
 
 :::
@@ -38,11 +38,11 @@ title: 复制 (Copy)
 <CodeRunner title="提示">
     <div class="flex items-center gap-2">
         <span>显示提示</span>
-        <ShadcnCopy text="Hello Shadcn UI"/>
+        <ShadcnCopy text="Hello Shadcn UI" :dark="darkMode"/>
     </div>
     <div class="flex items-center gap-2">
         <span>不显示提示</span>
-        <ShadcnCopy text="Hello Shadcn UI" :tooltip="false"/>
+        <ShadcnCopy text="Hello Shadcn UI" :tooltip="false" :dark="darkMode"/>
     </div>
 </CodeRunner>
 
@@ -67,19 +67,19 @@ title: 复制 (Copy)
 <CodeRunner title="位置">
     <div class="flex items-center gap-2">
         <span>顶部</span>
-        <ShadcnCopy text="Position" position="top"/>
+        <ShadcnCopy text="Position" position="top" :dark="darkMode"/>
     </div>
     <div class="flex items-center gap-2">
         <span>底部</span>
-        <ShadcnCopy text="Position" position="bottom"/>
+        <ShadcnCopy text="Position" position="bottom" :dark="darkMode"/>
     </div>
     <div class="flex items-center gap-2">
         <span>左侧</span>
-        <ShadcnCopy text="Position" position="left"/>
+        <ShadcnCopy text="Position" position="left" :dark="darkMode"/>
     </div>
     <div class="flex items-center gap-2">
         <span>右侧</span>
-        <ShadcnCopy text="Position" position="right"/>
+        <ShadcnCopy text="Position" position="right" :dark="darkMode"/>
     </div>
 </CodeRunner>
 
@@ -123,8 +123,16 @@ title: 复制 (Copy)
 ## 复制 (Copy) 插槽
 
 <ApiTable title="复制 (Copy) 插槽"
-    :headers="['插槽', '描述']" 
+    :headers="['插槽', '描述']"
     :columns="[
         ['icon', '复制图标'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>

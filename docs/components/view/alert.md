@@ -11,17 +11,23 @@ title: 警告提示 (Alert)
 ## 用法
 
 <CodeRunner title="用法">
-    <ShadcnAlert>Alert</ShadcnAlert>
+    <ShadcnAlert :dark="darkMode">Alert</ShadcnAlert>
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnAlert>Alert</ShadcnAlert>
+    <ShadcnAlert :dark="darkMode">Alert</ShadcnAlert>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -30,17 +36,23 @@ title: 警告提示 (Alert)
 ## 标题 (title)
 
 <CodeRunner title="标题 (title)">
-    <ShadcnAlert title="Title">Alert</ShadcnAlert>
+    <ShadcnAlert title="Title" :dark="darkMode">Alert</ShadcnAlert>
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnAlert title="Title">Alert</ShadcnAlert>
+    <ShadcnAlert title="Title" :dark="darkMode">Alert</ShadcnAlert>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -50,10 +62,10 @@ title: 警告提示 (Alert)
 
 <CodeRunner title="类型 (type)">
     <div class="space-y-2">
-        <ShadcnAlert type="primary">Alert</ShadcnAlert>
-        <ShadcnAlert type="success">Alert</ShadcnAlert>
-        <ShadcnAlert type="warning">Alert</ShadcnAlert>
-        <ShadcnAlert type="error">Alert</ShadcnAlert>
+        <ShadcnAlert type="primary" :dark="darkMode">Alert</ShadcnAlert>
+        <ShadcnAlert type="success" :dark="darkMode">Alert</ShadcnAlert>
+        <ShadcnAlert type="warning" :dark="darkMode">Alert</ShadcnAlert>
+        <ShadcnAlert type="error" :dark="darkMode">Alert</ShadcnAlert>
     </div>
 </CodeRunner>
 
@@ -61,13 +73,19 @@ title: 警告提示 (Alert)
 
 ```vue
 <template>
-    <ShadcnAlert type="primary">Alert</ShadcnAlert>
-    <ShadcnAlert type="success">Alert</ShadcnAlert>
-    <ShadcnAlert type="warning">Alert</ShadcnAlert>
-    <ShadcnAlert type="error">Alert</ShadcnAlert>
+    <ShadcnAlert type="primary" :dark="darkMode">Alert</ShadcnAlert>
+    <ShadcnAlert type="success" :dark="darkMode">Alert</ShadcnAlert>
+    <ShadcnAlert type="warning" :dark="darkMode">Alert</ShadcnAlert>
+    <ShadcnAlert type="error" :dark="darkMode">Alert</ShadcnAlert>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -76,17 +94,23 @@ title: 警告提示 (Alert)
 ## 图标 (icon)
 
 <CodeRunner title="图标 (icon)">
-    <ShadcnAlert title="Title" show-icon>Alert</ShadcnAlert>
+    <ShadcnAlert title="Title" show-icon :dark="darkMode">Alert</ShadcnAlert>
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnAlert title="Title" show-icon>Alert</ShadcnAlert>
+    <ShadcnAlert title="Title" show-icon :dark="darkMode">Alert</ShadcnAlert>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -95,17 +119,23 @@ title: 警告提示 (Alert)
 ## 横幅 (banner)
 
 <CodeRunner title="横幅 (banner)">
-    <ShadcnAlert title="Title" banner>Alert</ShadcnAlert>
+    <ShadcnAlert title="Title" banner :dark="darkMode">Alert</ShadcnAlert>
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnAlert title="Title" banner>Alert</ShadcnAlert>
+    <ShadcnAlert title="Title" banner :dark="darkMode">Alert</ShadcnAlert>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -114,17 +144,23 @@ title: 警告提示 (Alert)
 ## 可关闭 (closable)
 
 <CodeRunner title="可关闭 (closable)">
-    <ShadcnAlert title="Title" closable>Alert</ShadcnAlert>
+    <ShadcnAlert title="Title" closable :dark="darkMode">Alert</ShadcnAlert>
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnAlert title="Title" closable>Alert</ShadcnAlert>
+    <ShadcnAlert title="Title" closable :dark="darkMode">Alert</ShadcnAlert>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -162,3 +198,11 @@ title: 警告提示 (Alert)
         ['close', '关闭按钮区域', '-'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>

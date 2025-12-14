@@ -12,7 +12,7 @@ title: 分隔线 (Divider)
 
 <CodeRunner title="用法">
     <div>Hello, View Shadcn UI, Divider</div>
-    <ShadcnDivider />
+    <ShadcnDivider :dark="darkMode" />
 </CodeRunner>
 
 ::: details 查看代码
@@ -33,12 +33,12 @@ title: 分隔线 (Divider)
 
 <CodeRunner title="类型 (type)">
     <div>Horizontal</div>
-    <ShadcnDivider type="horizontal" />
+    <ShadcnDivider type="horizontal"  :dark="darkMode" />
     <div class="flex space-x-2 mt-2">
         <div>Vertical</div>
-        <ShadcnDivider type="vertical" />
+        <ShadcnDivider type="vertical" :dark="darkMode" />
         <a href="#">Link</a>
-        <ShadcnDivider type="vertical" />
+        <ShadcnDivider type="vertical" :dark="darkMode" />
         <div>Vertical</div>
     </div>
 </CodeRunner>
@@ -67,9 +67,9 @@ title: 分隔线 (Divider)
 ## 位置 (position)
 
 <CodeRunner title="位置 (position)">
-    <ShadcnDivider orientation="left">Left</ShadcnDivider>
-    <ShadcnDivider orientation="center">Center</ShadcnDivider>
-    <ShadcnDivider orientation="right">Right</ShadcnDivider>
+    <ShadcnDivider orientation="left" :dark="darkMode">Left</ShadcnDivider>
+    <ShadcnDivider orientation="center" :dark="darkMode">Center</ShadcnDivider>
+    <ShadcnDivider orientation="right" :dark="darkMode">Right</ShadcnDivider>
 </CodeRunner>
 
 ::: details 查看代码
@@ -90,7 +90,7 @@ title: 分隔线 (Divider)
 ## 虚线 (dashed)
 
 <CodeRunner title="虚线 (dashed)">
-    <ShadcnDivider dashed />
+    <ShadcnDivider dashed :dark="darkMode" />
 </CodeRunner>
 
 ::: details 查看代码
@@ -126,3 +126,11 @@ title: 分隔线 (Divider)
         ['default', '默认文本插槽', 'text'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>

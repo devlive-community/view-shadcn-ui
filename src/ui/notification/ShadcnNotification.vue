@@ -4,10 +4,10 @@
     <div class="w-fit h-fit" @click.stop="toggleNotification" v-if="trigger" ref="triggerEl">
       <slot name="trigger">
         <ShadcnButton size="small" circle type="text">
-          <Icon class="hover:cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-110 hover:rotate-12 hover:text-primary"
+          <ShadcnIcon class="hover:cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-110 hover:rotate-12 hover:text-primary"
                       icon="Bell"
                       size="20">
-          </Icon>
+          </ShadcnIcon>
         </ShadcnButton>
       </slot>
     </div>
@@ -76,6 +76,8 @@ import ShadcnSpin from '@/ui/spin/ShadcnSpin.vue'
 import { t } from '@/utils/locale'
 import ClickOutside from '@/directives/v-click-outside'
 import { calcSize } from '@/utils/common.ts'
+import { ShadcnIcon } from "@/ui/icon";
+import { ShadcnButton } from "@/ui/button";
 
 const props = withDefaults(defineProps<NotificationProps>(), {
   trigger: true,

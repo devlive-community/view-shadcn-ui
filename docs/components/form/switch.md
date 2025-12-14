@@ -11,18 +11,23 @@ title: 开关 (Switch)
 ## 用法
 
 <CodeRunner title="用法">
-    <ShadcnSwitch v-model="checked" />
+    <ShadcnSwitch v-model="checked"  :dark="darkMode" />
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnSwitch v-model="checked" />
+    <ShadcnSwitch v-model="checked"  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 
 const checked = ref(false)
 </script>
@@ -33,20 +38,20 @@ const checked = ref(false)
 ## 类型 (type)
 
 <CodeRunner title="类型 (type)">
-    <ShadcnSwitch v-model="checked" type="success" />
-    <ShadcnSwitch v-model="checked" type="warning" />
-    <ShadcnSwitch v-model="checked" type="error" />
-    <ShadcnSwitch v-model="checked" type="primary" />
+    <ShadcnSwitch v-model="checked" type="success"  :dark="darkMode" />
+    <ShadcnSwitch v-model="checked" type="warning"  :dark="darkMode" />
+    <ShadcnSwitch v-model="checked" type="error"  :dark="darkMode" />
+    <ShadcnSwitch v-model="checked" type="primary"  :dark="darkMode" />
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnSwitch v-model="checked" type="success" />
-    <ShadcnSwitch v-model="checked" type="warning" />
-    <ShadcnSwitch v-model="checked" type="error" />
-    <ShadcnSwitch v-model="checked" type="primary" />
+    <ShadcnSwitch v-model="checked" type="success"  :dark="darkMode" />
+    <ShadcnSwitch v-model="checked" type="warning"  :dark="darkMode" />
+    <ShadcnSwitch v-model="checked" type="error"  :dark="darkMode" />
+    <ShadcnSwitch v-model="checked" type="primary"  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
@@ -61,18 +66,18 @@ const checked = ref(false)
 ## 尺寸 (size)
 
 <CodeRunner title="尺寸 (size)">
-    <ShadcnSwitch v-model="checked" size="small" />
-    <ShadcnSwitch v-model="checked" size="default" />
-    <ShadcnSwitch v-model="checked" size="large" />
+    <ShadcnSwitch v-model="checked" size="small"  :dark="darkMode" />
+    <ShadcnSwitch v-model="checked" size="default"  :dark="darkMode" />
+    <ShadcnSwitch v-model="checked" size="large"  :dark="darkMode" />
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnSwitch v-model="checked" size="small" />
-    <ShadcnSwitch v-model="checked" size="default" />
-    <ShadcnSwitch v-model="checked" size="large" />
+    <ShadcnSwitch v-model="checked" size="small"  :dark="darkMode" />
+    <ShadcnSwitch v-model="checked" size="default"  :dark="darkMode" />
+    <ShadcnSwitch v-model="checked" size="large"  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
@@ -87,14 +92,14 @@ const checked = ref(false)
 ## 禁用 (disabled)
 
 <CodeRunner title="禁用 (disabled)">
-    <ShadcnSwitch v-model="checked" disabled />
+    <ShadcnSwitch v-model="checked" disabled  :dark="darkMode" />
 </CodeRunner>
 
 ::: details 查看代码
 
 ```vue
 <template>
-    <ShadcnSwitch v-model="checked" disabled />
+    <ShadcnSwitch v-model="checked" disabled  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
@@ -109,7 +114,7 @@ const checked = ref(false)
 ## 自定义 (slot)
 
 <CodeRunner title="自定义 (slot)">
-    <ShadcnSwitch v-model="checked">
+    <ShadcnSwitch v-model="checked" :dark="darkMode">
         <template #open>ON</template>
         <template #close>OFF</template>
     </ShadcnSwitch>
@@ -119,7 +124,7 @@ const checked = ref(false)
 
 ```vue
 <template>
-    <ShadcnSwitch v-model="checked">
+    <ShadcnSwitch v-model="checked" :dark="darkMode">
         <template #open>ON</template>
         <template #close>OFF</template>
     </ShadcnSwitch>
@@ -140,7 +145,7 @@ const checked = ref(false)
 
 <CodeRunner title="自定义值 (true-value, false-value)">
     <div>Null Value: {{ checked2 }}</div>
-    <ShadcnSwitch v-model="checked2" true-value="ON" false-value="OFF">
+    <ShadcnSwitch v-model="checked2" true-value="ON" false-value="OFF" :dark="darkMode">
       <template #open>OFF</template>
       <template #close>ON</template>
     </ShadcnSwitch>
@@ -153,7 +158,7 @@ const checked = ref(false)
 ```vue
 <template>
     <div>Null Value: {{ checked2 }}</div>
-    <ShadcnSwitch v-model="checked2" true-value="ON" false-value="OFF">
+    <ShadcnSwitch v-model="checked2" true-value="ON" false-value="OFF" :dark="darkMode">
         <template #open>OFF</template>
         <template #close>ON</template>
     </ShadcnSwitch>
@@ -204,6 +209,10 @@ const checked2 = ref(null)
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useData } from 'vitepress' 
+import { computed } from 'vue' 
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
 
 const checked = ref(false)
 const checked2 = ref(null)

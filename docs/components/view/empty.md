@@ -13,7 +13,7 @@ title: 空数据 (Empty)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnEmpty />
+    <ShadcnEmpty  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -22,7 +22,7 @@ title: 空数据 (Empty)
 
 ```vue
 <template>
-    <ShadcnEmpty />
+    <ShadcnEmpty  :dark="darkMode" />
 </template>
 ```
 
@@ -33,9 +33,9 @@ title: 空数据 (Empty)
 ::: raw
 
 <CodeRunner title="自定义插槽 (slot)">
-  <ShadcnEmpty>
+  <ShadcnEmpty :dark="darkMode">
     <template #image>
-      <ShadcnIcon icon="User" size="80"/>
+      <ShadcnIcon icon="User" size="80" :dark="darkMode" />
     </template>
     <template #title>
       <h3 class="text-lg font-semibold">Custom Title</h3>
@@ -45,8 +45,8 @@ title: 空数据 (Empty)
     </template>
     <template #actions>
       <div class="flex gap-2">
-        <ShadcnButton>Button 1</ShadcnButton>
-        <ShadcnButton>Button 2</ShadcnButton>
+        <ShadcnButton :dark="darkMode">Button 1</ShadcnButton>
+        <ShadcnButton :dark="darkMode">Button 2</ShadcnButton>
       </div>
     </template>
   </ShadcnEmpty>
@@ -58,9 +58,9 @@ title: 空数据 (Empty)
 
 ```vue
 <template>
-  <ShadcnEmpty>
+  <ShadcnEmpty :dark="darkMode">
     <template #image>
-      <ShadcnIcon icon="User" size="80"/>
+      <ShadcnIcon icon="User" size="80" :dark="darkMode" />
     </template>
 
     <template #title>
@@ -73,8 +73,8 @@ title: 空数据 (Empty)
 
     <template #actions>
       <div class="flex gap-2">
-        <ShadcnButton>Button 1</ShadcnButton>
-        <ShadcnButton>Button 2</ShadcnButton>
+        <ShadcnButton :dark="darkMode">Button 1</ShadcnButton>
+        <ShadcnButton :dark="darkMode">Button 2</ShadcnButton>
       </div>
     </template>
   </ShadcnEmpty>
@@ -94,3 +94,11 @@ title: 空数据 (Empty)
         ['actions', '操作插槽'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>

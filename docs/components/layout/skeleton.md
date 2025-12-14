@@ -11,7 +11,7 @@ title: 骨架屏 (Skeleton)
 ## 用法
 
 <CodeRunner title="用法">
-    <ShadcnSkeleton />
+    <ShadcnSkeleton :dark="darkMode" />
 </CodeRunner>
 
 ::: details 查看代码
@@ -30,7 +30,7 @@ title: 骨架屏 (Skeleton)
 ## 动画 (animation)
 
 <CodeRunner title="动画 (animation)">
-    <ShadcnSkeleton animation />
+    <ShadcnSkeleton animation :dark="darkMode" />
 </CodeRunner>
 
 ::: details 查看代码
@@ -49,7 +49,7 @@ title: 骨架屏 (Skeleton)
 ## 排版 (paragraph)
 
 <CodeRunner title="排版 (paragraph)">
-    <ShadcnSkeleton :paragraph=" { rows: 5, width: [100, 200, '300px', '50%', '62%'] }"/>
+    <ShadcnSkeleton :dark="darkMode" :paragraph=" { rows: 5, width: [100, 200, '300px', '50%', '62%'] }"/>
 </CodeRunner>
 
 ::: details 查看代码
@@ -69,12 +69,12 @@ title: 骨架屏 (Skeleton)
 
 <CodeRunner title="类型 (type)">
     <ShadcnSpace>
-        <ShadcnSkeletonItem animation type="circle"/>
-        <ShadcnSkeletonItem animation type="square"/>
-        <ShadcnSkeletonItem animation type="image"/>
+        <ShadcnSkeletonItem :dark="darkMode" animation type="circle"/>
+        <ShadcnSkeletonItem :dark="darkMode" animation type="square"/>
+        <ShadcnSkeletonItem :dark="darkMode" animation type="image"/>
     </ShadcnSpace>
     <br />
-    <ShadcnSkeletonItem animation type="rect"/>
+    <ShadcnSkeletonItem animation :dark="darkMode" type="rect"/>
 </CodeRunner>
 
 ::: details 查看代码
@@ -97,9 +97,9 @@ title: 骨架屏 (Skeleton)
 
 <CodeRunner title="尺寸 (size)">
     <ShadcnSpace>
-        <ShadcnSkeletonItem animation type="image" size="small"/>
-        <ShadcnSkeletonItem animation type="image" size="default"/>
-        <ShadcnSkeletonItem animation type="image" size="large"/>
+        <ShadcnSkeletonItem animation type="image" :dark="darkMode" size="small"/>
+        <ShadcnSkeletonItem animation type="image" :dark="darkMode" size="default"/>
+        <ShadcnSkeletonItem animation type="image" :dark="darkMode" size="large"/>
     </ShadcnSpace>
 </CodeRunner>
 
@@ -150,3 +150,11 @@ title: 骨架屏 (Skeleton)
         ['template', '骨架的模板'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>

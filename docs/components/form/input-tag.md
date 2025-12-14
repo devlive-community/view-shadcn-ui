@@ -13,8 +13,8 @@ title: 输入标签 (Input Tag)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnText>Value: {{ tags }}</ShadcnText>
-    <ShadcnInputTag v-model="tags" />
+    <ShadcnText :dark="darkMode">Value: {{ tags }}</ShadcnText>
+    <ShadcnInputTag v-model="tags"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -23,11 +23,16 @@ title: 输入标签 (Input Tag)
 
 ```vue
 <template>
-    <ShadcnInputTag v-model="tags" />
+    <ShadcnInputTag v-model="tags"  :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 
 const tags = ref([])
 </script>
@@ -40,7 +45,7 @@ const tags = ref([])
 ::: raw
 
 <CodeRunner title="禁用 (disabled)">
-    <ShadcnInputTag v-model="tags" disabled />
+    <ShadcnInputTag v-model="tags" disabled  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -49,7 +54,7 @@ const tags = ref([])
 
 ```vue
 <template>
-    <ShadcnInputTag v-model="tags" disabled />
+    <ShadcnInputTag v-model="tags" disabled  :dark="darkMode" />
 </template>
 ```
 
@@ -60,9 +65,9 @@ const tags = ref([])
 ::: raw
 
 <CodeRunner title="尺寸 (size)">
-    <ShadcnInputTag v-model="tags" size="small" />
-    <ShadcnInputTag v-model="tags" size="default" />
-    <ShadcnInputTag v-model="tags" size="large" />
+    <ShadcnInputTag v-model="tags" size="small"  :dark="darkMode" />
+    <ShadcnInputTag v-model="tags" size="default"  :dark="darkMode" />
+    <ShadcnInputTag v-model="tags" size="large"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -71,9 +76,9 @@ const tags = ref([])
 
 ```vue
 <template>
-    <ShadcnInputTag v-model="tags" size="small" />
-    <ShadcnInputTag v-model="tags" size="default" />
-    <ShadcnInputTag v-model="tags" size="large" />
+    <ShadcnInputTag v-model="tags" size="small"  :dark="darkMode" />
+    <ShadcnInputTag v-model="tags" size="default"  :dark="darkMode" />
+    <ShadcnInputTag v-model="tags" size="large"  :dark="darkMode" />
 </template>
 ```
 
@@ -84,10 +89,10 @@ const tags = ref([])
 ::: raw
 
 <CodeRunner title="类型 (type)">
-    <ShadcnInputTag v-model="value" type="primary"/>
-    <ShadcnInputTag v-model="value" type="error"/>
-    <ShadcnInputTag v-model="value" type="warning"/>
-    <ShadcnInputTag v-model="value" type="success"/>
+    <ShadcnInputTag v-model="value" type="primary" :dark="darkMode" />
+    <ShadcnInputTag v-model="value" type="error" :dark="darkMode" />
+    <ShadcnInputTag v-model="value" type="warning" :dark="darkMode" />
+    <ShadcnInputTag v-model="value" type="success" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -96,10 +101,10 @@ const tags = ref([])
 
 ```vue
 <template>
-    <ShadcnInputTag v-model="value" type="primary"/>
-    <ShadcnInputTag v-model="value" type="error"/>
-    <ShadcnInputTag v-model="value" type="warning"/>
-    <ShadcnInputTag v-model="value" type="success"/>
+    <ShadcnInputTag v-model="value" type="primary" :dark="darkMode" />
+    <ShadcnInputTag v-model="value" type="error" :dark="darkMode" />
+    <ShadcnInputTag v-model="value" type="warning" :dark="darkMode" />
+    <ShadcnInputTag v-model="value" type="success" :dark="darkMode" />
 </template>
 ```
 
@@ -110,7 +115,7 @@ const tags = ref([])
 ::: raw
 
 <CodeRunner title="最大值 (max)">
-    <ShadcnInputTag v-model="tags" max="3" />
+    <ShadcnInputTag v-model="tags" max="3"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -119,7 +124,7 @@ const tags = ref([])
 
 ```vue
 <template>
-    <ShadcnInputTag v-model="tags" max="3" />
+    <ShadcnInputTag v-model="tags" max="3"  :dark="darkMode" />
 </template>
 ```
 
@@ -130,13 +135,13 @@ const tags = ref([])
 ::: raw
 
 <CodeRunner title="表单 (form)">
-    <ShadcnForm ref="formRef" v-model="formState">
+    <ShadcnForm ref="formRef" v-model="formState" :dark="darkMode">
       <ShadcnFormItem name="tags"
                       label="Tags"
-                      :rules="[ { required: true, message: 'Please input tags!' } ]">
-        <ShadcnInputTag v-model="formState.tags" name="tags"/>
+                      :rules="[ { required: true, message: 'Please input tags!' } ]" :dark="darkMode">
+        <ShadcnInputTag v-model="formState.tags" name="tags" :dark="darkMode" />
       </ShadcnFormItem>
-      <ShadcnButton submit>Submit</ShadcnButton>
+      <ShadcnButton submit :dark="darkMode">Submit</ShadcnButton>
     </ShadcnForm>
 </CodeRunner>
 
@@ -146,13 +151,13 @@ const tags = ref([])
 
 ```vue
 <template>
-    <ShadcnForm ref="formRef" v-model="formState">
+    <ShadcnForm ref="formRef" v-model="formState" :dark="darkMode">
       <ShadcnFormItem name="tags"
                       label="Tags"
-                      :rules="[ { required: true, message: 'Please input tags!' } ]">
-        <ShadcnInputTag v-model="formState.tags" name="tags"/>
+                      :rules="[ { required: true, message: 'Please input tags!' } ]" :dark="darkMode">
+        <ShadcnInputTag v-model="formState.tags" name="tags" :dark="darkMode" />
       </ShadcnFormItem>
-      <ShadcnButton submit>Submit</ShadcnButton>
+      <ShadcnButton submit :dark="darkMode">Submit</ShadcnButton>
     </ShadcnForm>
 </template>
 ```
@@ -187,6 +192,10 @@ const tags = ref([])
 
 <script setup lang="ts">
 import { ref } from 'vue'
+const { isDark } = useData()
+import { useData } from 'vitepress' 
+import { computed } from 'vue' 
+const darkMode = computed(() => isDark.value)
 
 const tags = ref([])
 

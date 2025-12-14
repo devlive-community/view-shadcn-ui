@@ -13,7 +13,7 @@ title: IP输入框 (IP Input)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnIPInput v-model="value" />
+    <ShadcnIPInput v-model="value"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -22,7 +22,7 @@ title: IP输入框 (IP Input)
 
 ```vue
 <template>
-    <ShadcnIPInput v-model="value" />
+    <ShadcnIPInput v-model="value"  :dark="darkMode" />
 </template>
 ```
 
@@ -33,7 +33,7 @@ title: IP输入框 (IP Input)
 ::: raw
 
 <CodeRunner title="禁用">
-    <ShadcnIPInput v-model="value" disabled />
+    <ShadcnIPInput v-model="value" disabled  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -42,7 +42,7 @@ title: IP输入框 (IP Input)
 
 ```vue
 <template>
-    <ShadcnIPInput v-model="value" disabled />
+    <ShadcnIPInput v-model="value" disabled  :dark="darkMode" />
 </template>
 ```
 
@@ -53,9 +53,9 @@ title: IP输入框 (IP Input)
 ::: raw
 
 <CodeRunner title="尺寸">
-    <ShadcnIPInput v-model="value" size="small" />
-    <ShadcnIPInput v-model="value" size="default" />
-    <ShadcnIPInput v-model="value" size="large" />
+    <ShadcnIPInput v-model="value" size="small"  :dark="darkMode" />
+    <ShadcnIPInput v-model="value" size="default"  :dark="darkMode" />
+    <ShadcnIPInput v-model="value" size="large"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -64,9 +64,9 @@ title: IP输入框 (IP Input)
 
 ```vue
 <template>
-    <ShadcnIPInput v-model="value" size="small" />
-    <ShadcnIPInput v-model="value" size="default" />
-    <ShadcnIPInput v-model="value" size="large" />
+    <ShadcnIPInput v-model="value" size="small"  :dark="darkMode" />
+    <ShadcnIPInput v-model="value" size="default"  :dark="darkMode" />
+    <ShadcnIPInput v-model="value" size="large"  :dark="darkMode" />
 </template>
 ```
 
@@ -77,10 +77,10 @@ title: IP输入框 (IP Input)
 ::: raw
 
 <CodeRunner title="类型">
-    <ShadcnIPInput v-model="value" type="primary"/>
-    <ShadcnIPInput v-model="value" type="error"/>
-    <ShadcnIPInput v-model="value" type="success"/>
-    <ShadcnIPInput v-model="value" type="warning"/>
+    <ShadcnIPInput v-model="value" type="primary" :dark="darkMode" />
+    <ShadcnIPInput v-model="value" type="error" :dark="darkMode" />
+    <ShadcnIPInput v-model="value" type="success" :dark="darkMode" />
+    <ShadcnIPInput v-model="value" type="warning" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -89,10 +89,10 @@ title: IP输入框 (IP Input)
 
 ```vue
 <template>
-    <ShadcnIPInput v-model="value" type="primary"/>
-    <ShadcnIPInput v-model="value" type="error"/>
-    <ShadcnIPInput v-model="value" type="success"/>
-    <ShadcnIPInput v-model="value" type="warning"/>
+    <ShadcnIPInput v-model="value" type="primary" :dark="darkMode" />
+    <ShadcnIPInput v-model="value" type="error" :dark="darkMode" />
+    <ShadcnIPInput v-model="value" type="success" :dark="darkMode" />
+    <ShadcnIPInput v-model="value" type="warning" :dark="darkMode" />
 </template>
 ```
 
@@ -103,8 +103,8 @@ title: IP输入框 (IP Input)
 ::: raw
 
 <CodeRunner title="分隔符">
-    <ShadcnIPInput v-model="value" separator="."/>
-    <ShadcnIPInput v-model="value" separator="-"/>
+    <ShadcnIPInput v-model="value" separator="." :dark="darkMode" />
+    <ShadcnIPInput v-model="value" separator="-" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -113,8 +113,8 @@ title: IP输入框 (IP Input)
 
 ```vue
 <template>
-    <ShadcnIPInput v-model="value" separator="."/>
-    <ShadcnIPInput v-model="value" separator="-"/>
+    <ShadcnIPInput v-model="value" separator="." :dark="darkMode" />
+    <ShadcnIPInput v-model="value" separator="-" :dark="darkMode" />
 </template>
 ```
 
@@ -125,9 +125,9 @@ title: IP输入框 (IP Input)
 ::: raw
 
 <CodeRunner title="表单">
-    <ShadcnForm v-model="formState">
-      <ShadcnFormItem name="ip" label="IP 地址" :rules="[{ required: true, message: '请输入IP地址' }]">
-        <ShadcnIPInput v-model="formState.ip" name="ip"/>
+    <ShadcnForm v-model="formState" :dark="darkMode">
+      <ShadcnFormItem name="ip" label="IP 地址" :rules="[{ required: true, message: '请输入IP地址' }]" :dark="darkMode">
+        <ShadcnIPInput v-model="formState.ip" name="ip" :dark="darkMode" />
       </ShadcnFormItem>
     </ShadcnForm>
 </CodeRunner>
@@ -138,9 +138,9 @@ title: IP输入框 (IP Input)
 
 ```vue
 <template>
-    <ShadcnForm v-model="formState">
-      <ShadcnFormItem name="ip" label="IP 地址" :rules="[{ required: true, message: '请输入IP地址' }]">
-        <ShadcnIPInput v-model="formState.ip" name="ip"/>
+    <ShadcnForm v-model="formState" :dark="darkMode">
+      <ShadcnFormItem name="ip" label="IP 地址" :rules="[{ required: true, message: '请输入IP地址' }]" :dark="darkMode">
+        <ShadcnIPInput v-model="formState.ip" name="ip" :dark="darkMode" />
       </ShadcnFormItem>
     </ShadcnForm>
 </template>
@@ -173,7 +173,13 @@ title: IP输入框 (IP Input)
 </ApiTable>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
+import { ref , computed } from 'vue';
 
 const value = ref('192.168.1.1')
 const formState = ref({ ip: null })

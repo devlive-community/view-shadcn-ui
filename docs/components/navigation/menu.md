@@ -11,7 +11,7 @@ title: 菜单 (Menu)
 ## 用法
 
 <CodeRunner title="用法">
-    <ShadcnMenu>
+    <ShadcnMenu :dark="darkMode">
         <ShadcnMenuItem name="home">
           <template #icon>
             <ShadcnIcon icon="Home"/>
@@ -77,7 +77,7 @@ title: 菜单 (Menu)
 ## 宽度 (width)
 
 <CodeRunner title="宽度 (width)">
-    <ShadcnMenu width="300">
+    <ShadcnMenu width="300" :dark="darkMode">
         <ShadcnMenuItem name="home">
           <template #icon>
             <ShadcnIcon icon="Home"/>
@@ -143,7 +143,7 @@ title: 菜单 (Menu)
 ## 方向 (direction)
 
 <CodeRunner title="方向 (direction)">
-    <ShadcnMenu direction="horizontal">
+    <ShadcnMenu direction="horizontal" :dark="darkMode">
         <ShadcnMenuItem name="home">
           <template #icon>
             <ShadcnIcon icon="Home"/>
@@ -271,10 +271,18 @@ title: 菜单 (Menu)
 ## 菜单子项 (Menu Sub) 插槽
 
 <ApiTable title="菜单子项 (Menu Sub) 插槽"
-    :headers="['插槽', '描述']" 
+    :headers="['插槽', '描述']"
     :columns="[
         ['default', '默认插槽'],
         ['icon', '图标插槽'],
         ['title', '标题插槽'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>

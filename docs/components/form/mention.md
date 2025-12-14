@@ -13,7 +13,7 @@ title: 提及 (Mention)
 ::: raw
 
 <CodeRunner title="用法" codeKey="mention-items">
-    <ShadcnMention :items="items" />
+    <ShadcnMention :items="items" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -33,7 +33,7 @@ title: 提及 (Mention)
 ::: raw
 
 <CodeRunner title="提示词" codeKey="mention-placeholder">
-    <ShadcnMention placeholder="键入 @ 以提及" />
+    <ShadcnMention placeholder="键入 @ 以提及" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -53,9 +53,9 @@ title: 提及 (Mention)
 ::: raw
 
 <CodeRunner title="尺寸" codeKey="mention-size">
-  <ShadcnMention size="small" :items="items" />
-  <ShadcnMention size="default" :items="items" />
-  <ShadcnMention size="large" :items="items" />
+  <ShadcnMention size="small" :items="items" :dark="darkMode" />
+  <ShadcnMention size="default" :items="items" :dark="darkMode" />
+  <ShadcnMention size="large" :items="items" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -77,10 +77,10 @@ title: 提及 (Mention)
 ::: raw
 
 <CodeRunner title="类型" codeKey="mention-type">
-  <ShadcnMention type="primary" :items="items" />
-  <ShadcnMention type="success" :items="items" />
-  <ShadcnMention type="warning" :items="items" />
-  <ShadcnMention type="error" :items="items" />
+  <ShadcnMention type="primary" :items="items" :dark="darkMode" />
+  <ShadcnMention type="success" :items="items" :dark="darkMode" />
+  <ShadcnMention type="warning" :items="items" :dark="darkMode" />
+  <ShadcnMention type="error" :items="items" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -103,7 +103,7 @@ title: 提及 (Mention)
 ::: raw
 
 <CodeRunner title="禁用" codeKey="mention-disabled">
-  <ShadcnMention disabled :items="items" />
+  <ShadcnMention disabled :items="items" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -123,7 +123,7 @@ title: 提及 (Mention)
 ::: raw
 
 <CodeRunner title="触发字符" codeKey="mention-trigger">
-  <ShadcnMention trigger="#" :items="items" placeholder="键入 # 以提及" />
+  <ShadcnMention trigger="#" :items="items" placeholder="键入 # 以提及" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -143,7 +143,7 @@ title: 提及 (Mention)
 ::: raw
 
 <CodeRunner title="自定义插槽" codeKey="mention-item">
-    <ShadcnMention v-model="value" :items="items">
+    <ShadcnMention v-model="value" :items="items" :dark="darkMode">
       <template #item="{ item, selected }">
         <div class="flex items-center gap-2">
           <div class="flex space-x-2 items-center">
@@ -151,7 +151,7 @@ title: 提及 (Mention)
             <div class="text-sm text-gray-500">{{ item.name }}</div>
           </div>
           <span v-if="selected" class="ml-auto">
-            <ShadcnIcon icon="Check"/>
+            <ShadcnIcon icon="Check" :dark="darkMode" />
           </span>
         </div>
       </template>
@@ -187,7 +187,7 @@ title: 提及 (Mention)
 ::: raw
 
 <CodeRunner title="最大项目数" codeKey="mention-max">
-  <ShadcnMention :items="items" max="2" />
+  <ShadcnMention :items="items" max="2" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -207,9 +207,9 @@ title: 提及 (Mention)
 ::: raw
 
 <CodeRunner title="表单" codeKey="mention-form">
-      <ShadcnForm v-model="formState">
+      <ShadcnForm v-model="formState" :dark="darkMode">
       <ShadcnFormItem name="mentions" label="提及对象" :rules="[{ required: true, message: '请选择提及对象' }]">
-        <ShadcnMention v-model="formState.mentions" name="mentions" :items="items" />
+        <ShadcnMention v-model="formState.mentions" name="mentions" :items="items" :dark="darkMode" />
       </ShadcnFormItem>
     </ShadcnForm>
 </CodeRunner>
@@ -270,14 +270,18 @@ title: 提及 (Mention)
 </ApiTable>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { useData } from 'vitepress'
+import { ref, computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
 
 const formState = ref({
   mentions: []
 })
 
 const items =  [
-    {id: 1, name: '测试数据 1'}, 
+    {id: 1, name: '测试数据 1'},
     {id: 2, name: '测试数据 2'}
 ]
 </script>

@@ -13,7 +13,7 @@ title: 表格 (Table)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnTable :columns="columns" :data="data"/>
+    <ShadcnTable :columns="columns" :data="data" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -22,10 +22,16 @@ title: 表格 (Table)
 
 ```vue
 <template>
-  <ShadcnTable :columns="columns" :data="data"/>
+  <ShadcnTable :columns="columns" :data="data" :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 const columns = [
   { label: 'Name', key: 'name' },
   { label: 'Address', key: 'address' },
@@ -47,7 +53,7 @@ const data = [
 ::: raw
 
 <CodeRunner title="条纹 (stripe)">
-    <ShadcnTable :columns="columns" :data="data" stripe/>
+    <ShadcnTable :columns="columns" :data="data" stripe :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -56,10 +62,16 @@ const data = [
 
 ```vue
 <template>
-  <ShadcnTable :columns="columns" :data="data" stripe/>
+  <ShadcnTable :columns="columns" :data="data" stripe :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 const columns = [
   { label: 'Name', key: 'name' },
   { label: 'Address', key: 'address' },
@@ -81,7 +93,7 @@ const data = [
 ::: raw
 
 <CodeRunner title="边框 (border)">
-    <ShadcnTable :columns="columns" :data="data" border/>
+    <ShadcnTable :columns="columns" :data="data" border :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -90,10 +102,16 @@ const data = [
 
 ```vue
 <template>
-  <ShadcnTable :columns="columns" :data="data" border/>
+  <ShadcnTable :columns="columns" :data="data" border :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 const columns = [
   { label: 'Name', key: 'name' },
   { label: 'Address', key: 'address' },
@@ -115,7 +133,7 @@ const data = [
 ::: raw
 
 <CodeRunner title="宽度 (width)">
-    <ShadcnTable :columns="columns" :data="data" width="300"/>
+    <ShadcnTable :columns="columns" :data="data" width="300" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -124,10 +142,16 @@ const data = [
 
 ```vue
 <template>
-  <ShadcnTable :columns="columns" :data="data" width="300"/>
+  <ShadcnTable :columns="columns" :data="data" width="300" :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 const columns = [
   { label: 'Name', key: 'name' },
   { label: 'Address', key: 'address' },
@@ -149,7 +173,7 @@ const data = [
 ::: raw
 
 <CodeRunner title="高度 (height)">
-    <ShadcnTable :columns="columns" :data="data" height="300"/>
+    <ShadcnTable :columns="columns" :data="data" height="300" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -158,10 +182,16 @@ const data = [
 
 ```vue
 <template>
-  <ShadcnTable :columns="columns" :data="data" height="300"/>
+  <ShadcnTable :columns="columns" :data="data" height="300" :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 const columns = [
   { label: 'Name', key: 'name' },
   { label: 'Address', key: 'address' },
@@ -183,9 +213,9 @@ const data = [
 ::: raw
 
 <CodeRunner title="自定义列">
-    <ShadcnTable :columns="slotColumns" :data="data">
+    <ShadcnTable :columns="slotColumns" :data="data" :dark="darkMode">
       <template #actions="{ row, index }">
-        <ShadcnButton @click="click(row, index)">Edit</ShadcnButton>
+        <ShadcnButton @click="click(row, index)" :dark="darkMode">Edit</ShadcnButton>
       </template>
     </ShadcnTable>
 </CodeRunner>
@@ -196,14 +226,20 @@ const data = [
 
 ```vue
 <template>
-  <ShadcnTable :columns="columns" :data="data">
+  <ShadcnTable :columns="columns" :data="data" :dark="darkMode">
     <template #actions="{ row, index }">
-      <ShadcnButton @click="click(row, index)">Edit</ShadcnButton>
+      <ShadcnButton @click="click(row, index)" :dark="darkMode">Edit</ShadcnButton>
     </template>
   </ShadcnTable>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 const columns = [
   { label: 'Name', key: 'name' },
   { label: 'Address', key: 'address' },
@@ -232,7 +268,7 @@ const click = (row: any, index: number) => {
 ::: raw
 
 <CodeRunner title="固定列 (fixed)">
-    <ShadcnTable :columns="fixedColumns" :data="data" width="300"/>
+    <ShadcnTable :columns="fixedColumns" :data="data" width="300" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -241,10 +277,16 @@ const click = (row: any, index: number) => {
 
 ```vue
 <template>
-  <ShadcnTable :columns="columns" :data="data"/>
+  <ShadcnTable :columns="columns" :data="data" :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
   const columns = [
     { label: 'Name', key: 'name', fixed: 'left' },
     { label: 'Address', key: 'address', fixed: 'left' },
@@ -266,7 +308,7 @@ const click = (row: any, index: number) => {
 ::: raw
 
 <CodeRunner title="多个固定列 (multiple-fixed)">
-    <ShadcnTable :columns="fixedMultiColumns" :data="data"/>
+    <ShadcnTable :columns="fixedMultiColumns" :data="data" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -275,10 +317,16 @@ const click = (row: any, index: number) => {
 
 ```vue
 <template>
-  <ShadcnTable :columns="columns" :data="data"/>
+  <ShadcnTable :columns="columns" :data="data" :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 const columns = [
     { 'label': 'Name', 'key': 'name', 'width': 100, 'fixed': 'left' },
     { 'label': 'Age', 'key': 'age', 'width': 100, 'fixed': 'left' },
@@ -304,7 +352,7 @@ const data = [
 ::: raw
 
 <CodeRunner title="列宽度 (width)">
-    <ShadcnTable :columns="widthColumns" :data="data"/>
+    <ShadcnTable :columns="widthColumns" :data="data" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -313,10 +361,16 @@ const data = [
 
 ```vue
 <template>
-  <ShadcnTable :columns="columns" :data="data"/>    
+  <ShadcnTable :columns="columns" :data="data" :dark="darkMode" />    
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 const columns = [
   { label: 'Name', key: 'name', width: 100 },
   { label: 'Address', key: 'address', width: 200 },
@@ -338,7 +392,7 @@ const data = [
 ::: raw
 
 <CodeRunner title="行点击 (on-row-click)">
-    <ShadcnTable :columns="columns" :data="data" @on-row-click="click"/>
+    <ShadcnTable :columns="columns" :data="data" @on-row-click="click" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -347,10 +401,16 @@ const data = [
 
 ```vue
 <template>
-  <ShadcnTable :columns="columns" :data="data" @on-row-click="rowClick"/>
+  <ShadcnTable :columns="columns" :data="data" @on-row-click="rowClick" :dark="darkMode" />
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 const columns = [
   { label: 'Name', key: 'name' },
   { label: 'Address', key: 'address' },
@@ -454,6 +514,11 @@ const data = [
   { 'name': 'Joe Black', 'age': 30, 'address': 'Sydney No. 1 Lake Park', 'province': 'Australian', 'city': 'Sydney', 'zip': 100000 },
   { 'name': 'Jon Snow', 'age': 26, 'address': 'Ottawa No. 2 Lake Park', 'province': 'Canada', 'city': 'Ottawa', 'zip': 100000 }
 ]
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
 
 export default {
     data() {
@@ -463,7 +528,8 @@ export default {
         fixedColumns,
         widthColumns,
         fixedMultiColumns,
-        data
+        data,
+        darkMode
       }
     },
     methods: {

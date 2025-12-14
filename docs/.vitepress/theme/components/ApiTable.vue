@@ -1,5 +1,5 @@
 <template>
-  <ShadcnCard>
+  <ShadcnCard :dark="darkMode">
     <template #content>
       <div class="p-2 border-b space-y-10">
         <div class="font-bold">{{ title }}</div>
@@ -26,7 +26,10 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
+import { useData } from "vitepress";
+import { computed } from "vue";
+
+defineProps({
   title: {
     type: String,
     required: true
@@ -40,6 +43,9 @@ const props = defineProps({
     required: true
   }
 })
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
 </script>
 
 <style scoped>

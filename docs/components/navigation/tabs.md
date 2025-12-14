@@ -11,7 +11,7 @@ title: 选项卡 (Tabs)
 ## 用法
 
 <CodeRunner title="用法">
-    <ShadcnTab>
+    <ShadcnTab :dark="darkMode">
         <ShadcnTabItem label="Tab 1" value="Tab 1">
             <p>Tab 1 content</p>
         </ShadcnTabItem>
@@ -44,7 +44,7 @@ title: 选项卡 (Tabs)
 ## 禁用 (disabled)
 
 <CodeRunner title="禁用 (disabled)">
-    <ShadcnTab>
+    <ShadcnTab :dark="darkMode">
         <ShadcnTabItem label="Tab 1" value="Tab 1">
             <p>Tab 1 content</p>
         </ShadcnTabItem>
@@ -83,23 +83,23 @@ title: 选项卡 (Tabs)
 ## 类型 (type)
 
 <CodeRunner title="类型 (type)">
-    <ShadcnSpace wrap>
-        <ShadcnTab type="primary">
+    <ShadcnSpace wrap :dark="darkMode">
+        <ShadcnTab type="primary" :dark="darkMode">
             <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
             <ShadcnTabItem label="Tab 2" value="Tab 2" disabled>Tab 2 content</ShadcnTabItem>
             <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
         </ShadcnTab>
-        <ShadcnTab type="success">
+        <ShadcnTab type="success" :dark="darkMode">
             <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
             <ShadcnTabItem label="Tab 2" value="Tab 2" disabled>Tab 2 content</ShadcnTabItem>
             <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
         </ShadcnTab>
-        <ShadcnTab type="warning">
+        <ShadcnTab type="warning" :dark="darkMode">
             <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
             <ShadcnTabItem label="Tab 2" value="Tab 2" disabled>Tab 2 content</ShadcnTabItem>
             <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
         </ShadcnTab>
-        <ShadcnTab type="error">
+        <ShadcnTab type="error" :dark="darkMode">
             <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
             <ShadcnTabItem label="Tab 2" value="Tab 2" disabled>Tab 2 content</ShadcnTabItem>
             <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
@@ -142,12 +142,12 @@ title: 选项卡 (Tabs)
 ## 尺寸 (size)
 
 <CodeRunner title="尺寸 (size)">
-    <ShadcnTab size="default">
+    <ShadcnTab size="default" :dark="darkMode">
         <ShadcnTabItem label="Default 1" value="Default 1">Tab 1 content</ShadcnTabItem>
         <ShadcnTabItem label="Default 2" value="Default 2" disabled>Tab 2 content</ShadcnTabItem>
         <ShadcnTabItem label="Default 3" value="Default 3">Tab 3 content</ShadcnTabItem>
     </ShadcnTab>
-    <ShadcnTab size="small">
+    <ShadcnTab size="small" :dark="darkMode">
         <ShadcnTabItem label="Small 1" value="Small 1">Tab 1 content</ShadcnTabItem>
         <ShadcnTabItem label="Small 2" value="Small 2" disabled>Tab 2 content</ShadcnTabItem>
         <ShadcnTabItem label="Small 3" value="Small 3">Tab 3 content</ShadcnTabItem>
@@ -179,7 +179,7 @@ title: 选项卡 (Tabs)
 ## 图标 (icon)
 
 <CodeRunner title="图标 (icon)">
-    <ShadcnTab>
+    <ShadcnTab :dark="darkMode">
         <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 2" value="Tab 2" icon="Save" disabled>Tab 2 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
@@ -206,7 +206,7 @@ title: 选项卡 (Tabs)
 ## 线型 (line)
 
 <CodeRunner title="线型 (line)">
-    <ShadcnTab type="primary" line>
+    <ShadcnTab type="primary" line :dark="darkMode">
         <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 2" value="Tab 2" disabled>Tab 2 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
@@ -233,7 +233,7 @@ title: 选项卡 (Tabs)
 ## 可关闭 (closeable)
 
 <CodeRunner title="可关闭 (closeable)">
-    <ShadcnTab closable>
+    <ShadcnTab closable :dark="darkMode">
         <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 2" value="Tab 2">Tab 2 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
@@ -260,7 +260,7 @@ title: 选项卡 (Tabs)
 ## 附加信息 (extra)
 
 <CodeRunner title="附加信息 (extra)">
-    <ShadcnTab>
+    <ShadcnTab :dark="darkMode">
         <template #extra>Close</template>
         <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 2" value="Tab 2">Tab 2 content</ShadcnTabItem>
@@ -289,7 +289,7 @@ title: 选项卡 (Tabs)
 ## 方向 (direction)
 
 <CodeRunner title="方向 (direction)">
-    <ShadcnTab direction="vertical">
+    <ShadcnTab direction="vertical" :dark="darkMode">
         <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 2" value="Tab 2">Tab 2 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
@@ -316,12 +316,12 @@ title: 选项卡 (Tabs)
 ## 位置 (position)
 
 <CodeRunner title="位置 (position)">
-    <ShadcnTab direction="vertical" position="left">
+    <ShadcnTab direction="vertical" position="left" :dark="darkMode">
         <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 2" value="Tab 2">Tab 2 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
     </ShadcnTab>
-    <ShadcnTab direction="vertical" position="right">
+    <ShadcnTab direction="vertical" position="right" :dark="darkMode">
         <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 2" value="Tab 2">Tab 2 content</ShadcnTabItem>
         <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
@@ -354,9 +354,9 @@ title: 选项卡 (Tabs)
 
 <CodeRunner title="动态选项卡">
     Tab Value: {{ defaultValue }}
-    <ShadcnTab v-model="defaultValue" size="small" card closable>
+    <ShadcnTab v-model="defaultValue" size="small" card closable :dark="darkMode">
       <template #extra>
-        <ShadcnButton @click="addTab">Add</ShadcnButton>
+        <ShadcnButton @click="addTab" :dark="darkMode">Add</ShadcnButton>
       </template>
       <ShadcnTabItem v-for="item in tabs" :label="item.label" :value="item.value" :icon="item.icon" :disabled="item.disabled">
         This is {{ item.label }}
@@ -467,7 +467,11 @@ const addTab = () => {
 </ApiTable>
 
 <script setup lang="ts">
-import { ref } from 'vue' 
+import { useData } from 'vitepress'
+import { ref, computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
 
 const defaultValue = ref('Tab 1')
 

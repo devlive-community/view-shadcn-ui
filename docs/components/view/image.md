@@ -163,7 +163,7 @@ title: 图片 (Image)
 ::: raw
 
 <CodeRunner title="图片组" codeKey="image-group">
-    <ShadcnImageGroup :images="images" :columns="8" :gap="4" preview/>
+    <ShadcnImageGroup :images="images" :columns="8" :gap="4" preview :dark="darkMode"/>
 </CodeRunner>
 
 :::
@@ -236,6 +236,12 @@ title: 图片 (Image)
 </ApiTable>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 const images = [] as any[]
 
 for (let i = 0; i < 100; i++) {

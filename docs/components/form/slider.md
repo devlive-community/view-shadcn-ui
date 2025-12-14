@@ -13,7 +13,7 @@ title: 滑块 (Slider)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnSlider v-model="value" />
+    <ShadcnSlider v-model="value"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -22,7 +22,7 @@ title: 滑块 (Slider)
 
 ```vue
 <template>
-    <ShadcnSlider v-model="value" />
+    <ShadcnSlider v-model="value"  :dark="darkMode" />
 </template>
 ```
 
@@ -33,7 +33,7 @@ title: 滑块 (Slider)
 ::: raw
 
 <CodeRunner title="最小值 (min)">
-    <ShadcnSlider v-model="value" :min="0" />
+    <ShadcnSlider v-model="value" :min="0"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -42,7 +42,7 @@ title: 滑块 (Slider)
 
 ```vue
 <template>
-    <ShadcnSlider v-model="value" :min="0" />
+    <ShadcnSlider v-model="value" :min="0"  :dark="darkMode" />
 </template>
 ```
 
@@ -53,7 +53,7 @@ title: 滑块 (Slider)
 ::: raw
 
 <CodeRunner title="最大值 (max)">
-    <ShadcnSlider v-model="value" :max="10" />
+    <ShadcnSlider v-model="value" :max="10"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -62,7 +62,7 @@ title: 滑块 (Slider)
 
 ```vue
 <template>
-  <ShadcnSlider v-model="value" :max="10" />
+  <ShadcnSlider v-model="value" :max="10"  :dark="darkMode" />
 </template>
 ```
 
@@ -73,7 +73,7 @@ title: 滑块 (Slider)
 ::: raw
 
 <CodeRunner title="间隔 (step)">
-    <ShadcnSlider v-model="value" :step="10" />
+    <ShadcnSlider v-model="value" :step="10"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -82,7 +82,7 @@ title: 滑块 (Slider)
 
 ```vue
 <template>
-  <ShadcnSlider v-model="value" :step="10" />
+  <ShadcnSlider v-model="value" :step="10"  :dark="darkMode" />
 </template>
 ```
 
@@ -93,8 +93,8 @@ title: 滑块 (Slider)
 ::: raw
 
 <CodeRunner title="显示提示 (show-tip)">
-    <ShadcnSlider v-model="value" showTip />
-    <ShadcnSlider v-model="value" :showTip="false" />
+    <ShadcnSlider v-model="value" showTip  :dark="darkMode" />
+    <ShadcnSlider v-model="value" :showTip="false"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -103,8 +103,8 @@ title: 滑块 (Slider)
 
 ```vue
 <template>
-    <ShadcnSlider v-model="value" showTip />
-    <ShadcnSlider v-model="value" :showTip="false" />
+    <ShadcnSlider v-model="value" showTip  :dark="darkMode" />
+    <ShadcnSlider v-model="value" :showTip="false"  :dark="darkMode" />
 </template>
 ```
 
@@ -115,8 +115,8 @@ title: 滑块 (Slider)
 ::: raw
 
 <CodeRunner title="显示间隔 (show-step)">
-    <ShadcnSlider v-model="value" :step="10" showStep />
-    <ShadcnSlider v-model="value" :showStep="false" />
+    <ShadcnSlider v-model="value" :step="10" showStep  :dark="darkMode" />
+    <ShadcnSlider v-model="value" :showStep="false"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -125,8 +125,8 @@ title: 滑块 (Slider)
 
 ```vue
 <template>
-    <ShadcnSlider v-model="value" showStep />
-    <ShadcnSlider v-model="value" :showStep="false" />
+    <ShadcnSlider v-model="value" showStep  :dark="darkMode" />
+    <ShadcnSlider v-model="value" :showStep="false"  :dark="darkMode" />
 </template>
 ```
 
@@ -137,8 +137,8 @@ title: 滑块 (Slider)
 ::: raw
 
 <CodeRunner title="禁用 (disabled)">
-    <ShadcnSlider v-model="value" disabled />
-    <ShadcnSlider v-model="value" :disabled="false" />
+    <ShadcnSlider v-model="value" disabled  :dark="darkMode" />
+    <ShadcnSlider v-model="value" :disabled="false"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -147,8 +147,8 @@ title: 滑块 (Slider)
 
 ```vue
 <template>
-    <ShadcnSlider v-model="value" disabled />
-    <ShadcnSlider v-model="value" :disabled="false" />
+    <ShadcnSlider v-model="value" disabled  :dark="darkMode" />
+    <ShadcnSlider v-model="value" :disabled="false"  :dark="darkMode" />
 </template>
 ```
 
@@ -159,10 +159,10 @@ title: 滑块 (Slider)
 ::: raw
 
 <CodeRunner title="类型 (type)">
-    <ShadcnSlider v-model="value" type="primary" />
-    <ShadcnSlider v-model="value" type="warning" />
-    <ShadcnSlider v-model="value" type="success" />
-    <ShadcnSlider v-model="value" type="error" />
+    <ShadcnSlider v-model="value" type="primary"  :dark="darkMode" />
+    <ShadcnSlider v-model="value" type="warning"  :dark="darkMode" />
+    <ShadcnSlider v-model="value" type="success"  :dark="darkMode" />
+    <ShadcnSlider v-model="value" type="error"  :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -171,10 +171,10 @@ title: 滑块 (Slider)
 
 ```vue
 <template>
-  <ShadcnSlider v-model="value" type="primary" />
-  <ShadcnSlider v-model="value" type="warning" />
-  <ShadcnSlider v-model="value" type="success" />
-  <ShadcnSlider v-model="value" type="error" />
+  <ShadcnSlider v-model="value" type="primary"  :dark="darkMode" />
+  <ShadcnSlider v-model="value" type="warning"  :dark="darkMode" />
+  <ShadcnSlider v-model="value" type="success"  :dark="darkMode" />
+  <ShadcnSlider v-model="value" type="error"  :dark="darkMode" />
 </template>
 ```
 
@@ -208,7 +208,13 @@ title: 滑块 (Slider)
 
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
+import { ref , computed } from 'vue';
 
 const value = ref('')
 </script>

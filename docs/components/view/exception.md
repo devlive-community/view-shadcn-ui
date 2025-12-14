@@ -13,10 +13,10 @@ title: 异常 (Exception)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnSpace wrap>
-        <ShadcnException />
-        <ShadcnException type="500" />
-        <ShadcnException type="403" />
+    <ShadcnSpace wrap :dark="darkMode">
+        <ShadcnException  :dark="darkMode" />
+        <ShadcnException type="500"  :dark="darkMode" />
+        <ShadcnException type="403"  :dark="darkMode" />
     </ShadcnSpace>
 </CodeRunner>
 
@@ -26,14 +26,20 @@ title: 异常 (Exception)
 
 ```vue
 <template>
-  <ShadcnSpace wrap>
-    <ShadcnException />
-    <ShadcnException type="500" />
-    <ShadcnException type="403" />
+  <ShadcnSpace wrap :dark="darkMode">
+    <ShadcnException  :dark="darkMode" />
+    <ShadcnException type="500"  :dark="darkMode" />
+    <ShadcnException type="403"  :dark="darkMode" />
   </ShadcnSpace>
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
 </script>
 ```
 
@@ -59,3 +65,11 @@ title: 异常 (Exception)
         ['actions', '操作'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>

@@ -19,6 +19,8 @@ export default {
         ['link', {rel: 'icon', href: '/favicon.ico'}]
     ],
 
+    appearance: true,
+
     themeConfig: {
         logo: '/logo.svg',
         socialLinks: [
@@ -74,7 +76,7 @@ export default {
                 link: 'https://playground.view-shadcn-ui.devlive.org'
             },
             {
-                text: '2025.1.3 <span class="VPBadge danger" style="margin-left: -18px; position: absolute; bottom: 38px;">最新</span>',
+                text: '2025.1.4 <span class="VPBadge danger" style="margin-left: -18px; position: absolute; bottom: 38px;">最新</span>',
                 items: [
                     {
                         text: '贡献指南',

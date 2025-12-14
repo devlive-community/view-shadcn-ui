@@ -13,7 +13,7 @@ title: 日期选取器 (Date Picker)
 ::: raw
 
 <CodeRunner title="用法">
-    <ShadcnDatePicker v-model="value" />
+    <ShadcnDatePicker v-model="value" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -33,8 +33,8 @@ title: 日期选取器 (Date Picker)
 ::: raw
 
 <CodeRunner title="类型 (type)">
-    <ShadcnDatePicker v-model="value" type="date" />
-    <ShadcnDatePicker v-model="value" type="range" />
+    <ShadcnDatePicker v-model="value" type="date" :dark="darkMode" />
+    <ShadcnDatePicker v-model="value" type="range" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -55,7 +55,7 @@ title: 日期选取器 (Date Picker)
 ::: raw
 
 <CodeRunner title="占位符 (placeholder)">
-    <ShadcnDatePicker v-model="value" placeholder="Enter string" />
+    <ShadcnDatePicker v-model="value" placeholder="Enter string" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -75,8 +75,8 @@ title: 日期选取器 (Date Picker)
 ::: raw
 
 <CodeRunner title="禁用 (disabled)">
-    <ShadcnDatePicker v-model="value" disabled />
-    <ShadcnDatePicker v-model="value" :disabled="false" />
+    <ShadcnDatePicker v-model="value" disabled :dark="darkMode" />
+    <ShadcnDatePicker v-model="value" :disabled="false" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -97,8 +97,8 @@ title: 日期选取器 (Date Picker)
 ::: raw
 
 <CodeRunner title="只读 (readonly)">
-    <ShadcnDatePicker v-model="value" readonly />
-    <ShadcnDatePicker v-model="value" :readonly="false" />
+    <ShadcnDatePicker v-model="value" readonly :dark="darkMode" />
+    <ShadcnDatePicker v-model="value" :readonly="false" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -119,7 +119,7 @@ title: 日期选取器 (Date Picker)
 ::: raw
 
 <CodeRunner title="格式 (format)">
-    <ShadcnDatePicker v-model="value" format="YYYY-MM-DD" />
+    <ShadcnDatePicker v-model="value" format="YYYY-MM-DD" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -139,8 +139,8 @@ title: 日期选取器 (Date Picker)
 ::: raw
 
 <CodeRunner title="清空 (clearable)">
-    <ShadcnDatePicker v-model="value" clearable />
-    <ShadcnDatePicker v-model="value" :clearable="false" />
+    <ShadcnDatePicker v-model="value" clearable :dark="darkMode" />
+    <ShadcnDatePicker v-model="value" :clearable="false" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -161,8 +161,8 @@ title: 日期选取器 (Date Picker)
 ::: raw
 
 <CodeRunner title="显示快捷方式 (show-shortcuts)">
-    <ShadcnDatePicker v-model="value" showShortcuts />
-    <ShadcnDatePicker v-model="value" :showShortcuts="false" />
+    <ShadcnDatePicker v-model="value" showShortcuts :dark="darkMode" />
+    <ShadcnDatePicker v-model="value" :showShortcuts="false" :dark="darkMode" />
 </CodeRunner>
 
 :::
@@ -205,7 +205,11 @@ title: 日期选取器 (Date Picker)
 </ApiTable>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { useData } from 'vitepress'
+import { ref, computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
 
 const value = ref('')
 </script>

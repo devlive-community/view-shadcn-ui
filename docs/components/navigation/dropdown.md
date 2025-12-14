@@ -13,17 +13,17 @@ title: 下拉菜单 (Dropdown)
 ::: raw
 
 <CodeRunner title="用法">
-  <ShadcnDropdown trigger="click">
+  <ShadcnDropdown trigger="click" :dark="darkMode">
     <template #trigger>
-      <ShadcnButton>Click Open</ShadcnButton>
+      <ShadcnButton :dark="darkMode">Click Open</ShadcnButton>
     </template>
     <ShadcnDropdownItem>Option 1</ShadcnDropdownItem>
     <ShadcnDropdownItem active>Option 2</ShadcnDropdownItem>
     <ShadcnDropdownItem disabled>Option 3</ShadcnDropdownItem>
   </ShadcnDropdown>
-  <ShadcnDropdown trigger="hover">
+  <ShadcnDropdown trigger="hover" :dark="darkMode">
     <template #trigger>
-      <ShadcnButton>Hover Open</ShadcnButton>
+      <ShadcnButton :dark="darkMode">Hover Open</ShadcnButton>
     </template>
     <ShadcnDropdownItem>Option 1</ShadcnDropdownItem>
     <ShadcnDropdownItem active>Option 2</ShadcnDropdownItem>
@@ -66,9 +66,9 @@ title: 下拉菜单 (Dropdown)
 ::: raw
 
 <CodeRunner title="分割线 (divided)">
-  <ShadcnDropdown trigger="hover">
+  <ShadcnDropdown trigger="hover" :dark="darkMode">
     <template #trigger>
-      <ShadcnButton>Hover Open</ShadcnButton>
+      <ShadcnButton :dark="darkMode">Hover Open</ShadcnButton>
     </template>
     <ShadcnDropdownItem>Option 1</ShadcnDropdownItem>
     <ShadcnDropdownItem divided>Option 2</ShadcnDropdownItem>
@@ -103,33 +103,33 @@ title: 下拉菜单 (Dropdown)
 ::: raw
 
 <CodeRunner title="位置 (position)">
-    <ShadcnDropdown trigger="hover" position="left">
+    <ShadcnDropdown trigger="hover" position="left" :dark="darkMode">
       <template #trigger>
-        <ShadcnButton>Left</ShadcnButton>
+        <ShadcnButton :dark="darkMode">Left</ShadcnButton>
       </template>
       <ShadcnDropdownItem>Option 1</ShadcnDropdownItem>
       <ShadcnDropdownItem active>Option 2</ShadcnDropdownItem>
       <ShadcnDropdownItem disabled>Option 3</ShadcnDropdownItem>
     </ShadcnDropdown>
-    <ShadcnDropdown trigger="click" position="right">
+    <ShadcnDropdown trigger="click" position="right" :dark="darkMode">
       <template #trigger>
-        <ShadcnButton>Right</ShadcnButton>
+        <ShadcnButton :dark="darkMode">Right</ShadcnButton>
       </template>
       <ShadcnDropdownItem>Option 1</ShadcnDropdownItem>
       <ShadcnDropdownItem active>Option 2</ShadcnDropdownItem>
       <ShadcnDropdownItem disabled>Option 3</ShadcnDropdownItem>
     </ShadcnDropdown>
-    <ShadcnDropdown trigger="hover" position="top">
+    <ShadcnDropdown trigger="hover" position="top" :dark="darkMode">
       <template #trigger>
-        <ShadcnButton>Hover Open</ShadcnButton>
+        <ShadcnButton :dark="darkMode">Hover Open</ShadcnButton>
       </template>
       <ShadcnDropdownItem>Option 1</ShadcnDropdownItem>
       <ShadcnDropdownItem active>Option 2</ShadcnDropdownItem>
       <ShadcnDropdownItem disabled>Option 3</ShadcnDropdownItem>
     </ShadcnDropdown>
-    <ShadcnDropdown trigger="hover" position="bottom">
+    <ShadcnDropdown trigger="hover" position="bottom" :dark="darkMode">
       <template #trigger>
-        <ShadcnButton>Hover Open</ShadcnButton>
+        <ShadcnButton :dark="darkMode">Hover Open</ShadcnButton>
       </template>
       <ShadcnDropdownItem>Option 1</ShadcnDropdownItem>
       <ShadcnDropdownItem active>Option 2</ShadcnDropdownItem>
@@ -237,3 +237,11 @@ title: 下拉菜单 (Dropdown)
         ['on-click', '单击下拉项时触发', 'boolean'],
     ]">
 </ApiTable>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>
