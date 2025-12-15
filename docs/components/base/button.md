@@ -359,9 +359,40 @@ title: 按钮 (Button)
 
 :::
 
+## 液态玻璃效果 (Glass)
+
+::: raw
+
+<CodeRunner title="液态玻璃效果 (Glass)">
+  <div :class="['h-32 rounded-lg flex items-center justify-center gap-4', darkMode ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
+    <ShadcnButton glass :dark="darkMode" type="primary">Primary</ShadcnButton>
+    <ShadcnButton glass :dark="darkMode" type="success">Success</ShadcnButton>
+    <ShadcnButton glass :dark="darkMode" type="warning">Warning</ShadcnButton>
+    <ShadcnButton glass :dark="darkMode" type="danger">Danger</ShadcnButton>
+  </div>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <ShadcnButton glass type="primary">Primary</ShadcnButton>
+    <ShadcnButton glass type="success">Success</ShadcnButton>
+    <ShadcnButton glass type="warning">Warning</ShadcnButton>
+    <ShadcnButton glass type="danger">Danger</ShadcnButton>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## 按钮 (Button) 属性
 
-<ApiTable title="按钮 (Button) 属性" 
+<ApiTable title="按钮 (Button) 属性"
             :headers="['属性', '描述', '类型', '默认值', '支持列表']"
             :columns="[
                 ['text', '按钮文本', 'string', '-', '-'],
@@ -376,6 +407,8 @@ title: 按钮 (Button)
                 ['submit', '是否提交触发表单按钮', 'boolean', 'false', '-'],
                 ['reset', '是否重置触发表单按钮', 'boolean', 'false', '-'],
                 ['to', '要导航到的路径，仅在路由模式下受支持', 'string', '-', '-'],
+                ['dark', '暗黑模式', 'boolean', 'false', '-'],
+                ['glass', '液态玻璃效果', 'boolean', 'false', '-'],
             ]">
 </ApiTable>
 
@@ -386,6 +419,8 @@ title: 按钮 (Button)
             :columns="[
                 ['size', '按钮组的大小', 'enum', 'default', 'small | default | large'],
                 ['direction', '按钮组的方向', 'enum', 'horizontal', 'horizontal | vertical'],
+                ['dark', '暗黑模式', 'boolean', 'false', '-'],
+                ['glass', '液态玻璃效果', 'boolean', 'false', '-'],
             ]">
 </ApiTable>
 

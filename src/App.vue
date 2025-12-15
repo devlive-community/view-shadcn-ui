@@ -6,27 +6,24 @@
 
     <div class="space-y-6 my-6" style="height: 100vh;">
       <div>
-        <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnBreadcrumb - 液态玻璃效果</h3>
+        <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnButton - 液态玻璃效果</h3>
         <div class="space-y-6">
           <div class="relative">
             <div
-                :class="['h-32 rounded-lg flex items-center justify-center', isDark ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
-              <ShadcnBreadcrumb glass :dark="isDark">
-                <ShadcnBreadcrumbItem href="#">Home</ShadcnBreadcrumbItem>
-                <ShadcnBreadcrumbItem href="#">Products</ShadcnBreadcrumbItem>
-                <ShadcnBreadcrumbItem>Summary</ShadcnBreadcrumbItem>
-              </ShadcnBreadcrumb>
+                :class="['h-32 rounded-lg flex items-center justify-center gap-4', isDark ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
+              <ShadcnButton glass :dark="isDark" type="primary">Primary</ShadcnButton>
+              <ShadcnButton glass :dark="isDark" type="success">Success</ShadcnButton>
+              <ShadcnButton glass :dark="isDark" type="warning">Warning</ShadcnButton>
+              <ShadcnButton glass :dark="isDark" type="danger">Danger</ShadcnButton>
             </div>
           </div>
 
           <div class="relative">
             <div
-                :class="['h-32 rounded-lg flex items-center justify-center', isDark ? 'bg-gradient-to-r from-pink-900 to-rose-900' : 'bg-gradient-to-r from-pink-400 to-rose-400']">
-              <ShadcnBreadcrumb glass :dark="isDark" separator=">">
-                <ShadcnBreadcrumbItem href="#">Dashboard</ShadcnBreadcrumbItem>
-                <ShadcnBreadcrumbItem href="#">Settings</ShadcnBreadcrumbItem>
-                <ShadcnBreadcrumbItem>Profile</ShadcnBreadcrumbItem>
-              </ShadcnBreadcrumb>
+                :class="['h-32 rounded-lg flex items-center justify-center gap-4', isDark ? 'bg-gradient-to-r from-pink-900 to-rose-900' : 'bg-gradient-to-r from-pink-400 to-rose-400']">
+              <ShadcnButton glass :dark="isDark" type="primary" size="small">Small</ShadcnButton>
+              <ShadcnButton glass :dark="isDark" type="success">Default</ShadcnButton>
+              <ShadcnButton glass :dark="isDark" type="warning" size="large">Large</ShadcnButton>
             </div>
           </div>
         </div>
@@ -38,7 +35,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ShadcnButton } from "@/ui/button";
-import { ShadcnBreadcrumb, ShadcnBreadcrumbItem } from "@/ui/breadcrumb";
 
 const isDark = ref(false)
 </script>
