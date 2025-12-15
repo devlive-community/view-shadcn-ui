@@ -19,22 +19,32 @@
          :class="[props.direction === 'vertical' ? 'right-4 top-0 bottom-0 flex-col items-center justify-center' : 'bottom-4 left-0 right-0 justify-center']">
       <button v-for="(_, index) in props.items"
               :key="index"
-              class="w-2 h-2 rounded-full transition-colors"
-              :class="[currentIndex === index ? (props.dark ? 'bg-gray-200' : 'bg-gray-700') : (props.dark ? 'bg-gray-200/50' : 'bg-gray-700/50')]"
+              :class="['w-2 h-2 rounded-full transition-all',
+                       props.glass && currentIndex === index && 'backdrop-blur-xl backdrop-saturate-150',
+                       props.glass && currentIndex === index && 'border border-white/20',
+                       props.glass && currentIndex === index && 'shadow-lg shadow-black/5',
+                       props.glass && currentIndex === index ? (props.dark ? 'bg-white/30' : 'bg-white/80') : (currentIndex === index ? (props.dark ? 'bg-gray-200' : 'bg-gray-700') : (props.dark ? 'bg-gray-200/50' : 'bg-gray-700/50'))
+              ]"
               @click="updateIndex(index)"/>
     </div>
 
     <template v-if="props.showArrows">
-      <button :class="['absolute flex items-center justify-center rounded-full w-10 h-10',
-                       props.dark ? 'hover:bg-gray-700/50 text-gray-200' : 'hover:bg-gray-200/30 text-gray-700',
+      <button :class="['absolute flex items-center justify-center rounded-full w-10 h-10 transition-all',
+                       props.glass ? 'backdrop-blur-xl backdrop-saturate-150' : '',
+                       props.glass ? 'border border-white/20' : '',
+                       props.glass ? 'shadow-lg shadow-black/5' : '',
+                       props.glass ? (props.dark ? 'bg-white/10 hover:bg-white/15 text-gray-100' : 'bg-white/60 hover:bg-white/70 text-gray-900') : (props.dark ? 'hover:bg-gray-700/50 text-gray-200' : 'hover:bg-gray-200/30 text-gray-700'),
                        props.direction === 'vertical' ? 'left-1/2 top-4 -translate-x-1/2 rotate-90' : 'left-4 top-1/2 -translate-y-1/2']"
               @click="prev">
         <slot name="prev">
           ←
         </slot>
       </button>
-      <button :class="['absolute flex items-center justify-center rounded-full w-10 h-10',
-                       props.dark ? 'hover:bg-gray-700/50 text-gray-200' : 'hover:bg-gray-200/30 text-gray-700',
+      <button :class="['absolute flex items-center justify-center rounded-full w-10 h-10 transition-all',
+                       props.glass ? 'backdrop-blur-xl backdrop-saturate-150' : '',
+                       props.glass ? 'border border-white/20' : '',
+                       props.glass ? 'shadow-lg shadow-black/5' : '',
+                       props.glass ? (props.dark ? 'bg-white/10 hover:bg-white/15 text-gray-100' : 'bg-white/60 hover:bg-white/70 text-gray-900') : (props.dark ? 'hover:bg-gray-700/50 text-gray-200' : 'hover:bg-gray-200/30 text-gray-700'),
                        props.direction === 'vertical' ? 'left-1/2 bottom-4 -translate-x-1/2 rotate-90' : 'right-4 top-1/2 -translate-y-1/2']"
               @click="next">
         <slot name="next">
@@ -58,7 +68,8 @@ const props = withDefaults(defineProps<CarouselProps>(), {
   direction: 'horizontal',
   autoPlay: true,
   height: 300,
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const emit = defineEmits<CarouselEmits>()

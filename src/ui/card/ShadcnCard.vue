@@ -1,10 +1,11 @@
 <template>
   <div :class="[
             'rounded-sm relative',
-            dark ? 'bg-gray-800' : 'bg-white',
+            glass ? 'backdrop-blur-xl backdrop-saturate-150' : '',
+            glass ? (dark ? 'bg-white/10' : 'bg-white/60') : (dark ? 'bg-gray-800' : 'bg-white'),
             border && 'border',
-            border && dark && 'border-gray-700',
-            Shadow[shadow]
+            glass && border ? 'border-white/20' : (border && dark && 'border-gray-700'),
+            glass ? 'shadow-lg shadow-black/5' : Shadow[shadow]
        ]">
     <div class="relative">
       <ShadcnSpin v-if="!onlyContentLoading" v-model="localLoading" :dark="dark" fixed/>
@@ -56,7 +57,8 @@ const props = withDefaults(defineProps<CardProps>(), {
   border: true,
   loading: false,
   onlyContentLoading: false,
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const localLoading = ref(props.loading)

@@ -14,4 +14,5 @@ export interface CardProps
     onlyContentLoading?: boolean
     border?: boolean
     dark?: boolean
+    glass?: boolean
 }

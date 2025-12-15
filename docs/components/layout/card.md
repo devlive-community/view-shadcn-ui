@@ -144,6 +144,35 @@ title: 卡片 (Card)
 
 :::
 
+## 液态玻璃效果 (Glass)
+
+::: raw
+
+<CodeRunner title="液态玻璃效果 (Glass)">
+  <div :class="['h-64 rounded-lg flex items-center justify-center p-6', darkMode ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
+    <ShadcnCard glass :dark="darkMode" title="Glass Card" description="Card with liquid glass effect">
+      <div class="flex items-center justify-center h-32">Content</div>
+    </ShadcnCard>
+  </div>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <ShadcnCard glass title="Glass Card" description="Card with liquid glass effect">
+        <div class="flex items-center justify-center h-32">Content</div>
+    </ShadcnCard>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## 卡片 (Card) 属性
 
 <ApiTable title="卡片 (Card)"
@@ -155,6 +184,8 @@ title: 卡片 (Card)
         ['loading', '是否显示加载', 'boolean', 'false', '-', '-'],
         ['border', '是否显示边框', 'boolean', 'true', '-', '-'],
         ['onlyContentLoading', '是否仅显示内容加载，设置后加载状态不会显示在标题上', 'boolean', 'false', '-', '-'],
+        ['dark', '暗黑模式', 'boolean', 'false', '-', '-'],
+        ['glass', '液态玻璃效果', 'boolean', 'false', '-', '-'],
     ]">
 </ApiTable>
 
