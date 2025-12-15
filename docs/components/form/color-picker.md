@@ -226,6 +226,30 @@ title: 颜色选择器 (Color Picker)
 
 :::
 
+## 液态玻璃效果 (glass)
+
+::: raw
+
+<div :style="{ background: darkMode ? 'linear-gradient(to right, rgb(30, 58, 138), rgb(49, 46, 129))' : 'linear-gradient(to right, rgb(96, 165, 250), rgb(129, 140, 248))', padding: '1.5rem', borderRadius: '0.5rem' }">
+<CodeRunner title="液态玻璃效果 (glass)">
+    <ShadcnColorPicker v-model="value" glass  :dark="darkMode" />
+    <ShadcnColorPicker v-model="value" :glass="false"  :dark="darkMode" />
+</CodeRunner>
+</div>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <ShadcnColorPicker v-model="value" glass  :dark="darkMode" />
+    <ShadcnColorPicker v-model="value" :glass="false"  :dark="darkMode" />
+</template>
+```
+
+:::
+
 ## 颜色选择器 (Color Picker) 属性
 
 <ApiTable title="颜色选择器 (Color Picker) 属性"
@@ -240,7 +264,9 @@ title: 颜色选择器 (Color Picker)
         ['showPanel', '是否显示面板', 'boolean', 'true', '-'],
         ['showDropper', '是否显示吸管', 'boolean', 'true', '-'],
         ['showTransparency', '是否显示透明度', 'boolean', 'true', '-'],
-        ['showFormat', '是否显示格式', 'boolean', 'true', '-']
+        ['showFormat', '是否显示格式', 'boolean', 'true', '-'],
+        ['dark', '是否为暗黑模式', 'boolean', 'false', '-'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false', '-']
     ]">
 </ApiTable>
 
