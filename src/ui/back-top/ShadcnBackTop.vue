@@ -2,10 +2,12 @@
   <Transition name="fade">
     <button v-show="visible"
             :class="[
-              'fixed rounded-full p-3 shadow-md focus:outline-none z-50',
-              glass ? 'backdrop-blur-md' : '',
+              'fixed rounded-full p-3 focus:outline-none z-50',
+              glass ? 'backdrop-blur-xl backdrop-saturate-150' : '',
+              glass ? 'border border-white/20' : '',
+              glass ? 'shadow-lg shadow-black/5' : 'shadow-md',
               glass
-                ? (dark ? 'bg-gray-700/30 text-gray-100 hover:bg-gray-600/40' : 'bg-primary/30 text-primary-foreground hover:bg-primary/40')
+                ? (dark ? 'bg-white/10 text-gray-100 hover:bg-white/15' : 'bg-white/60 text-gray-900 hover:bg-white/70')
                 : (dark ? 'bg-gray-700 text-gray-100 hover:bg-gray-600' : 'bg-primary text-primary-foreground hover:bg-primary/90')
             ]"
             :style="buttonStyle"

@@ -1,10 +1,11 @@
 <template>
   <div v-if="visible"
-       :class="['relative w-full border py-2 px-3',
+       :class="['relative w-full py-2 px-3 border',
                 !banner ? 'rounded-md' : 'rounded-none',
-                glass ? 'backdrop-blur-md' : '',
-                dark ? DarkBorderType[type] : BorderType[type],
-                glass ? (dark ? 'bg-gray-900/30' : 'bg-white/30') : (dark ? DarkBackgroundType[type] : BackgroundType[type])
+                glass ? 'backdrop-blur-xl backdrop-saturate-150' : '',
+                glass ? 'border-white/20' : (dark ? DarkBorderType[props.type] : BorderType[props.type]),
+                glass ? (dark ? GlassBackgroundTypeDark[props.type] : GlassBackgroundType[props.type]) : (dark ? DarkBackgroundType[props.type] : BackgroundType[props.type]),
+                glass ? 'shadow-lg shadow-black/5' : ''
        ]">
     <div class="flex items-center gap-3">
       <!-- Icon -->
@@ -84,9 +85,28 @@ const DarkTextType = {
   default: 'text-gray-300'
 }
 
+// 液态玻璃效果背景颜色
+const GlassBackgroundType = {
+  primary: 'bg-blue-500/30',
+  success: 'bg-green-500/30',
+  warning: 'bg-yellow-500/30',
+  error: 'bg-red-500/30',
+  info: 'bg-blue-500/30',
+  default: 'bg-gray-500/30'
+}
+
+const GlassBackgroundTypeDark = {
+  primary: 'bg-blue-600/30',
+  success: 'bg-green-600/30',
+  warning: 'bg-yellow-600/30',
+  error: 'bg-red-600/30',
+  info: 'bg-blue-600/30',
+  default: 'bg-gray-600/30'
+}
+
 const emit = defineEmits(['on-close'])
 
-withDefaults(defineProps<{
+const props = withDefaults(defineProps<{
   title?: string
   type?: keyof typeof BackgroundType
   showIcon?: boolean

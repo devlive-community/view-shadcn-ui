@@ -1,15 +1,17 @@
 <template>
   <div :class="[
             'relative inline-flex overflow-hidden w-fit',
-            glass ? 'backdrop-blur-md' : '',
-            glass ? (dark ? 'bg-gray-700/30' : 'bg-muted/30') : (dark ? 'bg-gray-700' : 'bg-muted'),
+            glass ? 'backdrop-blur-xl backdrop-saturate-150' : '',
+            glass ? (dark ? 'bg-white/10' : 'bg-white/60') : (dark ? 'bg-gray-700' : 'bg-muted'),
+            glass ? 'shadow-lg shadow-black/5' : '',
             size && SkeletonSize[size],
             square ? 'rounded-sm' : 'rounded-full'
        ]">
     <img v-if="src"
          :src="String(src)"
-         :class="['aspect-square object-cover cursor-pointer border-2',
-                  dark ? 'border-gray-800' : 'border-white'
+         :class="['aspect-square object-cover cursor-pointer',
+                  glass ? 'border border-white/20' : 'border-2',
+                  !glass && (dark ? 'border-gray-800' : 'border-white')
          ]"
          :alt="alt"
          @load="onImageLoaded"
