@@ -1,37 +1,32 @@
 <template>
-  <div :class="['border rounded-md', dark ? 'border-gray-600' : 'border-gray-200']">
+  <div :class="[
+         'border rounded-md',
+         glass ? 'backdrop-blur-xl backdrop-saturate-150' : '',
+         glass ? 'border-white/20' : (dark ? 'border-gray-600' : 'border-gray-200'),
+         glass ? (dark ? 'bg-white/10' : 'bg-white/60') : '',
+         glass ? 'shadow-lg shadow-black/5' : ''
+       ]">
     <slot/>
   </div>
 </template>
 
 <script setup lang="ts">
 import { provide, toRef } from 'vue'
+import type { CollapseProps, CollapseEmits } from './types'
 
-interface Props
-{
-  modelValue?: string[]
-  accordion?: boolean
-  dark?: boolean
-}
-
-interface Emits
-{
-  (e: 'update:modelValue', value: string[]): void
-
-  (e: 'on-change', value: { name: string, value: string[] }): void
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<CollapseProps>(), {
   modelValue: () => [],
   accordion: false,
-  dark: false
+  dark: false,
+  glass: false
 })
 
-const emit = defineEmits<Emits>()
+const emit = defineEmits<CollapseEmits>()
 
 provide('expandedItems', toRef(props, 'modelValue'))
 provide('accordion', toRef(props, 'accordion'))
 provide('collapseDark', toRef(props, 'dark'))
+provide('collapseGlass', toRef(props, 'glass'))
 
 provide('toggleItem', (name: string) => {
   const currentValue = [...props.modelValue]

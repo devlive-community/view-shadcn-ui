@@ -88,6 +88,54 @@ const expandedItems = ref<string[]>([])
 
 :::
 
+## 液态玻璃效果 (Glass)
+
+:::raw
+
+<CodeRunner title="液态玻璃效果 (Glass)">
+  <div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
+    <ShadcnCollapse class="w-full" glass :dark="darkMode" v-model="expandedItems">
+      <ShadcnCollapseItem title="Section 1" name="1">
+        Content for section 1
+      </ShadcnCollapseItem>
+      <ShadcnCollapseItem title="Section 2" name="2">
+        Content for section 2
+      </ShadcnCollapseItem>
+      <ShadcnCollapseItem title="Section 3" name="3">
+        Content for section 3
+      </ShadcnCollapseItem>
+    </ShadcnCollapse>
+  </div>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+  <ShadcnCollapse glass v-model="expandedItems">
+    <ShadcnCollapseItem title="Section 1" name="1">
+      Content for section 1
+    </ShadcnCollapseItem>
+    <ShadcnCollapseItem title="Section 2" name="2">
+      Content for section 2
+    </ShadcnCollapseItem>
+    <ShadcnCollapseItem title="Section 3" name="3">
+      Content for section 3
+    </ShadcnCollapseItem>
+  </ShadcnCollapse>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const expandedItems = ref<string[]>([])
+</script>
+```
+
+:::
+
 ## 折叠 (Collapse) 属性
 
 <ApiTable title="折叠 (Collapse) 属性"
@@ -95,6 +143,8 @@ const expandedItems = ref<string[]>([])
     :columns="[
         ['modelValue', '当前选中的值', 'any\[\]', '-'],
         ['accordion', '手风琴模式', 'boolean', 'false'],
+        ['dark', '暗黑模式', 'boolean', 'false'],
+        ['glass', '液态玻璃效果', 'boolean', 'false'],
     ]">
 </ApiTable>
 

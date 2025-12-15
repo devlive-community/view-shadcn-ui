@@ -6,10 +6,20 @@
 
     <div class="space-y-6 my-6" style="height: 100vh;">
       <div>
-        <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnCarousel - 液态玻璃效果</h3>
+        <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnCollapse - 液态玻璃效果</h3>
         <div class="space-y-6">
-          <div class="relative">
-            <ShadcnCarousel glass :dark="isDark" :items="carouselItems" height="300px"/>
+          <div :class="['p-6 rounded-lg', isDark ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
+            <ShadcnCollapse glass :dark="isDark" v-model="expandedItems">
+              <ShadcnCollapseItem title="Section 1" name="1">
+                Content for section 1
+              </ShadcnCollapseItem>
+              <ShadcnCollapseItem title="Section 2" name="2">
+                Content for section 2
+              </ShadcnCollapseItem>
+              <ShadcnCollapseItem title="Section 3" name="3">
+                Content for section 3
+              </ShadcnCollapseItem>
+            </ShadcnCollapse>
           </div>
         </div>
       </div>
@@ -20,13 +30,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ShadcnButton } from "@/ui/button";
-import { ShadcnCarousel } from "@/ui/carousel";
+import { ShadcnCollapse, ShadcnCollapseItem } from "@/ui/collapse";
 
 const isDark = ref(false)
-
-const carouselItems = [
-  { src: 'https://picsum.photos/800/300?random=1', text: 'Slide 1' },
-  { src: 'https://picsum.photos/800/300?random=2', text: 'Slide 2' },
-  { src: 'https://picsum.photos/800/300?random=3', text: 'Slide 3' }
-]
+const expandedItems = ref<string[]>(['1'])
 </script>
