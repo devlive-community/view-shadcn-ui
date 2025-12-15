@@ -17,6 +17,7 @@ export interface ContributionProps
     cellGap?: number
     year?: number
     dark?: boolean
+    glass?: boolean
 }
 
 export type ContributionEmits = {
