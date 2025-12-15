@@ -1,7 +1,8 @@
 <template>
   <div :class="[
             'relative inline-flex overflow-hidden w-fit',
-            dark ? 'bg-gray-700' : 'bg-muted',
+            glass ? 'backdrop-blur-md' : '',
+            glass ? (dark ? 'bg-gray-700/30' : 'bg-muted/30') : (dark ? 'bg-gray-700' : 'bg-muted'),
             size && SkeletonSize[size],
             square ? 'rounded-sm' : 'rounded-full'
        ]">
@@ -32,7 +33,8 @@ const emit = defineEmits<AvatarEmits>()
 
 withDefaults(defineProps<AvatarProps>(), {
   size: 'default',
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const onImageLoaded = () => emit('on-success')
