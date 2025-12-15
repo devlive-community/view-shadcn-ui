@@ -199,6 +199,62 @@ const onItemClick = (action) => console.log(`Clicked: ${action}`)
 
 :::
 
+## 液态玻璃效果 (glass)
+
+::: raw
+
+<div :style="{ background: darkMode ? 'linear-gradient(to right, rgb(30, 58, 138), rgb(49, 46, 129))' : 'linear-gradient(to right, rgb(96, 165, 250), rgb(129, 140, 248))', padding: '1.5rem', borderRadius: '0.5rem' }">
+<CodeRunner title="液态玻璃效果 (glass)">
+  <ShadcnContextMenu v-model="glassMenu" glass :dark="darkMode">
+    <template #trigger>
+      <div :class="['w-full h-32 rounded-lg flex items-center justify-center border-2 border-dashed cursor-pointer', darkMode ? 'border-gray-600 text-gray-300' : 'border-gray-300']">
+        Right click in this area to show menu
+      </div>
+    </template>
+    <ShadcnContextMenuItem @on-click="onItemClick('edit')">Edit</ShadcnContextMenuItem>
+    <ShadcnContextMenuItem @on-click="onItemClick('copy')">Copy</ShadcnContextMenuItem>
+    <ShadcnContextMenuSub label="More actions">
+      <ShadcnContextMenuItem @on-click="onItemClick('move')">Move</ShadcnContextMenuItem>
+      <ShadcnContextMenuItem @on-click="onItemClick('duplicate')">Duplicate</ShadcnContextMenuItem>
+    </ShadcnContextMenuSub>
+    <ShadcnContextMenuItem @on-click="onItemClick('print')">Print</ShadcnContextMenuItem>
+  </ShadcnContextMenu>
+</CodeRunner>
+</div>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+  <ShadcnContextMenu v-model="showMenu" glass :dark="darkMode">
+    <template #trigger>
+      <div class="w-full h-32 bg-gray-100 rounded-lg flex items-center justify-center">
+        Right click in this area to show menu
+      </div>
+    </template>
+    <ShadcnContextMenuItem @on-click="onItemClick('edit')">Edit</ShadcnContextMenuItem>
+    <ShadcnContextMenuItem @on-click="onItemClick('copy')">Copy</ShadcnContextMenuItem>
+    <ShadcnContextMenuSub label="More actions">
+      <ShadcnContextMenuItem @on-click="onItemClick('move')">Move</ShadcnContextMenuItem>
+      <ShadcnContextMenuItem @on-click="onItemClick('duplicate')">Duplicate</ShadcnContextMenuItem>
+    </ShadcnContextMenuSub>
+    <ShadcnContextMenuItem @on-click="onItemClick('print')">Print</ShadcnContextMenuItem>
+  </ShadcnContextMenu>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const showMenu = ref(false)
+
+const onItemClick = (action) => console.log(`Clicked: ${action}`)
+</script>
+```
+
+:::
+
 ## 右键菜单 (Contextmenu) 属性
 
 <ApiTable title="右键菜单 (Contextmenu) 属性"
@@ -206,6 +262,8 @@ const onItemClick = (action) => console.log(`Clicked: ${action}`)
     :columns="[
         ['modelValue', '右键菜单的值', 'boolean', 'false'],
         ['position', '右键菜单的位置', '{x: number, y: number}', 'trigger position'],
+        ['dark', '是否为暗黑模式', 'boolean', 'false'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false'],
     ]">
 </ApiTable>
 
@@ -267,6 +325,7 @@ const darkMode = computed(() => isDark.value)
 const showMenu = ref(false)
 const subMenu = ref(false)
 const disabledMenu = ref(false)
+const glassMenu = ref(false)
 
 const onItemClick = (action) => console.log(`Clicked: ${action}`)
 </script>

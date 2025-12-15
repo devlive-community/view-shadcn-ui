@@ -3,8 +3,11 @@
        :class="[
            'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors',
            {
-             'text-gray-200 hover:bg-gray-700 focus:bg-gray-700': dark,
-             'hover:bg-gray-100 focus:bg-gray-100': !dark,
+             'text-gray-200': dark,
+             'hover:bg-gray-700 focus:bg-gray-700': dark && !glass,
+             'hover:bg-white/10 focus:bg-white/10': dark && glass,
+             'hover:bg-gray-100 focus:bg-gray-100': !dark && !glass,
+             'hover:bg-white/20 focus:bg-white/20': !dark && glass,
              'opacity-50 cursor-not-allowed': disabled
            }
        ]">
@@ -23,6 +26,9 @@ const props = withDefaults(defineProps<ContextMenuItemProps>(), {
 
 const injectedDark = inject('contextMenuDark', computed(() => false))
 const dark = computed(() => props.dark || injectedDark.value)
+
+const injectedGlass = inject('contextMenuGlass', computed(() => false))
+const glass = computed(() => injectedGlass.value)
 
 const closeMenu = inject('closeMenu') as () => void
 

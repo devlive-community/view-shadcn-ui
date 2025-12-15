@@ -1,10 +1,13 @@
 <template>
-  <div class="relative" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
+  <div class="relative" ref="triggerRef" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
     <div :class="[
               'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors',
               {
-                'text-gray-200 hover:bg-gray-700 focus:bg-gray-700': dark,
-                'hover:bg-gray-100 focus:bg-gray-100': !dark,
+                'text-gray-200': dark,
+                'hover:bg-gray-700 focus:bg-gray-700': dark && !glass,
+                'hover:bg-white/10 focus:bg-white/10': dark && glass,
+                'hover:bg-gray-100 focus:bg-gray-100': !dark && !glass,
+                'hover:bg-white/20 focus:bg-white/20': !dark && glass,
                 'opacity-50 cursor-not-allowed': disabled
               }
           ]">
@@ -23,21 +26,28 @@
       </svg>
     </div>
 
-    <Transition enter-active-class="transition ease-out duration-200"
-                enter-from-class="opacity-0 translate-y-1"
-                enter-to-class="opacity-100 translate-y-0"
-                leave-active-class="transition ease-in duration-150"
-                leave-from-class="opacity-100 translate-y-0"
-                leave-to-class="opacity-0 translate-y-1">
-      <div v-show="isHovered"
-           ref="subMenuRef"
-           :class="['absolute min-w-[8rem] rounded-md border p-1 shadow-md',
-                    dark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
-           ]"
-           :style="subMenuStyle">
-        <slot/>
-      </div>
-    </Transition>
+    <Teleport to="body">
+      <Transition enter-active-class="transition ease-out duration-200"
+                  enter-from-class="opacity-0 translate-y-1"
+                  enter-to-class="opacity-100 translate-y-0"
+                  leave-active-class="transition ease-in duration-150"
+                  leave-from-class="opacity-100 translate-y-0"
+                  leave-to-class="opacity-0 translate-y-1">
+        <div v-show="isHovered"
+             ref="subMenuRef"
+             @mouseenter="onSubMenuMouseEnter"
+             @mouseleave="onSubMenuMouseLeave"
+             :class="['fixed min-w-[8rem] z-50 rounded-md border p-1',
+                      glass ? 'backdrop-blur-xl backdrop-saturate-150' : '',
+                      glass ? 'border-white/20' : (dark ? 'border-gray-700' : 'border-gray-200'),
+                      glass ? (dark ? 'bg-white/10' : 'bg-white/60') : (dark ? 'bg-gray-800' : 'bg-white'),
+                      glass ? 'shadow-lg shadow-black/5' : 'shadow-md'
+             ]"
+             :style="subMenuStyle">
+          <slot/>
+        </div>
+      </Transition>
+    </Teleport>
   </div>
 </template>
 
@@ -54,34 +64,34 @@ const props = withDefaults(defineProps<ContextMenuItemProps>(), {
 const injectedDark = inject('contextMenuDark', computed(() => false))
 const dark = computed(() => props.dark || injectedDark.value)
 
+const injectedGlass = inject('contextMenuGlass', computed(() => false))
+const glass = computed(() => injectedGlass.value)
+
 const isHovered = ref(false)
 const subMenuRef = ref<HTMLElement | null>(null)
+const triggerRef = ref<HTMLElement | null>(null)
 const position = ref({ x: 0, y: 0 })
+const hideTimeout = ref<number | null>(null)
 
 // Calculates submenu styles
 const subMenuStyle = computed<CSSProperties>(() => {
   return {
-    position: 'fixed',
-    left: position.value.x ? calcSize(position.value.x) : '100%',
+    left: position.value.x ? calcSize(position.value.x) : '0',
     top: position.value.y ? calcSize(position.value.y) : '0'
   }
 })
 
 // Update the submenu position
 const updatePosition = async () => {
-  if (!subMenuRef.value || !isHovered.value) {
+  if (!subMenuRef.value || !triggerRef.value || !isHovered.value) {
     return
   }
 
   await nextTick()
-  const parentRect = subMenuRef.value.parentElement?.getBoundingClientRect()
+  const parentRect = triggerRef.value.getBoundingClientRect()
   const subMenuRect = subMenuRef.value.getBoundingClientRect()
   const viewportWidth = window.innerWidth
   const viewportHeight = window.innerHeight
-
-  if (!parentRect) {
-    return
-  }
 
   // It is displayed on the right by default
   let x = parentRect.right + 4
@@ -105,8 +115,16 @@ const updatePosition = async () => {
   position.value = { x, y }
 }
 
+const clearHideTimeout = () => {
+  if (hideTimeout.value !== null) {
+    window.clearTimeout(hideTimeout.value)
+    hideTimeout.value = null
+  }
+}
+
 const onMouseEnter = () => {
   if (!props.disabled) {
+    clearHideTimeout()
     isHovered.value = true
     updatePosition()
   }
@@ -114,7 +132,26 @@ const onMouseEnter = () => {
 
 const onMouseLeave = () => {
   if (!props.disabled) {
-    isHovered.value = false
+    clearHideTimeout()
+    hideTimeout.value = window.setTimeout(() => {
+      isHovered.value = false
+    }, 150)
+  }
+}
+
+const onSubMenuMouseEnter = () => {
+  if (!props.disabled) {
+    clearHideTimeout()
+    isHovered.value = true
+  }
+}
+
+const onSubMenuMouseLeave = () => {
+  if (!props.disabled) {
+    clearHideTimeout()
+    hideTimeout.value = window.setTimeout(() => {
+      isHovered.value = false
+    }, 150)
   }
 }
 
@@ -138,5 +175,6 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   window.removeEventListener('resize', handleResize)
+  clearHideTimeout()
 })
 </script>

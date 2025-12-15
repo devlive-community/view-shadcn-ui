@@ -6,8 +6,11 @@
   <Teleport to="body">
     <div v-if="modelValue"
          ref="menuRef"
-         :class="['fixed min-w-[8rem] z-50 rounded-md shadow-lg border p-1',
-                  dark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+         :class="['fixed min-w-[8rem] z-50 rounded-md border p-1',
+                  glass ? 'backdrop-blur-xl backdrop-saturate-150' : '',
+                  glass ? 'border-white/20' : (dark ? 'border-gray-700' : 'border-gray-200'),
+                  glass ? (dark ? 'bg-white/10' : 'bg-white/60') : (dark ? 'bg-gray-800' : 'bg-white'),
+                  glass ? 'shadow-lg shadow-black/5' : 'shadow-lg'
          ]"
          :style="menuStyle">
       <slot/>
@@ -25,7 +28,8 @@ const emit = defineEmits<ContextMenuEmits>()
 const props = withDefaults(defineProps<ContextMenuProps>(), {
   modelValue: false,
   position: undefined,
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const menuPosition = ref({ x: 0, y: 0 })
@@ -106,6 +110,7 @@ const closeMenu = () => {
 }
 provide('closeMenu', closeMenu)
 provide('contextMenuDark', computed(() => props.dark))
+provide('contextMenuGlass', computed(() => props.glass))
 
 // Handle clicking on the external close menu
 const onClickOutside = (event) => {
