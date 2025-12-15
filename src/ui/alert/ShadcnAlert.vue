@@ -2,8 +2,9 @@
   <div v-if="visible"
        :class="['relative w-full border py-2 px-3',
                 !banner ? 'rounded-md' : 'rounded-none',
+                glass ? 'backdrop-blur-md' : '',
                 dark ? DarkBorderType[type] : BorderType[type],
-                dark ? DarkBackgroundType[type] : BackgroundType[type]
+                glass ? (dark ? 'bg-gray-900/30' : 'bg-white/30') : (dark ? DarkBackgroundType[type] : BackgroundType[type])
        ]">
     <div class="flex items-center gap-3">
       <!-- Icon -->
@@ -92,10 +93,12 @@ withDefaults(defineProps<{
   banner?: boolean
   closable?: boolean
   dark?: boolean
+  glass?: boolean
 }>(), {
   type: 'primary',
   closable: false,
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const visible = ref(true)

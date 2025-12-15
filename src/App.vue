@@ -6,37 +6,43 @@
 
     <div class="space-y-6 my-6">
       <div>
-        <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnLayout</h3>
-        <div :class="['rounded-lg border', isDark ? 'border-gray-600' : 'border-gray-200']" style="height: 600px;">
-          <ShadcnLayout :dark="isDark" style="height: 100%;">
-            <ShadcnLayoutHeader style="height: 64px; display: flex; align-items: center; padding: 0 24px;">
-              <div :class="['text-xl font-semibold', isDark ? 'text-gray-100' : 'text-gray-900']">
-                Layout Header
-              </div>
-            </ShadcnLayoutHeader>
-            <div class="flex flex-1" style="height: calc(100% - 128px);">
-              <ShadcnLayoutSider :collapsible="true" :trigger="true">
-                <div class="py-4">
-                  <div v-for="i in 5" :key="i" :class="['px-4 py-2 cursor-pointer', isDark ? 'hover:bg-gray-700 text-gray-200' : 'hover:bg-gray-100']">
-                    菜单项 {{ i }}
-                  </div>
-                </div>
-              </ShadcnLayoutSider>
-              <ShadcnLayoutContent style="padding: 24px;">
-                <div :class="['h-full rounded', isDark ? 'bg-gray-800 text-gray-100' : 'bg-gray-50']" style="padding: 24px;">
-                  <h4 :class="['text-lg font-medium mb-4', isDark ? 'text-gray-100' : 'text-gray-900']">Content Area</h4>
-                  <p :class="[isDark ? 'text-gray-300' : 'text-gray-600']">
-                    这是主内容区域，可以放置任何内容。左侧的侧边栏可以通过点击箭头按钮进行收起和展开。
-                  </p>
-                </div>
-              </ShadcnLayoutContent>
+        <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnAlert - 液态玻璃效果</h3>
+        <div class="space-y-4">
+          <div class="relative">
+            <div :class="['h-32 rounded-lg', isDark ? 'bg-gradient-to-r from-blue-900 to-purple-900' : 'bg-gradient-to-r from-blue-400 to-purple-400']"></div>
+            <div class="absolute inset-0 flex items-center justify-center p-4">
+              <ShadcnAlert title="液态玻璃效果提示" glass :dark="isDark" show-icon type="primary">
+                这是一个使用液态玻璃效果的 Alert 组件，通过半透明背景和背景模糊创建现代化的视觉效果。
+              </ShadcnAlert>
             </div>
-            <ShadcnLayoutFooter style="height: 64px; display: flex; align-items: center; justify-content: center;">
-              <div :class="[isDark ? 'text-gray-400' : 'text-gray-600']">
-                Layout Footer © 2024
-              </div>
-            </ShadcnLayoutFooter>
-          </ShadcnLayout>
+          </div>
+
+          <div class="relative">
+            <div :class="['h-32 rounded-lg', isDark ? 'bg-gradient-to-r from-green-900 to-teal-900' : 'bg-gradient-to-r from-green-400 to-teal-400']"></div>
+            <div class="absolute inset-0 flex items-center justify-center p-4">
+              <ShadcnAlert title="成功提示" glass :dark="isDark" show-icon type="success" closable>
+                操作已成功完成！液态玻璃效果让提示框更加优雅。
+              </ShadcnAlert>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div :class="['h-32 rounded-lg', isDark ? 'bg-gradient-to-r from-yellow-900 to-orange-900' : 'bg-gradient-to-r from-yellow-400 to-orange-400']"></div>
+            <div class="absolute inset-0 flex items-center justify-center p-4">
+              <ShadcnAlert title="警告提示" glass :dark="isDark" show-icon type="warning">
+                请注意：液态玻璃效果在彩色背景上表现最佳。
+              </ShadcnAlert>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div :class="['h-32 rounded-lg', isDark ? 'bg-gradient-to-r from-red-900 to-pink-900' : 'bg-gradient-to-r from-red-400 to-pink-400']"></div>
+            <div class="absolute inset-0 flex items-center justify-center p-4">
+              <ShadcnAlert title="错误提示" glass :dark="isDark" show-icon type="error" closable>
+                发生错误！液态玻璃效果同样适用于错误提示。
+              </ShadcnAlert>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -46,7 +52,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ShadcnButton } from "@/ui/button";
-import { ShadcnLayout, ShadcnLayoutContent, ShadcnLayoutFooter, ShadcnLayoutHeader, ShadcnLayoutSider } from "@/ui/layout";
+import { ShadcnAlert } from "@/ui/alert";
 
 const isDark = ref(false)
 </script>
