@@ -3,24 +3,34 @@
     <ShadcnSpace>
       <span v-for="index in toNumber(max)"
             :key="index"
-            :class="['relative flex text-xl',
+            :class="['relative flex text-xl transition-all duration-200',
+                    glass && 'drop-shadow-lg',
                     {
                       'cursor-not-allowed': disabled,
                       'cursor-pointer': !disabled
                     }
             ]"
+            :style="{
+              transform: !disabled && hoverValue >= index ? 'scale(1.15)' : 'scale(1)'
+            }"
             @click="onClick(index, $event)"
             @mousemove="handleMouseOver(index, $event)"
             @mouseleave="handleMouseLeave">
         <span class="relative block">
           <!-- Left -->
           <span :class="getStarClass(index, true)"
-                class="absolute left-0 top-0 h-full overflow-hidden"
-                :style="{ width: isHalfStar(index) ? '50%' : '100%' }">
+                class="absolute left-0 top-0 h-full overflow-hidden transition-all duration-200"
+                :style="{
+                  width: isHalfStar(index) ? '50%' : '100%',
+                  filter: glass ? 'drop-shadow(0 0 8px currentColor)' : 'none'
+                }">
             <slot name="character">★</slot>
           </span>
           <!-- Right -->
-          <span :class="disabled ? (dark ? 'text-gray-600' : 'text-gray-400') : (dark ? 'text-gray-600' : 'text-gray-300')">
+          <span :class="[
+                  'transition-colors duration-200',
+                  disabled ? (dark ? 'text-gray-600' : 'text-gray-400') : (dark ? 'text-gray-600' : 'text-gray-300')
+                ]">
             <slot name="character">★</slot>
           </span>
         </span>
@@ -39,29 +49,23 @@
 </template>
 
 <script setup lang="ts">
-import { defineEmits, defineProps, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 import { toNumber } from 'lodash'
 import { ShadcnSpace } from '@/ui/space'
 import { TextType } from '@/ui/common/type.ts'
+import { RateProps, RateEmits } from './types'
 
-const props = withDefaults(defineProps<{
-  modelValue: number
-  max?: number | string
-  allowHalf?: boolean
-  type?: keyof typeof TextType
-  disabled?: boolean
-  showText?: boolean
-  dark?: boolean
-}>(), {
+const props = withDefaults(defineProps<RateProps>(), {
   max: 5,
   allowHalf: false,
   type: 'primary',
   disabled: false,
   showText: false,
-  dark: false
+  dark: false,
+  glass: false
 })
 
-const emit = defineEmits(['update:modelValue', 'on-change'])
+const emit = defineEmits<RateEmits>()
 
 const hoverValue = ref(0)
 const isHalf = ref(false)

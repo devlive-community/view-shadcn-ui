@@ -284,6 +284,57 @@ const value = ref(0)
 
 :::
 
+## 液态玻璃效果 (glass)
+
+::: raw
+
+<CodeRunner title="液态玻璃效果 (glass)">
+    <div class="p-6 rounded-lg bg-gradient-to-r from-purple-400 to-pink-400 dark:from-purple-900 dark:to-pink-900">
+        <div class="space-y-4">
+            <ShadcnNumber v-model="glassValue1" glass :dark="darkMode" placeholder="请输入数字" />
+            <ShadcnNumber v-model="glassValue2" glass type="success" :dark="darkMode" :min="0" :max="100" placeholder="范围 0-100" />
+            <ShadcnNumber v-model="glassValue3" glass type="warning" :dark="darkMode" clearable placeholder="可清除" />
+            <ShadcnNumber v-model="glassValue4" glass type="error" :dark="darkMode" :formatter="formatter" :parser="parser" placeholder="格式化显示" />
+        </div>
+    </div>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <div class="p-6 rounded-lg bg-gradient-to-r from-purple-400 to-pink-400 dark:from-purple-900 dark:to-pink-900">
+        <div class="space-y-4">
+            <ShadcnNumber v-model="value1" glass :dark="darkMode" placeholder="请输入数字" />
+            <ShadcnNumber v-model="value2" glass type="success" :dark="darkMode" :min="0" :max="100" placeholder="范围 0-100" />
+            <ShadcnNumber v-model="value3" glass type="warning" :dark="darkMode" clearable placeholder="可清除" />
+            <ShadcnNumber v-model="value4" glass type="error" :dark="darkMode" :formatter="formatter" :parser="parser" placeholder="格式化显示" />
+        </div>
+    </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
+const value1 = ref(10)
+const value2 = ref(50)
+const value3 = ref(20)
+const value4 = ref(1000)
+
+const formatter = (value: number) => `¥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+const parser = (value: string) => Number(value.replace(/¥\s?|(,*)/g, ''))
+</script>
+```
+
+:::
+
 ## 数字输入框 (Number) 属性
 
 <ApiTable title="数字输入框 (Number) 属性"
@@ -299,6 +350,8 @@ const value = ref(0)
         ['clearable', '是否显示清空', 'boolean', 'false', '-'],
         ['formatter', '格式化函数', 'function', '-', '-'],
         ['parser', '解析函数', 'function', '-', '-'],
+        ['dark', '是否为暗黑模式', 'boolean', 'false', '-'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
@@ -325,8 +378,8 @@ const value = ref(0)
 
 <script setup lang="ts">
 import { ref, getCurrentInstance } from 'vue'
-import { useData } from 'vitepress' 
-import { computed } from 'vue' 
+import { useData } from 'vitepress'
+import { computed } from 'vue'
 const { isDark } = useData()
 const darkMode = computed(() => isDark.value)
 
@@ -335,8 +388,15 @@ const placeholderValue = ref(undefined)
 const minAndMaxValue = ref(0)
 const clearableValue = ref(0)
 const controlValue = ref(null)
+const glassValue1 = ref(10)
+const glassValue2 = ref(50)
+const glassValue3 = ref(20)
+const glassValue4 = ref(1000)
 
-const { proxy } = getCurrentInstance()! 
+const formatter = (value: number) => `¥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+const parser = (value: string) => Number(value.replace(/¥\s?|(,*)/g, ''))
+
+const { proxy } = getCurrentInstance()!
 const formState = ref({ value: null })
 const onSubmit = () => {
     proxy?.$Message.info({content: `提交的数据 ${JSON.stringify(formState.value)}`})

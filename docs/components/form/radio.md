@@ -146,6 +146,47 @@ const checkedGroup = ref('ON')
 
 :::
 
+## 液态玻璃效果 (glass)
+
+::: raw
+
+<CodeRunner title="液态玻璃效果">
+    <div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
+        <ShadcnRadioGroup v-model="glassValue" glass :dark="darkMode">
+            <ShadcnRadio value="1">选项 1</ShadcnRadio>
+            <ShadcnRadio value="2" type="success">选项 2</ShadcnRadio>
+            <ShadcnRadio value="3" type="warning">选项 3</ShadcnRadio>
+            <ShadcnRadio value="4" type="error">选项 4</ShadcnRadio>
+        </ShadcnRadioGroup>
+    </div>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <div :class="['p-6 rounded-lg', isDark ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
+        <ShadcnRadioGroup v-model="radioValue" glass :dark="isDark">
+            <ShadcnRadio value="1">选项 1</ShadcnRadio>
+            <ShadcnRadio value="2" type="success">选项 2</ShadcnRadio>
+            <ShadcnRadio value="3" type="warning">选项 3</ShadcnRadio>
+            <ShadcnRadio value="4" type="error">选项 4</ShadcnRadio>
+        </ShadcnRadioGroup>
+    </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const isDark = ref(false)
+const radioValue = ref('1')
+</script>
+```
+
+:::
+
 ## 单选框 (Radio) 属性
 
 <ApiTable title="单选框 (Radio) 属性"
@@ -156,15 +197,17 @@ const checkedGroup = ref('ON')
         ['disabled', '是否为禁用', 'boolean', 'false', '-'],
         ['size', '组件的尺寸', 'enum', 'default', 'small | default | large'],
         ['type', '组件的类型', 'enum', 'primary', 'primary | success | warning | error'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false', '-']
     ]">
 </ApiTable>
 
 ## 单选框组 (Radio Group) 属性
 
 <ApiTable title="单选框组 (Radio Group) 属性"
-    :headers="['属性', '描述', '类型']"
+    :headers="['属性', '描述', '类型', '默认值']"
     :columns="[
-        ['modelValue', '当前组件的值', 'any'],
+        ['modelValue', '当前组件的值', 'any', '-'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false']
     ]">
 </ApiTable>
 
@@ -199,11 +242,12 @@ const checkedGroup = ref('ON')
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import { useData } from 'vitepress' 
-import { computed } from 'vue' 
+import { useData } from 'vitepress'
+import { computed } from 'vue'
 const { isDark } = useData()
 const darkMode = computed(() => isDark.value)
 
 const checked = ref('ON')
 const checkedGroup = ref('ON')
+const glassValue = ref('1')
 </script>

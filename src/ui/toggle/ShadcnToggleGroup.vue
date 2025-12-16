@@ -18,7 +18,8 @@ const props = withDefaults(defineProps<ToggleGroupProps>(), {
   size: 'default',
   multiple: false,
   orientation: 'horizontal',
-  dark: false
+  dark: false,
+  glass: false
 })
 
 provide('toggleGroup', {
@@ -28,6 +29,7 @@ provide('toggleGroup', {
   multiple: computed(() => props.multiple),
   orientation: computed(() => props.orientation),
   dark: computed(() => props.dark),
+  glass: computed(() => props.glass),
   onChange: (value: any) => {
     emit('update:modelValue', value)
     emit('on-change', value)
