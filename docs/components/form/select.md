@@ -267,6 +267,71 @@ const defaultSelectOptions = [
 
 :::
 
+## 液态玻璃效果 (glass)
+
+::: raw
+
+<CodeRunner title="液态玻璃效果 (glass)">
+  <div class="space-y-6">
+    <div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-green-900 to-teal-900' : 'bg-gradient-to-r from-green-400 to-teal-400']">
+      <div class="flex flex-col gap-4">
+        <div>
+          <p :class="['text-sm mb-2', darkMode ? 'text-gray-200' : 'text-gray-700']">单选模式</p>
+          <ShadcnSelect v-model="glassSelectValue" :options="defaultSelectOptions" glass :dark="darkMode" placeholder="请选择选项"/>
+        </div>
+        <div>
+          <p :class="['text-sm mb-2', darkMode ? 'text-gray-200' : 'text-gray-700']">多选模式</p>
+          <ShadcnSelect v-model="glassMultiValue" :options="defaultSelectOptions" glass :dark="darkMode" multiple placeholder="请选择多个选项"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+  <div class="space-y-6">
+    <div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-green-900 to-teal-900' : 'bg-gradient-to-r from-green-400 to-teal-400']">
+      <div class="flex flex-col gap-4">
+        <div>
+          <p :class="['text-sm mb-2', darkMode ? 'text-gray-200' : 'text-gray-700']">单选模式</p>
+          <ShadcnSelect v-model="glassSelectValue" :options="defaultSelectOptions" glass :dark="darkMode" placeholder="请选择选项"/>
+        </div>
+        <div>
+          <p :class="['text-sm mb-2', darkMode ? 'text-gray-200' : 'text-gray-700']">多选模式</p>
+          <ShadcnSelect v-model="glassMultiValue" :options="defaultSelectOptions" glass :dark="darkMode" multiple placeholder="请选择多个选项"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
+const glassSelectValue = ref(null)
+const glassMultiValue = ref([])
+const defaultSelectOptions = [
+  { value: '1', label: '选项 1' },
+  { value: '2', label: '选项 2' },
+  { value: '3', label: '选项 3' },
+  { value: '4', label: '选项 4' },
+  { value: '5', label: '选项 5' }
+]
+</script>
+```
+
+:::
+
 ## 懒加载 (lazy)
 
 ::: raw
@@ -401,6 +466,8 @@ loadMoreData((children) => {
         ['lazy', '是否为懒加载', 'boolean', 'false', 'true | false'],
         ['loading', '是否为加载中', 'boolean', 'false', 'true | false'],
         ['loadData', '懒加载数据函数', 'function', '-', '-'],
+        ['dark', '暗黑模式', 'boolean', 'false', '-'],
+        ['glass', '液态玻璃效果', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
@@ -492,4 +559,7 @@ loadMoreData((children) => {
 const onClick = () => {
   loading.value = !loading.value
 }
+
+const glassSelectValue = ref(null)
+const glassMultiValue = ref([])
 </script>

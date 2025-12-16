@@ -164,6 +164,81 @@ const checkedGroup = ref(['Vue'])
 
 :::
 
+## 液态玻璃效果 (glass)
+
+::: raw
+
+<CodeRunner title="液态玻璃效果 (glass)">
+  <div class="space-y-6">
+    <div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-purple-900 to-pink-900' : 'bg-gradient-to-r from-purple-400 to-pink-400']">
+      <div class="flex flex-col gap-4">
+        <div class="flex gap-4">
+          <ShadcnCheckbox v-model="glassValue1" value="1" glass :dark="darkMode">选项 1</ShadcnCheckbox>
+          <ShadcnCheckbox v-model="glassValue2" value="2" glass type="success" :dark="darkMode">选项 2</ShadcnCheckbox>
+          <ShadcnCheckbox v-model="glassValue3" value="3" glass type="warning" :dark="darkMode">选项 3</ShadcnCheckbox>
+          <ShadcnCheckbox v-model="glassValue4" value="4" glass type="error" :dark="darkMode">选项 4</ShadcnCheckbox>
+        </div>
+        <div>
+          <p :class="['text-sm mb-2', darkMode ? 'text-gray-200' : 'text-gray-700']">复选框组</p>
+          <ShadcnCheckboxGroup v-model="glassGroupValue" glass :dark="darkMode">
+            <ShadcnCheckbox value="apple">苹果</ShadcnCheckbox>
+            <ShadcnCheckbox value="banana">香蕉</ShadcnCheckbox>
+            <ShadcnCheckbox value="orange">橙子</ShadcnCheckbox>
+            <ShadcnCheckbox value="grape">葡萄</ShadcnCheckbox>
+          </ShadcnCheckboxGroup>
+        </div>
+      </div>
+    </div>
+  </div>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+  <div class="space-y-6">
+    <div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-purple-900 to-pink-900' : 'bg-gradient-to-r from-purple-400 to-pink-400']">
+      <div class="flex flex-col gap-4">
+        <div class="flex gap-4">
+          <ShadcnCheckbox v-model="glassValue1" value="1" glass :dark="darkMode">选项 1</ShadcnCheckbox>
+          <ShadcnCheckbox v-model="glassValue2" value="2" glass type="success" :dark="darkMode">选项 2</ShadcnCheckbox>
+          <ShadcnCheckbox v-model="glassValue3" value="3" glass type="warning" :dark="darkMode">选项 3</ShadcnCheckbox>
+          <ShadcnCheckbox v-model="glassValue4" value="4" glass type="error" :dark="darkMode">选项 4</ShadcnCheckbox>
+        </div>
+        <div>
+          <p :class="['text-sm mb-2', darkMode ? 'text-gray-200' : 'text-gray-700']">复选框组</p>
+          <ShadcnCheckboxGroup v-model="glassGroupValue" glass :dark="darkMode">
+            <ShadcnCheckbox value="apple">苹果</ShadcnCheckbox>
+            <ShadcnCheckbox value="banana">香蕉</ShadcnCheckbox>
+            <ShadcnCheckbox value="orange">橙子</ShadcnCheckbox>
+            <ShadcnCheckbox value="grape">葡萄</ShadcnCheckbox>
+          </ShadcnCheckboxGroup>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
+const glassValue1 = ref(null)
+const glassValue2 = ref(null)
+const glassValue3 = ref(null)
+const glassValue4 = ref(null)
+const glassGroupValue = ref([])
+</script>
+```
+
+:::
+
 ## 复选框 (Checkbox) 属性
 
 <ApiTable title="复选框 (Checkbox) 属性"
@@ -175,6 +250,8 @@ const checkedGroup = ref(['Vue'])
         ['size', '组件的尺寸', 'enum', 'default', 'small | default | large'],
         ['type', '组件的类型', 'enum', 'primary', 'primary | success | warning | error'],
         ['indeterminate', '是否为半选/全选', 'boolean', 'false', '-'],
+        ['dark', '暗黑模式', 'boolean', 'false', '-'],
+        ['glass', '液态玻璃效果', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
@@ -184,6 +261,8 @@ const checkedGroup = ref(['Vue'])
     :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['modelValue', '当前组件的值', 'any\[\]', '-', '-', '-'],
+        ['dark', '暗黑模式', 'boolean', 'false', '-', '-'],
+        ['glass', '液态玻璃效果', 'boolean', 'false', '-', '-'],
     ]">
 </ApiTable>
 
@@ -222,6 +301,12 @@ import { useData } from 'vitepress'
 const darkMode = computed(() => isDark.value)
 const checked = ref('Vue')
 const checkedGroup = ref(['Vue'])
+
+const glassValue1 = ref(null)
+const glassValue2 = ref(null)
+const glassValue3 = ref(null)
+const glassValue4 = ref(null)
+const glassGroupValue = ref([])
 
 // 所有选项
 const options = ['Vue', 'Nuxt']

@@ -23,7 +23,6 @@
               },
               ...($attrs.class ? [$attrs.class] : [WrapperSize[finalSize]]),
           ]"
-          :style="isSelected ? 'transform: scale(1.05);' : ''"
           @click="onToggle">
     <slot/>
   </button>

@@ -10,9 +10,11 @@ import { ShadcnSpace } from '@/ui/space'
 
 const props = withDefaults(defineProps<{
   modelValue?: any[],
-  dark?: boolean
+  dark?: boolean,
+  glass?: boolean
 }>(), {
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const emit = defineEmits(['update:modelValue', 'on-change'])
@@ -53,4 +55,5 @@ provide('checkboxGroup', {
 
 // Provide dark mode to child checkboxes
 provide('checkboxGroupDark', computed(() => props.dark))
+provide('checkboxGroupGlass', computed(() => props.glass))
 </script>

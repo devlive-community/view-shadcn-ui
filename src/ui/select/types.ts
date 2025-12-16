@@ -15,6 +15,7 @@ export interface SelectProps
     loading?: boolean
     loadData?: (callback: (children: SelectOptionProps[]) => void) => void
     dark?: boolean
+    glass?: boolean
 }
 
 export interface SelectOptionProps
@@ -26,12 +27,14 @@ export interface SelectOptionProps
     type?: keyof typeof TextType
     parentName?: string
     dark?: boolean
+    glass?: boolean
 }
 
 export interface SelectGroupProps
 {
     label: string
     dark?: boolean
+    glass?: boolean
 }
 
 export type SelectEmits = {
