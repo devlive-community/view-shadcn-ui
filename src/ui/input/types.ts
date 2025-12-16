@@ -15,6 +15,7 @@ export interface InputProps
     name?: string
     readonly?: boolean
     dark?: boolean
+    glass?: boolean
 }
 
 export type InputEmits = {

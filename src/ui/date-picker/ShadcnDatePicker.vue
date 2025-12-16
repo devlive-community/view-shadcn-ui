@@ -7,6 +7,7 @@
                    :readonly="true"
                    :clearable="clearable"
                    :dark="dark"
+                   :glass="glass"
                    @click="toggleCalendar"
                    @on-clear="clearValue">
       </ShadcnInput>
@@ -15,8 +16,11 @@
     <!-- Calendar Popup -->
     <div v-if="showCalendar"
          :class="[
-           'absolute z-20 mt-1 rounded-lg shadow-lg border p-4',
-           dark ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-200',
+           'absolute z-20 mt-1 rounded-lg shadow-lg border p-4 transition-all',
+           glass && 'backdrop-blur-xl backdrop-saturate-150',
+           glass && 'border-white/20',
+           glass && 'shadow-lg shadow-black/5',
+           glass ? (dark ? 'bg-white/10' : 'bg-white/80') : (dark ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-200'),
            {'w-64': type === 'date', 'w-auto': type === 'range'}
          ]">
       <div class="flex" :class="{'space-x-4': type === 'range'}">
@@ -183,7 +187,8 @@ const props = withDefaults(defineProps<DatePickerProps>(), {
   clearable: true,
   showShortcuts: true,
   type: 'date',
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const emit = defineEmits<DatePickerEmits>()

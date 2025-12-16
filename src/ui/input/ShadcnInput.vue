@@ -1,6 +1,10 @@
 <template>
-  <div :class="['relative w-full items-center border rounded transition-colors duration-300',
-                dark ? 'border-gray-600 active:border-gray-500 hover:border-gray-500 bg-gray-800' : 'border-gray-300 active:border-blue-400 hover:border-blue-400']"
+  <div :class="['relative w-full items-center border rounded transition-all duration-300',
+                glass && 'backdrop-blur-xl backdrop-saturate-150',
+                glass && 'border-white/20',
+                glass && 'shadow-lg shadow-black/5',
+                glass ? (dark ? 'bg-white/10' : 'bg-white/80') : (dark ? 'border-gray-600 active:border-gray-500 hover:border-gray-500 bg-gray-800' : 'border-gray-300 active:border-blue-400 hover:border-blue-400')
+       ]"
        @mouseenter="hovered = true"
        @mouseleave="hovered = false">
     <component :is="isTextarea ? 'textarea' : 'input'"
@@ -11,7 +15,8 @@
                         type !== 'textarea' && size && Size[size],
                         $slots.prefix && 'pl-8',
                         $slots.suffix && 'pr-8',
-                        dark ? 'bg-gray-800 text-gray-200 placeholder:text-gray-500' : ''
+                        glass ? 'bg-transparent' : '',
+                        glass ? (dark ? 'text-gray-100 placeholder:text-gray-400' : 'text-gray-900 placeholder:text-gray-600') : (dark ? 'bg-gray-800 text-gray-200 placeholder:text-gray-500' : '')
                )"
                :style="wordCount || maxCount ? { paddingRight: paddingRight + 'px' } : ''"
                :value="localValue"
@@ -72,7 +77,8 @@ const props = withDefaults(defineProps<InputProps>(), {
   type: 'text',
   rows: 3,
   cols: 20,
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const localValue = ref(props.modelValue)

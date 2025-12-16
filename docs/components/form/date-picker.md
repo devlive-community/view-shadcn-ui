@@ -178,6 +178,37 @@ title: 日期选取器 (Date Picker)
 
 :::
 
+## 液态玻璃效果 (glass)
+
+::: raw
+
+<CodeRunner title="液态玻璃效果">
+    <div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
+        <ShadcnDatePicker v-model="glassValue" glass :dark="darkMode" />
+    </div>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <div :class="['p-6 rounded-lg', isDark ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
+        <ShadcnDatePicker v-model="dateValue" glass :dark="isDark" />
+    </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const isDark = ref(false)
+const dateValue = ref('')
+</script>
+```
+
+:::
+
 ## 日期选取器 (Date Picker) 属性
 
 <ApiTable title="Props"
@@ -190,7 +221,8 @@ title: 日期选取器 (Date Picker)
         ['readonly', '是否为只读', 'boolean', 'false', '-'],
         ['format', '日期格式', 'string', 'YYYY-MM-DD', '-'],
         ['clearable', '是否显示清空按钮', 'boolean', 'true', '-'],
-        ['showShortcuts', '是否显示快捷方式', 'boolean', 'true', '-']
+        ['showShortcuts', '是否显示快捷方式', 'boolean', 'true', '-'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false', '-']
     ]">
 </ApiTable>
 
@@ -212,4 +244,5 @@ const { isDark } = useData()
 const darkMode = computed(() => isDark.value)
 
 const value = ref('')
+const glassValue = ref('')
 </script>

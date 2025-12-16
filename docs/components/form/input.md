@@ -239,6 +239,37 @@ const input = ref('Hello View Shadcn UI')
 
 :::
 
+## 液态玻璃效果 (glass)
+
+::: raw
+
+<CodeRunner title="液态玻璃效果">
+    <div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
+        <ShadcnInput v-model="glassInput" glass :dark="darkMode" placeholder="请输入内容" />
+    </div>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <div :class="['p-6 rounded-lg', isDark ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
+        <ShadcnInput v-model="inputValue" glass :dark="isDark" placeholder="请输入内容" />
+    </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const isDark = ref(false)
+const inputValue = ref('')
+</script>
+```
+
+:::
+
 ## 表单 (form)
 
 ::: raw
@@ -270,6 +301,7 @@ const input = ref('Hello View Shadcn UI')
         ['rows', '多行文本的行数', 'number', '3', '-', '-'],
         ['cols', '多行文本的列数', 'number', '20', '-', '-'],
         ['name', '在表单中的名称', 'string', '-', '-', '-'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false', '-', '-'],
     ]">
 </ApiTable>
 
@@ -304,6 +336,7 @@ const { isDark } = useData()
 const darkMode = computed(() => isDark.value)
 
 const input = ref('Hello View Shadcn UI')
+const glassInput = ref('')
 
 const { proxy } = getCurrentInstance()! 
 const formState = ref({ value: null })

@@ -6,10 +6,10 @@
 
     <div class="space-y-6 my-6" style="height: 100vh;">
       <div>
-        <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnCountDown - 液态玻璃效果</h3>
+        <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnDatePicker - 液态玻璃效果</h3>
         <div class="space-y-6">
           <div :class="['p-6 rounded-lg', isDark ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
-            <ShadcnCountDown :time="countDownTime" glass :dark="isDark" title="倒计时" :show-progress="true" />
+            <ShadcnDatePicker v-model="dateValue" glass :dark="isDark" />
           </div>
         </div>
       </div>
@@ -20,9 +20,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ShadcnButton } from "@/ui/button";
-import { ShadcnCountDown } from "@/ui/count-down";
+import { ShadcnDatePicker } from "@/ui/date-picker";
 
 const isDark = ref(false)
-
-const countDownTime = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
+const dateValue = ref('')
 </script>
