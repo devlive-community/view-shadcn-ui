@@ -126,6 +126,86 @@ const items = [
 
 :::
 
+## 液态玻璃效果 (glass)
+
+液态玻璃效果通过半透明背景和背景模糊创建现代化的视觉效果，在彩色背景上表现最佳。
+
+::: raw
+
+<CodeRunner title="液态玻璃效果 (glass)">
+    <div class="space-y-6">
+        <div class="relative">
+            <div :class="['h-40 rounded-lg flex items-center justify-center gap-6', darkMode ? 'bg-gradient-to-r from-purple-900 to-pink-900' : 'bg-gradient-to-r from-purple-400 to-pink-400']">
+                <ShadcnAvatar glass :dark="darkMode" src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png" size="small" />
+                <ShadcnAvatar glass :dark="darkMode" src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png" size="default" />
+                <ShadcnAvatar glass :dark="darkMode" src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png" size="large" />
+            </div>
+        </div>
+        <div class="relative">
+            <div :class="['h-40 rounded-lg flex items-center justify-center gap-6', darkMode ? 'bg-gradient-to-r from-blue-900 to-cyan-900' : 'bg-gradient-to-r from-blue-400 to-cyan-400']">
+                <ShadcnAvatar glass :dark="darkMode" alt="UI" size="small" />
+                <ShadcnAvatar glass :dark="darkMode" alt="VUE" size="default" />
+                <ShadcnAvatar glass :dark="darkMode" alt="SH" size="large" />
+            </div>
+        </div>
+        <div class="relative">
+            <div :class="['h-40 rounded-lg flex items-center justify-center gap-6', darkMode ? 'bg-gradient-to-r from-orange-900 to-red-900' : 'bg-gradient-to-r from-orange-400 to-red-400']">
+                <ShadcnAvatarGroup glass :dark="darkMode" :items="items" />
+                <ShadcnAvatarGroup glass :dark="darkMode" :items="items" max="3" />
+            </div>
+        </div>
+    </div>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <div class="space-y-6">
+        <div class="relative">
+            <div :class="['h-40 rounded-lg flex items-center justify-center gap-6', darkMode ? 'bg-gradient-to-r from-purple-900 to-pink-900' : 'bg-gradient-to-r from-purple-400 to-pink-400']">
+                <ShadcnAvatar glass :dark="darkMode" src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png" size="small" />
+                <ShadcnAvatar glass :dark="darkMode" src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png" size="default" />
+                <ShadcnAvatar glass :dark="darkMode" src="https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png" size="large" />
+            </div>
+        </div>
+        <div class="relative">
+            <div :class="['h-40 rounded-lg flex items-center justify-center gap-6', darkMode ? 'bg-gradient-to-r from-blue-900 to-cyan-900' : 'bg-gradient-to-r from-blue-400 to-cyan-400']">
+                <ShadcnAvatar glass :dark="darkMode" alt="UI" size="small" />
+                <ShadcnAvatar glass :dark="darkMode" alt="VUE" size="default" />
+                <ShadcnAvatar glass :dark="darkMode" alt="SH" size="large" />
+            </div>
+        </div>
+        <div class="relative">
+            <div :class="['h-40 rounded-lg flex items-center justify-center gap-6', darkMode ? 'bg-gradient-to-r from-orange-900 to-red-900' : 'bg-gradient-to-r from-orange-400 to-red-400']">
+                <ShadcnAvatarGroup glass :dark="darkMode" :items="items" />
+                <ShadcnAvatarGroup glass :dark="darkMode" :items="items" max="3" />
+            </div>
+        </div>
+    </div>
+</template>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
+const items = [
+    { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 1' },
+    { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 2' },
+    { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 3' },
+    { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 4' },
+    { src: 'https://cdn.north.devlive.org/devlive.org/2024-04-17/2F28BD8A-5AB4-46BA-B614-287A0020FAE7.png', name: 'User 5' }
+]
+</script>
+```
+
+:::
+
 ## 头像 (Avatar) 属性
 
 <ApiTable title="头像 (Avatar) 属性"
@@ -135,6 +215,7 @@ const items = [
         ['alt', '替换文本', 'string', '-', '-'],
         ['size', '尺寸', 'string', 'default', 'large | default | small'],
         ['square', '是否为方形', 'boolean', 'false', '-'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
@@ -147,6 +228,7 @@ const items = [
         ['size', '头像组的尺寸', 'string', 'default', 'large | default | small'],
         ['square', '是否为方形', 'boolean', 'false', '-'],
         ['max', '最大显示个数', 'number | string', '-', '-'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 

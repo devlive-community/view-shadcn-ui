@@ -5,13 +5,17 @@
                    readonly
                    :class="['text-sm', dark ? 'text-gray-400' : 'text-gray-500']"
                    :dark="dark"
+                   :glass="glass"
                    @click="isOpen = !isOpen"/>
     </div>
 
     <div v-if="isOpen"
          ref="panelRef"
-         :class="['absolute top-full mt-1 rounded-sm shadow-lg border w-[530px] p-2 z-20',
-                  dark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+         :class="['absolute top-full mt-1 rounded-sm shadow-lg border w-[530px] p-2 z-20 transition-all',
+                  glass && 'backdrop-blur-xl backdrop-saturate-150',
+                  glass && 'border-white/20',
+                  glass && 'shadow-lg shadow-black/5',
+                  glass ? (dark ? 'bg-white/10' : 'bg-white/80') : (dark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200')
          ]">
       <div class="flex space-x-2">
         <ShadcnTab v-model="activeTab" :dark="dark" size="small">
@@ -59,7 +63,8 @@
 
       <div v-if="nextExecutionTimes.length"
            :class="['space-y-1 mt-4 border-t rounded-sm p-2',
-                   dark ? 'text-gray-400 border-gray-700' : 'text-gray-500'
+                   glass && 'border-white/20',
+                   glass ? (dark ? 'text-gray-100' : 'text-gray-900') : (dark ? 'text-gray-400 border-gray-700' : 'text-gray-500')
            ]">
         <div class="items-center">{{ t('cron.text.nextExecutionTime') }}:</div>
         <div v-for="(time, index) in nextExecutionTimes" :key="index" class="text-xs">
@@ -87,7 +92,8 @@ import { ShadcnTab, ShadcnTabItem } from "@/ui/tab";
 
 const props = withDefaults(defineProps<CronProps>(), {
   modelValue: '* * * * * ?',
-  dark: false
+  dark: false,
+  glass: false
 })
 const emit = defineEmits<CronEmits>()
 

@@ -55,7 +55,10 @@
 
                 <div v-if="activeTooltip?.date === (item as any).date"
                      :class="['absolute z-20 p-2 text-xs rounded whitespace-nowrap transition-all duration-200',
-                              dark ? 'bg-gray-700 text-gray-200' : 'bg-gray-800 text-white'
+                              glass ? 'backdrop-blur-xl backdrop-saturate-150' : '',
+                              glass ? 'border border-white/20' : '',
+                              glass ? (dark ? 'bg-white/10 text-gray-200' : 'bg-white/60 text-gray-900') : (dark ? 'bg-gray-700 text-gray-200' : 'bg-gray-800 text-white'),
+                              glass ? 'shadow-lg shadow-black/5' : ''
                      ]"
                      style="bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 4px;">
                   <div class="flex flex-col space-y-1">
@@ -91,7 +94,10 @@
           </div>
 
           <div :class="['absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 p-2 rounded whitespace-nowrap z-50 transition-opacity duration-200',
-                        dark ? 'bg-gray-700 text-gray-200' : 'bg-gray-800 text-white',
+                        glass ? 'backdrop-blur-xl backdrop-saturate-150' : '',
+                        glass ? 'border border-white/20' : '',
+                        glass ? (dark ? 'bg-white/10 text-gray-200' : 'bg-white/60 text-gray-900') : (dark ? 'bg-gray-700 text-gray-200' : 'bg-gray-800 text-white'),
+                        glass ? 'shadow-lg shadow-black/5' : '',
                         showLegendDetail ? 'visible opacity-100' : 'invisible opacity-0'
                ]">
             <div class="flex flex-col gap-1.5">
@@ -130,7 +136,8 @@ const props = withDefaults(defineProps<ContributionProps>(), {
   showMonth: true,
   cellSize: 16,
   cellGap: 4,
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const colorScheme = computed(() => {

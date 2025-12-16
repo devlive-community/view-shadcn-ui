@@ -7,7 +7,8 @@
                       :alt="item.name"
                       :size="size"
                       :square="square"
-                      :dark="dark"/>
+                      :dark="dark"
+                      :glass="glass"/>
       </ShadcnTooltip>
     </template>
     <ShadcnAvatar v-if="remainingCount > 0"
@@ -15,7 +16,8 @@
                   :alt="`+${remainingCount}`"
                   :size="size"
                   :square="square"
-                  :dark="dark"/>
+                  :dark="dark"
+                  :glass="glass"/>
   </div>
 </template>
 
@@ -28,7 +30,8 @@ import { computed } from 'vue'
 const props = withDefaults(defineProps<AvatarGroupProps>(), {
   size: 'default',
   square: false,
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const displayItems = computed(() => {

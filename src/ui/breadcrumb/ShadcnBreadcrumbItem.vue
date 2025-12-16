@@ -18,13 +18,13 @@
 
 <script setup lang="ts">
 import { computed, inject, ref } from 'vue'
+import type { BreadcrumbItemProps } from './types'
 
-defineProps<{
-  href?: string
-}>()
+defineProps<BreadcrumbItemProps>()
 
 const separator = inject('breadcrumbSeparator')
 const dark = inject('breadcrumbDark', false)
+inject('breadcrumbGlass', false)
 
 const breadcrumbId = inject('breadcrumbId')
 if (!breadcrumbId) {

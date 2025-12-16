@@ -156,6 +156,34 @@ title: 轮播 (Carousel)
 
 :::
 
+## 液态玻璃效果 (Glass)
+
+::: raw
+
+<CodeRunner title="液态玻璃效果 (Glass)">
+    <ShadcnCarousel glass :items="items" :dark="darkMode" />
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <ShadcnCarousel glass :items="items" />
+</template>
+
+<script setup lang="ts">
+const items = [
+  { src: 'https://picsum.photos/800/300?random=1', text: 'Slide 1' },
+  { src: 'https://picsum.photos/800/300?random=2', text: 'Slide 2' },
+  { src: 'https://picsum.photos/800/300?random=3', text: 'Slide 3' }
+]
+</script>
+```
+
+:::
+
 ## 轮播 (Carousel) 属性
 
 <ApiTable title="属性"
@@ -167,7 +195,9 @@ title: 轮播 (Carousel)
         ['showIndicators', '是否显示指示器', 'boolean', 'true'],
         ['direction', '轮播方向', 'horizontal | vertical', 'horizontal'],
         ['autoPlay', '是否自动播放', 'boolean', 'true'],
-        ['height', '轮播高度', 'number | string', '300']
+        ['height', '轮播高度', 'number | string', '300'],
+        ['dark', '暗黑模式', 'boolean', 'false'],
+        ['glass', '液态玻璃效果', 'boolean', 'false']
     ]">
 </ApiTable>
 

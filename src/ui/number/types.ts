@@ -16,6 +16,7 @@ export interface NumberProps
     formatter?: (value: number) => string
     parser?: (value: string) => number
     dark?: boolean
+    glass?: boolean
 }
 
 export type NumberEmits = {

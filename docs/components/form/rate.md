@@ -173,6 +173,50 @@ const rate = ref(1)
 
 :::
 
+## 液态玻璃效果 (glass)
+
+::: raw
+
+<CodeRunner title="液态玻璃效果">
+    <div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
+        <div class="flex flex-col gap-4">
+            <ShadcnRate v-model="glassValue1" glass :dark="darkMode" />
+            <ShadcnRate v-model="glassValue2" glass type="success" :dark="darkMode" show-text />
+            <ShadcnRate v-model="glassValue3" glass type="warning" :dark="darkMode" allow-half />
+            <ShadcnRate v-model="glassValue4" glass type="error" :dark="darkMode" show-text allow-half />
+        </div>
+    </div>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <div :class="['p-6 rounded-lg', isDark ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
+        <div class="flex flex-col gap-4">
+            <ShadcnRate v-model="rateValue1" glass :dark="isDark" />
+            <ShadcnRate v-model="rateValue2" glass type="success" :dark="isDark" show-text />
+            <ShadcnRate v-model="rateValue3" glass type="warning" :dark="isDark" allow-half />
+            <ShadcnRate v-model="rateValue4" glass type="error" :dark="isDark" show-text allow-half />
+        </div>
+    </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const isDark = ref(false)
+const rateValue1 = ref(3)
+const rateValue2 = ref(4)
+const rateValue3 = ref(3.5)
+const rateValue4 = ref(4.5)
+</script>
+```
+
+:::
+
 ## 评分 (Rate) 属性
 
 <ApiTable title="评分 (Rate) 属性"
@@ -184,6 +228,7 @@ const rate = ref(1)
         ['type', '组件的类型', 'string', 'default', 'primary | success | warning | error'],
         ['disabled', '是否为禁用', 'boolean', 'false', '-'],
         ['showText', '是否显示文本', 'boolean', 'false', '-'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false', '-']
     ]">
 </ApiTable>
 
@@ -199,10 +244,14 @@ const rate = ref(1)
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useData } from 'vitepress' 
-import { computed } from 'vue' 
+import { useData } from 'vitepress'
+import { computed } from 'vue'
 const { isDark } = useData()
 const darkMode = computed(() => isDark.value)
 
 const rate = ref(1)
+const glassValue1 = ref(3)
+const glassValue2 = ref(4)
+const glassValue3 = ref(3.5)
+const glassValue4 = ref(4.5)
 </script>

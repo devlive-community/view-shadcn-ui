@@ -4,18 +4,21 @@
                   border && (dark ? 'border border-gray-600' : 'border border-gray-200'),
                   MinSize[size]
          ]">
-      <ShadcnSkeleton animation :rows="1" :size="size" class="w-full"/>
+      <ShadcnSkeleton animation :dark="dark" :rows="1" :size="size" class="w-full"/>
     </div>
-    <div v-else :class="['flex rounded-md px-2 relative',
-                  border && (dark ? 'border border-gray-600 hover:border-gray-500' : 'border border-gray-200 hover:border-gray-300'),
+    <div v-else :class="['flex rounded-md px-2 relative transition-all duration-300 ease-in-out',
+                  border && (glass ? 'border border-white/20' : (dark ? 'border border-gray-600 hover:border-gray-500' : 'border border-gray-200 hover:border-gray-300')),
                   'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2',
+                  glass && 'backdrop-blur-xl backdrop-saturate-150',
+                  glass && 'shadow-lg shadow-black/5',
                   {
                     'cursor-pointer': !disabled,
                     'cursor-not-allowed opacity-50': disabled,
-                    'bg-gray-800': dark && !disabled,
-                    'bg-gray-50': !dark && disabled,
-                    [HoverType[type]]: true
-                  }
+                    'bg-gray-800': dark && !disabled && !glass,
+                    'bg-gray-50': !dark && disabled && !glass,
+                    [HoverType[type]]: !glass
+                  },
+                  glass && (dark ? 'bg-white/10 hover:bg-white/20' : 'bg-white/30 hover:bg-white/40')
          ]"
          @click="toggleDropdown">
       <div class="flex-1 flex items-center overflow-hidden">
@@ -25,19 +28,19 @@
           <slot name="selected">
             <template v-if="multiple && selectedLabels.length">
               <span v-for="(label, _index) in selectedLabels"
-                    :class="['px-2 select-none rounded text-sm flex items-center gap-1 transition-colors',
-                             dark ? 'bg-gray-700 hover:bg-gray-600 text-gray-200' : 'bg-gray-100 hover:bg-gray-200 text-gray-600']"
+                    :class="['px-2 select-none rounded text-sm flex items-center gap-1 transition-all duration-300 ease-in-out',
+                             glass ? (dark ? 'bg-blue-500/30 text-gray-100' : 'bg-blue-400/40 text-gray-800') : (dark ? 'bg-gray-700 hover:bg-gray-600 text-gray-200' : 'bg-gray-100 hover:bg-gray-200 text-gray-600')]"
                     :key="_index"
                     :style="{ paddingTop: PtPbSize[size], paddingBottom: PtPbSize[size] }">
                 {{ label }}
-                <button class="hover:text-red-500" @click.stop="removeSelection(_index)">
+                <button class="hover:text-red-500 transition-colors duration-200" @click.stop="removeSelection(_index)">
                   ×
                 </button>
               </span>
             </template>
             <template v-else>
               <span :class="['flex items-center min-w-0 truncate select-none px-2',
-                             dark ? 'text-gray-200' : 'text-gray-600']">
+                             glass ? (dark ? 'text-gray-200' : 'text-gray-700') : (dark ? 'text-gray-200' : 'text-gray-600')]">
                 {{ selectedLabels[0] || placeholder }}
               </span>
             </template>
@@ -67,8 +70,11 @@
         leave-to-class="transform -translate-y-2 scale-95 opacity-0">
       <div v-show="isExpanded"
            ref="dropdownRef"
-           :class="['absolute z-20 w-full px-2 rounded-md border shadow-lg mt-1 py-1 overflow-y-auto max-h-60',
-                    dark ? 'border-gray-600 bg-gray-800' : 'border-gray-200 bg-white']"
+           :class="['absolute z-20 w-full px-2 rounded-md border shadow-lg mt-1 py-1 overflow-y-auto max-h-60 transition-all duration-300 ease-in-out',
+                    glass && 'backdrop-blur-xl backdrop-saturate-150',
+                    glass && 'border-white/20',
+                    glass && 'shadow-xl shadow-black/10',
+                    glass ? (dark ? 'bg-gray-800/90' : 'bg-white/90') : (dark ? 'border-gray-600 bg-gray-800' : 'border-gray-200 bg-white')]"
            @scroll="handleScroll">
         <slot name="options">
           <ShadcnSelectOption v-for="(option, index) in internalOptions"
@@ -78,10 +84,12 @@
                               :selected="isOptionSelected(option.value)"
                               :disabled="option.disabled"
                               :dark="dark"
+                              :glass="glass"
                               :type="type"/>
         </slot>
         <div v-if="isLoading" class="flex justify-center items-center py-2">
-          <div class="animate-spin rounded-full h-4 w-4 border-2 border-primary-500 border-t-transparent"></div>
+          <div :class="['animate-spin rounded-full h-4 w-4 border-2 border-t-transparent',
+                        glass ? (dark ? 'border-blue-400/50' : 'border-blue-500/60') : 'border-primary-500']"></div>
         </div>
       </div>
     </Transition>
@@ -109,7 +117,8 @@ const props = withDefaults(defineProps<SelectProps>(), {
   border: true,
   lazy: false,
   loading: false,
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const isExpanded = ref(false)
@@ -271,7 +280,8 @@ provide('selectContext', {
   modelValue: computed(() => props.modelValue),
   multiple: props.multiple,
   parentName,
-  dark: computed(() => props.dark)
+  dark: computed(() => props.dark),
+  glass: computed(() => props.glass)
 })
 
 onMounted(() => {

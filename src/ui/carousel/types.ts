@@ -8,6 +8,7 @@ export interface CarouselProps
     direction?: 'horizontal' | 'vertical' // 轮播方向
     height?: number | string
     dark?: boolean // 是否为暗黑模式
+    glass?: boolean // 是否为液态玻璃效果
 }
 
 export type CarouselEmits = {

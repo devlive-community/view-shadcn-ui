@@ -1,23 +1,29 @@
 <template>
   <div class="relative">
-    <div :class="['flex items-center justify-between border rounded p-3 pr-1.5',
+    <div :class="['flex items-center justify-between border rounded p-3 pr-1.5 transition-all duration-300',
+              glass && 'backdrop-blur-xl backdrop-saturate-150',
+              glass && 'border-white/20',
+              glass && 'shadow-lg shadow-black/5',
               Size[size],
-              HoverType[type],
+              !glass && HoverType[type],
+              glass ? (dark ? 'bg-white/10' : 'bg-white/80') : '',
               {
                 'cursor-pointer': !disabled,
                 'cursor-not-allowed opacity-50': disabled,
-                'bg-gray-100': disabled && !dark,
-                'bg-gray-700': disabled && dark,
-                'border-gray-600 bg-gray-800': dark,
-                'hover:border-gray-500': dark && !disabled
+                'bg-gray-100': disabled && !dark && !glass,
+                'bg-gray-700': disabled && dark && !glass,
+                'border-gray-600 bg-gray-800': dark && !glass,
+                'hover:border-gray-500': dark && !disabled && !glass,
+                'hover:border-white/30': glass && !disabled
               }
          ]"
          @mouseover="onHover"
          @mouseleave="onLeave">
       <!-- Input field for direct number entry -->
-      <input :class="['w-full outline-none text-sm',
+      <input :class="['w-full outline-none text-sm transition-colors duration-200',
                   (!validValue && displayValue) && 'line-through',
-                  dark && 'bg-gray-800 text-gray-200 placeholder:text-gray-500'
+                  glass ? 'bg-transparent' : '',
+                  glass ? (dark ? 'text-gray-200 placeholder:text-gray-400' : 'text-gray-900 placeholder:text-gray-600') : (dark && 'bg-gray-800 text-gray-200 placeholder:text-gray-500')
              ]"
              type="text"
              :value="displayValue"
@@ -50,9 +56,9 @@
       <div v-if="showControl"
            class="ml-1 flex flex-col -my-1">
         <div :class="[
-                  'h-3 flex items-center justify-center',
+                  'h-3 flex items-center justify-center transition-all duration-200',
                   {
-                    'cursor-pointer rounded': !disabled && validValue && Number(localValue) < Number(props.max),
+                    'cursor-pointer rounded hover:scale-110': !disabled && validValue && Number(localValue) < Number(props.max),
                     'cursor-not-allowed opacity-50': !validValue || Number(localValue) >= Number(props.max)
                   }
               ]"
@@ -73,9 +79,9 @@
           </slot>
         </div>
         <div :class="[
-                  'h-3 flex items-center justify-center',
+                  'h-3 flex items-center justify-center transition-all duration-200',
                   {
-                    'cursor-pointer rounded': !disabled && validValue && Number(localValue) > Number(props.min),
+                    'cursor-pointer rounded hover:scale-110': !disabled && validValue && Number(localValue) > Number(props.min),
                     'cursor-not-allowed opacity-50': !validValue || Number(localValue) <= Number(props.min)
                   }
              ]"
@@ -119,7 +125,8 @@ const props = withDefaults(defineProps<NumberProps>(), {
   showControl: true,
   formatter: (value: number) => value.toString(),
   parser: (value: string) => Number(value),
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const localValue = ref(props.modelValue)

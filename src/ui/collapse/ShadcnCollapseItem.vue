@@ -1,7 +1,13 @@
 <template>
-  <div :class="['collapse-item border-b last:border-b-0', dark ? 'border-gray-600' : 'border-gray-200']">
-    <div :class="['flex justify-between items-center px-4 py-2 cursor-pointer',
-                  dark ? 'bg-gray-800 hover:bg-gray-700' : 'bg-gray-50 hover:bg-gray-50']"
+  <div :class="[
+         'collapse-item border-b last:border-b-0',
+         glass ? 'border-white/20' : (dark ? 'border-gray-600' : 'border-gray-200')
+       ]">
+    <div :class="[
+           'flex justify-between items-center px-4 py-2 cursor-pointer transition-all',
+           glass && 'backdrop-blur-md',
+           glass ? (dark ? 'hover:bg-white/5' : 'hover:bg-white/30') : (dark ? 'bg-gray-800 hover:bg-gray-700' : 'bg-gray-50 hover:bg-gray-50')
+         ]"
          @click="handleClick">
       <slot name="title">
         <h3 :class="['text-sm font-medium', dark ? 'text-gray-200' : '']">{{ title }}</h3>
@@ -29,18 +35,14 @@
 <script setup lang="ts">
 import { computed, inject, onMounted, ref, Ref } from 'vue'
 import { ShadcnIcon } from '@/ui/icon'
+import type { CollapseItemProps } from './types'
 
-interface Props
-{
-  title: string
-  name: string
-}
-
-const props = defineProps<Props>()
+const props = defineProps<CollapseItemProps>()
 
 const expandedItems = inject<Ref<string[]>>('expandedItems')
 const toggleItem = inject<(name: string) => void>('toggleItem')
 const dark = inject<Ref<boolean>>('collapseDark', ref(false))
+const glass = inject<Ref<boolean>>('collapseGlass', ref(false))
 const parentExists = ref(false)
 
 onMounted(() => {

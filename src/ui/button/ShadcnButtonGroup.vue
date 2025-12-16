@@ -26,19 +26,13 @@
 <script setup lang="ts">
 import { computed, provide } from 'vue'
 import { ButtonSize } from '@/ui/common/size.ts'
-import { ArrangeDirection } from '@/ui/common/position.ts'
+import type { ButtonGroupProps } from './types'
 
-interface Props
-{
-  direction?: keyof typeof ArrangeDirection
-  size?: keyof typeof ButtonSize
-  dark?: boolean
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<ButtonGroupProps>(), {
   direction: 'horizontal',
   size: 'default',
-  dark: false
+  dark: false,
+  glass: false
 })
 
 // Compute size class based on the ButtonSize enum
@@ -51,4 +45,7 @@ provide('buttonGroupSize', computed(() => props.size))
 
 // Provide dark mode to child buttons
 provide('buttonGroupDark', computed(() => props.dark))
+
+// Provide glass mode to child buttons
+provide('buttonGroupGlass', computed(() => props.glass))
 </script>

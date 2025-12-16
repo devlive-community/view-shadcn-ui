@@ -194,6 +194,28 @@ title: 贡献图 (Contribution)
 
 :::
 
+## 液态玻璃效果 (glass)
+
+::: raw
+
+<div :style="{ background: darkMode ? 'linear-gradient(to right, rgb(30, 58, 138), rgb(49, 46, 129))' : 'linear-gradient(to right, rgb(96, 165, 250), rgb(129, 140, 248))', padding: '1.5rem', borderRadius: '0.5rem' }">
+<CodeRunner title="液态玻璃效果 (glass)">
+    <ShadcnContribution :data="data" glass :dark="darkMode" :year="2024" />
+</CodeRunner>
+</div>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <ShadcnContribution :data="data" glass :dark="darkMode" :year="2024" />
+</template>
+```
+
+:::
+
 ## 贡献图 (Contribution) 属性
 
 <ApiTable title="贡献图 (Contribution) 属性"
@@ -207,7 +229,9 @@ title: 贡献图 (Contribution)
         ['showMonth', '是否显示月', 'boolean', 'true', '-'],
         ['cellSize', '单元格尺寸', 'number', '16', '-'],
         ['cellGap', '单元格间距', 'number', '4', '-'],
-        ['year', '当前年份', 'number', '-', '-']
+        ['year', '当前年份', 'number', '-', '-'],
+        ['dark', '是否为暗黑模式', 'boolean', 'false', '-'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false', '-']
     ]">
 </ApiTable>
 

@@ -109,6 +109,105 @@ title: 徽章 (Badge)
 
 :::
 
+## 液态玻璃效果 (glass)
+
+液态玻璃效果通过半透明背景和背景模糊创建现代化的视觉效果，在彩色背景上表现最佳。
+
+<CodeRunner title="液态玻璃效果 (glass)">
+    <div class="space-y-6">
+        <div class="relative">
+            <div :class="['h-40 rounded-lg flex items-center justify-center gap-8', darkMode ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
+                <ShadcnBadge glass :dark="darkMode" type="primary" text="5">
+                    <div :class="['px-6 py-3 rounded-lg', darkMode ? 'bg-gray-800/50 text-gray-100' : 'bg-white/50 text-gray-900']">
+                        Primary
+                    </div>
+                </ShadcnBadge>
+                <ShadcnBadge glass :dark="darkMode" type="success" text="10">
+                    <div :class="['px-6 py-3 rounded-lg', darkMode ? 'bg-gray-800/50 text-gray-100' : 'bg-white/50 text-gray-900']">
+                        Success
+                    </div>
+                </ShadcnBadge>
+                <ShadcnBadge glass :dark="darkMode" type="warning" text="99+">
+                    <div :class="['px-6 py-3 rounded-lg', darkMode ? 'bg-gray-800/50 text-gray-100' : 'bg-white/50 text-gray-900']">
+                        Warning
+                    </div>
+                </ShadcnBadge>
+                <ShadcnBadge glass :dark="darkMode" type="danger" text="New">
+                    <div :class="['px-6 py-3 rounded-lg', darkMode ? 'bg-gray-800/50 text-gray-100' : 'bg-white/50 text-gray-900']">
+                        Danger
+                    </div>
+                </ShadcnBadge>
+            </div>
+        </div>
+        <div class="relative">
+            <div :class="['h-40 rounded-lg flex items-center justify-center gap-8', darkMode ? 'bg-gradient-to-r from-pink-900 to-rose-900' : 'bg-gradient-to-r from-pink-400 to-rose-400']">
+                <ShadcnBadge glass :dark="darkMode" dot>
+                    <div :class="['px-6 py-3 rounded-lg', darkMode ? 'bg-gray-800/50 text-gray-100' : 'bg-white/50 text-gray-900']">
+                        Dot Badge
+                    </div>
+                </ShadcnBadge>
+                <ShadcnBadge glass :dark="darkMode" text="10" max="5">
+                    <div :class="['px-6 py-3 rounded-lg', darkMode ? 'bg-gray-800/50 text-gray-100' : 'bg-white/50 text-gray-900']">
+                        Max 5
+                    </div>
+                </ShadcnBadge>
+            </div>
+        </div>
+    </div>
+</CodeRunner>
+
+::: details 查看代码
+
+```vue
+<template>
+    <div class="space-y-6">
+        <div class="relative">
+            <div class="h-40 rounded-lg flex items-center justify-center gap-8 bg-gradient-to-r from-blue-400 to-indigo-400">
+                <ShadcnBadge glass type="primary" text="5">
+                    <div class="px-6 py-3 rounded-lg bg-white/50 text-gray-900">
+                        Primary
+                    </div>
+                </ShadcnBadge>
+                <ShadcnBadge glass type="success" text="10">
+                    <div class="px-6 py-3 rounded-lg bg-white/50 text-gray-900">
+                        Success
+                    </div>
+                </ShadcnBadge>
+                <ShadcnBadge glass type="warning" text="99+">
+                    <div class="px-6 py-3 rounded-lg bg-white/50 text-gray-900">
+                        Warning
+                    </div>
+                </ShadcnBadge>
+                <ShadcnBadge glass type="danger" text="New">
+                    <div class="px-6 py-3 rounded-lg bg-white/50 text-gray-900">
+                        Danger
+                    </div>
+                </ShadcnBadge>
+            </div>
+        </div>
+        <div class="relative">
+            <div class="h-40 rounded-lg flex items-center justify-center gap-8 bg-gradient-to-r from-pink-400 to-rose-400">
+                <ShadcnBadge glass dot>
+                    <div class="px-6 py-3 rounded-lg bg-white/50 text-gray-900">
+                        Dot Badge
+                    </div>
+                </ShadcnBadge>
+                <ShadcnBadge glass text="10" max="5">
+                    <div class="px-6 py-3 rounded-lg bg-white/50 text-gray-900">
+                        Max 5
+                    </div>
+                </ShadcnBadge>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## 徽章 (Badge) 属性
 
 <ApiTable title="徽章 (Badge) 属性"
@@ -118,6 +217,7 @@ title: 徽章 (Badge)
         ['text', '徽章文本', 'string', '-', '-'],
         ['dot', '是否显示为点', 'boolean', 'false', '-'],
         ['max', '最大点数，只有文本是数字时生效', 'number', '-', '-'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 

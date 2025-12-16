@@ -7,8 +7,11 @@
          :style="{ backgroundColor: displayColor }"
          @click="togglePicker"/>
     <div v-if="isOpen" class="relative">
-      <div :class="['absolute min-w-64 z-10 mt-0.5 p-2 rounded-lg shadow-lg border',
-                    dark ? 'bg-gray-800 border-gray-600' : 'bg-white']">
+      <div :class="['absolute min-w-64 z-10 mt-0.5 p-2 rounded-lg border',
+                    glass ? 'backdrop-blur-xl backdrop-saturate-150' : '',
+                    glass ? 'border-white/20' : (dark ? 'border-gray-600' : ''),
+                    glass ? (dark ? 'bg-white/10' : 'bg-white/60') : (dark ? 'bg-gray-800' : 'bg-white'),
+                    glass ? 'shadow-lg shadow-black/5' : 'shadow-lg']">
         <div class="grid grid-cols-5 gap-2">
           <div v-for="color in finalPresetColors"
                class="w-6 h-6 rounded-md cursor-pointer"
@@ -107,6 +110,7 @@ const props = withDefaults(defineProps<ColorPickerProps>(), {
   readonly: false,
   format: 'auto',
   dark: false,
+  glass: false,
   presetColors: () => ([
     '#f87171', '#fb923c', '#fbbf24', '#a3e635', '#34d399',
     '#2dd4bf', '#38bdf8', '#818cf8', '#c084fc', '#e879f9',

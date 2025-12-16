@@ -18,6 +18,7 @@ export interface ContextMenuProps
     modelValue: boolean
     position?: ContextMenuPosition;
     dark?: boolean
+    glass?: boolean
 }
 
 export interface ContextMenuItemProps

@@ -38,32 +38,17 @@ import { Loader2 } from 'lucide-vue-next'
 import { ButtonBackgroundType, ButtonHoverType } from '@/ui/common/type.ts'
 import { ButtonRoundedSize, ButtonSize } from '@/ui/common/size.ts'
 import { ShadcnLink } from '@/ui/link'
+import type { ButtonProps } from './types'
 
-interface Props
-{
-  text?: string
-  size?: keyof typeof ButtonSize
-  type?: keyof typeof ButtonBackgroundType
-  round?: boolean
-  circle?: boolean
-  loading?: boolean
-  color?: string
-  disabled?: boolean
-  ghost?: boolean
-  submit?: boolean
-  reset?: boolean
-  to?: string
-  dark?: boolean
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<ButtonProps>(), {
   size: 'default',
   type: 'primary',
   ghost: false,
   submit: false,
   reset: false,
   circle: false,
-  dark: false
+  dark: false,
+  glass: false
 })
 
 // Ghost button style classes
@@ -154,8 +139,72 @@ const getHoverClass = computed(() => {
   return hoverColorMap[props.type]
 })
 
+const GlassBackgroundType = {
+  primary: 'bg-blue-500/30',
+  success: 'bg-green-500/30',
+  warning: 'bg-yellow-500/30',
+  danger: 'bg-red-500/30',
+  info: 'bg-blue-500/30',
+  default: 'bg-gray-500/30',
+  text: 'bg-gray-500/30'
+}
+
+const GlassBackgroundTypeDark = {
+  primary: 'bg-blue-600/30',
+  success: 'bg-green-600/30',
+  warning: 'bg-yellow-600/30',
+  danger: 'bg-red-600/30',
+  info: 'bg-blue-600/30',
+  default: 'bg-gray-600/30',
+  text: 'bg-gray-600/30'
+}
+
+const GlassHoverType = {
+  primary: 'hover:bg-blue-500/40',
+  success: 'hover:bg-green-500/40',
+  warning: 'hover:bg-yellow-500/40',
+  danger: 'hover:bg-red-500/40',
+  info: 'hover:bg-blue-500/40',
+  default: 'hover:bg-gray-500/40',
+  text: 'hover:bg-gray-500/40'
+}
+
+const GlassHoverTypeDark = {
+  primary: 'hover:bg-blue-600/40',
+  success: 'hover:bg-green-600/40',
+  warning: 'hover:bg-yellow-600/40',
+  danger: 'hover:bg-red-600/40',
+  info: 'hover:bg-blue-600/40',
+  default: 'hover:bg-gray-600/40',
+  text: 'hover:bg-gray-600/40'
+}
+
 // New computed property for type styles including hover
 const getTypeStyles = computed(() => {
+  // Glass effect styles
+  if (finalGlass.value) {
+    const glassBaseStyles = [
+      'backdrop-blur-xl',
+      'backdrop-saturate-150',
+      'border border-white/20',
+      'shadow-lg shadow-black/5',
+      'text-white'
+    ]
+
+    if (props.disabled || props.loading) {
+      return [
+        ...glassBaseStyles,
+        finalDark.value ? GlassBackgroundTypeDark[props.type] : GlassBackgroundType[props.type]
+      ]
+    }
+
+    return [
+      ...glassBaseStyles,
+      finalDark.value ? GlassBackgroundTypeDark[props.type] : GlassBackgroundType[props.type],
+      finalDark.value ? GlassHoverTypeDark[props.type] : GlassHoverType[props.type]
+    ]
+  }
+
   // If disabled or loading, don't include hover styles
   if (props.disabled || props.loading) {
     if (props.type === 'default') {
@@ -211,8 +260,14 @@ const buttonGroupDark = inject<ComputedRef<boolean> | undefined>(
     undefined
 )
 
+const buttonGroupGlass = inject<ComputedRef<boolean> | undefined>(
+    'buttonGroupGlass',
+    undefined
+)
+
 const finalSize = computed(() => buttonGroupSize?.value || props.size)
 const finalDark = computed(() => buttonGroupDark?.value ?? props.dark)
+const finalGlass = computed(() => buttonGroupGlass?.value ?? props.glass)
 
 const circleClass = computed(() => {
   if (props.circle) {

@@ -173,6 +173,50 @@ const checked2 = ref(null)
 
 :::
 
+## 液态玻璃效果 (glass)
+
+::: raw
+
+<CodeRunner title="液态玻璃效果">
+    <div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
+        <div class="flex flex-col gap-4">
+            <ShadcnSwitch v-model="glassValue1" glass :dark="darkMode" />
+            <ShadcnSwitch v-model="glassValue2" glass type="success" :dark="darkMode" />
+            <ShadcnSwitch v-model="glassValue3" glass type="warning" :dark="darkMode" />
+            <ShadcnSwitch v-model="glassValue4" glass type="error" :dark="darkMode" />
+        </div>
+    </div>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <div :class="['p-6 rounded-lg', isDark ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
+        <div class="flex flex-col gap-4">
+            <ShadcnSwitch v-model="switchValue1" glass :dark="isDark" />
+            <ShadcnSwitch v-model="switchValue2" glass type="success" :dark="isDark" />
+            <ShadcnSwitch v-model="switchValue3" glass type="warning" :dark="isDark" />
+            <ShadcnSwitch v-model="switchValue4" glass type="error" :dark="isDark" />
+        </div>
+    </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const isDark = ref(false)
+const switchValue1 = ref(true)
+const switchValue2 = ref(false)
+const switchValue3 = ref(true)
+const switchValue4 = ref(false)
+</script>
+```
+
+:::
+
 ## 开关 (Switch) 属性
 
 <ApiTable title="开关 (Switch) 属性"
@@ -184,6 +228,7 @@ const checked2 = ref(null)
         ['disabled', '是否为禁用', 'boolean', 'false',  '-'],
         ['trueValue', '选中组件时的值', 'any', '-', '-'],
         ['falseValue', '未选中组件时的值', 'any', '-', '-'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false', '-']
     ]">
 </ApiTable>
 
@@ -209,11 +254,15 @@ const checked2 = ref(null)
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useData } from 'vitepress' 
-import { computed } from 'vue' 
+import { useData } from 'vitepress'
+import { computed } from 'vue'
 const { isDark } = useData()
 const darkMode = computed(() => isDark.value)
 
 const checked = ref(false)
 const checked2 = ref(null)
+const glassValue1 = ref(true)
+const glassValue2 = ref(false)
+const glassValue3 = ref(true)
+const glassValue4 = ref(false)
 </script>

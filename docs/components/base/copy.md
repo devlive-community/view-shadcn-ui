@@ -99,6 +99,38 @@ title: 复制 (Copy)
 
 :::
 
+## 液态玻璃效果 (glass)
+
+::: raw
+
+<CodeRunner title="液态玻璃效果">
+    <div :class="['p-6 rounded-lg flex items-center gap-4', darkMode ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
+        <span :class="darkMode ? 'text-gray-200' : 'text-white'">复制文本</span>
+        <ShadcnCopy text="Hello Shadcn UI with Glass Effect" glass :dark="darkMode"/>
+    </div>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <div :class="['p-6 rounded-lg flex items-center gap-4', isDark ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
+        <span :class="isDark ? 'text-gray-200' : 'text-white'">复制文本</span>
+        <ShadcnCopy text="Hello Shadcn UI with Glass Effect" glass :dark="isDark"/>
+    </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const isDark = ref(false)
+</script>
+```
+
+:::
+
 ## 复制 (Copy) 属性
 
 <ApiTable title="复制 (Copy) 属性"
@@ -107,6 +139,7 @@ title: 复制 (Copy)
         ['text', '复制的文本内容', 'string', '-', '-', '-'],
         ['tooltip', '是否显示提示', 'boolean', 'true', '-', '-'],
         ['position', '提示的位置', 'enum', 'top', '-', 'top | bottom | left | right'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false', '-', '-'],
     ]">
 </ApiTable>
 

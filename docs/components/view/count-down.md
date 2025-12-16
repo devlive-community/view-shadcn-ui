@@ -128,6 +128,36 @@ title: 倒计时 (Count Down)
 
 :::
 
+## 液态玻璃效果 (glass)
+
+::: raw
+
+<CodeRunner title="液态玻璃效果">
+    <div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
+        <ShadcnCountDown :time="new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)" glass :dark="darkMode" title="倒计时" :show-progress="true" />
+    </div>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <div :class="['p-6 rounded-lg', isDark ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
+        <ShadcnCountDown :time="new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)" glass :dark="isDark" title="倒计时" :show-progress="true" />
+    </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const isDark = ref(false)
+</script>
+```
+
+:::
+
 ## 自定义 (slots)
 
 ::: raw
@@ -234,6 +264,7 @@ title: 倒计时 (Count Down)
         ['toolbar', '是否显示工具栏', 'boolean', 'false'],
         ['warningThreshold', '倒计时的警告阈值，仅在 <code>simple</code> 为 false 时有效', 'number', '5'],
         ['showProgress', '是否显示进度', 'boolean', 'false'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false'],
     ]">
 </ApiTable>
 

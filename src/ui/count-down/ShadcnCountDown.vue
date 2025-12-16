@@ -5,7 +5,7 @@
     </div>
   </div>
 
-  <ShadcnCard v-else :border="false" :dark="dark">
+  <ShadcnCard v-else class="!bg-transparent" :border="false" :dark="dark">
     <template #title>
       <slot name="title">
         <div class="mb-2">
@@ -40,16 +40,25 @@
               :is-paused="isPaused">
           <div class="relative flex flex-col">
             <div :class="['text-4xl font-bold rounded-lg p-4 transition-all duration-300',
+                        glass && 'backdrop-blur-xl backdrop-saturate-150',
+                        glass && 'border border-white/20',
+                        glass && 'shadow-lg shadow-black/5',
                         {
-                          'bg-slate-100': !isWarning && !isCompleted && !dark,
-                          'bg-gray-700': !isWarning && !isCompleted && dark,
-                          'bg-red-50': isWarning && !isCompleted && !dark,
-                          'bg-red-900/30': isWarning && !isCompleted && dark,
-                          'bg-green-50': isCompleted && !dark,
-                          'bg-green-900/30': isCompleted && dark,
+                          'bg-slate-100': !isWarning && !isCompleted && !dark && !glass,
+                          'bg-gray-700': !isWarning && !isCompleted && dark && !glass,
+                          'bg-white/80': !isWarning && !isCompleted && !dark && glass,
+                          'bg-white/10': !isWarning && !isCompleted && dark && glass,
+                          'bg-red-50': isWarning && !isCompleted && !dark && !glass,
+                          'bg-red-900/30': isWarning && !isCompleted && dark && !glass,
+                          'bg-red-200/80': isWarning && !isCompleted && !dark && glass,
+                          'bg-red-500/20': isWarning && !isCompleted && dark && glass,
+                          'bg-green-50': isCompleted && !dark && !glass,
+                          'bg-green-900/30': isCompleted && dark && !glass,
+                          'bg-green-200/80': isCompleted && !dark && glass,
+                          'bg-green-500/20': isCompleted && dark && glass,
                           'animate-pulse': isWarning && !isPaused && !isCompleted
                         },
-                        dark ? 'text-gray-200' : ''
+                        glass ? (dark ? 'text-gray-100' : 'text-gray-900') : (dark ? 'text-gray-200' : '')
                  ]">
               {{ padNumber(timeLeft.days) }}
               <span v-if="isWarning && !isCompleted" class="absolute -top-1 -right-1 flex h-3 w-3">
@@ -71,16 +80,25 @@
               :is-paused="isPaused">
           <div class="flex flex-col">
             <div :class="['text-4xl font-bold rounded-lg p-4 transition-all duration-300',
+                        glass && 'backdrop-blur-xl backdrop-saturate-150',
+                        glass && 'border border-white/20',
+                        glass && 'shadow-lg shadow-black/5',
                         {
-                          'bg-slate-100': !isWarning && !isCompleted && !dark,
-                          'bg-gray-700': !isWarning && !isCompleted && dark,
-                          'bg-red-50': isWarning && !isCompleted && !dark,
-                          'bg-red-900/30': isWarning && !isCompleted && dark,
-                          'bg-green-50': isCompleted && !dark,
-                          'bg-green-900/30': isCompleted && dark,
+                          'bg-slate-100': !isWarning && !isCompleted && !dark && !glass,
+                          'bg-gray-700': !isWarning && !isCompleted && dark && !glass,
+                          'bg-white/80': !isWarning && !isCompleted && !dark && glass,
+                          'bg-white/10': !isWarning && !isCompleted && dark && glass,
+                          'bg-red-50': isWarning && !isCompleted && !dark && !glass,
+                          'bg-red-900/30': isWarning && !isCompleted && dark && !glass,
+                          'bg-red-200/80': isWarning && !isCompleted && !dark && glass,
+                          'bg-red-500/20': isWarning && !isCompleted && dark && glass,
+                          'bg-green-50': isCompleted && !dark && !glass,
+                          'bg-green-900/30': isCompleted && dark && !glass,
+                          'bg-green-200/80': isCompleted && !dark && glass,
+                          'bg-green-500/20': isCompleted && dark && glass,
                           'animate-pulse': isWarning && !isPaused && !isCompleted
                         },
-                        dark ? 'text-gray-200' : ''
+                        glass ? (dark ? 'text-gray-100' : 'text-gray-900') : (dark ? 'text-gray-200' : '')
                  ]">
               {{ padNumber(timeLeft.hours) }}
             </div>
@@ -98,16 +116,25 @@
               :is-paused="isPaused">
           <div class="flex flex-col">
             <div :class="['text-4xl font-bold rounded-lg p-4 transition-all duration-300',
+                        glass && 'backdrop-blur-xl backdrop-saturate-150',
+                        glass && 'border border-white/20',
+                        glass && 'shadow-lg shadow-black/5',
                         {
-                          'bg-slate-100': !isWarning && !isCompleted && !dark,
-                          'bg-gray-700': !isWarning && !isCompleted && dark,
-                          'bg-red-50': isWarning && !isCompleted && !dark,
-                          'bg-red-900/30': isWarning && !isCompleted && dark,
-                          'bg-green-50': isCompleted && !dark,
-                          'bg-green-900/30': isCompleted && dark,
+                          'bg-slate-100': !isWarning && !isCompleted && !dark && !glass,
+                          'bg-gray-700': !isWarning && !isCompleted && dark && !glass,
+                          'bg-white/80': !isWarning && !isCompleted && !dark && glass,
+                          'bg-white/10': !isWarning && !isCompleted && dark && glass,
+                          'bg-red-50': isWarning && !isCompleted && !dark && !glass,
+                          'bg-red-900/30': isWarning && !isCompleted && dark && !glass,
+                          'bg-red-200/80': isWarning && !isCompleted && !dark && glass,
+                          'bg-red-500/20': isWarning && !isCompleted && dark && glass,
+                          'bg-green-50': isCompleted && !dark && !glass,
+                          'bg-green-900/30': isCompleted && dark && !glass,
+                          'bg-green-200/80': isCompleted && !dark && glass,
+                          'bg-green-500/20': isCompleted && dark && glass,
                           'animate-pulse': isWarning && !isPaused && !isCompleted
                         },
-                        dark ? 'text-gray-200' : ''
+                        glass ? (dark ? 'text-gray-100' : 'text-gray-900') : (dark ? 'text-gray-200' : '')
                  ]">
               {{ padNumber(timeLeft.minutes) }}
             </div>
@@ -125,16 +152,25 @@
               :is-paused="isPaused">
           <div class="flex flex-col">
             <div :class="['text-4xl font-bold rounded-lg p-4 transition-all duration-300',
+                        glass && 'backdrop-blur-xl backdrop-saturate-150',
+                        glass && 'border border-white/20',
+                        glass && 'shadow-lg shadow-black/5',
                       {
-                        'bg-slate-100': !isWarning && !isCompleted && !dark,
-                        'bg-gray-700': !isWarning && !isCompleted && dark,
-                        'bg-red-50': isWarning && !isCompleted && !dark,
-                        'bg-red-900/30': isWarning && !isCompleted && dark,
-                        'bg-green-50': isCompleted && !dark,
-                        'bg-green-900/30': isCompleted && dark,
+                        'bg-slate-100': !isWarning && !isCompleted && !dark && !glass,
+                        'bg-gray-700': !isWarning && !isCompleted && dark && !glass,
+                        'bg-white/80': !isWarning && !isCompleted && !dark && glass,
+                        'bg-white/10': !isWarning && !isCompleted && dark && glass,
+                        'bg-red-50': isWarning && !isCompleted && !dark && !glass,
+                        'bg-red-900/30': isWarning && !isCompleted && dark && !glass,
+                        'bg-red-200/80': isWarning && !isCompleted && !dark && glass,
+                        'bg-red-500/20': isWarning && !isCompleted && dark && glass,
+                        'bg-green-50': isCompleted && !dark && !glass,
+                        'bg-green-900/30': isCompleted && dark && !glass,
+                        'bg-green-200/80': isCompleted && !dark && glass,
+                        'bg-green-500/20': isCompleted && dark && glass,
                         'animate-pulse': isWarning && !isPaused && !isCompleted
                       },
-                      dark ? 'text-gray-200' : ''
+                      glass ? (dark ? 'text-gray-100' : 'text-gray-900') : (dark ? 'text-gray-200' : '')
                  ]">
               {{ padNumber(timeLeft.seconds) }}
             </div>
@@ -181,6 +217,7 @@ import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { t } from '@/utils/locale'
 import { ShadcnCard } from '@/ui/card'
 import { CountDownEmits, CountDownProps } from '@/ui/count-down/types'
+import { ShadcnButton } from "@/ui/button";
 
 const emit = defineEmits<CountDownEmits>()
 const props = withDefaults(defineProps<CountDownProps>(), {
@@ -188,7 +225,8 @@ const props = withDefaults(defineProps<CountDownProps>(), {
   toolbar: false,
   warningThreshold: 5,
   showProgress: false,
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const timeLeft = ref({

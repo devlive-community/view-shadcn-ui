@@ -7,4 +7,5 @@ export interface BadgeProps
     dot?: boolean
     max?: number | string
     dark?: boolean
+    glass?: boolean
 }

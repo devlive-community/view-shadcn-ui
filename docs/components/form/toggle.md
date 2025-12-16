@@ -205,6 +205,95 @@ const defaultValue = ref(null)
 
 :::
 
+## 液态玻璃效果 (glass)
+
+::: raw
+
+<CodeRunner title="液态玻璃效果 (glass)">
+  <div class="space-y-6">
+    <div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-blue-900 to-cyan-900' : 'bg-gradient-to-r from-blue-400 to-cyan-400']">
+      <div class="flex flex-col gap-4">
+        <div class="flex gap-2">
+          <ShadcnToggle v-model="glassValue1" value="bold" glass :dark="darkMode">粗体</ShadcnToggle>
+          <ShadcnToggle v-model="glassValue2" value="italic" glass :dark="darkMode">斜体</ShadcnToggle>
+          <ShadcnToggle v-model="glassValue3" value="underline" glass :dark="darkMode">下划线</ShadcnToggle>
+        </div>
+        <div>
+          <p :class="['text-sm mb-2', darkMode ? 'text-gray-200' : 'text-gray-700']">多选模式</p>
+          <ShadcnToggleGroup v-model="glassGroupValue" multiple glass :dark="darkMode">
+            <ShadcnToggle value="left">左对齐</ShadcnToggle>
+            <ShadcnToggle value="center">居中</ShadcnToggle>
+            <ShadcnToggle value="right">右对齐</ShadcnToggle>
+            <ShadcnToggle value="justify">两端对齐</ShadcnToggle>
+          </ShadcnToggleGroup>
+        </div>
+        <div>
+          <p :class="['text-sm mb-2', darkMode ? 'text-gray-200' : 'text-gray-700']">单选模式</p>
+          <ShadcnToggleGroup v-model="glassSingleValue" glass :dark="darkMode">
+            <ShadcnToggle value="small">小</ShadcnToggle>
+            <ShadcnToggle value="medium">中</ShadcnToggle>
+            <ShadcnToggle value="large">大</ShadcnToggle>
+          </ShadcnToggleGroup>
+        </div>
+      </div>
+    </div>
+  </div>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+  <div class="space-y-6">
+    <div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-blue-900 to-cyan-900' : 'bg-gradient-to-r from-blue-400 to-cyan-400']">
+      <div class="flex flex-col gap-4">
+        <div class="flex gap-2">
+          <ShadcnToggle v-model="glassValue1" value="bold" glass :dark="darkMode">粗体</ShadcnToggle>
+          <ShadcnToggle v-model="glassValue2" value="italic" glass :dark="darkMode">斜体</ShadcnToggle>
+          <ShadcnToggle v-model="glassValue3" value="underline" glass :dark="darkMode">下划线</ShadcnToggle>
+        </div>
+        <div>
+          <p :class="['text-sm mb-2', darkMode ? 'text-gray-200' : 'text-gray-700']">多选模式</p>
+          <ShadcnToggleGroup v-model="glassGroupValue" multiple glass :dark="darkMode">
+            <ShadcnToggle value="left">左对齐</ShadcnToggle>
+            <ShadcnToggle value="center">居中</ShadcnToggle>
+            <ShadcnToggle value="right">右对齐</ShadcnToggle>
+            <ShadcnToggle value="justify">两端对齐</ShadcnToggle>
+          </ShadcnToggleGroup>
+        </div>
+        <div>
+          <p :class="['text-sm mb-2', darkMode ? 'text-gray-200' : 'text-gray-700']">单选模式</p>
+          <ShadcnToggleGroup v-model="glassSingleValue" glass :dark="darkMode">
+            <ShadcnToggle value="small">小</ShadcnToggle>
+            <ShadcnToggle value="medium">中</ShadcnToggle>
+            <ShadcnToggle value="large">大</ShadcnToggle>
+          </ShadcnToggleGroup>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
+const glassValue1 = ref(null)
+const glassValue2 = ref(null)
+const glassValue3 = ref(null)
+const glassGroupValue = ref([])
+const glassSingleValue = ref(null)
+</script>
+```
+
+:::
+
 ## 切换 (Toggle) 属性
 
 <ApiTable title="切换 (Toggle) 属性"
@@ -214,6 +303,8 @@ const defaultValue = ref(null)
         ['value', '组件的值', 'any', '-', '-'],
         ['disabled', '是否为禁用', 'boolean', 'false', '-'],
         ['size', '组件的尺寸', 'string', 'default', 'small | default | large'],
+        ['dark', '暗黑模式', 'boolean', 'false', '-'],
+        ['glass', '液态玻璃效果', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
@@ -227,6 +318,8 @@ const defaultValue = ref(null)
         ['size', '组件的尺寸', 'string', 'default', 'small | default | large'],
         ['multiple', '是否支持多选', 'boolean', 'false', '-'],
         ['orientation', '组件的方向', 'string', 'horizontal', 'horizontal | vertical'],
+        ['dark', '暗黑模式', 'boolean', 'false', '-'],
+        ['glass', '液态玻璃效果', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
@@ -252,11 +345,16 @@ const defaultValue = ref(null)
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useData } from 'vitepress' 
-import { computed } from 'vue' 
+import { useData } from 'vitepress'
+import { computed } from 'vue'
 const { isDark } = useData()
 const darkMode = computed(() => isDark.value)
 
 const defaultValue = ref(null)
 const disabledValue = ref(null)
+const glassValue1 = ref(null)
+const glassValue2 = ref(null)
+const glassValue3 = ref(null)
+const glassGroupValue = ref([])
+const glassSingleValue = ref(null)
 </script>

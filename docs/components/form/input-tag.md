@@ -164,6 +164,37 @@ const tags = ref([])
 
 :::
 
+## 液态玻璃效果 (glass)
+
+::: raw
+
+<CodeRunner title="液态玻璃效果">
+    <div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
+        <ShadcnInputTag v-model="glassValue" glass :dark="darkMode" placeholder="输入标签并按回车" />
+    </div>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <div :class="['p-6 rounded-lg', isDark ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
+        <ShadcnInputTag v-model="tags" glass :dark="isDark" placeholder="输入标签并按回车" />
+    </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const isDark = ref(false)
+const tags = ref(['Vue', 'React', 'Angular'])
+</script>
+```
+
+:::
+
 ## 输入标签 (Input Tag) 属性
 
 <ApiTable title="输入标签 (Input Tag) 属性"
@@ -176,6 +207,7 @@ const tags = ref([])
             ['size', '组件的尺寸', 'string', 'default', 'small | default | large'],
             ['type', '组件的类型', 'string', 'primary', 'primary | error | warning | success'],
             ['max', '最大的数量', 'number', 'Infinity', '-'],
+            ['glass', '是否启用液态玻璃效果', 'boolean', 'false', '-']
         ]">
 </ApiTable>
 
@@ -193,11 +225,12 @@ const tags = ref([])
 <script setup lang="ts">
 import { ref } from 'vue'
 const { isDark } = useData()
-import { useData } from 'vitepress' 
-import { computed } from 'vue' 
+import { useData } from 'vitepress'
+import { computed } from 'vue'
 const darkMode = computed(() => isDark.value)
 
 const tags = ref([])
+const glassValue = ref(['Vue', 'React', 'Angular'])
 
 const formState = ref({
     tags: []

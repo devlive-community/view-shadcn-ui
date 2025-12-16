@@ -1,10 +1,13 @@
 <template>
-  <div class="flex px-2 border rounded-md"
+  <div class="flex px-2 border rounded-md transition-all"
        :class="[
            Size[finalSize],
            [HoverType[type]],
-           dark ? 'border-gray-600 bg-gray-800' : 'border-gray-300',
-           { 'cursor-not-allowed opacity-50': disabled, 'bg-gray-100': disabled && !dark, 'bg-gray-700': disabled && dark }
+           glass && 'backdrop-blur-xl backdrop-saturate-150',
+           glass && 'border-white/20',
+           glass && 'shadow-lg shadow-black/5',
+           glass ? (dark ? 'bg-white/10 border-white/20' : 'bg-white/80 border-white/20') : (dark ? 'border-gray-600 bg-gray-800' : 'border-gray-300'),
+           { 'cursor-not-allowed opacity-50': disabled, 'bg-gray-100': disabled && !dark && !glass, 'bg-gray-700': disabled && dark && !glass }
        ]">
     <div class="flex gap-2 w-full overflow-x-auto py-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
          ref="containerRef">
@@ -82,7 +85,8 @@ const props = withDefaults(defineProps<InputTagProps>(), {
   size: 'default',
   type: 'primary',
   max: Infinity,
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const finalSize = computed(() => props.size)

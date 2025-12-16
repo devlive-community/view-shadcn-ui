@@ -1,6 +1,13 @@
 <template>
   <nav aria-label="breadcrumb" class="flex">
-    <div class="flex flex-wrap items-center gap-1.5 break-words text-sm"
+    <div :class="[
+           'flex flex-wrap items-center gap-1.5 break-words text-sm w-fit',
+           glass ? 'backdrop-blur-xl backdrop-saturate-150' : '',
+           glass ? 'border border-white/20' : '',
+           glass ? (dark ? 'bg-white/10' : 'bg-white/60') : '',
+           glass ? 'shadow-lg shadow-black/5' : '',
+           glass ? 'rounded-md px-3 py-2' : ''
+         ]"
          :data-breadcrumb-id="breadcrumbId">
       <slot/>
     </div>
@@ -10,16 +17,16 @@
 <script setup lang="ts">
 import { onMounted, provide, ref, watch } from 'vue'
 import { generateRandomId } from '@/utils/common.ts'
+import type { BreadcrumbProps } from './types'
 
-const props = withDefaults(defineProps<{
-  separator?: string
-  dark?: boolean
-}>(), {
+const props = withDefaults(defineProps<BreadcrumbProps>(), {
   separator: '/',
-  dark: false
+  dark: false,
+  glass: false
 })
 provide('breadcrumbSeparator', props.separator)
 provide('breadcrumbDark', props.dark)
+provide('breadcrumbGlass', props.glass)
 
 // Tag that a parent node exists
 provide('isBreadcrumb', true)

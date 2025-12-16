@@ -9,44 +9,55 @@
        @click="toggleSwitch">
 
     <!-- Switch track -->
-    <div :class="['relative flex items-center justify-between rounded-full transition-colors duration-300',
+    <div :class="['relative flex items-center justify-between rounded-full transition-all duration-300 ease-in-out',
                   {
                     'pr-1': !isActive,
                     'pl-1': isActive
                   },
+                  glass && 'backdrop-blur-xl backdrop-saturate-150',
+                  glass && 'border border-white/20',
+                  glass && 'shadow-lg shadow-black/5',
                   Size[size],
-                  {
-                    'bg-blue-400': type === 'primary' && isActive,
-                    'bg-green-400': type === 'success' && isActive,
-                    'bg-yellow-400': type === 'warning' && isActive,
-                    'bg-red-400': type === 'error' && isActive,
-                  },
-                  !isActive ? (dark ? 'bg-gray-600' : 'bg-gray-300') : ''
+                  glass ? (
+                    isActive ? (
+                      type === 'primary' ? (dark ? 'bg-blue-500/30' : 'bg-blue-400/40') :
+                      type === 'success' ? (dark ? 'bg-green-500/30' : 'bg-green-400/40') :
+                      type === 'warning' ? (dark ? 'bg-yellow-500/30' : 'bg-yellow-400/40') :
+                      (dark ? 'bg-red-500/30' : 'bg-red-400/40')
+                    ) : (dark ? 'bg-white/10' : 'bg-white/30')
+                  ) : (
+                    isActive ? (
+                      type === 'primary' ? 'bg-blue-400' :
+                      type === 'success' ? 'bg-green-400' :
+                      type === 'warning' ? 'bg-yellow-400' :
+                      'bg-red-400'
+                    ) : (dark ? 'bg-gray-600' : 'bg-gray-300')
+                  )
                 ]">
       <!-- Open text -->
       <div v-if="$slots.open && !isActive"
-           class="ml-6 text-white text-xs whitespace-nowrap"
-           :class="TextSize[size]">
+           class="ml-6 text-xs whitespace-nowrap transition-opacity duration-300"
+           :class="[TextSize[size], glass ? (dark ? 'text-gray-200' : 'text-gray-700') : 'text-white']">
         <slot name="open"/>
       </div>
 
       <!-- Close text -->
       <div v-if="$slots.close && isActive"
-           class="mr-6 text-white text-xs whitespace-nowrap ml-auto"
-           :class="TextSize[size]">
+           class="mr-6 text-xs whitespace-nowrap ml-auto transition-opacity duration-300"
+           :class="[TextSize[size], glass ? (dark ? 'text-gray-200' : 'text-gray-700') : 'text-white']">
         <slot name="close"/>
       </div>
 
       <!-- Switch toggle -->
       <div :class="[
-                    'absolute rounded-full transition-all duration-300',
-                    dark ? 'bg-gray-200' : 'bg-white',
-                    ToggleSize[size],
-                    {
-                      'left-0.5': !isActive,
-                      'right-0.5': isActive
-                    }
-                  ]">
+                    'absolute left-0.5 rounded-full transition-all duration-300 ease-in-out',
+                    glass && 'shadow-lg',
+                    glass ? (dark ? 'bg-white/90' : 'bg-white') : (dark ? 'bg-gray-200' : 'bg-white'),
+                    ToggleSize[size]
+                  ]"
+           :style="{
+             transform: `translateX(${isActive ? toggleOffset : '0px'}) ${isActive ? 'scale(1.1)' : 'scale(1)'}`
+           }">
       </div>
     </div>
 
@@ -60,8 +71,9 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { SwitchProps, SwitchEmits } from './types'
 
-const emit = defineEmits(['update:modelValue', 'on-change'])
+const emit = defineEmits<SwitchEmits>()
 
 enum Size
 {
@@ -82,24 +94,26 @@ const TextSize = {
   large: 'text-base'
 }
 
-const props = withDefaults(defineProps<{
-  modelValue?: any
-  type?: 'primary' | 'success' | 'warning' | 'error'
-  size?: keyof typeof Size
-  disabled?: boolean
-  trueValue?: any
-  falseValue?: any
-  dark?: boolean
-}>(), {
+const props = withDefaults(defineProps<SwitchProps>(), {
   modelValue: false,
   type: 'primary',
   size: 'default',
   trueValue: true,
   falseValue: false,
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const isActive = computed(() => props.modelValue === props.trueValue)
+
+const toggleOffset = computed(() => {
+  const offsets = {
+    small: '20px',
+    default: '30px',
+    large: '48px'
+  }
+  return offsets[props.size]
+})
 
 const toggleSwitch = () => {
   if (props.disabled) {

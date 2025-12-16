@@ -9,6 +9,7 @@ export interface DatePickerProps
     clearable?: boolean
     showShortcuts?: boolean
     dark?: boolean
+    glass?: boolean
 }
 
 export type DatePickerEmits = {

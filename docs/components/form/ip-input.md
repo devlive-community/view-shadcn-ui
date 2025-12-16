@@ -120,6 +120,42 @@ title: IP输入框 (IP Input)
 
 :::
 
+## 液态玻璃效果 (glass)
+
+::: raw
+
+<div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-purple-900 to-pink-900' : 'bg-gradient-to-r from-purple-400 to-pink-400']">
+<CodeRunner title="液态玻璃效果" class="bg-transparent">
+    <div class="space-y-4">
+      <ShadcnIPInput v-model="glassValue1" glass :dark="darkMode" separator="." />
+      <ShadcnIPInput v-model="glassValue2" glass :dark="darkMode" separator="-" />
+    </div>
+</CodeRunner>
+</div>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-purple-900 to-pink-900' : 'bg-gradient-to-r from-purple-400 to-pink-400']">
+      <div class="space-y-4">
+        <ShadcnIPInput v-model="glassValue1" glass :dark="darkMode" separator="." />
+        <ShadcnIPInput v-model="glassValue2" glass :dark="darkMode" separator="-" />
+      </div>
+    </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+const glassValue1 = ref('192.168.1.1')
+const glassValue2 = ref('10.0.0.1')
+</script>
+```
+
+:::
+
 ## 表单 (form)
 
 ::: raw
@@ -158,7 +194,9 @@ title: IP输入框 (IP Input)
         ['size', '尺寸', 'string', 'default', 'small, default, large'],
         ['type', '类型', 'string', 'primary', 'primary, error, success, warning'],
         ['separator', '分隔符', 'string', 'undefined', '-'],
-        ['name', '输入框名称，用于表单', 'string', '-', '-']
+        ['name', '输入框名称，用于表单', 'string', '-', '-'],
+        ['dark', '暗黑模式', 'boolean', 'false', '-'],
+        ['glass', '液态玻璃效果', 'boolean', 'false', '-']
     ]">
 </ApiTable>
 
@@ -183,4 +221,6 @@ import { ref , computed } from 'vue';
 
 const value = ref('192.168.1.1')
 const formState = ref({ ip: null })
+const glassValue1 = ref('192.168.1.1')
+const glassValue2 = ref('10.0.0.1')
 </script>
