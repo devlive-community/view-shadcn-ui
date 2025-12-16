@@ -6,17 +6,21 @@
 
     <div class="space-y-6 my-6" style="height: 100vh;">
       <div>
-        <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnSelect - 液态玻璃效果</h3>
+        <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnSlider - 液态玻璃效果</h3>
         <div class="space-y-6">
-          <div :class="['p-6 rounded-lg', isDark ? 'bg-gradient-to-r from-green-900 to-teal-900' : 'bg-gradient-to-r from-green-400 to-teal-400']">
-            <div class="flex flex-col gap-4">
+          <div :class="['p-6 rounded-lg', isDark ? 'bg-gradient-to-r from-indigo-900 to-purple-900' : 'bg-gradient-to-r from-indigo-400 to-purple-400']">
+            <div class="flex flex-col gap-6">
               <div>
-                <h4 :class="['text-sm font-medium mb-2', isDark ? 'text-gray-200' : 'text-gray-700']">单选模式</h4>
-                <ShadcnSelect v-model="selectValue" :options="selectOptions" glass :dark="isDark" placeholder="请选择选项"/>
+                <h4 :class="['text-sm font-medium mb-2', isDark ? 'text-gray-200' : 'text-gray-700']">基础滑块</h4>
+                <ShadcnSlider v-model="sliderValue1" glass :dark="isDark"/>
               </div>
               <div>
-                <h4 :class="['text-sm font-medium mb-2', isDark ? 'text-gray-200' : 'text-gray-700']">多选模式</h4>
-                <ShadcnSelect v-model="selectMultiValue" :options="selectOptions" glass :dark="isDark" multiple placeholder="请选择多个选项"/>
+                <h4 :class="['text-sm font-medium mb-2', isDark ? 'text-gray-200' : 'text-gray-700']">显示数值</h4>
+                <ShadcnSlider v-model="sliderValue2" glass :dark="isDark" show-tip/>
+              </div>
+              <div>
+                <h4 :class="['text-sm font-medium mb-2', isDark ? 'text-gray-200' : 'text-gray-700']">显示步进标记</h4>
+                <ShadcnSlider v-model="sliderValue3" glass :dark="isDark" show-step :step="10"/>
               </div>
             </div>
           </div>
@@ -29,16 +33,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ShadcnButton } from "@/ui/button";
-import { ShadcnSelect } from "@/ui/select";
+import { ShadcnSlider } from "@/ui/slider";
 
 const isDark = ref(false)
-const selectValue = ref(null)
-const selectMultiValue = ref([])
-const selectOptions = [
-  { value: '1', label: '选项 1' },
-  { value: '2', label: '选项 2' },
-  { value: '3', label: '选项 3' },
-  { value: '4', label: '选项 4' },
-  { value: '5', label: '选项 5' }
-]
+const sliderValue1 = ref(50)
+const sliderValue2 = ref(75)
+const sliderValue3 = ref(30)
 </script>

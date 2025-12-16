@@ -11,6 +11,7 @@ export interface SliderProps
     disabled?: boolean
     type?: keyof typeof BaseBackgroundType
     dark?: boolean
+    glass?: boolean
 }
 
 export type SliderEmits = {

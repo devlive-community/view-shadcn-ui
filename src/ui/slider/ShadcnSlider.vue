@@ -3,12 +3,17 @@
     <div class="relative w-full h-2">
       <!-- Background track -->
       <div :class="['absolute w-full h-full rounded',
-                    disabled ? (dark ? 'bg-gray-800' : 'bg-gray-100') : (dark ? 'bg-gray-700' : 'bg-gray-200')
+                    glass && 'backdrop-blur-xl backdrop-saturate-150',
+                    glass && !disabled && (dark ? 'bg-white/10 border border-white/20' : 'bg-white/30 border border-gray-400/40'),
+                    glass && disabled && (dark ? 'bg-white/5 border border-white/10' : 'bg-white/20 border border-gray-300/30'),
+                    !glass && (disabled ? (dark ? 'bg-gray-800' : 'bg-gray-100') : (dark ? 'bg-gray-700' : 'bg-gray-200'))
            ]"/>
 
       <!-- Filled track -->
       <div :class="['absolute h-full rounded z-[1]',
-                    disabled ? (dark ? 'bg-gray-600' : 'bg-gray-300') : ButtonBackgroundType[type]
+                    glass && !disabled && (dark ? 'bg-blue-500/40' : 'bg-blue-400/50'),
+                    glass && disabled && (dark ? 'bg-white/10' : 'bg-white/30'),
+                    !glass && (disabled ? (dark ? 'bg-gray-600' : 'bg-gray-300') : ButtonBackgroundType[type])
            ]"
            :style="`width: ${percentage}%`"/>
 
@@ -17,7 +22,8 @@
         <div v-for="(mark, index) in stepMarks"
              :key="index"
              :class="['absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full z-[2]',
-                      disabled ? (dark ? 'bg-gray-600' : 'bg-gray-300') : (dark ? 'bg-gray-500' : 'bg-gray-400')
+                      glass && (dark ? 'bg-white/30' : 'bg-gray-600/40'),
+                      !glass && (disabled ? (dark ? 'bg-gray-600' : 'bg-gray-300') : (dark ? 'bg-gray-500' : 'bg-gray-400'))
              ]"
              :style="`left: ${mark}%`"/>
       </div>
@@ -35,14 +41,19 @@
              @input="onChange"/>
 
       <!-- Thumb -->
-      <div :class="['absolute w-4 h-4 rounded-full top-1/2 -translate-y-1/2 transition-colors z-[2] pointer-events-none border-2',
-                    disabled ? (dark ? 'bg-gray-800 border-gray-600' : 'bg-gray-50 border-gray-300') : (dark ? 'bg-gray-800 border-blue-400 group-hover:bg-gray-700' : 'bg-white border-blue-500 group-hover:bg-blue-50')
+      <div :class="['absolute w-4 h-4 rounded-full top-1/2 -translate-y-1/2 z-[2] pointer-events-none border-2',
+                    glass && 'backdrop-blur-xl backdrop-saturate-150 shadow-lg shadow-black/5',
+                    glass && !disabled && (dark ? 'bg-blue-500/30 border-blue-400/60' : 'bg-blue-400/40 border-blue-500/70'),
+                    glass && disabled && (dark ? 'bg-white/5 border-white/10' : 'bg-white/20 border-gray-300/30'),
+                    !glass && 'transition-colors',
+                    !glass && (disabled ? (dark ? 'bg-gray-800 border-gray-600' : 'bg-gray-50 border-gray-300') : (dark ? 'bg-gray-800 border-blue-400 group-hover:bg-gray-700' : 'bg-white border-blue-500 group-hover:bg-blue-50'))
            ]"
            :style="`left: calc(${percentage}% - 0.5rem)`"/>
     </div>
     <span v-if="showTip"
           :class="['ml-3 text-sm',
-                   disabled ? (dark ? 'text-gray-600' : 'text-gray-400') : (dark ? 'text-gray-400' : 'text-gray-500')
+                   glass && (dark ? 'text-gray-300' : 'text-gray-700'),
+                   !glass && (disabled ? (dark ? 'text-gray-600' : 'text-gray-400') : (dark ? 'text-gray-400' : 'text-gray-500'))
           ]">
       {{ internalValue }}
     </span>
@@ -64,7 +75,8 @@ const props = withDefaults(defineProps<SliderProps>(), {
   showStep: false,
   disabled: false,
   type: 'primary',
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const internalValue = ref(Number(props.modelValue))

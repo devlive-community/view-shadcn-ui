@@ -180,6 +180,45 @@ title: 滑块 (Slider)
 
 :::
 
+## 液态玻璃效果 (glass)
+
+::: raw
+
+<div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-indigo-900 to-purple-900' : 'bg-gradient-to-r from-indigo-400 to-purple-400']">
+<CodeRunner title="液态玻璃效果" class="bg-transparent">
+    <div class="space-y-6">
+      <ShadcnSlider v-model="glassValue1" glass :dark="darkMode"/>
+      <ShadcnSlider v-model="glassValue2" glass :dark="darkMode" show-tip/>
+      <ShadcnSlider v-model="glassValue3" glass :dark="darkMode" show-step :step="10"/>
+    </div>
+</CodeRunner>
+</div>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-indigo-900 to-purple-900' : 'bg-gradient-to-r from-indigo-400 to-purple-400']">
+      <div class="space-y-6">
+        <ShadcnSlider v-model="glassValue1" glass :dark="darkMode"/>
+        <ShadcnSlider v-model="glassValue2" glass :dark="darkMode" show-tip/>
+        <ShadcnSlider v-model="glassValue3" glass :dark="darkMode" show-step :step="10"/>
+      </div>
+    </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+const glassValue1 = ref(50)
+const glassValue2 = ref(75)
+const glassValue3 = ref(30)
+</script>
+```
+
+:::
+
 ## 滑块 (Slider) 属性
 
 <ApiTable title="滑块 (Slider) 属性"
@@ -192,7 +231,9 @@ title: 滑块 (Slider)
         ['showTip', '是否显示提示', 'boolean', 'false', '-'],
         ['showStep', '是否显示间隔', 'boolean', 'false', '-'],
         ['disabled', '是否为禁用', 'boolean', 'false', '-'],
-        ['type', '组件的类型', 'keyof typeof ButtonBackgroundType', 'primary', '-']
+        ['type', '组件的类型', 'keyof typeof ButtonBackgroundType', 'primary', '-'],
+        ['dark', '暗黑模式', 'boolean', 'false', '-'],
+        ['glass', '液态玻璃效果', 'boolean', 'false', '-']
     ]">
 </ApiTable>
 
@@ -217,4 +258,7 @@ const darkMode = computed(() => isDark.value)
 import { ref , computed } from 'vue';
 
 const value = ref('')
+const glassValue1 = ref(50)
+const glassValue2 = ref(75)
+const glassValue3 = ref(30)
 </script>

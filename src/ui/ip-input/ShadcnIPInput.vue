@@ -5,14 +5,17 @@
         <input ref="inputRefs"
                type="text"
                :class="[
+                 'w-12 text-center rounded focus:outline-none',
                  { 'opacity-50 cursor-not-allowed': props.disabled },
                  Size[size],
-                 [HoverType[type]],
-                 props.dark
-                   ? 'border border-gray-600 bg-gray-700 text-gray-100'
-                   : 'border border-gray-300 bg-white text-gray-900'
+                 props.glass && 'backdrop-blur-xl backdrop-saturate-150',
+                 props.glass && 'shadow-lg shadow-black/5',
+                 props.glass && 'border',
+                 props.glass && (props.dark ? 'border-white/20 bg-white/10 text-gray-100 placeholder-gray-400' : 'border-gray-400/40 bg-white/30 text-gray-800 placeholder-gray-500'),
+                 props.glass && !props.disabled && (props.dark ? 'focus:bg-white/20 focus:border-white/30' : 'focus:bg-white/40 focus:border-gray-400/60'),
+                 !props.glass && [HoverType[type]],
+                 !props.glass && (props.dark ? 'border border-gray-600 bg-gray-700 text-gray-100' : 'border border-gray-300 bg-white text-gray-900')
                ]"
-               class="w-12 text-center rounded transition-colors duration-300 focus:outline-none"
                maxlength="3"
                :value="part"
                :disabled="props.disabled"
@@ -21,7 +24,7 @@
                @paste="handlePaste"
                @blur.stop="handleBlur"
                @focus="handleFocus($event)"/>
-        <span v-if="separator && index < 3" :class="props.dark ? 'text-gray-400' : 'text-gray-400'">{{ separator }}</span>
+        <span v-if="separator && index < 3" :class="props.glass ? (props.dark ? 'text-gray-300' : 'text-gray-600') : 'text-gray-400'">{{ separator }}</span>
       </template>
     </div>
   </div>
@@ -44,7 +47,8 @@ const props = withDefaults(defineProps<IPInputProps>(), {
   type: 'primary',
   name: undefined,
   separator: undefined,
-  dark: false
+  dark: false,
+  glass: false
 })
 
 // Initialize IP parts with empty strings or default value

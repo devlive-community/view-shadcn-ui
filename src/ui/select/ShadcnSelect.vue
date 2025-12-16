@@ -4,7 +4,7 @@
                   border && (dark ? 'border border-gray-600' : 'border border-gray-200'),
                   MinSize[size]
          ]">
-      <ShadcnSkeleton animation :rows="1" :size="size" class="w-full"/>
+      <ShadcnSkeleton animation :dark="dark" :rows="1" :size="size" class="w-full"/>
     </div>
     <div v-else :class="['flex rounded-md px-2 relative transition-all duration-300 ease-in-out',
                   border && (glass ? 'border border-white/20' : (dark ? 'border border-gray-600 hover:border-gray-500' : 'border border-gray-200 hover:border-gray-300')),
@@ -88,7 +88,8 @@
                               :type="type"/>
         </slot>
         <div v-if="isLoading" class="flex justify-center items-center py-2">
-          <div class="animate-spin rounded-full h-4 w-4 border-2 border-primary-500 border-t-transparent"></div>
+          <div :class="['animate-spin rounded-full h-4 w-4 border-2 border-t-transparent',
+                        glass ? (dark ? 'border-blue-400/50' : 'border-blue-500/60') : 'border-primary-500']"></div>
         </div>
       </div>
     </Transition>

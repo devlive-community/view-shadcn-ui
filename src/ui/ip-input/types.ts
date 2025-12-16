@@ -44,6 +44,12 @@ export interface IPInputProps
      * 暗黑模式
      */
     dark?: boolean
+
+    /**
+     * Glass mode
+     * 液态玻璃效果
+     */
+    glass?: boolean
 }
 
 export type IPInputEmits = {
