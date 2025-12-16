@@ -16,6 +16,7 @@ export interface CountDownProps
     warningThreshold?: number
     showProgress?: boolean
     dark?: boolean
+    glass?: boolean
 }
 
 export type CountDownEmits = {

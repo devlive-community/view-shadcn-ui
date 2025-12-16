@@ -3,12 +3,15 @@
     <div v-if="$slots.icon" class="cursor-pointer" @click="onCopy">
       <slot name="icon"/>
     </div>
-    <ShadcnIcon v-else :icon="icon" :dark="dark" class="cursor-pointer" @click="onCopy"/>
+    <ShadcnIcon v-else :icon="icon" :dark="dark" :glass="glass" class="cursor-pointer" @click="onCopy"/>
 
     <transition v-if="tooltip" name="fade">
       <div v-if="showTooltip"
-           :class="cn('absolute transform text-xs rounded p-1.5',
-                    dark ? 'bg-gray-700 text-gray-200' : 'bg-gray-800 text-white',
+           :class="cn('absolute transform text-xs rounded p-1.5 transition-all',
+                    glass && 'backdrop-blur-xl backdrop-saturate-150',
+                    glass && 'border border-white/20',
+                    glass && 'shadow-lg shadow-black/5',
+                    glass ? (dark ? 'bg-white/10 text-gray-100' : 'bg-white/80 text-gray-900') : (dark ? 'bg-gray-700 text-gray-200' : 'bg-gray-800 text-white'),
                     position === 'top' && 'bottom-full mb-2 left-1/2 -translate-x-1/2',
                     position === 'bottom' && 'top-full mt-2 left-1/2 -translate-x-1/2',
                     position === 'left' && 'right-full mr-2 top-1/2 -translate-y-1/2',
@@ -30,7 +33,8 @@ import { CopyEmits, CopyProps } from '@/ui/copy/types.ts'
 const props = withDefaults(defineProps<CopyProps>(), {
   tooltip: true,
   position: 'top',
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const emit = defineEmits<CopyEmits>()

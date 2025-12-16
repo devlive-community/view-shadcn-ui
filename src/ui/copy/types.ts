@@ -4,6 +4,7 @@ export interface CopyProps
     tooltip?: boolean
     position?: 'top' | 'bottom' | 'left' | 'right'
     dark?: boolean
+    glass?: boolean
 }
 
 export type CopyEmits = {
