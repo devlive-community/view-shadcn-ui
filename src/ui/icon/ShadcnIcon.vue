@@ -1,10 +1,18 @@
 <template>
-  <div class="inline-flex shrink-0" :style="containerStyle">
+  <div :class="[
+         'inline-flex shrink-0 items-center justify-center',
+         background && 'rounded-lg p-2',
+         background && glass && 'backdrop-blur-xl backdrop-saturate-150',
+         background && glass && 'shadow-lg shadow-black/5',
+         background && glass && (dark ? 'bg-white/10 border border-white/20' : 'bg-white/30 border border-gray-400/40'),
+         background && !glass && (dark ? 'bg-gray-800 border border-gray-700' : 'bg-gray-100 border border-gray-200')
+       ]"
+       :style="containerStyle">
     <component v-if="icon"
                :is="iconComponent"
-               :size="size"
+               :size="iconSize"
                :style="iconStyle"
-               :class="['shrink-0', dark && !color ? 'text-gray-300' : '']"
+               :class="['shrink-0', glass && (dark ? 'text-gray-200' : 'text-gray-700'), !glass && (dark && !color ? 'text-gray-300' : '')]"
                @click="onClick"/>
     <slot v-else name="icon"/>
   </div>
@@ -20,17 +28,37 @@ const props = withDefaults(defineProps<{
   size?: number | string
   color?: string
   dark?: boolean
+  glass?: boolean
+  background?: boolean
 }>(), {
   size: 20,
-  dark: false
+  dark: false,
+  glass: false,
+  background: false
 })
 
 const iconComponent = ref<any>(null)
 
-const containerStyle = computed(() => ({
-  width: typeof props.size === 'number' ? `${props.size}px` : props.size,
-  height: typeof props.size === 'number' ? `${props.size}px` : props.size
-}))
+const iconSize = computed(() => {
+  if (props.background) {
+    return typeof props.size === 'number' ? props.size - 8 : props.size
+  }
+  return props.size
+})
+
+const containerStyle = computed(() => {
+  if (props.background) {
+    const baseSize = typeof props.size === 'number' ? props.size : parseInt(String(props.size))
+    return {
+      width: `${baseSize}px`,
+      height: `${baseSize}px`
+    }
+  }
+  return {
+    width: typeof props.size === 'number' ? `${props.size}px` : props.size,
+    height: typeof props.size === 'number' ? `${props.size}px` : props.size
+  }
+})
 
 const iconStyle = computed(() => {
   if (props.color) {

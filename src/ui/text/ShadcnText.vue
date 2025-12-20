@@ -5,7 +5,11 @@
               italic && 'italic',
               underline && 'underline',
               deleted && 'line-through',
-              type && TextMode[type as keyof typeof TextMode]
+              type && TextMode[type as keyof typeof TextMode],
+              background && 'rounded-lg px-3 py-1',
+              background && glass && 'backdrop-blur-xl backdrop-saturate-150',
+              background && glass && 'shadow-lg shadow-black/5',
+              background && glass && (dark ? 'bg-white/10 border border-white/20' : 'bg-white/30 border border-gray-400/40')
         ]"
        :style="[
               color && {color: color}
@@ -25,6 +29,8 @@ withDefaults(defineProps<TextProps>(), {
   italic: false,
   underline: false,
   deleted: false,
-  dark: false
+  dark: false,
+  glass: false,
+  background: false
 })
 </script>

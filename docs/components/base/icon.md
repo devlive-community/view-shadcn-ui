@@ -83,14 +83,93 @@ title: 图标 (Icon)
 
 :::
 
+## 带背景 (background)
+
+::: raw
+
+<CodeRunner title="带背景图标">
+    <ShadcnIcon icon="Home" :size="40" background :dark="darkMode"/>
+    <ShadcnIcon icon="Settings" :size="40" background :dark="darkMode"/>
+    <ShadcnIcon icon="User" :size="40" background :dark="darkMode"/>
+    <ShadcnIcon icon="Bell" :size="40" background :dark="darkMode"/>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <ShadcnIcon icon="Home" :size="40" background :dark="darkMode"/>
+    <ShadcnIcon icon="Settings" :size="40" background :dark="darkMode"/>
+    <ShadcnIcon icon="User" :size="40" background :dark="darkMode"/>
+    <ShadcnIcon icon="Bell" :size="40" background :dark="darkMode"/>
+</template>
+```
+
+:::
+
+## 液态玻璃效果 (glass)
+
+::: raw
+
+<div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-orange-900 to-red-900' : 'bg-gradient-to-r from-orange-400 to-red-400']">
+<CodeRunner title="液态玻璃效果" class="bg-transparent">
+    <div class="flex gap-4 flex-wrap">
+      <ShadcnIcon icon="Home" :size="40" background glass :dark="darkMode"/>
+      <ShadcnIcon icon="Settings" :size="40" background glass :dark="darkMode"/>
+      <ShadcnIcon icon="User" :size="40" background glass :dark="darkMode"/>
+      <ShadcnIcon icon="Bell" :size="40" background glass :dark="darkMode"/>
+      <ShadcnIcon icon="Mail" :size="40" background glass :dark="darkMode"/>
+      <ShadcnIcon icon="Heart" :size="40" background glass :dark="darkMode"/>
+      <ShadcnIcon icon="Star" :size="40" background glass :dark="darkMode"/>
+      <ShadcnIcon icon="Search" :size="40" background glass :dark="darkMode"/>
+    </div>
+</CodeRunner>
+</div>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-orange-900 to-red-900' : 'bg-gradient-to-r from-orange-400 to-red-400']">
+      <div class="flex gap-4 flex-wrap">
+        <ShadcnIcon icon="Home" :size="40" background glass :dark="darkMode"/>
+        <ShadcnIcon icon="Settings" :size="40" background glass :dark="darkMode"/>
+        <ShadcnIcon icon="User" :size="40" background glass :dark="darkMode"/>
+        <ShadcnIcon icon="Bell" :size="40" background glass :dark="darkMode"/>
+        <ShadcnIcon icon="Mail" :size="40" background glass :dark="darkMode"/>
+        <ShadcnIcon icon="Heart" :size="40" background glass :dark="darkMode"/>
+        <ShadcnIcon icon="Star" :size="40" background glass :dark="darkMode"/>
+        <ShadcnIcon icon="Search" :size="40" background glass :dark="darkMode"/>
+      </div>
+    </div>
+</template>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>
+```
+
+:::
+
 ## 图标 (Icon) 属性
 
 <ApiTable title="图标 (Icon) 属性"
     :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['icon', '图标名称', 'string', '-', '-'],
-        ['size', '图标尺寸', 'number', '20', '-'],
+        ['size', '图标尺寸', 'number | string', '20', '-'],
         ['color', '图标颜色', 'string', '-', '所有支持的颜色值'],
+        ['dark', '暗黑模式', 'boolean', 'false', '-'],
+        ['glass', '液态玻璃效果', 'boolean', 'false', '-'],
+        ['background', '显示背景', 'boolean', 'false', '-']
     ]">
 </ApiTable>
 

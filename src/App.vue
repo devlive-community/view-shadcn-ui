@@ -6,23 +6,36 @@
 
     <div class="space-y-6 my-6">
       <div>
-        <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnMarkdown - 液态玻璃效果（分屏模式）</h3>
-        <div :class="['p-6 rounded-lg', isDark ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
-          <ShadcnMarkdown v-model="markdownContent" mode="split" glass :dark="isDark"/>
-        </div>
-      </div>
-
-      <div>
-        <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnMarkdown - 编辑模式</h3>
-        <div :class="['p-6 rounded-lg', isDark ? 'bg-gradient-to-r from-purple-900 to-pink-900' : 'bg-gradient-to-r from-purple-400 to-pink-400']">
-          <ShadcnMarkdown v-model="editContent" mode="edit" glass :dark="isDark"/>
-        </div>
-      </div>
-
-      <div>
-        <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnMarkdown - 预览模式</h3>
-        <div :class="['p-6 rounded-lg', isDark ? 'bg-gradient-to-r from-green-900 to-teal-900' : 'bg-gradient-to-r from-green-400 to-teal-400']">
-          <ShadcnMarkdown v-model="previewContent" mode="preview" glass :dark="isDark"/>
+        <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnGradientText - 液态玻璃效果</h3>
+        <div :class="['p-6 rounded-lg', isDark ? 'bg-gradient-to-r from-indigo-900 to-purple-900' : 'bg-gradient-to-r from-indigo-400 to-purple-400']">
+          <div :class="['p-8 rounded-lg', isDark ? 'bg-gray-800/50' : 'bg-white/50']">
+            <div class="space-y-4">
+              <div>
+                <h4 :class="['text-base font-semibold mb-2', isDark ? 'text-gray-200' : 'text-gray-800']">基础渐变文本</h4>
+                <div class="space-y-2">
+                  <ShadcnGradientText from="#FF6B6B" to="#4ECDC4" :deg="90" background glass :dark="isDark">
+                    渐变文本效果
+                  </ShadcnGradientText>
+                  <br/>
+                  <ShadcnGradientText from="#FFD93D" to="#FF6B9D" :deg="45" background glass :dark="isDark">
+                    彩虹渐变文本
+                  </ShadcnGradientText>
+                </div>
+              </div>
+              <div>
+                <h4 :class="['text-base font-semibold mb-2', isDark ? 'text-gray-200' : 'text-gray-800']">多色渐变</h4>
+                <div class="space-y-2">
+                  <ShadcnGradientText options="90deg, #667eea 0%, #764ba2 50%, #f093fb 100%" background glass :dark="isDark">
+                    三色渐变文本
+                  </ShadcnGradientText>
+                  <br/>
+                  <ShadcnGradientText options="135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%" background glass :dark="isDark">
+                    五色渐变文本
+                  </ShadcnGradientText>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -32,52 +45,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ShadcnButton } from "@/ui/button";
-import { ShadcnMarkdown } from "@/ui/markdown";
+import { ShadcnGradientText } from "@/ui/text";
 
 const isDark = ref(false)
-const markdownContent = ref(`# Markdown 编辑器示例
-
-这是一个基于 **marked** 的 Markdown 编辑器组件。
-
-## 功能特性
-
-- 支持**编辑**、**预览**和**分屏**三种模式
-- 完整的 Markdown 语法支持
-- 支持液态玻璃效果
-- 支持暗黑/浅色主题
-
-## 代码示例
-
-\`\`\`javascript
-function hello() {
-  console.log('Hello World!')
-}
-\`\`\`
-
-## 列表
-
-1. 有序列表 1
-2. 有序列表 2
-3. 有序列表 3
-
-- 无序列表 A
-- 无序列表 B
-- 无序列表 C`)
-
-const editContent = ref(`# 编辑模式
-
-在这里输入你的 Markdown 内容...`)
-
-const previewContent = ref(`# 预览模式
-
-这是一个**只读的预览模式**，展示渲染后的 Markdown 内容。
-
-> 引用文本示例
-
-支持各种 Markdown 语法，包括：
-
-- **粗体**
-- *斜体*
-- \`代码\`
-- [链接](https://example.com)`)
 </script>
