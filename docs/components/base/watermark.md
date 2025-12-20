@@ -84,6 +84,50 @@ const fullScreen = ref(false)
 
 :::
 
+## 液态玻璃效果 (glass)
+
+::: raw
+
+<div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-cyan-900 to-blue-900' : 'bg-gradient-to-r from-cyan-400 to-blue-400']">
+<CodeRunner title="液态玻璃效果" class="bg-transparent">
+  <ShadcnWatermark :content="['液态玻璃水印', 'Glass Effect']" glass :dark="darkMode" :fontSize="12" :gapX="150" :gapY="150">
+    <div :class="['p-8 rounded-lg text-center', darkMode ? 'bg-gray-800/50' : 'bg-white/50']" style="min-height: 24rem;">
+      <h4 :class="['text-2xl font-bold mb-4', darkMode ? 'text-gray-100' : 'text-gray-800']">带水印的内容区域</h4>
+      <p :class="[darkMode ? 'text-gray-300' : 'text-gray-600']">这是一个带有液态玻璃效果的水印示例</p>
+      <p :class="[darkMode ? 'text-gray-300' : 'text-gray-600']">水印会在整个内容区域重复显示</p>
+    </div>
+  </ShadcnWatermark>
+</CodeRunner>
+</div>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-cyan-900 to-blue-900' : 'bg-gradient-to-r from-cyan-400 to-blue-400']">
+      <ShadcnWatermark :content="['液态玻璃水印', 'Glass Effect']" glass :dark="darkMode" :fontSize="12" :gapX="150" :gapY="150">
+        <div :class="['p-8 rounded-lg text-center', darkMode ? 'bg-gray-800/50' : 'bg-white/50']" style="min-height: 24rem;">
+          <h4 :class="['text-2xl font-bold mb-4', darkMode ? 'text-gray-100' : 'text-gray-800']">带水印的内容区域</h4>
+          <p :class="[darkMode ? 'text-gray-300' : 'text-gray-600']">这是一个带有液态玻璃效果的水印示例</p>
+          <p :class="[darkMode ? 'text-gray-300' : 'text-gray-600']">水印会在整个内容区域重复显示</p>
+        </div>
+      </ShadcnWatermark>
+    </div>
+</template>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>
+```
+
+:::
+
 ## 水印 (Watermark) 属性
 
 <ApiTable title="水印 (Watermark) 属性"
@@ -103,6 +147,8 @@ const fullScreen = ref(false)
         ['fontWeight', '水印文本的字体粗细', 'number | string', '400'],
         ['zIndex', '水印图层的 z-index', 'number', '9'],
         ['fullScreen', '是否启用全屏模式', 'boolean', 'false'],
+        ['dark', '暗黑模式', 'boolean', 'false'],
+        ['glass', '液态玻璃效果', 'boolean', 'false']
     ]">
 </ApiTable>
 

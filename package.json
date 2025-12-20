@@ -39,14 +39,17 @@
   "dependencies": {
     "clsx": "^2.1.0",
     "dayjs": "^1.11.13",
+    "highlight.js": "^11.11.1",
     "lodash": "^4.17.21",
     "lucide-vue-next": "^0.360.0",
+    "marked": "^17.0.1",
     "monaco-editor": "^0.52.2",
     "qrcode": "^1.5.4",
     "tailwind-merge": "^2.2.2",
     "vue": "^3.4.21"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^20.11.30",
     "@vitejs/plugin-vue": "^5.0.4",
     "autoprefixer": "^10.4.19",

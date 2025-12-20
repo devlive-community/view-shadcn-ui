@@ -26,6 +26,8 @@ export interface TextProps
     underline?: boolean
     deleted?: boolean
     dark?: boolean
+    glass?: boolean
+    background?: boolean
 }
 
 export interface GradientTextProps
@@ -35,4 +37,6 @@ export interface GradientTextProps
     deg?: number
     options?: string
     dark?: boolean
+    glass?: boolean
+    background?: boolean
 }

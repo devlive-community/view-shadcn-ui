@@ -214,6 +214,100 @@ title: 文本 (Text)
 
 :::
 
+## 液态玻璃效果 (glass)
+
+::: raw
+
+<div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-purple-900 to-pink-900' : 'bg-gradient-to-r from-purple-400 to-pink-400']">
+<CodeRunner title="液态玻璃效果" class="bg-transparent">
+  <div :class="['p-8 rounded-lg', darkMode ? 'bg-gray-800/50' : 'bg-white/50']">
+    <div class="space-y-4">
+      <div>
+        <h4 :class="['text-base font-semibold mb-2', darkMode ? 'text-gray-200' : 'text-gray-800']">标题样式</h4>
+        <div class="space-y-2">
+          <ShadcnText type="h3" background glass :dark="darkMode">这是一个H3标题</ShadcnText>
+          <br/>
+          <ShadcnText type="h5" background glass :dark="darkMode">这是一个H5标题</ShadcnText>
+        </div>
+      </div>
+      <div>
+        <h4 :class="['text-base font-semibold mb-2', darkMode ? 'text-gray-200' : 'text-gray-800']">文本样式</h4>
+        <div class="space-y-2">
+          <ShadcnText background glass :dark="darkMode" strong>加粗文本</ShadcnText>
+          <br/>
+          <ShadcnText background glass :dark="darkMode" italic>斜体文本</ShadcnText>
+          <br/>
+          <ShadcnText background glass :dark="darkMode" underline>下划线文本</ShadcnText>
+        </div>
+      </div>
+      <div>
+        <h4 :class="['text-base font-semibold mb-2', darkMode ? 'text-gray-200' : 'text-gray-800']">颜色类型</h4>
+        <div class="space-y-2">
+          <ShadcnText background glass :dark="darkMode" colorType="primary">主要颜色</ShadcnText>
+          <br/>
+          <ShadcnText background glass :dark="darkMode" colorType="success">成功颜色</ShadcnText>
+          <br/>
+          <ShadcnText background glass :dark="darkMode" colorType="warning">警告颜色</ShadcnText>
+        </div>
+      </div>
+    </div>
+  </div>
+</CodeRunner>
+</div>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-purple-900 to-pink-900' : 'bg-gradient-to-r from-purple-400 to-pink-400']">
+      <div :class="['p-8 rounded-lg', darkMode ? 'bg-gray-800/50' : 'bg-white/50']">
+        <div class="space-y-4">
+          <div>
+            <h4 :class="['text-base font-semibold mb-2', darkMode ? 'text-gray-200' : 'text-gray-800']">标题样式</h4>
+            <div class="space-y-2">
+              <ShadcnText type="h3" background glass :dark="darkMode">这是一个H3标题</ShadcnText>
+              <br/>
+              <ShadcnText type="h5" background glass :dark="darkMode">这是一个H5标题</ShadcnText>
+            </div>
+          </div>
+          <div>
+            <h4 :class="['text-base font-semibold mb-2', darkMode ? 'text-gray-200' : 'text-gray-800']">文本样式</h4>
+            <div class="space-y-2">
+              <ShadcnText background glass :dark="darkMode" strong>加粗文本</ShadcnText>
+              <br/>
+              <ShadcnText background glass :dark="darkMode" italic>斜体文本</ShadcnText>
+              <br/>
+              <ShadcnText background glass :dark="darkMode" underline>下划线文本</ShadcnText>
+            </div>
+          </div>
+          <div>
+            <h4 :class="['text-base font-semibold mb-2', darkMode ? 'text-gray-200' : 'text-gray-800']">颜色类型</h4>
+            <div class="space-y-2">
+              <ShadcnText background glass :dark="darkMode" colorType="primary">主要颜色</ShadcnText>
+              <br/>
+              <ShadcnText background glass :dark="darkMode" colorType="success">成功颜色</ShadcnText>
+              <br/>
+              <ShadcnText background glass :dark="darkMode" colorType="warning">警告颜色</ShadcnText>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</template>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>
+```
+
+:::
+
 ## 文本 (Text) 属性
 
 <ApiTable title="文本 (Text) 属性"
@@ -226,6 +320,9 @@ title: 文本 (Text)
         ['underline', '文本是否下划线', 'boolean', 'false', '-'],
         ['deleted', '文本是否删除线', 'boolean', 'false', '-'],
         ['type', '文本类型', 'enum', 'p', 'p | code | pre | small | h1 | h2 | h3 | h4 | h5 | h6 | label | span'],
+        ['background', '是否显示背景容器', 'boolean', 'false', '-'],
+        ['glass', '液态玻璃效果（仅在 background 为 true 时生效）', 'boolean', 'false', '-'],
+        ['dark', '暗黑模式', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 

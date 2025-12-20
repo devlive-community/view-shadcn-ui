@@ -2,7 +2,11 @@
   <div class="inline-block">
     <template v-for="(part, _index) in highlightedParts" :key="_index">
       <span :class="[
-                    part.isMatch ? (dark ? 'bg-yellow-700 text-gray-100 rounded px-1 mx-0.5' : 'bg-yellow-200 rounded px-1 mx-0.5') : undefined
+                    part.isMatch && glass && 'backdrop-blur-xl backdrop-saturate-150',
+                    part.isMatch && glass && 'shadow-lg shadow-black/5',
+                    part.isMatch && glass && (dark ? 'bg-yellow-500/40 border border-yellow-400/60 text-gray-100' : 'bg-yellow-400/50 border border-yellow-500/70 text-gray-800'),
+                    part.isMatch && !glass && (dark ? 'bg-yellow-700 text-gray-100' : 'bg-yellow-200'),
+                    part.isMatch && 'rounded px-1 mx-0.5'
             ]">
         {{ part.text }}
       </span>
@@ -19,6 +23,7 @@ interface Props
   highlight: string | string[]
   caseSensitive?: boolean
   dark?: boolean
+  glass?: boolean
 }
 
 interface HighlightPart
@@ -29,7 +34,8 @@ interface HighlightPart
 
 const props = withDefaults(defineProps<Props>(), {
   caseSensitive: false,
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const highlights = computed(() => {

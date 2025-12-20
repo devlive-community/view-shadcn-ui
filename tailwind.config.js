@@ -5,6 +5,8 @@ module.exports = {
     darkMode: ["class"],
     safelist: [
         "dark",
+        "prose",
+        "prose-invert",
         ...[...Array(10).keys()]
             .flatMap(i => [`w-[${i * 10}%]`, `min-w-[${i * 10}%]`, `max-w-[${i * 10}%]`, `h-[${i * 10}%]`, `min-h-[${i * 10}%]`, `max-h-[${i * 10}%]`]),
     ],
@@ -112,5 +114,8 @@ module.exports = {
             }
         },
     },
-    plugins: [animate],
+    plugins: [
+        animate,
+        require('@tailwindcss/typography'),
+    ],
 }

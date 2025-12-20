@@ -43,6 +43,8 @@ interface Props
   fullscreen?: boolean
   // Dark mode
   dark?: boolean
+  // Glass effect
+  glass?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -59,12 +61,16 @@ const props = withDefaults(defineProps<Props>(), {
   fontWeight: 400,
   zIndex: 9,
   fullscreen: false,
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const finalFontColor = computed(() => {
   if (props.fontColor) {
     return props.fontColor
+  }
+  if (props.glass) {
+    return props.dark ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.4)'
   }
   return props.dark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)'
 })
@@ -96,8 +102,10 @@ const svgContent = computed(() => {
 const WatermarkLayer = defineComponent({
   setup()
   {
+    const glassClasses = props.glass ? 'backdrop-blur-xl backdrop-saturate-150' : ''
+
     return () => h('div', {
-      class: ['pointer-events-none select-none', props.fullscreen ? 'fixed' : 'absolute', 'inset-0'],
+      class: ['pointer-events-none select-none', props.fullscreen ? 'fixed' : 'absolute', 'inset-0', glassClasses],
       style: { opacity: props.opacity, zIndex: props.zIndex },
       'aria-hidden': true
     }, [
