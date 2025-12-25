@@ -5,4 +5,5 @@ export interface DividerProps
     orientation?: 'left' | 'center' | 'right'
     dashed?: boolean
     dark?: boolean
+    glass?: boolean
 }

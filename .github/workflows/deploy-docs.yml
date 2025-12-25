@@ -29,6 +29,7 @@ jobs:
         with:
           github_token: ${{ secrets.GH_TOKEN }}
           publish_dir: docs/.vitepress/dist
+          cname: view-shadcn-ui.devlive.org
 
   deploy-playground:
     runs-on: ubuntu-latest
