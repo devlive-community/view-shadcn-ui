@@ -4,7 +4,7 @@
               leave-active-class="transition-opacity duration-300 ease-in-out"
               leave-to-class="opacity-0">
     <div v-if="isVisible"
-         :class="['fixed inset-0 z-50 flex',
+         :class="['fixed inset-0 z-50 flex !mt-0',
                  {
                    'justify-start': position === 'left',
                    'justify-end': position === 'right',
@@ -20,7 +20,10 @@
                   'shadow-lg flex flex-col transform transition-transform duration-300',
                   glass && 'backdrop-blur-xl backdrop-saturate-150',
                   glass && 'shadow-lg shadow-black/5',
-                  glass && (dark ? 'bg-white/10 border-l border-r border-b border-white/20' : 'bg-white/30 border-l border-r border-b border-gray-400/40'),
+                  glass && position === 'top' && (dark ? 'bg-white/10 border-l border-r border-b border-white/20' : 'bg-white/30 border-l border-r border-b border-gray-400/40'),
+                  glass && position === 'bottom' && (dark ? 'bg-white/10 border-l border-r border-t border-white/20' : 'bg-white/30 border-l border-r border-t border-gray-400/40'),
+                  glass && position === 'left' && (dark ? 'bg-white/10 border-r border-t border-b border-white/20' : 'bg-white/30 border-r border-t border-b border-gray-400/40'),
+                  glass && position === 'right' && (dark ? 'bg-white/10 border-l border-t border-b border-white/20' : 'bg-white/30 border-l border-t border-b border-gray-400/40'),
                   !glass && (dark ? 'bg-gray-800' : 'bg-white'),
                   {
                     'h-full': position === 'left' || position === 'right',
@@ -39,7 +42,11 @@
             }">
 
         <!-- Drawer header -->
-        <div :class="['p-2 border-b flex justify-between', glass ? (dark ? 'border-white/20' : 'border-gray-400/40') : (dark ? 'border-gray-600' : '')]">
+        <div :class="[
+          'border-b flex justify-between !mt-0',
+          position === 'top' ? 'px-2 pb-2' : (position === 'bottom' ? 'px-2 pt-2' : 'p-2'),
+          glass ? (dark ? 'border-white/20' : 'border-gray-400/40') : (dark ? 'border-gray-600' : '')
+        ]">
           <slot name="header">
             <div :class="['text-lg font-bold', glass ? (dark ? 'text-gray-200' : 'text-gray-800') : (dark ? 'text-gray-200' : '')]">{{ title }}</div>
           </slot>
