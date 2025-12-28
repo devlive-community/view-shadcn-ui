@@ -1,24 +1,33 @@
 <template>
-  <div :class="['min-h-screen', isDark ? 'bg-gray-900' : 'bg-white']">
-    <div class="p-6">
-      <ShadcnButton @click="isDark = !isDark" :dark="isDark">
-        切换暗黑模式
-      </ShadcnButton>
+  <div class="space-y-6 p-6">
+    <div>
+      <h3 class="text-lg font-semibold mb-4">液态玻璃效果</h3>
+      <div class="p-6 rounded-lg bg-gradient-to-r from-blue-400 to-indigo-400">
+        <div class="rounded-lg overflow-hidden bg-white/50">
+          <ShadcnGlobalFooter
+            glass
+            company="Your Company"
+            description="为开发者提供优质的组件库和工具"
+            :links="footerLinks"
+            :socials="footerSocials"
+          />
+        </div>
+      </div>
+    </div>
 
-      <div class="space-y-6 my-6">
-        <div>
-          <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnGlobalFooter - 液态玻璃效果</h3>
-          <div :class="['p-6 rounded-lg', isDark ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
-            <div :class="['rounded-lg overflow-hidden', isDark ? 'bg-gray-800/50' : 'bg-white/50']">
-              <ShadcnGlobalFooter
-                glass
-                :dark="isDark"
-                company="Your Company"
-                description="为开发者提供优质的组件库和工具"
-                :links="footerLinks"
-                :socials="footerSocials"
-              />
-            </div>
+    <div>
+      <h3 class="text-lg font-semibold mb-4">暗黑模式</h3>
+      <div class="p-6 bg-gray-900 rounded-lg">
+        <div class="p-6 rounded-lg bg-gradient-to-r from-blue-900 to-indigo-900">
+          <div class="rounded-lg overflow-hidden bg-gray-800/50">
+            <ShadcnGlobalFooter
+              glass
+              dark
+              company="Your Company"
+              description="为开发者提供优质的组件库和工具"
+              :links="footerLinks"
+              :socials="footerSocials"
+            />
           </div>
         </div>
       </div>
@@ -27,11 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { ShadcnButton } from "@/ui/button";
-import { ShadcnGlobalFooter } from "@/ui/footer";
-
-const isDark = ref(false)
+import { ShadcnGlobalFooter } from '@/ui/footer'
 
 const footerLinks = [
   {
