@@ -26,6 +26,7 @@ export interface TableProps
     minHeight?: string | number
     size?: keyof typeof TableCellSize
     dark?: boolean
+    glass?: boolean
 }
 
 export enum TableCellSize

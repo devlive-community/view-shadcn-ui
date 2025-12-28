@@ -433,6 +433,54 @@ const rowClick = (row: any, index: number) => {
 
 :::
 
+## 液态玻璃效果 (glass)
+
+::: raw
+
+<CodeRunner title="液态玻璃效果 (glass)">
+  <div class="p-6 rounded-lg bg-gradient-to-r from-blue-400 to-purple-400">
+    <div class="p-8 rounded-lg bg-white/50">
+      <ShadcnTable :columns="columns" :data="data" glass :dark="darkMode" border stripe />
+    </div>
+  </div>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+  <div class="p-6 rounded-lg bg-gradient-to-r from-blue-400 to-purple-400">
+    <div class="p-8 rounded-lg bg-white/50">
+      <ShadcnTable :columns="columns" :data="data" glass :dark="darkMode" border stripe />
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
+const columns = [
+  { label: 'Name', key: 'name' },
+  { label: 'Address', key: 'address' },
+  { label: 'Age', key: 'age' }
+]
+const data = [
+  { name: 'John Doe', address: 'New York No. 1 Lake Park', age: 32 },
+  { name: 'Joe Black', address: 'Sidney No. 1 Lake Park', age: 42 },
+  { name: 'Jim Green', address: 'London No. 1 Lake Park', age: 32 },
+  { name: 'Jim Red', address: 'London No. 2 Lake Park', age: 32 }
+]
+</script>
+```
+
+:::
+
 ## 表格 (Table) 属性
 
 <ApiTable title="表格 (Table) 属性"
@@ -446,6 +494,8 @@ const rowClick = (row: any, index: number) => {
         ['height', '组件的高度', 'string | number', 'auto', '-'],
         ['maxHeight', '组件的最大高度', 'string | number', '300', '-'],
         ['size', '组件的尺寸', 'enum', 'default', 'small | default | large'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false', '-'],
+        ['dark', '是否启用暗黑模式', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
