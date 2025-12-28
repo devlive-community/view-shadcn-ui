@@ -116,6 +116,53 @@ title: 工具栏页脚 (Toolbar Footer)
 
 :::
 
+## 液态玻璃效果 (glass)
+
+::: raw
+
+<CodeRunner title="液态玻璃效果 (glass)">
+    <div :class="['p-8 rounded-lg', darkMode ? 'bg-gradient-to-r from-green-900 to-teal-900' : 'bg-gradient-to-r from-green-400 to-teal-400']">
+        <div :class="['rounded-lg relative h-48 overflow-hidden', darkMode ? 'bg-gray-800/50' : 'bg-white/50']">
+            <div :class="['p-4', darkMode ? 'text-gray-300' : 'text-gray-700']">
+                <p class="text-sm">液态玻璃效果工具栏</p>
+                <p class="text-sm mt-2">底部显示带有玻璃效果的工具栏</p>
+            </div>
+            <ShadcnToolbarFooter glass :dark="darkMode" :hide-on-scroll="false">
+                <template #left>
+                    <span class="text-sm">液态玻璃效果工具栏</span>
+                </template>
+            </ShadcnToolbarFooter>
+        </div>
+    </div>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+    <div class="p-8 rounded-lg bg-gradient-to-r from-green-400 to-teal-400">
+        <div class="rounded-lg relative h-48 overflow-hidden bg-white/50">
+            <div class="p-4 text-gray-700">
+                <p class="text-sm">液态玻璃效果工具栏</p>
+                <p class="text-sm mt-2">底部显示带有玻璃效果的工具栏</p>
+            </div>
+            <ShadcnToolbarFooter glass :hide-on-scroll="false">
+                <template #left>
+                    <span class="text-sm">液态玻璃效果工具栏</span>
+                </template>
+            </ShadcnToolbarFooter>
+        </div>
+    </div>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## 工具栏页脚 (Toolbar Footer) 属性
 
 <ApiTable title="工具栏页脚 (Toolbar Footer) 属性"
@@ -126,6 +173,8 @@ title: 工具栏页脚 (Toolbar Footer)
         ['hideOnScroll', '是否在滚动时隐藏', 'boolean', 'true'],
         ['scrollStopDelay', '滚动停止延迟', 'number', '600'],
         ['fullWidth', '是否全宽', 'boolean', 'false'],
+        ['dark', '是否为暗黑模式', 'boolean', 'false'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false'],
     ]">
 </ApiTable>
 

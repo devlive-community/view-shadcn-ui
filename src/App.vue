@@ -1,5 +1,5 @@
 <template>
-  <div :class="['min-h-screen', isDark ? 'bg-gray-900' : 'bg-white']">
+  <div :class="['min-h-screen pb-32', isDark ? 'bg-gray-900' : 'bg-white']">
     <div class="p-6">
       <ShadcnButton @click="isDark = !isDark" :dark="isDark">
         切换暗黑模式
@@ -7,62 +7,37 @@
 
       <div class="space-y-6 my-6">
         <div>
-          <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnGlobalFooter - 液态玻璃效果</h3>
-          <div :class="['p-6 rounded-lg', isDark ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
-            <div :class="['rounded-lg overflow-hidden', isDark ? 'bg-gray-800/50' : 'bg-white/50']">
-              <ShadcnGlobalFooter
-                glass
-                :dark="isDark"
-                company="Your Company"
-                description="为开发者提供优质的组件库和工具"
-                :links="footerLinks"
-                :socials="footerSocials"
-              />
+          <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnToolbarFooter - 液态玻璃效果</h3>
+          <div :class="['p-6 rounded-lg', isDark ? 'bg-gradient-to-r from-green-900 to-teal-900' : 'bg-gradient-to-r from-green-400 to-teal-400']">
+            <div :class="['rounded-lg relative h-48', isDark ? 'bg-gray-800/50' : 'bg-white/50']">
+              <div :class="['p-4', isDark ? 'text-gray-300' : 'text-gray-700']">
+                <p class="text-sm">滚动页面查看工具栏页脚的液态玻璃效果</p>
+                <p class="text-sm mt-2">点击页面底部的按钮与工具栏交互</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <ShadcnToolbarFooter
+      v-model="showToolbar"
+      glass
+      :dark="isDark"
+      :hide-on-scroll="false"
+    >
+      <template #left>
+        <span :class="['text-sm', isDark ? 'text-gray-300' : 'text-gray-700']">液态玻璃效果工具栏</span>
+      </template>
+    </ShadcnToolbarFooter>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ShadcnButton } from "@/ui/button";
-import { ShadcnGlobalFooter } from "@/ui/footer";
+import { ShadcnToolbarFooter } from "@/ui/footer";
 
 const isDark = ref(false)
-
-const footerLinks = [
-  {
-    title: '产品',
-    links: [
-      { label: '功能', href: '#', icon: 'lucide:sparkles' },
-      { label: '定价', href: '#', icon: 'lucide:dollar-sign' },
-      { label: '更新日志', href: '#', icon: 'lucide:history' }
-    ]
-  },
-  {
-    title: '资源',
-    links: [
-      { label: '文档', href: '#', icon: 'lucide:book-open' },
-      { label: 'API', href: '#', icon: 'lucide:code' },
-      { label: '博客', href: '#', icon: 'lucide:newspaper' }
-    ]
-  },
-  {
-    title: '社区',
-    links: [
-      { label: 'GitHub', href: 'https://github.com', icon: 'lucide:github', external: true },
-      { label: 'Discord', href: '#', icon: 'lucide:message-circle' },
-      { label: '论坛', href: '#', icon: 'lucide:users' }
-    ]
-  }
-]
-
-const footerSocials = [
-  { label: 'GitHub', href: 'https://github.com', icon: 'lucide:github' },
-  { label: 'Twitter', href: 'https://twitter.com', icon: 'lucide:twitter' },
-  { label: 'Discord', href: '#', icon: 'lucide:message-circle' }
-]
+const showToolbar = ref(true)
 </script>

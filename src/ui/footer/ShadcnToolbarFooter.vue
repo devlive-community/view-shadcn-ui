@@ -1,7 +1,11 @@
 <template>
   <footer v-if="isVisible"
-          :class="['fixed bottom-0 left-0 right-0 z-50 border-t backdrop-blur supports-[backdrop-filter]:bg-background/60',
-              dark ? 'bg-gray-800/95 border-gray-700' : 'bg-background/95 border-gray-200',
+          :class="['fixed bottom-0 left-0 right-0 z-50 border-t',
+              glass && 'backdrop-blur-xl backdrop-saturate-150',
+              glass && 'shadow-lg shadow-black/5',
+              glass && (dark ? 'bg-white/10 border-white/20' : 'bg-white/30 border-gray-400/40'),
+              !glass && 'backdrop-blur supports-[backdrop-filter]:bg-background/60',
+              !glass && (dark ? 'bg-gray-800/95 border-gray-700' : 'bg-background/95 border-gray-200'),
               'transform transition-transform duration-200 ease-in-out',
               isVisible ? 'translate-y-0' : 'translate-y-full'
           ]">
@@ -67,6 +71,10 @@ interface Props
    * Enables dark mode
    */
   dark?: boolean
+  /**
+   * Enables glass effect
+   */
+  glass?: boolean
 }
 
 const emit = defineEmits<{
@@ -82,7 +90,8 @@ const props = withDefaults(defineProps<Props>(), {
   hideOnScroll: true,
   scrollStopDelay: 600,
   fullWidth: false,
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const isVisible = ref(props.modelValue)
