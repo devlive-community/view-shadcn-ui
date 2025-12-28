@@ -9,6 +9,7 @@ export interface SkeletonProps
     size?: keyof typeof SkeletonSize
     paragraph?: { rows: number, width: (number | string)[] }
     dark?: boolean
+    glass?: boolean
 }
 
 export interface SkeletonItemProps
@@ -18,4 +19,5 @@ export interface SkeletonItemProps
     type?: keyof typeof SkeletonType
     size?: keyof typeof SkeletonSize
     dark?: boolean
+    glass?: boolean
 }
