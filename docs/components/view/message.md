@@ -256,6 +256,46 @@ export default {
 
 :::
 
+## 液态玻璃效果 (glass)
+
+<CodeRunner title="液态玻璃效果 (glass)">
+  <div class="p-6 rounded-lg bg-gradient-to-r from-blue-400 to-purple-400">
+    <div class="p-8 rounded-lg bg-white/50">
+      <ShadcnButton @click="glassMessage" :dark="darkMode">显示液态玻璃消息</ShadcnButton>
+    </div>
+  </div>
+</CodeRunner>
+
+::: details 查看代码
+
+```vue
+<template>
+  <div class="p-6 rounded-lg bg-gradient-to-r from-blue-400 to-purple-400">
+    <div class="p-8 rounded-lg bg-white/50">
+      <ShadcnButton @click="glassMessage">显示液态玻璃消息</ShadcnButton>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  methods: {
+    glassMessage() {
+      this.$Message.info({
+        content: '这是一个液态玻璃效果的消息',
+        type: 'success',
+        showIcon: true,
+        glass: true,
+        duration: 3
+      })
+    }
+  }
+}
+</script>
+```
+
+:::
+
 ## 消息 (Message) 属性
 
 <ApiTable title="消息 (Message) 属性"
@@ -267,6 +307,8 @@ export default {
             ['type', '组件的类型', 'string', 'info', 'info | success | warning | error | loading'],
             ['background', '是否显示背景，仅在设置类型时有效', 'boolean', 'false', '-'],
             ['closeable', '是否显示关闭按钮', 'boolean', 'false', '-'],
+            ['glass', '是否启用液态玻璃效果', 'boolean', 'false', '-'],
+            ['dark', '是否启用暗黑模式', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
@@ -348,7 +390,16 @@ return {darkMode}
             duration: 0,
             closable: true
         });
-      }
+      },
+    glassMessage() {
+      this.$Message.info({
+        content: '这是一个液态玻璃效果的消息',
+        type: 'success',
+        showIcon: true,
+        glass: true,
+        duration: 3
+      })
+    }
   }
 }
 </script>
