@@ -346,6 +346,60 @@ const value = ref(false);
 
 :::
 
+## 液态玻璃效果 (glass)
+
+<CodeRunner title="液态玻璃效果 (glass)">
+    <ShadcnButton @click="glassModal = true" :dark="darkMode">打开液态玻璃效果 Modal</ShadcnButton>
+    <ShadcnModal v-model="glassModal" glass :dark="darkMode" title="液态玻璃效果" description="这是一个带有液态玻璃效果的模态框" width="500px">
+        <div class="space-y-4">
+            <p :class="['text-sm', darkMode ? 'text-gray-300' : 'text-gray-700']">
+                这个模态框使用了液态玻璃效果，背景具有模糊和半透明特性。
+            </p>
+            <p :class="['text-sm', darkMode ? 'text-gray-300' : 'text-gray-700']">
+                您可以通过背景看到后面的内容，同时保持良好的可读性。
+            </p>
+        </div>
+        <template #footer>
+            <div class="flex gap-2 justify-end">
+                <ShadcnButton @click="glassModal = false" :dark="darkMode">关闭</ShadcnButton>
+                <ShadcnButton type="primary" @click="glassModal = false" :dark="darkMode">确定</ShadcnButton>
+            </div>
+        </template>
+    </ShadcnModal>
+</CodeRunner>
+
+::: details 查看代码
+
+```vue
+<template>
+    <ShadcnButton @click="modal = true">打开液态玻璃效果 Modal</ShadcnButton>
+    <ShadcnModal v-model="modal" glass title="液态玻璃效果" description="这是一个带有液态玻璃效果的模态框" width="500px">
+        <div class="space-y-4">
+            <p class="text-sm text-gray-700">
+                这个模态框使用了液态玻璃效果，背景具有模糊和半透明特性。
+            </p>
+            <p class="text-sm text-gray-700">
+                您可以通过背景看到后面的内容，同时保持良好的可读性。
+            </p>
+        </div>
+        <template #footer>
+            <div class="flex gap-2 justify-end">
+                <ShadcnButton @click="modal = false">关闭</ShadcnButton>
+                <ShadcnButton type="primary" @click="modal = false">确定</ShadcnButton>
+            </div>
+        </template>
+    </ShadcnModal>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const modal = ref(false);
+</script>
+```
+
+:::
+
 ## 模态框 (Modal) 属性
 
 <ApiTable title="模态框 (Modal) 属性"
@@ -360,6 +414,8 @@ const value = ref(false);
         ['cancelText', '取消按钮的文本', 'string', 'Cancel', '-'],
         ['closable', '是否可关闭', 'boolean', 'true', '-'],
         ['maskClosable', '是否可通过点击遮罩关闭', 'boolean', 'true', '-'],
+        ['dark', '是否为暗黑模式', 'boolean', 'false', '-'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
@@ -405,4 +461,5 @@ const customHeightModal = ref(false);
 const closeableModal = ref(false);
 const noClosableModal = ref(false);
 const customClosableModal = ref(false);
+const glassModal = ref(false);
 </script>
