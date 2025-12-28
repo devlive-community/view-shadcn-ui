@@ -8,7 +8,9 @@
       <div v-if="isVisible"
            ref="tooltipContent"
            :class="['fixed z-[100] px-3 py-2 text-sm rounded shadow-lg',
-                    dark ? 'text-gray-100 bg-gray-800' : 'text-white bg-black'
+                    glass && 'backdrop-blur-xl backdrop-saturate-150',
+                    glass && (dark ? 'bg-white/10 border border-white/20 text-gray-100' : 'bg-white/30 border border-gray-400/40 text-gray-800'),
+                    !glass && (dark ? 'text-gray-100 bg-gray-800' : 'text-white bg-black')
            ]"
            :style="[tooltipStyle, { maxWidth: computedMaxWidth }]">
         <div class="text-center break-words">
@@ -18,7 +20,8 @@
 
         <div v-if="arrow"
              :class="['absolute w-2.5 h-2.5 rotate-45',
-                      dark ? 'bg-gray-800' : 'bg-black',
+                      glass && (dark ? 'bg-white/10 border-r border-b border-white/20' : 'bg-white/30 border-r border-b border-gray-400/40'),
+                      !glass && (dark ? 'bg-gray-800' : 'bg-black'),
                       arrowPositionClass
              ]"
              :style="arrowStyle"/>
@@ -38,7 +41,8 @@ const props = withDefaults(defineProps<TooltipProps>(), {
   arrow: false,
   maxWidth: '250px',
   delay: 0,
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const isVisible = ref(false)
