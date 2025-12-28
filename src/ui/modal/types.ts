@@ -10,6 +10,7 @@ export interface ModalProps
     closable?: boolean
     maskClosable?: boolean
     dark?: boolean
+    glass?: boolean
 }
 
 export type ModalEmits = {

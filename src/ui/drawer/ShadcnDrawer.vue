@@ -4,7 +4,7 @@
               leave-active-class="transition-opacity duration-300 ease-in-out"
               leave-to-class="opacity-0">
     <div v-if="isVisible"
-         :class="['fixed inset-0 z-50 flex',
+         :class="['fixed inset-0 z-50 flex !mt-0',
                  {
                    'justify-start': position === 'left',
                    'justify-end': position === 'right',
@@ -18,7 +18,13 @@
       <!-- Drawer body -->
       <div :class="[
                   'shadow-lg flex flex-col transform transition-transform duration-300',
-                  dark ? 'bg-gray-800' : 'bg-white',
+                  glass && 'backdrop-blur-xl backdrop-saturate-150',
+                  glass && 'shadow-lg shadow-black/5',
+                  glass && position === 'top' && (dark ? 'bg-white/10 border-l border-r border-b border-white/20' : 'bg-white/30 border-l border-r border-b border-gray-400/40'),
+                  glass && position === 'bottom' && (dark ? 'bg-white/10 border-l border-r border-t border-white/20' : 'bg-white/30 border-l border-r border-t border-gray-400/40'),
+                  glass && position === 'left' && (dark ? 'bg-white/10 border-r border-t border-b border-white/20' : 'bg-white/30 border-r border-t border-b border-gray-400/40'),
+                  glass && position === 'right' && (dark ? 'bg-white/10 border-l border-t border-b border-white/20' : 'bg-white/30 border-l border-t border-b border-gray-400/40'),
+                  !glass && (dark ? 'bg-gray-800' : 'bg-white'),
                   {
                     'h-full': position === 'left' || position === 'right',
                     'w-full': position === 'top' || position === 'bottom',
@@ -36,9 +42,13 @@
             }">
 
         <!-- Drawer header -->
-        <div :class="['p-2 border-b flex justify-between', dark ? 'border-gray-600' : '']">
+        <div :class="[
+          'border-b flex justify-between !mt-0',
+          position === 'top' ? 'px-2 pb-2' : (position === 'bottom' ? 'px-2 pt-2' : 'p-2'),
+          glass ? (dark ? 'border-white/20' : 'border-gray-400/40') : (dark ? 'border-gray-600' : '')
+        ]">
           <slot name="header">
-            <div :class="['text-lg font-bold', dark ? 'text-gray-200' : '']">{{ title }}</div>
+            <div :class="['text-lg font-bold', glass ? (dark ? 'text-gray-200' : 'text-gray-800') : (dark ? 'text-gray-200' : '')]">{{ title }}</div>
           </slot>
 
           <div v-if="closable" class="flex items-center cursor-pointer" @click="onClose">
@@ -56,12 +66,12 @@
         </div>
 
         <!-- Drawer body -->
-        <div :class="['flex-grow p-4 overflow-y-auto', dark ? 'text-gray-200' : '']">
+        <div :class="['flex-grow p-4 overflow-y-auto', glass ? (dark ? 'text-gray-200' : 'text-gray-800') : (dark ? 'text-gray-200' : '')]">
           <slot/>
         </div>
 
         <!-- Drawer footer -->
-        <footer v-if="$slots.footer" :class="['p-2 border-t', dark ? 'border-gray-600' : '']">
+        <footer v-if="$slots.footer" :class="['p-2 border-t', glass ? (dark ? 'border-white/20' : 'border-gray-400/40') : (dark ? 'border-gray-600' : '')]">
           <slot name="footer"/>
         </footer>
       </div>
@@ -84,13 +94,15 @@ const props = withDefaults(defineProps<{
   width?: string | number
   height?: string | number
   dark?: boolean
+  glass?: boolean
 }>(), {
   closable: true,
   maskClosable: false,
   position: 'right',
   width: 300,
   height: 300,
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const isVisible = ref(props.modelValue)

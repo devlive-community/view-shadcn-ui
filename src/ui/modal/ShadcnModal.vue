@@ -9,7 +9,10 @@
       <!-- Dialog -->
       <div :class="[
                   'relative z-50 flex flex-col animate-in fade-in-0 zoom-in-95 w-full max-w-lg mx-auto rounded-sm',
-                  dark ? 'bg-gray-800' : 'bg-white'
+                  glass && 'backdrop-blur-xl backdrop-saturate-150',
+                  glass && 'shadow-lg shadow-black/5',
+                  glass && (dark ? 'bg-white/10 border border-white/20' : 'bg-white/30 border border-gray-400/40'),
+                  !glass && (dark ? 'bg-gray-800' : 'bg-white')
            ]"
            :style="[
                { width: calcSize(width), minWidth: calcSize(width), maxWidth: calcSize(width) },
@@ -79,7 +82,8 @@ const props = withDefaults(defineProps<ModalProps>(), {
   width: '30%',
   height: 'auto',
   maskClosable: true,
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const onMaskClick = () => {

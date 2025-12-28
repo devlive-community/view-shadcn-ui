@@ -8,4 +8,5 @@ export interface TooltipProps
     delay?: number
     maxWidth?: number | string
     dark?: boolean
+    glass?: boolean
 }

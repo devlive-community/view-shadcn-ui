@@ -177,6 +177,69 @@ const darkMode = computed(() => isDark.value)
 
 :::
 
+## 液态玻璃效果 (glass)
+
+<CodeRunner title="液态玻璃效果 (glass)">
+    <div :class="['p-8 rounded-lg', darkMode ? 'bg-gradient-to-r from-cyan-900 to-blue-900' : 'bg-gradient-to-r from-cyan-400 to-blue-400']">
+        <div :class="['p-6 rounded-lg space-y-6', darkMode ? 'bg-gray-800/50' : 'bg-white/50']">
+            <div class="flex gap-4 items-center flex-wrap">
+                <ShadcnTooltip glass :dark="darkMode" content="这是液态玻璃效果的提示框" position="top">
+                    <ShadcnButton :dark="darkMode">上方提示</ShadcnButton>
+                </ShadcnTooltip>
+                <ShadcnTooltip glass :dark="darkMode" content="这是液态玻璃效果的提示框" position="bottom">
+                    <ShadcnButton :dark="darkMode">下方提示</ShadcnButton>
+                </ShadcnTooltip>
+                <ShadcnTooltip glass :dark="darkMode" content="这是液态玻璃效果的提示框" position="left">
+                    <ShadcnButton :dark="darkMode">左侧提示</ShadcnButton>
+                </ShadcnTooltip>
+                <ShadcnTooltip glass :dark="darkMode" content="这是液态玻璃效果的提示框" position="right">
+                    <ShadcnButton :dark="darkMode">右侧提示</ShadcnButton>
+                </ShadcnTooltip>
+            </div>
+            <div class="flex gap-4 items-center">
+                <ShadcnTooltip glass :dark="darkMode" content="带箭头的液态玻璃效果提示框" arrow>
+                    <ShadcnButton :dark="darkMode">带箭头提示</ShadcnButton>
+                </ShadcnTooltip>
+            </div>
+        </div>
+    </div>
+</CodeRunner>
+
+::: details 查看代码
+
+```vue
+<template>
+    <div class="p-8 rounded-lg bg-gradient-to-r from-cyan-400 to-blue-400">
+        <div class="p-6 rounded-lg space-y-6 bg-white/50">
+            <div class="flex gap-4 items-center flex-wrap">
+                <ShadcnTooltip glass content="这是液态玻璃效果的提示框" position="top">
+                    <ShadcnButton>上方提示</ShadcnButton>
+                </ShadcnTooltip>
+                <ShadcnTooltip glass content="这是液态玻璃效果的提示框" position="bottom">
+                    <ShadcnButton>下方提示</ShadcnButton>
+                </ShadcnTooltip>
+                <ShadcnTooltip glass content="这是液态玻璃效果的提示框" position="left">
+                    <ShadcnButton>左侧提示</ShadcnButton>
+                </ShadcnTooltip>
+                <ShadcnTooltip glass content="这是液态玻璃效果的提示框" position="right">
+                    <ShadcnButton>右侧提示</ShadcnButton>
+                </ShadcnTooltip>
+            </div>
+            <div class="flex gap-4 items-center">
+                <ShadcnTooltip glass content="带箭头的液态玻璃效果提示框" arrow>
+                    <ShadcnButton>带箭头提示</ShadcnButton>
+                </ShadcnTooltip>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script setup lang="ts">
+</script>
+```
+
+:::
+
 ## 提示 (Tooltip) 属性
 
 <ApiTable title="提示 (Tooltip) 属性"
@@ -187,6 +250,8 @@ const darkMode = computed(() => isDark.value)
         ['position', '组件的位置', 'enum', 'top', 'top | bottom | left | right'],
         ['arrow', '是否显示箭头', 'boolean', 'true', '-'],
         ['maxWidth', '如果宽度为 auto，则提示工具的最大宽度', 'number | string', '200', '-'],
+        ['dark', '是否为暗黑模式', 'boolean', 'false', '-'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 

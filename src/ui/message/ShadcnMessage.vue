@@ -2,6 +2,8 @@
   <div v-if="visible"
        :class="['fixed flex space-x-2 items-center top-5 left-1/2 border px-4 py-2 rounded-md shadow-md text-sm z-50',
                 isLeaving ? 'animate-slide-up' : 'animate-slide-down',
+                glass && 'backdrop-blur-xl backdrop-saturate-150',
+                glass && 'shadow-lg shadow-black/5',
                 [findBackgroundClass()],
                 [findBorderAndTextClass()]
         ]">
@@ -44,13 +46,15 @@ const props = withDefaults(defineProps<{
   closable?: boolean
   onClose?: () => void
   dark?: boolean
+  glass?: boolean
 }>(), {
   duration: 1.5,
   showIcon: false,
   type: 'info',
   background: false,
   closable: false,
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const visible = ref(true)
@@ -101,6 +105,10 @@ const findClass = () => {
 
 // Set background color, which depends on type
 const findBackgroundClass = () => {
+  if (props.glass) {
+    return props.dark ? 'bg-white/10' : 'bg-white/30'
+  }
+
   if (props.background) {
     if (props.dark) {
       switch (props.type) {
@@ -135,6 +143,10 @@ const findBackgroundClass = () => {
 
 // Set border and text color, which depends on type
 const findBorderAndTextClass = () => {
+  if (props.glass) {
+    return props.dark ? 'border-white/20 text-gray-200' : 'border-gray-400/40 text-gray-800'
+  }
+
   if (props.background) {
     if (props.dark) {
       switch (props.type) {

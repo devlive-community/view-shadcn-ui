@@ -1,9 +1,15 @@
 <template>
-  <div :class="['w-full relative', dark ? 'border-gray-600' : 'border-gray-200', border && 'border']"
+  <div :class="['w-full relative',
+                glass && 'backdrop-blur-xl backdrop-saturate-150',
+                glass && 'shadow-lg shadow-black/5',
+                glass && (dark ? 'bg-white/10 border-white/20' : 'bg-white/30 border-gray-400/40'),
+                !glass && (dark ? 'border-gray-600' : 'border-gray-200'),
+                border && 'border']"
        :style="{ width: calcSize(width), height: calcSize(height), minHeight: calcSize(minHeight) }">
     <div class="overflow-auto relative h-full">
       <div class="min-w-full inline-block align-middle">
-        <table :class="['min-w-full divide-y', dark ? 'divide-gray-600' : 'divide-gray-200']">
+        <table :class="['min-w-full divide-y',
+                        glass ? (dark ? 'divide-white/20' : 'divide-gray-400/40') : (dark ? 'divide-gray-600' : 'divide-gray-200')]">
           <slot>
             <ShadcnTableHeader :dark="dark">
               <ShadcnTableRow :dark="dark">
@@ -85,7 +91,8 @@ const props = withDefaults(defineProps<TableProps>(), {
   height: 'auto',
   minHeight: 300,
   size: 'default',
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const slots = useSlots()

@@ -3,7 +3,10 @@
     <div :class="[animation ? 'animate-pulse' : '', skeletonClass]">
       <div :class="[
              'flex justify-center items-center',
-             dark ? 'bg-gray-700' : 'bg-gray-200',
+             glass && 'backdrop-blur-xl backdrop-saturate-150',
+             glass && 'shadow-lg shadow-black/5',
+             glass && (dark ? 'bg-white/10 border border-white/20' : 'bg-white/30 border border-gray-400/40'),
+             !glass && (dark ? 'bg-gray-700' : 'bg-gray-200'),
              skeletonShapeClass
            ]"
            :style="{ width }">
@@ -29,7 +32,8 @@ const props = withDefaults(defineProps<SkeletonItemProps>(), {
   animation: false,
   type: 'rect',
   size: 'default',
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const skeletonShapeClass = computed(() => {

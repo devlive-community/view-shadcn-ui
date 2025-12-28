@@ -184,6 +184,60 @@ const heightValue = ref(false)
 
 :::
 
+## 液态玻璃效果 (glass)
+
+<CodeRunner title="液态玻璃效果 (glass)">
+    <ShadcnButton @click="glassValue = !glassValue" :dark="darkMode">打开液态玻璃抽屉</ShadcnButton>
+    <ShadcnDrawer v-model="glassValue" glass :dark="darkMode" title="液态玻璃效果" width="400px">
+        <div class="space-y-4">
+            <p :class="['text-sm', darkMode ? 'text-gray-300' : 'text-gray-700']">
+                这是一个带有液态玻璃效果的抽屉组件。
+            </p>
+            <p :class="['text-sm', darkMode ? 'text-gray-300' : 'text-gray-700']">
+                背景具有模糊和半透明特性，同时保持良好的可读性。
+            </p>
+        </div>
+        <template #footer>
+            <div class="flex gap-2 justify-end">
+                <ShadcnButton @click="glassValue = false" :dark="darkMode">关闭</ShadcnButton>
+                <ShadcnButton type="primary" @click="glassValue = false" :dark="darkMode">确定</ShadcnButton>
+            </div>
+        </template>
+    </ShadcnDrawer>
+</CodeRunner>
+
+::: details 查看代码
+
+```vue
+<template>
+    <ShadcnButton @click="drawer = !drawer">打开液态玻璃抽屉</ShadcnButton>
+    <ShadcnDrawer v-model="drawer" glass title="液态玻璃效果" width="400px">
+        <div class="space-y-4">
+            <p class="text-sm text-gray-700">
+                这是一个带有液态玻璃效果的抽屉组件。
+            </p>
+            <p class="text-sm text-gray-700">
+                背景具有模糊和半透明特性，同时保持良好的可读性。
+            </p>
+        </div>
+        <template #footer>
+            <div class="flex gap-2 justify-end">
+                <ShadcnButton @click="drawer = false">关闭</ShadcnButton>
+                <ShadcnButton type="primary" @click="drawer = false">确定</ShadcnButton>
+            </div>
+        </template>
+    </ShadcnDrawer>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const drawer = ref(false);
+</script>
+```
+
+:::
+
 ## 抽屉 (Drawer) 属性
 
 <ApiTable title="抽屉 (Drawer) 属性"
@@ -196,6 +250,8 @@ const heightValue = ref(false)
         ['position', '抽屉位置', 'string', 'bottom', '-', 'top, bottom, left, right'],
         ['width', '组件的宽度', 'string | number', '300', 'position = left || right', '-'],
         ['height', '组件的高度', 'string | number', '300', 'position = top || bottom', '-'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false', '-', '-'],
+        ['dark', '是否启用暗黑模式', 'boolean', 'false', '-', '-'],
     ]">
 </ApiTable>
 
@@ -237,4 +293,5 @@ const leftValue = ref(false)
 const rightValue = ref(false)
 const widthValue = ref(false)
 const heightValue = ref(false)
+const glassValue = ref(false)
 </script>

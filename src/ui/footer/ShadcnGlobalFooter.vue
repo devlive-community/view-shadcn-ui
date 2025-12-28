@@ -1,5 +1,10 @@
 <template>
-  <footer :class="['w-full border-t', dark ? 'bg-gray-800 border-gray-700' : 'bg-background border-gray-200']">
+  <footer :class="['w-full border-t',
+                   glass && 'backdrop-blur-xl backdrop-saturate-150',
+                   glass && 'shadow-lg shadow-black/5',
+                   glass && (dark ? 'bg-white/10 border-white/20' : 'bg-white/30 border-gray-400/40'),
+                   !glass && (dark ? 'bg-gray-800 border-gray-700' : 'bg-background border-gray-200')
+          ]">
     <!-- Main Footer Content -->
     <div class="container mx-auto px-4 py-8">
       <!-- Top Section with Links -->
@@ -95,6 +100,7 @@ interface Props
   links?: LinkGroup[]
   socials?: LinkItem[]
   dark?: boolean
+  glass?: boolean
 }
 
 withDefaults(defineProps<Props>(), {
@@ -102,6 +108,7 @@ withDefaults(defineProps<Props>(), {
   description: 'The Devlive Software Foundation is a community of developers who are passionate about creating innovative software solutions.',
   links: () => [] as LinkGroup[],
   socials: () => [] as LinkItem[],
-  dark: false
+  dark: false,
+  glass: false
 })
 </script>
