@@ -1,12 +1,17 @@
 <template>
   <div :class="cn('relative w-full rounded-lg',
                   size && Size[size],
-                  dark ? 'bg-gray-700' : 'bg-gray-200')">
+                  glass && 'backdrop-blur-xl backdrop-saturate-150',
+                  glass && 'shadow-lg shadow-black/5',
+                  glass && (dark ? 'bg-white/10 border border-white/20' : 'bg-white/30 border border-gray-400/40'),
+                  !glass && (dark ? 'bg-gray-700' : 'bg-gray-200'))">
     <div :class="cn('h-full rounded-lg transition-all',
-                    status && Status[status])"
+                    glass && status && GlassStatus[status],
+                    !glass && status && Status[status])"
          :style="{ width: localValue + '%' }">
     </div>
-    <div v-if="showLabel" class="absolute inset-0 flex items-center justify-center text-white text-xs font-normal">
+    <div v-if="showLabel" :class="cn('absolute inset-0 flex items-center justify-center text-xs font-normal',
+                                      glass ? (dark ? 'text-gray-200' : 'text-gray-800') : 'text-white')">
       {{ localValue }}%
     </div>
   </div>
@@ -24,6 +29,14 @@ enum Status
   info = 'bg-blue-500'
 }
 
+enum GlassStatus
+{
+  success = 'bg-green-500/50',
+  error = 'bg-red-500/50',
+  warning = 'bg-yellow-500/50',
+  info = 'bg-blue-500/50'
+}
+
 enum Size
 {
   default = 'h-2.5',
@@ -36,10 +49,12 @@ const props = withDefaults(defineProps<{
   size?: keyof typeof Size
   showLabel?: boolean
   dark?: boolean
+  glass?: boolean
 }>(), {
   status: 'info',
   size: 'default',
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const applyValue = (value: number) => {

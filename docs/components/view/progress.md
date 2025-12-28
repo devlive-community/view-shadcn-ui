@@ -132,6 +132,44 @@ const value = ref(10)
 
 :::
 
+## 液态玻璃效果 (glass)
+
+<CodeRunner title="液态玻璃效果 (glass)">
+    <div class="p-6 rounded-lg bg-gradient-to-r from-purple-400 to-pink-400">
+        <div class="p-8 rounded-lg bg-white/50 space-y-4">
+            <ShadcnProgress v-model="value" glass>Basic Glass</ShadcnProgress>
+            <ShadcnProgress :model-value="75" glass status="success" show-label>Success</ShadcnProgress>
+            <ShadcnProgress :model-value="45" glass status="warning" show-label>Warning</ShadcnProgress>
+            <ShadcnProgress :model-value="30" glass status="error" show-label>Error</ShadcnProgress>
+            <ShadcnProgress v-model="value" glass size="large" show-label>Large</ShadcnProgress>
+        </div>
+    </div>
+</CodeRunner>
+
+::: details 查看代码
+
+```vue
+<template>
+    <div class="p-6 rounded-lg bg-gradient-to-r from-purple-400 to-pink-400">
+        <div class="p-8 rounded-lg bg-white/50 space-y-4">
+            <ShadcnProgress v-model="value" glass>Basic Glass</ShadcnProgress>
+            <ShadcnProgress :model-value="75" glass status="success" show-label>Success</ShadcnProgress>
+            <ShadcnProgress :model-value="45" glass status="warning" show-label>Warning</ShadcnProgress>
+            <ShadcnProgress :model-value="30" glass status="error" show-label>Error</ShadcnProgress>
+            <ShadcnProgress v-model="value" glass size="large" show-label>Large</ShadcnProgress>
+        </div>
+    </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const value = ref(60)
+</script>
+```
+
+:::
+
 <script setup lang="ts">
 import { useData } from 'vitepress'
 import { computed } from 'vue'
@@ -153,5 +191,7 @@ const value = ref(10)
         ['status', '组件的状态', 'enum', '-', 'success | error | warning | info'],
         ['size', '组件的尺寸', 'enum', '-', 'default | large'],
         ['showLabel', '是否显示标签, 将显示在组件的内部', 'boolean', 'false', '-'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false', '-'],
+        ['dark', '是否启用暗黑模式', 'boolean', 'false', '-'],
     ]">
 </ApiTable>

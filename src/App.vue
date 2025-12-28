@@ -6,6 +6,36 @@
 
     <div class="space-y-6 my-6">
       <div>
+        <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnProgress - 液态玻璃效果</h3>
+        <div :class="['p-6 rounded-lg', isDark ? 'bg-gradient-to-r from-purple-900 to-pink-900' : 'bg-gradient-to-r from-purple-400 to-pink-400']">
+          <div :class="['p-8 rounded-lg space-y-6', isDark ? 'bg-gray-800/50' : 'bg-white/50']">
+            <div class="space-y-4">
+              <div>
+                <p :class="['text-sm mb-2', isDark ? 'text-gray-300' : 'text-gray-700']">基础液态玻璃进度条</p>
+                <ShadcnProgress v-model="progress" glass :dark="isDark" />
+              </div>
+              <div>
+                <p :class="['text-sm mb-2', isDark ? 'text-gray-300' : 'text-gray-700']">带标签</p>
+                <ShadcnProgress v-model="progress" glass :dark="isDark" show-label />
+              </div>
+              <div>
+                <p :class="['text-sm mb-2', isDark ? 'text-gray-300' : 'text-gray-700']">大尺寸</p>
+                <ShadcnProgress v-model="progress" glass :dark="isDark" size="large" show-label />
+              </div>
+              <div>
+                <p :class="['text-sm mb-2', isDark ? 'text-gray-300' : 'text-gray-700']">不同状态</p>
+                <div class="space-y-3">
+                  <ShadcnProgress :model-value="75" glass :dark="isDark" status="success" show-label />
+                  <ShadcnProgress :model-value="45" glass :dark="isDark" status="warning" show-label />
+                  <ShadcnProgress :model-value="30" glass :dark="isDark" status="error" show-label />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
         <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnTooltip - 液态玻璃效果</h3>
         <div :class="['p-6 rounded-lg', isDark ? 'bg-gradient-to-r from-cyan-900 to-blue-900' : 'bg-gradient-to-r from-cyan-400 to-blue-400']">
           <div :class="['p-8 rounded-lg space-y-6', isDark ? 'bg-gray-800/50' : 'bg-white/50']">
@@ -39,6 +69,8 @@
 import { ref } from 'vue'
 import { ShadcnButton } from "@/ui/button";
 import { ShadcnTooltip } from "@/ui/tooltip";
+import { ShadcnProgress } from "@/ui/progress";
 
 const isDark = ref(false)
+const progress = ref(60)
 </script>
