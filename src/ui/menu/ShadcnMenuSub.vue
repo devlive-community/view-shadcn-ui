@@ -25,16 +25,17 @@
               fill-rule="evenodd"/>
       </svg>
     </div>
-    <Transition enter-active-class="transition duration-100 ease-out"
-                enter-from-class="transform scale-95 opacity-0"
-                enter-to-class="transform scale-100 opacity-100"
-                leave-active-class="transition duration-75 ease-in"
-                leave-from-class="transform scale-100 opacity-100"
-                leave-to-class="transform scale-95 opacity-0">
+    <Transition
+      :name="isHorizontal ? 'menu-fade' : 'menu-slide'"
+      @enter="onEnter"
+      @after-enter="onAfterEnter"
+      @leave="onLeave"
+      @after-leave="onAfterLeave">
       <div v-show="isExpanded"
+           ref="menuContent"
            :class="[
-            'space-y-1',
-            isHorizontal ? (dark ? 'absolute left-0 mt-2.5 bg-gray-800 w-fit shadow-lg px-2 py-2 z-20' : 'absolute left-0 mt-2.5 bg-white w-fit shadow-lg px-2 py-2 z-20') : 'pl-4 mt-1'
+            'space-y-1 overflow-hidden',
+            isHorizontal ? (dark ? 'absolute left-0 mt-2.5 bg-gray-800 w-fit shadow-lg px-2 py-2 z-20 rounded-md' : 'absolute left-0 mt-2.5 bg-white w-fit shadow-lg px-2 py-2 z-20 rounded-md') : 'pl-4 mt-1'
           ]">
         <slot/>
       </div>
@@ -67,6 +68,7 @@ const isExpanded = computed(() => menuContext.expandedKey.value === props.name)
 const dark = computed(() => menuContext.dark || false)
 
 const hasActiveChild = ref(false)
+const menuContent = ref<HTMLElement | null>(null)
 
 const checkActiveChild = () => {
   const slotElements = document.querySelectorAll(`[data-parent="${ props.name }"]`)
@@ -88,14 +90,61 @@ onMounted(() => {
 })
 
 const toggleExpand = () => {
-  // If the current expanded item is this component, collapse it; otherwise expand it
   if (menuContext.expandedKey.value === props.name) {
     menuContext.setExpandedKey(null)
-    // Keep the selected state when manually folding, if there is still a selected item in the subitem
     checkActiveChild()
   }
   else {
     menuContext.setExpandedKey(props.name)
   }
 }
+
+const onEnter = (el: Element) => {
+  const element = el as HTMLElement
+  element.style.height = '0'
+  element.style.opacity = '0'
+}
+
+const onAfterEnter = (el: Element) => {
+  const element = el as HTMLElement
+  const height = element.scrollHeight
+  element.style.transition = 'height 0.3s ease, opacity 0.2s ease'
+  element.style.height = `${height}px`
+  element.style.opacity = '1'
+
+  setTimeout(() => {
+    element.style.height = 'auto'
+  }, 300)
+}
+
+const onLeave = (el: Element) => {
+  const element = el as HTMLElement
+  element.style.height = `${element.scrollHeight}px`
+  element.style.transition = 'height 0.3s ease, opacity 0.2s ease'
+
+  requestAnimationFrame(() => {
+    element.style.height = '0'
+    element.style.opacity = '0'
+  })
+}
+
+const onAfterLeave = (el: Element) => {
+  const element = el as HTMLElement
+  element.style.height = ''
+  element.style.opacity = ''
+  element.style.transition = ''
+}
 </script>
+
+<style scoped>
+.menu-fade-enter-active,
+.menu-fade-leave-active {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.menu-fade-enter-from,
+.menu-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+</style>

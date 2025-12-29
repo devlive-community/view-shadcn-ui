@@ -1,11 +1,10 @@
 <template>
   <ShadcnLink v-if="to"
               :class="[
-                   'px-3 py-2 text-sm rounded-md focus:outline-none cursor-pointer',
+                   'flex items-center justify-between px-3 py-2 text-sm rounded-md focus:outline-none cursor-pointer',
                    dark ? 'hover:bg-gray-700 focus:bg-gray-700' : 'hover:bg-gray-100 focus:bg-gray-100',
                    isActive ? (dark ? 'bg-gray-700' : 'bg-gray-100') : '',
-                   dark ? 'text-gray-200' : '',
-                   isHorizontal ? 'inline-flex' : 'flex'
+                   dark ? 'text-gray-200' : ''
               ]"
               :dark="dark"
               :data-name="name"
@@ -22,11 +21,10 @@
   </ShadcnLink>
   <div v-else
        :class="[
-             'px-3 py-2 text-sm rounded-md focus:outline-none cursor-pointer',
+             'flex items-center justify-between px-3 py-2 text-sm rounded-md focus:outline-none cursor-pointer',
              dark ? 'hover:bg-gray-700 focus:bg-gray-700' : 'hover:bg-gray-100 focus:bg-gray-100',
              isActive ? (dark ? 'bg-gray-700' : 'bg-gray-100') : '',
-             dark ? 'text-gray-200' : '',
-             isHorizontal ? 'inline-flex' : 'flex'
+             dark ? 'text-gray-200' : ''
        ]"
        :data-name="name"
        :data-parent="parentName"
