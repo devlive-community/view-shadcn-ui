@@ -74,7 +74,7 @@
                     glass && 'backdrop-blur-xl backdrop-saturate-150',
                     glass && 'border-white/20',
                     glass && 'shadow-xl shadow-black/10',
-                    glass ? (dark ? 'bg-gray-800/90' : 'bg-white/90') : (dark ? 'border-gray-600 bg-gray-800' : 'border-gray-200 bg-white')]"
+                    glass ? (dark ? 'bg-white/10' : 'bg-white/30') : (dark ? 'border-gray-600 bg-gray-800' : 'border-gray-200 bg-white')]"
            @scroll="handleScroll">
         <slot name="options">
           <ShadcnSelectOption v-for="(option, index) in internalOptions"

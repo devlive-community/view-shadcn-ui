@@ -149,6 +149,42 @@ const defaultValue = ref(1)
 
 :::
 
+## 液态玻璃效果 (glass)
+<CodeRunner title="液态玻璃效果 (glass)">
+  <div class="p-6 rounded-lg bg-gradient-to-r from-blue-400 to-purple-400">
+    <div class="p-8 rounded-lg bg-white/50 flex flex-col items-center gap-6">
+      数据值: {{glassValue1}}
+      <ShadcnPagination glass :dark="darkMode" v-model="glassValue1" :total="100" />
+      数据值: {{glassValue2}}
+      <ShadcnPagination glass :dark="darkMode" v-model="glassValue2" :total="200" show-total />
+      数据值: {{glassValue3}}
+      <ShadcnPagination glass :dark="darkMode" v-model="glassValue3" :total="300" show-total show-sizer />
+    </div>
+  </div>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+```vue
+<template>
+  <div class="p-6 rounded-lg bg-gradient-to-r from-blue-400 to-purple-400">
+    <div class="p-8 rounded-lg bg-white/50 flex flex-col items-center gap-6">
+      <ShadcnPagination glass v-model="currentPage1" :total="100" />
+      <ShadcnPagination glass v-model="currentPage2" :total="200" show-total />
+      <ShadcnPagination glass v-model="currentPage3" :total="300" show-total show-sizer />
+    </div>
+  </div>
+</template>
+<script setup lang="ts">
+import { ref } from 'vue'
+const currentPage1 = ref(1)
+const currentPage2 = ref(1)
+const currentPage3 = ref(1)
+</script>
+```
+:::
+
 ## 分页 (Pagination) 属性
 
 <ApiTable title="分页 (Pagination) 属性"
@@ -163,6 +199,8 @@ const defaultValue = ref(1)
         ['showTotal', '是否显示项总数', 'boolean', 'false'],
         ['showSizer', '是否显示页数选择器', 'boolean', 'false'],
         ['sizerOptions', '页数选择器选项', 'array', '\[10, 20, 50, 100\]'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false'],
+        ['dark', '是否启用暗黑模式', 'boolean', 'false'],
     ]">
 </ApiTable>
 
@@ -196,4 +234,7 @@ const { isDark } = useData()
 const darkMode = computed(() => isDark.value)
 
 const defaultValue = ref(1)
+const glassValue1 = ref(1)
+const glassValue2 = ref(1)
+const glassValue3 = ref(1)
 </script>
