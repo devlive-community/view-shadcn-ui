@@ -1,21 +1,25 @@
 <template>
-  <div :class="[isHorizontal ? 'inline-block relative' : 'block']">
+  <div :class="[isNested ? 'block relative' : (isHorizontal ? 'inline-block relative' : 'block')]"
+       @mouseenter="trigger === 'hover' && handleMouseEnter()"
+       @mouseleave="trigger === 'hover' && handleMouseLeave()">
     <div :class="[
           'px-3 py-2 text-sm rounded-md focus:outline-none cursor-pointer',
           'flex items-center justify-between gap-2',
-          dark ? 'hover:bg-gray-700 focus:bg-gray-700' : 'hover:bg-gray-100 focus:bg-gray-100',
-          (isExpanded || hasActiveChild) ? (dark ? 'bg-gray-700' : 'bg-gray-100') : '',
-          dark ? 'text-gray-200' : ''
+          dark ? 'text-gray-200 hover:bg-gray-700 focus:bg-gray-700' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900',
+          (isExpanded || hasActiveChild) ? (dark ? 'bg-gray-700' : 'bg-gray-100 text-gray-900') : ''
         ]"
-         @click="toggleExpand">
-      <div class="flex items-center gap-2">
-        <slot name="icon"/>
-        <span>
-          <slot name="title"/>
-        </span>
-      </div>
+         @click="trigger === 'click' && toggleExpand()">
+      <slot name="header" :expanded="isExpanded" :hasActiveChild="hasActiveChild">
+        <div class="flex items-center gap-2">
+          <slot name="icon"/>
+          <span>
+            <slot name="title"/>
+          </span>
+        </div>
+      </slot>
       <svg :class="['w-4 h-4 transition-transform duration-200',
-                    { 'rotate-180': isExpanded }
+                    isNested ? '-rotate-90' : '',
+                    isExpanded && !isNested ? 'rotate-180' : ''
             ]"
            fill="currentColor"
            viewBox="0 0 20 20"
@@ -26,16 +30,17 @@
       </svg>
     </div>
     <Transition
-      :name="isHorizontal ? 'menu-fade' : 'menu-slide'"
-      @enter="onEnter"
-      @after-enter="onAfterEnter"
-      @leave="onLeave"
-      @after-leave="onAfterLeave">
+        @enter="onEnter"
+        @leave="onLeave"
+        @after-enter="onAfterEnter"
+        @after-leave="onAfterLeave">
       <div v-show="isExpanded"
            ref="menuContent"
            :class="[
-            'space-y-1 overflow-hidden',
-            isHorizontal ? (dark ? 'absolute left-0 mt-2.5 bg-gray-800 w-fit shadow-lg px-2 py-2 z-20 rounded-md' : 'absolute left-0 mt-2.5 bg-white w-fit shadow-lg px-2 py-2 z-20 rounded-md') : 'pl-4 mt-1'
+            'space-y-1',
+            isNested ? (dark ? 'absolute left-full top-0 ml-1 bg-gray-800 w-fit shadow-lg px-2 py-2 z-30 rounded-md' : 'absolute left-full top-0 ml-1 bg-white w-fit shadow-lg px-2 py-2 z-30 rounded-md border border-gray-200') :
+            isHorizontal ? (dark ? 'absolute left-0 mt-2.5 bg-gray-800 w-fit shadow-lg px-2 py-2 z-20 rounded-md' : 'absolute left-0 mt-2.5 bg-white w-fit shadow-lg px-2 py-2 z-20 rounded-md border border-gray-200') :
+            'pl-4 mt-1'
           ]">
         <slot/>
       </div>
@@ -52,10 +57,12 @@ const props = defineProps<{
 
 const menuContext = inject('menuContext') as {
   direction: 'horizontal' | 'vertical'
-  expandedKey: { value: string | null }
   activeKey: { value: string | null }
-  setExpandedKey: (key: string | null) => void
+  toggleExpandedKey: (key: string) => void
+  isExpanded: (key: string) => boolean
   dark?: boolean
+  parentName?: string
+  trigger?: 'click' | 'hover'
 }
 
 provide('menuContext', {
@@ -64,14 +71,17 @@ provide('menuContext', {
 })
 
 const isHorizontal = computed(() => menuContext.direction === 'horizontal')
-const isExpanded = computed(() => menuContext.expandedKey.value === props.name)
-const dark = computed(() => menuContext.dark || false)
+const isNested = computed(() => !!menuContext.parentName && isHorizontal.value)
+const isExpanded = computed(() => menuContext.isExpanded(props.name))
+const dark = computed(() => menuContext.dark?.value || false)
+const trigger = computed(() => menuContext.trigger || 'click')
 
 const hasActiveChild = ref(false)
 const menuContent = ref<HTMLElement | null>(null)
+let hoverTimer: NodeJS.Timeout | null = null
 
 const checkActiveChild = () => {
-  const slotElements = document.querySelectorAll(`[data-parent="${ props.name }"]`)
+  const slotElements = document.querySelectorAll(`[data-parent="${props.name}"]`)
   hasActiveChild.value = Array.from(slotElements).some(
       (element) => (element as HTMLElement).dataset.name === menuContext.activeKey.value
   )
@@ -90,42 +100,87 @@ onMounted(() => {
 })
 
 const toggleExpand = () => {
-  if (menuContext.expandedKey.value === props.name) {
-    menuContext.setExpandedKey(null)
+  menuContext.toggleExpandedKey(props.name)
+  if (!isExpanded.value) {
     checkActiveChild()
   }
-  else {
-    menuContext.setExpandedKey(props.name)
+}
+
+const handleMouseEnter = () => {
+  if (hoverTimer) {
+    clearTimeout(hoverTimer)
+    hoverTimer = null
   }
+  if (!isExpanded.value) {
+    menuContext.toggleExpandedKey(props.name)
+  }
+}
+
+const handleMouseLeave = () => {
+  hoverTimer = setTimeout(() => {
+    if (isExpanded.value) {
+      menuContext.toggleExpandedKey(props.name)
+    }
+  }, 200)
 }
 
 const onEnter = (el: Element) => {
   const element = el as HTMLElement
-  element.style.height = '0'
-  element.style.opacity = '0'
+  if (isHorizontal.value || isNested.value) {
+    element.style.opacity = '0'
+    if (isNested.value) {
+      element.style.transform = 'translateX(-8px)'
+    } else {
+      element.style.transform = 'translateY(-8px)'
+    }
+  }
+  else {
+    element.style.height = '0'
+    element.style.opacity = '0'
+  }
 }
 
 const onAfterEnter = (el: Element) => {
   const element = el as HTMLElement
-  const height = element.scrollHeight
-  element.style.transition = 'height 0.3s ease, opacity 0.2s ease'
-  element.style.height = `${height}px`
-  element.style.opacity = '1'
+  if (isHorizontal.value || isNested.value) {
+    element.style.transition = 'opacity 0.2s ease, transform 0.2s ease'
+    element.style.opacity = '1'
+    element.style.transform = isNested.value ? 'translateX(0)' : 'translateY(0)'
+  }
+  else {
+    const height = element.scrollHeight
+    element.style.transition = 'height 0.3s ease, opacity 0.2s ease'
+    element.style.height = `${height}px`
+    element.style.opacity = '1'
 
-  setTimeout(() => {
-    element.style.height = 'auto'
-  }, 300)
+    setTimeout(() => {
+      element.style.height = 'auto'
+    }, 300)
+  }
 }
 
 const onLeave = (el: Element) => {
   const element = el as HTMLElement
-  element.style.height = `${element.scrollHeight}px`
-  element.style.transition = 'height 0.3s ease, opacity 0.2s ease'
+  if (isHorizontal.value || isNested.value) {
+    element.style.transition = 'opacity 0.2s ease, transform 0.2s ease'
+    requestAnimationFrame(() => {
+      element.style.opacity = '0'
+      if (isNested.value) {
+        element.style.transform = 'translateX(-8px)'
+      } else {
+        element.style.transform = 'translateY(-8px)'
+      }
+    })
+  }
+  else {
+    element.style.height = `${element.scrollHeight}px`
+    element.style.transition = 'height 0.3s ease, opacity 0.2s ease'
 
-  requestAnimationFrame(() => {
-    element.style.height = '0'
-    element.style.opacity = '0'
-  })
+    requestAnimationFrame(() => {
+      element.style.height = '0'
+      element.style.opacity = '0'
+    })
+  }
 }
 
 const onAfterLeave = (el: Element) => {
@@ -133,18 +188,6 @@ const onAfterLeave = (el: Element) => {
   element.style.height = ''
   element.style.opacity = ''
   element.style.transition = ''
+  element.style.transform = ''
 }
 </script>
-
-<style scoped>
-.menu-fade-enter-active,
-.menu-fade-leave-active {
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.menu-fade-enter-from,
-.menu-fade-leave-to {
-  opacity: 0;
-  transform: translateY(-8px);
-}
-</style>

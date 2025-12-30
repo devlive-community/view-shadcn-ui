@@ -17,5 +17,5 @@ const menuContext = inject('menuContext') as {
 }
 
 const isHorizontal = computed(() => menuContext.direction === 'horizontal')
-const dark = computed(() => menuContext.dark || false)
+const dark = computed(() => menuContext.dark?.value || false)
 </script>

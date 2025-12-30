@@ -159,6 +159,14 @@ title: 菜单 (Menu)
             <template #title>Settings</template>
             <ShadcnMenuItem name="username">Change Username</ShadcnMenuItem>
             <ShadcnMenuItem name="password">Change Password</ShadcnMenuItem>
+            <ShadcnMenuSub name="securitySub">
+              <template #title>Security</template>
+              <template #icon>
+                <ShadcnIcon icon="Shield"/>
+              </template>
+              <ShadcnMenuItem name="2fa">Two-Factor Auth</ShadcnMenuItem>
+              <ShadcnMenuItem name="sessions">Active Sessions</ShadcnMenuItem>
+            </ShadcnMenuSub>
           </ShadcnMenuGroup>
         </ShadcnMenuSub>
         <ShadcnMenuItem name="email">Change Email</ShadcnMenuItem>
@@ -206,14 +214,126 @@ title: 菜单 (Menu)
 
 :::
 
+## 触发方式 (trigger)
+
+支持点击和悬停两种触发方式。
+
+<CodeRunner title="触发方式 - 悬停">
+    <ShadcnMenu direction="horizontal" trigger="hover" :dark="darkMode">
+        <ShadcnMenuItem name="home">
+          <template #icon>
+            <ShadcnIcon icon="Home"/>
+          </template>
+          Home
+        </ShadcnMenuItem>
+        <ShadcnMenuSub name="profileSub">
+          <template #title>Profile</template>
+          <template #icon>
+            <ShadcnIcon icon="User"/>
+          </template>
+          <ShadcnMenuGroup name="settingGroup">
+            <template #title>Settings</template>
+            <ShadcnMenuItem name="username">Change Username</ShadcnMenuItem>
+            <ShadcnMenuItem name="password">Change Password</ShadcnMenuItem>
+          </ShadcnMenuGroup>
+        </ShadcnMenuSub>
+        <ShadcnMenuItem name="email">Change Email</ShadcnMenuItem>
+      </ShadcnMenu>
+</CodeRunner>
+
+::: details 查看代码
+
+```vue
+<template>
+  <ShadcnMenu direction="horizontal" trigger="hover">
+    <ShadcnMenuItem name="home">
+      <template #icon>
+        <ShadcnIcon icon="Home"/>
+      </template>
+      Home
+    </ShadcnMenuItem>
+    <ShadcnMenuSub name="profileSub">
+      <template #title>Profile</template>
+      <template #icon>
+        <ShadcnIcon icon="User"/>
+      </template>
+      <ShadcnMenuGroup name="settingGroup">
+        <template #title>Settings</template>
+        <ShadcnMenuItem name="username">Change Username</ShadcnMenuItem>
+        <ShadcnMenuItem name="password">Change Password</ShadcnMenuItem>
+      </ShadcnMenuGroup>
+    </ShadcnMenuSub>
+    <ShadcnMenuItem name="email">Change Email</ShadcnMenuItem>
+  </ShadcnMenu>
+</template>
+```
+
+:::
+
+## 自定义插槽
+
+ShadcnMenuSub 支持 `header` 插槽，可以完全自定义子菜单的标题部分。
+
+<CodeRunner title="自定义插槽">
+    <ShadcnMenu direction="horizontal" :dark="darkMode">
+        <ShadcnMenuItem name="home">
+          <template #icon>
+            <ShadcnIcon icon="Home"/>
+          </template>
+          Home
+        </ShadcnMenuItem>
+        <ShadcnMenuSub name="profileSub">
+          <template #header="{ expanded, hasActiveChild }">
+            <div class="flex items-center gap-2">
+              <ShadcnIcon icon="User"/>
+              <span :class="{ 'font-bold': hasActiveChild }">Custom Profile</span>
+              <span v-if="expanded" class="text-xs">▼</span>
+            </div>
+          </template>
+          <ShadcnMenuItem name="username">Change Username</ShadcnMenuItem>
+          <ShadcnMenuItem name="email">Change Email</ShadcnMenuItem>
+        </ShadcnMenuSub>
+      </ShadcnMenu>
+</CodeRunner>
+
+::: details 查看代码
+
+```vue
+<template>
+  <ShadcnMenu direction="horizontal">
+    <ShadcnMenuItem name="home">
+      <template #icon>
+        <ShadcnIcon icon="Home"/>
+      </template>
+      Home
+    </ShadcnMenuItem>
+    <ShadcnMenuSub name="profileSub">
+      <template #header="{ expanded, hasActiveChild }">
+        <div class="flex items-center gap-2">
+          <ShadcnIcon icon="User"/>
+          <span :class="{ 'font-bold': hasActiveChild }">Custom Profile</span>
+          <span v-if="expanded" class="text-xs">▼</span>
+        </div>
+      </template>
+      <ShadcnMenuItem name="username">Change Username</ShadcnMenuItem>
+      <ShadcnMenuItem name="email">Change Email</ShadcnMenuItem>
+    </ShadcnMenuSub>
+  </ShadcnMenu>
+</template>
+```
+
+:::
+
 ## 菜单 (Menu) 属性
 
 <ApiTable title="菜单 (Menu) 属性"
     :headers="['属性', '描述', '类型', '默认值', '支持列表']"
     :columns="[
         ['modelValue', '当前选中的菜单值', 'string', '-', '-'],
-        ['width', '菜单的宽度', 'string | number', '300', '-'],
-        ['direction', '菜单的方向', 'string', 'horizontal', 'horizontal | vertical'],
+        ['width', '菜单的宽度', 'string | number', '200', '-'],
+        ['direction', '菜单的方向', 'string', 'vertical', 'horizontal | vertical'],
+        ['dark', '暗黑模式', 'boolean', 'false', '-'],
+        ['trigger', '子菜单触发方式', 'string', 'click', 'click | hover'],
     ]">
 </ApiTable>
 
@@ -271,11 +391,12 @@ title: 菜单 (Menu)
 ## 菜单子项 (Menu Sub) 插槽
 
 <ApiTable title="菜单子项 (Menu Sub) 插槽"
-    :headers="['插槽', '描述']"
+    :headers="['插槽', '描述', '参数']"
     :columns="[
-        ['default', '默认插槽'],
-        ['icon', '图标插槽'],
-        ['title', '标题插槽'],
+        ['default', '默认插槽', '-'],
+        ['icon', '图标插槽', '-'],
+        ['title', '标题插槽', '-'],
+        ['header', '完全自定义标题部分', '{ expanded: boolean, hasActiveChild: boolean }'],
     ]">
 </ApiTable>
 
