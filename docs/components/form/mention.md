@@ -202,6 +202,39 @@ title: 提及 (Mention)
 
 :::
 
+## 液态玻璃效果 (glass)
+::: raw
+<div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-blue-900 to-purple-900' : 'bg-gradient-to-r from-blue-400 to-purple-400']">
+<CodeRunner title="液态玻璃效果" class="bg-transparent">
+  <div class="space-y-4">
+    <ShadcnMention glass :dark="darkMode" :items="items" placeholder="输入 @ 提及..." />
+    <ShadcnMention glass :dark="darkMode" :items="items" trigger="#" placeholder="输入 # 提及..." />
+    <ShadcnMention glass :dark="darkMode" :items="items" type="success" />
+  </div>
+</CodeRunner>
+</div>
+:::
+::: details 查看代码
+```vue
+<template>
+  <div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-blue-900 to-purple-900' : 'bg-gradient-to-r from-blue-400 to-purple-400']">
+    <div class="space-y-4">
+      <ShadcnMention glass :dark="darkMode" :items="items" placeholder="输入 @ 提及..." />
+      <ShadcnMention glass :dark="darkMode" :items="items" trigger="#" placeholder="输入 # 提及..." />
+      <ShadcnMention glass :dark="darkMode" :items="items" type="success" />
+    </div>
+  </div>
+</template>
+<script setup lang="ts">
+import { ref } from 'vue'
+const items = ref([
+  { id: 1, name: 'Alice' },
+  { id: 2, name: 'Bob' },
+  { id: 3, name: 'Charlie' }
+])
+</script>
+```
+:::
 ## 表单 (form)
 
 ::: raw
@@ -244,6 +277,8 @@ title: 提及 (Mention)
         ['trigger', '触发字符', 'string', '@', '-'],
         ['max', '最大项目数', 'number', 'Infinity', '-'],
         ['loadData', '异步加载数据', 'function', '-', '-'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false', '-'],
+        ['dark', '是否启用暗黑模式', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 

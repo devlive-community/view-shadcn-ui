@@ -5,6 +5,7 @@
                  :placeholder="placeholder"
                  :disabled="disabled"
                  :dark="dark"
+                 :glass="glass"
                  @click="togglePopover"/>
 
     <div class="absolute right-2 top-0 h-full flex items-center gap-2 text-gray-400">
@@ -12,19 +13,21 @@
            class="flex items-center cursor-pointer hover:text-muted-foreground"
            @click="onClear">
         <slot name="clear">
-          <ShadcnIcon :dark="dark" icon="CircleX" size="18"/>
+          <ShadcnIcon :dark="dark" :glass="glass" icon="CircleX" size="18"/>
         </slot>
       </div>
 
       <slot name="icon">
-        <ShadcnIcon :dark="dark" icon="Clock" size="18"/>
+        <ShadcnIcon :dark="dark" :glass="glass" icon="Clock" size="18"/>
       </slot>
     </div>
 
     <div v-if="isOpen"
          :class="[
            'absolute mt-1 rounded-md shadow-lg ring-1 p-2 z-10 space-y-2 w-fit',
-           dark ? 'bg-gray-800 ring-gray-700' : 'bg-white ring-black ring-opacity-5'
+           glass && 'backdrop-blur-xl backdrop-saturate-150',
+           glass && (dark ? 'bg-white/10 ring-white/20' : 'bg-white/30 ring-gray-400/40'),
+           !glass && (dark ? 'bg-gray-800 ring-gray-700' : 'bg-white ring-black ring-opacity-5')
          ]">
       <div class="flex justify-between items-center gap-3">
         <div class="flex space-x-2">
@@ -35,9 +38,10 @@
                         :formatter="zeroPadFormatter"
                         :parser="parseNumber"
                         :dark="dark"
+                        :glass="glass"
                         @focus="isOpen = true"
                         @on-change="onTimeChange"/>
-          <span :class="['text-xl select-none', dark ? 'text-gray-300' : '']">:</span>
+          <span :class="['text-xl select-none', glass ? (dark ? 'text-gray-100' : 'text-gray-800') : (dark ? 'text-gray-300' : '')]">:</span>
           <ShadcnNumber v-model="minutesNumber"
                         class="w-14"
                         :min="0"
@@ -45,10 +49,11 @@
                         :formatter="zeroPadFormatter"
                         :parser="parseNumber"
                         :dark="dark"
+                        :glass="glass"
                         @focus="isOpen = true"
                         @on-change="onTimeChange"/>
           <template v-if="hasSeconds">
-            <span :class="['text-xl select-none', dark ? 'text-gray-300' : '']">:</span>
+            <span :class="['text-xl select-none', glass ? (dark ? 'text-gray-100' : 'text-gray-800') : (dark ? 'text-gray-300' : '')]">:</span>
             <ShadcnNumber v-model="secondsNumber"
                           class="w-14"
                           :max="59"
@@ -56,6 +61,7 @@
                           :formatter="zeroPadFormatter"
                           :parser="parseNumber"
                           :dark="dark"
+                          :glass="glass"
                           @focus="isOpen = true"
                           @on-change="onTimeChange"/>
           </template>
@@ -66,6 +72,7 @@
                              class="space-x-1"
                              type="single"
                              :dark="dark"
+                             :glass="glass"
                              @on-change="handlePeriodChange as any">
             <ShadcnToggle value="AM">
               {{ t('timePicker.text.am') }}
@@ -82,7 +89,10 @@
                 :key="time"
                 :class="[
                   'px-2 py-1 text-sm rounded-md select-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary',
-                  dark ? 'hover:bg-gray-700 active:bg-gray-600' : 'hover:bg-gray-100 active:bg-gray-200'
+                  glass && !dark ? 'hover:bg-white/50 active:bg-white/70 text-gray-800' : '',
+                  glass && dark ? 'hover:bg-white/20 active:bg-white/30 text-gray-100' : '',
+                  !glass && dark ? 'hover:bg-gray-700 active:bg-gray-600' : '',
+                  !glass && !dark ? 'hover:bg-gray-100 active:bg-gray-200' : ''
                 ]"
                 @click="selectQuickTime(time)">
           {{ time }}
@@ -109,7 +119,8 @@ const props = withDefaults(defineProps<TimePickerProps>(), {
   disabled: false,
   clearable: true,
   format: 'HH:mm',
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const emit = defineEmits<TimePickerEmits>()

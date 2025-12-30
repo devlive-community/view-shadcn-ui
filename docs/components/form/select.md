@@ -267,6 +267,81 @@ const defaultSelectOptions = [
 
 :::
 
+## 搜索 (search)
+
+::: raw
+
+<CodeRunner title="搜索 (search)">
+  <div class="space-y-4">
+    <div>
+      <p :class="['text-sm mb-2', darkMode ? 'text-gray-200' : 'text-gray-700']">普通搜索</p>
+      <ShadcnSelect v-model="searchSelectValue" :options="citiesOptions" search placeholder="请搜索城市" :dark="darkMode" />
+    </div>
+    <div>
+      <p :class="['text-sm mb-2', darkMode ? 'text-gray-200' : 'text-gray-700']">多选搜索</p>
+      <ShadcnSelect v-model="searchMultiValue" :options="citiesOptions" search multiple placeholder="请搜索并选择多个城市" :dark="darkMode" />
+    </div>
+    <div>
+      <p :class="['text-sm mb-2', darkMode ? 'text-gray-200' : 'text-gray-700']">液态玻璃搜索</p>
+      <div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
+        <ShadcnSelect v-model="searchGlassValue" :options="citiesOptions" search glass placeholder="请搜索城市" :dark="darkMode" />
+      </div>
+    </div>
+  </div>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+  <div class="space-y-4">
+    <div>
+      <p :class="['text-sm mb-2', darkMode ? 'text-gray-200' : 'text-gray-700']">普通搜索</p>
+      <ShadcnSelect v-model="searchSelectValue" :options="citiesOptions" search placeholder="请搜索城市" :dark="darkMode" />
+    </div>
+    <div>
+      <p :class="['text-sm mb-2', darkMode ? 'text-gray-200' : 'text-gray-700']">多选搜索</p>
+      <ShadcnSelect v-model="searchMultiValue" :options="citiesOptions" search multiple placeholder="请搜索并选择多个城市" :dark="darkMode" />
+    </div>
+    <div>
+      <p :class="['text-sm mb-2', darkMode ? 'text-gray-200' : 'text-gray-700']">液态玻璃搜索</p>
+      <div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-400 to-indigo-400']">
+        <ShadcnSelect v-model="searchGlassValue" :options="citiesOptions" search glass placeholder="请搜索城市" :dark="darkMode" />
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed, ref } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
+const searchSelectValue = ref('')
+const searchMultiValue = ref([])
+const searchGlassValue = ref('')
+
+const citiesOptions = [
+  { value: 'beijing', label: '北京' },
+  { value: 'shanghai', label: '上海' },
+  { value: 'guangzhou', label: '广州' },
+  { value: 'shenzhen', label: '深圳' },
+  { value: 'hangzhou', label: '杭州' },
+  { value: 'nanjing', label: '南京' },
+  { value: 'chengdu', label: '成都' },
+  { value: 'chongqing', label: '重庆' },
+  { value: 'wuhan', label: '武汉' },
+  { value: 'xian', label: '西安' }
+]
+</script>
+```
+
+:::
+
 ## 液态玻璃效果 (glass)
 
 ::: raw
@@ -468,6 +543,8 @@ loadMoreData((children) => {
         ['loadData', '懒加载数据函数', 'function', '-', '-'],
         ['dark', '暗黑模式', 'boolean', 'false', '-'],
         ['glass', '液态玻璃效果', 'boolean', 'false', '-'],
+        ['search', '是否启用搜索功能', 'boolean', 'false', 'true | false'],
+        ['searchPlaceholder', '搜索框占位符', 'string', '搜索...', '-'],
     ]">
 </ApiTable>
 
@@ -562,4 +639,21 @@ const onClick = () => {
 
 const glassSelectValue = ref(null)
 const glassMultiValue = ref([])
+
+const searchSelectValue = ref('')
+const searchMultiValue = ref([])
+const searchGlassValue = ref('')
+
+const citiesOptions = [
+  { value: 'beijing', label: '北京' },
+  { value: 'shanghai', label: '上海' },
+  { value: 'guangzhou', label: '广州' },
+  { value: 'shenzhen', label: '深圳' },
+  { value: 'hangzhou', label: '杭州' },
+  { value: 'nanjing', label: '南京' },
+  { value: 'chengdu', label: '成都' },
+  { value: 'chongqing', label: '重庆' },
+  { value: 'wuhan', label: '武汉' },
+  { value: 'xian', label: '西安' }
+]
 </script>

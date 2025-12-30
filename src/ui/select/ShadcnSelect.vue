@@ -4,7 +4,7 @@
                   border && (dark ? 'border border-gray-600' : 'border border-gray-200'),
                   MinSize[size]
          ]">
-      <ShadcnSkeleton animation :dark="dark" :rows="1" :size="size" class="w-full"/>
+      <ShadcnSkeleton animation :glass="glass" :dark="dark" :rows="1" :size="size" class="w-full"/>
     </div>
     <div v-else :class="['flex rounded-md px-2 relative transition-all duration-300 ease-in-out',
                   border && (glass ? 'border border-white/20' : (dark ? 'border border-gray-600 hover:border-gray-500' : 'border border-gray-200 hover:border-gray-300')),
@@ -69,27 +69,46 @@
         leave-from-class="transform translate-y-0 scale-100 opacity-100"
         leave-to-class="transform -translate-y-2 scale-95 opacity-0">
       <div v-show="isExpanded"
-           ref="dropdownRef"
-           :class="['absolute z-20 w-full px-2 rounded-md border shadow-lg mt-1 py-1 overflow-y-auto max-h-60 transition-all duration-300 ease-in-out',
+           :class="['absolute z-20 w-full rounded-md border shadow-lg mt-1 transition-all duration-300 ease-in-out',
                     glass && 'backdrop-blur-xl backdrop-saturate-150',
                     glass && 'border-white/20',
                     glass && 'shadow-xl shadow-black/10',
-                    glass ? (dark ? 'bg-gray-800/90' : 'bg-white/90') : (dark ? 'border-gray-600 bg-gray-800' : 'border-gray-200 bg-white')]"
-           @scroll="handleScroll">
-        <slot name="options">
-          <ShadcnSelectOption v-for="(option, index) in internalOptions"
-                              :key="index"
-                              :value="option.value"
-                              :label="option.label"
-                              :selected="isOptionSelected(option.value)"
-                              :disabled="option.disabled"
-                              :dark="dark"
-                              :glass="glass"
-                              :type="type"/>
-        </slot>
-        <div v-if="isLoading" class="flex justify-center items-center py-2">
-          <div :class="['animate-spin rounded-full h-4 w-4 border-2 border-t-transparent',
-                        glass ? (dark ? 'border-blue-400/50' : 'border-blue-500/60') : 'border-primary-500']"></div>
+                    glass ? (dark ? 'bg-white/10' : 'bg-white/30') : (dark ? 'border-gray-600 bg-gray-800' : 'border-gray-200 bg-white')]">
+        <div v-if="search" :class="['p-2 border-b', glass ? 'border-white/20' : (dark ? 'border-gray-700' : 'border-gray-200')]">
+          <ShadcnInput v-model="searchQuery"
+                       :placeholder="searchPlaceholder"
+                       :glass="glass"
+                       :dark="dark"
+                       size="small"
+                       @click.stop/>
+        </div>
+        <div ref="dropdownRef"
+             :class="['px-2 py-1 overflow-y-auto max-h-60']"
+             @scroll="handleScroll">
+          <template v-if="props.options">
+            <ShadcnSelectOption v-for="(option, index) in internalOptions"
+                                :key="index"
+                                :value="option.value"
+                                :label="option.label"
+                                :selected="isOptionSelected(option.value)"
+                                :disabled="option.disabled"
+                                :dark="dark"
+                                :glass="glass"
+                                :type="type"/>
+            <div v-if="internalOptions.length === 0 && search && searchQuery" :class="['text-center py-4 text-sm', dark ? 'text-gray-400' : 'text-gray-500']">
+              无匹配结果
+            </div>
+          </template>
+          <template v-else>
+            <slot name="options"/>
+            <div v-if="visibleOptionsCount === 0 && search && searchQuery" :class="['text-center py-4 text-sm', dark ? 'text-gray-400' : 'text-gray-500']">
+              无匹配结果
+            </div>
+          </template>
+          <div v-if="isLoading" class="flex justify-center items-center py-2">
+            <div :class="['animate-spin rounded-full h-4 w-4 border-2 border-t-transparent',
+                          glass ? (dark ? 'border-blue-400/50' : 'border-blue-500/60') : 'border-primary-500']"></div>
+          </div>
         </div>
       </div>
     </Transition>
@@ -105,6 +124,7 @@ import { HoverType } from '@/ui/common/type.ts'
 import { SelectEmits, SelectOptionProps, SelectProps } from '@/ui/select/types.ts'
 import { generateRandomId } from '@/utils/common.ts'
 import { ShadcnSkeleton } from '@/ui/skeleton'
+import { ShadcnInput } from '@/ui/input'
 
 const emit = defineEmits<SelectEmits>()
 
@@ -118,7 +138,9 @@ const props = withDefaults(defineProps<SelectProps>(), {
   lazy: false,
   loading: false,
   dark: false,
-  glass: false
+  glass: false,
+  search: false,
+  searchPlaceholder: '搜索...'
 })
 
 const isExpanded = ref(false)
@@ -128,6 +150,7 @@ const selectRef = ref<HTMLElement | null>(null)
 const dropdownRef = ref<HTMLElement | null>(null)
 const parentName = `shadcn-select-${generateRandomId()}`
 const isLoading = ref(false)
+const searchQuery = ref('')
 
 // Handle scroll loading
 const handleScroll = () => {
@@ -217,14 +240,34 @@ const removeSelection = (index: number) => {
 }
 
 const internalOptions = computed(() => {
-  return props.options || slotOptions.value
+  const options = props.options || slotOptions.value
+  if (props.search && searchQuery.value) {
+    return options.filter(option =>
+        option.label.toLowerCase().includes(searchQuery.value.toLowerCase())
+    )
+  }
+  return options
+})
+
+const visibleOptionsCount = computed(() => {
+  if (!props.search || !searchQuery.value) {
+    return slotOptions.value.length
+  }
+  return slotOptions.value.filter(option =>
+    option.label.toLowerCase().includes(searchQuery.value.toLowerCase())
+  ).length
 })
 
 const toggleDropdown = () => {
   if (!props.disabled) {
     isExpanded.value = !isExpanded.value
     if (isExpanded.value) {
-      nextTick(updateSelectedLabels)
+      nextTick(() => {
+        updateSelectedLabels()
+      })
+    }
+    else {
+      searchQuery.value = ''
     }
   }
 }
@@ -281,7 +324,9 @@ provide('selectContext', {
   multiple: props.multiple,
   parentName,
   dark: computed(() => props.dark),
-  glass: computed(() => props.glass)
+  glass: computed(() => props.glass),
+  searchQuery: computed(() => searchQuery.value),
+  search: computed(() => props.search)
 })
 
 onMounted(() => {

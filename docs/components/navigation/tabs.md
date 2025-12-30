@@ -349,7 +349,57 @@ title: 选项卡 (Tabs)
 ```
 
 :::
+## 液态玻璃效果 (glass)
+<CodeRunner title="液态玻璃效果 (glass)">
+  <div class="p-6 rounded-lg bg-gradient-to-r from-blue-400 to-purple-400">
+    <div class="p-8 rounded-lg bg-white/50 flex flex-col items-center gap-6">
+      <ShadcnTab glass :dark="darkMode">
+        <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 2" value="Tab 2">Tab 2 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
+      </ShadcnTab>
+      <ShadcnTab glass :dark="darkMode" type="success">
+        <ShadcnTabItem label="Success 1" value="Success 1">Success content</ShadcnTabItem>
+        <ShadcnTabItem label="Success 2" value="Success 2">Success content</ShadcnTabItem>
+        <ShadcnTabItem label="Success 3" value="Success 3">Success content</ShadcnTabItem>
+      </ShadcnTab>
+      <ShadcnTab glass :dark="darkMode" type="warning" closable>
+        <ShadcnTabItem label="Warning 1" value="Warning 1">Warning content</ShadcnTabItem>
+        <ShadcnTabItem label="Warning 2" value="Warning 2">Warning content</ShadcnTabItem>
+        <ShadcnTabItem label="Warning 3" value="Warning 3">Warning content</ShadcnTabItem>
+      </ShadcnTab>
+    </div>
+  </div>
+</CodeRunner>
+:::
 
+::: details 查看代码
+```vue
+<template>
+  <div class="p-6 rounded-lg bg-gradient-to-r from-blue-400 to-purple-400">
+    <div class="p-8 rounded-lg bg-white/50 flex flex-col items-center gap-6">
+      <ShadcnTab glass>
+        <ShadcnTabItem label="Tab 1" value="Tab 1">Tab 1 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 2" value="Tab 2">Tab 2 content</ShadcnTabItem>
+        <ShadcnTabItem label="Tab 3" value="Tab 3">Tab 3 content</ShadcnTabItem>
+      </ShadcnTab>
+      <ShadcnTab glass type="success">
+        <ShadcnTabItem label="Success 1" value="Success 1">Success content</ShadcnTabItem>
+        <ShadcnTabItem label="Success 2" value="Success 2">Success content</ShadcnTabItem>
+        <ShadcnTabItem label="Success 3" value="Success 3">Success content</ShadcnTabItem>
+      </ShadcnTab>
+      <ShadcnTab glass type="warning" closable>
+        <ShadcnTabItem label="Warning 1" value="Warning 1">Warning content</ShadcnTabItem>
+        <ShadcnTabItem label="Warning 2" value="Warning 2">Warning content</ShadcnTabItem>
+        <ShadcnTabItem label="Warning 3" value="Warning 3">Warning content</ShadcnTabItem>
+      </ShadcnTab>
+    </div>
+  </div>
+</template>
+<script setup lang="ts">
+</script>
+```
+:::
 ## 动态选项卡
 
 <CodeRunner title="动态选项卡">
@@ -414,6 +464,8 @@ const addTab = () => {
         ['direction', '选项卡的方向', 'string', 'horizontal', 'horizontal | vertical'],
         ['position', '选项卡的位置', 'string', 'top', 'left | right'],
         ['showScrollButtons', '是否显示滚动按钮', 'boolean', 'true', '-'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false', '-'],
+        ['dark', '是否启用暗黑模式', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 

@@ -3,7 +3,7 @@
                 glass && 'backdrop-blur-xl backdrop-saturate-150',
                 glass && 'border-white/20',
                 glass && 'shadow-lg shadow-black/5',
-                glass ? (dark ? 'bg-white/10' : 'bg-white/80') : (dark ? 'border-gray-600 active:border-gray-500 hover:border-gray-500 bg-gray-800' : 'border-gray-300 active:border-blue-400 hover:border-blue-400')
+                glass ? (dark ? 'bg-white/10' : 'bg-white/30') : (dark ? 'border-gray-600 active:border-gray-500 hover:border-gray-500 bg-gray-800' : 'border-gray-300 active:border-blue-400 hover:border-blue-400')
        ]"
        @mouseenter="hovered = true"
        @mouseleave="hovered = false">

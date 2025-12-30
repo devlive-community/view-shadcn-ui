@@ -6,8 +6,8 @@
     props.glass && 'shadow-lg shadow-black/5',
     !props.glass && (props.dark ? 'bg-gray-800 border border-gray-700' : 'bg-white border border-gray-200')
   ]">
-    <div v-if="props.mode === 'split'" class="grid grid-cols-2 divide-x" :class="props.dark ? 'divide-gray-700' : 'divide-gray-200'">
-      <div class="flex flex-col">
+    <div v-if="props.mode === 'split'" class="flex relative" :class="props.dark ? 'divide-gray-700' : 'divide-gray-200'">
+      <div class="flex flex-col" :style="{ width: `${leftWidth}%` }">
         <div :class="['px-3 py-2 text-sm font-medium border-b', props.dark ? 'border-gray-700 text-gray-300' : 'border-gray-200 text-gray-700']">
           编辑
         </div>
@@ -21,7 +21,26 @@
                   ]"
                   @input="handleInput"/>
       </div>
-      <div class="flex flex-col">
+
+      <!-- 可拖拽分隔条 -->
+      <div
+        ref="dividerRef"
+        :class="[
+          'relative w-1 cursor-col-resize group',
+          props.dark ? 'bg-gray-700 hover:bg-blue-500' : 'bg-gray-200 hover:bg-blue-500',
+          'transition-colors'
+        ]"
+        @mousedown="startDrag"
+      >
+        <div :class="[
+          'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
+          'w-1 h-12 rounded-full',
+          props.dark ? 'bg-gray-600 group-hover:bg-blue-400' : 'bg-gray-300 group-hover:bg-blue-400',
+          'transition-colors'
+        ]"/>
+      </div>
+
+      <div class="flex flex-col flex-1">
         <div :class="['px-3 py-2 text-sm font-medium border-b', props.dark ? 'border-gray-700 text-gray-300' : 'border-gray-200 text-gray-700']">
           预览
         </div>
@@ -53,7 +72,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, ref, watch, onMounted, onBeforeUnmount } from 'vue'
 import { marked } from 'marked'
 import { MarkdownProps, MarkdownEmits } from '@/ui/markdown/types.ts'
 
@@ -69,6 +88,9 @@ const props = withDefaults(defineProps<MarkdownProps>(), {
 })
 
 const internalValue = ref(props.modelValue)
+const leftWidth = ref(50)
+const dividerRef = ref<HTMLElement | null>(null)
+const isDragging = ref(false)
 
 watch(() => props.modelValue, (newValue) => {
   internalValue.value = newValue
@@ -134,5 +156,39 @@ const renderedContent = computed(() => {
   catch (err) {
     return `<p class="text-red-500">Markdown 解析错误</p>`
   }
+})
+
+const startDrag = (e: MouseEvent) => {
+  isDragging.value = true
+  e.preventDefault()
+}
+
+const onDrag = (e: MouseEvent) => {
+  if (!isDragging.value || !dividerRef.value) return
+
+  const container = dividerRef.value.parentElement
+  if (!container) return
+
+  const containerRect = container.getBoundingClientRect()
+  const newWidth = ((e.clientX - containerRect.left) / containerRect.width) * 100
+
+  // 限制拖拽范围在 20%-80% 之间
+  if (newWidth >= 20 && newWidth <= 80) {
+    leftWidth.value = newWidth
+  }
+}
+
+const stopDrag = () => {
+  isDragging.value = false
+}
+
+onMounted(() => {
+  document.addEventListener('mousemove', onDrag)
+  document.addEventListener('mouseup', stopDrag)
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('mousemove', onDrag)
+  document.removeEventListener('mouseup', stopDrag)
 })
 </script>

@@ -2,7 +2,8 @@
   <div ref="dropdownRef"
        class="relative inline-block">
     <!-- Trigger button -->
-    <div @click="trigger === 'click' && onOpen()"
+    <div ref="triggerRef"
+         @click="trigger === 'click' && onOpen()"
          @mouseenter="trigger === 'hover' && onHover()"
          @mouseleave="trigger === 'hover' && handleTriggerMouseLeave()"
          class="inline-flex items-center justify-center cursor-pointer">
@@ -22,7 +23,9 @@
              @mouseenter="trigger === 'hover' && onMenuMouseEnter()"
              @mouseleave="trigger === 'hover' && onMenuMouseLeave()"
              :class="['fixed z-50 min-w-[8rem] rounded-md shadow-lg ring-1 focus:outline-none',
-                 dark ? 'bg-gray-700 ring-gray-600' : 'bg-white ring-black ring-opacity-5',
+                 glass && 'backdrop-blur-xl backdrop-saturate-150',
+                 glass && (dark ? 'bg-white/10 ring-white/20' : 'bg-white/30 ring-gray-400/40'),
+                 !glass && (dark ? 'bg-gray-700 ring-gray-600' : 'bg-white ring-black ring-opacity-5'),
                  positionClasses
             ]"
              :style="dropdownStyle">
@@ -48,45 +51,56 @@ const emit = defineEmits<DropdownEmits>()
 const props = withDefaults(defineProps<DropdownProps>(), {
   trigger: 'click',
   position: ArrangePosition.left,
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const isOpen = ref(false)
 const dropdownRef = ref<HTMLElement | null>(null)
+const triggerRef = ref<HTMLElement | null>(null)
 const menuRef = ref<HTMLElement | null>(null)
 let closeTimer: NodeJS.Timeout | null = null
 
 const updateDropdownPosition = async () => {
-  if (!dropdownRef.value || !isOpen.value) {
+  if (!triggerRef.value || !isOpen.value) {
     return
   }
 
   await nextTick()
+  await nextTick()
 
-  const trigger = dropdownRef.value
-  const rect = trigger.getBoundingClientRect()
-  const dropdownMenu = document.querySelector('.fixed') as HTMLElement
-
-  if (!dropdownMenu) {
+  if (!menuRef.value) {
     return
   }
+
+  const trigger = triggerRef.value
+  const rect = trigger.getBoundingClientRect()
+  const dropdownMenu = menuRef.value
 
   switch (props.position) {
     case ArrangePosition.left:
       dropdownMenu.style.left = `${ rect.left }px`
       dropdownMenu.style.top = `${ rect.bottom + 4 }px`
+      dropdownMenu.style.right = 'auto'
+      dropdownMenu.style.bottom = 'auto'
       break
     case ArrangePosition.right:
+      dropdownMenu.style.left = 'auto'
       dropdownMenu.style.right = `${ window.innerWidth - rect.right }px`
       dropdownMenu.style.top = `${ rect.bottom + 4 }px`
+      dropdownMenu.style.bottom = 'auto'
       break
     case ArrangePosition.top:
       dropdownMenu.style.left = `${ rect.left }px`
       dropdownMenu.style.bottom = `${ window.innerHeight - rect.top + 4 }px`
+      dropdownMenu.style.right = 'auto'
+      dropdownMenu.style.top = 'auto'
       break
     case ArrangePosition.bottom:
       dropdownMenu.style.left = `${ rect.left }px`
       dropdownMenu.style.top = `${ rect.bottom + 4 }px`
+      dropdownMenu.style.right = 'auto'
+      dropdownMenu.style.bottom = 'auto'
       break
   }
 }
@@ -144,8 +158,7 @@ const onMenuMouseLeave = () => {
 
 const onClickOutside = (event: MouseEvent) => {
   if (dropdownRef.value && !dropdownRef.value.contains(event.target as Node)) {
-    const dropdownMenu = document.querySelector('.fixed')
-    if (dropdownMenu && !dropdownMenu.contains(event.target as Node)) {
+    if (menuRef.value && !menuRef.value.contains(event.target as Node)) {
       if (isOpen.value) {
         onClose()
         emit('on-click-outside', true)
@@ -156,6 +169,7 @@ const onClickOutside = (event: MouseEvent) => {
 
 provide('closeDropdown', onClose)
 provide('dropdownDark', toRef(props, 'dark'))
+provide('dropdownGlass', toRef(props, 'glass'))
 
 onMounted(() => {
   document.addEventListener('click', onClickOutside)

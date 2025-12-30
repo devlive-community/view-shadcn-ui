@@ -186,6 +186,59 @@ title: 下拉菜单 (Dropdown)
 
 :::
 
+## 液态玻璃效果 (glass)
+
+::: raw
+
+<CodeRunner title="液态玻璃效果 (glass)">
+  <div class="p-6 rounded-lg bg-gradient-to-r from-blue-400 to-purple-400">
+    <div class="p-8 rounded-lg bg-white/50 flex gap-4">
+      <ShadcnDropdown glass :dark="darkMode" trigger="click">
+        <template #trigger>
+          <ShadcnButton :dark="darkMode">点击打开</ShadcnButton>
+        </template>
+        <ShadcnDropdownItem>操作 1</ShadcnDropdownItem>
+        <ShadcnDropdownItem active>操作 2</ShadcnDropdownItem>
+        <ShadcnDropdownItem divided>操作 3</ShadcnDropdownItem>
+        <ShadcnDropdownItem>操作 4</ShadcnDropdownItem>
+      </ShadcnDropdown>
+      <ShadcnDropdown glass :dark="darkMode" trigger="hover">
+        <template #trigger>
+          <ShadcnButton :dark="darkMode">悬停打开</ShadcnButton>
+        </template>
+        <ShadcnDropdownItem>操作 1</ShadcnDropdownItem>
+        <ShadcnDropdownItem>操作 2</ShadcnDropdownItem>
+        <ShadcnDropdownItem divided>操作 3</ShadcnDropdownItem>
+        <ShadcnDropdownItem disabled>操作 4 (禁用)</ShadcnDropdownItem>
+      </ShadcnDropdown>
+    </div>
+  </div>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+  <div class="p-6 rounded-lg bg-gradient-to-r from-blue-400 to-purple-400">
+    <div class="p-8 rounded-lg bg-white/50 flex gap-4">
+      <ShadcnDropdown glass trigger="click">
+        <template #trigger>
+          <ShadcnButton>点击打开</ShadcnButton>
+        </template>
+        <ShadcnDropdownItem>操作 1</ShadcnDropdownItem>
+        <ShadcnDropdownItem active>操作 2</ShadcnDropdownItem>
+        <ShadcnDropdownItem divided>操作 3</ShadcnDropdownItem>
+        <ShadcnDropdownItem>操作 4</ShadcnDropdownItem>
+      </ShadcnDropdown>
+    </div>
+  </div>
+</template>
+```
+
+:::
+
 ## 下拉菜单 (Dropdown) 属性
 
 <ApiTable title="下拉菜单 (Dropdown) 属性"
@@ -193,6 +246,8 @@ title: 下拉菜单 (Dropdown)
     :columns="[
         ['trigger', '下拉菜单触发方式', 'enum', 'click', 'click | hover'],
         ['position', '下拉菜单位置', 'enum', 'left', 'left | right | top | bottom'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false', '-'],
+        ['dark', '是否启用暗黑模式', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 

@@ -4,51 +4,65 @@
       切换暗黑模式
     </ShadcnButton>
 
-    <div class="space-y-6 mt-6">
-      <div>
-        <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-gray-200' : '']">ShadcnTable - 液态玻璃效果</h3>
-        <div :class="['p-6 rounded-lg', isDark ? 'bg-gradient-to-r from-blue-900 to-purple-900' : 'bg-gradient-to-r from-blue-400 to-purple-400']">
-          <div :class="['p-8 rounded-lg', isDark ? 'bg-gray-800/50' : 'bg-white/50']">
-            <ShadcnTable
-              :columns="columns"
-              :data="tableData"
-              glass
-              :dark="isDark"
-              border
-              stripe
-              width="100%"
-              min-height="400"
-            />
+    <div class="mt-6">
+      <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-white' : 'text-gray-900']">Select 搜索功能</h3>
+      <div class="p-6 rounded-lg bg-gradient-to-r from-indigo-400 to-purple-400">
+        <div class="p-8 rounded-lg bg-white/50">
+          <div class="space-y-4">
+            <div>
+              <label :class="['block text-sm font-medium mb-2', isDark ? 'text-gray-200' : 'text-gray-700']">普通搜索选择器</label>
+              <ShadcnSelect v-model="selectedValue1" search placeholder="请选择" :dark="isDark">
+                <template #options>
+                  <ShadcnSelectOption v-for="city in cities" :key="city.value" :value="city.value" :label="city.label" :dark="isDark" />
+                </template>
+              </ShadcnSelect>
+            </div>
+            <div>
+              <label :class="['block text-sm font-medium mb-2', isDark ? 'text-gray-200' : 'text-gray-700']">液态玻璃搜索选择器</label>
+              <ShadcnSelect v-model="selectedValue2" search glass placeholder="请选择" :dark="isDark">
+                <template #options>
+                  <ShadcnSelectOption v-for="city in cities" :key="city.value" :value="city.value" :label="city.label" :dark="isDark" glass />
+                </template>
+              </ShadcnSelect>
+            </div>
+            <div>
+              <label :class="['block text-sm font-medium mb-2', isDark ? 'text-gray-200' : 'text-gray-700']">多选搜索选择器</label>
+              <ShadcnSelect v-model="selectedValue3" search multiple glass placeholder="请选择多个城市" :dark="isDark">
+                <template #options>
+                  <ShadcnSelectOption v-for="city in cities" :key="city.value" :value="city.value" :label="city.label" :dark="isDark" glass />
+                </template>
+              </ShadcnSelect>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ShadcnButton } from "@/ui/button";
-import { ShadcnTable } from "@/ui/table";
+import { ShadcnButton } from "@/ui/button"
+import { ShadcnSelect, ShadcnSelectOption } from "@/ui/select"
 
 const isDark = ref(false)
+const selectedValue1 = ref('')
+const selectedValue2 = ref('')
+const selectedValue3 = ref([])
 
-const columns = [
-  { label: 'Name', key: 'name', width: 150 },
-  { label: 'Email', key: 'email', width: 200 },
-  { label: 'Role', key: 'role', width: 120 },
-  { label: 'Status', key: 'status', width: 100 },
-  { label: 'Action', key: 'action', width: 150 }
-]
-
-const tableData = [
-  { name: 'John Doe', email: 'john@example.com', role: 'Admin', status: 'Active', action: 'Edit' },
-  { name: 'Jane Smith', email: 'jane@example.com', role: 'User', status: 'Active', action: 'Edit' },
-  { name: 'Bob Johnson', email: 'bob@example.com', role: 'User', status: 'Inactive', action: 'Edit' },
-  { name: 'Alice Williams', email: 'alice@example.com', role: 'Manager', status: 'Active', action: 'Edit' },
-  { name: 'Charlie Brown', email: 'charlie@example.com', role: 'User', status: 'Active', action: 'Edit' },
-  { name: 'David Lee', email: 'david@example.com', role: 'Admin', status: 'Inactive', action: 'Edit' },
-  { name: 'Emma Davis', email: 'emma@example.com', role: 'User', status: 'Active', action: 'Edit' },
-  { name: 'Frank Miller', email: 'frank@example.com', role: 'Manager', status: 'Active', action: 'Edit' }
-]
+const cities = ref([
+  { value: 'beijing', label: '北京' },
+  { value: 'shanghai', label: '上海' },
+  { value: 'guangzhou', label: '广州' },
+  { value: 'shenzhen', label: '深圳' },
+  { value: 'hangzhou', label: '杭州' },
+  { value: 'nanjing', label: '南京' },
+  { value: 'chengdu', label: '成都' },
+  { value: 'chongqing', label: '重庆' },
+  { value: 'wuhan', label: '武汉' },
+  { value: 'xian', label: '西安' },
+  { value: 'tianjin', label: '天津' },
+  { value: 'suzhou', label: '苏州' }
+])
 </script>

@@ -1,6 +1,12 @@
 <template>
-  <div :class="dark ? 'bg-gray-800' : 'bg-white'"
-       class="p-2"
+  <div ref="menuRef"
+       :class="[
+         'p-2',
+         glass && 'backdrop-blur-xl backdrop-saturate-150',
+         glass && (dark ? 'bg-gray-800/30' : 'bg-white/30'),
+         glass && (dark ? 'border border-white/20' : 'border border-gray-400/40'),
+         !glass && (dark ? 'bg-gray-800' : 'bg-white')
+       ]"
        :style="{ width: direction === 'vertical' ? calcSize(props.width) : '100%' }">
     <div :class="['flex', directionClass]">
       <slot/>
@@ -9,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, provide, ref } from 'vue'
+import { computed, onMounted, onUnmounted, provide, ref } from 'vue'
 import { calcSize } from '@/utils/common.ts'
 
 const props = withDefaults(defineProps<{
@@ -17,16 +23,21 @@ const props = withDefaults(defineProps<{
   width?: number | string
   direction?: 'horizontal' | 'vertical'
   dark?: boolean
+  trigger?: 'click' | 'hover'
+  glass?: boolean
 }>(), {
   width: 200,
   direction: 'vertical',
-  dark: false
+  dark: false,
+  trigger: 'click',
+  glass: false
 })
 
 const emit = defineEmits(['update:modelValue'])
 
 const activeKey = ref<string>(String(props.modelValue))
-const expandedKey = ref<string | null>(null)
+const expandedKeys = ref<Set<string>>(new Set())
+const menuRef = ref<HTMLElement | null>(null)
 
 const directionClass = computed(() => {
   return props.direction === 'horizontal' ? 'flex-row items-center space-x-4' : 'flex-col space-y-2'
@@ -37,14 +48,52 @@ const updateActiveKey = (key: string) => {
   emit('update:modelValue', key)
 }
 
+const toggleExpandedKey = (key: string) => {
+  if (expandedKeys.value.has(key)) {
+    expandedKeys.value.delete(key)
+  } else {
+    expandedKeys.value.add(key)
+  }
+  expandedKeys.value = new Set(expandedKeys.value)
+}
+
+const isExpanded = (key: string) => {
+  return expandedKeys.value.has(key)
+}
+
+const closeAllMenus = () => {
+  expandedKeys.value.clear()
+  expandedKeys.value = new Set(expandedKeys.value)
+}
+
+const handleClickOutside = (event: MouseEvent) => {
+  if (props.direction === 'horizontal' && menuRef.value && !menuRef.value.contains(event.target as Node)) {
+    closeAllMenus()
+  }
+}
+
+onMounted(() => {
+  if (props.direction === 'horizontal') {
+    document.addEventListener('click', handleClickOutside)
+  }
+})
+
+onUnmounted(() => {
+  if (props.direction === 'horizontal') {
+    document.removeEventListener('click', handleClickOutside)
+  }
+})
+
 provide('menuContext', {
   activeKey,
   setActiveKey: updateActiveKey,
   direction: props.direction,
-  expandedKey,
-  setExpandedKey: (key: string | null) => {
-    expandedKey.value = key
-  },
-  dark: computed(() => props.dark)
+  expandedKeys,
+  toggleExpandedKey,
+  isExpanded,
+  closeAllMenus,
+  dark: computed(() => props.dark),
+  trigger: props.trigger,
+  glass: computed(() => props.glass)
 })
 </script>

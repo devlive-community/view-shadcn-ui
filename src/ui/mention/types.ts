@@ -21,6 +21,7 @@ export interface MentionProps
     max?: number
     name?: string
     dark?: boolean
+    glass?: boolean
 }
 
 export type MentionEmits = {

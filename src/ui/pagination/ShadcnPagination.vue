@@ -1,6 +1,10 @@
 <template>
-  <div class="flex items-center justify-center space-x-2">
-    <div v-if="showTotal || $slots.showTotal" :class="['text-sm', dark ? 'text-gray-400' : 'text-gray-600']">
+  <div :class="[
+    'flex items-center justify-center space-x-2',
+    glass && 'backdrop-blur-xl backdrop-saturate-150 rounded-lg p-3',
+    glass && (dark ? 'bg-gray-800/30 border border-white/20' : 'bg-white/30 border border-gray-400/40')
+  ]">
+    <div v-if="showTotal || $slots.showTotal" :class="['text-sm', glass ? (dark ? 'text-gray-100' : 'text-gray-800') : (dark ? 'text-gray-400' : 'text-gray-600')]">
       <slot name="showTotal">
         {{ t('pagination.text.total', { total }) }}
       </slot>
@@ -8,8 +12,11 @@
 
     <button @click="onPrevPage"
             :class="[
-              'px-2 py-1 text-xs h-8 rounded transition-colors',
-              dark ? 'bg-gray-700 text-gray-200 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200',
+              'px-2 py-1 text-xs h-8 rounded transition-colors select-none',
+              glass && !dark ? 'bg-white/50 text-gray-800 hover:bg-white/70' : '',
+              glass && dark ? 'bg-white/20 text-gray-100 hover:bg-white/30' : '',
+              !glass && dark ? 'bg-gray-700 text-gray-200 hover:bg-gray-600' : '',
+              !glass && !dark ? 'bg-gray-100 hover:bg-gray-200' : '',
               currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''
             ]"
             :disabled="currentPage === 1">
@@ -17,14 +24,17 @@
     </button>
 
     <template v-for="item in displayPages" :key="item">
-      <span v-if="item === '...'" :class="['px-2 py-1', dark ? 'text-gray-400' : 'text-gray-600']">...</span>
+      <span v-if="item === '...'" :class="['px-2 py-1', glass ? (dark ? 'text-gray-100' : 'text-gray-800') : (dark ? 'text-gray-400' : 'text-gray-600')]">...</span>
       <button v-else
               @click="goToPage(Number(item))"
               :class="[
-                'px-2 py-1 text-xs rounded w-8 h-8 flex items-center justify-center transition-colors',
-                item === currentPage
-                  ? 'bg-blue-500 text-white cursor-not-allowed'
-                  : (dark ? 'bg-gray-700 text-gray-200 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200')
+                'px-2 py-1 text-xs rounded w-8 h-8 flex items-center justify-center transition-colors select-none',
+                item === currentPage && !glass ? 'bg-blue-500 text-white cursor-not-allowed' : '',
+                item === currentPage && glass ? (dark ? 'bg-blue-600/60 text-white cursor-not-allowed' : 'bg-blue-500/60 text-white cursor-not-allowed') : '',
+                item !== currentPage && glass && !dark ? 'bg-white/50 text-gray-800 hover:bg-white/70' : '',
+                item !== currentPage && glass && dark ? 'bg-white/20 text-gray-100 hover:bg-white/30' : '',
+                item !== currentPage && !glass && dark ? 'bg-gray-700 text-gray-200 hover:bg-gray-600' : '',
+                item !== currentPage && !glass && !dark ? 'bg-gray-100 hover:bg-gray-200' : ''
               ]"
               :disabled="item === currentPage">
         {{ item }}
@@ -33,8 +43,11 @@
 
     <button @click="onNextPage"
             :class="[
-              'px-2 py-1 text-xs h-8 rounded transition-colors',
-              dark ? 'bg-gray-700 text-gray-200 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200',
+              'px-2 py-1 text-xs h-8 rounded transition-colors select-none',
+              glass && !dark ? 'bg-white/50 text-gray-800 hover:bg-white/70' : '',
+              glass && dark ? 'bg-white/20 text-gray-100 hover:bg-white/30' : '',
+              !glass && dark ? 'bg-gray-700 text-gray-200 hover:bg-gray-600' : '',
+              !glass && !dark ? 'bg-gray-100 hover:bg-gray-200' : '',
               currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''
             ]"
             :disabled="currentPage === totalPages">
@@ -46,6 +59,7 @@
         <ShadcnSelect v-model="pageSize"
                       class="w-auto"
                       :dark="dark"
+                      :glass="glass"
                       :options="sizerOptions"/>
       </slot>
     </template>
@@ -76,6 +90,7 @@ const props = withDefaults(defineProps<{
   showSizer?: boolean
   sizerOptions?: (number | string)[]
   dark?: boolean
+  glass?: boolean
 }>(), {
   total: 100,
   pageSize: 10,
@@ -85,7 +100,8 @@ const props = withDefaults(defineProps<{
   showTotal: false,
   showSizer: false,
   sizerOptions: () => [10, 20, 50, 100],
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const currentPage = ref(Number(props.modelValue))

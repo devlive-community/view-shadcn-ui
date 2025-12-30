@@ -145,6 +145,42 @@ const darkMode = computed(() => isDark.value)
 
 :::
 
+## 液态玻璃效果 (glass)
+
+::: raw
+
+<CodeRunner title="液态玻璃效果 (glass)">
+  <div class="p-6 rounded-lg bg-gradient-to-r from-blue-400 to-purple-400">
+    <div class="p-8 rounded-lg bg-white/50 relative" style="height: 200px;">
+      <ShadcnSpin :model-value="true" glass :dark="darkMode" fixed />
+    </div>
+  </div>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+  <div class="p-6 rounded-lg bg-gradient-to-r from-blue-400 to-purple-400">
+    <div class="p-8 rounded-lg bg-white/50 relative" style="height: 200px;">
+      <ShadcnSpin :model-value="true" glass :dark="darkMode" fixed />
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>
+```
+
+:::
+
 ## 服务 ($Spin)
 
 ::: raw
@@ -188,6 +224,8 @@ export default {
         ['type', '组件的类型', 'enum', 'primary', 'primary | success | warning | error'],
         ['size', '组件的尺寸', 'enum', 'default', 'default | small | large'],
         ['fixed', '是否固定在父组件上，父组件必须使用 <code>position: relative</code>', 'boolean', 'false', '-'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false', '-'],
+        ['dark', '是否启用暗黑模式', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
