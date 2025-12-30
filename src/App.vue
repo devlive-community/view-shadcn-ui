@@ -5,12 +5,24 @@
     </ShadcnButton>
 
     <div class="mt-6">
-      <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-white' : 'text-gray-900']">Pagination 液态玻璃效果</h3>
+      <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-white' : 'text-gray-900']">Tab 液态玻璃效果</h3>
       <div class="p-6 rounded-lg bg-gradient-to-r from-blue-400 to-purple-400">
         <div class="p-8 rounded-lg bg-white/50 flex flex-col items-center gap-6">
-          <ShadcnPagination glass :dark="isDark" v-model="currentPage" :total="100" />
-          <ShadcnPagination glass :dark="isDark" v-model="currentPage2" :total="200" show-total />
-          <ShadcnPagination glass :dark="isDark" v-model="currentPage3" :total="300" show-total show-sizer />
+          <ShadcnTab glass :dark="isDark">
+            <ShadcnTabItem label="Tab 1" value="Tab 1">
+              <p :class="[isDark ? 'text-white' : 'text-gray-900']">Tab 1 content</p>
+            </ShadcnTabItem>
+            <ShadcnTabItem label="Tab 2" value="Tab 2">
+              <p :class="[isDark ? 'text-white' : 'text-gray-900']">Tab 2 content</p>
+            </ShadcnTabItem>
+            <ShadcnTabItem label="Tab 3" value="Tab 3">
+              <p :class="[isDark ? 'text-white' : 'text-gray-900']">Tab 3 content</p>
+            </ShadcnTabItem>
+          </ShadcnTab>
+          <ShadcnTab glass :dark="isDark" type="success">
+            <ShadcnTabItem label="Success 1" value="Success 1">Success content</ShadcnTabItem>
+            <ShadcnTabItem label="Success 2" value="Success 2">Success content</ShadcnTabItem>
+          </ShadcnTab>
         </div>
       </div>
     </div>
@@ -21,10 +33,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ShadcnButton } from "@/ui/button";
-import { ShadcnPagination } from "@/ui/pagination";
+import { ShadcnTab, ShadcnTabItem } from "@/ui/tab";
 
 const isDark = ref(false)
-const currentPage = ref(1)
-const currentPage2 = ref(1)
-const currentPage3 = ref(1)
 </script>

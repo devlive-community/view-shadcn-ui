@@ -13,6 +13,7 @@ export interface TabProps
     direction?: keyof typeof ArrangeDirection
     showScrollButtons?: boolean
     dark?: boolean
+    glass?: boolean
 }
 
 export interface TabItemProps

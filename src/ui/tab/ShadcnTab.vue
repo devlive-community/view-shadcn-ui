@@ -27,27 +27,33 @@
              class="overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           <div ref="tabsWrapper"
                :class="[
-                 direction === 'vertical' ? 'flex flex-col' : line ? 'flex inline-flex' : (dark ? 'flex bg-gray-700 p-1 rounded-lg inline-flex' : 'flex bg-slate-100 p-1 rounded-lg inline-flex'),
+                 direction === 'vertical' ? 'flex flex-col' : line ? 'flex inline-flex' : (glass ? 'flex p-1 rounded-lg inline-flex backdrop-blur-xl backdrop-saturate-150' : (dark ? 'flex bg-gray-700 p-1 rounded-lg inline-flex' : 'flex bg-slate-100 p-1 rounded-lg inline-flex')),
+                 glass && !line && (dark ? 'bg-gray-800/30 border border-white/20' : 'bg-white/30 border border-gray-400/40'),
                  'transition-transform duration-300 ease-in-out'
                ]"
                :style="scrollStyle">
             <div v-for="tab in tabs"
                  :key="tab.value"
                  :class="[
-                    'inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-all cursor-pointer',
+                    'inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-all cursor-pointer select-none',
                     direction === 'vertical' ? 'py-2 px-2' : line ? 'px-3 py-1.5' : 'px-3 py-1.5 rounded-md',
                     direction === 'horizontal' ? [TabSize[size]] : '',
-                    dark && activeTab !== tab.value && !tab.disabled ? 'text-gray-300' : '',
+                    dark && activeTab !== tab.value && !tab.disabled && !glass ? 'text-gray-300' : '',
+                    glass && activeTab !== tab.value && !tab.disabled ? (dark ? 'text-gray-100' : 'text-gray-800') : '',
                     {
-                      'cursor-pointer shadow-sm': activeTab === tab.value && !tab.disabled && direction !== 'vertical' && !line,
-                      'bg-white': activeTab === tab.value && !tab.disabled && direction !== 'vertical' && !line && !dark,
-                      'bg-gray-800': activeTab === tab.value && !tab.disabled && direction !== 'vertical' && !line && dark,
+                      'cursor-pointer shadow-sm': activeTab === tab.value && !tab.disabled && direction !== 'vertical' && !line && !glass,
+                      'bg-white': activeTab === tab.value && !tab.disabled && direction !== 'vertical' && !line && !dark && !glass,
+                      'bg-gray-800': activeTab === tab.value && !tab.disabled && direction !== 'vertical' && !line && dark && !glass,
+                      'bg-white/50': activeTab === tab.value && !tab.disabled && direction !== 'vertical' && !line && glass && !dark,
+                      'bg-white/20': activeTab === tab.value && !tab.disabled && direction !== 'vertical' && !line && glass && dark,
                       'border-b-2 cursor-pointer -mb-px': activeTab === tab.value && !tab.disabled && direction !== 'vertical' && line,
                       [BorderType[type]]: activeTab === tab.value && !tab.disabled && (direction === 'vertical' || line),
                       'border-r-2 cursor-pointer': activeTab === tab.value && !tab.disabled && direction === 'vertical',
                       [TextType[type]]: activeTab === tab.value && !tab.disabled,
-                      'hover:text-slate-900': activeTab !== tab.value && !tab.disabled && direction !== 'vertical' && !dark,
-                      'hover:text-gray-200': activeTab !== tab.value && !tab.disabled && direction !== 'vertical' && dark,
+                      'hover:text-slate-900': activeTab !== tab.value && !tab.disabled && direction !== 'vertical' && !dark && !glass,
+                      'hover:text-gray-200': activeTab !== tab.value && !tab.disabled && direction !== 'vertical' && dark && !glass,
+                      'hover:bg-white/30': activeTab !== tab.value && !tab.disabled && direction !== 'vertical' && !line && glass && !dark,
+                      'hover:bg-white/10': activeTab !== tab.value && !tab.disabled && direction !== 'vertical' && !line && glass && dark,
                       'text-gray-600 hover:border-r-2 hover:cursor-pointer': activeTab !== tab.value && !tab.disabled && direction === 'vertical' && !dark,
                       'text-gray-300 hover:border-r-2 hover:cursor-pointer': activeTab !== tab.value && !tab.disabled && direction === 'vertical' && dark,
                       [HoverTextType[type]]: activeTab !== tab.value && !tab.disabled,
@@ -137,7 +143,8 @@ const props = withDefaults(defineProps<TabProps>(), {
   position: 'left',
   direction: 'horizontal',
   showScrollButtons: true,
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const activeTab = ref('')
