@@ -37,7 +37,7 @@
              ref="subMenuRef"
              @mouseenter="onSubMenuMouseEnter"
              @mouseleave="onSubMenuMouseLeave"
-             :class="['fixed min-w-[8rem] z-50 rounded-md border p-1',
+             :class="['fixed min-w-[8rem] z-[60] rounded-md border p-1',
                       glass ? 'backdrop-blur-xl backdrop-saturate-150' : '',
                       glass ? 'border-white/20' : (dark ? 'border-gray-700' : 'border-gray-200'),
                       glass ? (dark ? 'bg-white/10' : 'bg-white/60') : (dark ? 'bg-gray-800' : 'bg-white'),
@@ -52,7 +52,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, CSSProperties, inject, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, CSSProperties, inject, nextTick, onBeforeUnmount, onMounted, provide, ref, watch } from 'vue'
 import { ContextMenuItemProps } from './types'
 import { calcSize } from '@/utils/common.ts'
 
@@ -67,11 +67,22 @@ const dark = computed(() => props.dark || injectedDark.value)
 const injectedGlass = inject('contextMenuGlass', computed(() => false))
 const glass = computed(() => injectedGlass.value)
 
+const parentKeepOpen = inject<(() => void) | null>('keepParentOpen', null)
+
 const isHovered = ref(false)
 const subMenuRef = ref<HTMLElement | null>(null)
 const triggerRef = ref<HTMLElement | null>(null)
 const position = ref({ x: 0, y: 0 })
 const hideTimeout = ref<number | null>(null)
+
+const keepOpen = () => {
+  clearHideTimeout()
+  if (parentKeepOpen) {
+    parentKeepOpen()
+  }
+}
+
+provide('keepParentOpen', keepOpen)
 
 // Calculates submenu styles
 const subMenuStyle = computed<CSSProperties>(() => {
@@ -143,6 +154,9 @@ const onSubMenuMouseEnter = () => {
   if (!props.disabled) {
     clearHideTimeout()
     isHovered.value = true
+    if (parentKeepOpen) {
+      parentKeepOpen()
+    }
   }
 }
 
