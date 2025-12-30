@@ -5,21 +5,35 @@
     </ShadcnButton>
 
     <div class="mt-6">
-      <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-white' : 'text-gray-900']">Form 液态玻璃效果</h3>
+      <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-white' : 'text-gray-900']">Select 搜索功能</h3>
       <div class="p-6 rounded-lg bg-gradient-to-r from-indigo-400 to-purple-400">
         <div class="p-8 rounded-lg bg-white/50">
-          <ShadcnForm v-model="formData" glass :dark="isDark" @on-submit="handleSubmit">
-            <ShadcnFormItem label="用户名" name="username" :rules="[{ required: true, message: '请输入用户名' }]">
-              <ShadcnInput v-model="formData.username" placeholder="请输入用户名" glass :dark="isDark" />
-            </ShadcnFormItem>
-            <ShadcnFormItem label="邮箱" name="email" :rules="[{ required: true, message: '请输入邮箱' }, { type: 'email', message: '请输入正确的邮箱格式' }]">
-              <ShadcnInput v-model="formData.email" placeholder="请输入邮箱" glass :dark="isDark" />
-            </ShadcnFormItem>
-            <ShadcnFormItem label="密码" name="password" :rules="[{ required: true, message: '请输入密码' }, { min: 6, message: '密码长度至少6位' }]">
-              <ShadcnInput v-model="formData.password" type="password" placeholder="请输入密码" glass :dark="isDark" />
-            </ShadcnFormItem>
-            <ShadcnButton type="submit" glass :dark="isDark">提交</ShadcnButton>
-          </ShadcnForm>
+          <div class="space-y-4">
+            <div>
+              <label :class="['block text-sm font-medium mb-2', isDark ? 'text-gray-200' : 'text-gray-700']">普通搜索选择器</label>
+              <ShadcnSelect v-model="selectedValue1" search placeholder="请选择" :dark="isDark">
+                <template #options>
+                  <ShadcnSelectOption v-for="city in cities" :key="city.value" :value="city.value" :label="city.label" :dark="isDark" />
+                </template>
+              </ShadcnSelect>
+            </div>
+            <div>
+              <label :class="['block text-sm font-medium mb-2', isDark ? 'text-gray-200' : 'text-gray-700']">液态玻璃搜索选择器</label>
+              <ShadcnSelect v-model="selectedValue2" search glass placeholder="请选择" :dark="isDark">
+                <template #options>
+                  <ShadcnSelectOption v-for="city in cities" :key="city.value" :value="city.value" :label="city.label" :dark="isDark" glass />
+                </template>
+              </ShadcnSelect>
+            </div>
+            <div>
+              <label :class="['block text-sm font-medium mb-2', isDark ? 'text-gray-200' : 'text-gray-700']">多选搜索选择器</label>
+              <ShadcnSelect v-model="selectedValue3" search multiple glass placeholder="请选择多个城市" :dark="isDark">
+                <template #options>
+                  <ShadcnSelectOption v-for="city in cities" :key="city.value" :value="city.value" :label="city.label" :dark="isDark" glass />
+                </template>
+              </ShadcnSelect>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -30,17 +44,25 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ShadcnButton } from "@/ui/button"
-import { ShadcnForm, ShadcnFormItem } from "@/ui/form"
-import { ShadcnInput } from "@/ui/input"
+import { ShadcnSelect, ShadcnSelectOption } from "@/ui/select"
 
 const isDark = ref(false)
-const formData = ref({
-  username: '',
-  email: '',
-  password: ''
-})
+const selectedValue1 = ref('')
+const selectedValue2 = ref('')
+const selectedValue3 = ref([])
 
-const handleSubmit = (data: any) => {
-  console.log('提交数据:', data)
-}
+const cities = ref([
+  { value: 'beijing', label: '北京' },
+  { value: 'shanghai', label: '上海' },
+  { value: 'guangzhou', label: '广州' },
+  { value: 'shenzhen', label: '深圳' },
+  { value: 'hangzhou', label: '杭州' },
+  { value: 'nanjing', label: '南京' },
+  { value: 'chengdu', label: '成都' },
+  { value: 'chongqing', label: '重庆' },
+  { value: 'wuhan', label: '武汉' },
+  { value: 'xian', label: '西安' },
+  { value: 'tianjin', label: '天津' },
+  { value: 'suzhou', label: '苏州' }
+])
 </script>

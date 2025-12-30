@@ -16,6 +16,8 @@ export interface SelectProps
     loadData?: (callback: (children: SelectOptionProps[]) => void) => void
     dark?: boolean
     glass?: boolean
+    search?: boolean
+    searchPlaceholder?: string
 }
 
 export interface SelectOptionProps

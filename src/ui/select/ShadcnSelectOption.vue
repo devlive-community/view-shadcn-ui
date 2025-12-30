@@ -1,5 +1,6 @@
 <template>
-  <div :class="['flex items-center text-sm px-2 py-1.5 my-1 rounded-sm transition-all duration-300 ease-in-out',
+  <div v-show="isVisible"
+       :class="['flex items-center text-sm px-2 py-1.5 my-1 rounded-sm transition-all duration-300 ease-in-out',
                   {
                     'cursor-not-allowed opacity-50': disabled,
                     'cursor-pointer': !disabled,
@@ -55,12 +56,21 @@ const context = inject('selectContext') as {
   parentName: string
   dark: any
   glass: any
+  searchQuery: any
+  search: any
 }
 
 const inGroup = inject('inGroup', false)
 const parentName = context.parentName
 const dark = computed(() => props.dark ?? (context.dark?.value || false))
 const glass = computed(() => props.glass ?? (context.glass?.value || false))
+
+const isVisible = computed(() => {
+  if (!context.search?.value || !context.searchQuery?.value) {
+    return true
+  }
+  return props.label.toLowerCase().includes(context.searchQuery.value.toLowerCase())
+})
 
 const isSelected = computed(() => {
   if (context.multiple) {
