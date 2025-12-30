@@ -23,7 +23,9 @@
              @mouseenter="trigger === 'hover' && onMenuMouseEnter()"
              @mouseleave="trigger === 'hover' && onMenuMouseLeave()"
              :class="['fixed z-50 min-w-[8rem] rounded-md shadow-lg ring-1 focus:outline-none',
-                 dark ? 'bg-gray-700 ring-gray-600' : 'bg-white ring-black ring-opacity-5',
+                 glass && 'backdrop-blur-xl backdrop-saturate-150',
+                 glass && (dark ? 'bg-white/10 ring-white/20' : 'bg-white/30 ring-gray-400/40'),
+                 !glass && (dark ? 'bg-gray-700 ring-gray-600' : 'bg-white ring-black ring-opacity-5'),
                  positionClasses
             ]"
              :style="dropdownStyle">
@@ -49,7 +51,8 @@ const emit = defineEmits<DropdownEmits>()
 const props = withDefaults(defineProps<DropdownProps>(), {
   trigger: 'click',
   position: ArrangePosition.left,
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const isOpen = ref(false)
@@ -166,6 +169,7 @@ const onClickOutside = (event: MouseEvent) => {
 
 provide('closeDropdown', onClose)
 provide('dropdownDark', toRef(props, 'dark'))
+provide('dropdownGlass', toRef(props, 'glass'))
 
 onMounted(() => {
   document.addEventListener('click', onClickOutside)

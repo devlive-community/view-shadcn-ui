@@ -7,6 +7,7 @@ export interface DropdownProps
     trigger?: DropdownTrigger
     position?: ArrangePosition
     dark?: boolean
+    glass?: boolean
 }
 
 export interface DropdownItemProps
