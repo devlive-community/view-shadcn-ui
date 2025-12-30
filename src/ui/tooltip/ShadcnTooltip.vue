@@ -5,27 +5,35 @@
     </div>
 
     <Teleport to="body">
-      <div v-if="isVisible"
-           ref="tooltipContent"
-           :class="['fixed z-[100] px-3 py-2 text-sm rounded shadow-lg',
-                    glass && 'backdrop-blur-xl backdrop-saturate-150',
-                    glass && (dark ? 'bg-white/10 border border-white/20 text-gray-100' : 'bg-white/30 border border-gray-400/40 text-gray-800'),
-                    !glass && (dark ? 'text-gray-100 bg-gray-800' : 'text-white bg-black')
-           ]"
-           :style="[tooltipStyle, { maxWidth: computedMaxWidth }]">
-        <div class="text-center break-words">
-          <slot v-if="$slots.content" name="content"/>
-          <div v-else v-html="content"/>
-        </div>
-
-        <div v-if="arrow"
-             :class="['absolute w-2.5 h-2.5 rotate-45',
-                      glass && (dark ? 'bg-white/10 border-r border-b border-white/20' : 'bg-white/30 border-r border-b border-gray-400/40'),
-                      !glass && (dark ? 'bg-gray-800' : 'bg-black'),
-                      arrowPositionClass
+      <Transition
+          enter-active-class="transition duration-200 ease-out"
+          enter-from-class="transform scale-95 opacity-0"
+          enter-to-class="transform scale-100 opacity-100"
+          leave-active-class="transition duration-150 ease-in"
+          leave-from-class="transform scale-100 opacity-100"
+          leave-to-class="transform scale-95 opacity-0">
+        <div v-if="isVisible"
+             ref="tooltipContent"
+             :class="['fixed z-[100] px-3 py-2 text-sm rounded shadow-lg',
+                      glass && 'backdrop-blur-xl backdrop-saturate-150',
+                      glass && (dark ? 'bg-white/10 border border-white/20 text-gray-100' : 'bg-white/30 border border-gray-400/40 text-gray-800'),
+                      !glass && (dark ? 'text-gray-100 bg-gray-800' : 'text-white bg-black')
              ]"
-             :style="arrowStyle"/>
-      </div>
+             :style="[tooltipStyle, { maxWidth: computedMaxWidth }]">
+          <div class="text-center break-words">
+            <slot v-if="$slots.content" name="content"/>
+            <div v-else v-html="content"/>
+          </div>
+
+          <div v-if="arrow"
+               :class="['absolute w-2.5 h-2.5 rotate-45',
+                        glass && (dark ? 'bg-white/10 border-r border-b border-white/20' : 'bg-white/30 border-r border-b border-gray-400/40'),
+                        !glass && (dark ? 'bg-gray-800' : 'bg-black'),
+                        arrowPositionClass
+               ]"
+               :style="arrowStyle"/>
+        </div>
+      </Transition>
     </Teleport>
   </div>
 </template>

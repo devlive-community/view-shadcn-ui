@@ -7,7 +7,7 @@
 
     <transition v-if="tooltip" name="fade">
       <div v-if="showTooltip"
-           :class="cn('absolute transform text-xs rounded p-1.5 transition-all',
+           :class="cn('absolute transform text-xs rounded p-1.5 transition-all z-50',
                     glass && 'backdrop-blur-xl backdrop-saturate-150',
                     glass && 'border border-white/20',
                     glass && 'shadow-lg shadow-black/5',

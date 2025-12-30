@@ -57,7 +57,7 @@ const menuContext = inject('menuContext') as {
   setActiveKey: (key: string) => void
   direction: 'horizontal' | 'vertical'
   parentName?: string
-  dark?: boolean
+  dark?: { value: boolean }
   closeAllMenus?: () => void
 }
 

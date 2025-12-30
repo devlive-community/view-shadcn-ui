@@ -13,7 +13,7 @@ import { computed, inject } from 'vue'
 
 const menuContext = inject('menuContext') as {
   direction: 'horizontal' | 'vertical'
-  dark?: boolean
+  dark?: { value: boolean }
 }
 
 const isHorizontal = computed(() => menuContext.direction === 'horizontal')

@@ -60,7 +60,7 @@ const menuContext = inject('menuContext') as {
   activeKey: { value: string | null }
   toggleExpandedKey: (key: string) => void
   isExpanded: (key: string) => boolean
-  dark?: boolean
+  dark?: { value: boolean }
   parentName?: string
   trigger?: 'click' | 'hover'
 }
