@@ -254,6 +254,74 @@ const resetForm = () => {
 
 :::
 
+## 液态玻璃效果 (Glass)
+
+::: raw
+
+<CodeRunner title="液态玻璃效果 (Glass)">
+    <div class="p-6 rounded-lg bg-gradient-to-r from-indigo-400 to-purple-400">
+      <div class="p-8 rounded-lg bg-white/50">
+        <ShadcnForm v-model="glassFormData" glass :dark="darkMode" @on-submit="onGlassSubmit">
+          <ShadcnFormItem label="用户名" name="username" :rules="[{ required: true, message: '请输入用户名' }]" :dark="darkMode">
+            <ShadcnInput v-model="glassFormData.username" placeholder="请输入用户名" glass :dark="darkMode" />
+          </ShadcnFormItem>
+          <ShadcnFormItem label="邮箱" name="email" :rules="[{ required: true, message: '请输入邮箱' }, { pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: '请输入正确的邮箱格式' }]" :dark="darkMode">
+            <ShadcnInput v-model="glassFormData.email" placeholder="请输入邮箱" glass :dark="darkMode" />
+          </ShadcnFormItem>
+          <ShadcnFormItem label="密码" name="password" :rules="[{ required: true, message: '请输入密码' }, { min: 6, message: '密码长度至少6位' }]" :dark="darkMode">
+            <ShadcnInput v-model="glassFormData.password" type="password" placeholder="请输入密码" glass :dark="darkMode" />
+          </ShadcnFormItem>
+          <ShadcnButton type="submit" glass :dark="darkMode">提交</ShadcnButton>
+        </ShadcnForm>
+      </div>
+    </div>
+</CodeRunner>
+
+:::
+
+::: details 查看代码
+
+```vue
+<template>
+  <div class="p-6 rounded-lg bg-gradient-to-r from-indigo-400 to-purple-400">
+    <div class="p-8 rounded-lg bg-white/50">
+      <ShadcnForm v-model="glassFormData" glass :dark="darkMode" @on-submit="onGlassSubmit">
+        <ShadcnFormItem label="用户名" name="username" :rules="[{ required: true, message: '请输入用户名' }]" :dark="darkMode">
+          <ShadcnInput v-model="glassFormData.username" placeholder="请输入用户名" glass :dark="darkMode" />
+        </ShadcnFormItem>
+        <ShadcnFormItem label="邮箱" name="email" :rules="[{ required: true, message: '请输入邮箱' }, { pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: '请输入正确的邮箱格式' }]" :dark="darkMode">
+          <ShadcnInput v-model="glassFormData.email" placeholder="请输入邮箱" glass :dark="darkMode" />
+        </ShadcnFormItem>
+        <ShadcnFormItem label="密码" name="password" :rules="[{ required: true, message: '请输入密码' }, { min: 6, message: '密码长度至少6位' }]" :dark="darkMode">
+          <ShadcnInput v-model="glassFormData.password" type="password" placeholder="请输入密码" glass :dark="darkMode" />
+        </ShadcnFormItem>
+        <ShadcnButton type="submit" glass :dark="darkMode">提交</ShadcnButton>
+      </ShadcnForm>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed, ref } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
+const glassFormData = ref({
+  username: '',
+  email: '',
+  password: ''
+})
+
+const onGlassSubmit = (data: any) => {
+  console.log('提交数据:', data)
+}
+</script>
+```
+
+:::
+
 ## 动态表单 (dynamic)
 
 ::: raw
@@ -333,6 +401,8 @@ onMounted(() => onAdd())
     :headers="['属性', '描述', '类型', '默认值', '依赖', '支持列表']"
     :columns="[
         ['modelValue', '当前组件的值', 'any', '-', '-', '-'],
+        ['dark', '是否为暗黑模式', 'boolean', 'false', '-', '-'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false', '-', '-'],
     ]">
 </ApiTable>
 
@@ -441,4 +511,14 @@ const onSubmit2 = () => proxy?.$Message.success({
 })
 
 onMounted(() => onAdd())
+
+const glassFormData = ref({
+  username: '',
+  email: '',
+  password: ''
+})
+
+const onGlassSubmit = (data: any) => {
+  console.log('提交数据:', data)
+}
 </script>

@@ -1,5 +1,13 @@
 <template>
-  <form @submit.prevent="handleSubmit" class="space-y-4">
+  <form @submit.prevent="handleSubmit"
+        :class="[
+          'space-y-4 rounded-lg',
+          glass && 'p-6',
+          glass && 'backdrop-blur-xl backdrop-saturate-150',
+          glass && (dark ? 'bg-gray-800/30' : 'bg-white/30'),
+          glass && (dark ? 'border border-white/20' : 'border border-gray-400/40'),
+          glass && 'shadow-lg shadow-black/5'
+        ]">
     <slot/>
   </form>
 </template>
@@ -26,6 +34,7 @@ interface FormItemInstance
 const props = defineProps<{
   modelValue: Record<string, any>
   dark?: boolean
+  glass?: boolean
 }>()
 const emit = defineEmits<{
   'update:modelValue': [value: Record<string, any>]
@@ -95,6 +104,7 @@ provide('formContext', {
   model: formState.model,
   errors: formState.errors,
   dark: props.dark,
+  glass: props.glass,
   updateModel: (name: string, value: any) => {
     formState.model[name] = value
     emit('update:modelValue', { ...formState.model })
