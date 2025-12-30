@@ -3,10 +3,13 @@
     <div class="relative w-full border rounded-md overflow-hidden flex items-center"
          :class="[
              Size[finalSize],
-             [HoverType[type]],
+             glass && 'backdrop-blur-xl backdrop-saturate-150',
+             glass && (dark ? 'bg-white/10 border-white/20' : 'bg-white/30 border-gray-400/40'),
+             !glass && [HoverType[type]],
              { 'cursor-not-allowed opacity-50': disabled },
              disabled ? (dark ? 'bg-gray-800' : 'bg-gray-100') : '',
-             dark ? 'border-gray-600 bg-gray-800 text-gray-200' : 'bg-white'
+             !glass && (dark ? 'border-gray-600 bg-gray-800 text-gray-200' : 'bg-white'),
+             glass && (dark ? 'text-gray-100' : 'text-gray-800')
          ]">
       <div class="w-full px-1 flex flex-nowrap gap-1 overflow-x-auto items-center min-h-full"
            style="scrollbar-width: none;">
@@ -27,7 +30,8 @@
                :class="[
                    { 'cursor-not-allowed opacity-50': disabled },
                    disabled ? (dark ? 'bg-gray-800' : 'bg-gray-100') : '',
-                   dark ? 'text-gray-200 placeholder:text-gray-500' : ''
+                   glass && (dark ? 'text-gray-100 placeholder:text-gray-300' : 'text-gray-800 placeholder:text-gray-500'),
+                   !glass && (dark ? 'text-gray-200 placeholder:text-gray-500' : '')
                ]"
                :disabled="disabled"
                :placeholder="selectedTags.length ? '' : placeholder"
@@ -52,19 +56,30 @@
         leave-to-class="opacity-0 translate-y-1">
       <div v-if="showItems && filteredItems.length > 0"
            ref="dropdownRef"
-           :class="dark ? 'bg-gray-800 border-gray-600' : 'bg-white'"
+           :class="[
+               glass && 'backdrop-blur-xl backdrop-saturate-150',
+               glass && (dark ? 'bg-white/10 border-white/20' : 'bg-white/30 border-gray-400/40'),
+               !glass && (dark ? 'bg-gray-800 border-gray-600' : 'bg-white')
+           ]"
            class="absolute z-50 w-full max-h-[200px] mt-1 overflow-auto border rounded-md shadow-lg space-y-1 px-2 py-2"
            @scroll="handleScroll">
         <div v-for="(item, index) in filteredItems"
              :key="item.id"
-             class="p-2 justify-between items-center flex rounded-md"
+             class="p-2 justify-between items-center flex rounded-md select-none"
              :class="[
-                 selectedIndex === index ? (dark ? 'bg-gray-700' : 'bg-gray-100') : '',
-                 (isItemSelected(item) || item.disabled) ? (dark ? 'cursor-not-allowed opacity-50 bg-gray-700' : 'cursor-not-allowed opacity-50 bg-gray-100') : '',
+                 selectedIndex === index && glass && !dark ? 'bg-white/50' : '',
+                 selectedIndex === index && glass && dark ? 'bg-white/20' : '',
+                 selectedIndex === index && !glass ? (dark ? 'bg-gray-700' : 'bg-gray-100') : '',
+                 (isItemSelected(item) || item.disabled) && glass && !dark ? 'cursor-not-allowed opacity-50 bg-white/50' : '',
+                 (isItemSelected(item) || item.disabled) && glass && dark ? 'cursor-not-allowed opacity-50 bg-white/20' : '',
+                 (isItemSelected(item) || item.disabled) && !glass ? (dark ? 'cursor-not-allowed opacity-50 bg-gray-700' : 'cursor-not-allowed opacity-50 bg-gray-100') : '',
                  !isItemSelected(item) && !item.disabled ? 'cursor-pointer' : '',
                  isItemSelected(item) ? [BaseTextType[type]] : '',
-                 !item.disabled && !isItemSelected(item) ? [HoverType[type]] : '',
-                 dark ? 'text-gray-200' : ''
+                 !item.disabled && !isItemSelected(item) && !glass ? [HoverType[type]] : '',
+                 !item.disabled && !isItemSelected(item) && glass && !dark ? 'hover:bg-white/50' : '',
+                 !item.disabled && !isItemSelected(item) && glass && dark ? 'hover:bg-white/20' : '',
+                 glass && (dark ? 'text-gray-100' : 'text-gray-800'),
+                 !glass && (dark ? 'text-gray-200' : '')
              ]"
              @click.stop="(event) => handleItemClick(item, event)"
              @mouseenter="() => handleItemHover(index, item)">
@@ -100,7 +115,8 @@ const props = withDefaults(defineProps<MentionProps>(), {
   trigger: '@',
   loadData: undefined,
   max: Infinity,
-  dark: false
+  dark: false,
+  glass: false
 })
 
 const emit = defineEmits<MentionEmits>()

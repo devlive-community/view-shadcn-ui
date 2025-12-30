@@ -138,6 +138,37 @@ title: 时间选择器 (Time Picker)
 
 :::
 
+## 液态玻璃效果 (glass)
+::: raw
+<div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-indigo-900 to-purple-900' : 'bg-gradient-to-r from-indigo-400 to-purple-400']">
+<CodeRunner title="液态玻璃效果" class="bg-transparent">
+  <div class="space-y-4">
+    <ShadcnTimePicker v-model="glassValue1" glass :dark="darkMode" />
+    <ShadcnTimePicker v-model="glassValue2" glass :dark="darkMode" format="HH:mm:ss" />
+    <ShadcnTimePicker v-model="glassValue3" glass :dark="darkMode" :quickTimes="['09:00', '12:00', '18:00']" />
+  </div>
+</CodeRunner>
+</div>
+:::
+::: details 查看代码
+```vue
+<template>
+  <div :class="['p-6 rounded-lg', darkMode ? 'bg-gradient-to-r from-indigo-900 to-purple-900' : 'bg-gradient-to-r from-indigo-400 to-purple-400']">
+    <div class="space-y-4">
+      <ShadcnTimePicker v-model="glassValue1" glass :dark="darkMode" />
+      <ShadcnTimePicker v-model="glassValue2" glass :dark="darkMode" format="HH:mm:ss" />
+      <ShadcnTimePicker v-model="glassValue3" glass :dark="darkMode" :quickTimes="['09:00', '12:00', '18:00']" />
+    </div>
+  </div>
+</template>
+<script setup lang="ts">
+import { ref } from 'vue'
+const glassValue1 = ref('09:00')
+const glassValue2 = ref('12:30:45')
+const glassValue3 = ref('14:00')
+</script>
+```
+:::
 ## 时间选择器 (Time Picker) 属性
 
 <ApiTable title="时间选择器 (Time Picker) 属性"
@@ -148,7 +179,9 @@ title: 时间选择器 (Time Picker)
         ['disabled', '是否为禁用', 'boolean', 'false', '-'],
         ['clearable', '是否显示清空按钮', 'boolean', 'true', '-'],
         ['quickTimes', '快捷时间', 'string\[\]', '-', '-'],
-        ['format', '格式', 'HH:mm | HH:mm:ss | hh:mm A | hh:mm:ss A', 'HH:mm', 'HH:mm | HH:mm:ss | hh:mm A | hh:mm:ss A']
+        ['format', '格式', 'HH:mm | HH:mm:ss | hh:mm A | hh:mm:ss A', 'HH:mm', 'HH:mm | HH:mm:ss | hh:mm A | hh:mm:ss A'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false', '-'],
+        ['dark', '是否启用暗黑模式', 'boolean', 'false', '-']
     ]">
 </ApiTable>
 
@@ -183,4 +216,7 @@ const darkMode = computed(() => isDark.value)
 import { ref , computed } from 'vue';
 
 const value = ref('')
+const glassValue1 = ref('09:00')
+const glassValue2 = ref('12:30:45')
+const glassValue3 = ref('14:00')
 </script>

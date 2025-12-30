@@ -11,6 +11,7 @@ export interface UploadProps
     withCredentials?: boolean
     beforeUpload?: (file: File) => boolean | Promise<boolean>
     dark?: boolean
+    glass?: boolean
 }
 
 export interface UploadFile

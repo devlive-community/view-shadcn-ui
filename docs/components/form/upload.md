@@ -68,6 +68,45 @@ title: 上传 (Upload)
 
 :::
 
+## 液态玻璃 (glass)
+
+::: raw
+
+<div class="p-6 rounded-lg bg-gradient-to-r from-indigo-400 to-purple-400">
+<CodeRunner title="液态玻璃 (glass)">
+    <ShadcnUpload action="//jsonplaceholder.typicode.com/posts/" glass :dark="darkMode" />
+</CodeRunner>
+</div>
+
+:::
+::: details 查看代码
+
+```vue
+<template>
+    <ShadcnUpload action="//jsonplaceholder.typicode.com/posts/" glass :dark="darkMode" />
+</template>
+```
+
+:::
+::: raw
+
+<div class="p-6 rounded-lg bg-gradient-to-r from-pink-400 to-rose-400">
+<CodeRunner title="多选 - 液态玻璃">
+    <ShadcnUpload action="//jsonplaceholder.typicode.com/posts/" glass multiple :dark="darkMode" />
+</CodeRunner>
+</div>
+
+:::
+::: details 查看代码
+
+```vue
+<template>
+    <ShadcnUpload action="//jsonplaceholder.typicode.com/posts/" glass multiple :dark="darkMode" />
+</template>
+```
+
+:::
+
 ## 上传 (Upload) 属性
 
 <ApiTable title="上传 (Upload) 属性"
@@ -83,6 +122,8 @@ title: 上传 (Upload)
         ['name', '上传的文件名', 'string', 'file'],
         ['withCredentials', '是否随请求一起发送 Cookie 或授权信息', 'boolean', 'false'],
         ['beforeUpload', '上传之前的钩子', 'function', '-'],
+        ['dark', '深色模式', 'boolean', 'false'],
+        ['glass', '液态玻璃效果', 'boolean', 'false'],
     ]">
 </ApiTable>
 
