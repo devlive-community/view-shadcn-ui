@@ -3,10 +3,14 @@
        @mouseenter="trigger === 'hover' && handleMouseEnter()"
        @mouseleave="trigger === 'hover' && handleMouseLeave()">
     <div :class="[
-          'px-3 py-2 text-sm rounded-md focus:outline-none cursor-pointer',
+          'px-3 py-2 text-sm rounded-md focus:outline-none cursor-pointer select-none',
           'flex items-center justify-between gap-2',
-          dark ? 'text-gray-200 hover:bg-gray-700 focus:bg-gray-700' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900',
-          (isExpanded || hasActiveChild) ? (dark ? 'bg-gray-700' : 'bg-gray-100 text-gray-900') : ''
+          glass && !dark ? 'text-gray-800 hover:bg-white/50 focus:bg-white/50' : '',
+          glass && dark ? 'text-gray-100 hover:bg-white/20 focus:bg-white/20' : '',
+          !glass && dark ? 'text-gray-200 hover:bg-gray-700 focus:bg-gray-700' : '',
+          !glass && !dark ? 'text-gray-700 hover:bg-gray-100 hover:text-gray-900' : '',
+          (isExpanded || hasActiveChild) && !glass ? (dark ? 'bg-gray-700' : 'bg-gray-100 text-gray-900') : '',
+          (isExpanded || hasActiveChild) && glass ? (dark ? 'bg-white/20' : 'bg-white/50 text-gray-900') : ''
         ]"
          @click="trigger === 'click' && toggleExpand()">
       <slot name="header" :expanded="isExpanded" :hasActiveChild="hasActiveChild">
@@ -38,9 +42,13 @@
            ref="menuContent"
            :class="[
             'space-y-1',
-            isNested ? (dark ? 'absolute left-full top-0 ml-1 bg-gray-800 w-fit shadow-lg px-2 py-2 z-30 rounded-md' : 'absolute left-full top-0 ml-1 bg-white w-fit shadow-lg px-2 py-2 z-30 rounded-md border border-gray-200') :
-            isHorizontal ? (dark ? 'absolute left-0 mt-2.5 bg-gray-800 w-fit shadow-lg px-2 py-2 z-20 rounded-md' : 'absolute left-0 mt-2.5 bg-white w-fit shadow-lg px-2 py-2 z-20 rounded-md border border-gray-200') :
-            'pl-4 mt-1'
+            isNested && glass && 'absolute left-full top-0 ml-1 w-fit shadow-lg px-2 py-2 z-30 rounded-md backdrop-blur-xl backdrop-saturate-150',
+            isNested && glass && (dark ? 'bg-gray-800/30 border border-white/20' : 'bg-white/30 border border-gray-400/40'),
+            isNested && !glass && (dark ? 'absolute left-full top-0 ml-1 bg-gray-800 w-fit shadow-lg px-2 py-2 z-30 rounded-md' : 'absolute left-full top-0 ml-1 bg-white w-fit shadow-lg px-2 py-2 z-30 rounded-md border border-gray-200'),
+            isHorizontal && !isNested && glass && 'absolute left-0 mt-2.5 w-fit shadow-lg px-2 py-2 z-20 rounded-md backdrop-blur-xl backdrop-saturate-150',
+            isHorizontal && !isNested && glass && (dark ? 'bg-gray-800/30 border border-white/20' : 'bg-white/30 border border-gray-400/40'),
+            isHorizontal && !isNested && !glass && (dark ? 'absolute left-0 mt-2.5 bg-gray-800 w-fit shadow-lg px-2 py-2 z-20 rounded-md' : 'absolute left-0 mt-2.5 bg-white w-fit shadow-lg px-2 py-2 z-20 rounded-md border border-gray-200'),
+            !isHorizontal && !isNested && 'pl-4 mt-1'
           ]">
         <slot/>
       </div>
@@ -61,6 +69,7 @@ const menuContext = inject('menuContext') as {
   toggleExpandedKey: (key: string) => void
   isExpanded: (key: string) => boolean
   dark?: { value: boolean }
+  glass?: { value: boolean }
   parentName?: string
   trigger?: 'click' | 'hover'
 }
@@ -74,6 +83,7 @@ const isHorizontal = computed(() => menuContext.direction === 'horizontal')
 const isNested = computed(() => !!menuContext.parentName && isHorizontal.value)
 const isExpanded = computed(() => menuContext.isExpanded(props.name))
 const dark = computed(() => menuContext.dark?.value || false)
+const glass = computed(() => menuContext.glass?.value || false)
 const trigger = computed(() => menuContext.trigger || 'click')
 
 const hasActiveChild = ref(false)

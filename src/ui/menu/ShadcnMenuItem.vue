@@ -1,9 +1,13 @@
 <template>
   <ShadcnLink v-if="to"
               :class="[
-                   'flex items-center justify-between px-3 py-2 text-sm rounded-md focus:outline-none cursor-pointer',
-                   dark ? 'text-gray-200 hover:bg-gray-700 focus:bg-gray-700' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900',
-                   isActive ? (dark ? 'bg-gray-700' : 'bg-gray-100 text-gray-900') : ''
+                   'flex items-center justify-between px-3 py-2 text-sm rounded-md focus:outline-none cursor-pointer select-none',
+                   glass && !dark ? 'text-gray-800 hover:bg-white/50 focus:bg-white/50' : '',
+                   glass && dark ? 'text-gray-100 hover:bg-white/20 focus:bg-white/20' : '',
+                   !glass && dark ? 'text-gray-200 hover:bg-gray-700 focus:bg-gray-700' : '',
+                   !glass && !dark ? 'text-gray-700 hover:bg-gray-100 hover:text-gray-900' : '',
+                   isActive && !glass ? (dark ? 'bg-gray-700' : 'bg-gray-100 text-gray-900') : '',
+                   isActive && glass ? (dark ? 'bg-white/20' : 'bg-white/50 text-gray-900') : ''
               ]"
               :dark="dark"
               :data-name="name"
@@ -20,9 +24,13 @@
   </ShadcnLink>
   <div v-else
        :class="[
-             'flex items-center justify-between px-3 py-2 text-sm rounded-md focus:outline-none cursor-pointer',
-             dark ? 'text-gray-200 hover:bg-gray-700 focus:bg-gray-700' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900',
-             isActive ? (dark ? 'bg-gray-700' : 'bg-gray-100 text-gray-900') : ''
+             'flex items-center justify-between px-3 py-2 text-sm rounded-md focus:outline-none cursor-pointer select-none',
+             glass && !dark ? 'text-gray-800 hover:bg-white/50 focus:bg-white/50' : '',
+             glass && dark ? 'text-gray-100 hover:bg-white/20 focus:bg-white/20' : '',
+             !glass && dark ? 'text-gray-200 hover:bg-gray-700 focus:bg-gray-700' : '',
+             !glass && !dark ? 'text-gray-700 hover:bg-gray-100 hover:text-gray-900' : '',
+             isActive && !glass ? (dark ? 'bg-gray-700' : 'bg-gray-100 text-gray-900') : '',
+             isActive && glass ? (dark ? 'bg-white/20' : 'bg-white/50 text-gray-900') : ''
        ]"
        :data-name="name"
        :data-parent="parentName"
@@ -58,6 +66,7 @@ const menuContext = inject('menuContext') as {
   direction: 'horizontal' | 'vertical'
   parentName?: string
   dark?: { value: boolean }
+  glass?: { value: boolean }
   closeAllMenus?: () => void
 }
 
@@ -65,6 +74,7 @@ const isActive = computed(() => props.active || menuContext.activeKey.value === 
 const isHorizontal = computed(() => menuContext.direction === 'horizontal')
 const parentName = menuContext.parentName || null
 const dark = computed(() => menuContext.dark?.value || false)
+const glass = computed(() => menuContext.glass?.value || false)
 
 const onClick = (event: MouseEvent) => {
   menuContext.setActiveKey(props.name)

@@ -1,7 +1,12 @@
 <template>
   <div ref="menuRef"
-       :class="dark ? 'bg-gray-800' : 'bg-white'"
-       class="p-2"
+       :class="[
+         'p-2',
+         glass && 'backdrop-blur-xl backdrop-saturate-150',
+         glass && (dark ? 'bg-gray-800/30' : 'bg-white/30'),
+         glass && (dark ? 'border border-white/20' : 'border border-gray-400/40'),
+         !glass && (dark ? 'bg-gray-800' : 'bg-white')
+       ]"
        :style="{ width: direction === 'vertical' ? calcSize(props.width) : '100%' }">
     <div :class="['flex', directionClass]">
       <slot/>
@@ -19,11 +24,13 @@ const props = withDefaults(defineProps<{
   direction?: 'horizontal' | 'vertical'
   dark?: boolean
   trigger?: 'click' | 'hover'
+  glass?: boolean
 }>(), {
   width: 200,
   direction: 'vertical',
   dark: false,
-  trigger: 'click'
+  trigger: 'click',
+  glass: false
 })
 
 const emit = defineEmits(['update:modelValue'])
@@ -86,6 +93,7 @@ provide('menuContext', {
   isExpanded,
   closeAllMenus,
   dark: computed(() => props.dark),
-  trigger: props.trigger
+  trigger: props.trigger,
+  glass: computed(() => props.glass)
 })
 </script>

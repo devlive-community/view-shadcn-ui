@@ -270,6 +270,97 @@ title: 菜单 (Menu)
 
 :::
 
+## 液态玻璃效果 (glass)
+
+<CodeRunner title="液态玻璃效果 (glass)">
+  <div class="p-6 rounded-lg bg-gradient-to-r from-blue-400 to-purple-400">
+    <div class="p-8 rounded-lg bg-white/50">
+      <ShadcnMenu glass :dark="darkMode">
+        <ShadcnMenuItem name="home">
+          <template #icon>
+            <ShadcnIcon icon="Home"/>
+          </template>
+          首页
+        </ShadcnMenuItem>
+        <ShadcnMenuSub name="products">
+          <template #title>产品</template>
+          <template #icon>
+            <ShadcnIcon icon="Package"/>
+          </template>
+          <ShadcnMenuItem name="product-1">产品 1</ShadcnMenuItem>
+          <ShadcnMenuItem name="product-2">产品 2</ShadcnMenuItem>
+          <ShadcnMenuItem name="product-3">产品 3</ShadcnMenuItem>
+        </ShadcnMenuSub>
+        <ShadcnMenuSub name="services">
+          <template #title>服务</template>
+          <template #icon>
+            <ShadcnIcon icon="Settings"/>
+          </template>
+          <ShadcnMenuItem name="service-1">服务 1</ShadcnMenuItem>
+          <ShadcnMenuItem name="service-2">服务 2</ShadcnMenuItem>
+        </ShadcnMenuSub>
+        <ShadcnMenuItem name="about">
+          <template #icon>
+            <ShadcnIcon icon="Info"/>
+          </template>
+          关于
+        </ShadcnMenuItem>
+      </ShadcnMenu>
+    </div>
+  </div>
+</CodeRunner>
+
+:::
+
+
+::: details 查看代码
+```vue
+<template>
+  <div class="p-6 rounded-lg bg-gradient-to-r from-blue-400 to-purple-400">
+    <div class="p-8 rounded-lg bg-white/50">
+      <ShadcnMenu glass>
+        <ShadcnMenuItem name="home">
+          <template #icon>
+            <ShadcnIcon icon="Home"/>
+          </template>
+          首页
+        </ShadcnMenuItem>
+        <ShadcnMenuSub name="products">
+          <template #title>产品</template>
+          <template #icon>
+            <ShadcnIcon icon="Package"/>
+          </template>
+          <ShadcnMenuItem name="product-1">产品 1</ShadcnMenuItem>
+          <ShadcnMenuItem name="product-2">产品 2</ShadcnMenuItem>
+          <ShadcnMenuItem name="product-3">产品 3</ShadcnMenuItem>
+        </ShadcnMenuSub>
+        <ShadcnMenuSub name="services">
+          <template #title>服务</template>
+          <template #icon>
+            <ShadcnIcon icon="Settings"/>
+          </template>
+          <ShadcnMenuItem name="service-1">服务 1</ShadcnMenuItem>
+          <ShadcnMenuItem name="service-2">服务 2</ShadcnMenuItem>
+        </ShadcnMenuSub>
+        <ShadcnMenuItem name="about">
+          <template #icon>
+            <ShadcnIcon icon="Info"/>
+          </template>
+          关于
+        </ShadcnMenuItem>
+      </ShadcnMenu>
+    </div>
+  </div>
+</template>
+<script setup lang="ts">
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+</script>
+```
+:::
+
 ## 自定义插槽
 
 ShadcnMenuSub 支持 `header` 插槽，可以完全自定义子菜单的标题部分。
@@ -334,6 +425,7 @@ ShadcnMenuSub 支持 `header` 插槽，可以完全自定义子菜单的标题�
         ['direction', '菜单的方向', 'string', 'vertical', 'horizontal | vertical'],
         ['dark', '暗黑模式', 'boolean', 'false', '-'],
         ['trigger', '子菜单触发方式', 'string', 'click', 'click | hover'],
+        ['glass', '是否启用液态玻璃效果', 'boolean', 'false', '-'],
     ]">
 </ApiTable>
 
