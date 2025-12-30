@@ -202,7 +202,6 @@ title: 下拉菜单 (Dropdown)
         <ShadcnDropdownItem divided>操作 3</ShadcnDropdownItem>
         <ShadcnDropdownItem>操作 4</ShadcnDropdownItem>
       </ShadcnDropdown>
-
       <ShadcnDropdown glass :dark="darkMode" trigger="hover">
         <template #trigger>
           <ShadcnButton :dark="darkMode">悬停打开</ShadcnButton>
@@ -224,36 +223,18 @@ title: 下拉菜单 (Dropdown)
 <template>
   <div class="p-6 rounded-lg bg-gradient-to-r from-blue-400 to-purple-400">
     <div class="p-8 rounded-lg bg-white/50 flex gap-4">
-      <ShadcnDropdown glass :dark="darkMode" trigger="click">
+      <ShadcnDropdown glass trigger="click">
         <template #trigger>
-          <ShadcnButton :dark="darkMode">点击打开</ShadcnButton>
+          <ShadcnButton>点击打开</ShadcnButton>
         </template>
         <ShadcnDropdownItem>操作 1</ShadcnDropdownItem>
         <ShadcnDropdownItem active>操作 2</ShadcnDropdownItem>
         <ShadcnDropdownItem divided>操作 3</ShadcnDropdownItem>
         <ShadcnDropdownItem>操作 4</ShadcnDropdownItem>
       </ShadcnDropdown>
-
-      <ShadcnDropdown glass :dark="darkMode" trigger="hover">
-        <template #trigger>
-          <ShadcnButton :dark="darkMode">悬停打开</ShadcnButton>
-        </template>
-        <ShadcnDropdownItem>操作 1</ShadcnDropdownItem>
-        <ShadcnDropdownItem>操作 2</ShadcnDropdownItem>
-        <ShadcnDropdownItem divided>操作 3</ShadcnDropdownItem>
-        <ShadcnDropdownItem disabled>操作 4 (禁用)</ShadcnDropdownItem>
-      </ShadcnDropdown>
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { useData } from 'vitepress'
-import { computed } from 'vue'
-
-const { isDark } = useData()
-const darkMode = computed(() => isDark.value)
-</script>
 ```
 
 :::
