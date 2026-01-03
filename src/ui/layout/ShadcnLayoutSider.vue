@@ -1,38 +1,27 @@
 <template>
-  <div v-if="isInLayout"
-       :class="['shadcn-layout-sider relative flex flex-col transition-all duration-300 ease-in-out', dark ? 'bg-gray-800 border-r border-gray-700' : 'bg-gray-50 border-r border-gray-200']"
+  <div class="shadcn-layout-sider relative flex flex-col transition-all duration-300 ease-in-out"
        :style="{ width: collapsed ? `${collapsedWidth}px` : `${width}px` }">
-    <!-- Sider content wrapper -->
-    <div class="flex-1 overflow-hidden">
-      <div class="h-full" :class="{ 'px-4 py-2': !collapsed }">
-        <!-- Expanded state displays normal content -->
-        <div v-show="!collapsed" class="transition-opacity duration-300">
-          <slot/>
-        </div>
-
-        <!-- Show icon content in collapsed state -->
-        <div v-show="collapsed" class="transition-opacity duration-300">
-          <slot name="collapsed">
-            <!-- Content when collapsed by default -->
-            <div class="flex flex-col items-center py-2 space-y-4">
-              <slot name="icon"/>
-            </div>
-          </slot>
-        </div>
-      </div>
+    <div v-show="!collapsed" class="flex-1 transition-opacity duration-300">
+      <slot/>
     </div>
 
-    <!-- Trigger -->
+    <div v-show="collapsed" class="flex-1 transition-opacity duration-300">
+      <slot name="collapsed">
+        <div class="flex flex-col items-center py-2 space-y-4">
+          <slot name="icon"/>
+        </div>
+      </slot>
+    </div>
+
     <div v-if="collapsible && trigger"
-         :class="['absolute top-1/2 -right-3 w-6 h-6 flex items-center justify-center border rounded-full cursor-pointer transform -translate-y-1/2 shadow-md', dark ? 'bg-gray-700 border-gray-600 hover:bg-gray-600' : 'bg-white border-gray-200 hover:bg-gray-50']"
+         class="absolute top-1/2 -right-3 w-6 h-6 flex items-center justify-center border rounded-full cursor-pointer transform -translate-y-1/2 shadow-md bg-white border-gray-200 hover:bg-gray-50"
          @click="toggleCollapse">
-      <div :class="['flex items-center', dark ? 'text-gray-300' : 'text-gray-500']">
-        <ShadcnIcon v-if="collapsed" :dark="dark" class="h-4 w-4" icon="ChevronRight"/>
-        <ShadcnIcon v-else :dark="dark" class="h-4 w-4" icon="ChevronLeft"/>
+      <div class="flex items-center text-gray-500">
+        <ShadcnIcon v-if="collapsed" class="h-4 w-4" icon="ChevronRight"/>
+        <ShadcnIcon v-else class="h-4 w-4" icon="ChevronLeft"/>
       </div>
     </div>
 
-    <!-- Custom trigger -->
     <slot name="trigger" v-if="collapsible && !trigger"
           :collapsed="collapsed"
           :toggle="toggleCollapse"/>
@@ -40,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import { inject, ref } from 'vue'
+import { ref } from 'vue'
 import { ShadcnIcon } from '@/ui/icon'
 
 interface Props
@@ -52,6 +41,10 @@ interface Props
   trigger?: boolean
 }
 
+defineOptions({
+  name: 'ShadcnLayoutSider'
+})
+
 const emit = defineEmits(['on-collapse'])
 
 const props = withDefaults(defineProps<Props>(), {
@@ -62,8 +55,6 @@ const props = withDefaults(defineProps<Props>(), {
   trigger: false
 })
 
-const isInLayout = inject('isInLayout', false)
-const dark = inject('dark', false)
 const collapsed = ref(props.defaultCollapsed)
 
 const toggleCollapse = () => {

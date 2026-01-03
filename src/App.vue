@@ -1,68 +1,98 @@
 <template>
-  <div :class="['min-h-screen px-6 pb-6', isDark ? 'bg-gray-900' : 'bg-white']">
-    <ShadcnButton @click="isDark = !isDark" :dark="isDark" class="mt-2">
-      切换暗黑模式
-    </ShadcnButton>
+  <div class="border border-gray-300 bg-gray-50 relative rounded overflow-hidden p-5 text-white text-center space-y-5">
+    <ShadcnLayout>
+      <ShadcnLayoutHeader class="bg-sky-300 text-white">Header</ShadcnLayoutHeader>
+      <ShadcnLayoutContent class="bg-sky-600 min-h-[120px] leading-[120px]">Content</ShadcnLayoutContent>
+      <ShadcnLayoutFooter class="bg-sky-300 text-white">Footer</ShadcnLayoutFooter>
+    </ShadcnLayout>
 
-    <div class="mt-6">
-      <h3 :class="['text-lg font-semibold mb-4', isDark ? 'text-white' : 'text-gray-900']">Select 搜索功能</h3>
-      <div class="p-6 rounded-lg bg-gradient-to-r from-indigo-400 to-purple-400">
-        <div class="p-8 rounded-lg bg-white/50">
-          <div class="space-y-4">
-            <div>
-              <label :class="['block text-sm font-medium mb-2', isDark ? 'text-gray-200' : 'text-gray-700']">普通搜索选择器</label>
-              <ShadcnSelect v-model="selectedValue1" search placeholder="请选择" :dark="isDark">
-                <template #options>
-                  <ShadcnSelectOption v-for="city in cities" :key="city.value" :value="city.value" :label="city.label" :dark="isDark" />
-                </template>
-              </ShadcnSelect>
-            </div>
-            <div>
-              <label :class="['block text-sm font-medium mb-2', isDark ? 'text-gray-200' : 'text-gray-700']">液态玻璃搜索选择器</label>
-              <ShadcnSelect v-model="selectedValue2" search glass placeholder="请选择" :dark="isDark">
-                <template #options>
-                  <ShadcnSelectOption v-for="city in cities" :key="city.value" :value="city.value" :label="city.label" :dark="isDark" glass />
-                </template>
-              </ShadcnSelect>
-            </div>
-            <div>
-              <label :class="['block text-sm font-medium mb-2', isDark ? 'text-gray-200' : 'text-gray-700']">多选搜索选择器</label>
-              <ShadcnSelect v-model="selectedValue3" search multiple glass placeholder="请选择多个城市" :dark="isDark">
-                <template #options>
-                  <ShadcnSelectOption v-for="city in cities" :key="city.value" :value="city.value" :label="city.label" :dark="isDark" glass />
-                </template>
-              </ShadcnSelect>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <ShadcnLayout>
+      <ShadcnLayoutHeader class="bg-sky-300 text-white">Header</ShadcnLayoutHeader>
+      <ShadcnLayout>
+        <ShadcnLayoutSider class="bg-sky-400 min-h-[120px] leading-[120px]" :collapsible="false">Sider</ShadcnLayoutSider>
+        <ShadcnLayoutContent class="bg-sky-600 min-h-[120px] leading-[120px]">Content</ShadcnLayoutContent>
+      </ShadcnLayout>
+      <ShadcnLayoutFooter class="bg-sky-300 text-white">Footer</ShadcnLayoutFooter>
+    </ShadcnLayout>
 
+    <ShadcnLayout>
+      <ShadcnLayoutHeader class="bg-sky-300 text-white">Header</ShadcnLayoutHeader>
+      <ShadcnLayout>
+        <ShadcnLayoutContent class="bg-sky-600 min-h-[120px] leading-[120px]">Content</ShadcnLayoutContent>
+        <ShadcnLayoutSider class="bg-sky-400 min-h-[120px] leading-[120px]" :collapsible="false">Sider</ShadcnLayoutSider>
+      </ShadcnLayout>
+      <ShadcnLayoutFooter class="bg-sky-300 text-white">Footer</ShadcnLayoutFooter>
+    </ShadcnLayout>
+
+    <ShadcnLayout>
+      <ShadcnLayoutSider class="bg-sky-400 min-h-[120px] leading-[120px]" :collapsible="false">Sider</ShadcnLayoutSider>
+      <ShadcnLayout>
+        <ShadcnLayoutHeader class="bg-sky-300 text-white">Header</ShadcnLayoutHeader>
+        <ShadcnLayoutContent class="bg-sky-600 min-h-[120px] leading-[120px]">Content</ShadcnLayoutContent>
+        <ShadcnLayoutFooter class="bg-sky-300 text-white">Footer</ShadcnLayoutFooter>
+      </ShadcnLayout>
+    </ShadcnLayout>
+
+    <div class="text-gray-800 text-left font-semibold mb-2">可折叠侧边栏示例（带触发器）</div>
+    <ShadcnLayout>
+      <ShadcnLayoutSider
+        class="bg-sky-400 min-h-[120px] flex items-center justify-center"
+        :collapsible="true"
+        :trigger="true"
+        @on-collapse="handleCollapse">
+        <div>Sider</div>
+      </ShadcnLayoutSider>
+      <ShadcnLayout>
+        <ShadcnLayoutHeader class="bg-sky-300 text-white">Header</ShadcnLayoutHeader>
+        <ShadcnLayoutContent class="bg-sky-600 min-h-[120px] leading-[120px]">Content</ShadcnLayoutContent>
+        <ShadcnLayoutFooter class="bg-sky-300 text-white">Footer</ShadcnLayoutFooter>
+      </ShadcnLayout>
+    </ShadcnLayout>
+
+    <div class="text-gray-800 text-left font-semibold mb-2">可折叠侧边栏示例（自定义触发器）</div>
+    <ShadcnLayout>
+      <ShadcnLayoutSider
+        ref="siderRef"
+        class="bg-sky-400 min-h-[120px]"
+        :collapsible="true"
+        :trigger="false"
+        @on-collapse="handleCollapse">
+        <template #default>
+          <div class="flex items-center justify-center h-full">Sider Content</div>
+        </template>
+        <template #collapsed>
+          <div class="flex items-center justify-center h-full">S</div>
+        </template>
+      </ShadcnLayoutSider>
+      <ShadcnLayout>
+        <ShadcnLayoutHeader class="bg-sky-300 text-white flex items-center justify-between px-4">
+          <span>Header</span>
+          <button
+            @click="toggleSider"
+            class="px-3 py-1 bg-sky-500 hover:bg-sky-600 rounded text-white text-sm">
+            Toggle Sider
+          </button>
+        </ShadcnLayoutHeader>
+        <ShadcnLayoutContent class="bg-sky-600 min-h-[120px] leading-[120px]">Content</ShadcnLayoutContent>
+        <ShadcnLayoutFooter class="bg-sky-300 text-white">Footer</ShadcnLayoutFooter>
+      </ShadcnLayout>
+    </ShadcnLayout>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { ShadcnButton } from "@/ui/button"
-import { ShadcnSelect, ShadcnSelectOption } from "@/ui/select"
+import { ref } from 'vue';
+import { ShadcnLayout, ShadcnLayoutContent, ShadcnLayoutFooter, ShadcnLayoutHeader, ShadcnLayoutSider } from "@/ui/layout";
 
-const isDark = ref(false)
-const selectedValue1 = ref('')
-const selectedValue2 = ref('')
-const selectedValue3 = ref([])
+const siderRef = ref<InstanceType<typeof ShadcnLayoutSider> | null>(null);
 
-const cities = ref([
-  { value: 'beijing', label: '北京' },
-  { value: 'shanghai', label: '上海' },
-  { value: 'guangzhou', label: '广州' },
-  { value: 'shenzhen', label: '深圳' },
-  { value: 'hangzhou', label: '杭州' },
-  { value: 'nanjing', label: '南京' },
-  { value: 'chengdu', label: '成都' },
-  { value: 'chongqing', label: '重庆' },
-  { value: 'wuhan', label: '武汉' },
-  { value: 'xian', label: '西安' },
-  { value: 'tianjin', label: '天津' },
-  { value: 'suzhou', label: '苏州' }
-])
+const handleCollapse = (collapsed: boolean) => {
+  console.log('Sider collapsed:', collapsed);
+};
+
+const toggleSider = () => {
+  if (siderRef.value) {
+    siderRef.value.toggle();
+  }
+};
 </script>
