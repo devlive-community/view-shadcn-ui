@@ -29,7 +29,7 @@ import { ShadcnSelect, ShadcnSelectGroup, ShadcnSelectOption } from '@/ui/select
 import { ShadcnRate } from '@/ui/rate'
 import { ShadcnTab, ShadcnTabItem } from '@/ui/tab'
 import { ShadcnSkeleton, ShadcnSkeletonItem } from '@/ui/skeleton'
-import { ShadcnLayout, ShadcnLayoutContent, ShadcnLayoutFooter, ShadcnLayoutHeader, ShadcnLayoutMain, ShadcnLayoutSider, ShadcnLayoutWrapper } from '@/ui/layout'
+import { ShadcnLayout, ShadcnLayoutContent, ShadcnLayoutFooter, ShadcnLayoutHeader, ShadcnLayoutSider } from '@/ui/layout'
 import { ShadcnPagination } from '@/ui/pagination'
 import { ShadcnDrawer } from '@/ui/drawer'
 import { ShadcnMenu, ShadcnMenuGroup, ShadcnMenuItem, ShadcnMenuSub } from '@/ui/menu'
@@ -110,7 +110,7 @@ let components = [
     ShadcnRate,
     ShadcnTab, ShadcnTabItem,
     ShadcnSkeleton, ShadcnSkeletonItem,
-    ShadcnLayout, ShadcnLayoutHeader, ShadcnLayoutContent, ShadcnLayoutSider, ShadcnLayoutFooter, ShadcnLayoutWrapper, ShadcnLayoutMain,
+    ShadcnLayout, ShadcnLayoutHeader, ShadcnLayoutContent, ShadcnLayoutSider, ShadcnLayoutFooter,
     ShadcnPagination,
     ShadcnDrawer,
     ShadcnMenu, ShadcnMenuItem, ShadcnMenuSub, ShadcnMenuGroup,
@@ -225,7 +225,7 @@ export { ShadcnSelect, ShadcnSelectOption, ShadcnSelectGroup } from '@/ui/select
 export { ShadcnRate } from '@/ui/rate'
 export { ShadcnTab, ShadcnTabItem } from '@/ui/tab'
 export { ShadcnSkeleton, ShadcnSkeletonItem } from '@/ui/skeleton'
-export { ShadcnLayout, ShadcnLayoutContent, ShadcnLayoutFooter, ShadcnLayoutHeader, ShadcnLayoutMain, ShadcnLayoutSider, ShadcnLayoutWrapper } from '@/ui/layout'
+export { ShadcnLayout, ShadcnLayoutContent, ShadcnLayoutFooter, ShadcnLayoutHeader, ShadcnLayoutSider } from '@/ui/layout'
 export { ShadcnPagination } from '@/ui/pagination'
 export { ShadcnDrawer } from '@/ui/drawer'
 export { ShadcnMenu, ShadcnMenuItem, ShadcnMenuSub, ShadcnMenuGroup } from '@/ui/menu'

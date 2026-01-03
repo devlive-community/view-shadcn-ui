@@ -38,8 +38,6 @@ declare module 'view-shadcn-ui'
     export const ShadcnLayoutContent: typeof import('@/ui/layout/content').default
     export const ShadcnLayoutSider: typeof import('@/ui/layout/sider').default
     export const ShadcnLayoutFooter: typeof import('@/ui/layout/footer').default
-    export const ShadcnLayoutWrapper: typeof import('@/ui/layout/wrapper').default
-    export const ShadcnLayoutMain: typeof import('@/ui/layout/main').default
     export const ShadcnPagination: typeof import('@/ui/pagination').default
     export const ShadcnDrawer: typeof import('@/ui/drawer').default
     export const ShadcnMenu: typeof import('@/ui/menu').default

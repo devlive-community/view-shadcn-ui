@@ -21,6 +21,28 @@ job_before_checked() {
     printf "============================================\n\n"
 }
 
+job_switch_to_version_branch() {
+    printf "\n\tJob switch to version branch \n"
+    printf "============================================\n"
+
+    # 检查分支是否存在
+    if git show-ref --verify --quiet "refs/heads/$VERSION"; then
+        printf "Branch '%s' exists, switching...\n" "$VERSION"
+        git checkout "$VERSION"
+    else
+        printf "Branch '%s' does not exist, creating...\n" "$VERSION"
+        git checkout -b "$VERSION"
+    fi
+
+    if [ $? -ne 0 ]; then
+        printf "Failed to switch to branch '%s'\n" "$VERSION"
+        exit 1
+    fi
+
+    printf "Now on branch: %s\n" "$VERSION"
+    printf "============================================\n\n"
+}
+
 job_check_version_diff() {
     printf "\n\tJob check version difference \n"
     printf "============================================\n"
@@ -121,6 +143,7 @@ job_runner_apply_playground() {
 
 job_before_echo_basic
 job_before_checked
+job_switch_to_version_branch
 job_check_version_diff
 job_runner_apply
 job_runner_apply_playground
