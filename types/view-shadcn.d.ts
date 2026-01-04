@@ -18,7 +18,6 @@ declare module 'view-shadcn-ui'
     export const ShadcnEllipsis: typeof import('@/ui/ellipsis').default
     export const ShadcnAvatar: typeof import('@/ui/avatar').default
     export const ShadcnBadge: typeof import('@/ui/badge').default
-    export const ShadcnAlert: typeof import('@/ui/alert').default
     export const ShadcnProgress: typeof import('@/ui/progress').default
     export const ShadcnSpace: typeof import('@/ui/space').default
     export const ShadcnSwitch: typeof import('@/ui/switch').default
@@ -49,6 +48,8 @@ declare module 'view-shadcn-ui'
     export const ShadcnSlider: typeof import('@/ui/slider').default
     export const ShadcnTransfer: typeof import('@/ui/transfer').ShadcnTransfer
 
+    export const ShadcnAlert: typeof import('@/ui/alert').default
+    export type { AlertProps, AlertEmits } from '@/ui/alert'
     export const ShadcnCheckbox: typeof import('@/ui/checkbox').default
     export const ShadcnCheckboxGroup: typeof import('@/ui/checkbox/group').default
     export type { CheckboxProps, CheckboxEmits } from '@/ui/checkbox'

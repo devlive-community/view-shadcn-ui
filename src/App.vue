@@ -13,15 +13,16 @@
       </div>
     </div>
 
-    <ShadcnCheckboxGroup
-        v-model="checkedGroup"
-        type="warning"
-        size="large"
+    <ShadcnAlert
+        title="Alert"
+        type="success"
+        show-icon
         :dark="isDark"
         :glass="isGlass">
-      <ShadcnCheckbox value="Vue">Vue</ShadcnCheckbox>
-      <ShadcnCheckbox value="Nuxt">Nuxt</ShadcnCheckbox>
-    </ShadcnCheckboxGroup>
+      <template #icon>
+        <ShadcnIcon name="Info" :dark="isDark" :glass="isGlass"/>
+      </template>
+    </ShadcnAlert>
 
     <ShadcnTransfer
         v-model="transferSelected1"
@@ -57,7 +58,8 @@ import { ShadcnTransfer } from '@/ui/transfer'
 import { ShadcnButton } from '@/ui/button'
 import { ShadcnCard } from '@/ui/card'
 import { ShadcnDropdown, ShadcnDropdownItem } from '@/ui/dropdown'
-import { ShadcnCheckbox, ShadcnCheckboxGroup } from '@/ui/checkbox'
+import { ShadcnAlert } from '@/ui/alert'
+import { ShadcnIcon } from '@/ui/icon'
 
 const isDark = ref(false)
 const isGlass = ref(false)
@@ -70,6 +72,4 @@ const transferData1 = ref([
   { key: 4, label: '选项 4' },
   { key: 5, label: '选项 5' }
 ])
-
-const checkedGroup = ref([])
 </script>
