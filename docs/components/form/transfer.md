@@ -142,6 +142,106 @@ const data = ref([
 
 :::
 
+## 可搜索 (filterable)
+
+<CodeRunner title="可搜索 (filterable)">
+    <ShadcnTransfer
+        v-model="selected14"
+        :data="data14"
+        :dark="darkMode"
+        :filterable="true" />
+</CodeRunner>
+
+::: details 查看代码
+
+```vue
+<template>
+<ShadcnTransfer
+    v-model="selected"
+    :data="data"
+    :dark="darkMode"
+    :filterable="true" />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
+const selected = ref([1, 2])
+
+const data = ref([
+    { key: 1, label: 'JavaScript' },
+    { key: 2, label: 'TypeScript' },
+    { key: 3, label: 'Python' },
+    { key: 4, label: 'Java' },
+    { key: 5, label: 'C++' },
+    { key: 6, label: 'Go' },
+    { key: 7, label: 'Rust' },
+    { key: 8, label: 'Ruby' },
+    { key: 9, label: 'PHP' },
+    { key: 10, label: 'Swift' },
+])
+</script>
+```
+
+:::
+
+## 自定义搜索方法
+
+<CodeRunner title="自定义搜索方法">
+    <ShadcnTransfer
+        v-model="selected15"
+        :data="data15"
+        :dark="darkMode"
+        :filterable="true"
+        :filter-method="customFilterMethod"
+        filter-placeholder="按拼音首字母搜索" />
+</CodeRunner>
+
+::: details 查看代码
+
+```vue
+<template>
+<ShadcnTransfer
+    v-model="selected"
+    :data="data"
+    :dark="darkMode"
+    :filterable="true"
+    :filter-method="customFilterMethod"
+    filter-placeholder="按拼音首字母搜索" />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
+const selected = ref([1])
+
+const data = ref([
+    { key: 1, label: '北京', pinyin: 'beijing' },
+    { key: 2, label: '上海', pinyin: 'shanghai' },
+    { key: 3, label: '广州', pinyin: 'guangzhou' },
+    { key: 4, label: '深圳', pinyin: 'shenzhen' },
+    { key: 5, label: '杭州', pinyin: 'hangzhou' },
+    { key: 6, label: '成都', pinyin: 'chengdu' },
+])
+
+const customFilterMethod = (query: string, item: any) => {
+    return item.label.includes(query) || item.pinyin.includes(query.toLowerCase())
+}
+</script>
+```
+
+:::
+
 ## 禁用 (disabled)
 
 <CodeRunner title="禁用 (disabled)">
@@ -513,6 +613,9 @@ const resetForm = () => {
         ['leftTitle', '左侧列表标题（支持国际化）', 'string', 'transfer.text.leftTitle', '-'],
         ['rightTitle', '右侧列表标题（支持国际化）', 'string', 'transfer.text.rightTitle', '-'],
         ['height', '列表高度', 'string', '\'256px\'', '-'],
+        ['filterable', '是否可搜索', 'boolean', 'false', '-'],
+        ['filterPlaceholder', '搜索框占位符（支持国际化）', 'string', 'transfer.text.filterPlaceholder', '-'],
+        ['filterMethod', '自定义搜索方法', '(query: string, item: TransferItem) => boolean', '-', '-'],
         ['dark', '暗黑模式', 'boolean', 'false', '-'],
         ['glass', '液态玻璃效果', 'boolean', 'false', '-'],
         ['type', '按钮和复选框类型', 'enum', 'primary', 'primary | success | warning | danger | info'],
@@ -538,15 +641,6 @@ const resetForm = () => {
         ['item', '自定义列表项内容', '{ item: TransferItem }'],
     ]">
 </ApiTable>
-
-## Types
-
-```typescript
-interface TransferItem {
-  [key: string]: any
-  disabled?: boolean
-}
-```
 
 <script setup lang="ts">
 import { ref } from 'vue'
@@ -658,6 +752,34 @@ const data13 = ref([
     { key: 7, label: '选项 7' },
     { key: 8, label: '选项 8' },
 ])
+
+const selected14 = ref([1, 2])
+const data14 = ref([
+    { key: 1, label: 'JavaScript' },
+    { key: 2, label: 'TypeScript' },
+    { key: 3, label: 'Python' },
+    { key: 4, label: 'Java' },
+    { key: 5, label: 'C++' },
+    { key: 6, label: 'Go' },
+    { key: 7, label: 'Rust' },
+    { key: 8, label: 'Ruby' },
+    { key: 9, label: 'PHP' },
+    { key: 10, label: 'Swift' },
+])
+
+const selected15 = ref([1])
+const data15 = ref([
+    { key: 1, label: '北京', pinyin: 'beijing' },
+    { key: 2, label: '上海', pinyin: 'shanghai' },
+    { key: 3, label: '广州', pinyin: 'guangzhou' },
+    { key: 4, label: '深圳', pinyin: 'shenzhen' },
+    { key: 5, label: '杭州', pinyin: 'hangzhou' },
+    { key: 6, label: '成都', pinyin: 'chengdu' },
+])
+
+const customFilterMethod = (query: string, item: any) => {
+    return item.label.includes(query) || item.pinyin.includes(query.toLowerCase())
+}
 
 const formRef = ref()
 const formData = ref({

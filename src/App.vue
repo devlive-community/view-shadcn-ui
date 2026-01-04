@@ -57,6 +57,18 @@
         </div>
       </template>
     </ShadcnTransfer>
+
+    <div class="text-gray-800 text-left text-sm mb-2 mt-4">可搜索</div>
+    <ShadcnTransfer v-model="transferSelected9"
+                    :data="transferData9"
+                    :filterable="true"/>
+
+    <div class="text-gray-800 text-left text-sm mb-2 mt-4">自定义搜索方法</div>
+    <ShadcnTransfer v-model="transferSelected10"
+                    :data="transferData10"
+                    :filterable="true"
+                    :filter-method="customFilterMethod"
+                    filter-placeholder="按拼音首字母搜索"/>
   </div>
 </template>
 
@@ -70,7 +82,7 @@ const transferSelected1 = ref([2, 3]);
 const transferData1 = ref([
   { key: 1, label: '选项 1' },
   { key: 2, label: '选项 2' },
-  { key: 3, label: '选项 3' },
+  { key: 3, label: '选项 3', disabled: true },
   { key: 4, label: '选项 4' },
   { key: 5, label: '选项 5' },
 ]);
@@ -131,6 +143,34 @@ const transferData8 = ref([
   { key: 7, label: '选项 7' },
   { key: 8, label: '选项 8' },
 ]);
+
+const transferSelected9 = ref([1, 2]);
+const transferData9 = ref([
+  { key: 1, label: 'JavaScript' },
+  { key: 2, label: 'TypeScript' },
+  { key: 3, label: 'Python' },
+  { key: 4, label: 'Java' },
+  { key: 5, label: 'C++' },
+  { key: 6, label: 'Go' },
+  { key: 7, label: 'Rust' },
+  { key: 8, label: 'Ruby' },
+  { key: 9, label: 'PHP' },
+  { key: 10, label: 'Swift' },
+]);
+
+const transferSelected10 = ref([1]);
+const transferData10 = ref([
+  { key: 1, label: '北京', pinyin: 'beijing' },
+  { key: 2, label: '上海', pinyin: 'shanghai' },
+  { key: 3, label: '广州', pinyin: 'guangzhou' },
+  { key: 4, label: '深圳', pinyin: 'shenzhen' },
+  { key: 5, label: '杭州', pinyin: 'hangzhou' },
+  { key: 6, label: '成都', pinyin: 'chengdu' },
+]);
+
+const customFilterMethod = (query: string, item: any) => {
+  return item.label.includes(query) || item.pinyin.includes(query.toLowerCase());
+};
 
 const handleTransferChange = (value: (string | number)[], direction: 'left' | 'right', movedKeys: (string | number)[]) => {
   console.log('value:', value);

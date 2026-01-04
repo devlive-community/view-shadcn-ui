@@ -337,7 +337,8 @@ export default {
     transfer: {
         text: {
             leftTitle: '源列表',
-            rightTitle: '目标列表'
+            rightTitle: '目标列表',
+            filterPlaceholder: '请输入搜索内容'
         }
     }
 }

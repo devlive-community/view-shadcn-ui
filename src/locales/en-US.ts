@@ -337,7 +337,8 @@ export default {
     transfer: {
         text: {
             leftTitle: 'Source',
-            rightTitle: 'Target'
+            rightTitle: 'Target',
+            filterPlaceholder: 'Search'
         }
     }
 }

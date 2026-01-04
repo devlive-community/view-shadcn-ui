@@ -23,6 +23,18 @@
           {{ leftCheckedCount }}/{{ leftData.length }}
         </span>
       </div>
+      <div v-if="filterable" :class="['border-b', headerClass, sizeHeaderClass]">
+        <ShadcnInput v-model="leftFilterQuery"
+                     :placeholder="filterPlaceholder || String(t('transfer.text.filterPlaceholder'))"
+                     :dark="dark"
+                     :glass="glass"
+                     :size="size"
+                     clearable>
+          <template #prefix>
+            <ShadcnIcon icon="Search" :dark="dark" :glass="glass"/>
+          </template>
+        </ShadcnInput>
+      </div>
       <div :class="['space-y-1 overflow-y-auto', contentClass]" :style="heightStyle">
         <div v-for="item in leftData"
              :key="item[props.keyProp]"
@@ -30,9 +42,10 @@
              :class="[
               itemClass,
               sizeItemClass,
-              leftChecked.includes(item[props.keyProp]) && selectedItemClass
+              leftChecked.includes(item[props.keyProp]) && selectedItemClass,
+              item.disabled && '!cursor-not-allowed'
             ]"
-             @click.self="!item.disabled && toggleLeftItem(item[props.keyProp])">
+             @click="!item.disabled && toggleLeftItem(item[props.keyProp])">
           <ShadcnCheckbox :modelValue="leftChecked.includes(item[props.keyProp]) ? item[props.keyProp] : null"
                           :value="item[props.keyProp]"
                           :dark="dark"
@@ -93,6 +106,18 @@
           {{ rightCheckedCount }}/{{ rightData.length }}
         </span>
       </div>
+      <div v-if="filterable" :class="['border-b', headerClass, sizeHeaderClass]">
+        <ShadcnInput v-model="rightFilterQuery"
+                     :placeholder="filterPlaceholder || String(t('transfer.text.filterPlaceholder'))"
+                     :dark="dark"
+                     :glass="glass"
+                     :size="size"
+                     clearable>
+          <template #prefix>
+            <ShadcnIcon icon="Search" :dark="dark" :glass="glass"/>
+          </template>
+        </ShadcnInput>
+      </div>
       <div :class="['space-y-1 overflow-y-auto', contentClass]" :style="heightStyle">
         <div v-for="item in rightData"
              :key="item[props.keyProp]"
@@ -100,9 +125,10 @@
              :class="[
                 itemClass,
                 sizeItemClass,
-                rightChecked.includes(item[props.keyProp]) && selectedItemClass
+                rightChecked.includes(item[props.keyProp]) && selectedItemClass,
+                item.disabled && '!cursor-not-allowed'
               ]"
-             @click.self="!item.disabled && toggleRightItem(item[props.keyProp])">
+             @click="!item.disabled && toggleRightItem(item[props.keyProp])">
           <ShadcnCheckbox :modelValue="rightChecked.includes(item[props.keyProp]) ? item[props.keyProp] : null"
                           :value="item[props.keyProp]"
                           :dark="dark"
@@ -125,6 +151,7 @@ import { computed, inject, ref, watch } from 'vue'
 import { ShadcnCheckbox } from '@/ui/checkbox'
 import { ShadcnButton } from '@/ui/button'
 import { ShadcnIcon } from '@/ui/icon'
+import { ShadcnInput } from '@/ui/input'
 import { t } from '@/utils/locale'
 import type { TransferEmits, TransferProps } from './types'
 import { calcSize } from "@/utils/common.ts";
@@ -134,13 +161,6 @@ enum HeaderSize
   small = 'px-3 py-2',
   default = 'px-4 py-2.5',
   large = 'px-5 py-3'
-}
-
-enum ContentSize
-{
-  small = 'p-2',
-  default = 'p-3',
-  large = 'p-4'
 }
 
 enum ItemSize
@@ -170,7 +190,8 @@ const props = withDefaults(defineProps<TransferProps>(), {
   dark: false,
   type: 'primary',
   size: 'default',
-  height: 256
+  height: 256,
+  filterable: false
 })
 
 // Form context support
@@ -187,13 +208,29 @@ watch(() => props.modelValue, (newValue) => {
 
 const leftChecked = ref<(string | number)[]>([])
 const rightChecked = ref<(string | number)[]>([])
+const leftFilterQuery = ref('')
+const rightFilterQuery = ref('')
+
+const defaultFilterMethod = (query: string, item: any) => {
+  return String(item[props.labelProp]).toLowerCase().includes(query.toLowerCase())
+}
+
+const filterMethod = computed(() => props.filterMethod || defaultFilterMethod)
 
 const leftData = computed(() => {
-  return props.data.filter(item => !props.modelValue.includes(item[props.keyProp]))
+  const data = props.data.filter(item => !props.modelValue.includes(item[props.keyProp]))
+  if (!props.filterable || !leftFilterQuery.value) {
+    return data
+  }
+  return data.filter(item => filterMethod.value(leftFilterQuery.value, item))
 })
 
 const rightData = computed(() => {
-  return props.data.filter(item => props.modelValue.includes(item[props.keyProp]))
+  const data = props.data.filter(item => props.modelValue.includes(item[props.keyProp]))
+  if (!props.filterable || !rightFilterQuery.value) {
+    return data
+  }
+  return data.filter(item => filterMethod.value(rightFilterQuery.value, item))
 })
 
 const leftCheckedCount = computed(() => leftChecked.value.length)
@@ -319,6 +356,9 @@ const itemClass = computed(() => {
 
   if (props.size === 'small') {
     baseClass = 'flex items-center px-3 py-1'
+  }
+  else if (props.size === 'large') {
+    baseClass = 'flex items-center px-5 py-3'
   }
 
   return [baseClass, hoverClass]

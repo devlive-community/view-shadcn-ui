@@ -18,6 +18,9 @@ export interface TransferProps {
   type?: keyof typeof Type
   size?: keyof typeof Size
   height?: any
+  filterable?: boolean
+  filterPlaceholder?: string
+  filterMethod?: (query: string, item: TransferItem) => boolean
 }
 
 export type TransferEmits = {
