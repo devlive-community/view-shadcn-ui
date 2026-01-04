@@ -1,98 +1,123 @@
 <template>
-  <div class="border border-gray-300 bg-gray-50 relative rounded overflow-hidden p-5 text-white text-center space-y-5">
-    <ShadcnLayout>
-      <ShadcnLayoutHeader class="bg-sky-300 text-white">Header</ShadcnLayoutHeader>
-      <ShadcnLayoutContent class="bg-sky-600 min-h-[120px] leading-[120px]">Content</ShadcnLayoutContent>
-      <ShadcnLayoutFooter class="bg-sky-300 text-white">Footer</ShadcnLayoutFooter>
-    </ShadcnLayout>
+  <div class="border border-gray-300 bg-gray-200 relative rounded overflow-hidden p-5 text-white text-center space-y-5">
+    <div class="text-gray-800 text-left font-semibold mb-2 mt-8">Transfer 组件示例</div>
 
-    <ShadcnLayout>
-      <ShadcnLayoutHeader class="bg-sky-300 text-white">Header</ShadcnLayoutHeader>
-      <ShadcnLayout>
-        <ShadcnLayoutSider class="bg-sky-400 min-h-[120px] leading-[120px]" :collapsible="false">Sider</ShadcnLayoutSider>
-        <ShadcnLayoutContent class="bg-sky-600 min-h-[120px] leading-[120px]">Content</ShadcnLayoutContent>
-      </ShadcnLayout>
-      <ShadcnLayoutFooter class="bg-sky-300 text-white">Footer</ShadcnLayoutFooter>
-    </ShadcnLayout>
+    <div class="text-gray-800 text-left text-sm mb-2">基础用法</div>
+    <ShadcnTransfer v-model="transferSelected1"
+                    :data="transferData1"
+                    type="success"
+                    @change="handleTransferChange"/>
 
-    <ShadcnLayout>
-      <ShadcnLayoutHeader class="bg-sky-300 text-white">Header</ShadcnLayoutHeader>
-      <ShadcnLayout>
-        <ShadcnLayoutContent class="bg-sky-600 min-h-[120px] leading-[120px]">Content</ShadcnLayoutContent>
-        <ShadcnLayoutSider class="bg-sky-400 min-h-[120px] leading-[120px]" :collapsible="false">Sider</ShadcnLayoutSider>
-      </ShadcnLayout>
-      <ShadcnLayoutFooter class="bg-sky-300 text-white">Footer</ShadcnLayoutFooter>
-    </ShadcnLayout>
+    <div class="text-gray-800 text-left text-sm mb-2 mt-4">自定义列表标题</div>
+    <ShadcnTransfer v-model="transferSelected2"
+                    :data="transferData2"
+                    leftTitle="待选择"
+                    rightTitle="已选择"/>
 
-    <ShadcnLayout>
-      <ShadcnLayoutSider class="bg-sky-400 min-h-[120px] leading-[120px]" :collapsible="false">Sider</ShadcnLayoutSider>
-      <ShadcnLayout>
-        <ShadcnLayoutHeader class="bg-sky-300 text-white">Header</ShadcnLayoutHeader>
-        <ShadcnLayoutContent class="bg-sky-600 min-h-[120px] leading-[120px]">Content</ShadcnLayoutContent>
-        <ShadcnLayoutFooter class="bg-sky-300 text-white">Footer</ShadcnLayoutFooter>
-      </ShadcnLayout>
-    </ShadcnLayout>
+    <div class="text-gray-800 text-left text-sm mb-2 mt-4">液态玻璃效果</div>
+    <div class="bg-gradient-to-br from-purple-400 via-pink-500 to-red-500 p-6 rounded-lg">
+      <ShadcnTransfer v-model="transferSelected3"
+                      :data="transferData3"
+                      :glass="true"/>
+    </div>
 
-    <div class="text-gray-800 text-left font-semibold mb-2">可折叠侧边栏示例（带触发器）</div>
-    <ShadcnLayout>
-      <ShadcnLayoutSider
-        class="bg-sky-400 min-h-[120px] flex items-center justify-center"
-        :collapsible="true"
-        :trigger="true"
-        @on-collapse="handleCollapse">
-        <div>Sider</div>
-      </ShadcnLayoutSider>
-      <ShadcnLayout>
-        <ShadcnLayoutHeader class="bg-sky-300 text-white">Header</ShadcnLayoutHeader>
-        <ShadcnLayoutContent class="bg-sky-600 min-h-[120px] leading-[120px]">Content</ShadcnLayoutContent>
-        <ShadcnLayoutFooter class="bg-sky-300 text-white">Footer</ShadcnLayoutFooter>
-      </ShadcnLayout>
-    </ShadcnLayout>
+    <div class="text-gray-800 text-left text-sm mb-2 mt-4">不同尺寸</div>
+    <div class="space-y-4">
+      <div>
+        <div class="text-gray-600 text-xs mb-1">Small</div>
+        <ShadcnTransfer v-model="transferSelected4"
+                        :data="transferData4"
+                        size="small"/>
+      </div>
+      <div>
+        <div class="text-gray-600 text-xs mb-1">Default (默认)</div>
+        <ShadcnTransfer v-model="transferSelected5"
+                        :data="transferData5"
+                        size="default"/>
+      </div>
+      <div>
+        <div class="text-gray-600 text-xs mb-1">Large</div>
+        <ShadcnTransfer v-model="transferSelected6"
+                        :data="transferData6"
+                        size="large"/>
+      </div>
+    </div>
 
-    <div class="text-gray-800 text-left font-semibold mb-2">可折叠侧边栏示例（自定义触发器）</div>
-    <ShadcnLayout>
-      <ShadcnLayoutSider
-        ref="siderRef"
-        class="bg-sky-400 min-h-[120px]"
-        :collapsible="true"
-        :trigger="false"
-        @on-collapse="handleCollapse">
-        <template #default>
-          <div class="flex items-center justify-center h-full">Sider Content</div>
-        </template>
-        <template #collapsed>
-          <div class="flex items-center justify-center h-full">S</div>
-        </template>
-      </ShadcnLayoutSider>
-      <ShadcnLayout>
-        <ShadcnLayoutHeader class="bg-sky-300 text-white flex items-center justify-between px-4">
-          <span>Header</span>
-          <button
-            @click="toggleSider"
-            class="px-3 py-1 bg-sky-500 hover:bg-sky-600 rounded text-white text-sm">
-            Toggle Sider
-          </button>
-        </ShadcnLayoutHeader>
-        <ShadcnLayoutContent class="bg-sky-600 min-h-[120px] leading-[120px]">Content</ShadcnLayoutContent>
-        <ShadcnLayoutFooter class="bg-sky-300 text-white">Footer</ShadcnLayoutFooter>
-      </ShadcnLayout>
-    </ShadcnLayout>
+    <div class="text-gray-800 text-left text-sm mb-2 mt-4">自定义渲染</div>
+    <ShadcnTransfer v-model="transferSelected7" :data="transferData7">
+      <template #item="{ item }">
+        <div class="flex items-center gap-2">
+          <ShadcnIcon :icon="item.icon" class="w-4 h-4"/>
+          <span>{{ item.label }}</span>
+        </div>
+      </template>
+    </ShadcnTransfer>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { ShadcnLayout, ShadcnLayoutContent, ShadcnLayoutFooter, ShadcnLayoutHeader, ShadcnLayoutSider } from "@/ui/layout";
+import { ShadcnTransfer } from "@/ui/transfer";
+import { ShadcnIcon } from "@/ui/icon";
 
-const siderRef = ref<InstanceType<typeof ShadcnLayoutSider> | null>(null);
+// Transfer 示例数据
+const transferSelected1 = ref([2, 3]);
+const transferData1 = ref([
+  { key: 1, label: '选项 1' },
+  { key: 2, label: '选项 2' },
+  { key: 3, label: '选项 3' },
+  { key: 4, label: '选项 4' },
+  { key: 5, label: '选项 5' },
+]);
 
-const handleCollapse = (collapsed: boolean) => {
-  console.log('Sider collapsed:', collapsed);
-};
+const transferSelected2 = ref([2]);
+const transferData2 = ref([
+  { key: 1, label: 'Angular' },
+  { key: 2, label: 'React' },
+  { key: 3, label: 'Vue' },
+  { key: 4, label: 'Svelte' },
+]);
 
-const toggleSider = () => {
-  if (siderRef.value) {
-    siderRef.value.toggle();
-  }
+const transferSelected3 = ref([2]);
+const transferData3 = ref([
+  { key: 1, label: '选项 1' },
+  { key: 2, label: '选项 2' },
+  { key: 3, label: '选项 3' },
+  { key: 4, label: '选项 4' },
+]);
+
+const transferSelected4 = ref([1]);
+const transferData4 = ref([
+  { key: 1, label: '选项 1' },
+  { key: 2, label: '选项 2' },
+  { key: 3, label: '选项 3' },
+]);
+
+const transferSelected5 = ref([1]);
+const transferData5 = ref([
+  { key: 1, label: '选项 1' },
+  { key: 2, label: '选项 2' },
+  { key: 3, label: '选项 3' },
+]);
+
+const transferSelected6 = ref([1]);
+const transferData6 = ref([
+  { key: 1, label: '选项 1' },
+  { key: 2, label: '选项 2' },
+  { key: 3, label: '选项 3' },
+]);
+
+const transferSelected7 = ref([1]);
+const transferData7 = ref([
+  { key: 1, label: '首页', icon: 'Home' },
+  { key: 2, label: '用户', icon: 'User' },
+  { key: 3, label: '设置', icon: 'Settings' },
+  { key: 4, label: '文件', icon: 'File' },
+]);
+
+const handleTransferChange = (value: (string | number)[], direction: 'left' | 'right', movedKeys: (string | number)[]) => {
+  console.log('value:', value);
+  console.log('direction:', direction);
+  console.log('movedKeys:', movedKeys);
 };
 </script>
