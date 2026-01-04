@@ -18,7 +18,6 @@ declare module 'view-shadcn-ui'
     export const ShadcnBadge: typeof import('@/ui/badge').default
     export const ShadcnProgress: typeof import('@/ui/progress').default
     export const ShadcnSpace: typeof import('@/ui/space').default
-    export const ShadcnSwitch: typeof import('@/ui/switch').default
     export const ShadcnRadio: typeof import('@/ui/radio').default
     export const ShadcnRadioGroup: typeof import('@/ui/radio/group').default
     export const ShadcnSelect: typeof import('@/ui/select').default
@@ -51,9 +50,11 @@ declare module 'view-shadcn-ui'
     export const ShadcnCheckboxGroup: typeof import('@/ui/checkbox/group').default
     export const ShadcnInput: typeof import('@/ui/input').default
     export const ShadcnIcon: typeof import('@/ui/icon').default
+    export const ShadcnSwitch: typeof import('@/ui/switch').default
 
     export type { AlertProps, AlertEmits } from '@/ui/alert'
     export type { CheckboxProps, CheckboxEmits } from '@/ui/checkbox'
     export type { InputProps, InputEmits } from '@/ui/input'
     export type { IconProps, IconEmits } from '@/ui/icon'
+    export type { SwitchProps, SwitchEmits } from '@/ui/switch'
 }

@@ -1,7 +1,10 @@
-export interface SwitchProps {
+import { ComponentSize, ComponentType } from '@/utils/theme'
+
+export interface SwitchProps
+{
     modelValue?: any
-    type?: 'primary' | 'success' | 'warning' | 'error'
-    size?: 'small' | 'default' | 'large'
+    type?: ComponentType
+    size?: ComponentSize
     disabled?: boolean
     trueValue?: any
     falseValue?: any
@@ -10,6 +13,6 @@ export interface SwitchProps {
 }
 
 export type SwitchEmits = {
-    (e: 'update:modelValue', value: any): void
-    (e: 'on-change', value: any): void
+    'update:modelValue': [value: any]
+    'on-change': [value: any]
 }

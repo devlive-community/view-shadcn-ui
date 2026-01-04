@@ -159,6 +159,21 @@ export const componentSizes = {
         small: 'h-8 px-3 text-sm',
         default: 'h-10 px-4 text-base',
         large: 'h-12 px-6 text-lg'
+    },
+    switch: {
+        small: 'h-5 min-w-[2.5rem]',
+        default: 'h-6 min-w-[3.5rem]',
+        large: 'h-8 min-w-[5rem]'
+    },
+    switchToggle: {
+        small: 'w-4 h-4',
+        default: 'w-5 h-5',
+        large: 'w-7 h-7'
+    },
+    switchText: {
+        small: 'text-xs',
+        default: 'text-sm',
+        large: 'text-base'
     }
 }
 
