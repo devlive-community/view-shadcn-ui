@@ -1,20 +1,11 @@
 <template>
-  <div
-      :class="[
-         'inline-flex shrink-0 items-center justify-center',
-         background && 'rounded-lg p-2',
-         background && glass && 'backdrop-blur-xl backdrop-saturate-150',
-         background && glass && 'shadow-lg shadow-black/5',
-         background && glass && (dark ? 'bg-white/10 border border-white/20' : 'bg-white/30 border border-gray-400/40'),
-         background && !glass && (dark ? 'bg-gray-800 border border-gray-700' : 'bg-gray-100 border border-gray-200')
-       ]"
-      :style="containerStyle">
+  <div :class="containerClasses" :style="containerStyle">
     <component
         :is="iconComponent"
         v-if="icon"
         :size="iconSize"
         :style="iconStyle"
-        :class="['shrink-0', glass && (dark ? 'text-gray-200' : 'text-gray-700'), !glass && (dark && !color ? 'text-gray-300' : '')]"
+        :class="iconClasses"
         @click="onClick"/>
     <slot v-else name="icon"/>
   </div>
@@ -22,17 +13,12 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
+import { getBorder, getGlassStyles, getText, type ThemeMode } from '@/utils/theme'
+import { IconEmits, IconProps } from '@/ui/icon/types'
 
-const emit = defineEmits(['on-click'])
+const emit = defineEmits<IconEmits>()
 
-const props = withDefaults(defineProps<{
-  icon?: string
-  size?: number | string
-  color?: string
-  dark?: boolean
-  glass?: boolean
-  background?: boolean
-}>(), {
+const props = withDefaults(defineProps<IconProps>(), {
   size: 20,
   dark: false,
   glass: false,
@@ -95,4 +81,46 @@ watch(() => props.icon, (newIcon) => {
 const onClick = () => {
   emit('on-click')
 }
+
+const containerClasses = computed(() => {
+  const mode: ThemeMode = { dark: props.dark, glass: props.glass }
+  const baseClasses = ['inline-flex shrink-0 items-center justify-center']
+
+  if (!props.background) {
+    return baseClasses
+  }
+
+  baseClasses.push('rounded-lg p-2 border')
+
+  if (props.glass) {
+    return [
+      ...baseClasses,
+      ...getGlassStyles(mode, { withHover: false, withBorder: true, withText: false })
+    ]
+  }
+
+  return [
+    ...baseClasses,
+    getBorder(mode),
+    props.dark ? 'bg-gray-800' : 'bg-gray-100'
+  ]
+})
+
+const iconClasses = computed(() => {
+  const mode: ThemeMode = { dark: props.dark, glass: props.glass }
+  const baseClasses = ['shrink-0']
+
+  if (props.color) {
+    return baseClasses
+  }
+
+  if (props.glass) {
+    baseClasses.push(getText(mode, 'secondary'))
+  }
+  else if (props.dark) {
+    baseClasses.push(getText(mode, 'secondary'))
+  }
+
+  return baseClasses
+})
 </script>
