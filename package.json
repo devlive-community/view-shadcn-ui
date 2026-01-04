@@ -34,7 +34,9 @@
     "preview": "vite preview",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs"
+    "docs:serve": "vitepress serve docs",
+    "lint": "eslint . --ext .ts,.tsx,.vue",
+    "lint:fix": "eslint . --ext .ts,.tsx,.vue --fix"
   },
   "dependencies": {
     "clsx": "^2.1.0",
@@ -62,6 +64,11 @@
     "vite": "^5.2.0",
     "vite-plugin-monaco-editor": "^1.1.0",
     "vitepress": "^1.4.1",
-    "vue-tsc": "^2.0.6"
+    "vue-tsc": "^2.0.6",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.23.0",
+    "eslint-config-prettier": "^9.1.0"
   }
 }

@@ -7,29 +7,25 @@
 <script lang="ts" setup>
 import { computed, defineEmits, defineProps, provide, reactive, watch } from 'vue'
 import { ShadcnSpace } from '@/ui/space'
+import { CheckboxEmits, CheckboxProps } from '@/ui/checkbox/types.ts'
 
-const props = withDefaults(defineProps<{
-  modelValue?: any[],
-  dark?: boolean,
-  glass?: boolean
-}>(), {
+const props = withDefaults(defineProps<CheckboxProps>(), {
   dark: false,
-  glass: false
+  glass: false,
+  type: 'primary',
+  size: 'default'
 })
 
-const emit = defineEmits(['update:modelValue', 'on-change'])
+const emit = defineEmits<CheckboxEmits>()
 
-// Create a reactive state for the group data
 const checkboxGroupState = reactive({
   modelValue: props.modelValue || []
 })
 
-// Watch for changes in props.modelValue to update the reactive state
 watch(() => props.modelValue, (newVal) => {
   checkboxGroupState.modelValue = newVal || []
 })
 
-// Function to update the model value based on checkbox state
 const updateModelValue = (value: any, checked: boolean) => {
   let newValue = [...checkboxGroupState.modelValue]
 
@@ -47,13 +43,13 @@ const updateModelValue = (value: any, checked: boolean) => {
   emit('on-change', newValue)
 }
 
-// Provide checkboxGroup data to child components
 provide('checkboxGroup', {
   modelValue: checkboxGroupState,
   updateModelValue
 })
 
-// Provide dark mode to child checkboxes
 provide('checkboxGroupDark', computed(() => props.dark))
 provide('checkboxGroupGlass', computed(() => props.glass))
+provide('checkboxGroupType', computed(() => props.type))
+provide('checkboxGroupSize', computed(() => props.size))
 </script>

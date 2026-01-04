@@ -24,8 +24,6 @@ declare module 'view-shadcn-ui'
     export const ShadcnSwitch: typeof import('@/ui/switch').default
     export const ShadcnRadio: typeof import('@/ui/radio').default
     export const ShadcnRadioGroup: typeof import('@/ui/radio/group').default
-    export const ShadcnCheckbox: typeof import('@/ui/checkbox').default
-    export const ShadcnCheckboxGroup: typeof import('@/ui/checkbox/group').default
     export const ShadcnSelect: typeof import('@/ui/select').default
     export const ShadcnSelectOption: typeof import('@/ui/select/option').default
     export const ShadcnRate: typeof import('@/ui/rate').default
@@ -51,5 +49,7 @@ declare module 'view-shadcn-ui'
     export const ShadcnSlider: typeof import('@/ui/slider').default
     export const ShadcnTransfer: typeof import('@/ui/transfer').ShadcnTransfer
 
-    export type { TransferProps, TransferEmits, TransferItem } from '@/ui/transfer'
+    export const ShadcnCheckbox: typeof import('@/ui/checkbox').default
+    export const ShadcnCheckboxGroup: typeof import('@/ui/checkbox/group').default
+    export type { CheckboxProps, CheckboxEmits } from '@/ui/checkbox'
 }
