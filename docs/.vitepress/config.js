@@ -260,7 +260,8 @@ export default {
                         {text: '日期选取器 (Date Picker)', link: 'form/date-picker', icon: '/components/form/date-picker.svg', version: '2024.5.3'},
                         {text: '计划任务 (Cron)', link: 'form/cron', icon: '/components/form/cron.svg', version: '2024.5.3'},
                         {text: '提及 (Mention)', link: 'form/mention', icon: '/components/form/mention.svg', version: '2025.1.0'},
-                        {text: 'IP输入框 (IP Input)', link: 'form/ip-input', icon: '/components/form/ip-input.svg', version: '2025.1.3'}
+                        {text: 'IP输入框 (IP Input)', link: 'form/ip-input', icon: '/components/form/ip-input.svg', version: '2025.1.3'},
+                        {text: '穿梭框 (Transfer)', link: 'form/transfer', icon: '/components/form/transfer.svg', version: '2026.0.0'}
                     ]
 
                     return {

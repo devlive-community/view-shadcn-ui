@@ -83,6 +83,7 @@ import { ShadcnNotification, ShadcnNotificationItem } from '@/ui/notification'
 import { ShadcnTime } from '@/ui/time'
 import { ShadcnIPInput } from '@/ui/ip-input'
 import { ShadcnMarkdown } from '@/ui/markdown'
+import { ShadcnTransfer } from '@/ui/transfer'
 
 let components = [
     ShadcnButton, ShadcnButtonGroup,
@@ -163,7 +164,8 @@ let components = [
     ShadcnNotification, ShadcnNotificationItem,
     ShadcnTime,
     ShadcnIPInput,
-    ShadcnMarkdown
+    ShadcnMarkdown,
+    ShadcnTransfer
 ]
 
 interface InstallOptions
@@ -279,6 +281,7 @@ export { ShadcnNotification, ShadcnNotificationItem } from '@/ui/notification'
 export { ShadcnTime } from '@/ui/time'
 export { ShadcnIPInput } from '@/ui/ip-input'
 export { ShadcnMarkdown } from '@/ui/markdown'
+export { ShadcnTransfer } from '@/ui/transfer'
 
 // Export functions
 export { fnToString, fnToFunction } from '@/utils/formatter'

@@ -333,5 +333,12 @@ export default {
             clearAll: '全部清除',
             noData: '暂无数据'
         }
+    },
+    transfer: {
+        text: {
+            leftTitle: '源列表',
+            rightTitle: '目标列表',
+            filterPlaceholder: '请输入搜索内容'
+        }
     }
 }
