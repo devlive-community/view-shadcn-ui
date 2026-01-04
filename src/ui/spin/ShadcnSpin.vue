@@ -1,48 +1,28 @@
 <template>
-  <div v-if="modelValue"
-       role="status"
-       aria-label="loading"
-       :class="['inline-flex items-center justify-center',
-                fixed ? 'absolute inset-0' : 'relative'
-       ]">
-    <!-- Translucent background layer -->
-    <div v-if="fixed"
-         :class="['absolute inset-0 z-10',
-                  glass ? 'backdrop-blur-xl backdrop-saturate-150' : 'opacity-65',
-                  glass ? (dark ? 'bg-white/10' : 'bg-white/30') : (dark ? 'bg-gray-900' : 'bg-gray-50')
-         ]"/>
+  <div
+      v-if="modelValue"
+      role="status"
+      aria-label="loading"
+      :class="wrapperClasses">
+    <div v-if="fixed" :class="backgroundClasses"/>
 
-    <!-- Loading layer -->
     <div class="z-20">
       <template v-if="$slots.default">
         <slot/>
       </template>
-      <div v-else :class="['inline-block animate-spin rounded-full border-2',
-                           'shadow-lg p-2',
-                           glass ? 'bg-transparent backdrop-blur-sm' : (fixed ? 'bg-transparent' : (dark ? 'bg-gray-800' : 'bg-white')),
-                           glass && 'shadow-black/5 border-opacity-60',
-                           WrapperSize[size],
-                           BorderRightType[type]
-                   ]"/>
+      <div v-else :class="loadingClasses"/>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { watch } from 'vue'
-import { BorderRightType } from '@/ui/common/type.ts'
-import { WrapperSize } from '@/ui/common/size.ts'
+import { computed, watch } from 'vue'
+import { getBackground, getComponentSize, getGlassStyles, getTypeBorderRight, type ThemeMode } from '@/utils/theme'
+import { SpinEmits, SpinProps } from './types'
 
-const emit = defineEmits(['update:modelValue', 'on-change'])
+const emit = defineEmits<SpinEmits>()
 
-const props = withDefaults(defineProps<{
-  modelValue: boolean
-  type?: keyof typeof BorderRightType
-  size?: keyof typeof WrapperSize
-  fixed?: boolean
-  dark?: boolean
-  glass?: boolean
-}>(), {
+const props = withDefaults(defineProps<SpinProps>(), {
   modelValue: true,
   type: 'primary',
   size: 'default',
@@ -54,5 +34,47 @@ const props = withDefaults(defineProps<{
 watch(() => props.modelValue, (newValue) => {
   emit('update:modelValue', newValue)
   emit('on-change', newValue)
+})
+
+const wrapperClasses = computed(() => [
+  'inline-flex items-center justify-center',
+  props.fixed ? 'absolute inset-0' : 'relative'
+])
+
+const backgroundClasses = computed(() => {
+  const mode: ThemeMode = { dark: props.dark, glass: props.glass }
+
+  if (props.glass) {
+    return [
+      'absolute inset-0 z-10',
+      ...getGlassStyles(mode, { withHover: false, withBorder: false, withText: false })
+    ]
+  }
+
+  return [
+    'absolute inset-0 z-10 opacity-65',
+    props.dark ? 'bg-gray-900' : 'bg-gray-50'
+  ]
+})
+
+const loadingClasses = computed(() => {
+  const mode: ThemeMode = { dark: props.dark, glass: props.glass }
+  const baseClasses = [
+    'inline-block animate-spin rounded-full border-2 shadow-lg p-2',
+    getComponentSize('loading', props.size),
+    getTypeBorderRight(props.type, mode)
+  ]
+
+  if (props.glass) {
+    return [
+      ...baseClasses,
+      'bg-transparent backdrop-blur-sm shadow-black/5 border-opacity-60'
+    ]
+  }
+
+  return [
+    ...baseClasses,
+    props.fixed ? 'bg-transparent' : getBackground(mode)
+  ]
 })
 </script>

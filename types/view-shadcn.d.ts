@@ -12,6 +12,8 @@ declare module 'view-shadcn-ui'
     export const ShadcnSwitch: typeof import('@/ui/switch').default
     export const ShadcnRadio: typeof import('@/ui/radio').default
     export const ShadcnRadioGroup: typeof import('@/ui/radio').default
+    export const ShadcnSelect: typeof import('@/ui/select').default
+    export const ShadcnSpin: typeof import('@/ui/spin').default
 
     export type { AlertProps, AlertEmits } from '@/ui/alert'
     export type { CheckboxProps, CheckboxEmits } from '@/ui/checkbox'
@@ -20,4 +22,6 @@ declare module 'view-shadcn-ui'
     export type { SwitchProps, SwitchEmits } from '@/ui/switch'
     export type { RadioProps, RadioEmits } from '@/ui/radio'
     export type { RadioGroupProps, RadioGroupEmits } from '@/ui/radio'
+    export type { SelectProps, SelectEmits } from '@/ui/select'
+    export type { SpinProps, SpinEmits } from '@/ui/spin'
 }
