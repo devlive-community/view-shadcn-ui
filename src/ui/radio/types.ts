@@ -1,25 +1,17 @@
-export interface RadioProps {
+import { ComponentSize, ComponentType } from '@/utils/theme'
+
+export interface RadioProps
+{
     modelValue?: any
-    value: any
+    value?: any
     disabled?: boolean
-    size?: 'small' | 'default' | 'large'
-    type?: 'primary' | 'success' | 'warning' | 'error'
+    size?: ComponentSize
+    type?: ComponentType
     dark?: boolean
     glass?: boolean
 }
 
 export type RadioEmits = {
-    (e: 'update:modelValue', value: any): void
-    (e: 'on-change', value: any): void
-}
-
-export interface RadioGroupProps {
-    modelValue?: any
-    dark?: boolean
-    glass?: boolean
-}
-
-export type RadioGroupEmits = {
-    (e: 'update:modelValue', value: any): void
-    (e: 'on-change', value: any): void
+    'update:modelValue': [value: any]
+    'on-change': [value: any]
 }

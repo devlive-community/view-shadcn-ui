@@ -174,6 +174,16 @@ export const componentSizes = {
         small: 'text-xs',
         default: 'text-sm',
         large: 'text-base'
+    },
+    radio: {
+        small: 'w-4 h-4',
+        default: 'w-5 h-5',
+        large: 'w-6 h-6'
+    },
+    radioInner: {
+        small: 'w-2 h-2',
+        default: 'w-3 h-3',
+        large: 'w-4 h-4'
     }
 }
 

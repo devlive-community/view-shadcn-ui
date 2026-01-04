@@ -1,84 +1,32 @@
 <template>
-  <div :class="[
-                'inline-flex items-center',
-                {
-                  'cursor-pointer': !disabled,
-                  'cursor-not-allowed opacity-50': disabled
-                }
-        ]"
-       @click="onChange">
-    <!-- Radio Input -->
-    <input type="radio"
-           :value="value"
-           :checked="isChecked"
-           :disabled="disabled"
-           class="sr-only"/>
+  <div :class="containerClasses" @click="onChange">
+    <input
+        :checked="isChecked"
+        :disabled="disabled"
+        :value="value"
+        class="sr-only"
+        type="radio"/>
 
-    <!-- Custom Radio Style -->
-    <div :class="['flex items-center justify-center rounded-full border transition-all duration-300 ease-in-out',
-                  finalGlass && 'backdrop-blur-xl backdrop-saturate-150',
-                  finalGlass && 'border-white/20',
-                  finalGlass && 'shadow-lg shadow-black/5',
-                  Size[size],
-                  finalGlass ? (
-                    isChecked ? (
-                      type === 'primary' ? (finalDark ? 'bg-blue-500/30' : 'bg-blue-400/40') :
-                      type === 'success' ? (finalDark ? 'bg-green-500/30' : 'bg-green-400/40') :
-                      type === 'warning' ? (finalDark ? 'bg-yellow-500/30' : 'bg-yellow-400/40') :
-                      (finalDark ? 'bg-red-500/30' : 'bg-red-400/40')
-                    ) : (finalDark ? 'bg-white/10 border-white/20' : 'bg-white/30 border-white/20')
-                  ) : (
-                    isChecked ? (
-                      type === 'primary' ? 'bg-blue-400' :
-                      type === 'success' ? 'bg-green-400' :
-                      type === 'warning' ? 'bg-yellow-400' :
-                      'bg-red-400'
-                    ) : (finalDark ? 'bg-gray-700 border-gray-500' : 'bg-white')
-                  )
-                  ]"
-         :style="{
-           transform: isChecked ? 'scale(1.1)' : 'scale(1)'
-         }">
-      <div v-if="isChecked"
-           :class="['rounded-full transition-all duration-200',
-                    ToggleSize[size],
-                    finalGlass ? (finalDark ? 'bg-white/90' : 'bg-white') : (finalDark ? 'bg-gray-900' : 'bg-white')
-            ]"
-           :style="{
-             transform: isChecked ? 'scale(1)' : 'scale(0)',
-             opacity: isChecked ? '1' : '0'
-           }"/>
+    <div :class="radioClasses" :style="radioStyle">
+      <div v-if="isChecked" :class="radioInnerClasses" :style="radioInnerStyle"></div>
     </div>
 
-    <!-- Label Slot -->
-    <div v-if="$slots.label" :class="['ml-2 text-sm', finalDark ? 'text-gray-200' : '']">
+    <div v-if="$slots.label" :class="labelClasses">
       <slot name="label"/>
     </div>
-    <div v-else :class="['ml-2 text-sm', finalDark ? 'text-gray-200' : '']">
+    <div v-else :class="labelClasses">
       <slot/>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, inject } from 'vue'
-import { RadioProps, RadioEmits } from './types'
+import { computed, inject, useSlots } from 'vue'
+import { type ComponentType, getComponentSize, getGlassStyles, getText, getTypeColor, type ThemeMode } from '@/utils/theme'
+import { RadioEmits, RadioProps } from './types'
 
 const emit = defineEmits<RadioEmits>()
-
-enum Size
-{
-  default = 'w-5 h-5',
-  small = 'w-4 h-4',
-  large = 'w-6 h-6'
-}
-
-enum ToggleSize
-{
-  default = 'w-3 h-3',
-  small = 'w-2 h-2',
-  large = 'w-4 h-4'
-}
+const $slots = useSlots()
 
 const props = withDefaults(defineProps<RadioProps>(), {
   disabled: false,
@@ -88,10 +36,19 @@ const props = withDefaults(defineProps<RadioProps>(), {
   glass: false
 })
 
-const radioGroup = inject<{ modelValue: { modelValue: any }, updateModelValue: Function, dark?: { value: boolean }, glass?: { value: boolean } } | null>('radioGroup', null)
+const radioGroup = inject<{
+  modelValue: { modelValue: any },
+  updateModelValue: Function,
+  dark?: { value: boolean },
+  glass?: { value: boolean },
+  size?: { value: any },
+  type?: { value: any }
+} | null>('radioGroup', null)
 
 const finalDark = computed(() => radioGroup?.dark?.value ?? props.dark)
 const finalGlass = computed(() => radioGroup?.glass?.value ?? props.glass)
+const finalSize = computed(() => radioGroup?.size?.value ?? props.size)
+const finalType = computed(() => radioGroup?.type?.value ?? props.type)
 
 const isChecked = computed(() => {
   if (radioGroup) {
@@ -111,4 +68,85 @@ const onChange = () => {
     }
   }
 }
+
+const containerClasses = computed(() => {
+  return [
+    'inline-flex items-center',
+    {
+      'cursor-pointer': !props.disabled,
+      'cursor-not-allowed opacity-50': props.disabled
+    }
+  ]
+})
+
+const radioClasses = computed(() => {
+  const mode: ThemeMode = { dark: finalDark.value, glass: finalGlass.value }
+  const componentType: ComponentType = finalType.value === 'error' ? 'danger' : finalType.value
+  const baseClasses = [
+    'flex items-center justify-center rounded-full border transition-all duration-300 ease-in-out',
+    getComponentSize('radio', finalSize.value)
+  ]
+
+  if (finalGlass.value) {
+    if (isChecked.value) {
+      return [
+        ...baseClasses,
+        ...getGlassStyles(mode, { type: componentType, withHover: false, withBorder: true, withText: false })
+      ]
+    }
+    return [
+      ...baseClasses,
+      ...getGlassStyles(mode, { withHover: false, withBorder: true, withText: false })
+    ]
+  }
+
+  if (isChecked.value) {
+    return [
+      ...baseClasses,
+      getTypeColor(componentType, mode)
+    ]
+  }
+
+  return [
+    ...baseClasses,
+    finalDark.value ? 'bg-gray-700 border-gray-500' : 'bg-white'
+  ]
+})
+
+const radioStyle = computed(() => {
+  return {
+    transform: isChecked.value ? 'scale(1.1)' : 'scale(1)'
+  }
+})
+
+const radioInnerClasses = computed(() => {
+  const baseClasses = [
+    'rounded-full transition-all duration-200',
+    getComponentSize('radioInner', finalSize.value)
+  ]
+
+  if (finalGlass.value) {
+    return [
+      ...baseClasses,
+      finalDark.value ? 'bg-white/90' : 'bg-white'
+    ]
+  }
+
+  return [
+    ...baseClasses,
+    finalDark.value ? 'bg-gray-900' : 'bg-white'
+  ]
+})
+
+const radioInnerStyle = computed(() => {
+  return {
+    transform: isChecked.value ? 'scale(1)' : 'scale(0)',
+    opacity: isChecked.value ? '1' : '0'
+  }
+})
+
+const labelClasses = computed(() => {
+  const mode: ThemeMode = { dark: finalDark.value, glass: finalGlass.value }
+  return ['ml-2 text-sm', getText(mode, 'secondary')]
+})
 </script>

@@ -13,24 +13,22 @@
       </div>
     </div>
 
-    <ShadcnInput
-        v-model="inputValue"
-        type="success"
-        show-icon
-        :dark="isDark"
-        :disabled="true"
-        :glass="isGlass">
-    </ShadcnInput>
+    <ShadcnRadioGroup v-model="radioValue" :glass="isGlass" :dark="isDark">
+      <ShadcnRadio value="1">选项 1</ShadcnRadio>
+      <ShadcnRadio value="2" type="primary">选项 2</ShadcnRadio>
+      <ShadcnRadio value="3" type="warning">选项 3</ShadcnRadio>
+      <ShadcnRadio value="4" type="error">选项 4</ShadcnRadio>
+    </ShadcnRadioGroup>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ShadcnButton } from '@/ui/button'
-import { ShadcnInput } from '@/ui/input'
+import { ShadcnRadio, ShadcnRadioGroup } from '@/ui/radio'
 
 const isDark = ref(false)
 const isGlass = ref(false)
 
-const inputValue = ref('')
+const radioValue = ref('')
 </script>

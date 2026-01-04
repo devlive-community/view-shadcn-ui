@@ -7,14 +7,16 @@
 <script setup lang="ts">
 import { computed, provide, reactive, watch } from 'vue'
 import { ShadcnSpace } from '@/ui/space'
-import { RadioGroupProps, RadioGroupEmits } from './types'
+import { RadioEmits, RadioProps } from './types'
 
-const props = withDefaults(defineProps<RadioGroupProps>(), {
+const props = withDefaults(defineProps<RadioProps>(), {
+  size: 'default',
+  type: 'primary',
   dark: false,
   glass: false
 })
 
-const emit = defineEmits<RadioGroupEmits>()
+const emit = defineEmits<RadioEmits>()
 
 const radioGroupState = reactive({
   modelValue: props.modelValue
@@ -35,11 +37,15 @@ const updateModelValue = (value: any) => {
 
 const dark = computed(() => props.dark)
 const glass = computed(() => props.glass)
+const size = computed(() => props.size)
+const type = computed(() => props.type)
 
 provide('radioGroup', {
   modelValue: radioGroupState,
   updateModelValue,
   dark,
-  glass
+  glass,
+  size,
+  type
 })
 </script>
