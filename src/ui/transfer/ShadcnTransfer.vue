@@ -127,6 +127,7 @@ import { ShadcnButton } from '@/ui/button'
 import { ShadcnIcon } from '@/ui/icon'
 import { t } from '@/utils/locale'
 import type { TransferEmits, TransferProps } from './types'
+import { calcSize } from "@/utils/common.ts";
 
 enum HeaderSize
 {
@@ -169,7 +170,7 @@ const props = withDefaults(defineProps<TransferProps>(), {
   dark: false,
   type: 'primary',
   size: 'default',
-  height: '256px'
+  height: 256
 })
 
 // Form context support
@@ -306,7 +307,7 @@ const contentClass = computed(() => {
 
 // 列表项类名
 const itemClass = computed(() => {
-  const baseClass = 'flex items-center px-3 py-2'
+  let baseClass = 'flex items-center px-4 py-2'
   let hoverClass = ''
 
   if (props.glass) {
@@ -314,6 +315,10 @@ const itemClass = computed(() => {
   }
   else {
     hoverClass = props.dark ? 'hover:bg-gray-700/50' : 'hover:bg-gray-100'
+  }
+
+  if (props.size === 'small') {
+    baseClass = 'flex items-center px-3 py-1'
   }
 
   return [baseClass, hoverClass]
@@ -340,7 +345,7 @@ const iconSizeClass = computed(() => IconSize[props.size])
 
 // 高度样式
 const heightStyle = computed(() => {
-  return props.height ? { maxHeight: props.height } : {}
+  return props.height ? { maxHeight: calcSize(props.height), minHeight: calcSize(props.height) } : {}
 })
 
 // 国际化标题

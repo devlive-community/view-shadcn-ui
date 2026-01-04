@@ -17,7 +17,7 @@ export interface TransferProps {
   glass?: boolean
   type?: keyof typeof Type
   size?: keyof typeof Size
-  height?: string
+  height?: any
 }
 
 export type TransferEmits = {
