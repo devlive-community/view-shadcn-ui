@@ -5,7 +5,7 @@
       <ShadcnTransfer
         v-model="selected1"
         :data="data1"
-        @change="handleChange" />
+        @on-change="handleChange" />
     </div>
 
     <div>
@@ -13,8 +13,16 @@
       <ShadcnTransfer
         v-model="selected2"
         :data="data2"
-        leftTitle="待选择"
-        rightTitle="已选择" />
+        left-title="待选择"
+        right-title="已选择" />
+    </div>
+
+    <div>
+      <p class="text-sm mb-2 font-semibold">自定义高度</p>
+      <ShadcnTransfer
+        v-model="selected6"
+        :data="data6"
+        height="400px" />
     </div>
 
     <div>
@@ -85,6 +93,18 @@ const data5 = ref([
   { key: 1, label: '选项 1' },
   { key: 2, label: '选项 2' },
   { key: 3, label: '选项 3' },
+])
+
+const selected6 = ref([1, 2])
+const data6 = ref([
+  { key: 1, label: '选项 1' },
+  { key: 2, label: '选项 2' },
+  { key: 3, label: '选项 3' },
+  { key: 4, label: '选项 4' },
+  { key: 5, label: '选项 5' },
+  { key: 6, label: '选项 6' },
+  { key: 7, label: '选项 7' },
+  { key: 8, label: '选项 8' },
 ])
 
 const handleChange = (value: (string | number)[], direction: 'left' | 'right', movedKeys: (string | number)[]) => {

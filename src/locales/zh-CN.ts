@@ -333,5 +333,11 @@ export default {
             clearAll: '全部清除',
             noData: '暂无数据'
         }
+    },
+    transfer: {
+        text: {
+            leftTitle: '源列表',
+            rightTitle: '目标列表'
+        }
     }
 }

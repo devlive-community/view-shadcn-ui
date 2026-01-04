@@ -333,5 +333,11 @@ export default {
             clearAll: 'Clear All',
             noData: 'No data'
         }
+    },
+    transfer: {
+        text: {
+            leftTitle: 'Source',
+            rightTitle: 'Target'
+        }
     }
 }

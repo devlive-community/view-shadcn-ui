@@ -9,7 +9,7 @@ declare module 'view-shadcn-ui'
     export const ShadcnCopy: typeof import('@/ui/copy').default
     export const ShadcnCode: typeof import('@/ui/code').default
     export const ShadcnInput: typeof import('@/ui/input').default
-    export const Icon: typeof import('@/ui/icon').default
+    export const ShadcnIcon: typeof import('@/ui/icon').default
     export const ShadcnModal: typeof import('@/ui/modal').default
     export const ShadcnTooltip: typeof import('@/ui/tooltip').default
     export const ShadcnRow: typeof import('@/ui/row').default
@@ -49,4 +49,7 @@ declare module 'view-shadcn-ui'
     export const ShadcnBreadcrumb: typeof import('@/ui/breadcrumb').default
     export const ShadcnBreadcrumbItem: typeof import('@/ui/breadcrumb/item').default
     export const ShadcnSlider: typeof import('@/ui/slider').default
+    export const ShadcnTransfer: typeof import('@/ui/transfer').ShadcnTransfer
+
+    export type { TransferProps, TransferEmits, TransferItem } from '@/ui/transfer'
 }

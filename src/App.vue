@@ -6,13 +6,18 @@
     <ShadcnTransfer v-model="transferSelected1"
                     :data="transferData1"
                     type="success"
-                    @change="handleTransferChange"/>
+                    @on-change="handleTransferChange"/>
 
     <div class="text-gray-800 text-left text-sm mb-2 mt-4">自定义列表标题</div>
     <ShadcnTransfer v-model="transferSelected2"
                     :data="transferData2"
-                    leftTitle="待选择"
-                    rightTitle="已选择"/>
+                    left-title="待选择"
+                    right-title="已选择"/>
+
+    <div class="text-gray-800 text-left text-sm mb-2 mt-4">自定义高度</div>
+    <ShadcnTransfer v-model="transferSelected8"
+                    :data="transferData8"
+                    height="100px"/>
 
     <div class="text-gray-800 text-left text-sm mb-2 mt-4">液态玻璃效果</div>
     <div class="bg-gradient-to-br from-purple-400 via-pink-500 to-red-500 p-6 rounded-lg">
@@ -113,6 +118,18 @@ const transferData7 = ref([
   { key: 2, label: '用户', icon: 'User' },
   { key: 3, label: '设置', icon: 'Settings' },
   { key: 4, label: '文件', icon: 'File' },
+]);
+
+const transferSelected8 = ref([1, 2]);
+const transferData8 = ref([
+  { key: 1, label: '选项 1' },
+  { key: 2, label: '选项 2' },
+  { key: 3, label: '选项 3' },
+  { key: 4, label: '选项 4' },
+  { key: 5, label: '选项 5' },
+  { key: 6, label: '选项 6' },
+  { key: 7, label: '选项 7' },
+  { key: 8, label: '选项 8' },
 ]);
 
 const handleTransferChange = (value: (string | number)[], direction: 'left' | 'right', movedKeys: (string | number)[]) => {

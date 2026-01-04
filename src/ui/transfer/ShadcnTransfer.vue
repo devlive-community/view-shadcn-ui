@@ -15,34 +15,33 @@
                         @update:modelValue="toggleLeftAll"
                         :dark="dark"
                         :glass="glass"
-                        :type="type"
+                        :type="checkboxType"
                         :size="size">
-          {{ leftTitle }}
+          {{ computedLeftTitle }}
         </ShadcnCheckbox>
         <span :class="countClass">
           {{ leftCheckedCount }}/{{ leftData.length }}
         </span>
       </div>
-      <div :class="['space-y-1 overflow-y-auto', contentClass, sizeContentClass]">
+      <div :class="['space-y-1 overflow-y-auto', contentClass]" :style="heightStyle">
         <div v-for="item in leftData"
-             :key="item[keyProp]"
+             :key="item[props.keyProp]"
              class="rounded cursor-pointer transition-all"
              :class="[
               itemClass,
               sizeItemClass,
-              leftChecked.includes(item[keyProp]) && selectedItemClass
+              leftChecked.includes(item[props.keyProp]) && selectedItemClass
             ]"
-             @click.self="!item.disabled && toggleLeftItem(item[keyProp])">
-          <ShadcnCheckbox :modelValue="leftChecked.includes(item[keyProp]) ? true : null"
-                          :value="true"
+             @click.self="!item.disabled && toggleLeftItem(item[props.keyProp])">
+          <ShadcnCheckbox :modelValue="leftChecked.includes(item[props.keyProp]) ? item[props.keyProp] : null"
+                          :value="item[props.keyProp]"
                           :dark="dark"
                           :size="size"
                           :glass="glass"
-                          :type="type"
-                          :disabled="item.disabled"
-                          @update:modelValue="!item.disabled && toggleLeftItem(item[keyProp])">
+                          :type="checkboxType"
+                          :disabled="item.disabled">
             <slot name="item" :item="item">
-              {{ item[labelProp] }}
+              {{ item[props.labelProp] }}
             </slot>
           </ShadcnCheckbox>
         </div>
@@ -84,36 +83,35 @@
                         :value="true"
                         :indeterminate="rightIndeterminate"
                         @update:modelValue="toggleRightAll"
-                        :type="type"
+                        :type="checkboxType"
                         :glass="glass"
                         :dark="dark"
                         :size="size">
-          {{ rightTitle }}
+          {{ computedRightTitle }}
         </ShadcnCheckbox>
         <span :class="countClass">
           {{ rightCheckedCount }}/{{ rightData.length }}
         </span>
       </div>
-      <div :class="['space-y-1 overflow-y-auto', contentClass, sizeContentClass]">
+      <div :class="['space-y-1 overflow-y-auto', contentClass]" :style="heightStyle">
         <div v-for="item in rightData"
-             :key="item[keyProp]"
+             :key="item[props.keyProp]"
              class="rounded cursor-pointer transition-all"
              :class="[
                 itemClass,
                 sizeItemClass,
-                rightChecked.includes(item[keyProp]) && selectedItemClass
+                rightChecked.includes(item[props.keyProp]) && selectedItemClass
               ]"
-             @click.self="!item.disabled && toggleRightItem(item[keyProp])">
-          <ShadcnCheckbox :modelValue="rightChecked.includes(item[keyProp]) ? true : null"
-                          :value="true"
+             @click.self="!item.disabled && toggleRightItem(item[props.keyProp])">
+          <ShadcnCheckbox :modelValue="rightChecked.includes(item[props.keyProp]) ? item[props.keyProp] : null"
+                          :value="item[props.keyProp]"
                           :dark="dark"
-                          :type="type"
+                          :type="checkboxType"
                           :glass="glass"
                           :size="size"
-                          :disabled="item.disabled"
-                          @update:modelValue="!item.disabled && toggleRightItem(item[keyProp])">
+                          :disabled="item.disabled">
             <slot name="item" :item="item">
-              {{ item[labelProp] }}
+              {{ item[props.labelProp] }}
             </slot>
           </ShadcnCheckbox>
         </div>
@@ -127,8 +125,8 @@ import { computed, inject, ref, watch } from 'vue'
 import { ShadcnCheckbox } from '@/ui/checkbox'
 import { ShadcnButton } from '@/ui/button'
 import { ShadcnIcon } from '@/ui/icon'
-import { Size } from '@/ui/enum/Size'
-import { Type } from '@/ui/enum/Type'
+import { t } from '@/utils/locale'
+import type { TransferEmits, TransferProps } from './types'
 
 enum HeaderSize
 {
@@ -139,9 +137,9 @@ enum HeaderSize
 
 enum ContentSize
 {
-  small = 'p-2 max-h-48',
-  default = 'p-3 max-h-64',
-  large = 'p-4 max-h-80'
+  small = 'p-2',
+  default = 'p-3',
+  large = 'p-4'
 }
 
 enum ItemSize
@@ -165,47 +163,19 @@ enum TextSize
   large = 'text-lg'
 }
 
-interface TransferItem
-{
-  [key: string]: any
-
-  disabled?: boolean
-}
-
-type TransferSize = keyof typeof Size
-type TransferType = keyof typeof Type
-
-interface Props
-{
-  data: TransferItem[]
-  modelValue: (string | number)[]
-  keyProp?: string
-  labelProp?: string
-  leftTitle?: string
-  rightTitle?: string
-  dark?: boolean
-  glass?: boolean
-  type?: TransferType
-  size?: TransferSize
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<TransferProps>(), {
   keyProp: 'key',
   labelProp: 'label',
-  leftTitle: '源列表',
-  rightTitle: '目标列表',
   dark: false,
   type: 'primary',
-  size: 'default'
+  size: 'default',
+  height: '256px'
 })
 
 // Form context support
 const formContext = inject<any>('formContext', null)
 
-const emit = defineEmits<{
-  'update:modelValue': [value: (string | number)[]]
-  'change': [value: (string | number)[], direction: 'left' | 'right', movedKeys: (string | number)[]]
-}>()
+const emit = defineEmits<TransferEmits>()
 
 // Update form context when value changes
 watch(() => props.modelValue, (newValue) => {
@@ -295,14 +265,14 @@ const toggleRightAll = (checked: boolean) => {
 const moveToRight = () => {
   const newValue = [...props.modelValue, ...leftChecked.value]
   emit('update:modelValue', newValue)
-  emit('change', newValue, 'right', [...leftChecked.value])
+  emit('on-change', newValue, 'right', [...leftChecked.value])
   leftChecked.value = []
 }
 
 const moveToLeft = () => {
   const newValue = props.modelValue.filter(key => !rightChecked.value.includes(key))
   emit('update:modelValue', newValue)
-  emit('change', newValue, 'left', [...rightChecked.value])
+  emit('on-change', newValue, 'left', [...rightChecked.value])
   rightChecked.value = []
 }
 
@@ -365,7 +335,34 @@ const countClass = computed(() => {
 // 尺寸类名
 const sizeClass = computed(() => TextSize[props.size])
 const sizeHeaderClass = computed(() => HeaderSize[props.size])
-const sizeContentClass = computed(() => ContentSize[props.size])
 const sizeItemClass = computed(() => ItemSize[props.size])
 const iconSizeClass = computed(() => IconSize[props.size])
+
+// 高度样式
+const heightStyle = computed(() => {
+  return props.height ? { maxHeight: props.height } : {}
+})
+
+// 国际化标题
+const computedLeftTitle = computed(() => {
+  return props.leftTitle || String(t('transfer.text.leftTitle'))
+})
+
+const computedRightTitle = computed(() => {
+  return props.rightTitle || String(t('transfer.text.rightTitle'))
+})
+
+// Checkbox type mapping
+const checkboxType = computed(() => {
+  const typeMap: Record<string, 'primary' | 'success' | 'warning' | 'error'> = {
+    primary: 'primary',
+    success: 'success',
+    warning: 'warning',
+    danger: 'error',
+    error: 'error',
+    info: 'primary',
+    text: 'primary'
+  }
+  return typeMap[props.type] || 'primary'
+})
 </script>

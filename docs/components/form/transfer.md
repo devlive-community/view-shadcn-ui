@@ -15,7 +15,7 @@ title: 穿梭框 (Transfer)
         v-model="selected1"
         :data="data1"
         :dark="darkMode"
-        @change="handleChange" />
+        @on-change="handleChange" />
 </CodeRunner>
 
 ::: details 查看代码
@@ -26,7 +26,7 @@ title: 穿梭框 (Transfer)
     v-model="selected"
     :data="data"
     :dark="darkMode"
-    @change="handleChange" />
+    @on-change="handleChange" />
 </template>
 
 <script setup lang="ts">
@@ -64,8 +64,8 @@ const handleChange = (value, direction, movedKeys) => {
         v-model="selected2"
         :data="data2"
         :dark="darkMode"
-        leftTitle="待选择"
-        rightTitle="已选择" />
+        left-title="待选择"
+        right-title="已选择" />
 </CodeRunner>
 
 ::: details 查看代码
@@ -76,8 +76,8 @@ const handleChange = (value, direction, movedKeys) => {
     v-model="selected"
     :data="data"
     :dark="darkMode"
-    leftTitle="待选择"
-    rightTitle="已选择" />
+    left-title="待选择"
+    right-title="已选择" />
 </template>
 
 <script setup lang="ts">
@@ -90,6 +90,52 @@ const data = ref([
     { key: 2, label: 'React' },
     { key: 3, label: 'Vue' },
     { key: 4, label: 'Svelte' },
+])
+</script>
+```
+
+:::
+
+## 自定义高度
+
+<CodeRunner title="自定义高度">
+    <ShadcnTransfer
+        v-model="selected13"
+        :data="data13"
+        :dark="darkMode"
+        height="400px" />
+</CodeRunner>
+
+::: details 查看代码
+
+```vue
+<template>
+<ShadcnTransfer
+    v-model="selected"
+    :data="data"
+    :dark="darkMode"
+    height="400px" />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
+const selected = ref([1, 2])
+
+const data = ref([
+    { key: 1, label: '选项 1' },
+    { key: 2, label: '选项 2' },
+    { key: 3, label: '选项 3' },
+    { key: 4, label: '选项 4' },
+    { key: 5, label: '选项 5' },
+    { key: 6, label: '选项 6' },
+    { key: 7, label: '选项 7' },
+    { key: 8, label: '选项 8' },
 ])
 </script>
 ```
@@ -373,6 +419,88 @@ const data = ref([
 
 :::
 
+## 在表单中使用
+
+<CodeRunner title="在表单中使用">
+    <ShadcnForm ref="formRef" v-model="formData" @on-submit="onSubmit">
+        <ShadcnFormItem name="skills" label="技能选择" :rules="[{ required: true, message: '请选择技能' }]">
+            <ShadcnTransfer
+                v-model="formData.skills"
+                :data="skillsData"
+                :dark="darkMode"
+                left-title="可选技能"
+                right-title="已选技能" />
+        </ShadcnFormItem>
+        <div class="flex justify-end space-x-2 mt-6">
+            <ShadcnButton reset @click="resetForm">
+                重置
+            </ShadcnButton>
+            <ShadcnButton submit>
+                提交
+            </ShadcnButton>
+        </div>
+    </ShadcnForm>
+</CodeRunner>
+
+::: details 查看代码
+
+```vue
+<template>
+<ShadcnForm ref="formRef" v-model="formData" @on-submit="onSubmit">
+    <ShadcnFormItem name="skills" label="技能选择" :rules="[{ required: true, message: '请选择技能' }]">
+        <ShadcnTransfer
+            v-model="formData.skills"
+            :data="skillsData"
+            :dark="darkMode"
+            left-title="可选技能"
+            right-title="已选技能" />
+    </ShadcnFormItem>
+    <div class="flex justify-end space-x-2 mt-6">
+        <ShadcnButton reset @click="resetForm">
+            重置
+        </ShadcnButton>
+        <ShadcnButton submit>
+            提交
+        </ShadcnButton>
+    </div>
+</ShadcnForm>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useData } from 'vitepress'
+import { computed } from 'vue'
+
+const { isDark } = useData()
+const darkMode = computed(() => isDark.value)
+
+const formRef = ref()
+
+const formData = ref({
+    skills: [1, 2]
+})
+
+const skillsData = ref([
+    { key: 1, label: 'JavaScript' },
+    { key: 2, label: 'TypeScript' },
+    { key: 3, label: 'Vue.js' },
+    { key: 4, label: 'React' },
+    { key: 5, label: 'Angular' },
+    { key: 6, label: 'Node.js' },
+])
+
+const onSubmit = (data: any) => {
+    console.log('Form submitted:', data)
+}
+
+const resetForm = () => {
+    formRef.value.reset()
+}
+</script>
+```
+
+:::
+
 ## 穿梭框 (Transfer) 属性
 
 <ApiTable title="穿梭框 (Transfer) 属性"
@@ -380,10 +508,11 @@ const data = ref([
     :columns="[
         ['data', '数据源', 'TransferItem[]', '[]', '-'],
         ['modelValue', '已选择的数据', '(string | number)[]', '[]', '-'],
-        ['keyProp', '数据项的唯一标识属性名', 'string', '\'key\'', '-'],
-        ['labelProp', '数据项的显示文本属性名', 'string', '\'label\'', '-'],
-        ['leftTitle', '左侧列表标题', 'string', '\'源列表\'', '-'],
-        ['rightTitle', '右侧列表标题', 'string', '\'目标列表\'', '-'],
+        ['key', '数据项的唯一标识属性名', 'string', '\'key\'', '-'],
+        ['label', '数据项的显示文本属性名', 'string', '\'label\'', '-'],
+        ['leftTitle', '左侧列表标题（支持国际化）', 'string', 'transfer.text.leftTitle', '-'],
+        ['rightTitle', '右侧列表标题（支持国际化）', 'string', 'transfer.text.rightTitle', '-'],
+        ['height', '列表高度', 'string', '\'256px\'', '-'],
         ['dark', '暗黑模式', 'boolean', 'false', '-'],
         ['glass', '液态玻璃效果', 'boolean', 'false', '-'],
         ['type', '按钮和复选框类型', 'enum', 'primary', 'primary | success | warning | danger | info'],
@@ -397,7 +526,7 @@ const data = ref([
     :headers="['事件', '描述', '回调参数']"
     :columns="[
         ['update:modelValue', '选中值改变时触发', 'value: (string | number)[]'],
-        ['change', '选中值改变时触发', 'value: (string | number)[], direction: \'left\' | \'right\', movedKeys: (string | number)[]'],
+        ['on-change', '选中值改变时触发', 'value: (string | number)[], direction: \'left\' | \'right\', movedKeys: (string | number)[]'],
     ]">
 </ApiTable>
 
@@ -517,6 +646,40 @@ const data12 = ref([
     { key: 3, label: '选项 3' },
     { key: 4, label: '选项 4' },
 ])
+
+const selected13 = ref([1, 2])
+const data13 = ref([
+    { key: 1, label: '选项 1' },
+    { key: 2, label: '选项 2' },
+    { key: 3, label: '选项 3' },
+    { key: 4, label: '选项 4' },
+    { key: 5, label: '选项 5' },
+    { key: 6, label: '选项 6' },
+    { key: 7, label: '选项 7' },
+    { key: 8, label: '选项 8' },
+])
+
+const formRef = ref()
+const formData = ref({
+    skills: [1, 2]
+})
+
+const skillsData = ref([
+    { key: 1, label: 'JavaScript' },
+    { key: 2, label: 'TypeScript' },
+    { key: 3, label: 'Vue.js' },
+    { key: 4, label: 'React' },
+    { key: 5, label: 'Angular' },
+    { key: 6, label: 'Node.js' },
+])
+
+const onSubmit = (data: any) => {
+    console.log('Form submitted:', data)
+}
+
+const resetForm = () => {
+    formRef.value.reset()
+}
 
 const handleChange = (value, direction, movedKeys) => {
     console.log('value:', value)
