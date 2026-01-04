@@ -13,63 +13,24 @@
       </div>
     </div>
 
-    <ShadcnAlert
-        title="Alert"
+    <ShadcnInput
+        v-model="inputValue"
         type="success"
         show-icon
         :dark="isDark"
+        :disabled="true"
         :glass="isGlass">
-      <template #icon>
-        <ShadcnIcon name="Info" :dark="isDark" :glass="isGlass"/>
-      </template>
-    </ShadcnAlert>
-
-    <ShadcnTransfer
-        v-model="transferSelected1"
-        :data="transferData1"
-        :dark="isDark"
-        :glass="isGlass"
-        type="success"/>
-
-    <ShadcnCard title="Transfer 基础用法" :dark="isDark" :glass="isGlass">
-      <ShadcnTransfer
-          v-model="transferSelected1"
-          :data="transferData1"
-          :dark="isDark"
-          :glass="isGlass"
-          type="success"/>
-    </ShadcnCard>
-
-    <ShadcnDropdown :dark="isDark" :glass="isGlass" trigger="click">
-      <template #trigger>
-        <ShadcnButton>点击打开</ShadcnButton>
-      </template>
-      <ShadcnDropdownItem>操作 1</ShadcnDropdownItem>
-      <ShadcnDropdownItem active>操作 2</ShadcnDropdownItem>
-      <ShadcnDropdownItem divided>操作 3</ShadcnDropdownItem>
-      <ShadcnDropdownItem>操作 4</ShadcnDropdownItem>
-    </ShadcnDropdown>
+    </ShadcnInput>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ShadcnTransfer } from '@/ui/transfer'
 import { ShadcnButton } from '@/ui/button'
-import { ShadcnCard } from '@/ui/card'
-import { ShadcnDropdown, ShadcnDropdownItem } from '@/ui/dropdown'
-import { ShadcnAlert } from '@/ui/alert'
-import { ShadcnIcon } from '@/ui/icon'
+import { ShadcnInput } from '@/ui/input'
 
 const isDark = ref(false)
 const isGlass = ref(false)
 
-const transferSelected1 = ref([2, 3])
-const transferData1 = ref([
-  { key: 1, label: '选项 1' },
-  { key: 2, label: '选项 2' },
-  { key: 3, label: '选项 3', disabled: true },
-  { key: 4, label: '选项 4' },
-  { key: 5, label: '选项 5' }
-])
+const inputValue = ref('')
 </script>

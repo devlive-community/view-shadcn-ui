@@ -1,11 +1,11 @@
-import { Size } from '@/ui/enum/Size.ts'
+import { ComponentSize } from '@/utils/theme.ts'
 
 export interface InputProps
 {
     modelValue: string
     placeholder?: string
     clearable?: boolean
-    size?: keyof typeof Size
+    size?: ComponentSize
     wordCount?: boolean
     maxCount?: number | string
     disabled?: boolean
@@ -19,10 +19,10 @@ export interface InputProps
 }
 
 export type InputEmits = {
-    (e: 'update:modelValue', value: string): void
-    (e: 'on-change', value: string): void
-    (e: 'on-clear'): void
-    (e: 'on-blur', value: string): void
-    (e: 'on-prefix-click'): void
-    (e: 'on-suffix-click'): void
+    'update:modelValue': [value: string]
+    'on-change': [value: string]
+    'on-clear': []
+    'on-blur': [value: string]
+    'on-prefix-click': []
+    'on-suffix-click': []
 }

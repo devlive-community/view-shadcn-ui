@@ -1,5 +1,6 @@
 <template>
-  <div :class="[
+  <div
+      :class="[
          'inline-flex shrink-0 items-center justify-center',
          background && 'rounded-lg p-2',
          background && glass && 'backdrop-blur-xl backdrop-saturate-150',
@@ -7,13 +8,14 @@
          background && glass && (dark ? 'bg-white/10 border border-white/20' : 'bg-white/30 border border-gray-400/40'),
          background && !glass && (dark ? 'bg-gray-800 border border-gray-700' : 'bg-gray-100 border border-gray-200')
        ]"
-       :style="containerStyle">
-    <component v-if="icon"
-               :is="iconComponent"
-               :size="iconSize"
-               :style="iconStyle"
-               :class="['shrink-0', glass && (dark ? 'text-gray-200' : 'text-gray-700'), !glass && (dark && !color ? 'text-gray-300' : '')]"
-               @click="onClick"/>
+      :style="containerStyle">
+    <component
+        :is="iconComponent"
+        v-if="icon"
+        :size="iconSize"
+        :style="iconStyle"
+        :class="['shrink-0', glass && (dark ? 'text-gray-200' : 'text-gray-700'), !glass && (dark && !color ? 'text-gray-300' : '')]"
+        @click="onClick"/>
     <slot v-else name="icon"/>
   </div>
 </template>

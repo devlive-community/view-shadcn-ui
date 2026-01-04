@@ -8,7 +8,6 @@ declare module 'view-shadcn-ui'
     export const ShadcnCard: typeof import('@/ui/card').default
     export const ShadcnCopy: typeof import('@/ui/copy').default
     export const ShadcnCode: typeof import('@/ui/code').default
-    export const ShadcnInput: typeof import('@/ui/input').default
     export const ShadcnIcon: typeof import('@/ui/icon').default
     export const ShadcnModal: typeof import('@/ui/modal').default
     export const ShadcnTooltip: typeof import('@/ui/tooltip').default
@@ -49,8 +48,11 @@ declare module 'view-shadcn-ui'
     export const ShadcnTransfer: typeof import('@/ui/transfer').ShadcnTransfer
 
     export const ShadcnAlert: typeof import('@/ui/alert').default
-    export type { AlertProps, AlertEmits } from '@/ui/alert'
     export const ShadcnCheckbox: typeof import('@/ui/checkbox').default
     export const ShadcnCheckboxGroup: typeof import('@/ui/checkbox/group').default
+    export const ShadcnInput: typeof import('@/ui/input').default
+
+    export type { AlertProps, AlertEmits } from '@/ui/alert'
     export type { CheckboxProps, CheckboxEmits } from '@/ui/checkbox'
+    export type { InputProps, InputEmits } from '@/ui/input'
 }

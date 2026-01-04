@@ -1,72 +1,59 @@
 <template>
-  <div :class="['relative w-full items-center border rounded transition-all duration-300',
-                glass && 'backdrop-blur-xl backdrop-saturate-150',
-                glass && 'border-white/20',
-                glass && 'shadow-lg shadow-black/5',
-                glass ? (dark ? 'bg-white/10' : 'bg-white/30') : (dark ? 'border-gray-600 active:border-gray-500 hover:border-gray-500 bg-gray-800' : 'border-gray-300 active:border-blue-400 hover:border-blue-400')
-       ]"
-       @mouseenter="hovered = true"
-       @mouseleave="hovered = false">
-    <component :is="isTextarea ? 'textarea' : 'input'"
-               v-bind="isTextarea
+  <div :class="containerClasses" @mouseenter="hovered = true" @mouseleave="hovered = false">
+    <component
+        :is="isTextarea ? 'textarea' : 'input'"
+        v-bind="isTextarea
                        ? { rows: props.rows, cols: props.cols }
                        : { type: currentType }"
-               :class="cn('w-full p-2 rounded outline-none border-none',
-                        type !== 'textarea' && size && Size[size],
-                        $slots.prefix && 'pl-8',
-                        $slots.suffix && 'pr-8',
-                        glass ? 'bg-transparent' : '',
-                        glass ? (dark ? 'text-gray-100 placeholder:text-gray-400' : 'text-gray-900 placeholder:text-gray-600') : (dark ? 'bg-gray-800 text-gray-200 placeholder:text-gray-500' : '')
-               )"
-               :style="wordCount || maxCount ? { paddingRight: paddingRight + 'px' } : ''"
-               :value="localValue"
-               :placeholder="placeholder"
-               :maxlength="maxCount"
-               :disabled="disabled"
-               :readonly="readonly"
-               @input="onInput"
-               @blur="onBlur"
-               @update:modelValue="onModelValueUpdate"/>
+        :class="inputClasses"
+        :style="wordCount || maxCount ? { paddingRight: paddingRight + 'px' } : ''"
+        :value="localValue"
+        :placeholder="placeholder"
+        :maxlength="maxCount"
+        :disabled="disabled"
+        :readonly="readonly"
+        @input="onInput"
+        @blur="onBlur"
+        @update:model-value="onModelValueUpdate"/>
 
-    <span v-if="clearable && localValue && hovered" class="absolute end-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer"
-          @click="onClear">
-      <ShadcnIcon :class="['size-5', dark ? 'text-gray-400' : 'text-muted-foreground']" icon="CircleX"/>
+    <span
+        v-if="clearable && localValue && hovered"
+        class="absolute end-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer"
+        @click="onClear">
+      <ShadcnIcon :class="['size-5', iconColorClasses]" :dark="props.dark" :glass="props.glass" icon="CircleX"/>
     </span>
 
-    <span v-if="type === 'password'" class="absolute end-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer"
-          @click="togglePasswordVisibility">
-      <ShadcnIcon :class="['size-5', dark ? 'text-gray-400' : 'text-muted-foreground']" :icon="showPassword ? 'Eye' : 'EyeOff'"/>
+    <span
+        v-if="type === 'password'"
+        class="absolute end-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer"
+        @click="togglePasswordVisibility">
+      <ShadcnIcon :class="['size-5', iconColorClasses]" :dark="props.dark" :glass="props.glass" :icon="showPassword ? 'Eye' : 'EyeOff'"/>
     </span>
 
-    <span v-if="wordCount" ref="wordCountSpan" :class="['absolute end-0 inset-y-0 flex items-center justify-center px-2 text-xs font-thin w-auto',
-                                                        dark ? 'text-gray-500' : 'text-gray-400']">
+    <span v-if="wordCount" ref="wordCountSpan" :class="wordCountClasses">
       <span v-if="maxCount">{{ textCount }} / {{ maxCount }}</span>
       <span v-else>{{ textCount }}</span>
     </span>
 
-    <span v-if="$slots.prefix" :class="['absolute start-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer',
-                                        dark ? 'text-gray-500' : 'text-gray-400']"
-          @click="onPrefixClick">
+    <span v-if="$slots.prefix" :class="prefixClasses" @click="onPrefixClick">
       <slot name="prefix"/>
     </span>
 
-    <span v-if="$slots.suffix" :class="['absolute end-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer',
-                                        dark ? 'text-gray-500' : 'text-gray-400']"
-          @click="onSuffixClick">
+    <span v-if="$slots.suffix" :class="suffixClasses" @click="onSuffixClick">
       <slot name="suffix"/>
     </span>
   </div>
 </template>
 
 <script setup lang="ts">
-import { cn } from '@/lib/utils.ts'
-import { computed, inject, nextTick, onMounted, ref, watch } from 'vue'
-import { Size } from '@/ui/enum/Size.ts'
+import { computed, inject, nextTick, onMounted, ref, useSlots, watch } from 'vue'
+import { getBackground, getBorder, getComponentSize, getGlassStyles, getInputBorderActive, getInputBorderHover, getText, type ThemeMode } from '@/utils/theme'
 import { FormItemContext } from '@/ui/form/context.ts'
 import { InputEmits, InputProps } from '@/ui/input/types.ts'
-import { ShadcnIcon } from "@/ui/icon";
+import { ShadcnIcon } from '@/ui/icon'
 
 const emit = defineEmits<InputEmits>()
+const $slots = useSlots()
 
 const props = withDefaults(defineProps<InputProps>(), {
   modelValue: '',
@@ -139,7 +126,7 @@ const onBlur = (event: FocusEvent) => {
   }
 }
 
-const onModelValueUpdate = (value: Object) => {
+const onModelValueUpdate = (value: any) => {
   const newValue = String(value)
   localValue.value = newValue
   emit('update:modelValue', newValue)
@@ -165,4 +152,78 @@ const onPrefixClick = () => {
 const onSuffixClick = () => {
   emit('on-suffix-click')
 }
+
+const containerClasses = computed(() => {
+  const mode: ThemeMode = { dark: props.dark, glass: props.glass }
+  const baseClasses = ['relative w-full items-center border rounded transition-all duration-300']
+
+  if (props.glass) {
+    return [
+      ...baseClasses,
+      ...getGlassStyles(mode, { withHover: false, withBorder: true, withText: false })
+    ]
+  }
+
+  return [
+    ...baseClasses,
+    getBorder(mode),
+    getBackground(mode),
+    getInputBorderHover(mode),
+    getInputBorderActive(mode)
+  ]
+})
+
+const inputClasses = computed(() => {
+  const mode: ThemeMode = { dark: props.dark, glass: props.glass }
+  const baseClasses = ['w-full p-2 rounded outline-none border-none']
+
+  if (props.disabled) {
+    baseClasses.push('opacity-50 cursor-not-allowed')
+  }
+
+  if (props.type !== 'textarea' && props.size) {
+    baseClasses.push(getComponentSize('input', props.size))
+  }
+
+  if ($slots.prefix) {
+    baseClasses.push('pl-8')
+  }
+
+  if ($slots.suffix) {
+    baseClasses.push('pr-8')
+  }
+
+  if (props.glass) {
+    baseClasses.push('bg-transparent')
+    baseClasses.push(getText(mode))
+    baseClasses.push(props.dark ? 'placeholder:text-gray-400' : 'placeholder:text-gray-600')
+  }
+  else {
+    if (props.dark) {
+      baseClasses.push('bg-gray-800 text-gray-200 placeholder:text-gray-500')
+    }
+  }
+
+  return baseClasses
+})
+
+const iconColorClasses = computed(() => {
+  const mode: ThemeMode = { dark: props.dark, glass: props.glass }
+  return getText(mode, 'muted')
+})
+
+const wordCountClasses = computed(() => {
+  const mode: ThemeMode = { dark: props.dark, glass: props.glass }
+  return ['absolute end-0 inset-y-0 flex items-center justify-center px-2 text-xs font-thin w-auto', getText(mode, 'disabled')]
+})
+
+const prefixClasses = computed(() => {
+  const mode: ThemeMode = { dark: props.dark, glass: props.glass }
+  return ['absolute start-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer', getText(mode, 'muted')]
+})
+
+const suffixClasses = computed(() => {
+  const mode: ThemeMode = { dark: props.dark, glass: props.glass }
+  return ['absolute end-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer', getText(mode, 'muted')]
+})
 </script>

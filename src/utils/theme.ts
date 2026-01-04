@@ -103,7 +103,9 @@ export const darkBackgrounds = {
 export const darkBorders = {
     default: 'border-gray-700',
     light: 'border-gray-600',
-    muted: 'border-gray-700/50'
+    muted: 'border-gray-700/50',
+    inputHover: 'hover:border-gray-500',
+    inputActive: 'active:border-gray-500'
 }
 
 export const darkTexts = {
@@ -125,7 +127,9 @@ export const lightBackgrounds = {
 export const lightBorders = {
     default: 'border-gray-200',
     light: 'border-gray-100',
-    muted: 'border-gray-200/50'
+    muted: 'border-gray-200/50',
+    inputHover: 'hover:border-blue-400',
+    inputActive: 'active:border-blue-400'
 }
 
 export const lightTexts = {
@@ -250,6 +254,9 @@ export function getBackground(mode: ThemeMode, variant: keyof typeof darkBackgro
 
 export function getBorder(mode: ThemeMode, variant: keyof typeof darkBorders = 'default'): string
 {
+    if (mode.glass && (variant === 'inputHover' || variant === 'inputActive')) {
+        return ''
+    }
     if (mode.glass) {
         return glassStyles.border
     }
@@ -308,6 +315,16 @@ export function getActiveStyles(mode: ThemeMode): string
     }
 
     return mode.dark ? darkBackgrounds.active : lightBackgrounds.active
+}
+
+export function getInputBorderHover(mode: ThemeMode): string
+{
+    return getBorder(mode, 'inputHover')
+}
+
+export function getInputBorderActive(mode: ThemeMode): string
+{
+    return getBorder(mode, 'inputActive')
 }
 
 export function mergeThemeClasses(...classes: ClassValue[]): string
