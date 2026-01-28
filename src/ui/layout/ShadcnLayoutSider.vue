@@ -29,11 +29,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { inject, onBeforeUnmount, onMounted, ref } from 'vue'
 import { ShadcnIcon } from '@/ui/icon'
+import { SiderHookProviderKey } from './injectionKey'
 
-interface Props
-{
+interface Props {
   width?: string
   collapsedWidth?: string
   collapsible?: boolean
@@ -43,6 +43,18 @@ interface Props
 
 defineOptions({
   name: 'ShadcnLayoutSider'
+})
+
+let uniqueId = ''
+const siderHook = inject(SiderHookProviderKey, undefined)
+
+onMounted(() => {
+  uniqueId = `shadcn-sider-${Date.now()}-${Math.random().toString(36).slice(2)}`
+  siderHook?.addSider(uniqueId)
+})
+
+onBeforeUnmount(() => {
+  siderHook?.removeSider(uniqueId)
 })
 
 const emit = defineEmits(['on-collapse'])

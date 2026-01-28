@@ -1,26 +1,42 @@
 <template>
-  <div :class="['flex flex-1', hasSider ? 'flex-row' : 'flex-col']">
+  <div :class="['shadcn-layout flex flex-1', computedHasSider ? 'flex-row' : 'flex-col']">
     <slot></slot>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, useSlots } from 'vue'
+import { computed, provide, ref } from 'vue'
+import { SiderHookProviderKey } from './injectionKey'
 
-const slots = useSlots()
-const hasSider = ref(false)
+defineOptions({
+  name: 'ShadcnLayout'
+})
 
-const findSider = () => {
-  const children = slots.default?.()
-  if (!children) return false
-
-  return children.some(child => {
-    const type = child.type as any
-    return type?.name === 'ShadcnLayoutSider' || type?.__name === 'ShadcnLayoutSider'
-  })
+interface Props {
+  hasSider?: boolean
 }
 
-onMounted(() => {
-  hasSider.value = findSider()
+const props = withDefaults(defineProps<Props>(), {
+  hasSider: undefined
+})
+
+const siders = ref<string[]>([])
+
+const computedHasSider = computed(() => {
+  // 如果显式设置了 hasSider prop，优先使用
+  if (typeof props.hasSider === 'boolean') {
+    return props.hasSider
+  }
+  // 否则根据注册的 sider 数量判断
+  return siders.value.length > 0
+})
+
+provide(SiderHookProviderKey, {
+  addSider: (id: string) => {
+    siders.value = [...siders.value, id]
+  },
+  removeSider: (id: string) => {
+    siders.value = siders.value.filter(s => s !== id)
+  }
 })
 </script>
